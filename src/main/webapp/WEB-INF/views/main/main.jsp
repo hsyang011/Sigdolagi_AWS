@@ -2,8 +2,11 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
+<head>
+<!-- head 추가 -->
 <%@ include file="../include/global_head.jsp" %>
 <link rel="stylesheet" href="../css/main.css" />
+</head>
 <body>
     <div class="container-fluid" id="wrap">
 
@@ -38,7 +41,7 @@
         <nav class="container">
             <div class="nav_content">
                 <ul>
-                    <li><a href="#">플래너</a></li>
+                    <li><a href="../planner/plannerList.do">플래너</a></li>
                     <li><a href="#">맛집탐방</a></li>
                     <li><a href="#">마켓</a></li>
                     <li><a href="#">커뮤니티</a></li>
@@ -93,7 +96,7 @@
                 <div class="top_ad">
                     <div class="top_ad_title">
                         <h2>나만의 <span>플래너</span> 를 만들어보세요!</h2>
-                        <a href="#"><input type="button" value="플래너 바로가기"></a>
+                        <a href="../planner/plannerMap.do"><input type="button" value="플래너 바로가기"></a>
                     </div>
                     <div class="top_ad_icon">
                         <i>

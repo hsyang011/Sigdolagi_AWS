@@ -56,7 +56,7 @@
             <!-- 내비게이션 링크 -->
             <div class="navbar-collapse justify-content-center" id="pc_navbar">
                 <ul class="head_nav nav">
-                    <li class="nav-item"><a class="nav-link" href="#">플래너</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../planner/plannerList.do">플래너</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">맛집탐방</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">마켓</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">커뮤니티</a></li>

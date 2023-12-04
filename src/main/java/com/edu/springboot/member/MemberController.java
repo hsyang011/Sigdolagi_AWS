@@ -13,7 +13,7 @@ public class MemberController {
 	
 	@RequestMapping("/member/findIdpw.do")
 	public String findIdpw() {
-		return "member/find_idpw";
+		return "member/findIdpw";
 	}
 	
 	@RequestMapping("/member/regist.do")

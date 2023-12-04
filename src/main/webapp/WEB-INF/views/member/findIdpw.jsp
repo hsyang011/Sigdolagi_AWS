@@ -3,17 +3,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>아이디/비번 찾기</title>
-<!-- jQuery -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
-<!-- Latest compiled and minified CSS -->
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-<!-- Latest compiled JavaScript -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-<!-- 아이콘 -->
-<script src="https://kit.fontawesome.com/98401b861d.js" crossorigin="anonymous"></script>
+<!-- head 추가 -->
+<%@ include file="../include/global_head.jsp" %>
 <!-- 전역 설정 css 링크  -->
 <link rel="stylesheet" href="../css/find_idpw.css">
 </head>
