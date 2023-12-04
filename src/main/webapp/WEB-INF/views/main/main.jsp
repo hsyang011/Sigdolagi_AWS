@@ -41,9 +41,9 @@
         <nav class="container">
             <div class="nav_content">
                 <ul>
-                    <li><a href="../planner/plannerList.do">플래너</a></li>
+                    <li><a href="../planner/planner_list.do">플래너</a></li>
                     <li><a href="#">맛집탐방</a></li>
-                    <li><a href="#">마켓</a></li>
+                    <li><a href="../market/market_list.do">마켓</a></li>
                     <li><a href="#">커뮤니티</a></li>
                     <li><a href="#">고객센터</a></li>
                 </ul>
@@ -96,7 +96,7 @@
                 <div class="top_ad">
                     <div class="top_ad_title">
                         <h2>나만의 <span>플래너</span> 를 만들어보세요!</h2>
-                        <a href="../planner/plannerMap.do"><input type="button" value="플래너 바로가기"></a>
+                        <a href="../planner/planner_map.do"><input type="button" value="플래너 바로가기"></a>
                     </div>
                     <div class="top_ad_icon">
                         <i>

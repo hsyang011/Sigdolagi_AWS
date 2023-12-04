@@ -11,9 +11,9 @@ public class MemberController {
 		return "member/login";
 	}
 	
-	@RequestMapping("/member/findIdpw.do")
+	@RequestMapping("/member/find_idpw.do")
 	public String findIdpw() {
-		return "member/findIdpw";
+		return "member/find_idpw";
 	}
 	
 	@RequestMapping("/member/regist.do")

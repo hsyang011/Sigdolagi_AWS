@@ -73,7 +73,7 @@ $(function() {
     }
     
     $("#makeplannerBtn").click(() => {
-    	location.href = "./plannerMap.do";
+    	location.href = "./planner_map.do";
     });
 });
 
