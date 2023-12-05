@@ -9,7 +9,6 @@
 </head>
 <body>
     <div class="container-fluid" id="wrap">
-
         <!-- header 시작 -->
         <header class="container">
             <div class="header_content">
