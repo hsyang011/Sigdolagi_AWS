@@ -44,7 +44,7 @@
                     <li><a href="#">맛집탐방</a></li>
                     <li><a href="../market/market_list.do">마켓</a></li>
                     <li><a href="../community/freeboard_list.do">커뮤니티</a></li>
-                    <li><a href="#">고객센터</a></li>
+                    <li><a href="../service/notiboard.do">고객센터</a></li>
                 </ul>
             </div>
         </nav>
