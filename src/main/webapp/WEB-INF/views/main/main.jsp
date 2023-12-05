@@ -43,12 +43,12 @@
                     <li><a href="../planner/planner_list.do">플래너</a></li>
                     <li><a href="#">맛집탐방</a></li>
                     <li><a href="../market/market_list.do">마켓</a></li>
-                    <li><a href="#">커뮤니티</a></li>
+                    <li><a href="../community/freeboard_list.do">커뮤니티</a></li>
                     <li><a href="#">고객센터</a></li>
                 </ul>
             </div>
         </nav>
-        <!-- nva 끝 -->
+        <!-- nav 끝 -->
         <div class="line"></div>
         <!-- main 시작 -->
         <main class="container-fluid" style="height: 3600px;">

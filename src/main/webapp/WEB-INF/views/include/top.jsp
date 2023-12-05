@@ -59,7 +59,7 @@
                     <li class="nav-item"><a class="nav-link" href="../planner/planner_list.do">플래너</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">맛집탐방</a></li>
                     <li class="nav-item"><a class="nav-link" href="../market/market_list.do">마켓</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">커뮤니티</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../community/freeboard_list.do">커뮤니티</a></li>
                     <li class="nav-item"><a class="nav-link" href="#">고객센터</a></li>
                 </ul>
             </div>
@@ -74,7 +74,7 @@
         <li class="nav-item"><a class="nav-link" href="../planner/planner_list.do">플래너</a></li>
         <li class="nav-item"><a class="nav-link" href="#">맛집탐방</a></li>
         <li class="nav-item"><a class="nav-link" href="../market/market_list.do">마켓</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">커뮤니티</a></li>
+        <li class="nav-item"><a class="nav-link" href="../community/freeboard_list.do">커뮤니티</a></li>
         <li class="nav-item"><a class="nav-link" href="#">고객센터</a></li>
     </ul>
 </div>
