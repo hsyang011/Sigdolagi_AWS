@@ -103,7 +103,7 @@ main > * { margin: 50px 0; }
                <div class="nav_location">
                     <ul class="nav_locat nav">
                         <li class="nav-item">
-                          <a class="nav-link" href="#">홈!</a>
+                          <a class="nav-link" href="#">홈</a>
                         </li>
                         <li class="nav-item">
                           <a class="nav-link" href="#">커뮤니티</a>

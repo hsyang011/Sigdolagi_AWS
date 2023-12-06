@@ -203,6 +203,7 @@ $(function() {
             </div>
         </div>
       
+
         <!-- 게시판 검색 -->
         <form method="get" class="search_table">  
             <table class="table" width="100%" >
