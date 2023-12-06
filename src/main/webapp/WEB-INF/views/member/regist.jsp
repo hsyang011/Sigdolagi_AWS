@@ -1,20 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+    
+    
+    <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- head 추가 -->
 <%@ include file="../include/global_head.jsp" %>
-<!-- CSS -->
 <link rel="stylesheet" href="../css/member.css">
+
 </head>
 <body>
+
+<!-- header, nav 추가 -->
+	
+
 <!-- wrapper 시작 -->
 <div class="container-fluid" id="wrap">
-
-	<!-- header, nav 추가 -->
-	<%@ include file="../include/top.jsp" %>
-	
+    <!-- header 시작 -->
+    <%@ include file="../include/top.jsp" %>
+    <!-- header 끝 -->
+    <!-- nav 시작 -->
+    <!-- mobile 내비게이션 끝 -->
     <!-- 배너 시작 -->
     <div id="banner" class="mt-3">
         <div id="banner_contents" class="container d-flex align-items-center">
@@ -24,7 +30,7 @@
                     <h2>회원가입</h2>
                 </div>
             </div>
-            <img id="page_icon" src="../images/mdi_register-outline.svg">
+            <img id="page_icon" src="images/mdi_register-outline.svg">
         </div>
     </div>
     <!-- 배너 끝 -->
@@ -57,20 +63,20 @@
                                 <path d="M88.6875 8.0625C85.7313 8.0625 83.3125 10.4812 83.3125 13.4375V26.875C83.3125 29.8312 85.7313 32.25 88.6875 32.25C91.6438 32.25 94.0625 29.8312 94.0625 26.875V13.4375C94.0625 10.4812 91.6438 8.0625 88.6875 8.0625ZM40.3125 8.0625C37.3563 8.0625 34.9375 10.4812 34.9375 13.4375V26.875C34.9375 29.8312 37.3563 32.25 40.3125 32.25C43.2688 32.25 45.6875 29.8312 45.6875 26.875V13.4375C45.6875 10.4812 43.2688 8.0625 40.3125 8.0625ZM34.9375 56.4375H51.0625V72.5625H34.9375V56.4375ZM56.4375 56.4375H72.5625V72.5625H56.4375V56.4375ZM77.9375 56.4375H94.0625V72.5625H77.9375V56.4375ZM34.9375 77.9375H51.0625V94.0625H34.9375V77.9375ZM56.4375 77.9375H72.5625V94.0625H56.4375V77.9375Z" fill="#D9D9D9"/>
                                 <path d="M77.9375 77.9375H94.0625V94.0625H77.9375V77.9375Z" fill="#F44336"/>
                                 <g clip-path="url(#clip0_304_782)">
-                                <path d="M74.2954 102.579L105.415 71.4673L119.971 86.027L88.8502 117.139L74.2954 102.579Z" fill="#FFCE31"/>
-                                <path d="M126.366 66.9342L124.512 65.0803C120.999 61.5677 115.34 61.5677 111.73 65.0803L105.388 71.4225L120.023 86.0582L126.366 79.716C129.878 76.2035 129.878 70.4467 126.366 66.9342Z" fill="#ED4C5C"/>
-                                <path d="M101.467 75.4327L105.468 71.4303L120.025 85.988L116.025 89.9894L101.467 75.4327Z" fill="#93A2AA"/>
-                                <path d="M102.985 76.9499L106.986 72.9485L118.44 84.4014L114.437 88.4019L102.985 76.9499Z" fill="#C7D3D8"/>
-                                <path d="M74.2626 102.548L67.9204 119.135L72.3111 123.526L88.8983 117.184L74.2626 102.548Z" fill="#FED0AC"/>
-                                <path d="M66.8467 122.062C65.9686 124.404 67.1394 125.477 69.4812 124.599L77.482 121.574L69.969 114.061L66.8467 122.062Z" fill="#333333"/>
-                                <path d="M74.2524 102.621L101.436 75.4375L106.266 80.2673L79.0822 107.451L74.2524 102.621Z" fill="#FFDF85"/>
-                                <path d="M84.0234 112.346L111.207 85.1625L116.037 89.9923L88.8532 117.176L84.0234 112.346Z" fill="#FF8736"/>
+                                    <path d="M74.2954 102.579L105.415 71.4673L119.971 86.027L88.8502 117.139L74.2954 102.579Z" fill="#FFCE31"/>
+                                    <path d="M126.366 66.9342L124.512 65.0803C120.999 61.5677 115.34 61.5677 111.73 65.0803L105.388 71.4225L120.023 86.0582L126.366 79.716C129.878 76.2035 129.878 70.4467 126.366 66.9342Z" fill="#ED4C5C"/>
+                                    <path d="M101.467 75.4327L105.468 71.4303L120.025 85.988L116.025 89.9894L101.467 75.4327Z" fill="#93A2AA"/>
+                                    <path d="M102.985 76.9499L106.986 72.9485L118.44 84.4014L114.437 88.4019L102.985 76.9499Z" fill="#C7D3D8"/>
+                                    <path d="M74.2626 102.548L67.9204 119.135L72.3111 123.526L88.8983 117.184L74.2626 102.548Z" fill="#FED0AC"/>
+                                    <path d="M66.8467 122.062C65.9686 124.404 67.1394 125.477 69.4812 124.599L77.482 121.574L69.969 114.061L66.8467 122.062Z" fill="#333333"/>
+                                    <path d="M74.2524 102.621L101.436 75.4375L106.266 80.2673L79.0822 107.451L74.2524 102.621Z" fill="#FFDF85"/>
+                                    <path d="M84.0234 112.346L111.207 85.1625L116.037 89.9923L88.8532 117.176L84.0234 112.346Z" fill="#FF8736"/>
                                 </g>
                                 <path fill-rule="evenodd" clip-rule="evenodd" d="M54.5587 45.313C55.1665 45.6734 55.6064 46.2602 55.7817 46.9447C55.9571 47.6292 55.8536 48.3552 55.4939 48.9635L43.9668 68.431C43.6064 69.0387 43.0195 69.4786 42.335 69.6539C41.6506 69.8293 40.9245 69.7258 40.3163 69.3661L33.8271 65.5238C33.2454 65.151 32.8311 64.567 32.6715 63.8949C32.5119 63.2227 32.6194 62.5148 32.9714 61.9203C33.3234 61.3259 33.8924 60.8913 34.5585 60.708C35.2246 60.5248 35.9359 60.6073 36.5424 60.9381L40.7387 63.4228L50.9083 46.2482C51.2686 45.6404 51.8555 45.2005 52.54 45.0252C53.2244 44.8498 53.9505 44.9533 54.5587 45.313Z" fill="#FF0000"/>
                                 <defs>
-                                <clipPath id="clip0_304_782">
-                                <rect width="62.4459" height="62.4459" fill="white" transform="translate(66.5542 62.4459)"/>
-                                </clipPath>
+                                    <clipPath id="clip0_304_782">
+                                        <rect width="62.4459" height="62.4459" fill="white" transform="translate(66.5542 62.4459)"/>
+                                    </clipPath>
                                 </defs>
                             </svg>
                         </i>
@@ -111,9 +117,15 @@
                             <input type="text" class="phone3">
                         </div>
                         <div class="input_address">
-                            <h4>주소</h4>
-                            <input type="text" class="add1">
-                            <input type="text" class="add2" placeholder="상세주소">
+                            <div class="input_searchadd">
+                                <h4>주소</h4>
+                                
+                                <div style="margin-bottom: 0;">
+                                    <input type="text" class="add2" placeholder="우편번호"><button>주소찾기</button>
+                                    <input type="text" class="add1" style="width: 90%; margin-top: 20px;"><br>
+                                    <input type="text" class="add2" style="width: 90%;" placeholder="상세주소">
+                                </div>
+                            </div>
                         </div>
                         <div class="email_radio">
                             <h4>이메일 수신 여부</h4>
@@ -122,8 +134,8 @@
                         </div>
                         <div class="sms_radio">
                             <h4>이메일 수신 여부</h4>
-                            <input type="radio"> 수신동의
-                            <input type="radio"> 수신거부
+                            <input type="radio">&nbsp;수신동의
+                            <input type="radio">&nbsp;수신거부
                         </div>
                     </form>
                     <div class="member_subBtn">
@@ -135,11 +147,14 @@
         </div>
     </main>
     <!-- main 끝 -->
-    
-    <!-- footer 추가 -->
-	<%@ include file="../include/footer.jsp" %>
-    
-</div>
+    <%@ include file="../include/footer.jsp" %>
+    </div>
 <!-- wrapper 끝 -->
 </body>
 </html>
+
+<!-- footer 추가 -->
+<%-- 	<%@ include file="../include/footer.jsp" %>
+	<!-- header, nav 추가 -->
+	<%@ include file="../include/top.jsp" %>
+	<%@ include file="../include/global_head.jsp" %> --%>
