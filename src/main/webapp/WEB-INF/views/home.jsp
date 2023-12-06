@@ -8,7 +8,10 @@
 <script>
 window.onload = () => {
 	location.href = "./main/main.do";
+	
 }
+/*테스트 */
+
 </script>
 </head>
 <body>
