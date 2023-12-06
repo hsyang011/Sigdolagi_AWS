@@ -20,7 +20,14 @@ window.onload = () => {
 		<li><a href="/">최상위루트</a></li>
 
 		<li><a href="./main/main.do">메인페이지로 이동</a></li>
+<<<<<<< HEAD
 	</ul> -->
+	
+	
+	
+=======
+	</ul> -->
+>>>>>>> branch 'main' of https://github.com/hsyang011/Sigdolagi.git
 	
 	
 

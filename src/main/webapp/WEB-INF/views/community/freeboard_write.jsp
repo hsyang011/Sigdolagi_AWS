@@ -103,7 +103,7 @@ main > * { margin: 50px 0; }
                <div class="nav_location">
                     <ul class="nav_locat nav">
                         <li class="nav-item">
-                          <a class="nav-link" href="#">홈</a>
+                          <a class="nav-link" href="#">홈!</a>
                         </li>
                         <li class="nav-item">
                           <a class="nav-link" href="#">커뮤니티</a>
@@ -127,7 +127,6 @@ main > * { margin: 50px 0; }
             </div>
             <!-- 컨텐츠 헤더 끝 -->
             <div class="shop_board container  mt-5" >
-
 
                 <!-- 문의 폼 -->
                 <div class="container">
