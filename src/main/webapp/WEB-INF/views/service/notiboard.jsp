@@ -84,12 +84,12 @@ main > * { margin: 50px 0; }
     <div id="banner" class="mt-3">
         <div id="banner_contents" class="container d-flex align-items-center">
             <div id="info">
-                <h4>무엇이든 물어보세요.</h4>
+                <h4>무엇이든 물어보세요</h4>
                 <div id="info_title" class="d-flex">
                     <h2>고객센터</h2>
                 </div>
             </div>
-            <img id="page_icon" src="./images/asd.png">
+            <img id="page_icon" src="../images/asd.png">
         </div>
     </div>
     <!-- 배너 끝 -->
@@ -106,7 +106,7 @@ main > * { margin: 50px 0; }
                           <a class="nav-link" href="#">홈</a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link" href="#">커뮤니티</a>
+                          <a class="nav-link" href="#">고객센터</a>
                         </li>
                     </ul>
                 </div>
@@ -114,7 +114,7 @@ main > * { margin: 50px 0; }
                 <!-- 헤더제목 -->
                 <ul class="catemenu d-flex">
                     <li class="on"><a href="../service/notiboard.do">공지사항</a></li>
-                    <li><a href="../service/inquiryboard.do">1:1문의</a></li>
+                    <li><a href="../service/inquiryboard.do">1:1문의하기</a></li>
                     <li><a href="../service/faq.do">자주묻는질문</a></li>
                 </ul>
                 <!-- <ul class="nav my-3 category mt-4">

@@ -31,7 +31,7 @@ $(function() {
                     <h2>커뮤니티</h2>
                 </div>
             </div>
-            <img id="page_icon" src="../images/asd.png">
+            <img id="page_icon" src="../images/com.png">
         </div>
     </div>
     <!-- 배너 끝 -->

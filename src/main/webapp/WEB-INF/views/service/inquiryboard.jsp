@@ -89,7 +89,7 @@ main > * { margin: 50px 0; }
                     <h2>고객센터</h2>
                 </div>
             </div>
-            <img id="page_icon" src="./images/asd.png">
+            <img id="page_icon" src="../images/asd.png">
         </div>
     </div>
     <!-- 배너 끝 -->
