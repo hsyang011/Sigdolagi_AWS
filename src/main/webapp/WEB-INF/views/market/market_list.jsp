@@ -152,6 +152,7 @@ strike {font-size: 18px;}
                         <option value="" selected style="text-align: center;">추천순</option>
                         <option value="" style="text-align: center;">가격낮은순</option>
                         <option value="" style="text-align: center;">가격높은순</option>
+                        <option value="" style="text-align: center;">엽</option>
                     </select>
                 </div>
                 <hr style="border: 1px solid #000; margin-bottom: 30px;">
