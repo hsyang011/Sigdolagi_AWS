@@ -10,7 +10,6 @@ window.onload = () => {
 	location.href = "./main/main.do";
 	
 }
-
 </script>
 
 </head>
