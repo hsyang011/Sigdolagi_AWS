@@ -74,7 +74,7 @@ $(function() {
                 <div class="row" style=" float: right;">
                     <div class="col-sm-12" style="">
                         <div class="write_btn" style="float: left;">
-                            <button type="button" class="btn rounded-0" style="margin-bottom: 50px; margin-right: 20px;" id="btn2">글쓰기</button>
+                            <button type="button" class="btn rounded-0" style="margin-bottom: 40px; margin-top:-40px; margin-right: 20px;" id="btn2">글쓰기</button>
                         </div>
                     </div>
                 </div>
