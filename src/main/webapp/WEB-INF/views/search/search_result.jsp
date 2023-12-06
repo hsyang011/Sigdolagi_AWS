@@ -257,7 +257,7 @@ function resizeCardSize() {
                                         </div>
                                     </div>
                                     <div class="card-body justify-content-between">
-                                        <span class="plan_title">나혼자산다.(카테고리)</span>
+                                        <span class="plan_title">나혼자여행.(카테고리)</span>
                                         <h5 class="card-title"><a class="plan_board_title" href="">출발지 > 도착지</a></h5>
                                         <p class="card-text plan_user_name" style="text-align: right;">
                                             <span>작성자닉네임</span>
@@ -278,7 +278,7 @@ function resizeCardSize() {
                                         </div>
                                     </div>
                                     <div class="card-body justify-content-between">
-                                        <span class="plan_title">나혼자여행(카테고리)</span>
+                                        <span class="plan_title">나혼자민석(카테고리)</span>
                                         <h5 class="card-title"><a class="plan_board_title" href="">출발지 > 도착지</a></h5>
                                         <p class="card-text plan_user_name" style="text-align: right;">
                                             <span>작성자닉네임</span>
