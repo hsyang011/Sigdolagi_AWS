@@ -1,10 +1,18 @@
 package com.edu.springboot.member;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+
+
 
 @Controller
 public class MemberController {
+	
+	@Autowired
+	IMemberService  memberdao;
 	
 	@RequestMapping("/member/login.do")
 	public String login() {
@@ -21,4 +29,42 @@ public class MemberController {
 		return "member/regist";
 	}
 	
+	
+	
+	@PostMapping("/member/loginprocess.do")
+	public String loginProcess(MemberDTO memberDTO, jakarta.servlet.http.HttpServletRequest req, jakarta.servlet.http.HttpSession session, org.springframework.ui.Model model) {
+	
+		
+		memberDTO.setEmail(req.getParameter("email"));
+		memberDTO.setPassword(req.getParameter("password"));
+	
+	int result = memberdao.getMemberDTO(memberDTO);
+	
+	System.out.println(result);
+	if(result ==1) {
+		memberDTO = memberdao.getoneMemberDTO(memberDTO);
+		
+		 session.setAttribute("sessionEmail", memberDTO.getEmail());
+		 System.out.println("세션에 저장된 이메일 "+memberDTO.getEmail());
+		 session.setAttribute("sessionName", memberDTO.getName());
+		 System.out.println("세션에 저장된 이름"+memberDTO.getName());
+		 session.setAttribute("sessionPass", memberDTO.getPassword());
+		 System.out.println("로그인 성공");
+		    //return "main.do";
+		 return "main/main";
+	}
+	else {
+		System.out.println("로그인 실패");
+		//메세지 추가
+		model.addAttribute("loginErrorMessage", "로그인 실패");
+		return "member/login";
+	}
+	
+	
+	
+	
+	
+	
+	
+}
 }
