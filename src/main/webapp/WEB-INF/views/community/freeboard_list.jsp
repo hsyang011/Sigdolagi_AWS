@@ -204,7 +204,7 @@ $(function() {
                 <td align="center">
                     <select name="searchField_list" class="searchField_list"> 
                         <option value="title">제목</option> 
-                        <option value="content" >내용</option>
+                        <option value="nickname">작성자</option>
                     </select>
                     <input type="text" name="searchWord_list" class="searchWord_list" />
                     <input type="submit" value="검색하기" class="btn2 "/>
