@@ -13,6 +13,7 @@ java {
 }
 
 
+
 // 해당 프로젝트의 facet를 5.0으로 설정한다.
 eclipse.wtp.facet {
     // Dynamic Web Module의 버전을 5.0으로 고정시켜 준다.
@@ -40,6 +41,7 @@ dependencies {
 	implementation 'jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api'
 	implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl'
 	implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+
 
 }
 
