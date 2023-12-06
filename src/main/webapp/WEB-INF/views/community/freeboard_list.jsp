@@ -153,7 +153,7 @@ $(function() {
             <table class="table table-border">
                 <thead>
                 <tr style="text-align: center;" >
-                    <th scope="col">번호</th>
+                    <th scope="col">번호11</th>
                     <th scope="col" style="width: 60%;">제목</th>
                     <th scope="col">작성자</th>
                     <th scope="col">작성일</th>

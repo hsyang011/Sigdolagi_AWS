@@ -103,7 +103,7 @@ main > * { margin: 50px 0; }
                <div class="nav_location">
                     <ul class="nav_locat nav">
                         <li class="nav-item">
-                          <a class="nav-link" href="#">홈!</a>
+                          <a class="nav-link" href="#">홈</a>
                         </li>
                         <li class="nav-item">
                           <a class="nav-link" href="#">커뮤니티</a>
@@ -152,7 +152,7 @@ main > * { margin: 50px 0; }
                                     <td colspan="2" align="center" class="btn_td">
                                         <button type="submit" class="writeFrm_end">작성 완료</button>
                                         <button type="reset" class="writeFrm_reset">다시 입력</button>
-                                        <button type="button" class="writeFrm_list" onclick="location.href='./freeboard_list.do';">목록 보기</button>
+                                        <button type="button" class="writeFrm_list" onclick="location.href='./list.do';">목록 보기</button>
                                     </td>
                                 </tr>
                             </table>
