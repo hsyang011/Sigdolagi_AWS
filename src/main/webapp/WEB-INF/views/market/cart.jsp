@@ -6,7 +6,7 @@
 <!-- head 추가 -->
 <%@ include file="../include/global_head.jsp" %>
 <style>
-    /* 장바구니 내역 */
+    /* 장바구니 내역입니다. */
     .cart-option{margin-top: 20px; margin-bottom: 15px;}
     .cart_list>table {border-top: 2px solid #000;}
     .cart_product{border-bottom: 1px solid #dfdfdf;}
