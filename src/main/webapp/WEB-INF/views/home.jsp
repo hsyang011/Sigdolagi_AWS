@@ -8,6 +8,7 @@
 <script>
 window.onload = () => {
 	location.href = "./main/main.do";
+
 	console.log("i am foo!");
 }
 </script>
