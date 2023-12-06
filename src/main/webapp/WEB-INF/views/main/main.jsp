@@ -18,7 +18,7 @@
                     </a>
                 </div>
                 <div class="search_bar">
-                    <form action="#" method="get">
+                    <form action="../search/search_result.do" method="get">
                         <input type="text" placeholder="무엇을 검색해볼까요?">
                         <button class="search_icon">
                             <i class="fa-solid fa-magnifying-glass fa-xl"></i>
