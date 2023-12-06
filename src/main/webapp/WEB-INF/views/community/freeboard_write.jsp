@@ -128,6 +128,7 @@ main > * { margin: 50px 0; }
             <!-- 컨텐츠 헤더 끝 -->
             <div class="shop_board container  mt-5" >
 
+
                 <!-- 문의 폼 -->
                 <div class="container">
                     <div class="freeboard_write_frm" >
