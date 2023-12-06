@@ -12,6 +12,9 @@
 		<li><a href="/">최상위루트</a></li>
 		<li><a href="./main/main.do">메인페이지로 이동</a></li>
 	</ul>
-	수정했음 민석
+	수정했음  싸이버거 민석
+	
+	
+	
 </body>
 </html>
