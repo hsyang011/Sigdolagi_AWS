@@ -9,6 +9,7 @@
 window.onload = () => {
 	location.href = "./main/main.do";
 }
+이거저거 건드려봄
 </script>
 </head>
 <body>
