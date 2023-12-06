@@ -2,8 +2,12 @@ package com.edu.springboot.member;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import jakarta.servlet.http.HttpSession;
+
 
 
 
@@ -48,7 +52,7 @@ public class MemberController {
 		 System.out.println("세션에 저장된 이메일 "+memberDTO.getEmail());
 		 session.setAttribute("sessionName", memberDTO.getName());
 		 System.out.println("세션에 저장된 이름"+memberDTO.getName());
-		 session.setAttribute("sessionPass", memberDTO.getPassword());
+		 session.setAttribute("sessionPassword", memberDTO.getPassword());
 		 System.out.println("로그인 성공");
 		    //return "main.do";
 		 return "main/main";
@@ -61,10 +65,24 @@ public class MemberController {
 	}
 	
 	
+	}
+	
+	//로그아
+		@GetMapping("/member/logout.do")
+	    public String logoutprocess(HttpSession session) {
+	        // 세션에 저장된 정보 삭제
+	        session.removeAttribute("sessionEmail");
+	        session.removeAttribute("sessionPassword");
+	        session.removeAttribute("sessionName");
+
+	        // 세션을 완전히 무효화
+	        session.invalidate();
+
+	        return "redirect:member/home";
+	    }
 	
 	
 	
 	
 	
-}
 }
