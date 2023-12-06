@@ -11,6 +11,7 @@ window.onload = () => {
 	console.log("i am foo!");
 }
 </script>
+
 </head>
 <body>
 	<!-- <h2>식도라기 프로젝트</h2>
