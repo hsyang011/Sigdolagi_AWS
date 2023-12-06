@@ -121,7 +121,7 @@ $(function() {
                 <!-- 헤더제목 -->
                 <ul class="catemenu d-flex">
                     <li class="on"><a href="./freeboard_list.do">자유게시판</a></li>
-                    <li><a href="./photoboard_list.do">사진게시판  </a></li>
+                    <li><a href="./photoboard_list.do">사진게시판</a></li>
                 </ul>
                 <!-- <ul class="nav my-3 category mt-4">
                     <li class="nav-item me-3"><button type="button" class="mealk_cate btn rounded-pill on">#전체</button></li>
