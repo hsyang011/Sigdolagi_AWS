@@ -16,6 +16,11 @@ public class CommunityController {
 		return "community/freeboard_write";
 	}
 	
+	@RequestMapping("/community/freeboard_view.do")
+	public String freeboardView() {
+		return "community/freeboard_view";
+	}
+	
 	@RequestMapping("/community/photoboard_list.do")
 	public String photoboardList() {
 		return "community/photoboard_list";

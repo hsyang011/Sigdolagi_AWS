@@ -147,7 +147,7 @@ $(function() {
                 <tr style="text-align: center;" >
 
                     <th scope="col">번호</th>
-                    <th scope="col" style="width: 60%;"><a href="freeboard_view">제목</a></th>
+                    <th scope="col" style="width: 60%;">제목</th>
                     <th scope="col">작성자</th>
                     <th scope="col">작성일</th>
                     <th scope="col">조회</th>
@@ -156,21 +156,21 @@ $(function() {
                 <tbody>
                 <tr>
                     <th scope="row">1</th>
-                    <td id="table_title">집</td>
+                    <td id="table_title"><a href="freeboard_view">집</a></td>
                     <td>Otto</td>
                     <td>@mdo</td>
                     <td>33</td>
                 </tr>
                 <tr>
                     <th scope="row">2</th>
-                    <td>최고</td>
+                    <td><a href="freeboard_view">최고</a></td>
                     <td>Thornton</td>
                     <td>@fat</td>
                     <td>4</td>
                 </tr>
                 <tr>
                     <th scope="row">3</th>
-                    <td>Larry the Bird</td>
+                    <td><a href="freeboard_view">Larry the Bird</a></td>
                     <td>Larry the Bird</td>
                     <td>@twitter</td>
                     <td>5</td>
