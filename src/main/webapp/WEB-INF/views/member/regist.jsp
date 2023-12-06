@@ -12,7 +12,7 @@
 <!-- wrapper 시작 -->
 <div class="container-fluid" id="wrap">
 
-	<!-- header, nav 추가 -->
+	<!-- header, nav 추가했어용 -->
 	<%@ include file="../include/top.jsp" %>
 	
     <!-- 배너 시작 -->
