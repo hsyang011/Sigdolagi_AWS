@@ -21,9 +21,6 @@ window.onload = () => {
 
 		<li><a href="./main/main.do">메인페이지로 이동</a></li>
 	</ul> -->
-	싸이버거 민석 
-	
-	
 	
 	
 
