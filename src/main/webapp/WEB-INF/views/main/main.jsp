@@ -35,7 +35,7 @@
                         
                         
                         <c:if test="${not empty sessionEmail}">
-                        <li><a href="../member/loginout.do">로그아웃</a></li>
+                        <li><a href="../member/logout.do">로그아웃</a></li>
 					    
 						</c:if>
                         

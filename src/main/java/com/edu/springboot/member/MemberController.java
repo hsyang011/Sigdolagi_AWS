@@ -70,15 +70,17 @@ public class MemberController {
 	//로그아
 		@GetMapping("/member/logout.do")
 	    public String logoutprocess(HttpSession session) {
+			  System.out.println("세션제거전");
 	        // 세션에 저장된 정보 삭제
 	        session.removeAttribute("sessionEmail");
 	        session.removeAttribute("sessionPassword");
 	        session.removeAttribute("sessionName");
+	        System.out.println("세션제거 후");
 
 	        // 세션을 완전히 무효화
 	        session.invalidate();
 
-	        return "redirect:member/home";
+	        return "main/main";
 	    }
 	
 	
