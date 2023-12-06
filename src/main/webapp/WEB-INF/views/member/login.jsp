@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -49,17 +50,27 @@
 
 
         <!-- 로그인 폼 -->
+       	
         <div class="container">
            <div class="login">
                 <div class="loginFrm">
+                	<form action="../member/loginprocess.do" method="post">
                     <div class="loginInput">
-                        <input type="text" class="id" placeholder="아이디">
+                        <input type="text" class="id" name="email" placeholder="이메일">
                         <br>
-                        <input type="password" class="pw" placeholder="비밀번호">
+                        <input type="password" class="pw" name="password" placeholder="비밀번호">
                     </div>
                     <div class="submitFrm">
                         <input type="submit" class="submitBtn" value="로그인">
+                        
+                        
+                        <c:if test="${not empty loginErrorMessage}">
+					    <div style="color: red;">${loginErrorMessage}</div>
+						</c:if>
+                        
+                        
                     </div>
+                    </form>
                 </div>
            </div>
         </div>
