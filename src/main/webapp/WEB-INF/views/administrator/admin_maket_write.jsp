@@ -91,7 +91,7 @@
                                 </div>
                                 <div class="mb-3">
                                     <label for="content" class="form-label">상세내용</label>
-                                    <textarea class="form-control" id="content" name="content">${board.content}</textarea>
+                                    <textarea class="form-control" cols="30" rows="10" id="content" name="content">${board.content}</textarea>
                                 </div>
                                 <div class="mb-3">
                                     <label for="seller" class="form-label">판매처</label> <input
@@ -99,7 +99,7 @@
                                         value="${board.writer}">
                                 </div>
                                 <div class="mb-3">
-                                    <label for="thumbnail" class="form-label">대표이미지</label> 
+                                    <label for="thumbnail" class="form-label">상품이미지</label> 
                                     <input
                                         type="text" class="form-control" id="thumbnail" name="writer"
                                         value="">
