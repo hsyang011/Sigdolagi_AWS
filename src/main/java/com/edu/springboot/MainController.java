@@ -17,6 +17,11 @@ public class MainController {
 		return "main/main";
 	}
 	
+	@RequestMapping("/administrator/admin_main.do")
+	public String adminMain() {
+		return "administrator/admin_main";
+	}
+	
 	
 	
 	
