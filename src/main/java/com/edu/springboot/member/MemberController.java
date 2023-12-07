@@ -54,6 +54,11 @@ public class MemberController {
 		return "member/myinfoEdit";
 	}
 	
+	@RequestMapping("/member/myordermanage.do")
+	public String myordermanage() {
+		return "member/myordermanagement";
+	}
+	
 	
 	//닉네임 중복확인
 	@RequestMapping("/member/doubleckeck.do")
