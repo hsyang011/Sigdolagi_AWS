@@ -16,18 +16,10 @@
 
 <!-- wrapper 시작 -->
 <div class="container-fluid" id="wrap">
-<<<<<<< HEAD
-    <!-- header 시작 -->
-    <%@ include file="../include/top.jsp" %>
-    <!-- header 끝 -->
-    <!-- nav 시작 -->
-    <!-- mobile 내비게이션 끝 -->
-=======
 
 	<!-- header, nav 추가했어용 -->
 	<%@ include file="../include/top.jsp" %>
 	
->>>>>>> branch 'main' of https://github.com/hsyang011/Sigdolagi.git
     <!-- 배너 시작 -->
     <div id="banner" class="mt-3">
         <div id="banner_contents" class="container d-flex align-items-center">
