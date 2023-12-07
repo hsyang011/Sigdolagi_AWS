@@ -12,6 +12,29 @@
 
 
 <script type="text/javascript">
+
+
+function emailSend(frm){
+	
+	
+/* 	alert("이메일 전송하기");
+	
+	$.ajax({
+		url : "../emailSendProcess.do",
+		type : "post",
+		
+		success : function(){
+			alert("전송성공했음");
+		}
+		error : function(){ */
+//			alert("전송실패");
+//		}
+	//
+//	});
+	
+	
+	
+}
 /* 아이디 중복확인 */
 function checkaaa(frm) {
 	
@@ -153,10 +176,22 @@ function formValidate(frm) {
                 <div class="memberFrm">
                     <form method="post" action="../member/registProcess.do" name="joinForm" 
                     onsubmit="return formValidate(this);">
-                        <div class="input_id">
+                        <div class="input_id align-items-center">
                             <h4>이메일</h4>
-                            <input type="text" name="email1" class="email_id">&nbsp;&nbsp;@&nbsp;
+                            <input type="text" name="email1" class="email_id">@
                             <input type="text" name="email2" class="domain">
+                            <button type="button" class="btn rounded-4" style="background-color: #FF7A00; color: white;" onclick="emailSend(this.form);"  >전송하기</button>
+                            
+                        </div>
+                        <div class="input_nickname">
+                            <h4></h4><h4></h4>
+                           
+                            
+                        </div>
+                        <div class="input_nickname">
+                            <h4></h4><h4></h4>
+                            <input type="text" class="verifynum" name="verifynum" placeholder="인증번호.">
+                            <button type="button" >인증하기</button>
                         </div>
                         <div class="input_name">
                             <h4>이름</h4>
