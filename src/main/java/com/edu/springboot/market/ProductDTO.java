@@ -7,6 +7,7 @@ public class ProductDTO {
 	
 	private String prod_idx;
 	private String category;
+	private String prod_name;
 	private String prod_price;
 	private String prod_sale;
 	private String prod_thumbnail;

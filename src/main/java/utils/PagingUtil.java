@@ -58,11 +58,11 @@ public class PagingUtil {
 		if(intTemp <= totalPage) {
 			pagingStr += "<a href='"+page+"pageNum="+
 											intTemp+"'>"
-				+ "<img src='./images/paging3.gif'></a>";
+				+ "<img src='../images/paging3.gif'></a>";
 			pagingStr += "&nbsp;";
 			pagingStr += "<a href='"+page+"pageNum="+
 											totalPage+"'>"
-				+ "<img src='./images/paging4.gif'></a>";
+				+ "<img src='../images/paging4.gif'></a>";
 		}
 		
 		return pagingStr;
