@@ -22,4 +22,9 @@ public class adminController {
 		return "administrator/admin_community_list";
 	}
 	
+	@RequestMapping("/administrator/admin_maket_list.do")
+	public String adminMaket() {
+		return "administrator/admin_maket_list";
+	}
+	
 }
