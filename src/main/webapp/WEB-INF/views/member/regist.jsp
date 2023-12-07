@@ -94,61 +94,65 @@
                     </div>
                 </div>
                 <div class="memberFrm">
-                    <form method="post" action="">
+                    <form method="post" action="../member/registProcess.do">
                         <div class="input_id">
-                            <h4>아이디</h4>
-                            <input type="text" class="email_id">&nbsp;&nbsp;@&nbsp;
-                            <input type="text" class="domain">
+                            <h4>이메일</h4>
+                            <input type="text" name="email1" class="email_id">&nbsp;&nbsp;@&nbsp;
+                            <input type="text" name="email2" class="domain">
                         </div>
                         <div class="input_name">
                             <h4>이름</h4>
-                            <input type="text" class="name">
+                            <input type="text" class="name" name="name">
                         </div>
                         <div class="input_nickname">
                             <h4>닉네임</h4>
-                            <input type="text" class="nickname" placeholder="8자 이상은 불가합니다.">
+                            <input type="text" class="nickname" name="nickname" placeholder="8자 이상은 불가합니다.">
                             <button>중복확인</button>
                         </div>
                         <div class="input_pw">
                             <h4>비밀번호</h4>
-                            <input type="password" class="pw" placeholder="숫자와 영어를 포함한 4~15자 이내만 가능합니다.">
+                            <input type="password" name="password" class="pw" placeholder="숫자와 영어를 포함한 4~15자 이내만 가능합니다.">
                         </div>
                         <div class="input_pw2">
                             <h4>비밀번호 확인</h4>
-                            <input type="password" class="pw2">
+                            <input type="password" name="password2" class="pw2">
                         </div>
                         <div class="input_phone">
                             <h4>연락처</h4>
-                            <input type="text" class="phone1">&nbsp;-&nbsp;
-                            <input type="text" class="phone2">&nbsp;-&nbsp;
-                            <input type="text" class="phone3">
+                            <input type="text" name="tel1" class="phone1">&nbsp;-&nbsp;
+                            <input type="text" name="tel2" class="phone2">&nbsp;-&nbsp;
+                            <input type="text" name="tel3" class="phone3">
                         </div>
                         <div class="input_address">
                             <div class="input_searchadd">
                                 <h4>주소</h4>
                                 
                                 <div style="margin-bottom: 0;">
-                                    <input type="text" class="add2" placeholder="우편번호"><button>주소찾기</button>
-                                    <input type="text" class="add1" style="width: 90%; margin-top: 20px;"><br>
-                                    <input type="text" class="add2" style="width: 90%;" placeholder="상세주소">
+                                    <input type="text" class="add2" name="zipcode" placeholder="우편번호"><button>주소찾기</button>
+                                    <input type="text" class="add1" name="addr1" style="width: 90%; margin-top: 20px;"><br>
+                                    <input type="text" class="add2" name="addr2" style="width: 90%;" placeholder="상세주소">
                                 </div>
                             </div>
                         </div>
                         <div class="email_radio">
                             <h4>이메일 수신 여부</h4>
-                            <input type="radio">&nbsp;수신동의
-                            <input type="radio">&nbsp;수신거부
+                           <input type="radio" name="mailing" value="1">&nbsp;수신동의
+                          <input type="radio" name="mailing" value="0">&nbsp;수신거부 
+                            
                         </div>
                         <div class="sms_radio">
-                            <h4>이메일 수신 여부</h4>
-                            <input type="radio">&nbsp;수신동의
-                            <input type="radio">&nbsp;수신거부
+                            <h4>sms 수신 여부</h4>
+                            <input type="radio" name="sms" value="1">&nbsp;수신동의
+                            <input type="radio" name="sms" value="0">&nbsp;수신거부 
+                            
+                            
                         </div>
-                    </form>
-                    <div class="member_subBtn">
-                        <input type="button" value="취소하기">
-                        <input type="submit" value="가입하기">
-                    </div>
+                   
+	                    <div class="member_subBtn">
+	                        <input type="button" value="취소하기">
+	                        <input type="submit" value="가입하기">
+	                    </div>
+                     </form>
                 </div>
             </div>
         </div>
