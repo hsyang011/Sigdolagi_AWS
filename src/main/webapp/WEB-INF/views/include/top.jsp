@@ -57,7 +57,7 @@
             <div class="navbar-collapse justify-content-center" id="pc_navbar">
                 <ul class="head_nav nav">
                     <li class="nav-item"><a class="nav-link" href="../planner/planner_list.do">플래너</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">맛집탐방</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../restaurant/restaurant_list.do">맛집탐방</a></li>
                     <li class="nav-item"><a class="nav-link" href="../market/market_list.do">마켓</a></li>
                     <li class="nav-item"><a class="nav-link" href="../community/freeboard_list.do">커뮤니티</a></li>
                     <li class="nav-item"><a class="nav-link" href="../service/notiboard.do">고객센터</a></li>
@@ -72,7 +72,7 @@
 <div class="navbar-collapse justify-content-center" style="position: -webkit-sticky; position: sticky; top: 0; padding: 5px 10px; background-color: white; z-index: 1000;" id="mobile_navbar">
     <ul class="head_nav nav">
         <li class="nav-item"><a class="nav-link" href="../planner/planner_list.do">플래너</a></li>
-        <li class="nav-item"><a class="nav-link" href="#">맛집탐방</a></li>
+        <li class="nav-item"><a class="nav-link" href="../restaurant/restaurant_list.do">맛집탐방</a></li>
         <li class="nav-item"><a class="nav-link" href="../market/market_list.do">마켓</a></li>
         <li class="nav-item"><a class="nav-link" href="../community/freeboard_list.do">커뮤니티</a></li>
         <li class="nav-item"><a class="nav-link" href="../service/notiboard.do">고객센터</a></li>
