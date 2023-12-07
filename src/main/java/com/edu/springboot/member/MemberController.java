@@ -32,10 +32,17 @@ public class MemberController {
 		return "member/find_idpw";
 	}
 	
+	
 	@RequestMapping("/member/regist.do")
 	public String regist() {
 		return "member/regist";
 	}
+	
+	@RequestMapping("/member/mypage.do")
+	public String mypage() {
+		return "member/mypage";
+	}
+	
 	
 	//닉네임 중복확인
 	@RequestMapping("/member/doubleckeck.do")
