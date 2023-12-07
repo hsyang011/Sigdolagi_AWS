@@ -13,4 +13,17 @@
 		</if>
 	</select>
 	
+	<select id="list" parameterType="com.edu.springboot.market.ParameterDTO" resultType="com.edu.springboot.market.ProductDTO">
+		SELECT * FROM (
+			SELECT Tb.*, ROWNUM rNum FROM (
+				SELECT * FROM product
+				<!-- 검색어가 null, 빈값이 아닐때만 where절을 동적으로 추가한다. -->
+				<if test="searchKeyword!=null and !searchKeyword.equals('')">
+					WHERE ${searchField} LIKE '%'||#{searchKeyword}||'%'
+				</if>
+				ORDER BY prod_idx DESC
+			) Tb
+		) WHERE rNum<![CDATA[>=]]>#{start} AND rNum<![CDATA[>=]]>#{end}
+	</select>
+	
 </mapper>
