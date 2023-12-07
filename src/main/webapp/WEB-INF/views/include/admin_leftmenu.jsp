@@ -17,9 +17,7 @@
 
     <!-- Nav Item - 회원관리 -->
     <li class="nav-item active">
-        <a class="nav-link" href="../administrator/admin_member_list.do">
-            <!-- <i class="fas fa-fw fa-tachometer-alt"></i> -->
-            <!-- <i class="fa-solid fa-user"></i> -->
+        <a class="nav-link" href="../administrator/adminMemberList.do">
             <i class="fas fa-fw fa-user"></i>
             <span>회원관리</span></a>
     </li>
@@ -99,7 +97,7 @@
             data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">쇼핑몰관리하기:</h6>
-                <a class="collapse-item" href="utilities-color.html">상품관리</a>
+                <a class="collapse-item" href="../administrator/admin_maket_list.do">상품관리</a>
                 <a class="collapse-item" href="utilities-border.html">주문현황</a>
             </div>
         </div>
