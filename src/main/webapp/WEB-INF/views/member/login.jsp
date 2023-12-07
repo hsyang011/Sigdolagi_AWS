@@ -1,3 +1,4 @@
+<%@page import="utils.CookieManager"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
@@ -50,13 +51,13 @@
 
 
         <!-- 로그인 폼 -->
-       	
+       	<form action="../member/loginprocess.do" method="post">
         <div class="container">
            <div class="login">
-                <div class="loginFrm">
-                	<form action="../member/loginprocess.do" method="post">
+               	<div class="loginFrm">
+              	
                     <div class="loginInput">
-                        <input type="text" class="id" value="${ savedEmail }" name="email" placeholder="이메일">
+                      <input type="text" class="id" value="<%= CookieManager.readCookie(request, "SavedEmail") %> " name="email" placeholder="이메일"> 
                         <br>
                         <input type="password" class="pw" name="password"  placeholder="비밀번호">
                     </div>
@@ -70,7 +71,7 @@
                         
                         
                     </div>
-                    </form>
+                   
                 </div>
            </div>
         </div>
@@ -81,7 +82,7 @@
                 <div class="login_sub_list">
                     <div class="saveId_btn">
                         <label for="savedEmail">
-                            <input type="checkbox" name="savedEmail" value="1" id="savedEmail" ${isChecked}> 이메 저장
+                            <input type="checkbox" name="savedEmail" value="1" id="savedEmail" > 이메 저장
                         </label>
                     </div>
                     <div class="find_id">
@@ -93,6 +94,7 @@
                 </div>
             </div>
         </div>
+         </form>
 
         <div class="container">
             <div class="loginAD">

@@ -7,6 +7,21 @@
 <%@ include file="../include/global_head.jsp" %>
 <!-- 전역 설정 css 링크  -->
 <link rel="stylesheet" href="../css/find_idpw.css">
+<script>
+<%-- var foundEmail = '<%= request.getAttribute("foundEmail") %>';
+if (foundEmail != null && foundEmail.trim() !== '') {
+    alert("Found Email: " + foundEmail);
+} --%>
+</script>
+<script>
+  // Check if foundEmail is not empty
+  if (foundEmail && foundEmail.trim() !== "") {
+    // Display an alert with the content of foundEmail
+    alert(foundEmail);
+  }
+</script>
+
+
 </head>
 <body>
 <!-- wrapper 시작 -->
@@ -23,6 +38,7 @@
                 <div id="info_title" class="d-flex">
                     <h2>아이디/비번 찾기</h2>
                 </div>
+                
             </div>
             <i id="page_icon">
                 <svg width="195" height="195" viewBox="0 0 195 195" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -41,17 +57,21 @@
                     <div class="find_id_title">
                         <h2>아이디 찾기</h2>
                         <div class="title_line"></div>
+                        
                     </div>
-                    <form action="" method="post">
+                    <form action="../member/findEmail.do" method="post">
                         <div class="find_id_frm">
                             <h4>연락처</h4>
-                            <input type="text" class="input_phone1" maxlength="3">&nbsp;-
-                            <input type="text" class="input_phone2" maxlength="4">&nbsp;-
-                            <input type="text" class="input_phone3" maxlength="4">
+                            <input type="text" name="tel1" class="input_phone1" maxlength="3">&nbsp;-
+                            <input type="text" name="tel2" class="input_phone2" maxlength="4">&nbsp;-
+                            <input type="text" name="tel3"class="input_phone3" maxlength="4">
                         </div>
                         <div class="find_sub_btn">
                             <input type="submit" value="아이디 찾기">
                         </div>
+                        <c:if test="${not empty foundEmail}">
+					    <div style="color: red;">${foundEmail}</div>
+						</c:if>
                     </form>
                 </div>
                 <div class="find_pw">
@@ -59,18 +79,21 @@
                         <h2>비밀번호 찾기</h2>
                         <div class="title_line2"></div>
                     </div>
-                    <form action="" method="post">
+                    <form action="../member/findPass.do" method="post">
                         <div class="find_pw_frm">
-                            <h4>아이디</h4>
-                            <input type="text" class="input_id2">
+                            <h4>이메일</h4>
+                            <input type="text" class="input_id2" name="email">
                             <h4 style="margin-top: 3%;">연락처</h4>
-                            <input type="text" class="input_phone1" maxlength="3">&nbsp;-
-                            <input type="text" class="input_phone2" maxlength="4">&nbsp;-
-                            <input type="text" class="input_phone3" maxlength="4">
+                            <input type="text" class="input_phone1" name="tel1" maxlength="3">&nbsp;-
+                            <input type="text" class="input_phone2" name="tel2"  maxlength="4">&nbsp;-
+                            <input type="text" class="input_phone3" name="tel3"  maxlength="4">
                         </div>
                         <div class="find_sub_btn2">
                             <input type="submit" value="비밀번호 찾기">
                         </div>
+                        <c:if test="${not empty foundPassword}">
+					    <div style="color: red;">${foundPassword}</div>
+						</c:if>
                     </form>
                 </div>
             </div>

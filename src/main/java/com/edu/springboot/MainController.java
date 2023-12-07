@@ -13,6 +13,8 @@ public class MainController {
 		return "home";
 	}
 	
+	
+	
 	@RequestMapping("/main/main.do")
 	public String main() {
 		return "main/main";
@@ -27,6 +29,8 @@ public class MainController {
 		email.myEmailSender(infoDTO);
 		
 	}
+	
+	
 	
 	
 	

@@ -29,6 +29,7 @@ public class EmailSending {
     
     public void myEmailSender(InfoDTO infoDTO) {
     	
+    	
     	try {
     		//메일을 보내기 위한 설정
 	        MimeMessage m = mailSender.createMimeMessage();

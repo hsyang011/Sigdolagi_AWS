@@ -13,6 +13,9 @@ public interface IMemberService {
 	public int getMemberDTO(MemberDTO memberDTO);
 	public MemberDTO getoneMemberDTO(MemberDTO memberDTO);
 	
+	public String getoneEmailDTO(@Param("phone") String phone);
+	public String getonePasswordDTO(@Param("phone") String phone, @Param("email") String email );
+	
 	
 	
 	public int insertMember(@Param("email") String email,
@@ -21,6 +24,9 @@ public interface IMemberService {
 			@Param("zipcode") String zipcode,
 			@Param("addr1") String addr1, @Param("addr2") String addr2,
 			@Param("mailing")  String mailing, @Param("sms") String sms);
+	
+	
+	
 	
 }
 

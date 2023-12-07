@@ -3,6 +3,7 @@ package com.edu.springboot.member;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -94,11 +95,6 @@ public class MemberController {
 				addr1, addr2, mailing, sms);
 		System.out.println("회원가입결과 :" + result);
 		
-		
-
-		
-		
-		
 		return "main/main";
 	}
 	
@@ -115,16 +111,19 @@ public class MemberController {
 		System.out.println("쿠키저장과정");
 		String userEmail = req.getParameter("email"); //아이디   
 		String userPassword = req.getParameter("password"); //비밀번호
+		System.out.println(req.getParameter("savedEmail"));
 		String chkVal = req.getParameter("savedEmail"); //입력칸 밸류  
-		
+		System.out.println(chkVal);
+		System.out.println(memberDTO.getSavedEmail());
 		// 쿠키 추가
-		if (chkVal!=null || chkVal.equals("1")) {
+		if (chkVal!=null && chkVal.equals("1")) {
 			
 			CookieManager.makeCookie(response, "SavedEmail", userEmail, 60*60*24);
+			
 			System.out.println("쿠키 추가됨");
 		// 쿠키 삭제
 		} else {
-			CookieManager.deleteCookie(response, "SavedEmail");
+			CookieManager.deleteCookie(response, "email");
 		}
 		
 		System.out.println("쿠키저장성공?");
@@ -174,7 +173,46 @@ public class MemberController {
 
 	        return "main/main";
 	    }
+		
+		//아이디찾기" ../member/findEmail.do"
+		@PostMapping("/member/findEmail.do")
+		
+		public String findEmail(HttpServletRequest req, Model model) {
+			System.out.println("컨트롤러로 들어오나?");
+			String phone = req.getParameter("tel1")+"-"+req.getParameter("tel2")
+			+"-"+req.getParameter("tel3");
+			
+			String email = memberdao.getoneEmailDTO(phone);
+			System.out.println(email);
+			
+			
+			 // 이메일 찾은거 
+		    model.addAttribute("foundEmail", email);
+
+		   
+		
+			
+			
+			return "member/find_idpw";
+			}
+		
+		
+
+			//비밀번호 찾" ../member/findPass.do ../member/findPass.do
+			@PostMapping("/member/findPass.do")
+			public String findPass(HttpServletRequest req, Model model) {
+			    System.out.println("q비번찾기 컨트롤러로 들어오나?");
+			    String phone = req.getParameter("tel1") + "-" + req.getParameter("tel2") + "-" + req.getParameter("tel3");
+			    String email = req.getParameter("email");
 	
+			    String password = memberdao.getonePasswordDTO(phone, email);
+			    System.out.println(password);
+	
+			    // 이메일 찾은거 
+			    model.addAttribute("foundPassword", password);
+	
+			    return "member/find_idpw";
+			}
 	
 	
 	

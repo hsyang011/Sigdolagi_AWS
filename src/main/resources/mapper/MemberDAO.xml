@@ -15,6 +15,16 @@
 		SELECT * FROM member WHERE email=#{email}
 	</select>
 	
+	<select id="getoneEmailDTO">
+		SELECT email FROM member WHERE phone=#{phone}
+	</select>
+	
+	<select id="getonePasswordDTO">
+		SELECT password FROM member WHERE email=#{email} and  phone=#{phone} 
+	</select>
+	
+	
+	
 	<insert id="insertMember" >
 		INSERT INTO member (email, name, nickname, phone, addr1,addr2, zipcode, mailing,
 		sms, password )
