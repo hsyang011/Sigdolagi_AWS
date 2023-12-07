@@ -22,7 +22,7 @@ public class MainController {
 	EmailSending email;
 	
 	
-	@PostMapping("/emailSendProcess.do")
+	@PostMapping("/main/emailSendProcess.do")
 	public void emailSendProcess(InfoDTO infoDTO) {
 		email.myEmailSender(infoDTO);
 		

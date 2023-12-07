@@ -23,7 +23,7 @@
 				</if>
 				ORDER BY prod_idx DESC
 			) Tb
-		) WHERE rNum<![CDATA[>=]]>#{start} AND rNum<![CDATA[>=]]>#{end}
+		) WHERE rNum<![CDATA[>=]]>#{start} AND rNum<![CDATA[<=]]>#{end}
 	</select>
 	
 </mapper>

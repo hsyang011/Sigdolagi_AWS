@@ -1,20 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
-    
-    <!DOCTYPE html>
+    pageEncoding="UTF-8"%>    
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <%@ include file="../include/global_head.jsp" %>
 <link rel="stylesheet" href="../css/member.css">
-
-
-
-
 <script type="text/javascript">
-
-
 function emailSend(frm){
+	
+	alert("안녕?");
+	$.ajax({
+		url: "../main/emailSendProcess.do",
+		type: "post",
+		success: function() {
+			console.log("요청성공");
+		},
+		error: function() {
+			console.log("요청실패");
+		}
+	});
 	
 	
 /* 	alert("이메일 전송하기");
