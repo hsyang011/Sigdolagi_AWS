@@ -23,8 +23,13 @@ public class adminController {
 	}
 	
 	@RequestMapping("/administrator/admin_maket_list.do")
-	public String adminMaket() {
+	public String adminMaketList() {
 		return "administrator/admin_maket_list";
+	}
+	
+	@RequestMapping("/administrator/admin_maket_write.do")
+	public String adminMaketWrite() {
+		return "administrator/admin_maket_write";
 	}
 	
 }
