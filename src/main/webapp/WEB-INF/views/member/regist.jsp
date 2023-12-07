@@ -25,11 +25,14 @@ function checkaaa(frm) {
 	    } else{
 	        //아이디 중복확인 창을 띄울때 입력한 아이디를 쿼리스트링으로 
 	        //넘겨준다. 
-	        window.open('../member/joinOverlap.jsp', 
+	        window.open('../member/doubleckeck.do?nickname='+frm.nickname.value, 
 	            'check', 
 	            'width=500,height=300');
+	        
+	        frm.nickname.readOnly = true;
 	        //입력한 아이디를 수정할 수 없도록 속성을 추가한다. 
 	    }
+	    
 	    
 }
 	
