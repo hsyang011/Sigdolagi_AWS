@@ -17,9 +17,7 @@
 
     <!-- Nav Item - 회원관리 -->
     <li class="nav-item active">
-        <a class="nav-link" href="../administrator/admin_member_list.do">
-            <!-- <i class="fas fa-fw fa-tachometer-alt"></i> -->
-            <!-- <i class="fa-solid fa-user"></i> -->
+        <a class="nav-link" href="../administrator/adminMemberList.do">
             <i class="fas fa-fw fa-user"></i>
             <span>회원관리</span></a>
     </li>
