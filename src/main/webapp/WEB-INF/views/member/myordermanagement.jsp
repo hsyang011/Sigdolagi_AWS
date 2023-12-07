@@ -47,7 +47,7 @@
                 <div class="col-2 ml-7" id="col2"><!-- col3시작-->
                     <!-- 첫 번째 열 -->
                     <br><br><br><br>
-                    <div id="left"><!-- 좌측메뉴-->
+                    <div id="left" style="width: 100%;"><!-- 좌측메뉴-->
                         <div id="profile"><img src="./images/logo.png" alt=""></div>
                         <div id="leftname">회원이름</div>
                         <div id="leftreft" class="">
