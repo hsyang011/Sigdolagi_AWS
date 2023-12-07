@@ -8,6 +8,68 @@
 <%@ include file="../include/global_head.jsp" %>
 <link rel="stylesheet" href="../css/member.css">
 
+
+
+
+<script type="text/javascript">
+/* 아이디 중복확인 */
+function checkaaa(frm) {
+	
+	
+		alert('hello world!');
+	
+	    if (frm.nickname.value == ''){
+	        alert("아이디를 닉네임입력후 중복확인 해주세요.");
+	        frm.nickname.focus();
+	        
+	    } else{
+	        //아이디 중복확인 창을 띄울때 입력한 아이디를 쿼리스트링으로 
+	        //넘겨준다. 
+	        window.open('../member/joinOverlap.jsp', 
+	            'check', 
+	            'width=500,height=300');
+	        //입력한 아이디를 수정할 수 없도록 속성을 추가한다. 
+	    }
+	    
+}
+	
+
+
+
+
+
+function formValidate(frm) {
+	
+	
+	
+
+
+}	
+</script>
+
+
+
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+	function postOpen(e) {
+		e.preventDefault();
+	    new daum.Postcode({
+	        oncomplete: function(data) {
+	        	var frm = document.joinForm;
+	        	frm.zipcode.value = data.zonecode;
+	        	frm.addr1.value = data.address;
+	        	frm.addr2.focus();
+	        }
+	    }).open();
+	}
+</script>
+
+
+
+
+
+
+
 </head>
 <body>
 
@@ -86,7 +148,8 @@
                     </div>
                 </div>
                 <div class="memberFrm">
-                    <form method="post" action="../member/registProcess.do">
+                    <form method="post" action="../member/registProcess.do" name="joinForm" 
+                    onsubmit="return formValidate(this);">
                         <div class="input_id">
                             <h4>이메일</h4>
                             <input type="text" name="email1" class="email_id">&nbsp;&nbsp;@&nbsp;
@@ -99,7 +162,7 @@
                         <div class="input_nickname">
                             <h4>닉네임</h4>
                             <input type="text" class="nickname" name="nickname" placeholder="8자 이상은 불가합니다.">
-                            <button>중복확인</button>
+                            <button type="button"  onclick="checkaaa(this.form);">중복확인</button>
                         </div>
                         <div class="input_pw">
                             <h4>비밀번호</h4>
@@ -111,16 +174,18 @@
                         </div>
                         <div class="input_phone">
                             <h4>연락처</h4>
-                            <input type="text" name="tel1" class="phone1">&nbsp;-&nbsp;
-                            <input type="text" name="tel2" class="phone2">&nbsp;-&nbsp;
-                            <input type="text" name="tel3" class="phone3">
+                            <input type="text" name="tel1" maxlength="3" onkeyup="focusMove(this, 'tel2', 3);"  class="phone1">&nbsp;-&nbsp;
+                            <input type="text" name="tel2" maxlength="4" onkeyup="focusMove(this, 'tel3', 4);" class="phone2">&nbsp;-&nbsp;
+                            <input type="text" name="tel3" maxlength="4"  class="phone3">
                         </div>
                         <div class="input_address">
                             <div class="input_searchadd">
                                 <h4>주소</h4>
                                 
                                 <div style="margin-bottom: 0;">
-                                    <input type="text" class="add2" name="zipcode" placeholder="우편번호"><button>주소찾기</button>
+                                    <input type="text" class="add2" name="zipcode" placeholder="우편번호">
+                                    <button onclick="postOpen(event)" >주소찾기</button>
+                                 
                                     <input type="text" class="add1" name="addr1" style="width: 90%; margin-top: 20px;"><br>
                                     <input type="text" class="add2" name="addr2" style="width: 90%;" placeholder="상세주소">
                                 </div>
@@ -155,6 +220,9 @@
 <!-- wrapper 끝 -->
 </body>
 </html>
+
+
+
 
 <!-- footer 추가 -->
 <%-- 	<%@ include file="../include/footer.jsp" %>
