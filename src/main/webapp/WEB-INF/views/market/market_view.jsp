@@ -13,8 +13,16 @@
 .cart_icon_box {border-radius:50px; width: 40px;height: 40px; position:absolute;bottom: 10px; right: 10px;}
 .cart_icon_box img {border-radius:50px; width: 40px;height: 40px;background-color: #FF7A00;}
 .cart_icon_box:hover img {background-color: #3058da;}
+#product_thumbnail, #product_images img { border-radius: 15px; }
+#delivery_more_btn:focus { border: none; }
+#delivery_more { display: none; }
 @media screen and (min-width: 1201px) {
     .custom-col { flex: 0 0 25%; }
+    #product_nav { position: sticky; position: -webkit-sticky; top: 115px; background-color: white; }
+    #product_images { margin-top: 10px; }
+    #product_images div { padding: 0 5px; }
+    #col5 { flex: 0 0 42%; }
+    #col7 { flex: 0 0 58%; padding-left: 60px; }
 }
 /* 모바일 환경에서 카테고리를 횡스크롤로 구현 */
 @media screen and (max-width: 1200px) {
@@ -23,6 +31,12 @@
     .custom-col { flex: 0 0 25%; }
     .meal_seach_bar { width: 100%; } /* 모바일에선 검색창의 길이를 100%로 처리 */
     .card * { font-size: 0.98em; }
+    #product_nav { position: sticky; position: -webkit-sticky; top: 50px; background-color: white; }
+    #product_images { margin-top: 5px; }
+    #product_images div { padding: 0 2px; }
+    #col7 { margin-top: 30px; }
+    #delivery { font-size: 0.75em; }
+    #col7 * { font-size: 0.99em; }
 }
 @media screen and (max-width: 768px) {
     .custom-col { flex: 0 0 50%; }
@@ -30,16 +44,24 @@
     .catemenu li a { font-size: 0.75em; } 
     .card * { font-size: 0.95em; }
     .thumbnail {margin: 0 0;}
+    #product_nav a { font-size: 0.75em; }
+    #product_nav { position: sticky; position: -webkit-sticky; top: 40px; background-color: white; }
+    #product_images { margin-top: 4px; }
+    #product_images div { padding: 0 2px; }
+    #detail * { font-size: 0.95em; }
 }
 </style>
 <script>
 $(function() {
-	$("#cartBtn").click(() => {
-		location.href = "./cart.do";
-	});
-	$("#paymentBtn").click(() => {
-		location.href = "./payment.do";
-	});
+    $("#delivery_more_btn").click((e) => {
+        if ($(e.target).text() == "↓") {
+            $("#delivery_more").show();
+            $(e.target).text("↑");
+        } else if ($(e.target).text() == "↑") {
+            $("#delivery_more").hide();
+            $(e.target).text("↓");
+        }
+    });
 });
 </script>
 </head>
@@ -49,7 +71,7 @@ $(function() {
 
     <!-- header, nav 추가 -->
     <%@ include file="../include/top.jsp" %>
-
+    
     <!-- 배너 시작 -->
     <div id="banner" class="mt-3">
         <div id="banner_contents" class="container d-flex align-items-center">
@@ -68,27 +90,27 @@ $(function() {
         <div class="container">
             <!-- 상품 정보 시작 -->
             <div class="row">
-                <div class="col-5">
-                    <img src="../images/IMG1689kUc236018989_330_330.jpg" width="100%" alt="">
-                    <div class="row">
-                        <div class="col">
+                <div id="col5">
+                    <img src="../images/IMG1689kUc236018989_330_330.jpg" width="100%" id="product_thumbnail" alt="">
+                    <div class="d-flex justify-content-between" id="product_images">
+                        <div style="padding-left: 0;">
                             <img src="../images/IMG1689kUc236018989_330_330.jpg" width="100%" alt="">
                         </div>
-                        <div class="col">
+                        <div>
                             <img src="../images/IMG1689kUc236018989_330_330.jpg" width="100%" alt="">
                         </div>
-                        <div class="col">
+                        <div>
                             <img src="../images/IMG1689kUc236018989_330_330.jpg" width="100%" alt="">
                         </div>
-                        <div class="col">
+                        <div>
                             <img src="../images/IMG1689kUc236018989_330_330.jpg" width="100%" alt="">
                         </div>
-                        <div class="col">
+                        <div style="padding-right: 0;">
                             <img src="../images/IMG1689kUc236018989_330_330.jpg" width="100%" alt="">
                         </div>
                     </div>
                 </div>
-                <div class="col-7" style="padding-left: 60px;">
+                <div id="col7">
                     <div class="d-flex justify-content-between mb-3">
                         <span class="text-secondary">식도라기</span>
                         <span>공유아이콘</span>
@@ -101,35 +123,32 @@ $(function() {
                         <span class="me-2 text-secondary">31</span>
                     </div>
                     <div class="d-flex mb-3">
-                        <h4 class="me-2" style="color: #FF7A00;">26%</h4>
-                        <h4 class="me-2">16,900원</h4>
+                        <h4 class="me-2" style="color: #FF7A00; font-family: 'NPSfontBold';">26%</h4>
+                        <h4 class="me-2" style="font-family: 'NPSfontBold'">16,900원</h4>
                         <h4 class="me-2 text-secondary" style="text-decoration: line-through;">20,900원</h4>
                     </div>
                     <div class="d-flex justify-content-between p-4 rounded-4 mb-2" style="background-color: lightgray;">
                         <h4>카카오페이 결제 시 1% 추가 적립</h4>
-                        <p>혜택 확인 →</p>
+                        <a href="#">혜택 확인 →</a>
                     </div>
                     <div class="d-flex justify-content-between align-items-center p-4 rounded-4 mb-5" style="background-color: lightgray;">
                         <div>
                             <h4>택배 배송 안내</h4>
-                            <h6>주문과 동시에 생산하여 다음날 우리집 식탁까지 배송되어요</h6>
+                            <h6>다음날 우리집 식탁까지 배송되어요</h6>
                         </div>
-                        <p>배송 안내 →</p>
+                        <a href="#">배송 안내 →</a>
                     </div>
-                    <div class="row">
-                        <div class="col-2">
-                            <span>배송비</span>
-                        </div>
-                        <div class="col-10 d-flex justify-content-between">
+                    <div>
+                        <div class="d-flex justify-content-between">
                             <table class="table">
                                 <tr>
-                                    <th>3,000원</th>
+                                    <th>배송비 3,000원</th>
                                     <td class="text-secondary">40,000원 이상 구매 시 무료 배송</td>
                                 </tr>
                                 <tr>
-                                    <th><button class="btn" style="background-color: #FF7A00; color: white;">택배배송</button></th>
+                                    <th><button class="btn" style="background-color: #FF7A00; color: white;" id="delivery">택배배송</button></th>
                                     <td>
-                                        <p>
+                                        <p id="delivery_more">
                                             오전 8시까지 결제 완료 시, 배송 희망일 당일 수령 <br>
                                             전국/제주도 및 섬지역은 배송 불가 <br>
                                             배송 불가 지역 주문 시 자동 취소될 수 있습니다. <br>
@@ -138,23 +157,23 @@ $(function() {
                                     </td>
                                 </tr>
                             </table>
-                            <div>↑</div>
+                            <div><button class="btn" id="delivery_more_btn">↓</button></div>
                         </div>
                     </div>
                     <div class="d-flex justify-content-between align-items-end rounded-4 p-4 mb-5" style="background-color: lightgray;">
                         <div>
                             <h4>저당 얼큰 만두전골(2인)</h4>
-                            <input type="number" value="1" class="form-control rounded-pill text-center">
+                            <input type="number" value="1" class="form-control rounded-pill text-center" style="width: 50%;">
                         </div>
-                        <h4>16,900원</h4>
+                        <h4 style="font-weight: bold;">16,900원</h4>
                     </div>
                     <div>
                         <div class="d-flex justify-content-between">
                             <p>구매 예정 금액</p>
-                            <h2 style="color: #FF7A00;">5,900원</h2>
+                            <h2 style="color: #FF7A00; font-weight: bold; font-size: 2em;">5,900원</h2>
                         </div>
-                        <button id="cartBtn" class="btn btn-outline-dark mb-3" style="width: 100%; height: 50px;">장바구니</button>
-                        <button id="paymentBtn" class="btn" style="width: 100%; height: 50px; background-color: #FF7A00; color: white;">바로 구매</button>
+                        <button class="btn btn-outline-dark mb-3" style="width: 100%; height: 50px;">장바구니</button>
+                        <button class="btn" style="width: 100%; height: 50px; background-color: #FF7A00; color: white;">바로 구매</button>
                     </div>
                 </div>
             </div>
@@ -246,18 +265,17 @@ $(function() {
             </div>
             <!-- 추천상품 끝 -->
             <!-- 상품 상세정보 시작 -->
-            <div>
-                <ul class="head_nav nav justify-content-center mt-5 mb-3 py-3" style="position: sticky; position: -webkit-sticky; top: 115px; background-color: white;">
+            <div id="detail">
+                <ul class="head_nav nav justify-content-center mt-5 mb-3 py-3" id="product_nav">
                     <li class="nav-item"><a class="nav-link" href="#detail_info">상세 정보</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#basic_info">기본 정보</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#product_notice">배송/교환/반품 안내</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#product_notice">배송 안내</a></li>
                     <li class="nav-item"><a class="nav-link" href="#product_review">상품 리뷰 33</a></li>
                     <li class="nav-item"><a class="nav-link" href="#product_inquiry">상품 문의 2</a></li>
                 </ul>
                 <hr>
                 <!-- 상세 정보 시작 -->
-                <div class="mt-5">
-                    <img src="../images/product_detail.jpg" style="width: 100%;" id="#detail_info" alt="">
+                <div id="#detail_info" class="mt-5">
+                    <img src="../images/product_detail.jpg" style="width: 100%;" alt="">
                 </div>
                 <!-- 상세 정보 끝 -->
                 <!-- 기본 정보 시작 -->
@@ -319,18 +337,43 @@ $(function() {
                         <p>상품리뷰 <span style="color: #FF7A00;">1건</span></p>
                         <button class="btn btn-outline-dark px-5 rounded-pill">상품 리뷰쓰기</button>
                     </div>
-                    <table class="table table-border text-center">
+                    <!-- 테이블 -->
+                    <table class="table table-border">
                         <tr>
-                            <th>번호</th>
-                            <th style="width: 60%;">한줄리뷰</th>
-                            <th>작성자</th>
-                            <th>등록일</th>
+                            <td style="width: 85%;">
+                                <div>
+                                    <p style="color: #FF7A00;">★★★★☆</p>
+                                    <p>작성자 | 2023.12.04</p>
+                                    <p>바삭바삭 식감으로 맛있게 먹었습니다.</p>
+                                </div>
+                            </td>
+                            <td id="table_title" style="width: 15%; text-align: right;">
+                                <img src="../images/01100110101010102_2186962.png" width="120" alt="">
+                            </td>
                         </tr>
                         <tr>
-                            <th>1</th>
-                            <td>만두가 맛있어요</td>
-                            <td>홍길동</td>
-                            <td>2023/11/24</td>
+                            <td style="width: 85%;">
+                                <div>
+                                    <p style="color: #FF7A00;">★★★★☆</p>
+                                    <p>작성자 | 2023.12.04</p>
+                                    <p>바삭바삭 식감으로 맛있게 먹었습니다.</p>
+                                </div>
+                            </td>
+                            <td id="table_title" style="width: 15%; text-align: right;">
+                                <img src="../images/01100110101010102_2186962.png" width="120" alt="">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="width: 85%;">
+                                <div>
+                                    <p style="color: #FF7A00;">★★★★☆</p>
+                                    <p>작성자 | 2023.12.04</p>
+                                    <p>바삭바삭 식감으로 맛있게 먹었습니다.</p>
+                                </div>
+                            </td>
+                            <td id="table_title" style="width: 15%; text-align: right;">
+                                <img src="../images/01100110101010102_2186962.png" width="120" alt="">
+                            </td>
                         </tr>
                     </table>
                 </div>
@@ -338,21 +381,34 @@ $(function() {
                 <!-- 상품 문의 시작 -->
                 <div id="product_inquiry" class="my-5">
                     <div class="d-flex justify-content-between">
-                        <p>상품리뷰 <span style="color: #FF7A00;">1건</span></p>
+                        <p>상품문의 <span style="color: #FF7A00;">1건</span></p>
                         <button class="btn btn-outline-dark px-5 rounded-pill">상품 문의하기</button>
                     </div>
+                    <!-- 테이블 -->
                     <table class="table table-border text-center">
                         <tr>
-                            <th>번호</th>
-                            <th style="width: 60%;">문의 내용</th>
-                            <th>작성자</th>
-                            <th>등록일</th>
+                            <th scope="col" style="width: 13%;">번호</th>
+                            <th scope="col" style="width: 60%;">문의내용</th>
+                            <th scope="col">작성자</th>
+                            <th scope="col">작성일</th>
                         </tr>
                         <tr>
-                            <th>1</th>
-                            <td>배송하는데 얼마 걸리나요?</td>
-                            <td>김유신</td>
-                            <td>2023/11/24</td>
+                            <th scope="row">1</th>
+                            <td id="table_title">집</td>
+                            <td>Otto</td>
+                            <td>2023.12.05</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">2</th>
+                            <td>최고</td>
+                            <td>Thornton</td>
+                            <td>2023.12.05</td>
+                        </tr>
+                        <tr>
+                            <th scope="row">3</th>
+                            <td>Larry the Bird</td>
+                            <td>Larry the Bird</td>
+                            <td>2023.12.05</td>
                         </tr>
                     </table>
                 </div>
@@ -362,9 +418,9 @@ $(function() {
     </main>
     <!-- main 끝 -->
     
-	<!-- footer 추가 -->
-	<%@ include file="../include/footer.jsp" %>
-
+    <!-- footer 추가 -->
+    <%@ include file="../include/footer.jsp" %>
+    
 </div>
 <!-- wrapper 끝 -->
 </body>
