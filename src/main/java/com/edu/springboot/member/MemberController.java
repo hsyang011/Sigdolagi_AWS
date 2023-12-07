@@ -34,6 +34,15 @@ public class MemberController {
 		return "member/regist";
 	}
 	
+	//닉네임 중복확인
+	@RequestMapping("/member/doubleckeck.do")
+	
+	public String doubleckeck(HttpServletRequest req) {
+		String nickname = req.getParameter("nickname");
+		return "member/joinOverlap";
+	}
+	
+	
 	//회원가입처리 
 	@PostMapping("/member/registProcess.do")
 	public String registProcess(HttpServletRequest req, MemberDTO memberDTO) {
