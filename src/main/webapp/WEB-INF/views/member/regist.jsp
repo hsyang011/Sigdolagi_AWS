@@ -1,12 +1,104 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
-    
-    <!DOCTYPE html>
+    pageEncoding="UTF-8"%>    
+<!DOCTYPE html>
 <html lang="en">
 <head>
 <%@ include file="../include/global_head.jsp" %>
 <link rel="stylesheet" href="../css/member.css">
+<script type="text/javascript">
+function emailSend(frm){
+	
+	alert("안녕?");
+	$.ajax({
+		url: "../main/emailSendProcess.do",
+		type: "post",
+		success: function() {
+			console.log("요청성공");
+		},
+		error: function() {
+			console.log("요청실패");
+		}
+	});
+	
+	
+/* 	alert("이메일 전송하기");
+	
+	$.ajax({
+		url : "../emailSendProcess.do",
+		type : "post",
+		
+		success : function(){
+			alert("전송성공했음");
+		}
+		error : function(){ */
+//			alert("전송실패");
+//		}
+	//
+//	});
+	
+	
+	
+}
+/* 아이디 중복확인 */
+function checkaaa(frm) {
+	
+	
+		alert('hello world!');
+	
+	    if (frm.nickname.value == ''){
+	        alert("아이디를 닉네임입력후 중복확인 해주세요.");
+	        frm.nickname.focus();
+	        
+	    } else{
+	        //아이디 중복확인 창을 띄울때 입력한 아이디를 쿼리스트링으로 
+	        //넘겨준다. 
+	        window.open('../member/doubleckeck.do?nickname='+frm.nickname.value, 
+	            'check', 
+	            'width=500,height=300');
+	        
+	        frm.nickname.readOnly = true;
+	        //입력한 아이디를 수정할 수 없도록 속성을 추가한다. 
+	    }
+	    
+	    
+}
+	
+
+
+
+
+
+function formValidate(frm) {
+	
+	
+	
+
+
+}	
+</script>
+
+
+
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+	function postOpen(e) {
+		e.preventDefault();
+	    new daum.Postcode({
+	        oncomplete: function(data) {
+	        	var frm = document.joinForm;
+	        	frm.zipcode.value = data.zonecode;
+	        	frm.addr1.value = data.address;
+	        	frm.addr2.focus();
+	        }
+	    }).open();
+	}
+</script>
+
+
+
+
+
+
 
 </head>
 <body>
@@ -16,18 +108,10 @@
 
 <!-- wrapper 시작 -->
 <div class="container-fluid" id="wrap">
-<<<<<<< HEAD
-    <!-- header 시작 -->
-    <%@ include file="../include/top.jsp" %>
-    <!-- header 끝 -->
-    <!-- nav 시작 -->
-    <!-- mobile 내비게이션 끝 -->
-=======
 
 	<!-- header, nav 추가했어용 -->
 	<%@ include file="../include/top.jsp" %>
 	
->>>>>>> branch 'main' of https://github.com/hsyang011/Sigdolagi.git
     <!-- 배너 시작 -->
     <div id="banner" class="mt-3">
         <div id="banner_contents" class="container d-flex align-items-center">
@@ -94,61 +178,80 @@
                     </div>
                 </div>
                 <div class="memberFrm">
-                    <form method="post" action="">
-                        <div class="input_id">
-                            <h4>아이디</h4>
-                            <input type="text" class="email_id">&nbsp;&nbsp;@&nbsp;
-                            <input type="text" class="domain">
+                    <form method="post" action="../member/registProcess.do" name="joinForm" 
+                    onsubmit="return formValidate(this);">
+                        <div class="input_id align-items-center">
+                            <h4>이메일</h4>
+                            <input type="text" name="email1" class="email_id">@
+                            <input type="text" name="email2" class="domain">
+                            <button type="button" class="btn rounded-4" style="background-color: #FF7A00; color: white;" onclick="emailSend(this.form);"  >전송하기</button>
+                            
+                        </div>
+                        <div class="input_nickname">
+                            <h4></h4><h4></h4>
+                           
+                            
+                        </div>
+                        <div class="input_nickname">
+                            <h4></h4><h4></h4>
+                            <input type="text" class="verifynum" name="verifynum" placeholder="인증번호.">
+                            <button type="button" >인증하기</button>
                         </div>
                         <div class="input_name">
                             <h4>이름</h4>
-                            <input type="text" class="name">
+                            <input type="text" class="name" name="name">
                         </div>
                         <div class="input_nickname">
                             <h4>닉네임</h4>
-                            <input type="text" class="nickname" placeholder="8자 이상은 불가합니다.">
-                            <button>중복확인</button>
+                            <input type="text" class="nickname" name="nickname" placeholder="8자 이상은 불가합니다.">
+                            <button type="button"  onclick="checkaaa(this.form);">중복확인</button>
                         </div>
                         <div class="input_pw">
                             <h4>비밀번호</h4>
-                            <input type="password" class="pw" placeholder="숫자와 영어를 포함한 4~15자 이내만 가능합니다.">
+                            <input type="password" name="password" class="pw" placeholder="숫자와 영어를 포함한 4~15자 이내만 가능합니다.">
                         </div>
                         <div class="input_pw2">
                             <h4>비밀번호 확인</h4>
-                            <input type="password" class="pw2">
+                            <input type="password" name="password2" class="pw2">
                         </div>
                         <div class="input_phone">
                             <h4>연락처</h4>
-                            <input type="text" class="phone1">&nbsp;-&nbsp;
-                            <input type="text" class="phone2">&nbsp;-&nbsp;
-                            <input type="text" class="phone3">
+                            <input type="text" name="tel1" maxlength="3" onkeyup="focusMove(this, 'tel2', 3);"  class="phone1">&nbsp;-&nbsp;
+                            <input type="text" name="tel2" maxlength="4" onkeyup="focusMove(this, 'tel3', 4);" class="phone2">&nbsp;-&nbsp;
+                            <input type="text" name="tel3" maxlength="4"  class="phone3">
                         </div>
                         <div class="input_address">
                             <div class="input_searchadd">
                                 <h4>주소</h4>
                                 
                                 <div style="margin-bottom: 0;">
-                                    <input type="text" class="add2" placeholder="우편번호"><button>주소찾기</button>
-                                    <input type="text" class="add1" style="width: 90%; margin-top: 20px;"><br>
-                                    <input type="text" class="add2" style="width: 90%;" placeholder="상세주소">
+                                    <input type="text" class="add2" name="zipcode" placeholder="우편번호">
+                                    <button onclick="postOpen(event)" >주소찾기</button>
+                                 
+                                    <input type="text" class="add1" name="addr1" style="width: 90%; margin-top: 20px;"><br>
+                                    <input type="text" class="add2" name="addr2" style="width: 90%;" placeholder="상세주소">
                                 </div>
                             </div>
                         </div>
                         <div class="email_radio">
                             <h4>이메일 수신 여부</h4>
-                            <input type="radio">&nbsp;수신동의
-                            <input type="radio">&nbsp;수신거부
+                           <input type="radio" name="mailing" value="1">&nbsp;수신동의
+                          <input type="radio" name="mailing" value="0">&nbsp;수신거부 
+                            
                         </div>
                         <div class="sms_radio">
-                            <h4>이메일 수신 여부</h4>
-                            <input type="radio">&nbsp;수신동의
-                            <input type="radio">&nbsp;수신거부
+                            <h4>sms 수신 여부</h4>
+                            <input type="radio" name="sms" value="1">&nbsp;수신동의
+                            <input type="radio" name="sms" value="0">&nbsp;수신거부 
+                            
+                            
                         </div>
-                    </form>
-                    <div class="member_subBtn">
-                        <input type="button" value="취소하기">
-                        <input type="submit" value="가입하기">
-                    </div>
+                   
+	                    <div class="member_subBtn">
+	                        <input type="button" value="취소하기">
+	                        <input type="submit" value="가입하기">
+	                    </div>
+                     </form>
                 </div>
             </div>
         </div>
@@ -159,6 +262,9 @@
 <!-- wrapper 끝 -->
 </body>
 </html>
+
+
+
 
 <!-- footer 추가 -->
 <%-- 	<%@ include file="../include/footer.jsp" %>

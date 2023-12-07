@@ -1,3 +1,4 @@
+<%@page import="utils.CookieManager"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
@@ -50,15 +51,15 @@
 
 
         <!-- 로그인 폼 -->
-       	
+       	<form action="../member/loginprocess.do" method="post">
         <div class="container">
            <div class="login">
-                <div class="loginFrm">
-                	<form action="../member/loginprocess.do" method="post">
+               	<div class="loginFrm">
+              	
                     <div class="loginInput">
-                        <input type="text" class="id" name="email" placeholder="이메일">
+                      <input type="text" class="id" value="<%= CookieManager.readCookie(request, "SavedEmail") %> " name="email" placeholder="이메일"> 
                         <br>
-                        <input type="password" class="pw" name="password" placeholder="비밀번호">
+                        <input type="password" class="pw" name="password"  placeholder="비밀번호">
                     </div>
                     <div class="submitFrm">
                         <input type="submit" class="submitBtn" value="로그인">
@@ -70,7 +71,7 @@
                         
                         
                     </div>
-                    </form>
+                   
                 </div>
            </div>
         </div>
@@ -80,19 +81,20 @@
             <div class="login_sub">
                 <div class="login_sub_list">
                     <div class="saveId_btn">
-                        <label for="saveId">
-                            <input type="checkbox" name="saveId" id="saveId"> 아이디 저장
+                        <label for="savedEmail">
+                            <input type="checkbox" name="savedEmail" value="1" id="savedEmail" > 이메 저장
                         </label>
                     </div>
                     <div class="find_id">
                         <a href="../member/findIdpw.do">아이디/비밀번호 찾기 ></a>
                     </div>
                     <div class="join">
-                        <a href="member.html">회원가입 ></a>
+                        <a href="../member/regist.do">회원가입 ></a>
                     </div>
                 </div>
             </div>
         </div>
+         </form>
 
         <div class="container">
             <div class="loginAD">

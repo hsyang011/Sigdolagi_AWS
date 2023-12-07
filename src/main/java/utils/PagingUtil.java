@@ -1,8 +1,10 @@
+
 package utils;
 
 import java.util.ResourceBundle;
 
 public class PagingUtil {
+	
 	 public static int getPageSize() {
 	        ResourceBundle bundle = ResourceBundle.getBundle("paging");
 	        return Integer.parseInt(bundle.getString("paging.pageSize"));
@@ -12,6 +14,7 @@ public class PagingUtil {
 	        ResourceBundle bundle = ResourceBundle.getBundle("paging");
 	        return Integer.parseInt(bundle.getString("paging.blockPage"));
 	    }
+	    
 		public static String pagingImg(
 			int totalRecordCount,
 			int pageSize,
