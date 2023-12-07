@@ -1,6 +1,5 @@
 package com.edu.springboot.member;
 
-import java.net.CookieManager;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import utils.CookieManager;
 
 
 
@@ -111,13 +111,13 @@ public class MemberController {
 		String chkVal = req.getParameter("savedEmail"); //입력칸 밸류  
 		
 		// 쿠키 추가
-		if (chkVal!=null && chkVal.equals("1")) {
+		if (chkVal!=null || chkVal.equals("1")) {
 			
-			utils.CookieManager.makeCookie(response, "SavedEmail", userEmail, 60*60*24);
+			CookieManager.makeCookie(response, "SavedEmail", userEmail, 60*60*24);
 			System.out.println("쿠키 추가됨");
 		// 쿠키 삭제
 		} else {
-			utils.CookieManager.deleteCookie(response, "SavedEmail");
+			CookieManager.deleteCookie(response, "SavedEmail");
 		}
 		
 		System.out.println("쿠키저장성공?");

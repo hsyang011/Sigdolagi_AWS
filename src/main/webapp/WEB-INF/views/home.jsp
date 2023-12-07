@@ -11,6 +11,7 @@ window.onload = () => {
 
 	console.log("i am foo!");
 }
+
 </script>
 
 </head>
