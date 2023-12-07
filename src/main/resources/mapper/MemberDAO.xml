@@ -15,4 +15,14 @@
 		SELECT * FROM member WHERE email=#{email}
 	</select>
 	
+	<insert id="insertMember" >
+		INSERT INTO member (email, name, nickname, phone, addr1,addr2, zipcode, mailing,
+		sms, password )
+		VALUES
+		(#{email}, #{name}, #{nickname}, #{phone},#{addr1},
+		#{addr2}, #{zipcode}, #{mailing}, #{sms}, #{password}) 
+	</insert>
+	
+	
+	
 </mapper>
