@@ -133,7 +133,7 @@ $(function() {
             float: right; margin-top: -80px;">
                 <div class="col-sm-12" >
                     <div class="write_btn" style="float: left;">
-                        <button type="button" id="writeBtn" class="btn rounded-pill" >글쓰기</button>
+                        <button type="button" id="writeBtn" class="btn rounded-pill" onclick="location.href='./freeboard_write.do';" >글쓰기</button>
                     </div>
                 </div>
             </div>
@@ -154,7 +154,27 @@ $(function() {
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
+                	<tr>
+                	<c:choose>
+						<c:forEach items="${ lists }" var="post" varStatus="loop">
+							<tr align="center">
+							<td>
+								<!-- 게시물의 갯수, 페이지 번호, 페이지 사이즈를 통해 가상 번호를 계산해서 출력한다.  -->
+								${ maps.totalCount - (((maps.pageNum-1) * maps.pageSize) + loop.index)}
+								</td> 
+							  	<td scope="row">${post.freeboard_idx}</td>
+								<td>${ post.title }</td>
+								<td>${ post.email }</td>
+								<td>${ post.regidate }</td>
+								<td>${ post.visitcount }</td>		
+							</tr> 
+						</c:forEach>
+					</c:choose>
+			<%-- 				<td>
+				${ pagingImg }
+			</td> --%>
+			</tr>
+              <!--   <tr>
                     <th scope="row">1</th>
                     <td id="table_title"><a href="freeboard_view">집</a></td>
                     <td>Otto</td>
@@ -174,7 +194,7 @@ $(function() {
                     <td>Larry the Bird</td>
                     <td>@twitter</td>
                     <td>5</td>
-                </tr>
+                </tr> -->
                 </tbody>
             </table>
             </div>

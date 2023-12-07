@@ -132,9 +132,15 @@ main > * { margin: 50px 0; }
                 <div class="container">
                     <div class="freeboard_write_frm" >
                         <!-- 게시판 들어가는 부분 (시작) -->
-                        <form name="writeFrm" method="post" onsubmit="return validateForm(this);" action="./write.do" class="writeFrm">
+                        <form name="writeFrm" method="post" onsubmit="return validateForm(this);" action="/community/freeboard_write.do" class="writeFrm">
                             <input type="hidden" name="tname"  />
                             <table class="table table-bordered" id="free_write_frm_table" width="100%" >
+                                <tr>
+                                    <td>작성자</td>
+                                    <td>
+                                        <input type="text" name="email" />
+                                    </td>
+                                </tr>
                                 <tr>
                                     <td>제목</td>
                                     <td>

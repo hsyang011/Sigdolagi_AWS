@@ -1,19 +1,66 @@
 package com.edu.springboot.community;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import jakarta.servlet.http.HttpServletRequest;
+import utils.PagingUtil;
 
 @Controller
 public class CommunityController {
 	
+	@Autowired
+	IBoardService dao;
+	
 	@RequestMapping("/community/freeboard_list.do")
-	public String freeboardList() {
+	public String freeboardList(Model model, HttpServletRequest req, ParameterDTO parameterDTO) {
+		int totalCount = dao.getTotalCount(parameterDTO);
+		
+		int pageSize = PagingUtil.getPageSize(); 
+		int blockPage = PagingUtil.getBlockPage(); 
+		
+		int pageNum = (req.getParameter("pageNum")==null || req.getParameter("pageNum").equals("")) ? 1 : Integer.parseInt(req.getParameter("pageNum"));
+		int start = (pageNum -1 ) * pageSize +1 ;
+		int end = pageNum * pageSize;
+		parameterDTO.setStart(start);
+		parameterDTO.setEnd(end);
+		
+		Map<String, Object> maps = new HashMap<String, Object>();
+		maps.put("totalCount", totalCount);
+		maps.put("pageSize", pageSize);
+		maps.put("pageNum", pageNum);
+		model.addAttribute("maps", maps);
+			
+		ArrayList<BoardDTO> lists = dao.listPage(parameterDTO);
+		model.addAttribute("lists", lists);
+		
+		String pagingImg = PagingUtil.pagingImg(totalCount, pageSize, blockPage, pageNum, req.getContextPath()+"/list.do?");
+		model.addAttribute("pagingImg", pagingImg);
 		return "community/freeboard_list";
+	}
+	//글쓰기 페이지 로딩
+	@GetMapping("/community/freeboard_write.do")
+	public String boardWriteGet(Model model) {
+		return "community/freeboard_write";
 	}
 	
 	@RequestMapping("/community/freeboard_write.do")
-	public String freeboardWrite() {
-		return "community/freeboard_write";
+	public String freeboardWrite(Model model, HttpServletRequest req) {
+		//request 내장객체를 통해 폼값을 받아온다.
+		String email= req.getParameter("email");
+		String title= req.getParameter("title");
+		String content= req.getParameter("content");
+		//폼값을 개별적으로 전달한다.
+		int result = dao.write(email, title, content);
+		System.out.println("글쓰기 결과:" +result);
+		return "community/freeboard_list";
 	}
 	
 	@RequestMapping("/community/freeboard_view.do")
