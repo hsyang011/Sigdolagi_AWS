@@ -1,5 +1,7 @@
 package com.edu.springboot.member;
 
+import java.net.CookieManager;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 
@@ -24,7 +27,7 @@ public class MemberController {
 		return "member/login";
 	}
 	
-	@RequestMapping("/member/find_idpw.do")
+	@RequestMapping("/member/findIdpw.do")
 	public String findIdpw() {
 		return "member/find_idpw";
 	}
@@ -33,6 +36,16 @@ public class MemberController {
 	public String regist() {
 		return "member/regist";
 	}
+	
+	//닉네임 중복확인
+	@RequestMapping("/member/doubleckeck.do")
+	
+	public String doubleckeck(HttpServletRequest req) {
+		String nickname = req.getParameter("nickname");
+		return "member/joinOverlap";
+	}
+	
+	
 	
 	//회원가입처리 
 	@PostMapping("/member/registProcess.do")
@@ -88,9 +101,29 @@ public class MemberController {
 	
 	
 	@PostMapping("/member/loginprocess.do")
-	public String loginProcess(MemberDTO memberDTO, jakarta.servlet.http.HttpServletRequest req, jakarta.servlet.http.HttpSession session, org.springframework.ui.Model model) {
+	public String loginProcess(MemberDTO memberDTO, jakarta.servlet.http.HttpServletRequest req, jakarta.servlet.http.HttpSession session, 
+			org.springframework.ui.Model model, HttpServletResponse response) {
 	
+		//쿠키저장과정
+		System.out.println("쿠키저장과정");
+		String userEmail = req.getParameter("email"); //아이디   
+		String userPassword = req.getParameter("password"); //비밀번호
+		String chkVal = req.getParameter("savedEmail"); //입력칸 밸류  
 		
+		// 쿠키 추가
+		if (chkVal!=null && chkVal.equals("1")) {
+			
+			utils.CookieManager.makeCookie(response, "SavedEmail", userEmail, 60*60*24);
+			System.out.println("쿠키 추가됨");
+		// 쿠키 삭제
+		} else {
+			utils.CookieManager.deleteCookie(response, "SavedEmail");
+		}
+		
+		System.out.println("쿠키저장성공?");
+		
+		
+		///
 		memberDTO.setEmail(req.getParameter("email"));
 		memberDTO.setPassword(req.getParameter("password"));
 	

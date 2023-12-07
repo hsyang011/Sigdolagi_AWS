@@ -1,5 +1,6 @@
 package com.edu.springboot;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,10 +18,18 @@ public class MainController {
 		return "main/main";
 	}
 	
-	@RequestMapping("/administrator/admin_main.do")
-	public String adminMain() {
-		return "administrator/admin_main";
+	@Autowired
+	EmailSending email;
+	
+	
+	@PostMapping("/emailSendProcess.do")
+	public void emailSendProcess(InfoDTO infoDTO) {
+		email.myEmailSender(infoDTO);
+		
 	}
+	
+	
+	
 	
 	
 	
