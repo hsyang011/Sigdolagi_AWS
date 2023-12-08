@@ -6,7 +6,7 @@
 
 <mapper namespace="com.edu.springboot.member.IMemberService">
 	
-	<select id="getMemberDTO" parameterType="com.edu.springboot.member.MemberDTO">
+	<select id="getMemberDTO"  resultType="int"  parameterType="com.edu.springboot.member.MemberDTO">
 		select count(*) from member where email=#{email} and password = #{password}
 	</select>
 	
