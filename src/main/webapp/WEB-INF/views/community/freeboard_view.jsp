@@ -153,7 +153,7 @@ main > * { margin: 50px 0; }
 							    </tr>
                              
                                 <tr>
-                                    <td colspan="2" align="center" class="btn_td">
+                                    <td colspan="4" align="center" class="btn_td">
                                         <button type="button" onclick="location.href='./freeboard_edit.do?idx=${ param.freeboard_idx }';">수정하기</button>
                                         <button type="button" onclick="deletePost(${ param.freeboard_idx });">삭제하기</button>
                                         <button type="button" class="writeFrm_list" onclick="location.href='./freeboard_list.do';">목록 보기</button>
