@@ -134,10 +134,10 @@ main > * { margin: 50px 0; }
                                 	
                                 </colgroup>
                                 <tr>
-							        <td>번호</td> <td>${ boardDTO.freeboard_idx }</td>
+							        <td>번호</td> <td>${ boardDTO.freeboard_idx }</td>   
 							        <td>작성자</td> <td>${ boardDTO.nickname }</td>
 							    </tr>
-							    <tr>
+							    <tr> 
 							        <td>작성일</td> <td>${ boardDTO.postdate }</td>
 							        <td>조회수</td> <td>${ boardDTO.visitcount }</td>
 							    </tr>
