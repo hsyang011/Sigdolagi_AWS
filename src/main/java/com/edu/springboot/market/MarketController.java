@@ -20,12 +20,15 @@ public class MarketController {
 	
 	// DAO 호출을 위한 빈 자동 주입.
 	@Autowired
-	IMarketService dao;
+	IProductService productDAO;
+	
+	@Autowired
+	ICartService cartDAO;
 	
 	// 상품 리스트
 	@RequestMapping("/market/market_list.do")
 	public String marketList(ParameterDTO parameterDTO, Model model, HttpServletRequest req) {
-		int totalCount = dao.getTotalCount(parameterDTO); // 게시물의 갯수를 카운트
+		int totalCount = productDAO.getTotalCount(parameterDTO); // 게시물의 갯수를 카운트
 		int pageSize = 16; // 한 페이지당 게시물 수
 		int blockPage = 5; // 한 블록당 페이지번호 수
 		// 목록에 첫 진입시 페이지 번호가 없으므로 1로 설정하고, 파라미터로 전달된 페이지번호가 있다면 받은 후 정수로 변경해서 설정한다.
@@ -47,7 +50,7 @@ public class MarketController {
 		model.addAttribute("map", map);
 		
 		// DB에서 인출한 게시물의 목록을 model객체에 저장한다.
-		List<ProductDTO> list = dao.list(parameterDTO);
+		List<ProductDTO> list = productDAO.list(parameterDTO);
 		model.addAttribute("list", list);
 		
 		// 게시판 하단에 출력한 페이지번호를 String으로 반환받은 후 model객체에 저장한다.
@@ -60,22 +63,29 @@ public class MarketController {
 	// 상품 상세보기
 	@RequestMapping("/market/market_view.do")
 	public String marketView(ProductDTO productDTO, Model model) {
-		productDTO = dao.view(productDTO);
+		productDTO = productDAO.view(productDTO);
 		model.addAttribute("productDTO", productDTO);
 		
-		List<ProductDTO> recommendList = dao.recommendList(productDTO);
+		List<ProductDTO> recommendList = productDAO.recommendList(productDTO);
 		model.addAttribute("recommendList", recommendList);
 		
 		return "market/market_view";
 	}
 	
 	// 장바구니에 상품 추가
-	@RequestMapping("/market/addToCart.do")
+	@RequestMapping("/market/addToCart.do") // cartDTO에는 email과 prod_idx만 담겨있는 상태
 	public ResponseEntity<String> addToCart(CartDTO cartDTO, Model model) {
 		// 임의로 이메일 설정 (시큐리티 연동 전)
 		cartDTO.setEmail("foo@gmail.com");
-		// 장바구니에 상품 추가
-		dao.addToCart(cartDTO);
+		// 추가된 적이 있는지 확인, 0이면 없고, 1이면 있음.
+		int result = cartDAO.getProdIdx(cartDTO);
+		// 추가된 적이 없다면 insert 쿼리를 실행
+		if (result == 0) {			
+			cartDAO.addToCart(cartDTO);
+		// 추가된 적이 있다면 update 쿼리를 실행
+		} else {
+			cartDAO.updateToCart(cartDTO);
+		}
 		return ResponseEntity.ok("상품이 성공적으로 추가되었습니다.");
 	}
 	
@@ -84,9 +94,16 @@ public class MarketController {
 	public String cart(MemberDTO memberDTO, Model model) {
 		// 임의로 이메일 설정 (시큐리티 연동 전)
 		memberDTO.setEmail("foo@gmail.com");
-		List<CartDTO> cartInfo = dao.cartInfo(memberDTO);
-		model.addAttribute("cartInfo", cartInfo);
+		// cart_idx들을 모두 모아 List컬렉션에 담는다.
+		List<CartDTO> cartInfo = cartDAO.cartInfo(memberDTO);
+		// 키값이 cart_idx이고, 상품 정보가 List<ProductDTO>인 Map컬렉션 생성
+		Map<String, List<ProductDTO>> map = new HashMap<String, List<ProductDTO>>();
+		for (CartDTO cartDTO : cartInfo) {
+			// cart_idx와 prod_count사이에 ":"를 넣은 문자열을 키값으로 한다.
+			map.put(cartDTO.getCart_idx()+":"+cartDTO.getProd_count(), cartDAO.allProductInfo(cartDTO));
+		}
 		
+		model.addAttribute("map", map);
 		System.out.println(cartInfo);
 		
 		return "market/cart";
