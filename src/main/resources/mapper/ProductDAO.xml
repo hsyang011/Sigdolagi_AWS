@@ -44,5 +44,9 @@
 			VALUES (seq_cart_idx.NEXTVAL, ${prod_idx}, #{email}, ${prod_count})
 	</insert>
 	
+	<!-- 장바구니에 담긴 모든 품목을 가져오기 -->
+	<select id="cartInfo">
+		SELECT * FROM cart WHERE email=#{email}
+	</select>
 	
 </mapper>

@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.edu.springboot.member.MemberDTO;
+
 @Mapper
 public interface IMarketService {
 	
@@ -17,5 +19,7 @@ public interface IMarketService {
 	public List<ProductDTO> recommendList(ProductDTO productDTO);
 	// 장바구니에 상품을 추가
 	public int addToCart(CartDTO cartDTO);
+	// 장바구니에 담긴 모든 품목을 가져오기
+	public List<CartDTO> cartInfo(MemberDTO memberDTO);
 	
 }

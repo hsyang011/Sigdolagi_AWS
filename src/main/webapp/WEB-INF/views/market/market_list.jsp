@@ -22,7 +22,9 @@ function addToCart(idx) {
         url: "./addToCart.do",
         data: data,
         success: function(response) {
-            alert('장바구니에 추가되었습니다.');
+            if (confirm('장바구니에 추가되었습니다.\n장바구니 페이지로 이동하시겠습니까?')) {
+            	location.href = "./cart.do";
+            }
         },
         error: function(error) {
             alert('장바구니 추가 실패');
