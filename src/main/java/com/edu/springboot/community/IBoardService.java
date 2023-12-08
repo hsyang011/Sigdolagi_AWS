@@ -21,4 +21,5 @@ public interface IBoardService {
 	public int edit(BoardDTO boardDTO);
 	public int delete(String idx);
 	public int updatereviewcnt(String visitcount);
+	
 }
