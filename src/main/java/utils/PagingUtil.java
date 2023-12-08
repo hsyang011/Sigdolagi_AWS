@@ -27,6 +27,7 @@ public class PagingUtil {
 			//1.전체페이지 구하기
 			int totalPage = (int)(Math.ceil(((double)totalRecordCount/pageSize)));
 			
+			
 			/*2.현재페이지번호를 통해 이전 페이지블럭에
 			해당하는 페이지를 구한다.
 			*/
@@ -80,6 +81,7 @@ public class PagingUtil {
 			
 			return pagingStr;
 		}
+		
 		
 	
 }

@@ -57,7 +57,7 @@
                	<div class="loginFrm">
               	
                     <div class="loginInput">
-                      <input type="text" class="id" value="<%= CookieManager.readCookie(request, "SavedEmail") %> " name="email" placeholder="이메일"> 
+                      <input type="text" class="id" value="<%=CookieManager.readCookie(request,"SavedEmail")%>" name="email" placeholder="이메일"> 
                         <br>
                         <input type="password" class="pw" name="password"  placeholder="비밀번호">
                     </div>
@@ -68,7 +68,6 @@
                         <c:if test="${not empty loginErrorMessage}">
 					    <div style="color: red;">${loginErrorMessage}</div>
 						</c:if>
-                        
                         
                     </div>
                    
@@ -82,7 +81,7 @@
                 <div class="login_sub_list">
                     <div class="saveId_btn">
                         <label for="savedEmail">
-                            <input type="checkbox" name="savedEmail" value="1" id="savedEmail" > 이메 저장
+                            <input type="checkbox" name="savedEmail" value="1" id="savedEmail" <%=CookieManager.readCookie(request, "ischecked")%>> 이메일 저장
                         </label>
                     </div>
                     <div class="find_id">

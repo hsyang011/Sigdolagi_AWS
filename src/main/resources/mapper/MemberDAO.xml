@@ -6,14 +6,17 @@
 
 <mapper namespace="com.edu.springboot.member.IMemberService">
 	
-	<select id="getMemberDTO" resultType="int" parameterType="com.edu.springboot.member.MemberDTO">
-		select count(*) from member where email=#{email} and password=#{password}
+	<select id="getMemberDTO"  resultType="int"  parameterType="com.edu.springboot.member.MemberDTO">
+		select count(*) from member where email=#{email} and password = #{password}
 	</select>
 	
 	<select id="getoneMemberDTO" resultType="com.edu.springboot.member.MemberDTO" 
 		parameterType="com.edu.springboot.member.MemberDTO">
 		SELECT * FROM member WHERE email=#{email}
 	</select>
+	
+	
+	
 	
 	<select id="getoneEmailDTO">
 		SELECT email FROM member WHERE phone=#{phone}

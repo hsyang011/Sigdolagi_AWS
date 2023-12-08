@@ -129,19 +129,11 @@ public class MemberController {
 		System.out.println(req.getParameter("savedEmail"));
 		String chkVal = req.getParameter("savedEmail"); //입력칸 밸류  
 		System.out.println(chkVal);
-		System.out.println(memberDTO.getSavedEmail());
 		// 쿠키 추가
-		if (chkVal!=null && chkVal.equals("1")) {
-			
-			CookieManager.makeCookie(response, "SavedEmail", userEmail, 60*60*24);
-			
-			System.out.println("쿠키 추가됨");
-		// 쿠키 삭제
-		} else {
-			CookieManager.deleteCookie(response, "email");
-		}
+		
 		
 		System.out.println("쿠키저장성공?");
+		
 		
 		
 		///
@@ -149,20 +141,46 @@ public class MemberController {
 		memberDTO.setPassword(req.getParameter("password"));
 		System.out.println(memberDTO.getEmail()+memberDTO.getPassword());
 	
+		
+		
 		int result = memberdao.getMemberDTO(memberDTO);
 	
 		System.out.println(result);
 		
 		if(result ==1) {
+			
+			
+			///쿠키 
+			if (chkVal!=null && chkVal.equals("1")) {
+				
+				CookieManager.makeCookie(response, "SavedEmail", userEmail, 60*60*24);
+				CookieManager.makeCookie(response, "ischecked", "checked", 60*60*24);
+				
+				
+				model.addAttribute("ischecked", "checked");
+				model.addAttribute("SavedEmail", userEmail);
+				
+				System.out.println("쿠키 추가됨");
+			// 쿠키 삭제
+			} else {
+				CookieManager.deleteCookie(response, "SavedEmail");
+				CookieManager.deleteCookie(response, "ischecked");
+			}
+			
+			
+			
 			memberDTO = memberdao.getoneMemberDTO(memberDTO);
 		
-		 session.setAttribute("sessionEmail", memberDTO.getEmail());
+		 session.setAttribute("sessionEmail",memberDTO.getEmail());
 		 System.out.println("세션에 저장된 이메일 "+memberDTO.getEmail());
-		 session.setAttribute("sessionName", memberDTO.getName());
+		 session.setAttribute("sessionName",memberDTO.getName());
 		 System.out.println("세션에 저장된 이름"+memberDTO.getName());
 		 session.setAttribute("sessionPassword", memberDTO.getPassword());
+		 session.setAttribute("sessionNickname", memberDTO.getNickname());
+		 System.out.println("세션에 저장된 이름"+memberDTO.getNickname());
 		 System.out.println("로그인 성공");
 		    //return "main.do";
+		 
 		 return "main/main";
 	}
 	else {
@@ -171,8 +189,9 @@ public class MemberController {
 		model.addAttribute("loginErrorMessage", "로그인 실패");
 		return "member/login";
 	}
-	
-	
+		
+		
+
 	}
 	
 	//로그아
@@ -205,9 +224,11 @@ public class MemberController {
 			
 			 // 이메일 찾은거 
 		    model.addAttribute("foundEmail", email);
-
+		    
+		    
+		    
 		   
-		
+		    
 			
 			
 			return "member/find_idpw";

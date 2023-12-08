@@ -4,7 +4,9 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.edu.springboot.community.IBoardService">
-
+	
+	
+	
 	<!-- list  -->
 	<select id="getTotalCount" resultType="int" parameterType="com.edu.springboot.community.ParameterDTO">
 	SELECT COUNT(*) from freeboard
@@ -12,6 +14,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE ${searchField} LIKE '%'||#{searchKeyword}||'%'
 		</if>
 	</select>
+	
 	
 	<select id="listPage"
 		resultType="com.edu.springboot.community.BoardDTO"
@@ -30,9 +33,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- write  -->
 	<insert id="write">
-		INSERT INTO freeboard (freeboard_idx, email, title, content) VALUES (seq_freeboard_idx.nextval, #{_email}, #{_title}, #{_content} )
+		INSERT INTO freeboard (freeboard_idx, email, nickname, title, content) VALUES (seq_freeboard_idx.nextval,#{_email}, #{_nickname}, #{_title}, #{_content} )
 	</insert>
 	
+	<select id="view" resultType="com.edu.springboot.community.BoardDTO" parameterType="com.edu.springboot.community.BoardDTO">
+		SELECT * FROM freeboard WHERE freeboard_idx=#{freeboard_idx}
+	</select>
+	
+	<update id="edit" parameterType="com.edu.springboot.community.BoardDTO">
+		UPDATE freeboard SET
+		nickname=#{nickname}, title=#{title}, content=#{content}
+		WHERE freeboard_idx=#{freeboard_idx}
+	</update>
+	<update id="increaseViewCount" parameterType="int">
+   		UPDATE freeboard SET visitcount = visitcount + 1 WHERE freeboard_idx = #{postId}
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM freeboard WHERE freeboard_idx=#{param1}
+	</delete>
 
 		
 </mapper>

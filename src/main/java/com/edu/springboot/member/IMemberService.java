@@ -23,7 +23,7 @@ public interface IMemberService {
 			@Param("nickname") String nickname, @Param("phone") String phone,
 			@Param("zipcode") String zipcode,
 			@Param("addr1") String addr1, @Param("addr2") String addr2,
-			@Param("mailing")  String mailing, @Param("sms") String sms);
+			@Param("mailing") String mailing, @Param("sms") String sms);
 	
 	
 	
