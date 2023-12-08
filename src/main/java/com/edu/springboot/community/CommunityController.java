@@ -117,7 +117,6 @@ public class CommunityController {
 		System.out.println("들어오니?");
 		boardDTO = dao.view(boardDTO);
 		model.addAttribute("boardDTO", boardDTO);
-		
 		return "community/freeboard_edit";
 	
 	}
