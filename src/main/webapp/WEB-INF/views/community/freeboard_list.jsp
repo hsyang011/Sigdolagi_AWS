@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -156,19 +157,25 @@ $(function() {
                 <tbody>
                 	<tr>
                 	<c:choose>
+                		<c:when test="${ empty lists }">
+						<tr>
+							<td colspan="5" align="center"> 등록된 게시물이 없습니다.</td>
+						</tr>
+					</c:when>
+					<c:otherwise>
 						<c:forEach items="${ lists }" var="post" varStatus="loop">
 							<tr align="center">
 							<td>
-								<!-- 게시물의 갯수, 페이지 번호, 페이지 사이즈를 통해 가상 번호를 계산해서 출력한다.  -->
-								${ maps.totalCount - (((maps.pageNum-1) * maps.pageSize) + loop.index)}
-								</td> 
-							  	<td scope="row">${post.freeboard_idx}</td>
-								<td>${ post.title }</td>
-								<td>${ post.email }</td>
-								<td>${ post.regidate }</td>
-								<td>${ post.visitcount }</td>		
+							<!-- 게시물의 갯수, 페이지 번호, 페이지 사이즈를 통해 가상 번호를 계산해서 출력한다.  -->
+							${ maps.totalCount - (((maps.pageNum-1) * maps.pageSize) + loop.index)}
+							</td> 
+							<td scope="row"><a href="./freeboard_view.do?idx=${ freeboard_idx }">${ post.title }</td>
+							<td>${ post.nickname }</td>
+							<td>${ post.postdate }</td>
+							<td>${ post.visitcount }</td>		
 							</tr> 
 						</c:forEach>
+					</c:otherwise>
 					</c:choose>
 			<%-- 				<td>
 				${ pagingImg }

@@ -40,6 +40,7 @@ public class CommunityController {
 			
 		ArrayList<BoardDTO> lists = dao.listPage(parameterDTO);
 		model.addAttribute("lists", lists);
+		System.out.println(lists.size());
 		
 		String pagingImg = PagingUtil.pagingImg(totalCount, pageSize, blockPage, pageNum, req.getContextPath()+"/list.do?");
 		model.addAttribute("pagingImg", pagingImg);

@@ -147,11 +147,12 @@ public class MemberController {
 		memberDTO.setEmail(req.getParameter("email"));
 		memberDTO.setPassword(req.getParameter("password"));
 	
-	int result = memberdao.getMemberDTO(memberDTO);
+		int result = memberdao.getMemberDTO(memberDTO);
 	
-	System.out.println(result);
-	if(result ==1) {
-		memberDTO = memberdao.getoneMemberDTO(memberDTO);
+		System.out.println(result);
+		
+		if(result ==1) {
+			memberDTO = memberdao.getoneMemberDTO(memberDTO);
 		
 		 session.setAttribute("sessionEmail", memberDTO.getEmail());
 		 System.out.println("세션에 저장된 이메일 "+memberDTO.getEmail());
