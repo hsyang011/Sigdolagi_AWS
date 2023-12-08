@@ -73,9 +73,10 @@ public class CommunityController {
 	
 	@PostMapping("/community/freeboard_write.do")
 	public String freeboardWrite(Model model, HttpServletRequest req, HttpSession session) {
-		//request 내장객체를 통해 폼값을 받아온다.
 		String email= req.getParameter("email");
-		String nickname = (String) session.getAttribute("sessionNickname");
+
+		String nickname= (String)session.getAttribute("sessionNickname");
+
 		String title= req.getParameter("title");
 		String content= req.getParameter("content");
 		//폼값을 개별적으로 전달한다.
@@ -92,7 +93,7 @@ public class CommunityController {
 		boardDTO.setContent(boardDTO.getContent().replace("\r\n", "<br>"));
 		model.addAttribute("boardDTO", boardDTO);
 		
-		System.out.println("boardDTO="+ boardDTO);
+		System.out.println("boardDTO="+boardDTO);
 		
 		return "community/freeboard_view";
 	}
@@ -109,11 +110,10 @@ public class CommunityController {
 	
 	
 	//사진 게시판 	쓰기.
-	@GetMapping("/community/photoboard_writeProcess.do")
+	@GetMapping("/community/photooard_writeProcess.do")
 	public String uploadProcess(HttpServletRequest req, Model model,
 			PhotoBoardDTO photoBoardDTO){
-		System.out.println("컨트롤러 넘어오나?");
-		req.getParameter("");
+		
 		
 		System.out.println("photoBoardDTO="+ photoBoardDTO);
 		try {			
@@ -159,8 +159,6 @@ public class CommunityController {
 		
 		//View로 포워드
 		return "main/main";
-		
-		
 	}
 
 

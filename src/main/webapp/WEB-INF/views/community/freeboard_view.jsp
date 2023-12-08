@@ -127,7 +127,6 @@ main > * { margin: 50px 0; }
                         <!-- 게시판 들어가는 부분 (시작) -->
                         <form name="writeFrm" method="post" onsubmit="return validateForm(this);" action="../community/freeboard_view.do" class="writeFrm">
                             <input type="hidden" name="tname"  />
-                            <input type="hidden" name="idx" value="${boardDTO.freeboard_idx }"  />
                             <input type="hidden" name="email"  />
                             <table class="table table-bordered" id="free_write_frm_table" width="100%" >
                             	<colgroup>
@@ -135,10 +134,10 @@ main > * { margin: 50px 0; }
                                 	
                                 </colgroup>
                                 <tr>
-							        <td>번호</td> <td>${ boardDTO.freeboard_idx }</td>
+							        <td>번호</td> <td>${ boardDTO.freeboard_idx }</td>   
 							        <td>작성자</td> <td>${ boardDTO.nickname }</td>
 							    </tr>
-							    <tr>
+							    <tr> 
 							        <td>작성일</td> <td>${ boardDTO.postdate }</td>
 							        <td>조회수</td> <td>${ boardDTO.visitcount }</td>
 							    </tr>
