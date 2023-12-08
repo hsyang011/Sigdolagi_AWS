@@ -42,8 +42,6 @@ public class CommunityController {
 	IPhotoboardService photoboarddao;
 	
 	
-	
-	
 	@RequestMapping("/community/freeboard_list.do")
 	public String freeboardList(Model model, HttpServletRequest req, ParameterDTO parameterDTO, HttpSession httpSession) {
 		

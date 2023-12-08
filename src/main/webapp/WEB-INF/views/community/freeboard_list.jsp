@@ -79,7 +79,7 @@ $(function() {
 		location.href = "./freeboard_write.do";
 	});
 });
-</script>
+</script> 
 </head>
 <body>
 <!-- wrapper 시작 -->
