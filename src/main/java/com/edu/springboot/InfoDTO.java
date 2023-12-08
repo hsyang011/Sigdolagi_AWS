@@ -12,3 +12,6 @@ public class InfoDTO {
 	private String format;
 	private String content;
 }
+
+
+

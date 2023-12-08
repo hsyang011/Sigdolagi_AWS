@@ -133,11 +133,17 @@ public class MemberController {
 		if (chkVal!=null && chkVal.equals("1")) {
 			
 			CookieManager.makeCookie(response, "SavedEmail", userEmail, 60*60*24);
+			CookieManager.makeCookie(response, "ischecked", "checked", 60*60*24);
+			
+			
+			model.addAttribute("ischecked", "checked");
+			model.addAttribute("SavedEmail", userEmail);
 			
 			System.out.println("쿠키 추가됨");
 		// 쿠키 삭제
 		} else {
-			CookieManager.deleteCookie(response, "email");
+			CookieManager.deleteCookie(response, "SavedEmail");
+			CookieManager.deleteCookie(response, "ischecked");
 		}
 		
 		System.out.println("쿠키저장성공?");
@@ -169,6 +175,7 @@ public class MemberController {
 		model.addAttribute("loginErrorMessage", "로그인 실패");
 		return "member/login";
 	}
+		
 	
 	
 	}

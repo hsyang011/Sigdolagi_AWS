@@ -82,7 +82,7 @@
                 <div class="login_sub_list">
                     <div class="saveId_btn">
                         <label for="savedEmail">
-                            <input type="checkbox" name="savedEmail" value="1" id="savedEmail" > 이메 저장
+                            <input type="checkbox" name="savedEmail" value="1" id="savedEmail" <%= CookieManager.readCookie(request, "ischecked") %> > 이메 저장
                         </label>
                     </div>
                     <div class="find_id">
