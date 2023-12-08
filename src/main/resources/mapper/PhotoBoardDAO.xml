@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.edu.springboot.community.IPhotoboardService">
+	
+	
+	
+	<!-- list  -->
+	<select id="photoGetTotalCount" resultType="int" parameterType="com.edu.springboot.community.ParameterDTO">
+    SELECT COUNT(*) FROM PHOTOBOARD
+    <if test="searchKeyword != null and !searchKeyword.equals('')">
+        WHERE ${searchField} LIKE '%' || #{searchKeyword} || '%'
+    </if>
+	</select>
+	
+	
+		
+	
+	<select id="PhotoListPage"
+		resultType="com.edu.springboot.community.PhotoBoardDTO"
+		parameterType="com.edu.springboot.community.ParameterDTO">
+		SELECT * FROM (
+			SELECT Tb.*, rownum rNum FROM(
+				SELECT * FROM photoboard
+				<if test="searchKeyword!=null and !searchKeyword.equals('')">
+				WHERE ${searchField} LIKE '%'||#{searchKeyword} ||'%'
+				</if>
+				ORDER BY photoboard_idx DESC
+			) Tb
+		)
+	 	WHERE rNum<![CDATA[>=]]>#{start} AND rNum<![CDATA[<=]]>#{end}
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+
+		
+</mapper>

@@ -64,6 +64,31 @@ $(function() {
         }
     });
 });
+
+/* 장바구니에 상품 추가 */
+function addToCart(idx, flag) {
+	var prod_idx = idx;
+	var prod_count = (flag==1) ? 1 : $("#count").val();
+	var data = {
+		prod_idx: prod_idx,
+		prod_count: prod_count
+    };
+	
+	$.ajax({
+        type: "POST",
+        url: "./addToCart.do",
+        data: data,
+        success: function(response) {
+        	console.log(response);
+            if (confirm('장바구니에 추가되었습니다.\n장바구니 페이지로 이동하시겠습니까?')) {
+            	location.href = "./cart.do";
+            }
+        },
+        error: function(error) {
+            alert('장바구니 추가 실패');
+        }
+    });
+}
 </script>
 </head>
 <body>
@@ -173,7 +198,7 @@ $(function() {
                     <div class="d-flex justify-content-between align-items-end rounded-4 p-4 mb-5" style="background-color: lightgray;">
                         <div>
                             <h4>${productDTO.prod_name}</h4>
-                            <input type="number" value="1" class="form-control rounded-pill text-center" style="width: 50%;">
+                            <input type="number" id="count" value="1" class="form-control rounded-pill text-center" style="width: 50%;">
                         </div>
                         <h4 style="font-weight: bold;">${productDTO.prod_price-productDTO.prod_sale}원</h4>
                     </div>
@@ -182,7 +207,7 @@ $(function() {
                             <p>구매 예정 금액</p>
                             <h2 style="color: #FF7A00; font-weight: bold; font-size: 2em;">${productDTO.prod_price-productDTO.prod_sale}원</h2>
                         </div>
-                        <button class="btn btn-outline-dark mb-3" style="width: 100%; height: 50px;">장바구니</button>
+                        <button class="btn btn-outline-dark mb-3" style="width: 100%; height: 50px;" onclick="addToCart(${productDTO.prod_idx}, 0)">장바구니</button>
                         <button class="btn" style="width: 100%; height: 50px; background-color: #FF7A00; color: white;">바로 구매</button>
                     </div>
                 </div>
@@ -195,14 +220,12 @@ $(function() {
                 <figure class="row thumbnail">
                 	<!-- 추천상품 시작 -->
 	                <c:forEach var="row" items="${recommendList}" varStatus="loop">
-	                    <div class="card custom-col">
+	                    <div class="card custom-col" style="cursor: pointer;">
 	                        <div>
 	                            <div class="card_product_img">
-	                                <a href="">
-	                                    <img class="shop_product_img card-img-top" src="../images/products/${row.prod_thumbnail}.jpg">
-	                                </a>
+                                    <img class="shop_product_img card-img-top" onclick="location.href='./market_view.do?prod_idx=${row.prod_idx}';" src="../images/products/${row.prod_thumbnail}.jpg">
 	                                <div class="cart_icon_box">
-	                                    <img src="../images/shopping-bag3.png" alt="">
+	                                    <img src="../images/shopping-bag3.png" onclick="addToCart(${row.prod_idx}, 1)" alt="">
 	                                </div>
 	                            </div>
 			                    <div class="card-body justify-content-between">
