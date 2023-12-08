@@ -59,14 +59,18 @@
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+	                                <colgroup>
+	                                	<col width="4%" /><col width="8%" /><col width="8%" /><col width="25%" /><col width="10%" />
+	                                	<col width="8%" /><col width="10%" /><col width="7%" /><col width="10%" /><col width="10%" />
+	                                </colgroup>
                                     <thead>
                                         <tr>
                                             <th>번호</th>
-                                            <th>분류(밀키트,특산품)</th>
-                                            <th>세부카테고리</th>
+                                            <th>글분류</th>
+                                            <th>소분류</th>
                                             <th>상품명</th>
                                             <th>상품가격</th>
-                                            <th>상품할인률</th>
+                                            <th>할인율</th>
                                             <th>판매자</th>
                                             <th>재고</th>
                                             <th>등록일</th>
@@ -80,7 +84,7 @@
                                             <th>세부카테고리</th>
                                             <th>상품명</th>
                                             <th>상품가격</th>
-                                            <th>상품할인률</th>
+                                            <th>할인율</th>
                                             <th>판매자</th>
                                             <th>재고</th>
                                             <th>등록일</th>
