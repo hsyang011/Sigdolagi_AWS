@@ -79,6 +79,9 @@ public class CommunityController {
 		boardDTO = dao.view(boardDTO);
 		boardDTO.setContent(boardDTO.getContent().replace("\r\n", "<br>"));
 		model.addAttribute("boardDTO", boardDTO);
+		
+		System.out.println("boardDTO="+ boardDTO);
+		
 		return "community/freeboard_view";
 	}
 	

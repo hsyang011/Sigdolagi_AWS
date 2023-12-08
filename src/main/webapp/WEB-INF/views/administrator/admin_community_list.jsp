@@ -59,30 +59,34 @@
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                	<colgroup>
+	                                	<col width="5%" /><col width="*" /><col width="15%" /><col width="10%" />
+	                                	<col width="6%" /><col width="8%" />
+	                                </colgroup>
                                     <thead>
                                         <tr>
                                             <th>번호</th>
                                             <th>제목</th>
-                                            <th>작성자</th>
+                                            <th>닉네임</th>
                                             <th>작성일</th>
                                             <th>조회수</th>
-                                            <th>삭제버튼</th>
+                                            <th>삭제</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
                                             <th>번호</th>
                                             <th>제목</th>
-                                            <th>작성자</th>
+                                            <th>닉네임</th>
                                             <th>작성일</th>
                                             <th>조회수</th>
-                                            <th>삭제버튼</th>
+                                            <th>삭제</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
                                         <tr>
                                             <td>1</td>
-                                            <td><a href="">밥볶아먹는 떡볶이(2인)</a></td>
+                                            <td><a href="">밥볶아먹는 떡볶이(2인)ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ</a></td>
                                             <td>마이셰프</td>
                                             <td>2011/04/25</td>
                                             <td>0</td>

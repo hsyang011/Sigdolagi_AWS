@@ -169,7 +169,7 @@ $(function() {
 							<!-- 게시물의 갯수, 페이지 번호, 페이지 사이즈를 통해 가상 번호를 계산해서 출력한다.  -->
 							${ maps.totalCount - (((maps.pageNum-1) * maps.pageSize) + loop.index)}
 							</td> 
-							<td scope="row"><a href="./freeboard_view.do?idx=${ freeboard_idx }">${ post.title }</td>
+							<td scope="row"><a href="./freeboard_view.do?freeboard_idx=${post.freeboard_idx }">${ post.title }</td>
 							<td>${ post.nickname }</td>
 							<td>${ post.postdate }</td>
 							<td>${ post.visitcount }</td>		
