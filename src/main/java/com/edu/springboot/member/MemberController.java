@@ -171,9 +171,9 @@ public class MemberController {
 			
 			memberDTO = memberdao.getoneMemberDTO(memberDTO);
 		
-		 session.setAttribute("sessionEmail", memberDTO.getEmail());
+		 session.setAttribute("sessionEmail",memberDTO.getEmail());
 		 System.out.println("세션에 저장된 이메일 "+memberDTO.getEmail());
-		 session.setAttribute("sessionName", memberDTO.getName());
+		 session.setAttribute("sessionName",memberDTO.getName());
 		 System.out.println("세션에 저장된 이름"+memberDTO.getName());
 		 session.setAttribute("sessionPassword", memberDTO.getPassword());
 		 session.setAttribute("sessionNickname", memberDTO.getNickname());
@@ -191,8 +191,7 @@ public class MemberController {
 	}
 		
 		
-	
-	
+
 	}
 	
 	//로그아
