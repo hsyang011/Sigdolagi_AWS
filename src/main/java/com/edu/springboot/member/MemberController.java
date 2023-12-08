@@ -129,7 +129,6 @@ public class MemberController {
 		System.out.println(req.getParameter("savedEmail"));
 		String chkVal = req.getParameter("savedEmail"); //입력칸 밸류  
 		System.out.println(chkVal);
-		System.out.println(memberDTO.getSavedEmail());
 		// 쿠키 추가
 		if (chkVal!=null && chkVal.equals("1")) {
 			
@@ -203,9 +202,11 @@ public class MemberController {
 			
 			 // 이메일 찾은거 
 		    model.addAttribute("foundEmail", email);
-
+		    
+		    
+		    
 		   
-		
+		    
 			
 			
 			return "member/find_idpw";

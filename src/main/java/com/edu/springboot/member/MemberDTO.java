@@ -16,7 +16,6 @@ public class MemberDTO {
 	private String sms;
 	private String grade;
 	private String password;
-	private String savedEmail;
 	
 	
 	
