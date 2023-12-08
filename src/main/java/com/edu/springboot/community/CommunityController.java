@@ -19,6 +19,7 @@ public class CommunityController {
 	@Autowired
 	IBoardService dao;
 	
+	
 	@RequestMapping("/community/freeboard_list.do")
 	public String freeboardList(Model model, HttpServletRequest req, ParameterDTO parameterDTO) {
 		int totalCount = dao.getTotalCount(parameterDTO);
@@ -61,8 +62,9 @@ public class CommunityController {
 		//폼값을 개별적으로 전달한다.
 		int result = dao.write(email, title, content);
 		System.out.println("글쓰기 결과:" +result);
-		return "community/freeboard_list";
+		return "redirect : community/freeboard_list.do";
 	}
+	
 	
 	@RequestMapping("/community/freeboard_view.do")
 	public String freeboardView() {

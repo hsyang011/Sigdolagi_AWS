@@ -181,6 +181,8 @@ public class MemberController {
 		 System.out.println("로그인 성공");
 		    //return "main.do";
 		 
+		 
+		 
 		 return "main/main";
 	}
 	else {
