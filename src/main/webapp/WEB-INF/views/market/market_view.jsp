@@ -205,11 +205,19 @@ $(function() {
 	                                    <img src="../images/shopping-bag3.png" alt="">
 	                                </div>
 	                            </div>
-	                            <div class="card-body justify-content-between">
-	                                <span class="shop_title">가게이름뭐시기저시기</span>
-	                                <h5 class="card-title"><a class="mill_title" href="">상품명 이것저것요것(2인)</a></h5>
-	                                <p class="card-text"><span class="discount">27%</span> <strong>10,900원</strong> <strike>14,900원</strike></p>
-	                            </div>
+			                    <div class="card-body justify-content-between">
+			                        <span class="shop_title">${row.seller}</span>
+			                        <h5 class="card-title"><a class="mill_title" href="./market_view.do?idx=${row.prod_idx}">${row.prod_name}</a></h5>
+			                        <c:choose>
+				                        <c:when test="${row.prod_sale eq 0}">
+					                        <p class="card-text"><strong>${row.prod_price}</strong></p>
+				                        </c:when>
+				                        <c:otherwise>
+	            						    <c:set var="sale" value="${(row.prod_sale/row.prod_price)*100}"/>
+					                        <p class="card-text"><span class="discount" style="color: #FF7A00; font-weight: bold;">${Math.round(sale)}%</span> <strong>${row.prod_price-row.prod_sale}</strong> <strike>${row.prod_price}</strike></p>
+				                        </c:otherwise>
+			                       </c:choose>
+			                    </div>
 	                        </div>
 	                    </div>
 	                </c:forEach>
