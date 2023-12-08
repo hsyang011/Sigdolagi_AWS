@@ -18,6 +18,8 @@
 	
 	
 	
+	
+	
 	<select id="getoneEmailDTO">
 		SELECT email FROM member WHERE phone=#{phone}
 	</select>
@@ -35,6 +37,8 @@
 		(#{email}, #{name}, #{nickname}, #{phone},#{addr1},
 		#{addr2}, #{zipcode}, #{mailing}, #{sms}, #{password}) 
 	</insert>
+	
+	
 	
 	
 	

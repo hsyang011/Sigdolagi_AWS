@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -44,6 +45,7 @@ $(function() {
                         홈
                     </span>
                 </a>
+                
                 <a href="">
                     <span class="category_right">
                         >
@@ -86,170 +88,75 @@ $(function() {
             <table class="table table-border" id="pctable">
                     <tr style="text-align: center;" >
                         <td scope="col" style="width: 25%;">
-                            <figure class="row thumbnail">
-                                <!-- 1열 시작 -->
-                                <div class="card col" style="padding-right: 20px; border: none;"> <!-- 오른쪽 패딩 추가, 테두리 없앰 -->
-                                    <img class="card-img-top" src="http://placehold.it/200x200" alt="이미지" alt="Card image">
-                                    <div class="card-body ">
-                                        <h4 class="card-title" style="font-size: 18px; text-align: left;">게시판타이틀</h4>
-                                        <p class="card-text" style="text-align: left;">닉네임</p>
-                                    </div>
-                                </div>
-                                <!-- 1열 끝 -->
-                            </figure>
-                        </td>
-                        <td scope="col" style="width: 25%;">
-                            <figure class="row thumbnail">
-                                <!-- 1열 시작 -->
-                                <div class="card col" style="padding-right: 20px; border: none;"> <!-- 오른쪽 패딩 추가, 테두리 없앰 -->
-                                    <img class="card-img-top" src="http://placehold.it/200x200" alt="이미지" alt="Card image">
-                                    <div class="card-body ">
-                                        <h4 class="card-title" style="font-size: 18px; text-align: left;">게시판타이틀</h4>
-                                        <p class="card-text" style="text-align: left;">닉네임</p>
-                                    </div>
-                                </div>
-                                <!-- 1열 끝 -->
-                            </figure>
-                        </td>
-                        <td scope="col" style="width: 25%;">
-                            <figure class="row thumbnail">
-                                <!-- 1열 시작 -->
-                                <div class="card col" style="padding-right: 20px; border: none;"> <!-- 오른쪽 패딩 추가, 테두리 없앰 -->
-                                    <img class="card-img-top" src="http://placehold.it/200x200" alt="이미지" alt="Card image">
-                                    <div class="card-body ">
-                                        <h4 class="card-title" style="font-size: 18px; text-align: left;">게시판타이틀</h4>
-                                        <p class="card-text" style="text-align: left;">닉네임</p>
-                                    </div>
-                                </div>
-                                <!-- 1열 끝 -->
-                            </figure>
-                        </td>
-                        <td scope="col" style="width: 25%;">
-                            <figure class="row thumbnail">
-                                <!-- 1열 시작 -->
-                                <div class="card col" style="padding-right: 20px; border: none;"> <!-- 오른쪽 패딩 추가, 테두리 없앰 -->
-                                    <img class="card-img-top" src="http://placehold.it/200x200" alt="이미지" alt="Card image">
-                                    <div class="card-body ">
-                                        <h4 class="card-title" style="font-size: 18px; text-align: left;">게시판타이틀</h4>
-                                        <p class="card-text" style="text-align: left;">닉네임</p>
-                                    </div>
-                                </div>
-                                <!-- 1열 끝 -->
-                            </figure>
-                        </td>
-                      </tr>
-                      <tr style="text-align: center;" >
-                        <td scope="col" style="width: 25%;">
-                            <figure class="row thumbnail">
-                                <!-- 1열 시작 -->
-                                <div class="card col" style="padding-right: 20px; border: none;"> <!-- 오른쪽 패딩 추가, 테두리 없앰 -->
-                                    <img class="card-img-top" src="http://placehold.it/200x200" alt="이미지" alt="Card image">
-                                    <div class="card-body ">
-                                        <h4 class="card-title" style="font-size: 18px; text-align: left;">게시판타이틀</h4>
-                                        <p class="card-text" style="text-align: left;">닉네임</p>
-                                    </div>
-                                </div>
-                                <!-- 1열 끝 -->
-                            </figure>
-                        </td>
-                        <td scope="col" style="width: 25%;">
-                            <figure class="row thumbnail">
-                                <!-- 1열 시작 -->
-                                <div class="card col" style="padding-right: 20px; border: none;"> <!-- 오른쪽 패딩 추가, 테두리 없앰 -->
-                                    <img class="card-img-top" src="http://placehold.it/200x200" alt="이미지" alt="Card image">
-                                    <div class="card-body ">
-                                        <h4 class="card-title" style="font-size: 18px; text-align: left;">게시판타이틀</h4>
-                                        <p class="card-text" style="text-align: left;">닉네임</p>
-                                    </div>
-                                </div>
-                                <!-- 1열 끝 -->
-                            </figure>
-                        </td>
-                        <td scope="col" style="width: 25%;">
-                            <figure class="row thumbnail">
-                                <!-- 1열 시작 -->
-                                <div class="card col" style="padding-right: 20px; border: none;"> <!-- 오른쪽 패딩 추가, 테두리 없앰 -->
-                                    <img class="card-img-top" src="http://placehold.it/200x200" alt="이미지" alt="Card image">
-                                    <div class="card-body ">
-                                        <h4 class="card-title" style="font-size: 18px; text-align: left;">게시판타이틀</h4>
-                                        <p class="card-text" style="text-align: left;">닉네임</p>
-                                    </div>
-                                </div>
-                                <!-- 1열 끝 -->
-                            </figure>
-                        </td>
-                        <td scope="col" style="width: 25%;">
-                            <figure class="row thumbnail">
-                                <!-- 1열 시작 -->
-                                <div class="card col" style="padding-right: 20px; border: none;"> <!-- 오른쪽 패딩 추가, 테두리 없앰 -->
-                                    <img class="card-img-top" src="http://placehold.it/200x200" alt="이미지" alt="Card image">
-                                    <div class="card-body ">
-                                        <h4 class="card-title" style="font-size: 18px; text-align: left;">게시판타이틀</h4>
-                                        <p class="card-text" style="text-align: left;">닉네임</p>
-                                    </div>
-                                </div>
-                                <!-- 1열 끝 -->
-                            </figure>
-                        </td>
-                      </tr>
-                      <tr style="text-align: center;" >
-                        <td scope="col" style="width: 25%;">
-                            <figure class="row thumbnail">
-                                <!-- 1열 시작 -->
-                                <div class="card col" style="padding-right: 20px; border: none;"> <!-- 오른쪽 패딩 추가, 테두리 없앰 -->
-                                    <img class="card-img-top" src="http://placehold.it/200x200" alt="이미지" alt="Card image">
-                                    <div class="card-body ">
-                                        <h4 class="card-title" style="font-size: 18px; text-align: left;">게시판타이틀</h4>
-                                        <p class="card-text" style="text-align: left;">닉네임</p>
-                                    </div>
-                                </div>
-                                <!-- 1열 끝 -->
-                            </figure>
-                        </td>
-                        <td scope="col" style="width: 25%;">
-                            <figure class="row thumbnail">
-                                <!-- 1열 시작 -->
-                                <div class="card col" style="padding-right: 20px; border: none;"> <!-- 오른쪽 패딩 추가, 테두리 없앰 -->
-                                    <img class="card-img-top" src="http://placehold.it/200x200" alt="이미지" alt="Card image">
-                                    <div class="card-body ">
-                                        <h4 class="card-title" style="font-size: 18px; text-align: left;">게시판타이틀</h4>
-                                        <p class="card-text" style="text-align: left;">닉네임</p>
-                                    </div>
-                                </div>
-                                <!-- 1열 끝 -->
-                            </figure>
-                        </td>
-                        <td scope="col" style="width: 25%;">
-                            <figure class="row thumbnail">
-                                <!-- 1열 시작 -->
-                                <div class="card col" style="padding-right: 20px; border: none;"> <!-- 오른쪽 패딩 추가, 테두리 없앰 -->
-                                    <img class="card-img-top" src="http://placehold.it/200x200" alt="이미지" alt="Card image">
-                                    <div class="card-body ">
-                                        <h4 class="card-title" style="font-size: 18px; text-align: left;">게시판타이틀</h4>
-                                        <p class="card-text" style="text-align: left;">닉네임</p>
-                                    </div>
-                                </div>
-                                <!-- 1열 끝 -->
-                            </figure>
-                        </td>
-                        <td scope="col" style="width: 25%;">
-                            <figure class="row thumbnail">
-                                <!-- 1열 시작 -->
-                                <div class="card col" style="padding-right: 20px; border: none;"> <!-- 오른쪽 패딩 추가, 테두리 없앰 -->
-                                    <img class="card-img-top" src="http://placehold.it/200x200" alt="이미지" alt="Card image">
-                                    <div class="card-body ">
-                                        <h4 class="card-title" style="font-size: 18px; text-align: left;">게시판타이틀</h4>
-                                        <p class="card-text" style="text-align: left;">닉네임</p>
-                                    </div>
-                                </div>
-                                <!-- 1열 끝 -->
-                            </figure>
-                        </td>
+                       	<c:choose>
+                		<c:when test="${ empty photolists }">
+						<tr>
+							<td colspan="4" align="center"> 등록된 게시물이 없습니다.</td>
+						</tr>
+						</c:when>
+						<c:otherwise>
+						<c:forEach items="${ photolists }" var="post" varStatus="loop">
+							<tr align="center">
+								<td>
+									<figure class="row thumbnail">
+	                                <!-- 1열 시작 -->
+	                                <div class="card col" style="padding-right: 20px; border: none;"> <!-- 오른쪽 패딩 추가, 테두리 없앰 -->
+	                                    <img class="card-img-top" src="http://placehold.it/200x200" alt="이미지" alt="Card image">
+	                                    <div class="card-body ">
+	                                        <h4 class="card-title" style="font-size: 18px; text-align: left;">${ post.title }</h4>
+	                                        <p class="card-text" style="text-align: left;">${ post.title }</p>
+	                                    </div>
+	                                </div>
+	                                <!-- 1열 끝 -->
+	                            	</figure>
+								</td>
+								<td>
+									<figure class="row thumbnail">
+	                                <!-- 1열 시작 -->
+	                                <div class="card col" style="padding-right: 20px; border: none;"> <!-- 오른쪽 패딩 추가, 테두리 없앰 -->
+	                                    <img class="card-img-top" src="http://placehold.it/200x200" alt="이미지" alt="Card image">
+	                                    <div class="card-body ">
+	                                        <h4 class="card-title" style="font-size: 18px; text-align: left;">${ post.title }</h4>
+	                                        <p class="card-text" style="text-align: left;">${ post.name }</p>
+	                                    </div>
+	                                </div>
+	                                <!-- 1열 끝 -->
+	                            	</figure>
+								</td>
+								<td>
+									<figure class="row thumbnail">
+	                                <!-- 1열 시작 -->
+	                                <div class="card col" style="padding-right: 20px; border: none;"> <!-- 오른쪽 패딩 추가, 테두리 없앰 -->
+	                                    <img class="card-img-top" src="http://placehold.it/200x200" alt="이미지" alt="Card image">
+	                                    <div class="card-body ">
+	                                        <h4 class="card-title" style="font-size: 18px; text-align: left;">${ post.title }</h4>
+	                                        <p class="card-text" style="text-align: left;">${ post.title }</p>
+	                                    </div>
+	                                </div>
+	                                <!-- 1열 끝 -->
+	                            	</figure>
+								</td>
+								<td>
+									<figure class="row thumbnail">
+	                                <!-- 1열 시작 -->
+	                                <div class="card col" style="padding-right: 20px; border: none;"> <!-- 오른쪽 패딩 추가, 테두리 없앰 -->
+	                                    <img class="card-img-top" src="http://placehold.it/200x200" alt="이미지" alt="Card image">
+	                                    <div class="card-body ">
+	                                        <h4 class="card-title" style="font-size: 18px; text-align: left;">${ post.title }</h4>
+	                                        <p class="card-text" style="text-align: left;">${ post.title }</p>
+	                                    </div>
+	                                </div>
+	                                <!-- 1열 끝 -->
+	                            	</figure>
+								</td>
+							</tr> 
+						</c:forEach>
+					</c:otherwise>
+					</c:choose>
                       </tr>
               </table>
               <!-- 모바일 테이블 -->
               <table class="table table-border" id="mobiletable">
-                
                
                     <tr style="text-align: center;" >
                         <td scope="col" style="width: 25%;">
