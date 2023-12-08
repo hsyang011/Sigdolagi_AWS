@@ -147,6 +147,7 @@ public class MemberController {
 		///
 		memberDTO.setEmail(req.getParameter("email"));
 		memberDTO.setPassword(req.getParameter("password"));
+		System.out.println(memberDTO.getEmail()+memberDTO.getPassword());
 	
 	int result = memberdao.getMemberDTO(memberDTO);
 	
