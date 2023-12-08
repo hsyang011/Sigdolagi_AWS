@@ -118,7 +118,7 @@ main > * { margin: 50px 0; }
                 </ul>
                 <!-- <ul class="nav my-3 category mt-4">
                     <li class="nav-item me-3"><button type="button" class="mealk_cate btn rounded-pill on">#전체</button></li>
-                    <li class="nav-item me-3"><button type="button" class="mealk_cate btn rounded-pill">#한식</button></li>
+                    <li class="nav-iem me-3"><button type="button" class="mealk_cate btn rounded-pill">#한식</button></li>
                     <li class="nav-item me-3"><button type="button" class="mealk_cate btn rounded-pill">#일식</button></li>
                     <li class="nav-item me-3"><button type="button" class="mealk_cate btn rounded-pill">#중식</button></li>
                     <li class="nav-item me-3"><button type="button" class="mealk_cate btn rounded-pill">#양식</button></li>

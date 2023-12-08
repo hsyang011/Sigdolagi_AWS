@@ -23,6 +23,7 @@ public class CommunityController {
 	@Autowired
 	IBoardService dao;
 	
+	
 	@RequestMapping("/community/freeboard_list.do")
 	public String freeboardList(Model model, HttpServletRequest req, ParameterDTO parameterDTO, HttpSession httpSession) {
 		
@@ -62,14 +63,16 @@ public class CommunityController {
 	public String freeboardWrite(Model model, HttpServletRequest req, HttpSession session) {
 		//request 내장객체를 통해 폼값을 받아온다.
 		String email= req.getParameter("email");
-		String nickname= (String)session.getAttribute("sessionNickname");
+		String nickname = (String) session.getAttribute("sessionNickname");
 		String title= req.getParameter("title");
 		String content= req.getParameter("content");
 		//폼값을 개별적으로 전달한다.
 		int result = dao.write(email,nickname, title, content);
 		System.out.println("글쓰기 결과:" +result);
+
 		return "redirect:freeboard_list.do";
 	}
+	
 	
 	@RequestMapping("/community/freeboard_view.do")
 	public String freeboardView(Model model, BoardDTO boardDTO) {
