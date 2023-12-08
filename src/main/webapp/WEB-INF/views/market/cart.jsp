@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -149,6 +150,9 @@
                                     <col width="3%"><col width="10%"><col width="58%"><col width="4%"><col width="17%"><col width="3%"> 
                                 </colgroup>
                                 <tbody>
+		       						<%-- <c:forEach items="${cartInfo}" var="row" varStatus="loop">
+                                	
+                                	</c:forEach> --%>
                                     <!-- 1번리스트 시작 -->
                                     <tr class="cart_product">
                                         <td><input type="checkbox" name="" id=""></td>

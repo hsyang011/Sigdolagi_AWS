@@ -1,11 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!-- header 시작 -->
 <header class="container">
     <div class="row">
         <div class="col-sm-12" style="height: 30px;">
             <ul class="topmenu" style="float: right;">
-                <li><a href="../member/login.do">로그인</a></li>
+            
+                <%-- 세션에 로그인 정보가 없는 경우 --%>
+				<c:if test="${empty sessionEmail}">
+				    <li><a href="../member/login.do">로그인</a></li>
+				</c:if>
+	                     
+                <c:if test="${not empty sessionEmail}">
+                	<li><a href="../member/logout.do">로그아웃</a></li>
+				</c:if>
+                
                 <li><a href="../member/regist.do">회원가입</a></li>
                 <li><a href="#">마이페이지</a></li>
             </ul>

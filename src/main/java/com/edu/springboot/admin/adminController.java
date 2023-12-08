@@ -18,9 +18,29 @@ public class adminController {
 		return "administrator/admin_member_list";
 	}
 	
-	@RequestMapping("/administrator/admin_community_list.do")
+	@RequestMapping("/administrator/admin_free_list.do")
 	public String adminCommunity() {
 		return "administrator/admin_community_list";
+	}
+	
+	@RequestMapping("/administrator/admin_photo_list.do")
+	public String adminPhoto() {
+		return "administrator/admin_photo_list";
+	}
+	
+	@RequestMapping("/administrator/admin_planner_list.do")
+	public String adminPlanner() {
+		return "administrator/admin_planner_list";
+	}
+	
+	@RequestMapping("/administrator/admin_AD_list.do")
+	public String adminAd() {
+		return "administrator/admin_ad_list";
+	}
+	
+	@RequestMapping("/administrator/admin_notice_list.do")
+	public String adminNotice() {
+		return "administrator/admin_notice_list";
 	}
 	
 	@RequestMapping("/administrator/admin_maket_list.do")

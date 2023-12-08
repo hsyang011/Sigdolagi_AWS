@@ -5,9 +5,12 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.edu.springboot.member.MemberDTO;
 
 import jakarta.servlet.http.HttpServletRequest;
 import utils.PagingUtil;
@@ -54,6 +57,7 @@ public class MarketController {
 		return "market/market_list";
 	}
 	
+	// 상품 상세보기
 	@RequestMapping("/market/market_view.do")
 	public String marketView(ProductDTO productDTO, Model model) {
 		productDTO = dao.view(productDTO);
@@ -65,8 +69,26 @@ public class MarketController {
 		return "market/market_view";
 	}
 	
+	// 장바구니에 상품 추가
+	@RequestMapping("/market/addToCart.do")
+	public ResponseEntity<String> addToCart(CartDTO cartDTO, Model model) {
+		// 임의로 이메일 설정 (시큐리티 연동 전)
+		cartDTO.setEmail("foo@gmail.com");
+		// 장바구니에 상품 추가
+		dao.addToCart(cartDTO);
+		return ResponseEntity.ok("상품이 성공적으로 추가되었습니다.");
+	}
+	
+	// 장바구니 페이지
 	@RequestMapping("/market/cart.do")
-	public String cart() {
+	public String cart(MemberDTO memberDTO, Model model) {
+		// 임의로 이메일 설정 (시큐리티 연동 전)
+		memberDTO.setEmail("foo@gmail.com");
+		List<CartDTO> cartInfo = dao.cartInfo(memberDTO);
+		model.addAttribute("cartInfo", cartInfo);
+		
+		System.out.println(cartInfo);
+		
 		return "market/cart";
 	}
 	
