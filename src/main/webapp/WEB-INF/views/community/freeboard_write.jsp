@@ -150,7 +150,7 @@ main > * { margin: 50px 0; }
                                     </td>
                                 </tr>
                             </table>
-                        </form>
+                        </form>f
                     </div>
                 </div>
               
@@ -173,3 +173,4 @@ main > * { margin: 50px 0; }
 <!-- wrapper 끝 -->
 </body>
 </html>
+
