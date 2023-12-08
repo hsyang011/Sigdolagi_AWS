@@ -142,7 +142,7 @@ main > * { margin: 50px 0; }
                 <div class="container">
                     <div class="freeboard_write_frm" >
                         <!-- 게시판 들어가는 부분 (시작) -->
-                        <form name="writeFrm" method="post" onsubmit="return validateForm(this);" class="writeFrm">
+                        <form name="writeFrm" method="get" onsubmit="return validateForm(this);" class="writeFrm">
                             <input type="hidden" name="tname"  />
                             <table class="table table-bordered" id="free_write_frm_table" width="100%" >
                                 <tr>
@@ -161,7 +161,7 @@ main > * { margin: 50px 0; }
                              
                                 <tr>
                                     <td colspan="2" align="center" class="btn_td">
-                                        <button type="submit" class="writeFrm_end">작성 완료</button>
+                                        <button type="button" class="writeFrm_end">작성 완료</button>
                                         <button type="reset" class="writeFrm_reset">다시 입력</button>
                                         <button type="button" class="writeFrm_list" onclick="">목록 보기</button>
                                     </td>

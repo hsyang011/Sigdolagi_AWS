@@ -40,8 +40,8 @@
         <div id="collapseCommu" class="collapse" aria-labelledby="headingCommu" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">게시판작성,수정,삭제:</h6>
-                <a class="collapse-item" href="../administrator/admin_community_list.do">자유게시판</a>
-                <a class="collapse-item" href="../administrator/admin_community_photolist.do">사진게시판</a>
+                <a class="collapse-item" href="../administrator/admin_free_list.do">자유게시판</a>
+                <a class="collapse-item" href="../administrator/admin_photo_list.do">사진게시판</a>
             </div>
         </div>
     </li>
@@ -55,8 +55,8 @@
         <div id="collapsePlanner" class="collapse" aria-labelledby="headingPlanner" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">플래너게시판:</h6>
-                <a class="collapse-item" href="buttons.html">플래너게시판</a>
-                <a class="collapse-item" href="cards.html">플래너광고</a>
+                <a class="collapse-item" href="../administrator/admin_planner_list.do">플래너게시판</a>
+                <a class="collapse-item" href="../administrator/admin_AD_list.do">플래너광고</a>
             </div>
         </div>
     </li>
@@ -72,8 +72,8 @@
             data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">고객센터게시판:</h6>
-                <a class="collapse-item" href="utilities-color.html">FAQ관리</a>
-                <a class="collapse-item" href="utilities-border.html">공지사항</a>
+                <a class="collapse-item" href="../administrator/admin_notice_list.do">FAQ관리</a>
+                <a class="collapse-item" href="../administrator/admin_notice_list.do">공지사항</a>
             </div>
         </div>
     </li>

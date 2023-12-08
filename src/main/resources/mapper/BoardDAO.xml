@@ -33,11 +33,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- write  -->
 	<insert id="write">
-		INSERT INTO freeboard (freeboard_idx, email, nickname, title, content) VALUES (seq_freeboard_idx.nextval,#{_email}, #{_nickname}, #{_title}, #{_content} )
+		INSERT INTO freeboard (freeboard_idx, email, nickname, title, content) VALUES (seq_freeboard_idx.nextval, #{_email}, #{_nickname}, #{_title}, #{_content} )
 	</insert>
 	
 	<select id="view" resultType="com.edu.springboot.community.BoardDTO" parameterType="com.edu.springboot.community.BoardDTO">
-		SELECT * FROM freeboard WHERE freeboard_idx=#{freeboard_idx}
+		SELECT * FROM freeboard WHERE freeboard_idx=${freeboard_idx}
 	</select>
 	
 	<update id="edit" parameterType="com.edu.springboot.community.BoardDTO">

@@ -43,9 +43,9 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">상품목록</h1>
+                    <h1 class="h3 mb-2 text-gray-800">자유게시판목록</h1>
                     <p class="mb-4">
-                    	상품목록 관리하는 곳 입니다.
+                    	자유게시판목록 관리하는 곳 입니다.
                     	<!-- <a target="_blank" href="https://datatables.net">official DataTables documentation</a>. -->
                     </p>
 
