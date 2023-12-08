@@ -1,35 +1,21 @@
 package com.edu.springboot.community;
 
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.UUID;
 
-import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
-import com.edu.springboot.community.BoardDTO;
-
-import jakarta.mail.Session;
 import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletRequestWrapper;
 import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.Part;
-import oracle.jdbc.proxy.annotation.Post;
 import utils.PagingUtil;
 
 @Controller
@@ -126,7 +112,7 @@ public class CommunityController {
 		int result = dao.edit(boardDTO);
 		System.out.println("result:"+result);
 		System.out.println("글수정결과:"+result);
-		
+		System.out.println("boardto"+boardDTO+"result"+result);
 		return "redirect:freeboard_view.do?freeboard_idx="+boardDTO.getFreeboard_idx();
 	}
 	
