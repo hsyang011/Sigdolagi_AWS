@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.edu.springboot.market.ICartService">
+
+	<!-- 상품이 담겨 있는지 확인하는 쿼리문 -->
+	<select id="getProdIdx" parameterType="com.edu.springboot.market.CartDTO" resultType="int">
+		SELECT COUNT(*) FROM cart WHERE prod_idx=${prod_idx}
+	</select>
+	
+	<!-- 장바구니에 상품 추가 -->
+	<insert id="addToCart" parameterType="com.edu.springboot.market.CartDTO">
+		INSERT INTO cart (cart_idx, prod_idx, email, prod_count)
+			VALUES (seq_cart_idx.NEXTVAL, ${prod_idx}, #{email}, ${prod_count})
+	</insert>
+	
+	<!-- 장바구니에 담긴 상품의 갯수를 증가 -->
+	<update id="updateToCart" parameterType="com.edu.springboot.market.CartDTO">
+		UPDATE cart SET prod_count=prod_count+${prod_count} WHERE prod_idx=${prod_idx}
+	</update>
+	
+	<!-- 장바구니에 담긴 모든 품목의 prod_idx를 가져오기 -->
+	<select id="cartInfo" resultType="com.edu.springboot.market.CartDTO">
+		SELECT * FROM cart WHERE email=#{email}
+	</select>
+	
+	<!-- 장바구니에 담긴 모든 품목의 정보를 가져오기 -->
+	<select id="allProductInfo" parameterType="com.edu.springboot.market.CartDTO" resultType="com.edu.springboot.market.ProductDTO">
+		SELECT * FROM product WHERE prod_idx = (
+		    SELECT prod_idx FROM cart WHERE cart_idx=${cart_idx}
+		)
+	</select>
+	
+</mapper>
