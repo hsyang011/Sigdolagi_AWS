@@ -125,7 +125,7 @@ main > * { margin: 50px 0; }
                 <div class="container">
                     <div class="freeboard_write_frm" >
                         <!-- 게시판 들어가는 부분 (시작) -->
-                        <form name="writeFrm" method="post" onsubmit="return validateForm(this);" action="/community/freeboard_view.do" class="writeFrm">
+                        <form name="writeFrm" method="post" onsubmit="return validateForm(this);" action="../community/freeboard_view.do" class="writeFrm">
                             <input type="hidden" name="tname"  />
                             <input type="hidden" name="idx" value="${boardDTO.freeboard_idx }"  />
                             <input type="hidden" name="email"  />
