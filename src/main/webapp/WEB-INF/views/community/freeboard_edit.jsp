@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -116,14 +117,7 @@ main > * { margin: 50px 0; }
                     <li class="on"><a href="./freeboard_list.do">자유게시판</a></li>
                     <li><a href="./photoboard_list.do">사진게시판</a></li>
                 </ul>
-                <!-- <ul class="nav my-3 category mt-4">
-                    <li class="nav-item me-3"><button type="button" class="mealk_cate btn rounded-pill on">#전체</button></li>
-                    <li class="nav-item me-3"><button type="button" class="mealk_cate btn rounded-pill">#한식</button></li>
-                    <li class="nav-item me-3"><button type="button" class="mealk_cate btn rounded-pill">#일식</button></li>
-                    <li class="nav-item me-3"><button type="button" class="mealk_cate btn rounded-pill">#중식</button></li>
-                    <li class="nav-item me-3"><button type="button" class="mealk_cate btn rounded-pill">#양식</button></li>
-                    <li class="nav-item me-3"><button type="button" class="mealk_cate btn rounded-pill">#기타</button></li>
-                </ul> -->
+               
             </div>
             <!-- 컨텐츠 헤더 끝 -->
             <div class="shop_board container  mt-5" >
@@ -132,21 +126,22 @@ main > * { margin: 50px 0; }
                 <div class="container">
                     <div class="freeboard_write_frm" >
                         <!-- 게시판 들어가는 부분 (시작) -->
-                        <form name="writeFrm" method="post" onsubmit="return validateForm(this);" action="./write.do" class="writeFrm">
-                            <input type="hidden" name="tname"  />
+                        <form name="writeFrm" method="post" onsubmit="return validateForm(this);" action="../community/freeboard_edit.do" class="writeFrm">
+                         	<input type="hidden" name="freeboard_idx" value="${boardDTO.freeboard_idx }" />
                             <table class="table table-bordered" id="free_write_frm_table" width="100%" >
                                 <tr>
                                     <td>제목</td>
                                     <td>
-                                        <input type="text" name="title" />
+                                        <input type="text" name="title" value="${boardDTO.title }"/>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>내용</td>
                                     <td>
-                                        <textarea name="content"></textarea>
+                                        <textarea name="content">${boardDTO.content }</textarea>
                                     </td>
                                 </tr>
+                             
                              
                                 <tr>
                                     <td colspan="2" align="center" class="btn_td">
