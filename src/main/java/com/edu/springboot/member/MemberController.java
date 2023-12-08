@@ -194,7 +194,7 @@ public class MemberController {
 
 	}
 	
-	//로그아
+	//로그아웃 
 		@GetMapping("/member/logout.do")
 	    public String logoutprocess(HttpSession session) {
 			  System.out.println("세션제거전");

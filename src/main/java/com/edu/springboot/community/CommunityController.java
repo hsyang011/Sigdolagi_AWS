@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.edu.springboot.community.BoardDTO;
 
+import jakarta.mail.Session;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import utils.PagingUtil;
@@ -58,10 +59,10 @@ public class CommunityController {
 	}
 	
 	@RequestMapping("/community/freeboard_write.do")
-	public String freeboardWrite(Model model, HttpServletRequest req) {
+	public String freeboardWrite(Model model, HttpServletRequest req, HttpSession session) {
 		//request 내장객체를 통해 폼값을 받아온다.
 		String email= req.getParameter("email");
-		String nickname= req.getParameter("nickname");
+		String nickname= (String)session.getAttribute("sessionNickname");
 		String title= req.getParameter("title");
 		String content= req.getParameter("content");
 		//폼값을 개별적으로 전달한다.
