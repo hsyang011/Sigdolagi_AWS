@@ -116,7 +116,7 @@ div.sticky{
                     <h2>마켓</h2>
                 </div>
             </div>
-            <img id="page_icon" src="./images/gift2.png">
+            <img id="page_icon" src="../images/gift2.png">
         </div>
     </div>
     <!-- 배너 끝 -->
@@ -183,7 +183,7 @@ div.sticky{
                             <tr class="cart_product">
                                 <td><input type="checkbox" name="" id=""></td>
                                 <td class="product_img">
-                                    <img src="./images/밀키트1.jpg" alt="" >
+                                    <img src="../images/밀키트1.jpg" alt="" >
                                 </td>
                                 <td class="product_title">
                                     <div><span class="shop_title">가게이름뭐시기저시기</span></div>
@@ -197,7 +197,7 @@ div.sticky{
                                     <p class="product_price_area"><span class="product_price">10,900</span>원</p>
                                 </td>
                                 <td>
-                                    <img src="./images/cross-wish-ico.png" alt="">
+                                    <img src="../images/cross-wish-ico.png" alt="">
                                 </td>
                             </tr>
                             <!-- 1번리스트 끝 -->
@@ -205,7 +205,7 @@ div.sticky{
                             <tr class="cart_product">
                                 <td><input type="checkbox" name="" id=""></td>
                                 <td class="product_img">
-                                    <img src="./images/밀키트2.jpg" alt="" >
+                                    <img src="../images/밀키트2.jpg" alt="" >
                                 </td>
                                 <td class="product_title">
                                     <div><span class="shop_title">가게이름뭐시기저시기</span></div>
@@ -219,7 +219,7 @@ div.sticky{
                                     <p class="product_price_area"><span class="product_price">10,900</span>원</p>
                                 </td>
                                 <td>
-                                    <img src="./images/cross-wish-ico.png" alt="">
+                                    <img src="../images/cross-wish-ico.png" alt="">
                                 </td>
                             </tr>
                             <!-- 2번리스트 끝 -->
