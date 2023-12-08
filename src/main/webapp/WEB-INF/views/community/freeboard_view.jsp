@@ -130,7 +130,7 @@ main > * { margin: 50px 0; }
                             <input type="hidden" name="email"  />
                             <table class="table table-bordered" id="free_write_frm_table" width="100%" >
                             	<colgroup>
-                                	<col width="20%" /><col width="30%" /><col width="20%" /><col width="300%" />
+                                	<col width="20%" /><col width="30%" /><col width="20%" /><col width="30%" />
                                 	
                                 </colgroup>
                                 <tr>
