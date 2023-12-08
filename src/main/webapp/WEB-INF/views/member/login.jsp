@@ -57,7 +57,7 @@
                	<div class="loginFrm">
               	
                     <div class="loginInput">
-                      <input type="text" class="id" value="<%= CookieManager.readCookie(request, "SavedEmail") %> " name="email" placeholder="이메일"> 
+                      	<input type="text" class="id" value="<%=CookieManager.readCookie(request, "SavedEmail")%>" name="email" placeholder="이메일"> 
                         <br>
                         <input type="password" class="pw" name="password"  placeholder="비밀번호">
                     </div>

@@ -10,7 +10,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.edu.springboot.community.BoardDTO;
+
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import utils.PagingUtil;
 
 @Controller
@@ -20,7 +23,8 @@ public class CommunityController {
 	IBoardService dao;
 	
 	@RequestMapping("/community/freeboard_list.do")
-	public String freeboardList(Model model, HttpServletRequest req, ParameterDTO parameterDTO) {
+	public String freeboardList(Model model, HttpServletRequest req, ParameterDTO parameterDTO, HttpSession httpSession) {
+		
 		int totalCount = dao.getTotalCount(parameterDTO);
 		
 		int pageSize = PagingUtil.getPageSize(); 
@@ -46,6 +50,7 @@ public class CommunityController {
 		model.addAttribute("pagingImg", pagingImg);
 		return "community/freeboard_list";
 	}
+	
 	//글쓰기 페이지 로딩
 	@GetMapping("/community/freeboard_write.do")
 	public String boardWriteGet(Model model) {
@@ -56,16 +61,20 @@ public class CommunityController {
 	public String freeboardWrite(Model model, HttpServletRequest req) {
 		//request 내장객체를 통해 폼값을 받아온다.
 		String email= req.getParameter("email");
+		String nickname= req.getParameter("nickname");
 		String title= req.getParameter("title");
 		String content= req.getParameter("content");
 		//폼값을 개별적으로 전달한다.
-		int result = dao.write(email, title, content);
+		int result = dao.write(email,nickname, title, content);
 		System.out.println("글쓰기 결과:" +result);
-		return "community/freeboard_list";
+		return "redirect:freeboard_list.do";
 	}
 	
 	@RequestMapping("/community/freeboard_view.do")
-	public String freeboardView() {
+	public String freeboardView(Model model, BoardDTO boardDTO) {
+		boardDTO = dao.view(boardDTO);
+		boardDTO.setContent(boardDTO.getContent().replace("\r\n", "<br>"));
+		model.addAttribute("boardDTO", boardDTO);
 		return "community/freeboard_view";
 	}
 	

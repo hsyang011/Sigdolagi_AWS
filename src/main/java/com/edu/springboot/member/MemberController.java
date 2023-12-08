@@ -156,22 +156,23 @@ public class MemberController {
 		if(result ==1) {
 			memberDTO = memberdao.getoneMemberDTO(memberDTO);
 		
-		 session.setAttribute("sessionEmail", memberDTO.getEmail());
+		 session.setAttribute("sessionEmail",memberDTO.getEmail());
 		 System.out.println("세션에 저장된 이메일 "+memberDTO.getEmail());
-		 session.setAttribute("sessionName", memberDTO.getName());
+		 session.setAttribute("sessionName",memberDTO.getName());
 		 System.out.println("세션에 저장된 이름"+memberDTO.getName());
-		 session.setAttribute("sessionPassword", memberDTO.getPassword());
+		 session.setAttribute("sessionPassword",memberDTO.getPassword());
 		 System.out.println("로그인 성공");
 		    //return "main.do";
 		 return "main/main";
-	}
-	else {
-		System.out.println("로그인 실패");
-		//메세지 추가
-		model.addAttribute("loginErrorMessage", "로그인 실패");
-		return "member/login";
-	}
-	
+		}
+		
+		else {
+			System.out.println("로그인 실패");
+			//메세지 추가
+			model.addAttribute("loginErrorMessage", "로그인 실패");
+			return "member/login";
+		}
+		
 	
 	}
 	

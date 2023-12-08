@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import com.edu.springboot.community.BoardDTO;
+
 
 @Mapper
 public interface IBoardService {
@@ -12,6 +14,11 @@ public interface IBoardService {
 	public int getTotalCount(ParameterDTO parameterDTO);
 	public ArrayList<BoardDTO> listPage(ParameterDTO parameterDTO);
 	public int write(@Param("_email") String email,
+			@Param("_nickname") String nickname,
 			@Param("_title") String title,
 			@Param("_content") String content);
+	public BoardDTO view(BoardDTO boardDTO);
+	public int edit(BoardDTO boardDTO);
+	public int delete(String idx);
+	public int updatereviewcnt(String visitcount);
 }
