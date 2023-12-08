@@ -76,7 +76,8 @@ $(function() {
                 <div class="row" style=" float: right;">
                     <div class="col-sm-12" style="">
                         <div class="write_btn" style="float: left;">
-                            <button type="button" class="btn rounded-0" style="margin-bottom: 40px; margin-top:-40px; margin-right: 20px;" id="btn2">글쓰기</button>
+                            <button type="button" class="btn rounded-0" style="margin-bottom: 40px; margin-top:-40px; margin-right: 20px;" id="btn2" 
+                            onclick="location.href='./photoboard_write.do';">글쓰기</button>
                         </div>
                     </div>
                 </div>
@@ -117,7 +118,7 @@ $(function() {
 	                                    <img class="card-img-top" src="http://placehold.it/200x200" alt="이미지" alt="Card image">
 	                                    <div class="card-body ">
 	                                        <h4 class="card-title" style="font-size: 18px; text-align: left;">${ post.title }</h4>
-	                                        <p class="card-text" style="text-align: left;">${ post.name }</p>
+	                                        <p class="card-text" style="text-align: left;">${ post.title }</p>
 	                                    </div>
 	                                </div>
 	                                <!-- 1열 끝 -->
@@ -239,7 +240,7 @@ $(function() {
 
 
     <!-- 게시판 검색 -->
-    <form method="get" class="search_table">  
+    <form method="get" class="search_table" action="">  
         <table class="table"width="100%"  >
         <tr>
             <td align="center">
