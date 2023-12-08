@@ -55,9 +55,12 @@ public class MarketController {
 	}
 	
 	@RequestMapping("/market/market_view.do")
-	public String marketView(HttpServletRequest req, ProductDTO productDTO) {
-		String idx = req.getParameter("idx");
+	public String marketView(ProductDTO productDTO, Model model) {
 		productDTO = dao.view(productDTO);
+		model.addAttribute("productDTO", productDTO);
+		
+		List<ProductDTO> recommendList = dao.recommendList(productDTO);
+		model.addAttribute("recommendList", recommendList);
 		
 		return "market/market_view";
 	}

@@ -95,7 +95,7 @@
                 <figure class="row thumbnail">
                 <!-- 리스트만큼 반복 -->
 		       	<c:forEach items="${list}" var="row" varStatus="loop">
-		           <div class="card custom-col" onclick="location.href='./market_view.do?idx=${row.prod_idx}';" style="cursor: pointer;">
+		           <div class="card custom-col" onclick="location.href='./market_view.do?prod_idx=${row.prod_idx}';" style="cursor: pointer;">
 		               <div>
 		                   <div class="card_product_img">
 	                           <img class="shop_product_img card-img-top" src="../images/products/${row.prod_thumbnail}.jpg">
