@@ -40,8 +40,8 @@
         <div id="collapseCommu" class="collapse" aria-labelledby="headingCommu" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">게시판작성,수정,삭제:</h6>
-                <a class="collapse-item" href="buttons.html">자유게시판</a>
-                <a class="collapse-item" href="cards.html">사진게시판</a>
+                <a class="collapse-item" href="../administrator/admin_community_list.do">자유게시판</a>
+                <a class="collapse-item" href="../administrator/admin_community_photolist.do">사진게시판</a>
             </div>
         </div>
     </li>
