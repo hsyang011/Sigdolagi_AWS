@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -91,31 +92,31 @@ $(function() {
             <!-- 상품 정보 시작 -->
             <div class="row">
                 <div id="col5">
-                    <img src="../images/IMG1689kUc236018989_330_330.jpg" width="100%" id="product_thumbnail" alt="">
+                    <img src="../images/products/${productDTO.prod_thumbnail}.jpg" width="100%" id="product_thumbnail" alt="">
                     <div class="d-flex justify-content-between" id="product_images">
                         <div style="padding-left: 0;">
-                            <img src="../images/IMG1689kUc236018989_330_330.jpg" width="100%" alt="">
+                            <img src="../images/products/${productDTO.img1}.jpg" width="100%" alt="">
                         </div>
                         <div>
-                            <img src="../images/IMG1689kUc236018989_330_330.jpg" width="100%" alt="">
+                            <img src="../images/products/${productDTO.img2}.jpg" width="100%" alt="">
                         </div>
                         <div>
-                            <img src="../images/IMG1689kUc236018989_330_330.jpg" width="100%" alt="">
+                            <img src="../images/products/${productDTO.img3}.jpg" width="100%" alt="">
                         </div>
                         <div>
-                            <img src="../images/IMG1689kUc236018989_330_330.jpg" width="100%" alt="">
+                            <img src="../images/products/${productDTO.img4}.jpg" width="100%" alt="">
                         </div>
                         <div style="padding-right: 0;">
-                            <img src="../images/IMG1689kUc236018989_330_330.jpg" width="100%" alt="">
+                            <img src="../images/products/${productDTO.img5}.jpg" width="100%" alt="">
                         </div>
                     </div>
                 </div>
                 <div id="col7">
                     <div class="d-flex justify-content-between mb-3">
-                        <span class="text-secondary">식도라기</span>
+                        <span class="text-secondary">${productDTO.seller}</span>
                         <span>공유아이콘</span>
                     </div>
-                    <h4>저당 얼큰 만두전골(2인)</h4>
+                    <h4>${productDTO.prod_name}</h4>
                     <div class="d-flex mb-3">
                         <span class="me-2">★★★★☆</span>
                         <span class="me-2">4.6</span>
@@ -123,9 +124,18 @@ $(function() {
                         <span class="me-2 text-secondary">31</span>
                     </div>
                     <div class="d-flex mb-3">
-                        <h4 class="me-2" style="color: #FF7A00; font-family: 'NPSfontBold';">26%</h4>
-                        <h4 class="me-2" style="font-family: 'NPSfontBold'">16,900원</h4>
-                        <h4 class="me-2 text-secondary" style="text-decoration: line-through;">20,900원</h4>
+                        <!-- 세일품목일 경우 정가만 표시, 아닐 경우 할인가와 할인율도 같이 표시 -->
+                        <c:choose>
+	                       <c:when test="${productDTO.prod_sale eq 0}">
+                        	   <h4 class="me-2" style="font-family: 'NPSfontBold'">${productDTO.prod_price}원</h4>
+	                       </c:when>
+	                       <c:otherwise>
+		            			<c:set var="sale" value="${(productDTO.prod_sale/productDTO.prod_price)*100}"/>
+		                        <h4 class="me-2" style="color: #FF7A00; font-family: 'NPSfontBold';">${Math.round(sale)}%</h4>
+                        	   <h4 class="me-2" style="font-family: 'NPSfontBold'">${productDTO.prod_price-productDTO.prod_sale}원</h4>
+                           	   <h4 class="me-2 text-secondary" style="text-decoration: line-through;">${productDTO.prod_price}원</h4>
+	                       </c:otherwise>
+                       </c:choose>
                     </div>
                     <div class="d-flex justify-content-between p-4 rounded-4 mb-2" style="background-color: lightgray;">
                         <h4>카카오페이 결제 시 1% 추가 적립</h4>
@@ -162,15 +172,15 @@ $(function() {
                     </div>
                     <div class="d-flex justify-content-between align-items-end rounded-4 p-4 mb-5" style="background-color: lightgray;">
                         <div>
-                            <h4>저당 얼큰 만두전골(2인)</h4>
+                            <h4>${productDTO.prod_name}</h4>
                             <input type="number" value="1" class="form-control rounded-pill text-center" style="width: 50%;">
                         </div>
-                        <h4 style="font-weight: bold;">16,900원</h4>
+                        <h4 style="font-weight: bold;">${productDTO.prod_price-productDTO.prod_sale}원</h4>
                     </div>
                     <div>
                         <div class="d-flex justify-content-between">
                             <p>구매 예정 금액</p>
-                            <h2 style="color: #FF7A00; font-weight: bold; font-size: 2em;">5,900원</h2>
+                            <h2 style="color: #FF7A00; font-weight: bold; font-size: 2em;">${productDTO.prod_price-productDTO.prod_sale}원</h2>
                         </div>
                         <button class="btn btn-outline-dark mb-3" style="width: 100%; height: 50px;">장바구니</button>
                         <button class="btn" style="width: 100%; height: 50px; background-color: #FF7A00; color: white;">바로 구매</button>
@@ -178,90 +188,41 @@ $(function() {
                 </div>
             </div>
             <!-- 상품 정보 끝 -->
-            <!-- 추천 상품 시작 -->
             <div class="mt-5">
                 <h2>고객님을 위한 추천 상품</h2>
                 <hr>
-                <!-- 1행 시작 -->
+	            <!-- 추천 상품 시작 -->
                 <figure class="row thumbnail">
-                    <!-- 1열 시작 -->
-                    <div class="card custom-col">
-                        <div>
-                            <div class="card_product_img">
-                                <a href="">
-                                    <img class="shop_product_img card-img-top" src="../images/밀키트1.jpg" alt="Card image">
-                                </a>
-                                <div class="cart_icon_box">
-                                    <img src="../images/shopping-bag3.png" alt="">
-                                </div>
-                            </div>
-                            <div class="card-body justify-content-between">
-                                <span class="shop_title">가게이름뭐시기저시기</span>
-                                <h5 class="card-title"><a class="mill_title" href="">상품명 이것저것요것(2인)</a></h5>
-                                <p class="card-text"><span class="discount">27%</span> <strong>10,900원</strong> <strike>14,900원</strike></p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 1열 끝 -->
-                    <!-- 2열 시작 -->
-                    <div class="card custom-col">
-                        <div>
-                            <div class="card_product_img">
-                                <a href="">
-                                    <img class="shop_product_img card-img-top" src="../images/밀키트2.jpg" alt="Card image">
-                                </a>
-                                <div class="cart_icon_box">
-                                    <img src="../images/shopping-bag3.png" alt="">
-                                </div>
-                            </div>
-                            <div class="card-body justify-content-between">
-                                <span class="shop_title">가게이름뭐시기저시기</span>
-                                <h5 class="card-title"><a class="mill_title" href="">상품명 이것저것요것(2인)</a></h5>
-                                <p class="card-text"><span class="discount">27%</span> <strong>10,900원</strong> <strike>14,900원</strike></p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 2열 끝 -->
-                    <!-- 3열 시작 -->
-                    <div class="card custom-col">
-                        <div>
-                            <div class="card_product_img">
-                                <a href="">
-                                    <img class="shop_product_img card-img-top" src="../images/밀키트3.jpg" alt="Card image">
-                                </a>
-                                <div class="cart_icon_box">
-                                    <img src="../images/shopping-bag3.png" alt="">
-                                </div>
-                            </div>
-                            <div class="card-body justify-content-between">
-                                <span class="shop_title">가게이름뭐시기저시기</span>
-                                <h5 class="card-title"><a class="mill_title" href="">상품명 이것저것요것(2인)</a></h5>
-                                <p class="card-text"><span class="discount">27%</span> <strong>10,900원</strong> <strike>14,900원</strike></p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 3열 끝 -->
-                    <!-- 4열 시작 -->
-                    <div class="card custom-col">
-                        <div>
-                            <div class="card_product_img">
-                                <a href="">
-                                    <img class="shop_product_img card-img-top" src="../images/밀키트4.jpg" alt="Card image">
-                                </a>
-                                <div class="cart_icon_box">
-                                    <img src="../images/shopping-bag3.png" alt="">
-                                </div>
-                            </div>
-                            <div class="card-body justify-content-between">
-                                <span class="shop_title">가게이름뭐시기저시기</span>
-                                <h5 class="card-title"><a class="mill_title" href="">상품명 이것저것요것(2인)</a></h5>
-                                <p class="card-text"><span class="discount">27%</span> <strong>10,900원</strong> <strike>14,900원</strike></p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 4열 끝 -->
+                	<!-- 추천상품 시작 -->
+	                <c:forEach var="row" items="${recommendList}" varStatus="loop">
+	                    <div class="card custom-col">
+	                        <div>
+	                            <div class="card_product_img">
+	                                <a href="">
+	                                    <img class="shop_product_img card-img-top" src="../images/products/${row.prod_thumbnail}.jpg">
+	                                </a>
+	                                <div class="cart_icon_box">
+	                                    <img src="../images/shopping-bag3.png" alt="">
+	                                </div>
+	                            </div>
+			                    <div class="card-body justify-content-between">
+			                        <span class="shop_title">${row.seller}</span>
+			                        <h5 class="card-title"><a class="mill_title" href="./market_view.do?idx=${row.prod_idx}">${row.prod_name}</a></h5>
+			                        <c:choose>
+				                        <c:when test="${row.prod_sale eq 0}">
+					                        <p class="card-text"><strong>${row.prod_price}</strong></p>
+				                        </c:when>
+				                        <c:otherwise>
+	            						    <c:set var="sale" value="${(row.prod_sale/row.prod_price)*100}"/>
+					                        <p class="card-text"><span class="discount" style="color: #FF7A00; font-weight: bold;">${Math.round(sale)}%</span> <strong>${row.prod_price-row.prod_sale}</strong> <strike>${row.prod_price}</strike></p>
+				                        </c:otherwise>
+			                       </c:choose>
+			                    </div>
+	                        </div>
+	                    </div>
+	                </c:forEach>
                 </figure>
-                <!-- 1행 끝 -->
+                <!-- 추천상품 끝 -->
             </div>
             <!-- 추천상품 끝 -->
             <!-- 상품 상세정보 시작 -->

@@ -13,5 +13,7 @@ public interface IMarketService {
 	public List<ProductDTO> list(ParameterDTO parameterDTO);
 	// 내용보기
 	public ProductDTO view(ProductDTO productDTO);
+	// 추천상품
+	public List<ProductDTO> recommendList(ProductDTO productDTO);
 	
 }
