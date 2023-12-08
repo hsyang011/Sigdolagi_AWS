@@ -60,7 +60,7 @@
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 	                                <colgroup>
-	                                	<col width="4%" /><col width="8%" /><col width="8%" /><col width="25%" /><col width="10%" />
+	                                	<col width="5%" /><col width="8%" /><col width="8%" /><col width="25%" /><col width="10%" />
 	                                	<col width="8%" /><col width="10%" /><col width="7%" /><col width="10%" /><col width="10%" />
 	                                </colgroup>
                                     <thead>
