@@ -39,10 +39,10 @@
                <div class="nav_location">
                     <ul class="nav_locat nav">
                         <li class="nav-item">
-                          <a class="nav-link" href="#">홈</a>
+                          <a class="nav-link" href="../main/main.do">홈</a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link" href="#">마켓</a>
+                          <a class="nav-link" href="./market_list.do">마켓</a>
                         </li>
                     </ul>
                 </div>
@@ -95,19 +95,17 @@
                 <figure class="row thumbnail">
                 <!-- 리스트만큼 반복 -->
 		       	<c:forEach items="${list}" var="row" varStatus="loop">
-		           <div class="card custom-col" onclick="location.href='./market_view.do?idx=${prod_idx}';'" style="cursor: pointer;">
+		           <div class="card custom-col" onclick="location.href='./market_view.do?idx=${row.prod_idx}';" style="cursor: pointer;">
 		               <div>
 		                   <div class="card_product_img">
-		                       <a href="./market_view.do">
-		                           <img class="shop_product_img card-img-top" src="../images/products/${row.prod_thumbnail}.jpg">
-		                       </a>
+	                           <img class="shop_product_img card-img-top" src="../images/products/${row.prod_thumbnail}.jpg">
 		                       <div class="cart_icon_box">
 		                           <img src="../images/shopping-bag3.png" alt="">
 		                       </div>
 		                   </div>
 		                   <div class="card-body justify-content-between">
 		                       <span class="shop_title">${row.seller}</span>
-		                       <h5 class="card-title"><a class="mill_title" href="">${row.prod_name}</a></h5>
+		                       <h5 class="card-title"><a class="mill_title" href="./market_view.do?idx=${row.prod_idx}">${row.prod_name}</a></h5>
 		                       <c:choose>
 			                       <c:when test="${row.prod_sale eq 0}">
 				                       <p class="card-text"><strong>${row.prod_price}</strong></p>

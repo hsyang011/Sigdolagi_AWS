@@ -46,7 +46,6 @@ public class MarketController {
 		// DB에서 인출한 게시물의 목록을 model객체에 저장한다.
 		List<ProductDTO> list = dao.list(parameterDTO);
 		model.addAttribute("list", list);
-		System.out.println("표시할 상품의 갯수 list의 크기는 " + list.size());
 		
 		// 게시판 하단에 출력한 페이지번호를 String으로 반환받은 후 model객체에 저장한다.
 		String pagingImg = PagingUtil.pagingImg(totalCount, pageSize, blockPage, pageNum, req.getContextPath()+"./market_list.do?");
@@ -56,7 +55,10 @@ public class MarketController {
 	}
 	
 	@RequestMapping("/market/market_view.do")
-	public String marketView() {
+	public String marketView(HttpServletRequest req, ProductDTO productDTO) {
+		String idx = req.getParameter("idx");
+		productDTO = dao.view(productDTO);
+		
 		return "market/market_view";
 	}
 	
