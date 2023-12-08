@@ -95,7 +95,7 @@
                 <figure class="row thumbnail">
                 <!-- 리스트만큼 반복 -->
 		       	<c:forEach items="${list}" var="row" varStatus="loop">
-		           <div class="card custom-col">
+		           <div class="card custom-col" onclick="location.href='./market_view.do?idx=${prod_idx}';'" style="cursor: pointer;">
 		               <div>
 		                   <div class="card_product_img">
 		                       <a href="./market_view.do">
@@ -133,7 +133,7 @@
                 <li class="page-item"><a class="page-link" href="#">3</a></li>
                 <li class="page-item"><a class="page-link" href="#">Next</a></li>
             </ul> -->
-            ${pagingImg}
+            <div class="text-center">${pagingImg}</div>
             <!-- 페이지네이션 -->
 
         <!-- 컨테이너 안쪽 컨텐츠 -->
