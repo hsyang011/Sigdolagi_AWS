@@ -15,5 +15,7 @@ public interface IMarketService {
 	public ProductDTO view(ProductDTO productDTO);
 	// 추천상품
 	public List<ProductDTO> recommendList(ProductDTO productDTO);
+	// 장바구니에 상품을 추가
+	public int addToCart(CartDTO cartDTO);
 	
 }

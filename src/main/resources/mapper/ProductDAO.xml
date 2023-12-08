@@ -38,5 +38,11 @@
 		SELECT * FROM product WHERE prod_idx BETWEEN ${prod_idx}-2 AND ${prod_idx}+2 AND NOT prod_idx=${prod_idx}
 	</select>
 	
+	<!-- 장바구니에 상품 추가 -->
+	<insert id="addToCart" parameterType="com.edu.springboot.market.CartDTO">
+		INSERT INTO cart (cart_idx, prod_idx, email, prod_count)
+			VALUES (seq_cart_idx.NEXTVAL, ${prod_idx}, #{email}, ${prod_count})
+	</insert>
+	
 	
 </mapper>

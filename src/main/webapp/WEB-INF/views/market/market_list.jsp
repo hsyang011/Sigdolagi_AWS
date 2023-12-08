@@ -7,6 +7,29 @@
 <!-- head 추가 -->
 <%@ include file="../include/global_head.jsp" %>
 <link rel="stylesheet" href="../css/market_list.css" />
+<script>
+/* 장바구니에 상품 추가 */
+function addToCart(idx) {
+	var prod_idx = idx;
+	var prod_count = 1;
+	var data = {
+		prod_idx: prod_idx,
+		prod_count: prod_count
+    };
+	
+	$.ajax({
+        type: "POST",
+        url: "./addToCart.do",
+        data: data,
+        success: function(response) {
+            alert('장바구니에 추가되었습니다.');
+        },
+        error: function(error) {
+            alert('장바구니 추가 실패');
+        }
+    });
+}
+</script>
 </head>
 <body>
 <!-- wrapper 시작 -->
@@ -95,17 +118,17 @@
                 <figure class="row thumbnail">
                 <!-- 리스트만큼 반복 -->
 		       	<c:forEach items="${list}" var="row" varStatus="loop">
-		           <div class="card custom-col" onclick="location.href='./market_view.do?prod_idx=${row.prod_idx}';" style="cursor: pointer;">
+		           <div class="card custom-col" style="cursor: pointer;">
 		               <div>
 		                   <div class="card_product_img">
-	                           <img class="shop_product_img card-img-top" src="../images/products/${row.prod_thumbnail}.jpg">
+	                           <img class="shop_product_img card-img-top" onclick="location.href='./market_view.do?prod_idx=${row.prod_idx}';" src="../images/products/${row.prod_thumbnail}.jpg">
 		                       <div class="cart_icon_box">
-		                           <img src="../images/shopping-bag3.png" alt="">
+		                           <img src="../images/shopping-bag3.png" onclick="addToCart(${row.prod_idx})" alt="">
 		                       </div>
 		                   </div>
 		                   <div class="card-body justify-content-between">
 		                       <span class="shop_title">${row.seller}</span>
-		                       <h5 class="card-title"><a class="mill_title" href="./market_view.do?idx=${row.prod_idx}">${row.prod_name}</a></h5>
+		                       <h5 class="card-title"><a class="mill_title" href="./market_view.do?prod_idx=${row.prod_idx}">${row.prod_name}</a></h5>
 		                       <c:choose>
 			                       <c:when test="${row.prod_sale eq 0}">
 				                       <p class="card-text"><strong>${row.prod_price}</strong></p>

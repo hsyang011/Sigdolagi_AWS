@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -54,6 +55,7 @@ public class MarketController {
 		return "market/market_list";
 	}
 	
+	// 상품 상세보기
 	@RequestMapping("/market/market_view.do")
 	public String marketView(ProductDTO productDTO, Model model) {
 		productDTO = dao.view(productDTO);
@@ -63,6 +65,17 @@ public class MarketController {
 		model.addAttribute("recommendList", recommendList);
 		
 		return "market/market_view";
+	}
+	
+	@RequestMapping("/market/addToCart.do")
+	public ResponseEntity<String> addToCart(CartDTO cartDTO, Model model) {
+		// 임의로 이메일 설정 (시큐리티 연동 전)
+		cartDTO.setEmail("foo@gmail.com");
+		
+		System.out.println(cartDTO.getCart_idx() + ":" + cartDTO.getEmail() + ":" + cartDTO.getProd_count() + ":" + cartDTO.getProd_idx());
+		
+		dao.addToCart(cartDTO);
+		return ResponseEntity.ok("상품이 성공적으로 추가되었습니다.");
 	}
 	
 	@RequestMapping("/market/cart.do")
