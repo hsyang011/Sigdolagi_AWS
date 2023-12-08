@@ -15,6 +15,9 @@
 		SELECT * FROM member WHERE email=#{email}
 	</select>
 	
+	
+	
+	
 	<select id="getoneEmailDTO">
 		SELECT email FROM member WHERE phone=#{phone}
 	</select>

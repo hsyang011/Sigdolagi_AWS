@@ -4,7 +4,9 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.edu.springboot.community.IBoardService">
-
+	
+	
+	
 	<!-- list  -->
 	<select id="getTotalCount" resultType="int" parameterType="com.edu.springboot.community.ParameterDTO">
 	SELECT COUNT(*) from freeboard
@@ -12,6 +14,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE ${searchField} LIKE '%'||#{searchKeyword}||'%'
 		</if>
 	</select>
+	
 	
 	<select id="listPage"
 		resultType="com.edu.springboot.community.BoardDTO"

@@ -56,10 +56,17 @@
                         </div><br><br>
                         <div id="myinfomanage">
                             <a href="./myinfo.html">나의 정보관리</a>
+                        
+                        
                         </div><br><br>
+                        
                         <div id="myorder">
                             <a href="./myordermanage.html"> 나의주문관리</a>
                         </div>
+                        
+                        
+                        
+                        
                         </div><!-- leftreft -->
                     </div> <!-- left메뉴끝 -->
                 </div>
