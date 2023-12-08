@@ -142,6 +142,7 @@ main > * { margin: 50px 0; }
                                     </td>
                                 </tr>
                              
+                             
                                 <tr>
                                     <td colspan="2" align="center" class="btn_td">
                                         <button type="submit" class="writeFrm_end">작성 완료</button>
