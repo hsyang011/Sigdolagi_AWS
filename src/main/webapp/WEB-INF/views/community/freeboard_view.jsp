@@ -129,6 +129,10 @@ main > * { margin: 50px 0; }
                             <input type="hidden" name="tname"  />
                             <input type="hidden" name="email"  />
                             <table class="table table-bordered" id="free_write_frm_table" width="100%" >
+                            	<colgroup>
+                                	<col width="20%" /><col width="30%" /><col width="20%" /><col width="300%" />
+                                	
+                                </colgroup>
                                 <tr>
 							        <td>번호</td> <td>${ boardDTO.freeboard_idx }</td>
 							        <td>작성자</td> <td>${ boardDTO.nickname }</td>
