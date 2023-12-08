@@ -6,11 +6,7 @@
 <%@include file = "../include/global_head.jsp" %>
 <!-- 전역 설정 css 링크  -->
 <link rel="stylesheet" href="../css/mypage_.css">
-
-
 <style>
-
-
 </style>
 <script>
     $(document).ready(function() {
@@ -254,10 +250,10 @@
                             <a href="./mypage.html">나의 활동관리</a>
                         </div><br><br>
                         <div id="myinfomanage">
-                            <a href="./myinfo.html">나의 정보관리</a>
+                            <a href="../member/myinfo.do">나의 정보관리</a>
                         </div><br><br>
                         <div id="myorder">
-                            <a href="./myordermanage.html"> 나의주문관리</a>
+                            <a href="../member/myordermanage.do"> 나의주문관리</a>
                         </div>
                         </div><!-- leftreft -->
                     </div> <!-- left메뉴끝 -->

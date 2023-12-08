@@ -1,0 +1,1144 @@
+/* font 설정 */
+@font-face {
+    font-family: 'NPSfontBold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/NPSfontBold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'NPSfontExtraBold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/NPSfontExtraBold.woff2') format('woff2');
+    font-weight: 800;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'NPSfontRegular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/NPSfontRegular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* global 설정 */
+* { margin: 0; padding: 0; }
+li{ list-style: none; }
+a{ text-decoration: none; color: gray; }
+a:hover { color: #FF7A00; }
+.container-fluid{ padding-left: 0; padding-right: 0; padding: 0;line-height:20px; }
+
+/* header 설정 */
+.navbar{ margin: 0; }
+.topmenu{ margin-top: 10px; padding: 0; float: right; }
+.topmenu li{ display: inline-block; text-align: center; font-size: 14px; padding: 0 5px; }
+.topmenu a:hover{ color: #000; font-weight: bold; }
+#myinfo { max-width: 60%; }
+#m_link li { margin: 20px 0; }
+#btn_more { position: absolute; top: 10px; right: 10px; transform: scale(0.7) }
+#header_box { height: 30px; }
+
+/* nav 설정 */
+#logo { width: 20%; text-align: center; line-height: 100px; } 
+.main_nav{ border-bottom: 3px solid #FF7A00; background-color: white; z-index: 1000; }
+.head_nav a{ font-size: 1.2em; color: #000; font-family: 'NPSfontBold';}
+.head_nav a:hover{ color: #FF7A00; font-weight: bold;}
+.top_logo { width: 100%; line-height: 100px; min-width: 100px; max-width: 220px;}
+/* mobile_navbar 설정 */
+#mobile_navbar { position: -webkit-sticky; position: sticky; top: 0; padding: 5px 10px; background-color: white; z-index: 1000; }
+
+/* search form 설정 */
+.seach_bar{ border: 3px solid #FF7A00; border-radius: 30px; background-color: white; padding: 5px; margin: 0px 20px; width: 33%;}
+.form-control:focus { border-color: initial; box-shadow: none; }
+#btn_more:hover { border: 3px solid #FF7A00; box-shadow: none; }
+.seach_bar input::placeholder{ font-family: 'NPSfontRegular'; text-align: center;}
+.seach_bar input{ border: 0px solid white; width: 100%; height: 25px; }
+.seach_bar button{ border: 0px solid white; background-color: white; border-radius: 50px;}
+.seach_bar i { color: #FF7A00; margin-right: 5px;}
+
+/* banner 설정 */
+#banner { height: 240px; background-color: #FFA24D }
+#banner * { font-family: "NPSfontRegular";  color: white; }
+#banner h4 { font-size: 1.5em; }
+#banner h2 { font-family: "NPSfontExtraBold"; font-size: 3em; }
+#banner_contents { padding: 30px 130px; }
+#banner #page_icon { float: right; height: 200px; }
+
+/* banner2 */
+#banner2 { height: 150px; background-color: #FFEB3B }
+#banner2 * { font-family: "NPSfontRegular";  color: white; }
+#banner2 h4 { font-size: 1.5em; }
+#banner2 h2 { font-family: "NPSfontExtraBold"; font-size: 3em; }
+#banner2_contents { padding: 30px 130px; }
+#banner2 #page_icon { float: right; height: 100px; margin-left: 50%; }
+/* main 설정 */
+main > * { margin: 50px 0; font-family: "NPSfontRegular"; }
+
+/* footer 설정 */
+footer { border-top:3px solid #FF7A00; background-color: white;padding-top: 0; }
+#footer-nav li { margin: 0 45px; }
+#footer-nav li a { font-size: 0.75em; }
+#footer-nav ul { padding-left: 0; }
+.foot_nav { font-size: 0.75em; text-align: center; }
+.foot_nav li { padding: 0 30px; }
+.foot_logo { max-width: 320px;text-align: center; }
+.foot_logo img{ width: 60%; }
+.foot_info_box { background-color: white;}
+.foot_info p { font-size: 0.75em; width: 100% }
+.foot_icon { padding: 0; }
+.foot_icon img { width: 30px; }
+.foot_icon li {  margin-right: 10px; }
+.foot_icon_text { text-align: right; font-family: 'NPSfontExtraBold'; }
+.foot_icon_text span{ color: #FF7A00; }
+
+/* pc environment */
+@media screen and (min-width:1201px) {
+    #mobile_slider { display: none; }
+    #mobile_navbar { display: none; }
+    #banner_contents { justify-content: space-between; }
+    #sticky_top { position: -webkit-sticky; position: sticky; top: -2px; }
+    .mobileshowmenu{
+        display: none;
+    }
+
+    #myactivityR{
+      display: none !important;
+    }
+    #myorderR{
+      display: none !important;
+    }
+}
+
+/* mobile environment */
+/* 화면크기 최대 1200px까지 */
+@media screen and (max-width:1200px) {
+    #logo {
+        width: 100%; /* 로고 너비를 100%로 설정하여 가로 중앙에 배치 */
+        text-align: center;
+        height: 50px;
+        position: relative;
+        top: -30px;
+    }
+    #logo a img { width: 20%; margin-left: 20px; } /* 로고 위치 조정 */
+    .seach_bar{ width: 100%; margin: 0 5px; }
+    #mobile_navbar ul li { margin: 0 auto; }
+    header { display: none; } /* header는 안보이게 처리 */
+    #pc_navbar { display: none; }
+    .main_nav{ border-bottom: none; background-color: white; }
+    #mobile_navbar { border-bottom: 3px solid #FF7A00; padding: 10px; }
+
+    #banner { height: 160px; }
+    #banner #page_icon { display: none; }
+    #banner_contents { justify-content: center; padding: 30px; height: 160px; }
+    #banner_contents #info_title { justify-content: center; }
+    #banner h4 { font-size: 1em; }
+    #banner h2 { font-size: 1.5em; }
+
+    #banner2 { height: 160px; }
+    #banner2 #page_icon { display: none; }
+    #banner2_contents { justify-content: center; padding: 30px; height: 160px; }
+    #banner2_contents #info_title { justify-content: center; }
+    #banner2 h4 { font-size: 1em; }
+    #banner2 h2 { font-size: 1.5em; }
+
+    .mobileshowmenu{
+        display: none;
+    }
+    
+    #myactivityR{
+      display: none !important;
+    }
+    #myorderR{
+      display: none !important;
+    }
+
+
+
+
+
+
+}
+
+/* 화면크기 최대 1000px */
+@media screen and (max-width:1000px) {
+    .foot_logo { display: none;}
+    #mobile_navbar { font-size: 0.65em; }
+    #img_footer_logo{ display: none; }
+    #img_footer_icon{ display: none; }
+    .seach_bar input::placeholder{ font-size: 0.8em; }
+
+
+#freeboardTable {
+  width: 80%;
+  border-collapse: separate;
+  border-spacing: 0; /* 필요에 따라 조절. */
+  text-align: center;
+  position: relative; left: 0px;
+}
+
+
+#freeboardTable td, #freeboardTable th {
+  border: solid black 1px;
+}
+
+#freeboardTable tr:first-child td:first-child
+ {
+  border-top-left-radius: 0px;
+}
+
+
+#freeboardTable tr:first-child td:last-child
+ {
+  border-top-right-radius: 0px;
+}
+
+
+#freeboardTable tr#firstTrorange{
+  background-color: lightgray
+}
+#freeboardTable tr{
+  background-color:  white;
+  height: 40px;
+}
+
+.mobileshowmenu{
+    display: none;
+}
+
+#myactivityR{
+  display: block !important;
+  text-align: center !important;
+  align-items: center !important;
+
+}
+#myactivityR a{
+ position: relative; top: 20px !important;
+}
+#myinfoR{
+  display: block !important;
+  text-align: center !important;
+  width: 200px !important;
+}
+#myinfoR a{
+  position: relative; top: 20px !important;
+}
+#myorderR{
+  display: block !important;
+  width: 200px !important;
+  text-align: center !important;
+  
+}
+
+#myorderR a{
+  position: relative; top: 20px !important;
+}
+
+
+
+}
+
+
+
+/* 화면크기 최대 768px까지 */
+@media screen and (max-width:768px) {
+    .foot_logo { display: none;}
+    #mobile_navbar { font-size: 0.65em; }
+    #img_footer_logo{ display: none; }
+    #img_footer_icon{ display: none; }
+    .seach_bar input::placeholder{ font-size: 0.8em; }
+
+    .mobileshowmenu{
+        display: none;
+    }
+    #myactivityR{
+      display: block !important;
+      text-align: center !important;
+      align-items: center !important;
+    
+    }
+    #myactivityR a{
+     position: relative; top: 20px !important;
+    }
+    #myinfoR{
+      display: block !important;
+      text-align: center !important;
+      width: 200px !important;
+    }
+    #myinfoR a{
+      position: relative; top: 20px !important;
+    }
+    #myorderR{
+      display: block !important;
+      width: 200px !important;
+      text-align: center !important;
+      
+    }
+
+    #myorderR a{
+      position: relative; top: 20px !important;
+    }
+
+
+}
+
+/* 화면크기 최소1001px 부터 1120px까지 */
+@media screen and (min-width: 1001px) and (max-width:1120px) {
+  #col2{
+    display: none;
+  }
+
+    .container-fluid { line-height:25px;}
+    #footer-nav li { margin: 0 20px; }
+    .foot_logo{ display: none;}
+    #row_footer{ width: 100%;text-align: center;}
+    #img_footer_icon{ display: none;}
+
+    #showmenu{
+       
+    }
+
+    
+    #col10 {
+        padding: 0 !important; /* 또는 padding: initial !important; */
+    }
+    #freeboardTable {
+      width: 80% !important;
+        border-collapse: separate;
+        border-spacing: 0; /* 필요에 따라 조절. */
+        text-align: center;
+        position: relative; left: 0px;
+      }
+      .mobileshowmenu{
+        display: none;
+      }
+     
+
+      #checkAreaBox{
+        border-radius: 70px;    
+        height: 20em;
+        width: 400px !important;
+        background-color: #F6D5BC;
+        margin-top: 20%;
+      }
+
+}
+/* 화면크기 최소800px 부터 999px까지 */
+@media screen and (min-width: 800px) and (max-width:999px) {
+
+  #myactivityR{
+    display: block !important;
+    text-align: center !important;
+    align-items: center !important;
+  
+  }
+  #myactivityR a{
+   position: relative; top: 20px !important;
+  }
+  #myinfoR{
+    display: block !important;
+    text-align: center !important;
+    width: 200px !important;
+  }
+  #myinfoR a{
+    position: relative; top: 20px !important;
+  }
+  #myorderR{
+    display: block !important;
+    width: 200px !important;
+    text-align: center !important;
+    
+  }
+
+  #myorderR a{
+    position: relative; top: 20px !important;
+  }
+
+  #col2{
+    display: none;
+  }
+
+
+  #col10{
+    flex: 0 0 83% !important;
+  }
+  
+  #checkAreaBox{
+    border-radius: 70px;    
+    height: 20em;
+   width: 400px !important;
+    background-color: #F6D5BC !important;
+    margin-top: 20%;
+  }
+  #verify{
+    position: relative; top: -50px !important;
+    position: relative; left: 40px !important;
+  }
+  #pass{
+    position: relative; left: 40px !important;
+    position: relative; top: 20px !important; 
+  }
+
+
+  .container-fluid { line-height:25px;}
+  #footer-nav li { margin: 0 20px; }
+  .foot_logo{ display: none;}
+  #row_footer{ width: 100%;text-align: center;}
+  #img_footer_icon{ display: none;}
+
+  #showmenu{
+     
+  }
+
+  
+ 
+  #freeboardTable {
+    width: 80% !important;
+      border-collapse: separate;
+      border-spacing: 0; /* 필요에 따라 조절. */
+      text-align: center;
+      position: relative; left: 0px;
+    }
+    .mobileshowmenu{
+      display: none;
+    }
+    #left{
+      display: none;
+    }
+    #pagenationbox{
+      width: 500px !important;
+      text-align: center;
+      border-radius: 30px;
+    margin-left: 10%;
+    }
+
+      /*INFO*/
+    
+      #checkareaCol4{
+        padding-left: 0 !important; 
+        padding-top: 0 !important; 
+        font-size: 10px;
+      }
+      #checktext{
+        font-size: 20px !important;
+      }
+      #passinputText{
+        font-size: 20px !important;
+      }
+      #col2{
+        display: none;
+      }
+      body{
+        overflow-x: hidden;
+      }
+      #pass{
+        width: 200px !important;
+        position: relative; bottom: 130px;     
+        position: relative; left: 120px;      
+      }
+      #verify{
+        position: relative; right: 75px;
+        position: relative; top: 50px;
+      }
+
+    
+
+
+}
+
+/* 화면크기 최소661px 부터 799까지 */
+@media screen and (min-width: 661px) and (max-width:799px) {
+
+  #col2{
+    display: none;
+  }
+
+  #col10{
+    flex: 0 0 83% !important;
+  }
+
+  #checkAreaBox{
+    border-radius: 70px;    
+    height: 20em;
+   width: 400px !important;
+    background-color: #F6D5BC !important;
+    margin-top: 20%;
+  }
+  #verify{
+    position: relative; top: -50px !important;
+    position: relative; left: 40px !important;
+  }
+  #pass{
+    position: relative; left: 40px !important;
+    position: relative; top: 20px !important; 
+  }
+
+
+    .container-fluid { line-height:25px;}
+    #footer-nav li { margin: 0 20px; }
+    .foot_logo{ display: none;}
+    #row_footer{ width: 100%;text-align: center;}
+    #img_footer_icon{ display: none;}
+
+    #showmenu{
+       
+    }
+
+    
+    #col10 {
+        padding: 0 !important; /* 또는 padding: initial !important; */
+    }
+    #freeboardTable {
+      width: 80% !important;
+        border-collapse: separate;
+        border-spacing: 0; /* 필요에 따라 조절. */
+        text-align: center;
+        position: relative; left: 0px;
+      }
+   
+
+      .mobileshowmenu{
+        display: none;
+      }
+      #left {
+        display: none;
+        }
+        #pagenationbox{
+          width: 450px !important;
+          text-align: center;
+          border-radius: 30px;
+        margin-left: 10%;
+        }
+
+
+      /*INFO*/
+    
+      #checkareaCol4{
+        padding-left: 0 !important; 
+        padding-top: 0 !important; 
+        font-size: 10px;
+      }
+      #checktext{
+        font-size: 20px !important;
+      }
+      #passinputText{
+        font-size: 20px !important;
+      }
+      #col2{
+        display: none;
+      }
+      body{
+        overflow-x: hidden;
+      }
+
+      #myactivityR{
+        display: block !important;
+        text-align: center !important;
+        align-items: center !important;
+      
+      }
+      #myactivityR a{
+       position: relative; top: 20px !important;
+      }
+      #myinfoR{
+        display: block !important;
+        text-align: center !important;
+        width: 200px !important;
+      }
+      #myinfoR a{
+        position: relative; top: 20px !important;
+      }
+      #myorderR{
+        display: block !important;
+        width: 200px !important;
+        text-align: center !important;
+        
+      }
+
+      #myorderR a{
+        position: relative; top: 20px !important;
+      }
+  
+
+}
+
+/* 화면크기 최소 575px 부터 최대 665px */
+@media screen and (min-width: 575px) and (max-width: 665px) {
+  .foot_logo{ display: none; }
+  #footer-nav li { margin: 0 10px; }
+  .container-fluid { line-height: 1.3; }
+  #row_footer{ text-align: center;}
+  #img_footer_icon{  display: none;}
+
+  #col10 {
+      padding: 0 !important; /* 또는 padding: initial !important; */
+  }
+  #showmenu{
+     
+  }
+
+  #freeboardTable {
+    width: 80% !important;
+      border-collapse: separate;
+      border-spacing: 0; /* 필요에 따라 조절. */
+      text-align: center;
+      position: relative; left: 0px;
+    }
+    
+    
+    #freeboardTable td, #freeboardTable th {
+      border: solid black 1px;
+    }
+    
+    #freeboardTable tr:first-child td:first-child
+     {
+      border-top-left-radius: 0px;
+    }
+    
+    
+    #freeboardTable tr:first-child td:last-child
+     {
+      border-top-right-radius: 0px;
+    }
+    
+    
+    #freeboardTable tr#firstTrorange{
+      background-color: lightgray
+    }
+    #freeboardTable tr{
+      background-color:  white;
+      height: 40px;
+    }
+    #pagenationbox{
+      width: 300px !important;
+      text-align: center;
+      border-radius: 30px;
+    margin-left: 10%;
+    }
+    .showmenu{
+    }
+    .mobileshowmenu{
+    }
+    #left {
+      display: none;
+      }
+      
+
+     /*INFO*/
+    
+    #left {
+      display: none;
+      }
+      body{
+        overflow-x: hidden;
+      }
+
+        /*INFO*/
+  
+    #checkareaCol4{
+      padding-left: 0 !important; 
+      padding-top: 0 !important; 
+      font-size: 10px;
+    }
+    #checktext{
+      font-size: 20px !important;
+    }
+    #passinputText{
+      font-size: 20px !important;
+    }
+    #col2{
+      display: none;
+    }
+    body{
+      overflow-x: hidden;
+    }
+
+    #checkAreaBox{
+      border-radius: 70px;    
+      height: 20em;
+     width: 400px !important;
+      background-color: #F6D5BC !important;
+      margin-top: 20%;
+    }
+    #verify{
+      position: relative; top: -50px !important;
+      position: relative; left: 40px !important;
+    }
+    #pass{
+      position: relative; left: 40px !important;
+      position: relative; top: 20px !important; 
+    }
+    #myactivityR{
+      display: block !important;
+      text-align: center !important;
+      align-items: center !important;
+    
+    }
+    #myactivityR a{
+     position: relative; top: 20px !important;
+    }
+    #myinfoR{
+      display: block !important;
+      text-align: center !important;
+      width: 200px !important;
+    }
+    #myinfoR a{
+      position: relative; top: 20px !important;
+    }
+    #myorderR{
+      display: block !important;
+      width: 200px !important;
+      text-align: center !important;
+      
+    }
+
+    #myorderR a{
+      position: relative; top: 20px !important;
+    }
+
+
+
+}
+
+/* 화면크기 최소 481px 부터 최대 574px */
+@media screen and (min-width: 481px) and (max-width: 574px) {
+    .foot_logo{ display: none; }
+    #footer-nav li { margin: 0 10px; }
+    .container-fluid { line-height: 1.3; }
+    #row_footer{ text-align: center;}
+    #img_footer_icon{  display: none;}
+
+    #col10 {
+        padding: 0 !important; /* 또는 padding: initial !important; */
+    }
+    #showmenu{
+       
+    }
+
+    #freeboardTable {
+      width: 80% !important;
+        border-collapse: separate;
+        border-spacing: 0; /* 필요에 따라 조절. */
+        text-align: center;
+        position: relative; left: 0px;
+      }
+      
+      
+      #freeboardTable td, #freeboardTable th {
+        border: solid black 1px;
+      }
+      
+      #freeboardTable tr:first-child td:first-child
+       {
+        border-top-left-radius: 0px;
+      }
+      
+      
+      #freeboardTable tr:first-child td:last-child
+       {
+        border-top-right-radius: 0px;
+      }
+      
+      
+      #freeboardTable tr#firstTrorange{
+        background-color: lightgray
+      }
+      #freeboardTable tr{
+        background-color:  white;
+        height: 40px;
+      }
+      #pagenationbox{
+        width: 300px !important;
+        text-align: center;
+        border-radius: 30px;
+      margin-left: 10%;
+      }
+      .showmenu{
+      }
+      .mobileshowmenu{
+      }
+      #left {
+        display: none;
+        }
+        
+
+       /*INFO*/
+      
+      #left {
+        display: none;
+        }
+        body{
+          overflow-x: hidden;
+        }
+
+          /*INFO*/
+       #checkAreaBox{
+        border-radius: 70px;    
+        height: 20em;
+        width: 450px !important;
+        background-color: #F6D5BC;
+        margin-top: 20%;
+      }
+      #checkareaCol4{
+        padding-left: 0 !important; 
+        padding-top: 0 !important; 
+        font-size: 10px;
+      }
+      #checktext{
+        font-size: 20px !important;
+      }
+      #passinputText{
+        font-size: 20px !important;
+      }
+      #col2{
+        display: none;
+      }
+      body{
+        overflow-x: hidden;
+      }
+      #pass{
+        width: 400px !important;
+        position: relative; bottom: 160px;     
+        position: relative; left: 180px;      
+      }
+      #verify{
+        position: relative; left: 15px;
+        position: relative; bottom: 160px;
+      }
+
+      #pass{
+        width: 200px !important;
+        position: relative; top: -120px !important;
+        position: relative; left: 20px !important;
+      }
+
+      #verify{
+        position: relative; left: 15px;
+        position: relative; bottom: 170px;
+      }
+
+
+      #myactivityR{
+        display: block !important;
+        text-align: center !important;
+        align-items: center !important;
+      
+      }
+      #myactivityR a{
+       position: relative; top: 20px !important;
+      }
+      #myinfoR{
+        display: block !important;
+        text-align: center !important;
+        width: 200px !important;
+      }
+      #myinfoR a{
+        position: relative; top: 20px !important;
+      }
+      #myorderR{
+        display: block !important;
+        width: 200px !important;
+        text-align: center !important;
+        
+      }
+
+      #myorderR a{
+        position: relative; top: 20px !important;
+      }
+      #col10{
+        width: auto !important;
+      }
+      .check_pw{
+        width: 100% !important;
+      }
+
+
+}
+
+@media screen and (max-width:480px) {
+    .foot_logo{ display: none; }
+    /* #footer-nav li a { font-size: 0.5em; } */
+    #footer-nav li { margin: 0 5px; }
+    .container-fluid { line-height: 1.3; }
+    #row_footer{ text-align: center;}
+    #img_footer_icon{  display: none;}
+    #col10 {
+        padding: 0 !important; /* 또는 padding: initial !important; */
+    }
+    #showmenu{
+       
+    }
+
+    #freeboardTable {
+      width: 80% !important;
+        border-collapse: separate;
+        border-spacing: 0; /* 필요에 따라 조절. */
+        text-align: center;
+        position: relative; left: 0px;
+      }
+      
+      
+    
+      
+    
+      #pagenationbox{
+        width: 300px !important;
+        text-align: center;
+        border-radius: 30px;
+      margin-left: 10%;
+      }
+      .showmenu{
+        display: none;
+      }
+      .mobileshowmenu{
+        display: block;
+      }
+      #leftname{
+        font-size: 10px !important;
+      }
+      #left {
+       display: none;
+       }
+       #col2{
+        display: none;
+       }
+
+       /*INFO*/
+       #checkAreaBox{
+        border-radius: 70px;    
+        height: 20em;
+        width: 400px !important;
+        background-color: #F6D5BC;
+        margin-top: 20%;
+      }
+      #checkareaCol4{
+        padding-left: 0 !important; 
+        padding-top: 0 !important; 
+        font-size: 10px;
+      }
+      #checktext{
+        font-size: 20px !important;
+      }
+      #passinputText{
+        font-size: 20px !important;
+      }
+      #col2{
+        display: none;
+      }
+      body{
+        overflow-x: hidden;
+      }
+      #pass{
+        width: 200px !important;
+        position: relative; top: -120px !important;
+        position: relative; left: 20px !important;
+      }
+
+      #verify{
+        position: relative; left: 15px;
+        position: relative; bottom: 170px;
+      }
+
+
+      #myactivityR{
+        display: block !important;
+        text-align: center !important;
+        align-items: center !important;
+      
+      }
+      #myactivityR a{
+       position: relative; top: 20px !important;
+      }
+      #myinfoR{
+        display: block !important;
+        text-align: center !important;
+        width: 200px !important;
+      }
+      #myinfoR a{
+        position: relative; top: 20px !important;
+      }
+      #myorderR{
+        display: block !important;
+        width: 200px !important;
+        text-align: center !important;
+        
+      }
+
+      #myorderR a{
+        position: relative; top: 20px !important;
+      }
+      #col10{
+        width: auto !important;
+      }
+      .check_pw{
+        width: 100% !important;
+      }
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+    body{
+        overflow-x: hidden;
+      }
+    #left {
+   float: left;
+   background-color: #F6D5BC;
+  }
+   
+  #left #profile {
+  height: 10em;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  font-weight: bold;
+  font-size: 18px;
+  }
+  #left #profile img {
+    width: 100%;
+  height: 100%;
+  object-fit: contain; /* 또는 다른 값 선택 (contain, fill 등) */
+  }
+
+  #left #leftname {
+    height: 100px;
+    border: 1px solid #FFA24D; /* Add a 1px black border */
+    border-bottom: 2px solid #FFA24D;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'NPSfontExtraBold';
+    font-size: 0.9em;
+  }
+
+  #left #leftreft {
+    height: 400px;
+    border: 1px solid #FFA24D; /* Add a 1px black border */
+    text-align: center;
+    padding-top: 100px;
+   
+    align-items: center;
+    justify-content: center;
+    border-top: none;
+  }
+  #myactivity{
+ height: 60px;
+  border-radius: 50px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  background-color: #F6D5BC;
+  border:  solid 1px gray;
+}
+#myactivity a{
+    color: gray;
+}
+#myinfomanage{
+  height: 60px;
+  border-radius: 50px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  background-color: #FFA24D;
+  border:  solid 3px #FFA24D;
+}
+#myinfomanage a{
+    color: white;
+}
+#myorder{
+  height: 60px;
+  border: solid gray 1px;
+  border-radius: 50px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+#myactivityR{
+    width: 200px;
+ height: 60px;
+  border-radius: 50px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  background-color: #F6D5BC;
+  border:  solid 1px gray;
+}
+#myactivityR a{
+    color: gray;
+}
+#myinfoR{
+ height: 60px;
+  border-radius: 50px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  background-color: #FFA24D;
+  border:  solid 3px #FFA24D;
+}
+#myinfoR a{
+    color: white;
+}
+#myorderR{
+    width: 200px;
+ height: 60px;
+  border-radius: 50px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  background-color: #F6D5BC;
+  border:  solid 1px gray;
+}
+#myorderR a{
+    color: gray;
+}
+
+
+
+
+
+
+
+
+
+/* 체크 페이지 */
+#checkAreaBox{
+  border-radius: 70px;
+  height: 20em;
+  width: 500px;
+  background-color: #F6D5BC;
+  margin-top: 20%;
+}
+#idpassArea{
+}
+#passArea{
+    margin-bottom: 20%;
+}
+#check{
+  display: flex;
+}
+#verify{
+  background-color: #FFA24D;
+  color: white;
+  border-radius: 20px;
+  border: none;
+  width: 200px;
+  height: 40px;
+float: right;
+
+}
+#pass{
+    height: 40px;
+  width: 400px;
+  border-radius: 20px;
+  border: none;
+}

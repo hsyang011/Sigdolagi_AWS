@@ -44,6 +44,21 @@ public class MemberController {
 		return "member/mypage";
 	}
 	
+	@RequestMapping("/member/myinfo.do")
+	public String myinfo() {
+		return "member/myinfo";
+	}
+	
+	@RequestMapping("/member/myinfoEdit.do")
+	public String myinfoEdit() {
+		return "member/myinfoEdit";
+	}
+	
+	@RequestMapping("/member/myordermanage.do")
+	public String myordermanage() {
+		return "member/myordermanagement";
+	}
+	
 	
 	//닉네임 중복확인
 	@RequestMapping("/member/doubleckeck.do")
@@ -214,6 +229,7 @@ public class MemberController {
 			    return "member/find_idpw";
 			}
 	
+			
 	
 	
 	

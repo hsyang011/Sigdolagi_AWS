@@ -1,0 +1,1268 @@
+
+
+
+
+#btn1{background-color: white; color: #FF7A00; border: 1px solid #FF7A00; }
+
+
+    #left {
+   float: left;
+   background-color: #F6D5BC;
+  }
+   
+  #left #profile {
+  height: 10em;
+  border: 1px solid gray;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  font-weight: bold;
+  font-size: 18px;
+  }
+  #left #profile img {
+    width: 100%;
+  height: 100%;
+  object-fit: contain; /* 또는 다른 값 선택 (contain, fill 등) */
+  }
+
+  #left #leftname {
+    height: 100px;
+    border: 1px solid gray; /* Add a 1px black border */
+    border-bottom: 2px solid orange;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'NPSfontExtraBold';
+  }
+
+  #left #leftreft {
+    height: 600px;
+    border: 1px solid black; /* Add a 1px black border */
+    text-align: center;
+    padding-top: 100px;
+   
+    align-items: center;
+    justify-content: center;
+    border-top: none;
+  }
+  #myactivity{
+    height: 60px;
+  border: solid gray 1px;
+  border-radius: 50px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+#myactivity a{
+    color: gray;
+}
+#myinfomanage{
+    height: 60px;
+  border-radius: 50px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  background-color: #F6D5BC;
+  border:  solid 1px gray;
+}
+#myinfomanage a{
+    color: gray;
+}
+#myorder{
+  height: 60px;
+  border: solid #FFA24D 1px;
+  background-color: #FFA24D;
+  border-radius: 50px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+#myorder a{
+  color: white;
+}
+#myactivityR{
+    width: 200px;
+ height: 60px;
+  border-radius: 50px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  background-color: #F6D5BC;
+  border:  solid 1px gray;
+}
+#myactivityR a{
+    color: gray;
+}
+#myinfoR{
+  width: 200px;
+ height: 60px;
+  border-radius: 50px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  background-color: #F6D5BC;
+  border:  solid 1px gray;
+}
+#myinfoR{
+  color: gray;
+}
+#myorderR{
+ height: 60px;
+  border-radius: 50px;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  background-color: #FFA24D;
+  border:  solid 3px #FFA24D;
+}
+#myorderR a{
+  color: white;
+}
+
+#orderTable {
+  width: 80% !important;
+  border-collapse: separate;
+  border-spacing: 0; /* 필요에 따라 조절하세요. */
+  text-align: center;
+  position: relative; left: 0px;
+}
+
+
+#orderTable td, #orderTable th {
+  border: solid black 1px;
+}
+
+#orderTable tr:first-child td:first-child
+ {
+  border-top-left-radius: 0px;
+}
+
+
+#orderTable tr:first-child td:last-child
+ {
+  border-top-right-radius: 0px;
+}
+
+
+#orderTable tr#firstTrorange{
+  background-color: lightgray;
+  
+}
+#orderTable tr{
+  background-color:  white;
+  height: 40px;
+}
+
+
+/*포인트 테이블*/
+
+#pointTable {
+  width: 800px;
+  border-collapse: separate;
+  border-spacing: 0; /* 필요에 따라 조절하세요. */
+  text-align: center;
+  position: relative; left: 0px;
+}
+
+
+#pointTable td, #pointTable th {
+  border: solid black 1px;
+}
+
+#pointTable tr:first-child td:first-child
+ {
+  border-top-left-radius: 0px;
+}
+
+
+#pointTable tr:first-child td:last-child
+ {
+  border-top-right-radius: 0px;
+}
+
+
+#pointTable tr#firstTrorange{
+  background-color: lightgray
+}
+#pointTable tr{
+  background-color:  white;
+  height: 40px;
+}
+
+
+#pagenationbox{
+  width: 700px;
+  text-align: center;
+  border-radius: 30px;
+margin-left: 200px;
+}
+#showmenu{
+}
+.col-width-1 {
+  width: 200px;
+}
+
+.col-width-2 {
+  width: 300px;
+}
+
+.col-width-3 {
+  width: 300px;
+}
+
+.col-width-4 {
+  width: 300px;
+}
+
+.col-width-5 {
+  width: 500px;
+}
+
+/* 체크 페이지 */
+#checkAreaBox{
+  border-radius: 70px;
+  height: 20em;
+  width: 60em;
+  background-color: #F6D5BC;
+  margin-top: 20%;
+}
+#idpassArea{
+}
+#passArea{
+    margin-bottom: 20%;
+}
+#check{
+  display: flex;
+  position: relative; bottom: 20px;
+}
+#verify{
+  background-color: #FFA24D;
+  color: white;
+  border-radius: 20px;
+  border: none;
+  width: 200px;
+  height: 40px;
+float: right;
+border-color: #FFA24D;
+
+}
+#pass{
+    height: 40px;
+  width: 400px;
+  border-radius: 20px;
+  border: none;
+}
+#editAreaBox{
+  border-radius: 70px;
+  height: 1300px;
+  width: 800x;
+  background-color: #F6D5BC;
+  font-size: 1.4em;
+  padding-top: 100px;
+  padding-left: 70px;
+}
+
+#infotable {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    #infotable td {
+        padding-bottom: 60px;
+    }
+
+    #infotable td:first-child {
+        width: 300px;
+    }
+    #infotable td:nth-child(2) {
+    width: 550px;
+  }
+
+
+  
+    
+    #infotable   input:not([type="radio"]){
+        box-sizing: border-box; 
+        border-radius: 32px;
+        height: 50px;
+        width: 370px;
+        font-size: 18px;
+        padding-left: 20px;
+        border: none;
+        padding-left: 20px;
+        
+    }
+    #tel1  input:not([type="radio"]) {
+        width: 70px !important;
+    }
+    #infotable .horizontal-layout input:not([type="radio"]) {
+    display: flex;
+    align-items: center;
+  }
+
+#infotable .horizontal-layout input:not([type="radio"]) {
+  margin-right: 10px; 
+}
+
+#doublecheck{
+  color: white;
+    height: 50px;
+  border-radius: 30px;
+ background-color: #FFA24D;
+ width: 140px ;
+ text-align: center;
+ 
+ justify-content: center;
+ font-size: 25px;
+ border: none;
+ 
+}
+#addrsearch{
+    color: white;
+    height: 50px;
+  border-radius: 30px;
+ background-color: #FFA24D;
+ width: 140px ;
+ text-align: center;
+ border: none;
+ justify-content: center;
+ font-size: 25px;
+}
+#cancelbutton{
+    color: white;
+    height: 50px;
+  border-radius: 30px;
+ background-color: #FFA24D;
+ width: 140px ;
+ text-align: center;
+ border: none;
+ 
+ justify-content: center;
+ font-size: 25px;
+}
+#changebutton{
+    color: white;
+    height: 50px;
+  border-radius: 30px;
+ background-color: #FFA24D;
+ width: 140px ;
+ text-align: center;
+ 
+ justify-content: center;
+ font-size: 25px;
+ border: none;
+}
+#addr2{
+    width: 600px !important;
+}
+#addr3{
+    width: 600px !important;
+}
+#buttonArea{
+    margin-top: 40px;
+   text-align: center;
+   letter-spacing: 120px;
+}
+.custom-radio {
+    width: 20px; 
+    height: 30px;
+  }
+
+
+  /*myorder영역 스타일*/
+  #ordertime{
+  width: 120px;
+  height: 50px;
+  border-radius: 10px;
+ text-align: center;
+}
+#orderline{
+    float: right;
+    padding-left: 50%;
+}
+
+
+#pagenationbox{
+  margin-top: 30px;
+  width: 600px;
+  text-align: center;
+  border-radius: 30px;
+margin-left: 10%;
+}
+
+#pointbox{
+  margin-left: 21%;
+    width: 400px;
+    height: 100px;
+    background-color: #FFA24D;
+    border-radius: 30px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    color: white;
+    
+  }
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* font 설정 */
+@font-face {
+    font-family: 'NPSfontBold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/NPSfontBold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'NPSfontExtraBold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/NPSfontExtraBold.woff2') format('woff2');
+    font-weight: 800;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'NPSfontRegular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/NPSfontRegular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* global 설정 */
+* { margin: 0; padding: 0; }
+li{ list-style: none; }
+a{ text-decoration: none; color: gray; }
+a:hover { color: #FF7A00; }
+.container-fluid{ padding-left: 0; padding-right: 0; padding: 0;line-height:20px; }
+
+/* header 설정 */
+.navbar{ margin: 0; }
+.topmenu{ margin-top: 10px; padding: 0; float: right; }
+.topmenu li{ display: inline-block; text-align: center; font-size: 14px; padding: 0 5px; }
+.topmenu a:hover{ color: #000; font-weight: bold; }
+#myinfo { max-width: 60%; }
+#m_link li { margin: 20px 0; }
+#btn_more { position: absolute; top: 10px; right: 10px; transform: scale(0.7) }
+#header_box { height: 30px; }
+
+/* nav 설정 */
+#logo { width: 20%; text-align: center; line-height: 100px; } 
+.main_nav{ border-bottom: 3px solid #FF7A00; background-color: white; z-index: 1000; }
+.head_nav a{ font-size: 1.2em; color: #000; font-family: 'NPSfontBold';}
+.head_nav a:hover{ color: #FF7A00; font-weight: bold;}
+.top_logo { width: 100%; line-height: 100px; min-width: 100px; max-width: 220px;}
+/* mobile_navbar 설정 */
+#mobile_navbar { position: -webkit-sticky; position: sticky; top: 0; padding: 5px 10px; background-color: white; z-index: 1000; }
+
+/* search form 설정 */
+.seach_bar{ border: 3px solid #FF7A00; border-radius: 30px; background-color: white; padding: 5px; margin: 0px 20px; width: 33%;}
+.form-control:focus { border-color: initial; box-shadow: none; }
+#btn_more:hover { border: 3px solid #FF7A00; box-shadow: none; }
+.seach_bar input::placeholder{ font-family: 'NPSfontRegular'; text-align: center;}
+.seach_bar input{ border: 0px solid white; width: 100%; height: 25px; }
+.seach_bar button{ border: 0px solid white; background-color: white; border-radius: 50px;}
+.seach_bar i { color: #FF7A00; margin-right: 5px;}
+
+/* banner 설정 */
+#banner { height: 240px; background-color: #FFA24D }
+#banner * { font-family: "NPSfontRegular";  color: white; }
+#banner h4 { font-size: 1.5em; }
+#banner h2 { font-family: "NPSfontExtraBold"; font-size: 3em; }
+#banner_contents { padding: 30px 130px; }
+#banner #page_icon { float: right; height: 200px; }
+
+/* banner2 */
+#banner2 { height: 150px; background-color: #FFEB3B }
+#banner2 * { font-family: "NPSfontRegular";  color: white; }
+#banner2 h4 { font-size: 1.5em; }
+#banner2 h2 { font-family: "NPSfontExtraBold"; font-size: 3em; }
+#banner2_contents { padding: 30px 130px; }
+#banner2 #page_icon { float: right; height: 100px; margin-left: 50%; }
+/* main 설정 */
+main > * { margin: 50px 0; font-family: "NPSfontRegular"; }
+
+/* footer 설정 */
+footer { border-top:3px solid #FF7A00; background-color: white;padding-top: 0; }
+#footer-nav li { margin: 0 45px; }
+#footer-nav li a { font-size: 0.75em; }
+#footer-nav ul { padding-left: 0; }
+.foot_nav { font-size: 0.75em; text-align: center; }
+.foot_nav li { padding: 0 30px; }
+.foot_logo { max-width: 320px;text-align: center; }
+.foot_logo img{ width: 60%; }
+.foot_info_box { background-color: white;}
+.foot_info p { font-size: 0.75em; width: 100% }
+.foot_icon { padding: 0; }
+.foot_icon img { width: 30px; }
+.foot_icon li {  margin-right: 10px; }
+.foot_icon_text { text-align: right; font-family: 'NPSfontExtraBold'; }
+.foot_icon_text span{ color: #FF7A00; }
+
+/* pc environment */
+@media screen and (min-width:1201px) {
+    #mobile_slider { display: none; }
+    #mobile_navbar { display: none; }
+    #banner_contents { justify-content: space-between; }
+    #sticky_top { position: -webkit-sticky; position: sticky; top: -2px; }
+    .mobileshowmenu{
+        display: none;
+    }
+
+    #myactivityR{
+      display: none !important;
+    }
+    #myinfoR{
+      display: none !important;
+    }
+
+}
+
+/* mobile environment */
+/* 화면크기 최대 1200px까지 */
+@media screen and (max-width:1200px) {
+    #logo {
+        width: 100%; /* 로고 너비를 100%로 설정하여 가로 중앙에 배치 */
+        text-align: center;
+        height: 50px;
+        position: relative;
+        top: -30px;
+    }
+    #logo a img { width: 20%; margin-left: 20px; } /* 로고 위치 조정 */
+    .seach_bar{ width: 100%; margin: 0 5px; }
+    #mobile_navbar ul li { margin: 0 auto; }
+    header { display: none; } /* header는 안보이게 처리 */
+    #pc_navbar { display: none; }
+    .main_nav{ border-bottom: none; background-color: white; }
+    #mobile_navbar { border-bottom: 3px solid #FF7A00; padding: 10px; }
+
+    #banner { height: 160px; }
+    #banner #page_icon { display: none; }
+    #banner_contents { justify-content: center; padding: 30px; height: 160px; }
+    #banner_contents #info_title { justify-content: center; }
+    #banner h4 { font-size: 1em; }
+    #banner h2 { font-size: 1.5em; }
+
+    #banner2 { height: 160px; }
+    #banner2 #page_icon { display: none; }
+    #banner2_contents { justify-content: center; padding: 30px; height: 160px; }
+    #banner2_contents #info_title { justify-content: center; }
+    #banner2 h4 { font-size: 1em; }
+    #banner2 h2 { font-size: 1.5em; }
+
+    .mobileshowmenu{
+        display: none;
+    }
+
+    #myactivityR{
+      display: block !important;
+      text-align: center !important;
+      align-items: center !important;
+    
+    }
+    #myactivityR a{
+     position: relative; top: 20px !important;
+    }
+    #myinfoR{
+      display: block !important;
+      text-align: center !important;
+      width: 200px !important;
+    }
+    #myinfoR a{
+      position: relative; top: 20px !important;
+    }
+    #myorderR{
+      display: block !important;
+      width: 200px !important;
+      text-align: center !important;
+      
+    }
+
+    #myorderR a{
+      position: relative; top: 20px !important;
+    }
+
+
+
+    /*order*/
+
+#col10{
+  padding:  0px !important;
+}
+
+     
+#myorderTaxt{
+  font-size: 1.5em;
+  width: 200px !important;
+}
+
+#orderline{
+  width: 200px !important;
+}
+#orderTable{
+  width: 800px !important;
+}
+#pointTable{
+  width: 800px !important;
+}
+
+
+
+
+
+}
+
+/* 화면크기 최대 1000px */
+@media screen and (max-width:1000px) {
+    .foot_logo { display: none;}
+    #mobile_navbar { font-size: 0.65em; }
+    #img_footer_logo{ display: none; }
+    #img_footer_icon{ display: none; }
+    .seach_bar input::placeholder{ font-size: 0.8em; }
+
+
+#freeboardTable {
+  width: 600px;
+  border-collapse: separate;
+  border-spacing: 0; /* 필요에 따라 조절. */
+  text-align: center;
+  position: relative; left: 0px;
+}
+
+
+#freeboardTable td, #freeboardTable th {
+  border: solid black 1px;
+}
+
+#freeboardTable tr:first-child td:first-child
+ {
+  border-top-left-radius: 0px;
+}
+
+
+#freeboardTable tr:first-child td:last-child
+ {
+  border-top-right-radius: 0px;
+}
+
+
+#freeboardTable tr#firstTrorange{
+  background-color: lightgray
+}
+#freeboardTable tr{
+  background-color:  white;
+  height: 40px;
+}
+
+.mobileshowmenu{
+    display: none;
+}
+
+
+  /*order*/
+
+  #col10{
+    padding:  0px !important;
+  }
+  
+       
+  #myorderTaxt{
+    font-size: 1.5em;
+    width: 200px !important;
+  }
+  
+  #orderline{
+    width: 200px !important;
+  }
+  #orderTable{
+    width: 800px !important;
+  }
+  #pointTable{
+    width: 800px !important;
+  }
+
+  #myactivityR{
+    display: block !important;
+    text-align: center !important;
+    align-items: center !important;
+  
+  }
+  #myactivityR a{
+   position: relative; top: 20px !important;
+  }
+  #myinfoR{
+    display: block !important;
+    text-align: center !important;
+    width: 200px !important;
+  }
+  #myinfoR a{
+    position: relative; top: 20px !important;
+  }
+  #myorderR{
+    display: block !important;
+    width: 200px !important;
+    text-align: center !important;
+    
+  }
+
+  #myorderR a{
+    position: relative; top: 20px !important;
+  }
+  
+
+}
+
+
+
+
+
+/* 화면크기 최소1001px 부터 1120px까지 */
+@media screen and (min-width: 1001px) and (max-width:1120px) {
+    .container-fluid { line-height:25px;}
+    #footer-nav li { margin: 0 20px; }
+    .foot_logo{ display: none;}
+    #row_footer{ width: 100%;text-align: center;}
+    #img_footer_icon{ display: none;}
+
+    #showmenu{
+       
+    }
+
+    
+    #col10 {
+        padding: 0 !important; /* 또는 padding: initial !important; */
+    }
+    #freeboardTable {
+        width: 700px !important;
+        border-collapse: separate;
+        border-spacing: 0; /* 필요에 따라 조절. */
+        text-align: center;
+        position: relative; left: 0px;
+      }
+      .mobileshowmenu{
+        display: none;
+      }
+
+      /*order*/
+
+#col10{
+  padding:  0px !important;
+}
+
+     
+#myorderTaxt{
+  font-size: 1.5em;
+  width: 200px !important;
+}
+
+#orderline{
+  width: 200px !important;
+}
+#orderTable{
+  width: 800px !important;
+}
+#pointTable{
+  width: 800px !important;
+}
+
+#myactivityR{
+  display: block !important;
+  text-align: center !important;
+  align-items: center !important;
+
+}
+#myactivityR a{
+ position: relative; top: 20px !important;
+}
+#myinfoR{
+  display: block !important;
+  text-align: center !important;
+  width: 200px !important;
+}
+#myinfoR a{
+  position: relative; top: 20px !important;
+}
+#myorderR{
+  display: block !important;
+  width: 200px !important;
+  text-align: center !important;
+  
+}
+
+#myorderR a{
+  position: relative; top: 20px !important;
+} 
+
+
+}
+/* 화면크기 최소800px 부터 999px까지 */
+@media screen and (min-width: 800px) and (max-width:999px) {
+  .container-fluid { line-height:25px;}
+  #footer-nav li { margin: 0 20px; }
+  .foot_logo{ display: none;}
+  #row_footer{ width: 100%;text-align: center;}
+  #img_footer_icon{ display: none;}
+
+  #showmenu{
+     
+  }
+
+  
+  #col10 {
+      padding: 0 !important; /* 또는 padding: initial !important; */
+  }
+  #freeboardTable {
+      width: 600px !important;
+      border-collapse: separate;
+      border-spacing: 0; /* 필요에 따라 조절. */
+      text-align: center;
+      position: relative; left: 0px;
+    }
+    .mobileshowmenu{
+      display: none;
+    }
+    #left{
+      display: none;
+    }
+    #pagenationbox{
+      width: 500px !important;
+      text-align: center;
+      border-radius: 30px;
+    margin-left: 10%;
+    }
+    /*order*/
+
+#col10{
+  padding:  0px !important;
+}
+
+     
+#myorderTaxt{
+  font-size: 1.5em;
+  width: 200px !important;
+}
+
+#orderline{
+  width: 200px !important;
+}
+#orderTable{
+  width: 600px !important;
+}
+#pointTable{
+  width: 600px !important;
+}
+
+#myactivityR{
+  display: block !important;
+  text-align: center !important;
+  align-items: center !important;
+
+}
+#myactivityR a{
+ position: relative; top: 20px !important;
+}
+#myinfoR{
+  display: block !important;
+  text-align: center !important;
+  width: 200px !important;
+}
+#myinfoR a{
+  position: relative; top: 20px !important;
+}
+#myorderR{
+  display: block !important;
+  width: 200px !important;
+  text-align: center !important;
+  
+}
+
+#myorderR a{
+  position: relative; top: 20px !important;
+}
+
+
+}
+
+/* 화면크기 최소661px 부터 799까지 */
+@media screen and (min-width: 661px) and (max-width:799px) {
+    .container-fluid { line-height:25px;}
+    #footer-nav li { margin: 0 20px; }
+    .foot_logo{ display: none;}
+    #row_footer{ width: 100%;text-align: center;}
+    #img_footer_icon{ display: none;}
+
+    #showmenu{
+       
+    }
+
+    
+    #col10 {
+        padding: 0 !important; /* 또는 padding: initial !important; */
+    }
+    #freeboardTable {
+        width: 450px !important;
+        border-collapse: separate;
+        border-spacing: 0; /* 필요에 따라 조절. */
+        text-align: center;
+        position: relative; left: 0px;
+      }
+   
+
+      .mobileshowmenu{
+        display: none;
+      }
+      #left {
+        display: none;
+        }
+        #pagenationbox{
+          width: 450px !important;
+          text-align: center;
+          border-radius: 30px;
+        margin-left: 10%;
+        }
+
+        /*order*/
+
+#col10{
+  padding:  0px !important;
+}
+
+     
+#myorderTaxt{
+  font-size: 1.5em;
+  width: 200px !important;
+}
+
+#orderline{
+  width: 200px !important;
+}
+#orderTable{
+  width: 400px !important;
+}
+#pointTable{
+  width: 400px !important;
+}
+
+
+#myorderTaxt{
+  width: 150px !important;
+  font-size: 1.4em !important;
+}
+#mypointText{
+  width: 150px !important;
+  font-size: 1.4em !important;
+}
+#pointbox{
+  margin-left: 0px !important;
+}
+
+#myactivityR{
+  display: block !important;
+  text-align: center !important;
+  align-items: center !important;
+
+}
+#myactivityR a{
+ position: relative; top: 20px !important;
+}
+#myinfoR{
+  display: block !important;
+  text-align: center !important;
+  width: 200px !important;
+}
+#myinfoR a{
+  position: relative; top: 20px !important;
+}
+#myorderR{
+  display: block !important;
+  width: 200px !important;
+  text-align: center !important;
+  
+}
+
+#myorderR a{
+  position: relative; top: 20px !important;
+}
+
+}
+
+/* 화면크기 최소 481px 부터 최대 660px까지 */
+@media screen and (min-width: 481px) and (max-width: 660px) {
+    .foot_logo{ display: none; }
+    #footer-nav li { margin: 0 10px; }
+    .container-fluid { line-height: 1.3; }
+    #row_footer{ text-align: center;}
+    #img_footer_icon{  display: none;}
+
+    #col10 {
+        padding: 0 !important; /* 또는 padding: initial !important; */
+    }
+    #showmenu{
+       
+    }
+
+    #freeboardTable {
+        width: 359px !important;
+        border-collapse: separate;
+        border-spacing: 0; /* 필요에 따라 조절. */
+        text-align: center;
+        position: relative; left: 0px;
+      }
+      
+      
+      #freeboardTable td, #freeboardTable th {
+        border: solid black 1px;
+      }
+      
+      #freeboardTable tr:first-child td:first-child
+       {
+        border-top-left-radius: 0px;
+      }
+      
+      
+      #freeboardTable tr:first-child td:last-child
+       {
+        border-top-right-radius: 0px;
+      }
+      
+      
+      #freeboardTable tr#firstTrorange{
+        background-color: lightgray
+      }
+      #freeboardTable tr{
+        background-color:  white;
+        height: 40px;
+      }
+      #pagenationbox{
+        width: 300px !important;
+        text-align: center;
+        border-radius: 30px;
+      margin-left: 10%;
+      }
+      .showmenu{
+      }
+      .mobileshowmenu{
+      }
+      #left {
+        display: none;
+        }
+        
+
+       /*INFO*/
+       #checkAreaBox{
+        border-radius: 70px;    
+        height: 20em;
+        width: 300px !important;
+        background-color: #F6D5BC;
+        margin-top: 20%;
+      }
+      #left {
+        display: none;
+        }
+
+        /*order*/
+
+#col10{
+  padding:  0px !important;
+}
+
+     
+#myorderTaxt{
+  font-size: 1.5em;
+  width: 200px !important;
+}
+
+#orderline{
+  width: 200px !important;
+}
+#orderTable{
+  width: 400px !important;
+}
+#pointTable{
+  width: 400px !important;
+}
+#col10{
+  padding: 0px !important;
+}
+
+#col2{
+  display: none;
+}
+
+#myactivityR{
+  display: block !important;
+  text-align: center !important;
+  align-items: center !important;
+
+}
+#myactivityR a{
+ position: relative; top: 20px !important;
+}
+#myinfoR{
+  display: block !important;
+  text-align: center !important;
+}
+#myinfoR a{
+  position: relative; top: 20px !important;
+}
+#myorderR{
+  width: 200px !important;
+  position: relative; right: 0px !important;
+}
+
+#col10{
+  width: auto !important;
+}
+
+}
+
+@media screen and (max-width:480px) {
+    .foot_logo{ display: none; }
+    /* #footer-nav li a { font-size: 0.5em; } */
+    #footer-nav li { margin: 0 5px; }
+    .container-fluid { line-height: 1.3; }
+    #row_footer{ text-align: center;}
+    #img_footer_icon{  display: none;}
+    #col10 {
+        padding: 0 !important; /* 또는 padding: initial !important; */
+    }
+    #showmenu{
+       
+    }
+
+    #freeboardTable {
+        width: 400px !important;
+        border-collapse: separate;
+        border-spacing: 0; /* 필요에 따라 조절. */
+        text-align: center;
+        position: relative; left: 0px;
+      }
+      
+      
+   
+    
+      #pagenationbox{
+        width: 300px !important;
+        text-align: center;
+        border-radius: 30px;
+      margin-left: 10%;
+      }
+      .showmenu{
+        display: none;
+      }
+      .mobileshowmenu{
+        display: block;
+      }
+      #leftname{
+        font-size: 10px !important;
+      }
+      #left {
+       display: none;
+       }
+       #col2{
+        display: none;
+       }
+
+       /*INFO*/
+       #checkAreaBox{
+        border-radius: 70px;    
+        height: 20em;
+        width: 300px !important;
+        background-color: #F6D5BC;
+        margin-top: 20%;
+      }
+      body{
+        overflow-x: hidden;
+      }
+
+      /*order*/
+
+#col10{
+  padding:  0px !important;
+}
+
+     
+#myorderTaxt{
+  font-size: 1.5em;
+  width: 200px !important;
+}
+
+#orderline{
+  width: 200px !important;
+}
+#orderTable{
+  width: 400px !important;
+}
+#pointTable{
+  width: 400px !important;
+}
+
+     
+#col2{
+  display: none;
+}
+
+#myactivityR{
+  display: block !important;
+  text-align: center !important;
+  align-items: center !important;
+
+}
+#myactivityR a{
+ position: relative; top: 20px !important;
+}
+#myinfoR{
+  display: block !important;
+  text-align: center !important;
+}
+#myinfoR a{
+  position: relative; top: 20px !important;
+}
+#myorderR{
+  width: 200px !important;
+  position: relative; right: 0px !important;
+}
+
+#col10{
+  width: auto !important;
+}
+
+#myorderTaxt{
+  width: 150px !important;
+  font-size: 1.4em !important;
+}
+#mypointText{
+  width: 150px !important;
+  font-size: 1.4em !important;
+}
+#pointbox{
+  margin-left: 0px !important;
+}
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
