@@ -74,9 +74,7 @@ public class CommunityController {
 	@PostMapping("/community/freeboard_write.do")
 	public String freeboardWrite(Model model, HttpServletRequest req, HttpSession session) {
 		String email= req.getParameter("email");
-
 		String nickname= (String)session.getAttribute("sessionNickname");
-
 		String title= req.getParameter("title");
 		String content= req.getParameter("content");
 		//폼값을 개별적으로 전달한다.
@@ -93,9 +91,28 @@ public class CommunityController {
 		boardDTO.setContent(boardDTO.getContent().replace("\r\n", "<br>"));
 		model.addAttribute("boardDTO", boardDTO);
 		
-		System.out.println("boardDTO="+boardDTO);
-		
 		return "community/freeboard_view";
+	}
+	
+	
+	//자유게시판 수정하기
+	@GetMapping("/community/freeboard_edit.do")
+	public String freeboardEdit(Model model, BoardDTO boardDTO) {
+		System.out.println("들어오니?");
+		boardDTO = dao.view(boardDTO);
+		model.addAttribute("boardDTO", boardDTO);
+		
+		return "community/freeboard_edit";
+	
+	}
+	
+	@PostMapping("/community/freeboard_edit.do")
+	public String boardEditPost(BoardDTO boardDTO) {
+		int result = dao.edit(boardDTO);
+		System.out.println("result:"+result);
+		System.out.println("글수정결과:"+result);
+		
+		return "redirect:freeboard_view.do?freeboard_idx="+boardDTO.getFreeboard_idx();
 	}
 	
 	@RequestMapping("/community/photoboard_list.do")
@@ -110,10 +127,11 @@ public class CommunityController {
 	
 	
 	//사진 게시판 	쓰기.
-	@GetMapping("/community/photooard_writeProcess.do")
+	@GetMapping("/community/photoboard_writeProcess.do")
 	public String uploadProcess(HttpServletRequest req, Model model,
 			PhotoBoardDTO photoBoardDTO){
-		
+		System.out.println("컨트롤러 넘어오나?");
+		req.getParameter("");
 		
 		System.out.println("photoBoardDTO="+ photoBoardDTO);
 		try {			
@@ -159,6 +177,8 @@ public class CommunityController {
 		
 		//View로 포워드
 		return "main/main";
+		
+		
 	}
 
 
