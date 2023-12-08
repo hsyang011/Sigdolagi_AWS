@@ -61,8 +61,8 @@ public class CommunityController {
 	
 	@RequestMapping("/community/freeboard_write.do")
 	public String freeboardWrite(Model model, HttpServletRequest req, HttpSession session) {
-		//request 내장객체를 통해 폼값을 받아온다.
 		String email= req.getParameter("email");
+		//request 내장객체를 통해 폼값을 받아온다.
 		String nickname = (String) session.getAttribute("sessionNickname");
 		String title= req.getParameter("title");
 		String content= req.getParameter("content");
@@ -79,6 +79,9 @@ public class CommunityController {
 		boardDTO = dao.view(boardDTO);
 		boardDTO.setContent(boardDTO.getContent().replace("\r\n", "<br>"));
 		model.addAttribute("boardDTO", boardDTO);
+		
+		System.out.println("boardDTO="+boardDTO);
+		
 		return "community/freeboard_view";
 	}
 	
