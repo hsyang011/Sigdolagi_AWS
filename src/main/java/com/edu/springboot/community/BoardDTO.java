@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class BoardDTO {
 	private String freeboard_idx;
-	private String email;
+	private String nickname;
 	private String title;
 	private String content;
 	private int visitcount;
