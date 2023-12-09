@@ -136,7 +136,7 @@ div.sticky{
                     <!-- 주문자 정보 -->
                     <div class="cart_list_area">
                         <div class="p-4" style="border-top: 1px solid black; border-bottom: 1px solid lightgray;">
-                            <span class="me-5">아무개</span><span class="me-5">01012345678</span><span>dummy@gmail.com</span>
+                            <span class="me-5">아무개</span><span class="me-5">01012345678</span><span>foo@gmail.com</span>
                         </div>
                     </div>
                     <!-- 페이지 제목 -->

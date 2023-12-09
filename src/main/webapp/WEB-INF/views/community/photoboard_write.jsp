@@ -17,14 +17,15 @@
 <!-- 전역 설정 css 링크  -->
 <link rel="stylesheet" href="../css/common_board.css">
 
-<!-- summernote -->
-<script src="/js/summernote/summernote-lite.js"></script>
-<script src="/js/summernote/lang/summernote-ko-KR.js"></script>
-<link href="/css/summernote/summernote-lite.css" rel="stylesheet">
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
+<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
 
-<!-- include summernote css/js -->
-<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+<!-- include summernote css/js-->
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+
+
 
 <style>
     
@@ -84,6 +85,7 @@ main > * { margin: 50px 0; }
 }
 
 </style>
+
 <script>
 $(function() {
 	$("#getSummernote").click(() => {
@@ -92,7 +94,6 @@ $(function() {
 	});
 });
 </script>
-
 </head>
 <body>
 <!-- wrapper 시작 -->
@@ -105,7 +106,7 @@ $(function() {
     <div id="banner" class="mt-3">
         <div id="banner_contents" class="container d-flex align-items-center">
             <div id="info">
-                <h4>자유롭게 소통해보세요</h4>
+                <h4>자유롭게 소통하세요</h4>
                 <div id="info_title" class="d-flex">
                     <h2>커뮤니티</h2>
                 </div>
@@ -166,8 +167,8 @@ $(function() {
                                 <tr>
                                     <td>내용</td>
                                     <td>
-                                        <textarea id="summernote" name="editordata"></textarea> 
-                                        <!-- <div id="summernote"></div> -->
+                                        <!-- <textarea name="content"></textarea> -->
+                                        <div id="summernote"></div>
                                     </td>
                                 </tr>
                              
