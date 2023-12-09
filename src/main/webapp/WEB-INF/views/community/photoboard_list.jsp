@@ -66,7 +66,7 @@ $(function() {
                     <div class="col-sm-12" style="height: 30px;">
                         <ul class="categorymenu" style="float: left;">
                             <li><a href="./freeboard_list.do" id="1:1">자유게시판</a></li>
-                            <li><a href="./photoboard_list.do" id="photoboardtext">포토게시판</a></li>
+                            <li><a href="./photoboard_list.do" id="photoboardtext">사진게시판</a></li>
                             
                         </ul>
                     </div>
