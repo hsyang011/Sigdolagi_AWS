@@ -140,7 +140,7 @@ public class CommunityController {
 	}
 	
 	@PostMapping("/community/freeboard_delete.do")
-	public String boardDeletePost(HttpServletRequest req) {
+	public String boardDeletePost(HttpServletRequest req ) {
 		int result = dao.delete(req.getParameter("freeboard_idx"));
 		System.out.println("글삭제결과:"+result);
 		
