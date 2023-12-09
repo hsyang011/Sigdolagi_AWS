@@ -72,6 +72,7 @@ main > * { margin: 50px 0; font-family: "NPSfontRegular"; }
 /* 1:1테이블 버튼 */
 .btn_td button{margin: 0 5px 5px 0; border-radius: 20px;  padding: 0px 10px 0 10px; height: 35px;}
 .writeFrm_end{background-color: #FF7A00; border: none; font-family: "NPSfontBold"; font-size: 15px;}
+.writeFrm_edit{background-color: #FF7A00; border: none; font-family: "NPSfontBold"; font-size: 15px;}
 .writeFrm_reset{background-color: #FFA24D; color: white; font-family: "NPSfontRegular";border: none; font-size: 15px;}
 .writeFrm_list{background-color: #ffc187; color: white; font-family: "NPSfontRegular";border: none; font-size: 15px;}
 
