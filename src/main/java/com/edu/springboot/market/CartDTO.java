@@ -9,5 +9,6 @@ public class CartDTO {
 	private String prod_idx;
 	private String email;
 	private String prod_count;
+	private String prod_totprice;
 	
 }

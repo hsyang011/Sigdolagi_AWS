@@ -81,11 +81,19 @@ public class MarketController {
 		int result = cartDAO.getProdIdx(cartDTO);
 		// 추가된 적이 없다면 insert 쿼리를 실행
 		if (result == 0) {			
-			cartDAO.addToCart(cartDTO);
+			cartDAO.addToCart1(cartDTO);
 		// 추가된 적이 있다면 update 쿼리를 실행
 		} else {
-			cartDAO.updateToCart(cartDTO);
+			cartDAO.addToCart2(cartDTO);
 		}
+		// 상품 총 가격 변경 로직
+		// prod_idx로 cart_idx 가져오고 DTO에 넣기
+		cartDTO.setCart_idx(cartDAO.getCartIdx(cartDTO));
+		// 수량 * 가격을 구해서 prod_totPrice에 반영
+		String prodTotPrice = cartDAO.prodTotPrice(cartDTO);
+		System.out.println("상품의 가격" + prodTotPrice);
+		cartDTO.setProd_totprice(prodTotPrice);
+		cartDAO.updateTotPrice(cartDTO);
 		return ResponseEntity.ok("상품이 성공적으로 추가되었습니다.");
 	}
 	
@@ -109,9 +117,28 @@ public class MarketController {
 		return "market/cart";
 	}
 	
-	@RequestMapping("/market/payment.do")
+	// 장바구니에 상품 수량 변경
+	@RequestMapping("/market/updateToCart.do") // cartDTO에는 email과 prod_idx만 담겨있는 상태
+	public ResponseEntity<String> updateToCart(CartDTO cartDTO, Model model) {
+		// 임의로 이메일 설정 (시큐리티 연동 전)
+		cartDTO.setEmail("foo@gmail.com");
+		// 상품 수량 변경
+		cartDAO.updateToCart(cartDTO);
+
+		// 상품 총 가격 변경 로직
+		// prod_idx로 cart_idx 가져오고 DTO에 넣기
+		cartDTO.setCart_idx(cartDAO.getCartIdx(cartDTO));
+		// 수량 * 가격을 구해서 prod_totPrice에 반영
+		String prodTotPrice = cartDAO.prodTotPrice(cartDTO);
+		System.out.println("상품의 가격" + prodTotPrice);
+		cartDTO.setProd_totprice(prodTotPrice);
+		cartDAO.updateTotPrice(cartDTO);
+		return ResponseEntity.ok("상품이 성공적으로 추가되었습니다.");
+	}
+	
+	@RequestMapping("/market/order.do")
 	public String payment() {
-		return "market/payment";
+		return "market/order";
 	}
 	
 }

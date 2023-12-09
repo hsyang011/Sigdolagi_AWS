@@ -177,11 +177,10 @@ div.sticky{
                     <div class="cart_list">
                         <table width="100%">
                             <colgroup>
-                                <col width="3%"><col width="10%"><col width="60%"><col width="10%"><col width="14%"><col width="3%"> 
+                                <col width="10%"><col width="60%"><col width="10%"><col width="14%">
                             </colgroup>
                             <!-- 1번리스트 시작 -->
                             <tr class="cart_product">
-                                <td><input type="checkbox" name="" id=""></td>
                                 <td class="product_img">
                                     <img src="../images/밀키트1.jpg" alt="" >
                                 </td>
@@ -191,19 +190,15 @@ div.sticky{
                                     <div><span class="product_title_price">10,900</span>원</div>
                                 </td>
                                 <td>
-                                    <input class="product_quantity" type="number" name="" id="" value="1">
+                                    <input class="product_quantity" type="number" readonly name="" id="" value="1">
                                 </td>
                                 <td>
                                     <p class="product_price_area"><span class="product_price">10,900</span>원</p>
-                                </td>
-                                <td>
-                                    <img src="../images/cross-wish-ico.png" alt="">
                                 </td>
                             </tr>
                             <!-- 1번리스트 끝 -->
                             <!-- 2번리스트 시작 -->
                             <tr class="cart_product">
-                                <td><input type="checkbox" name="" id=""></td>
                                 <td class="product_img">
                                     <img src="../images/밀키트2.jpg" alt="" >
                                 </td>
@@ -213,13 +208,10 @@ div.sticky{
                                     <div><span class="product_title_price">10,900</span>원</div>
                                 </td>
                                 <td>
-                                    <input class="product_quantity" type="number" name="" id="" value="1">
+                                    <input class="product_quantity" type="number" readonly name="" id="" value="1">
                                 </td>
                                 <td>
                                     <p class="product_price_area"><span class="product_price">10,900</span>원</p>
-                                </td>
-                                <td>
-                                    <img src="../images/cross-wish-ico.png" alt="">
                                 </td>
                             </tr>
                             <!-- 2번리스트 끝 -->
