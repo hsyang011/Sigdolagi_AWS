@@ -36,6 +36,7 @@
                     <img class="top_logo" src="../images/logo.png" alt="">
                 </a>  
             </div>
+            
             <!-- 검색 form -->
             <div class="seach_bar">
                 <form class="d-flex">
@@ -82,7 +83,7 @@
 <!-- nav 끝 -->
 
 <!-- mobile 내비게이션 시작 -->
-<div class="navbar-collapse justify-content-center" style="position: -webkit-sticky; position: sticky; top: 0; padding: 5px 10px; background-color: white; z-index: 1000;" id="mobile_navbar">
+<div class="navbar-collapse justify-content-center" style="position: -webkit-sticky; position: sticky; top: 0px; padding: 5px 10px;  background-color: white; z-index: 1000;" id="mobile_navbar">
     <ul class="head_nav nav">
         <li class="nav-item"><a class="nav-link" href="../planner/planner_list.do">플래너</a></li>
         <li class="nav-item"><a class="nav-link" href="../restaurant/restaurant_list.do">맛집탐방</a></li>
@@ -91,4 +92,5 @@
         <li class="nav-item"><a class="nav-link" href="../service/notiboard.do">고객센터</a></li>
     </ul>
 </div>
+
 <!-- mobile 내비게이션 끝 -->
