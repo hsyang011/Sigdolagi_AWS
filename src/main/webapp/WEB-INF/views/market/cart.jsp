@@ -100,11 +100,15 @@
 function marketOrder() {
 	var paymentAmount = $("#paymentAmount").text().trim().replace(",", "");
 	var allPrice = $("#allPrice").text().trim().replace(",", "");
+	var deliveryPrice = $("#deliveryPrice").text().trim().replace(",", "");
 	document.paymentFrm.payment.value = paymentAmount;
 	document.paymentFrm.allPrice.value = allPrice;
+	document.paymentFrm.delivery.value = deliveryPrice;
 	document.paymentFrm.submit();
 }
 $(function() {
+	// 문서 로드가 완료되면 배송비 여부를 검증하여 반영
+    updateCartInfo();
 	/* 전체 체크를 눌렀을 때 전체 체크 및 전체 체크 해제 */
 	$("#check-1").change(() => {
 		if($("#check-1").is(":checked")) {
@@ -151,7 +155,7 @@ $(function() {
 	            /* 상품 총 가격에 반영한다. */
 	        	$(e.target).parent().parent().find(".product_price").html(res.prod_totprice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
 	            /* 상품 총 가격에 반영한다. */
-	            updateCartInfo(e, res);
+	            updateCartInfo();
 	        },
 	        error: function(err) {
         		console.log("수량변경 실패");
@@ -170,7 +174,7 @@ $(function() {
 	    		// 엘리먼트 제거
 	    		$(e.target).parent().parent().remove();
 	            /* 상품 총 가격에 반영한다. */
-	            updateCartInfo(e, res);
+	            updateCartInfo();
 	        },
 	        error: function(err) {
         		console.log("상품삭제 실패");
@@ -179,7 +183,7 @@ $(function() {
 	});
 });
 
-function updateCartInfo(e, res) {
+function updateCartInfo() {
     // 모든 가격 정보를 불러온다.
     let priceArr = document.getElementsByClassName("product_price");
     let sum = 0;
@@ -189,7 +193,14 @@ function updateCartInfo(e, res) {
     }
     console.log("총 가격 : " + sum);
     $(".allPrice").html(sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
-    $(".payment").html((sum+3000).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+    // 40000원 이상이면 무료배송
+    if (sum < 40000) { 
+	    $(".payment").html((sum+3000).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+	    $(".delivery_price").html("3,000");
+    } else {
+	    $(".payment").html((sum).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+	    $(".delivery_price").html("0");
+    }
 }
 </script>
 </head>
@@ -219,6 +230,7 @@ function updateCartInfo(e, res) {
         	<form action="./order.do" method="post" name="paymentFrm">
         		<input type="hidden" name="allPrice" />
         		<input type="hidden" name="payment" />
+        		<input type="hidden" name="delivery" />
         	</form>
             <div class="row">
                 <!-- 장바구니 내역 시작 -->
@@ -328,7 +340,7 @@ function updateCartInfo(e, res) {
                                 </tr>
                                 <tr>
                                     <td class="payment_info_txt">배송비</td>
-                                    <td class="text-end"><span class="payment_info_price">3,000</span>원</td>
+                                    <td class="text-end"><span class="payment_info_price delivery_price" id="deliveryPrice">3,000</span>원</td>
                                 </tr>
                                 <tr class="payment_info_total_line">
                                     <td class="payment_info_txt lete_sp_1">총 결제예정금액</td>

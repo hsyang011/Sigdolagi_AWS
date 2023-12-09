@@ -265,7 +265,7 @@ div.sticky{
                                     <td class="payment_info_txt" style="width: 50%;">상품금액</td>
                                     <td class="text-end">
                                     	<span class="payment_info_price">
-                                        	<fmt:formatNumber value="${payment-3000}" pattern="#,###" />
+                                        	<fmt:formatNumber value="${_allPrice}" pattern="#,###" />
                                     	</span>원
                                     </td>
                                 </tr>
@@ -275,7 +275,11 @@ div.sticky{
                                 </tr>
                                 <tr>
                                     <td class="payment_info_txt">배송비</td>
-                                    <td class="text-end"><span class="payment_info_price">3,000</span>원</td>
+                                    <td class="text-end">
+                                    	<span class="payment_info_price">
+                                        	<fmt:formatNumber value="${deliveryPrice}" pattern="#,###" />
+										</span>원
+									</td>
                                 </tr>
                                 <tr class="payment_info_total_line">
                                     <td class="payment_info_txt lete_sp_1">총 결제예정금액</td>
