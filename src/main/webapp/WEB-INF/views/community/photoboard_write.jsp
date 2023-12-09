@@ -85,55 +85,15 @@ main > * { margin: 50px 0; }
 }
 
 </style>
+
 <script>
-//썸머노트 실행 함수
-function notesummer(){
-    //썸머노트 실행
-    $('#summernote').summernote({
-    lang:"ko-KR",
-    placeholder: '내용을 입력해주세요',
-    tabsize: 2,
-    width : 1200,
-    height: 600,
-    toolbar: [
-        ['style', ['style']],
-        ['font', ['bold', 'underline', 'clear']],
-        ['color', ['color']],
-        ['para', ['ul', 'ol', 'paragraph']],
-        ['table', ['table']],
-        ['insert', ['link', 'picture', 'video']],
-        ['view', ['fullscreen', 'codeview', 'help']]
-    ],
-    callbacks : { 
-        //onImageUpload = 이미지 업로드시 작동하는 콜백함수
-        onImageUpload : function(files, editor, welEditable) {
-    // 파일 업로드(다중업로드를 위해 반복문 사용)
-        for (var i = files.length - 1; i >= 0; i--) {
-                uploadSummernoteImageFile(files[i],
-                this);
-                }
-        }
-    }//end callbacks 
-    });
-    // 이미지 업로드시 ajax로 파일 업로드를 하고 성공 후 파일 경로를 return받음
-    function uploadSummernoteImageFile(file, editor) {
-    data = new FormData();
-    data.append("file", file);
-    $.ajax({
-        url : "summernoteImage",
-        data : data,
-        type : "POST",
-        dataType : 'JSON',
-        contentType : false,
-        processData : false,
-        success : function(data) {
-            //항상 업로드된 파일의 url이 있어야 한다.
-            $(editor).summernote('insertImage', contextPath+data.url);
-        }
-    });
-    } 
-}
-    </script>
+$(function() {
+	$("#getSummernote").click(() => {
+		var markupStr = $("#summernote").summernote('code');
+		console.log(markupStr);
+	});
+});
+</script>
 </head>
 <body>
 <!-- wrapper 시작 -->
@@ -207,15 +167,9 @@ function notesummer(){
                                 <tr>
                                     <td>내용</td>
                                     <td>
-                                         <textarea name="content"></textarea> 
-                                        
+                                        <!-- <textarea name="content"></textarea> -->
+                                        <div id="summernote"></div>
                                     </td>
-                                </tr>
-                                <tr>
-                                	<td>파일첨부</td>
-                                	<td>
-                                		<div id="summernote" />
-                                	</td>
                                 </tr>
                              
                                 <tr>

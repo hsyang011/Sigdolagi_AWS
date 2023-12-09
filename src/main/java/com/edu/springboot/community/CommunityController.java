@@ -139,8 +139,16 @@ public class CommunityController {
 		int result = dao.edit(boardDTO);
 		System.out.println("result:"+result);
 		System.out.println("글수정결과:"+result);
-		System.out.println("boardto"+boardDTO+"result"+result);
+		System.out.println("boardDto"+boardDTO+"result"+result);
 		return "redirect:freeboard_view.do?freeboard_idx="+boardDTO.getFreeboard_idx();
+	}
+	
+	@PostMapping("/community/freeboard_delete.do")
+	public String boardDeletePost(HttpServletRequest req) {
+		int result = dao.delete(req.getParameter("freeboard_idx"));
+		System.out.println("글삭제결과:"+result);
+		
+		return "redirect:freeboard_list.do";
 	}
 	
 	@RequestMapping("/community/photoboard_list.do")
