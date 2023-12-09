@@ -53,4 +53,9 @@ public class adminController {
 		return "administrator/admin_maket_write";
 	}
 	
+	@RequestMapping("/administrator/admin_order_list.do")
+	public String adminOrderList() {
+		return "administrator/admin_order_list";
+	}
+	
 }

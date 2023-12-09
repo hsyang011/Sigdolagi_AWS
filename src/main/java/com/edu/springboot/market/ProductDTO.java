@@ -19,4 +19,7 @@ public class ProductDTO {
 	private String img4;
 	private String img5;
 	
+	// 장바구니에 담긴 상품 수량을 저장할 변수
+//	private String prod_count;
+	
 }
