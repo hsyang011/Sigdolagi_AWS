@@ -73,6 +73,22 @@ main > * { margin: 50px 0; }
 }
 
 </style>
+
+<script>
+
+let deletePost = function(user_id){
+	let frm = document.frm;
+	if(confirm('정말 삭제할까요?')){
+		//인수로 전달된 아이디를 hidden박스에 추가
+		frm.id.value= user_id;
+		//action과 method속성값 추가
+		frm.action = "delete.do";
+		frm.method = "post";
+		//여기서 전송(submit);
+		frm.submit();
+	}
+} 
+</script>
 </head>
 <body>
 <!-- wrapper 시작 -->
@@ -156,7 +172,7 @@ main > * { margin: 50px 0; }
                                 <tr>
                                     <td colspan="4" align="center" class="btn_td">
                                         <button type="button" onclick="location.href='./freeboard_edit.do?freeboard_idx=${ param.freeboard_idx }';">수정하기</button>
-                                        <button type="button" onclick="deletePost(${ param.freeboard_idx });">삭제하기</button>
+                                        <button type="button" onclick="deletePost(${param.freeboard_idx });">삭제하기</button>
                                         <button type="button" class="writeFrm_list" onclick="location.href='./freeboard_list.do';">목록 보기</button>
                                     </td>
                                 </tr>

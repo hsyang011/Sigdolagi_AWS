@@ -18,4 +18,5 @@ public interface IProductService {
 	// 추천상품
 	public List<ProductDTO> recommendList(ProductDTO productDTO);
 	
+	
 }

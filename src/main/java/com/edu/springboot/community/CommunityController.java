@@ -16,17 +16,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.edu.springboot.community.BoardDTO;
 
-import ch.qos.logback.core.recovery.ResilientSyslogOutputStream;
 import jakarta.mail.Session;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.Part;
 import oracle.jdbc.proxy.annotation.Post;
-import utils.MyFunctions;
 import utils.PagingUtil;
 
 @Controller
 public class CommunityController {
-	
 	
 	
 	@Autowired
@@ -66,6 +64,7 @@ public class CommunityController {
 	}
 	
 	
+	
 	//글쓰기 페이지 로딩
 	@GetMapping("/community/freeboard_write.do")
 	public String boardWriteGet(Model model) {
@@ -76,7 +75,7 @@ public class CommunityController {
 	//포토 게시판 글쓰기 페이지 이
 		@GetMapping("/community/photoboard_write.do")
 		public String photoboardWriteGet(Model model) {
-			return "community/multiFileUpload";
+			return "community/photoboard_write";
 		}
 	
 	
@@ -109,6 +108,16 @@ public class CommunityController {
 		
 		return "community/freeboard_view";
 	}
+	//  ./photoboard_view.do
+	
+	@RequestMapping("/community/photoboard_view.do")
+	public String photoboardView(Model model, PhotoBoardDTO photoBoardDTO) {
+		photoBoardDTO = photoboarddao.photoview(photoBoardDTO);
+		photoBoardDTO.setContent(photoBoardDTO.getContent().replace("\r\n", "<br>"));
+		model.addAttribute("photoBoardDTO", photoBoardDTO);
+		
+		return "community/photoboard_view";
+	}
 	
 	
 	//자유게시판 수정하기
@@ -126,8 +135,16 @@ public class CommunityController {
 		int result = dao.edit(boardDTO);
 		System.out.println("result:"+result);
 		System.out.println("글수정결과:"+result);
-		System.out.println("boardto"+boardDTO+"result"+result);
+		System.out.println("boardDto"+boardDTO+"result"+result);
 		return "redirect:freeboard_view.do?freeboard_idx="+boardDTO.getFreeboard_idx();
+	}
+	
+	@PostMapping("/community/freeboard_delete.do")
+	public String boardDeletePost(HttpServletRequest req) {
+		int result = dao.delete(req.getParameter("freeboard_idx"));
+		System.out.println("글삭제결과:"+result);
+		
+		return "redirect:freeboard_list.do";
 	}
 	
 	@RequestMapping("/community/photoboard_list.do")
@@ -173,20 +190,22 @@ public class CommunityController {
 		return "community/photoboard_list";
 	}
 	
-//	@PostMapping("/community/photoboard_writeProcess.do")
-//	public String photoboardWrite(HttpServletRequest req, Model model, PhotoBoardDTO photoBoardDTO) {
-//		
-//		String title = req.getParameter("title");
-//		
-//		
-//		
-//		
-//		
-//		return "community/photoboard_list";
-//	}
+	@PostMapping("/community/photoboard_writeProcess.do")
+	public String photoboardWrite(HttpServletRequest req, Model model, PhotoBoardDTO photoBoardDTO) {
+		
+		String title = req.getParameter("title");
+		
+		
+		
+		
+		
+		return "community/photoboard_list";
+	}
 	
 	
-
+	
+	//사진 게시판 	쓰기. /community/freeboard_write.do
+//	community/photoboard_writeprocess.do     /community/freeboard_write.do
 	
 	
 

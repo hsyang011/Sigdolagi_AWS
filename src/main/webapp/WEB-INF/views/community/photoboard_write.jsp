@@ -17,15 +17,14 @@
 <!-- 전역 설정 css 링크  -->
 <link rel="stylesheet" href="../css/common_board.css">
 
-<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
-<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
+<!-- summernote -->
+<script src="/js/summernote/summernote-lite.js"></script>
+<script src="/js/summernote/lang/summernote-ko-KR.js"></script>
+<link href="/css/summernote/summernote-lite.css" rel="stylesheet">
 
-<!-- include summernote css/js-->
-<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
-<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
-
-
+<!-- include summernote css/js -->
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 
 <style>
     
@@ -85,10 +84,6 @@ main > * { margin: 50px 0; }
 }
 
 </style>
-<<<<<<< HEAD
-
-=======
-<<<<<<< HEAD
 <script>
 $(function() {
 	$("#getSummernote").click(() => {
@@ -97,7 +92,7 @@ $(function() {
 	});
 });
 </script>
->>>>>>> branch 'main' of https://github.com/hsyang011/Sigdolagi.git
+
 </head>
 <body>
 <!-- wrapper 시작 -->
@@ -110,7 +105,7 @@ $(function() {
     <div id="banner" class="mt-3">
         <div id="banner_contents" class="container d-flex align-items-center">
             <div id="info">
-                <h4>자유롭게 소통하세요</h4>
+                <h4>자유롭게 소통해보세요</h4>
                 <div id="info_title" class="d-flex">
                     <h2>커뮤니티</h2>
                 </div>
@@ -159,17 +154,8 @@ $(function() {
                     <div class="freeboard_write_frm" >
 
                         <!-- 게시판 들어가는 부분 (시작) -->
-<<<<<<< HEAD
-                        <form name="writeFrm" method="get" onsubmit="return validateForm(this);" class="writeFrm"
-                        action="../community/photoboard_writeProcess.do"">
-=======
                         <form name="writeFrm" method="get" onsubmit="return validateForm(this);" class="writeFrm">
                             <input type="hidden" name="tname"  />
-<<<<<<< HEAD
-=======
->>>>>>> branch 'main' of https://github.com/hsyang011/Sigdolagi.git
->>>>>>> branch 'main' of https://github.com/hsyang011/Sigdolagi.git
->>>>>>> branch 'main' of https://github.com/hsyang011/Sigdolagi.git
                             <table class="table table-bordered" id="free_write_frm_table" width="100%" >
                                 <tr>
                                     <td>제목</td>
@@ -180,28 +166,14 @@ $(function() {
                                 <tr>
                                     <td>내용</td>
                                     <td>
-                                        <!-- <textarea name="content"></textarea> -->
-                                        <div id="summernote"></div>
+                                        <textarea id="summernote" name="editordata"></textarea> 
+                                        <!-- <div id="summernote"></div> -->
                                     </td>
                                 </tr>
                              
                                 <tr>
                                     <td colspan="2" align="center" class="btn_td">
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-                                        <button type="button" class="writeFrm_end" id="getSummernote">작성 완료</button>
-=======
-<<<<<<< HEAD
                                         <button type="submit" class="writeFrm_end" id="getSummernote">작성 완료</button>
-=======
->>>>>>> branch 'main' of https://github.com/hsyang011/Sigdolagi.git
-                                        <button type="button" class="writeFrm_end">작성 완료</button>
-<<<<<<< HEAD
-=======
->>>>>>> branch 'main' of https://github.com/hsyang011/Sigdolagi.git
->>>>>>> branch 'main' of https://github.com/hsyang011/Sigdolagi.git
->>>>>>> branch 'main' of https://github.com/hsyang011/Sigdolagi.git
                                         <button type="reset" class="writeFrm_reset">다시 입력</button>
                                         <button type="button" class="writeFrm_list" onclick="">목록 보기</button>
                                     </td>

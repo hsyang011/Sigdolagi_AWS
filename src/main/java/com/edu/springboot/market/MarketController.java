@@ -29,6 +29,7 @@ public class MarketController {
 	@RequestMapping("/market/market_list.do")
 	public String marketList(ParameterDTO parameterDTO, Model model, HttpServletRequest req) {
 		int totalCount = productDAO.getTotalCount(parameterDTO); // 게시물의 갯수를 카운트
+		
 		int pageSize = 16; // 한 페이지당 게시물 수
 		int blockPage = 5; // 한 블록당 페이지번호 수
 		// 목록에 첫 진입시 페이지 번호가 없으므로 1로 설정하고, 파라미터로 전달된 페이지번호가 있다면 받은 후 정수로 변경해서 설정한다.
@@ -110,6 +111,7 @@ public class MarketController {
 			// cart_idx와 prod_count사이에 ":"를 넣은 문자열을 키값으로 한다. 0번 : 일련번호, 1번 : 수량, 2번 : 총가격
 			map.put(cartDTO.getCart_idx()+":"+cartDTO.getProd_count()+":"+cartDTO.getProd_totprice(), cartDAO.allProductInfo(cartDTO));
 		}
+		
 		
 		model.addAttribute("map", map);
 		System.out.println(cartInfo);
