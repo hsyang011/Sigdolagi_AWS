@@ -180,51 +180,14 @@ $(function() {
 						</c:forEach>
 					</c:otherwise>
 					</c:choose>
-			<%-- 				<td>
-				${ pagingImg }
-			</td> --%>
-			</tr>
-              <!--   <tr>
-                    <th scope="row">1</th>
-                    <td id="table_title"><a href="freeboard_view">집</a></td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td>33</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td><a href="freeboard_view">최고</a></td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                    <td>4</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td><a href="freeboard_view">Larry the Bird</a></td>
-                    <td>Larry the Bird</td>
-                    <td>@twitter</td>
-                    <td>5</td>
-                </tr> -->
+			
                 </tbody>
             </table>
             </div>
         </div>
 
-
-        <!-- 리스트 버튼 -->
-        <div class="container d-flex justify-content-center">
-            <div class="row">
-                <div class="col-12 d-flex justify-content-center">
-                    <div class="list_btn">
-                        <button type="button" class="btn"> &lt; </button>
-                        <button type="button" class="btn" id="btn1"> 1 </button>
-                        <button type="button" class="btn" id="btn1"> 2 </button>
-                        <button type="button" class="btn" id="btn1"> 3 </button>
-                        <button type="button" class="btn"> &gt; </button>
-                    </div>
-                </div>
-            </div>
-        </div>
+         <div class="text-center">${pagingImg}</div>
+     
       
 
         <!-- 게시판 검색 -->
@@ -246,13 +209,6 @@ $(function() {
         </div>
     </div>
     </main>
-
-
-
-
-
-
-
 
 
     </div>

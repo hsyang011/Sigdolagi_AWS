@@ -1,7 +1,15 @@
 package com.edu.springboot.admin;
 
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.edu.springboot.market.IProductService;
+import com.edu.springboot.market.ParameterDTO;
+import com.edu.springboot.market.ProductDTO;
 
 @Controller
 public class adminController {
@@ -43,8 +51,23 @@ public class adminController {
 		return "administrator/admin_notice_list";
 	}
 	
+	@RequestMapping("/administrator/admin_inquiry_list.do")
+	public String adminInquiry() {
+		return "administrator/admin_inquiry_list";
+	}
+	
+	// DAO 호출을 위한 빈 자동 주입.
+	@Autowired
+	IProductService productDAO;
+	
 	@RequestMapping("/administrator/admin_maket_list.do")
-	public String adminMaketList() {
+	public String adminMaketList(Model model) {
+		
+		// DB에서 인출한 게시물의 목록을 model객체에 저장한다.
+		List<ProductDTO> adminMaketSelect = productDAO.adminMaketSelect();
+		System.out.println("adminMaketSelect="+adminMaketSelect);
+		model.addAttribute("adminMaketSelect", adminMaketSelect);
+//		model.addAttribute("adminMaketList", productDAO.adminMaketSelect());
 		return "administrator/admin_maket_list";
 	}
 	

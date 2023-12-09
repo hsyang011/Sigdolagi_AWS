@@ -150,7 +150,7 @@ main > * { margin: 50px 0; }
                                     </td>
                                 </tr>
                             </table>
-                        </form>f
+                        </form>
                     </div>
                 </div>
               

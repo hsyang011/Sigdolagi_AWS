@@ -28,6 +28,12 @@
 		) WHERE rNum<![CDATA[>=]]>#{start} AND rNum<![CDATA[<=]]>#{end}
 	</select>
 	
+	<!-- 관리자 마켓 -->
+	<select id="adminMaketSelect"
+		resultType="com.edu.springboot.market.ProductDTO"> 
+		SELECT * FROM product ORDER BY prod_idx DESC
+	</select>
+	
 	<!-- 상품 상세보기 -->
 	<select id="view" parameterType="com.edu.springboot.market.ProductDTO" resultType="com.edu.springboot.market.ProductDTO">
 		SELECT * FROM product WHERE prod_idx=${prod_idx}

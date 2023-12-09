@@ -8,7 +8,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 	<meta name="description" content="" />
 	<meta name="author" content="" />
-	<title>관리자 플래너목록</title>
+	<title>관리자 1:1문의관리</title>
 	
     <!-- Custom fonts for this template -->
     <link href="../bootstrap/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
@@ -43,62 +43,59 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-2 text-gray-800">플래너목록</h1>
+                    <h1 class="h3 mb-2 text-gray-800">문의목록</h1>
                     <p class="mb-4">
-                    	플래너목록 관리하는 곳 입니다.
-                    	<!-- <a target="_blank" href="https://datatables.net">official DataTables documentation</a>. -->
+                    	1:1문의목록 관리하는 곳 입니다.
                     </p>
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3" style="text-align: right;">
-                         <!--    <a class="btn btn-primary float-end" href="../administrator/admin_maket_write.do">
-                                <i class="fas fa-edit"></i> 광고 작성
-                            </a> -->
+                            <a class="btn btn-primary float-end" href="../administrator/admin_community_write.do">
+                                <i class="fas fa-edit"></i> 글 작성
+                            </a>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-	                                <colgroup>
-	                                	<col width="8%" /><col width="8%" /><col width="30%" /><col width="10%" /><col width="10%" />
-	                                	<col width="10%" /><col width="10%" /><col width="10%" />
+                                	<colgroup>
+	                                	<col width="6%" /><col width="10%" /><col width="30%" />
+	                                	<col width="10%" /><col width="20%" /><col width="10%" /><col width="10%" />
 	                                </colgroup>
                                     <thead>
                                         <tr>
                                             <th>번호</th>
                                             <th>분류</th>
-                                            <th>제목(루트)</th>
-                                            <th>닉네임</th>
+                                            <th>제목</th>
+                                            <th>작성자</th>
+                                            <th>회신이메일</th>
                                             <th>작성일</th>
-                                            <th>조회수</th>
-                                            <th>대표이미지</th>
-                                            <th>삭제</th>
+                                            <th>답변</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
                                         <tr>
                                             <th>번호</th>
                                             <th>분류</th>
-                                            <th>제목(루트)</th>
-                                            <th>닉네임</th>
+                                            <th>제목</th>
+                                            <th>작성자</th>
+                                            <th>회신이메일</th>
                                             <th>작성일</th>
-                                            <th>조회수</th>
-                                            <th>대표이미지</th>
-                                            <th>삭제</th>
+                                            <th>답변</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
                                         <tr>
                                             <td>1</td>
-                                            <td>혼자여행</td>
-                                            <td><a href="">서울 > 대전</a></td>
-                                            <td>감자</td>
-                                            <td>2011/04/25</td>
-                                            <td>0</td>
+                                            <td>플래너문의</td>
+                                            <td><a href="">뭐뭐가 안됩니다 왜그런가요?</a></td>
+                                            <td>말랭이(malang@gmail.com)</td>
+                                            <td></td>
+                                            <td>2023/12/08</td>
                                             <td>
-                                                <img src="../images/1572507524886qqw0qpSy16.jpg" alt="" width="100px" height="100px">
-                                            </td>
-                                            <td>
+                                            	<a href="#" class="btn btn-warning btn-icon-split">
+                                                    <span class="text">답변</span>
+                                                </a>
                                             	<a href="#" class="btn btn-danger btn-icon-split">
                                                     <span class="text">삭제</span>
                                                 </a>
@@ -106,21 +103,52 @@
                                         </tr>
                                         <tr>
                                             <td>2</td>
-                                            <td>부모님과</td>
-                                            <td><a href="">울산 > 부산</a></td>
-                                            <td>호떡</td>
-                                            <td>2021/04/25</td>
-                                            <td>540</td>
+                                            <td>마켓문의</td>
+                                            <td><a href="">환불배송은 어떻게하나요?</a></td>
+                                            <td>감자떡(GamJaEjr@naver.com)</td>
+                                            <td></td>
+                                            <td>2023/12/09</td>
                                             <td>
-                                                <img src="../images/1576040661397F0AFLiH3DC.JPG" alt="" width="100px" height="100px">
-                                            </td>
-                                            <td>
+                                            	<a href="#" class="btn btn-warning btn-icon-split">
+                                                    <span class="text">답변</span>
+                                                </a>
                                             	<a href="#" class="btn btn-danger btn-icon-split">
                                                     <span class="text">삭제</span>
                                                 </a>
                                             </td>
                                         </tr>
-                                        
+                                        <tr>
+                                            <td>3</td>
+                                            <td>신고문의</td>
+                                            <td><a href="">유저 누구씨를 신고합니다.</a></td>
+                                            <td>의자아아아왕(chairking@gmail.com)</td>
+                                            <td></td>
+                                            <td>2023/12/09</td>
+                                            <td>
+                                            	<a href="#" class="btn btn-warning btn-icon-split">
+                                                    <span class="text">답변</span>
+                                                </a>
+                                            	<a href="#" class="btn btn-danger btn-icon-split">
+                                                    <span class="text">삭제</span>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>4</td>
+                                            <td>광고/제휴문의</td>
+                                            <td><a href="">저희 가게에서 광고를 문의하고싶습니다.</a></td>
+                                            <td></td>
+                                            <td>chickenZip@naver.com</td>
+                                            <td>2023/12/10</td>
+                                            <td>
+                                            	<a href="#" class="btn btn-warning btn-icon-split">
+                                                    <span class="text">답변</span>
+                                                </a>
+                                            	<a href="#" class="btn btn-danger btn-icon-split">
+                                                    <span class="text">삭제</span>
+                                                </a>
+                                            </td>
+                                        </tr>
                                         
                                        
                                     </tbody>

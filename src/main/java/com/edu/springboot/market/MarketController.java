@@ -165,9 +165,13 @@ public class MarketController {
 		// 파라미터 값을 가져온다.
 		String allPrice = req.getParameter("allPrice");
 		String payment = req.getParameter("payment");
+		String deliveryPrice = req.getParameter("delivery");
 		
-		model.addAttribute("allPrice", allPrice);
+		System.out.println(allPrice + ":" + payment);
+		
+		model.addAttribute("_allPrice", allPrice);
 		model.addAttribute("payment", payment);
+		model.addAttribute("deliveryPrice", deliveryPrice);
 		return "market/order";
 	}
 	

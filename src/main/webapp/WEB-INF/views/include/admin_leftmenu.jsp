@@ -74,6 +74,7 @@
                 <h6 class="collapse-header">고객센터게시판:</h6>
                 <a class="collapse-item" href="../administrator/admin_notice_list.do">FAQ관리</a>
                 <a class="collapse-item" href="../administrator/admin_notice_list.do">공지사항</a>
+                <a class="collapse-item" href="../administrator/admin_inquiry_list.do">1:1문의관리</a>
             </div>
         </div>
     </li>
@@ -107,12 +108,12 @@
     <hr class="sidebar-divider">
 
     <!-- Heading -->
-    <div class="sidebar-heading">
+    <!-- <div class="sidebar-heading">
         문의사항
-    </div>
+    </div> -->
 
     <!-- Nav Item - Pages Collapse Menu -->
-    <li class="nav-item">
+    <!-- <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
             aria-expanded="true" aria-controls="collapsePages">
             <i class="fas fa-fw fa-comments"></i>
@@ -121,7 +122,6 @@
         <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">문의확인하기:</h6>
-                <a class="collapse-item" href="login.html">신고문의관리</a>
                 <a class="collapse-item" href="register.html">1:1문의관리</a>
                 <a class="collapse-item" href="forgot-password.html">광고/제휴문의확인</a>
                 <div class="collapse-divider"></div>
@@ -130,7 +130,7 @@
                 <a class="collapse-item" href="blank.html">Blank Page</a>
             </div>
         </div>
-    </li>
+    </li> -->
 
     <!-- Nav Item - Tables -->
     <!-- <li class="nav-item">
@@ -140,7 +140,7 @@
     </li> -->
 
     <!-- Divider -->
-    <hr class="sidebar-divider d-none d-md-block">
+    <!-- <hr class="sidebar-divider d-none d-md-block"> -->
 
     <!-- Sidebar 토글버튼 -->
     <div class="text-center d-none d-md-inline">
