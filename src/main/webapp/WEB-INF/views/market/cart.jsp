@@ -99,7 +99,9 @@
 <script>
 function marketOrder() {
 	var paymentAmount = $("#paymentAmount").text().trim().replace(",", "");
-	document.paymentFrm.value = paymentAmount;
+	var allPrice = $("#allPrice").text().trim().replace(",", "");
+	document.paymentFrm.payment.value = paymentAmount;
+	document.paymentFrm.allPrice.value = allPrice;
 	document.paymentFrm.submit();
 }
 $(function() {
@@ -144,10 +146,22 @@ $(function() {
 	        type: "POST",
 	        url: "./updateToCart.do",
 	        data: data,
-	        success: function(response) {
-	            console.log("수량변경 성공");
+	        success: function(res) {
+	            console.log("수량변경 성공" + res.prod_totprice);
+	            /* 상품 총 가격에 반영한다. */
+	            $(e.target).parent().next().find(".product_price").html(res.prod_totprice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+	            // 모든 가격 정보를 불러온다.
+	            let priceArr = document.getElementsByClassName("product_price");
+	            let sum = 0;
+	            for (let i=0; i<priceArr.length; i++) {
+	            	let price = parseInt(priceArr[i].innerHTML.replace(",", ""));
+	            	sum += price;
+	            }
+	            console.log("총 가격 : " + sum);
+	            $(".allPrice").html(sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+	            $(".payment").html((sum+3000).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
 	        },
-	        error: function(error) {
+	        error: function(err) {
         		console.log("수량변경 실패");
 	        }
 		});
@@ -179,6 +193,7 @@ $(function() {
     <main>
         <div class="container">
         	<form action="./order.do" method="post" name="paymentFrm">
+        		<input type="hidden" name="allPrice" />
         		<input type="hidden" name="payment" />
         	</form>
             <div class="row">
@@ -260,7 +275,7 @@ $(function() {
                             <!-- 오른쪽 -->
                             <div class="bottom_box_right">
                                 <p class="" style="line-height: 40px;" >
-                                    <span>상품가격 </span><span class="product_price">
+                                    <span>상품가격 </span><span style="font-weight: bold; font-size: 1.2em;" class="allPrice">
                                    		<fmt:formatNumber value="${allPrice}" pattern="#,###" />
                                     </span>원
                                     <span class="plus">
@@ -271,7 +286,7 @@ $(function() {
                                     <span class="equal">
                                         <img src="../images/equal-icon.png" alt="">
                                     </span>
-                                    <span class="All_price">
+                                    <span class="All_price payment">
                                    		<fmt:formatNumber value="${allPrice+3000}" pattern="#,###" />
 									</span>원
                                 </p>
@@ -289,7 +304,7 @@ $(function() {
                                 <tr>
                                     <td class="payment_info_txt">상품금액</td>
                                     <td class="text-end">
-                                    	<span class="payment_info_price">
+                                    	<span class="payment_info_price allPrice" id="allPrice">
                                    			<fmt:formatNumber value="${allPrice}" pattern="#,###" />
 										</span>원
 									</td>
@@ -305,7 +320,7 @@ $(function() {
                                 <tr class="payment_info_total_line">
                                     <td class="payment_info_txt lete_sp_1">총 결제예정금액</td>
                                     <td class="text-end">
-                                    	<span class="payment_info_total_price" id="paymentAmount">
+                                    	<span class="payment_info_total_price payment" id="paymentAmount">
                                    			<fmt:formatNumber value="${allPrice+3000}" pattern="#,###" />
                                     	</span>원
                                     </td>

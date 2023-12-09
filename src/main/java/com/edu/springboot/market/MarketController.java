@@ -107,8 +107,8 @@ public class MarketController {
 		// 키값이 cart_idx이고, 상품 정보가 List<ProductDTO>인 Map컬렉션 생성
 		Map<String, List<ProductDTO>> map = new HashMap<String, List<ProductDTO>>();
 		for (CartDTO cartDTO : cartInfo) {
-			// cart_idx와 prod_count사이에 ":"를 넣은 문자열을 키값으로 한다.
-			map.put(cartDTO.getCart_idx()+":"+cartDTO.getProd_count(), cartDAO.allProductInfo(cartDTO));
+			// cart_idx와 prod_count사이에 ":"를 넣은 문자열을 키값으로 한다. 0번 : 일련번호, 1번 : 수량, 2번 : 총가격
+			map.put(cartDTO.getCart_idx()+":"+cartDTO.getProd_count()+":"+cartDTO.getProd_totprice(), cartDAO.allProductInfo(cartDTO));
 		}
 		
 		model.addAttribute("map", map);
@@ -119,7 +119,7 @@ public class MarketController {
 	
 	// 장바구니에 상품 수량 변경
 	@RequestMapping("/market/updateToCart.do") // cartDTO에는 email과 prod_idx만 담겨있는 상태
-	public ResponseEntity<String> updateToCart(CartDTO cartDTO, Model model) {
+	public ResponseEntity<CartDTO> updateToCart(CartDTO cartDTO, Model model) {
 		// 임의로 이메일 설정 (시큐리티 연동 전)
 		cartDTO.setEmail("foo@gmail.com");
 		// 상품 수량 변경
@@ -133,7 +133,7 @@ public class MarketController {
 		System.out.println("상품의 가격" + prodTotPrice);
 		cartDTO.setProd_totprice(prodTotPrice);
 		cartDAO.updateTotPrice(cartDTO);
-		return ResponseEntity.ok("상품이 성공적으로 추가되었습니다.");
+		return ResponseEntity.ok(cartDTO);
 	}
 	
 	@RequestMapping("/market/order.do")
