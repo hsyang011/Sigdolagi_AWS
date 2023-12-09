@@ -85,10 +85,6 @@ main > * { margin: 50px 0; }
 }
 
 </style>
-<<<<<<< HEAD
-
-=======
-<<<<<<< HEAD
 <script>
 $(function() {
 	$("#getSummernote").click(() => {
@@ -97,7 +93,6 @@ $(function() {
 	});
 });
 </script>
->>>>>>> branch 'main' of https://github.com/hsyang011/Sigdolagi.git
 </head>
 <body>
 <!-- wrapper 시작 -->

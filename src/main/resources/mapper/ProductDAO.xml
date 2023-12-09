@@ -4,7 +4,7 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.edu.springboot.market.IMarketService">
+<mapper namespace="com.edu.springboot.market.IProductService">
 	
 	<!-- 검색 결과 상품의 갯수 -->
 	<select id="getTotalCount" parameterType="com.edu.springboot.market.ParameterDTO" resultType="int">
@@ -36,17 +36,6 @@
 	<!-- 상품 추천 리스트 -2~2사이 -->
 	<select id="recommendList" parameterType="com.edu.springboot.market.ProductDTO" resultType="com.edu.springboot.market.ProductDTO">
 		SELECT * FROM product WHERE prod_idx BETWEEN ${prod_idx}-2 AND ${prod_idx}+2 AND NOT prod_idx=${prod_idx}
-	</select>
-	
-	<!-- 장바구니에 상품 추가 -->
-	<insert id="addToCart" parameterType="com.edu.springboot.market.CartDTO">
-		INSERT INTO cart (cart_idx, prod_idx, email, prod_count)
-			VALUES (seq_cart_idx.NEXTVAL, ${prod_idx}, #{email}, ${prod_count})
-	</insert>
-	
-	<!-- 장바구니에 담긴 모든 품목을 가져오기 -->
-	<select id="cartInfo">
-		SELECT * FROM cart WHERE email=#{email}
 	</select>
 	
 </mapper>

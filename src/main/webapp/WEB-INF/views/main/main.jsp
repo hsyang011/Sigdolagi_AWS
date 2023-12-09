@@ -33,10 +33,13 @@
 						    <li><a href="../member/login.do">로그인</a></li>
 						</c:if>
                         
-                        
+                        <!-- 로그인했을때 -->
                         <c:if test="${not empty sessionEmail}">
-                        <li><a href="../member/logout.do">로그아웃</a></li>
-					    
+                        	<!-- 관리자로그인했을경우 -->
+		                	<c:if test="${sessionEmail eq 'admin'}">
+		                		<li><a href="../administrator/admin_main.do">관리자</a></li>
+		                	</c:if>
+		                	<li><a href="../member/logout.do">로그아웃</a></li>
 						</c:if>
                         
                         

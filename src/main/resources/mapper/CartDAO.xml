@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.edu.springboot.market.ICartService">
+
+	<!-- 상품이 담겨 있는지 확인하는 쿼리문 -->
+	<select id="getProdIdx" parameterType="com.edu.springboot.market.CartDTO" resultType="int">
+		SELECT COUNT(*) FROM cart WHERE prod_idx=${prod_idx}
+	</select>
+	
+	<!-- 장바구니에 상품 추가 -->
+	<insert id="addToCart1" parameterType="com.edu.springboot.market.CartDTO">
+		INSERT INTO cart (cart_idx, prod_idx, email, prod_count)
+			VALUES (seq_cart_idx.NEXTVAL, ${prod_idx}, #{email}, ${prod_count})
+	</insert>
+	
+	<!-- 장바구니에 담긴 상품의 갯수를 증가 -->
+	<update id="addToCart2" parameterType="com.edu.springboot.market.CartDTO">
+		UPDATE cart SET prod_count=prod_count+${prod_count} WHERE prod_idx=${prod_idx}
+	</update>
+	
+	<!-- 장바구니에 담긴 상품의 갯수를 증가 -->
+	<update id="updateToCart" parameterType="com.edu.springboot.market.CartDTO">
+		UPDATE cart SET prod_count=${prod_count} WHERE prod_idx=${prod_idx}
+	</update>
+	
+	<!-- 장바구니에 담긴 모든 품목의 prod_idx를 가져오기 -->
+	<select id="cartInfo" resultType="com.edu.springboot.market.CartDTO">
+		SELECT * FROM cart WHERE email=#{email}
+	</select>
+	
+	<!-- 장바구니에 담긴 모든 품목의 정보를 가져오기 -->
+	<select id="allProductInfo" parameterType="com.edu.springboot.market.CartDTO" resultType="com.edu.springboot.market.ProductDTO">
+		SELECT * FROM product WHERE prod_idx = (
+		    SELECT prod_idx FROM cart WHERE cart_idx=${cart_idx}
+		)
+	</select>
+	
+	<!-- 카트 일련번호 가져오기 -->
+	<select id="getCartIdx" parameterType="com.edu.springboot.market.CartDTO" resultType="string">
+		SELECT cart_idx FROM cart WHERE prod_idx=${prod_idx}
+	</select>
+	
+	<!-- 상품의 가격*수량 정보 구해오기 -->
+	<select id="prodTotPrice" parameterType="com.edu.springboot.market.CartDTO" resultType="string">
+		SELECT (
+		    SELECT prod_price-prod_sale FROM product WHERE prod_idx=(
+		        SELECT prod_idx FROM cart WHERE cart_idx=${cart_idx}
+		    )) * (SELECT prod_count FROM cart WHERE cart_idx=${cart_idx})
+		FROM DUAL
+	</select>
+	
+	<!-- 상품 총 가격 업데이트 -->
+	<update id="updateTotPrice" parameterType="com.edu.springboot.market.CartDTO">
+		UPDATE cart SET prod_totprice=${prod_totprice} WHERE cart_idx=${cart_idx}
+	</update>
+	
+	<!-- 장바구니에서 상품 제거 -->
+	<delete id="deleteToCart" parameterType="com.edu.springboot.market.CartDTO">
+		DELETE FROM cart WHERE prod_idx=${prod_idx}
+	</delete>
+	
+</mapper>

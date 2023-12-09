@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fn" uri="jakarta.tags.functions" %> <!-- split을 사용하기 위한 jstl 추가 -->
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %> <!-- 숫자의 3자릿수마다 콤마를 찍어주기 위한 jstl 추가 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -116,7 +119,7 @@ div.sticky{
                     <h2>마켓</h2>
                 </div>
             </div>
-            <img id="page_icon" src="./images/gift2.png">
+            <img id="page_icon" src="../images/gift2.png">
         </div>
     </div>
     <!-- 배너 끝 -->
@@ -177,52 +180,45 @@ div.sticky{
                     <div class="cart_list">
                         <table width="100%">
                             <colgroup>
-                                <col width="3%"><col width="10%"><col width="60%"><col width="10%"><col width="14%"><col width="3%"> 
+                                <col width="10%"><col width="60%"><col width="10%"><col width="17%">
                             </colgroup>
-                            <!-- 1번리스트 시작 -->
-                            <tr class="cart_product">
-                                <td><input type="checkbox" name="" id=""></td>
-                                <td class="product_img">
-                                    <img src="./images/밀키트1.jpg" alt="" >
-                                </td>
-                                <td class="product_title">
-                                    <div><span class="shop_title">가게이름뭐시기저시기</span></div>
-                                    <div>상품명 이것저것요것(2인)</div>
-                                    <div><span class="product_title_price">10,900</span>원</div>
-                                </td>
-                                <td>
-                                    <input class="product_quantity" type="number" name="" id="" value="1">
-                                </td>
-                                <td>
-                                    <p class="product_price_area"><span class="product_price">10,900</span>원</p>
-                                </td>
-                                <td>
-                                    <img src="./images/cross-wish-ico.png" alt="">
-                                </td>
-                            </tr>
-                            <!-- 1번리스트 끝 -->
-                            <!-- 2번리스트 시작 -->
-                            <tr class="cart_product">
-                                <td><input type="checkbox" name="" id=""></td>
-                                <td class="product_img">
-                                    <img src="./images/밀키트2.jpg" alt="" >
-                                </td>
-                                <td class="product_title">
-                                    <div><span class="shop_title">가게이름뭐시기저시기</span></div>
-                                    <div>상품명 이것저것요것(2인)</div>
-                                    <div><span class="product_title_price">10,900</span>원</div>
-                                </td>
-                                <td>
-                                    <input class="product_quantity" type="number" name="" id="" value="1">
-                                </td>
-                                <td>
-                                    <p class="product_price_area"><span class="product_price">10,900</span>원</p>
-                                </td>
-                                <td>
-                                    <img src="./images/cross-wish-ico.png" alt="">
-                                </td>
-                            </tr>
-                            <!-- 2번리스트 끝 -->
+                            <!-- 상품 리스트 시작 -->
+       						<c:forEach items="${map}" var="row" varStatus="loop">
+       							<c:forEach items="${row.value}" var="col">
+                                    <tr class="cart_product">
+                                        <td class="product_img">
+                                            <img src="../images/products/${col.prod_thumbnail}.jpg" alt="" >
+                                        </td>
+                                        <td class="product_title">
+                                            <div><span class="shop_title">${col.seller}</span></div>
+                                            <div>${col.prod_name}</div>
+                                            <div>
+                                            	<span class="product_title_price">
+                                            		<!-- 콤마를 찍어주기위한 formatNumber를 사용, #,### 규칙으로 콤마를 찍어준다. -->
+                                            		<fmt:formatNumber value="${col.prod_price-col.prod_sale}" pattern="#,###" />
+                                            	</span>원
+                                            </div>
+                                        </td>
+                                        <td>
+                                        	<!-- ":"로 split해서 1번 인덱스(상품 수량)의 값을 가져온다. (짱대가리 굴림) -->
+											<c:set var="cnt" value="${fn:split(row.key, ':')}" />
+                                            <input style="width: 100%" class="product_quantity" type="number" readonly name="" id="" value="${cnt[1]}">
+                                            <input type="hidden" value="${col.prod_idx}" />
+                                        </td>
+                                        <td>
+                                        	<!-- 상품수량 * 상품가격 -->
+											<span id="price"><c:set var="price" value="${cnt[1] * (col.prod_price-col.prod_sale)}" /></span>
+											<c:set var="allPrice" value="${allPrice+price}" />
+                                            <p class="product_price_area text-end">
+                                            	<span class="product_price">
+                                           			<fmt:formatNumber value="${price}" pattern="#,###" />
+                                            	</span>원
+                                           	</p>
+                                        </td>
+                                    </tr>
+       							</c:forEach>
+                              	</c:forEach>
+                            <!-- 상품 리스트 끝 -->
                         </table>
                     </div>
                     <!-- 장바구니 리스트 끝 -->
@@ -267,7 +263,11 @@ div.sticky{
                             <table>
                                 <tr>
                                     <td class="payment_info_txt" style="width: 50%;">상품금액</td>
-                                    <td class="text-end"><span class="payment_info_price">36,700</span>원</td>
+                                    <td class="text-end">
+                                    	<span class="payment_info_price">
+                                        	<fmt:formatNumber value="${payment-3000}" pattern="#,###" />
+                                    	</span>원
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td class="payment_info_txt">할인금액</td>
@@ -279,7 +279,11 @@ div.sticky{
                                 </tr>
                                 <tr class="payment_info_total_line">
                                     <td class="payment_info_txt lete_sp_1">총 결제예정금액</td>
-                                    <td class="text-end"><span class="payment_info_total_price">39,700</span>원</td>
+                                    <td class="text-end">
+                                    	<span class="payment_info_total_price">
+                                        	<fmt:formatNumber value="${payment}" pattern="#,###" />
+                                    	</span>원
+                                    </td>
                                 </tr>
                                 <tr class="payment_info_total_line">
                                     <td class="payment_info_txt">처리위탁 및 3자 제공 동의</td>

@@ -16,17 +16,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.edu.springboot.community.BoardDTO;
 
-import ch.qos.logback.core.recovery.ResilientSyslogOutputStream;
 import jakarta.mail.Session;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
+import jakarta.servlet.http.Part;
 import oracle.jdbc.proxy.annotation.Post;
-import utils.MyFunctions;
 import utils.PagingUtil;
 
 @Controller
 public class CommunityController {
-	
 	
 	
 	@Autowired
@@ -66,6 +64,7 @@ public class CommunityController {
 	}
 	
 	
+	
 	//글쓰기 페이지 로딩
 	@GetMapping("/community/freeboard_write.do")
 	public String boardWriteGet(Model model) {
@@ -76,7 +75,7 @@ public class CommunityController {
 	//포토 게시판 글쓰기 페이지 이
 		@GetMapping("/community/photoboard_write.do")
 		public String photoboardWriteGet(Model model) {
-			return "community/multiFileUpload";
+			return "community/photoboard_write";
 		}
 	
 	
@@ -108,6 +107,16 @@ public class CommunityController {
 		model.addAttribute("boardDTO", boardDTO);
 		
 		return "community/freeboard_view";
+	}
+	//  ./photoboard_view.do
+	
+	@RequestMapping("/community/photoboard_view.do")
+	public String photoboardView(Model model, PhotoBoardDTO photoBoardDTO) {
+		photoBoardDTO = photoboarddao.photoview(photoBoardDTO);
+		photoBoardDTO.setContent(photoBoardDTO.getContent().replace("\r\n", "<br>"));
+		model.addAttribute("photoBoardDTO", photoBoardDTO);
+		
+		return "community/photoboard_view";
 	}
 	
 	
@@ -181,20 +190,22 @@ public class CommunityController {
 		return "community/photoboard_list";
 	}
 	
-//	@PostMapping("/community/photoboard_writeProcess.do")
-//	public String photoboardWrite(HttpServletRequest req, Model model, PhotoBoardDTO photoBoardDTO) {
-//		
-//		String title = req.getParameter("title");
-//		
-//		
-//		
-//		
-//		
-//		return "community/photoboard_list";
-//	}
+	@PostMapping("/community/photoboard_writeProcess.do")
+	public String photoboardWrite(HttpServletRequest req, Model model, PhotoBoardDTO photoBoardDTO) {
+		
+		String title = req.getParameter("title");
+		
+		
+		
+		
+		
+		return "community/photoboard_list";
+	}
 	
 	
-
+	
+	//사진 게시판 	쓰기. /community/freeboard_write.do
+//	community/photoboard_writeprocess.do     /community/freeboard_write.do
 	
 	
 
