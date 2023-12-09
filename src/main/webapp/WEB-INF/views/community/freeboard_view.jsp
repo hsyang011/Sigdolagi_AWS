@@ -81,11 +81,12 @@ function deletePost(){
 		var form = document.createElement("form");
 		form.method = "post";
 		form.action="./freeboard_delete.do";
+		
 		var hiddenField = document.createElement("input");
 		hiddenField.type = "hidden";
 		hiddenField.name = "freeboard_idx";
 		hiddenField.value = "${boardDTO.freeboard_idx}";
-		form.appendChild(hiddenField);
+		form.appendChild(hiddenField); 
 
 		document.body.appendChild(form);
 		form.submit();
@@ -150,8 +151,7 @@ function deletePost(){
                     <div class="freeboard_write_frm" >
                         <!-- 게시판 들어가는 부분 (시작) -->
                         <form name="writeFrm" method="post" onsubmit="return validateForm(this);" action="../community/freeboard_view.do" class="writeFrm">
-                            <input type="hidden" name="tname"  />
-                            <input type="hidden" name="idx" value="${boardDTO.freeboard_idx }"  />
+           
                             <input type="hidden" name="email"  />
                             <table class="table table-bordered" id="free_write_frm_table" width="100%" >
                             	<colgroup>
@@ -181,8 +181,8 @@ function deletePost(){
                                     <td colspan="4" align="center" class="btn_td">
                                         <button type="button" onclick="location.href='./freeboard_edit.do?freeboard_idx=${boardDTO.freeboard_idx }';">수정하기</button>
                                         <form id="deleteForm" action="./community/freeboard_delete.do" method="post">
-								            <input type="hidden" name="freeboard_idx" value="${boardDTO.freeboard_idx}">
-								             <button type="button" onclick="deletePost();">삭제하기</button>
+                                          	<input type="hidden" name="freeboard_idx" value="${boardDTO.freeboard_idx }"  />
+                                			<button type="button" onclick="deletePost();">삭제하기</button>
 								       	</form>
                                       
                                         <button type="button" class="writeFrm_list" onclick="location.href='./freeboard_list.do';">목록 보기</button>
