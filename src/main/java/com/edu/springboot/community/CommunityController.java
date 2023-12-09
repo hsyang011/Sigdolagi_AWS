@@ -77,9 +77,7 @@ public class CommunityController {
 
 	public String freeboardWrite(Model model, HttpServletRequest req, HttpSession session) {
 		String email= req.getParameter("email");
-
 		String nickname= (String)session.getAttribute("sessionNickname");
-
 		String title= req.getParameter("title");
 		String content= req.getParameter("content");
 		//폼값을 개별적으로 전달한다.
@@ -90,17 +88,18 @@ public class CommunityController {
 	}
 	
 	
-	
-	
 	@RequestMapping("/community/freeboard_view.do")
 	public String freeboardView(Model model, BoardDTO boardDTO) {
+		dao.update(boardDTO);
 		boardDTO = dao.view(boardDTO);
 		boardDTO.setContent(boardDTO.getContent().replace("\r\n", "<br>"));
+		
+		
 		model.addAttribute("boardDTO", boardDTO);
 		
 		return "community/freeboard_view";
 	}
-	//  ./photoboard_view.do
+
 	
 
 	
@@ -118,8 +117,6 @@ public class CommunityController {
 	public String boardEditPost(BoardDTO boardDTO) {
 		int result = dao.edit(boardDTO);
 		System.out.println("result:"+result);
-		System.out.println("글수정결과:"+result);
-		System.out.println("boardDto"+boardDTO+"result"+result);
 		return "redirect:freeboard_view.do?freeboard_idx="+boardDTO.getFreeboard_idx();
 	}
 	
