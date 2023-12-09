@@ -23,6 +23,7 @@ public class MemberController {
 	@Autowired
 	IMemberService  memberdao;
 	
+	
 	@RequestMapping("/member/login.do")
 	public String login() {
 		return "member/login";

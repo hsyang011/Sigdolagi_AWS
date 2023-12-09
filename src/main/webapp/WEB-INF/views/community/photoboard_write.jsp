@@ -178,9 +178,7 @@ $(function() {
                              
                                 <tr>
                                     <td colspan="2" align="center" class="btn_td">
-                                        <button type="button" class="writeFrm_end" id="getSummernote">작성 완료</button>
                                         <button type="submit" class="writeFrm_end" id="getSummernote">작성 완료</button>
-                                        <button type="button" class="writeFrm_end">작성 완료</button>
                                         <button type="reset" class="writeFrm_reset">다시 입력</button>
                                         <button type="button" class="writeFrm_list" onclick="">목록 보기</button>
                                     </td>
