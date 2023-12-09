@@ -33,6 +33,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 	WHERE rNum<![CDATA[>=]]>#{start} AND rNum<![CDATA[<=]]>#{end}
 	</select>
 	
+	<select id="photoview" resultType="com.edu.springboot.community.PhotoBoardDTO" parameterType="com.edu.springboot.community.PhotoBoardDTO">
+		SELECT * FROM photoboard WHERE photoboard_idx=${photoboard_idx}
+	</select>
+	
+	
 	
 	
 

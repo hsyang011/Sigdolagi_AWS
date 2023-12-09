@@ -86,6 +86,7 @@ $(function() {
                 </div>
             </div>
             
+            
             <!-- 테이블 -->
             <div class="container">
             <div class="table_wrap" id="table_wrap">
@@ -112,10 +113,14 @@ $(function() {
                                                         ${post.title}
                                                     </h4>
                                                     <p class="card-text" style="text-align: left;">
-                                                        ${post.title}
-                                                    </p>
+													    <a href="./photoboard_view.do?photoboard_idx=${post.photoboard_idx}">
+													        ${post.title}
+													    </a>
+													</p>
                                                 </div>
                                             </div>
+                                            <input type="hidden" value=" ${post.photoboard_idx}">
+                                           	
                                             <!-- 1열 끝 -->
                                         </figure>
                                     </div>

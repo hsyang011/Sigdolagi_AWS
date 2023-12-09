@@ -26,8 +26,6 @@ import utils.PagingUtil;
 @Controller
 public class CommunityController {
 	
-	@Autowired
-	IMyFileService  filedao;
 	
 	@Autowired
 	IBoardService dao;
@@ -64,6 +62,7 @@ public class CommunityController {
 		model.addAttribute("pagingImg", pagingImg);
 		return "community/freeboard_list";
 	}
+	
 	
 	
 	//글쓰기 페이지 로딩
@@ -108,6 +107,16 @@ public class CommunityController {
 		model.addAttribute("boardDTO", boardDTO);
 		
 		return "community/freeboard_view";
+	}
+	//  ./photoboard_view.do
+	
+	@RequestMapping("/community/photoboard_view.do")
+	public String photoboardView(Model model, PhotoBoardDTO photoBoardDTO) {
+		photoBoardDTO = photoboarddao.photoview(photoBoardDTO);
+		photoBoardDTO.setContent(photoBoardDTO.getContent().replace("\r\n", "<br>"));
+		model.addAttribute("photoBoardDTO", photoBoardDTO);
+		
+		return "community/photoboard_view";
 	}
 	
 	

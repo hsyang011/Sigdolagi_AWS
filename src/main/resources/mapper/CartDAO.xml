@@ -39,8 +39,6 @@
 		)
 	</select>
 	
-<<<<<<< HEAD
-=======
 	<!-- 카트 일련번호 가져오기 -->
 	<select id="getCartIdx" parameterType="com.edu.springboot.market.CartDTO" resultType="string">
 		SELECT cart_idx FROM cart WHERE prod_idx=${prod_idx}
@@ -64,6 +62,5 @@
 	<delete id="deleteToCart" parameterType="com.edu.springboot.market.CartDTO">
 		DELETE FROM cart WHERE prod_idx=${prod_idx}
 	</delete>
->>>>>>> branch 'main' of https://github.com/hsyang011/Sigdolagi.git
 	
 </mapper>
