@@ -149,24 +149,48 @@ $(function() {
 	        success: function(res) {
 	            console.log("수량변경 성공" + res.prod_totprice);
 	            /* 상품 총 가격에 반영한다. */
-	            $(e.target).parent().next().find(".product_price").html(res.prod_totprice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
-	            // 모든 가격 정보를 불러온다.
-	            let priceArr = document.getElementsByClassName("product_price");
-	            let sum = 0;
-	            for (let i=0; i<priceArr.length; i++) {
-	            	let price = parseInt(priceArr[i].innerHTML.replace(",", ""));
-	            	sum += price;
-	            }
-	            console.log("총 가격 : " + sum);
-	            $(".allPrice").html(sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
-	            $(".payment").html((sum+3000).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+	        	$(e.target).parent().parent().find(".product_price").html(res.prod_totprice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+	            /* 상품 총 가격에 반영한다. */
+	            updateCartInfo(e, res);
 	        },
 	        error: function(err) {
         		console.log("수량변경 실패");
 	        }
 		});
 	});
+	
+	/* x를 누르면 해당 상품을 제거 */
+	$(".deleteProd").click((e) => {
+		var data = { prod_idx: $(e.target).next().val() };
+		$.ajax({
+	        type: "POST",
+	        url: "./deleteToCart.do",
+	        data: data,
+	        success: function(res) {
+	    		// 엘리먼트 제거
+	    		$(e.target).parent().parent().remove();
+	            /* 상품 총 가격에 반영한다. */
+	            updateCartInfo(e, res);
+	        },
+	        error: function(err) {
+        		console.log("상품삭제 실패");
+	        }
+		});
+	});
 });
+
+function updateCartInfo(e, res) {
+    // 모든 가격 정보를 불러온다.
+    let priceArr = document.getElementsByClassName("product_price");
+    let sum = 0;
+    for (let i=0; i<priceArr.length; i++) {
+    	let price = parseInt(priceArr[i].innerHTML.replace(",", ""));
+    	sum += price;
+    }
+    console.log("총 가격 : " + sum);
+    $(".allPrice").html(sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+    $(".payment").html((sum+3000).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+}
 </script>
 </head>
 <body>
@@ -204,32 +228,17 @@ $(function() {
                         <h2>장바구니</h2>
                     </div>
                     <div class="cart_list_area">
-                        <!-- 체크박스, 체크삭제 -->
-                        <div class="cart-option d-flex justify-content-between">
-                            <!-- 전체선택 -->
-                            <div class="custom_checkbox">
-                                <input type="checkbox" id="check-1" class="checkbox checkboxGroup" name="checkAll">
-                                <label for="check-1" class="renewal-cart-label">전체</label>
-                            </div>
-                            <!-- 삭제 -->
-                            <div class="cart_delete">
-                                <button type="button" class="btn_cart_delete delete_select" id="deleteProd">
-                                    <span>삭제</span>
-                                </button>
-                            </div>
-                        </div>
                         <!-- 장바구니리스트 시작 -->
                         <div class="cart_list">
                             <table width="100%">
                                 <colgroup>
-                                    <col width="3%"><col width="10%"><col width="60%"><col width="10%"><col width="17%"> 
+                                    <col width="10%"><col width="60%"><col width="10%"><col width="17%"><col width="3%"> 
                                 </colgroup>
                                 <tbody>
                                 	<!-- 장바구니에 담긴 품목을 중첩 반복 -->
 		       						<c:forEach items="${map}" var="row" varStatus="loop">
 		       							<c:forEach items="${row.value}" var="col">
 		                                    <tr class="cart_product">
-		                                        <td><input type="checkbox" class="prod_check" name="" id=""></td>
 		                                        <td class="product_img">
 		                                            <img src="../images/products/${col.prod_thumbnail}.jpg" alt="" >
 		                                        </td>
@@ -258,6 +267,10 @@ $(function() {
 	                                            			<fmt:formatNumber value="${price}" pattern="#,###" />
 		                                            	</span>원
 	                                            	</p>
+		                                        </td>
+		                                        <td>
+		                                            <img src="../images/cross-wish-ico.png" alt="" class="deleteProd" style="cursor: pointer;">
+		                                            <input type="hidden" value="${col.prod_idx}" />
 		                                        </td>
 		                                    </tr>
 		       							</c:forEach>

@@ -26,5 +26,7 @@ public interface ICartService {
 	public String getCartIdx(CartDTO cartDTO);
 	// 상품의 총 가격을 업데이트
 	public int updateTotPrice(CartDTO cartDTO);
+	// 장바구니 상품 제거
+	public int deleteToCart(CartDTO cartDTO);
 	
 }

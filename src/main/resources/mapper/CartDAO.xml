@@ -58,4 +58,9 @@
 		UPDATE cart SET prod_totprice=${prod_totprice} WHERE cart_idx=${cart_idx}
 	</update>
 	
+	<!-- 장바구니에서 상품 제거 -->
+	<delete id="deleteToCart" parameterType="com.edu.springboot.market.CartDTO">
+		DELETE FROM cart WHERE prod_idx=${prod_idx}
+	</delete>
+	
 </mapper>
