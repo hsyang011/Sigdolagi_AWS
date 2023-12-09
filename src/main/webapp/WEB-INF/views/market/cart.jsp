@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
-<%@ taglib prefix="fn" uri="jakarta.tags.functions" %>
-<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
+<%@ taglib prefix="fn" uri="jakarta.tags.functions" %> <!-- split을 사용하기 위한 jstl 추가 -->
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %> <!-- 숫자의 3자릿수마다 콤마를 찍어주기 위한 jstl 추가 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -99,8 +99,97 @@
 <script>
 function marketOrder() {
 	var paymentAmount = $("#paymentAmount").text().trim().replace(",", "");
-	document.paymentFrm.value = paymentAmount;
+	var allPrice = $("#allPrice").text().trim().replace(",", "");
+	document.paymentFrm.payment.value = paymentAmount;
+	document.paymentFrm.allPrice.value = allPrice;
 	document.paymentFrm.submit();
+}
+$(function() {
+	/* 전체 체크를 눌렀을 때 전체 체크 및 전체 체크 해제 */
+	$("#check-1").change(() => {
+		if($("#check-1").is(":checked")) {
+			/* 전체 체크 */
+            let checkArr = document.getElementsByClassName("prod_check");
+            for (let i=0; i<checkArr.length; i++) {
+            	checkArr[i].checked = true;
+            }
+        } else {
+            /* 전체 체크해제 */
+            let checkArr = document.getElementsByClassName("prod_check");
+            for (let i=0; i<checkArr.length; i++) {
+            	checkArr[i].checked = false;
+            }
+        }
+	});
+	
+	/* 체크를 모두 눌렀을 때 전체 체크 버튼에 활성화 */
+	$(".prod_check").change(() => {
+        let checkArr = document.getElementsByClassName("prod_check");
+        for (let i=0; i<checkArr.length; i++) {
+        	if (checkArr[i].checked == false) {
+                document.getElementById("check-1").checked = false;
+	        	return;
+        	}
+        }
+        document.getElementById("check-1").checked = true;
+	});
+	
+	/* 상품 수량 변경을 할 때마다 ajax로 요청하여 DB에 실시간 반영 */
+	$(".product_quantity").change((e) => {
+		var data = {
+			prod_idx: $(e.target).next().val(),
+			prod_count: $(e.target).val()
+	    };
+		console.log($(e.target).val());
+		
+		$.ajax({
+	        type: "POST",
+	        url: "./updateToCart.do",
+	        data: data,
+	        success: function(res) {
+	            console.log("수량변경 성공" + res.prod_totprice);
+	            /* 상품 총 가격에 반영한다. */
+	        	$(e.target).parent().parent().find(".product_price").html(res.prod_totprice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+	            /* 상품 총 가격에 반영한다. */
+	            updateCartInfo(e, res);
+	        },
+	        error: function(err) {
+        		console.log("수량변경 실패");
+	        }
+		});
+	});
+	
+	/* x를 누르면 해당 상품을 제거 */
+	$(".deleteProd").click((e) => {
+		var data = { prod_idx: $(e.target).next().val() };
+		$.ajax({
+	        type: "POST",
+	        url: "./deleteToCart.do",
+	        data: data,
+	        success: function(res) {
+	    		// 엘리먼트 제거
+	    		$(e.target).parent().parent().remove();
+	            /* 상품 총 가격에 반영한다. */
+	            updateCartInfo(e, res);
+	        },
+	        error: function(err) {
+        		console.log("상품삭제 실패");
+	        }
+		});
+	});
+});
+
+function updateCartInfo(e, res) {
+    // 모든 가격 정보를 불러온다.
+    let priceArr = document.getElementsByClassName("product_price");
+    let sum = 0;
+    for (let i=0; i<priceArr.length; i++) {
+    	let price = parseInt(priceArr[i].innerHTML.replace(",", ""));
+    	sum += price;
+    }
+    console.log("총 가격 : " + sum);
+    $(".allPrice").html(sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
+    $(".payment").html((sum+3000).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ','));
 }
 </script>
 </head>
@@ -127,7 +216,8 @@ function marketOrder() {
     <!-- main 시작 -->
     <main>
         <div class="container">
-        	<form action="./payment.do" method="post" name="paymentFrm">
+        	<form action="./order.do" method="post" name="paymentFrm">
+        		<input type="hidden" name="allPrice" />
         		<input type="hidden" name="payment" />
         	</form>
             <div class="row">
@@ -138,35 +228,17 @@ function marketOrder() {
                         <h2>장바구니</h2>
                     </div>
                     <div class="cart_list_area">
-                        <!-- 체크박스, 체크삭제 -->
-                        <div class="cart-option d-flex justify-content-between">
-                            <!-- 전체해제,전체선택 -->
-                            <div class="custom_checkbox">
-                                <input type="checkbox" id="check-1" class="checkbox checkboxGroup" name="checkAll">
-                                <label for="check-1" class="renewal-cart-label">전체해제</label>
-                            </div>
-                            <!-- 전체삭제, 선택삭제 -->
-                            <div class="cart_delete">
-                                <button type="button" class="btn_cart_delete delete _All">
-                                    <span>전체삭제</span>
-                                </button>
-                                <button type="button" class="btn_cart_delete delete_select">
-                                    <span>선택삭제</span>
-                                </button>
-                            </div>
-                        </div>
                         <!-- 장바구니리스트 시작 -->
                         <div class="cart_list">
                             <table width="100%">
                                 <colgroup>
-                                    <col width="3%"><col width="10%"><col width="58%"><col width="4%"><col width="17%"><col width="3%"> 
+                                    <col width="10%"><col width="60%"><col width="10%"><col width="17%"><col width="3%"> 
                                 </colgroup>
                                 <tbody>
                                 	<!-- 장바구니에 담긴 품목을 중첩 반복 -->
 		       						<c:forEach items="${map}" var="row" varStatus="loop">
 		       							<c:forEach items="${row.value}" var="col">
 		                                    <tr class="cart_product">
-		                                        <td><input type="checkbox" name="" id=""></td>
 		                                        <td class="product_img">
 		                                            <img src="../images/products/${col.prod_thumbnail}.jpg" alt="" >
 		                                        </td>
@@ -175,27 +247,30 @@ function marketOrder() {
 		                                            <div>${col.prod_name}</div>
 		                                            <div>
 		                                            	<span class="product_title_price">
+		                                            		<!-- 콤마를 찍어주기위한 formatNumber를 사용, #,### 규칙으로 콤마를 찍어준다. -->
 		                                            		<fmt:formatNumber value="${col.prod_price-col.prod_sale}" pattern="#,###" />
 		                                            	</span>원
 		                                            </div>
 		                                        </td>
 		                                        <td>
-		                                        	<!-- :로 스플릿해서 1번 인덱스(상품 수량)의 값을 가져온다. (짱대가리 굴림) -->
+		                                        	<!-- ":"로 split해서 1번 인덱스(상품 수량)의 값을 가져온다. (짱대가리 굴림) -->
 													<c:set var="cnt" value="${fn:split(row.key, ':')}" />
-		                                            <input class="product_quantity" type="number" name="" id="" value="${cnt[1]}">
+		                                            <input style="width: 100%" class="product_quantity" type="number" name="" id="" value="${cnt[1]}">
+		                                            <input type="hidden" value="${col.prod_idx}" />
 		                                        </td>
 		                                        <td>
 		                                        	<!-- 상품수량 * 상품가격 -->
-													<c:set var="price" value="${cnt[1] * (col.prod_price-col.prod_sale)}" />
+													<span id="price"><c:set var="price" value="${cnt[1] * (col.prod_price-col.prod_sale)}" /></span>
 													<c:set var="allPrice" value="${allPrice+price}" />
-		                                            <p class="product_price_area">
+		                                            <p class="product_price_area text-end">
 		                                            	<span class="product_price">
 	                                            			<fmt:formatNumber value="${price}" pattern="#,###" />
 		                                            	</span>원
 	                                            	</p>
 		                                        </td>
 		                                        <td>
-		                                            <img id="remove_btn" src="../images/cross-wish-ico.png" alt="">
+		                                            <img src="../images/cross-wish-ico.png" alt="" class="deleteProd" style="cursor: pointer;">
+		                                            <input type="hidden" value="${col.prod_idx}" />
 		                                        </td>
 		                                    </tr>
 		       							</c:forEach>
@@ -213,7 +288,7 @@ function marketOrder() {
                             <!-- 오른쪽 -->
                             <div class="bottom_box_right">
                                 <p class="" style="line-height: 40px;" >
-                                    <span>상품가격 </span><span class="product_price">
+                                    <span>상품가격 </span><span style="font-weight: bold; font-size: 1.2em;" class="allPrice">
                                    		<fmt:formatNumber value="${allPrice}" pattern="#,###" />
                                     </span>원
                                     <span class="plus">
@@ -224,7 +299,7 @@ function marketOrder() {
                                     <span class="equal">
                                         <img src="../images/equal-icon.png" alt="">
                                     </span>
-                                    <span class="All_price">
+                                    <span class="All_price payment">
                                    		<fmt:formatNumber value="${allPrice+3000}" pattern="#,###" />
 									</span>원
                                 </p>
@@ -242,7 +317,7 @@ function marketOrder() {
                                 <tr>
                                     <td class="payment_info_txt">상품금액</td>
                                     <td class="text-end">
-                                    	<span class="payment_info_price">
+                                    	<span class="payment_info_price allPrice" id="allPrice">
                                    			<fmt:formatNumber value="${allPrice}" pattern="#,###" />
 										</span>원
 									</td>
@@ -258,7 +333,7 @@ function marketOrder() {
                                 <tr class="payment_info_total_line">
                                     <td class="payment_info_txt lete_sp_1">총 결제예정금액</td>
                                     <td class="text-end">
-                                    	<span class="payment_info_total_price" id="paymentAmount">
+                                    	<span class="payment_info_total_price payment" id="paymentAmount">
                                    			<fmt:formatNumber value="${allPrice+3000}" pattern="#,###" />
                                     	</span>원
                                     </td>

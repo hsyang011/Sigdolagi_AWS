@@ -82,11 +82,19 @@ public class MarketController {
 		int result = cartDAO.getProdIdx(cartDTO);
 		// 추가된 적이 없다면 insert 쿼리를 실행
 		if (result == 0) {			
-			cartDAO.addToCart(cartDTO);
+			cartDAO.addToCart1(cartDTO);
 		// 추가된 적이 있다면 update 쿼리를 실행
 		} else {
-			cartDAO.updateToCart(cartDTO);
+			cartDAO.addToCart2(cartDTO);
 		}
+		// 상품 총 가격 변경 로직
+		// prod_idx로 cart_idx 가져오고 DTO에 넣기
+		cartDTO.setCart_idx(cartDAO.getCartIdx(cartDTO));
+		// 수량 * 가격을 구해서 prod_totPrice에 반영
+		String prodTotPrice = cartDAO.prodTotPrice(cartDTO);
+		System.out.println("상품의 가격" + prodTotPrice);
+		cartDTO.setProd_totprice(prodTotPrice);
+		cartDAO.updateTotPrice(cartDTO);
 		return ResponseEntity.ok("상품이 성공적으로 추가되었습니다.");
 	}
 	
@@ -100,8 +108,8 @@ public class MarketController {
 		// 키값이 cart_idx이고, 상품 정보가 List<ProductDTO>인 Map컬렉션 생성
 		Map<String, List<ProductDTO>> map = new HashMap<String, List<ProductDTO>>();
 		for (CartDTO cartDTO : cartInfo) {
-			// cart_idx와 prod_count사이에 ":"를 넣은 문자열을 키값으로 한다.
-			map.put(cartDTO.getCart_idx()+":"+cartDTO.getProd_count(), cartDAO.allProductInfo(cartDTO));
+			// cart_idx와 prod_count사이에 ":"를 넣은 문자열을 키값으로 한다. 0번 : 일련번호, 1번 : 수량, 2번 : 총가격
+			map.put(cartDTO.getCart_idx()+":"+cartDTO.getProd_count()+":"+cartDTO.getProd_totprice(), cartDAO.allProductInfo(cartDTO));
 		}
 		
 		
@@ -111,9 +119,56 @@ public class MarketController {
 		return "market/cart";
 	}
 	
-	@RequestMapping("/market/payment.do")
-	public String payment() {
-		return "market/payment";
+	// 장바구니에 상품 수량 변경
+	@RequestMapping("/market/updateToCart.do") // cartDTO에는 email과 prod_idx만 담겨있는 상태
+	public ResponseEntity<CartDTO> updateToCart(CartDTO cartDTO, Model model) {
+		// 임의로 이메일 설정 (시큐리티 연동 전)
+		cartDTO.setEmail("foo@gmail.com");
+		// 상품 수량 변경
+		cartDAO.updateToCart(cartDTO);
+
+		// 상품 총 가격 변경 로직
+		// prod_idx로 cart_idx 가져오고 DTO에 넣기
+		cartDTO.setCart_idx(cartDAO.getCartIdx(cartDTO));
+		// 수량 * 가격을 구해서 prod_totPrice에 반영
+		String prodTotPrice = cartDAO.prodTotPrice(cartDTO);
+		System.out.println("상품의 가격" + prodTotPrice);
+		cartDTO.setProd_totprice(prodTotPrice);
+		cartDAO.updateTotPrice(cartDTO);
+		return ResponseEntity.ok(cartDTO);
+	}
+	
+	// 장바구니에 상품 제거
+	@RequestMapping("/market/deleteToCart.do") // cartDTO에는 email과 prod_idx만 담겨있는 상태
+	public ResponseEntity<CartDTO> deleteToCart(CartDTO cartDTO, Model model) {
+		// 임의로 이메일 설정 (시큐리티 연동 전)
+		cartDTO.setEmail("foo@gmail.com");
+		// 상품 제거
+		cartDAO.deleteToCart(cartDTO);
+		return ResponseEntity.ok(cartDTO);
+	}
+	
+	@RequestMapping("/market/order.do")
+	public String order(MemberDTO memberDTO, HttpServletRequest req, Model model) {
+		// 임의로 이메일 설정 (시큐리티 연동 전)
+		memberDTO.setEmail("foo@gmail.com");
+		// cart_idx들을 모두 모아 List컬렉션에 담는다.
+		List<CartDTO> cartInfo = cartDAO.cartInfo(memberDTO);
+		// 키값이 cart_idx이고, 상품 정보가 List<ProductDTO>인 Map컬렉션 생성
+		Map<String, List<ProductDTO>> map = new HashMap<String, List<ProductDTO>>();
+		for (CartDTO cartDTO : cartInfo) {
+			// cart_idx와 prod_count사이에 ":"를 넣은 문자열을 키값으로 한다. 0번 : 일련번호, 1번 : 수량, 2번 : 총가격
+			map.put(cartDTO.getCart_idx()+":"+cartDTO.getProd_count()+":"+cartDTO.getProd_totprice(), cartDAO.allProductInfo(cartDTO));
+		}
+		model.addAttribute("map", map);
+		
+		// 파라미터 값을 가져온다.
+		String allPrice = req.getParameter("allPrice");
+		String payment = req.getParameter("payment");
+		
+		model.addAttribute("allPrice", allPrice);
+		model.addAttribute("payment", payment);
+		return "market/order";
 	}
 	
 }
