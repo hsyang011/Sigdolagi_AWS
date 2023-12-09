@@ -20,6 +20,6 @@ public interface IBoardService {
 	public BoardDTO view(BoardDTO boardDTO);
 	public int edit(BoardDTO boardDTO);
 	public int delete(String idx);
-	public int updatevisitcnt(String visitcount);
+	public int update(BoardDTO boardDTO);
 	
 }

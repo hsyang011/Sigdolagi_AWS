@@ -1,3 +1,4 @@
+<%@page import="com.edu.springboot.community.BoardDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
@@ -151,20 +152,21 @@ function deletePost(){
                     <div class="freeboard_write_frm" >
                         <!-- 게시판 들어가는 부분 (시작) -->
                         <form name="writeFrm" method="post" onsubmit="return validateForm(this);" action="../community/freeboard_view.do" class="writeFrm">
-           
+           					<input type="hidden" name="freeboard_idx"  />
                             <input type="hidden" name="email"  />
                             <table class="table table-bordered" id="free_write_frm_table" width="100%" >
                             	<colgroup>
                                 	<col width="20%" /><col width="30%" /><col width="20%" /><col width="30%" />
                                 	
                                 </colgroup>
-                                <tr>
-							        <td>번호</td> <td>${ boardDTO.freeboard_idx }</td>   
-							        <td>작성자</td> <td>${ boardDTO.nickname }</td>
-							    </tr>
 							    <tr> 
 							        <td>작성일</td> <td>${ boardDTO.postdate }</td>
 							        <td>조회수</td> <td>${ boardDTO.visitcount }</td>
+							    </tr>
+                                <tr>
+							        <td>작성자</td>
+							        <td colspan=3>${ boardDTO.nickname }</td> <%-- 번호<td>${ boardDTO.freeboard_idx }</td>   --%> 
+							
 							    </tr>
 							    <tr>
 							        <td>제목</td>
@@ -176,15 +178,17 @@ function deletePost(){
 							        	${ boardDTO.content }	        	
 							        </td>
 							    </tr>
-                             
                                 <tr>
+		                        <%--      <% 
+		                             if(session.getAttribute("sessionNickname")!=null && session.getAttribute("sessionNickname").toString().equals(dto.getNickname())){
+		                             %>    <%} %>--%>
                                     <td colspan="4" align="center" class="btn_td">
                                         <button type="button" class="writeFrm_edit" onclick="location.href='./freeboard_edit.do?freeboard_idx=${boardDTO.freeboard_idx }';">수정하기</button>
                                         <form id="deleteForm" action="./community/freeboard_delete.do" method="post">
                                           	<input type="hidden" name="freeboard_idx" value="${boardDTO.freeboard_idx }"  />
                                 			<button type="button" class="writeFrm_reset"  onclick="deletePost();">삭제하기</button>
 								       	</form>
-                                      
+                                   
                                         <button type="button" class="writeFrm_list" onclick="location.href='./freeboard_list.do';">목록 보기</button>
                                     </td>
                                 </tr>
