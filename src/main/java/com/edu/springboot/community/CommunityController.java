@@ -120,6 +120,10 @@ public class CommunityController {
 	}
 	
 	
+	
+	
+	
+	
 	//자유게시판 수정하기
 	@GetMapping("/community/freeboard_edit.do")
 	public String freeboardEdit(Model model, BoardDTO boardDTO) {
