@@ -159,17 +159,8 @@ $(function() {
                     <div class="freeboard_write_frm" >
 
                         <!-- 게시판 들어가는 부분 (시작) -->
-<<<<<<< HEAD
-                        <form name="writeFrm" method="get" onsubmit="return validateForm(this);" class="writeFrm"
-                        action="../community/photoboard_writeProcess.do"">
-=======
                         <form name="writeFrm" method="get" onsubmit="return validateForm(this);" class="writeFrm">
                             <input type="hidden" name="tname"  />
-<<<<<<< HEAD
-=======
->>>>>>> branch 'main' of https://github.com/hsyang011/Sigdolagi.git
->>>>>>> branch 'main' of https://github.com/hsyang011/Sigdolagi.git
->>>>>>> branch 'main' of https://github.com/hsyang011/Sigdolagi.git
                             <table class="table table-bordered" id="free_write_frm_table" width="100%" >
                                 <tr>
                                     <td>제목</td>
@@ -187,21 +178,9 @@ $(function() {
                              
                                 <tr>
                                     <td colspan="2" align="center" class="btn_td">
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
                                         <button type="button" class="writeFrm_end" id="getSummernote">작성 완료</button>
-=======
-<<<<<<< HEAD
                                         <button type="submit" class="writeFrm_end" id="getSummernote">작성 완료</button>
-=======
->>>>>>> branch 'main' of https://github.com/hsyang011/Sigdolagi.git
                                         <button type="button" class="writeFrm_end">작성 완료</button>
-<<<<<<< HEAD
-=======
->>>>>>> branch 'main' of https://github.com/hsyang011/Sigdolagi.git
->>>>>>> branch 'main' of https://github.com/hsyang011/Sigdolagi.git
->>>>>>> branch 'main' of https://github.com/hsyang011/Sigdolagi.git
                                         <button type="reset" class="writeFrm_reset">다시 입력</button>
                                         <button type="button" class="writeFrm_list" onclick="">목록 보기</button>
                                     </td>

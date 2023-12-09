@@ -6,12 +6,22 @@ import lombok.Data;
 public class PhotoBoardDTO {
 
 	private String photoboard_idx;
-	private String email;
+	private String email; 
 	private String title;
 	private String content;
 	private int visitcount;
-	private java.sql.Date regidate;
-	private String ofile;
+	
+	private Object ofile;
 	private String sfile;
+	private java.sql.Date regidate;
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }
