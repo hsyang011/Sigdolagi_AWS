@@ -40,7 +40,7 @@ public class CommunityController {
 		int totalCount = dao.getTotalCount(parameterDTO);
 		
 		int pageSize = PagingUtil.getPageSize(); 
-		int blockPage = PagingUtil.getBlockPage(); 
+		int blockPage = PagingUtil.getBlockPage();
 		
 		int pageNum = (req.getParameter("pageNum")==null || req.getParameter("pageNum").equals("")) ? 1 : Integer.parseInt(req.getParameter("pageNum"));
 		int start = (pageNum -1 ) * pageSize +1 ;
@@ -58,7 +58,7 @@ public class CommunityController {
 		model.addAttribute("lists", lists);
 		System.out.println(lists.size());
 		
-		String pagingImg = PagingUtil.pagingImg(totalCount, pageSize, blockPage, pageNum, req.getContextPath()+"/list.do?");
+		String pagingImg = PagingUtil.pagingImg(totalCount, pageSize, blockPage, pageNum, req.getContextPath()+"./freeboard_list.do?");
 		model.addAttribute("pagingImg", pagingImg);
 		return "community/freeboard_list";
 	}

@@ -44,8 +44,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		UPDATE freeboard SET title=#{title}, content=#{content} WHERE freeboard_idx=${freeboard_idx}
 
 	</update>
-	<update id="increaseViewCount" parameterType="int">
-   		UPDATE freeboard SET visitcount = visitcount + 1 WHERE freeboard_idx = ${postId}
+	<update id="updatevisitcnt" parameterType="int">
+   		UPDATE freeboard SET visitcount = visitcount + 1 WHERE freeboard_idx = ${freeboard_idx}
 	</update>
 	
 	<delete id="delete">
