@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -80,8 +81,8 @@
                                     <tfoot>
                                         <tr>
                                             <th>번호</th>
-                                            <th>분류(밀키트,특산품)</th>
-                                            <th>세부카테고리</th>
+                                            <th>글분류</th>
+                                            <th>소분류</th>
                                             <th>상품명</th>
                                             <th>상품가격</th>
                                             <th>할인율</th>
@@ -92,7 +93,7 @@
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                        <tr>
+                                        <!-- <tr>
                                             <td>1</td>
                                             <td>밀키트</td>
                                             <td>한식</td>
@@ -105,301 +106,23 @@
                                             <td>
                                                 <img src="../images/products/thumb1.jpg" alt="" width="100px">
                                             </td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>특산품</td>
-                                            <td>한식</td>
-                                            <td><a href="">밥볶아먹는 떡볶이(2인)</a></td>
-                                            <td><span>5,500</span> 원</td>
-                                            <td><span>30</span> %</td>
-                                            <td>마이셰프</td>
-                                            <td>300</td>
-                                            <td>2011/04/25</td>
+                                        </tr> -->
+                                        <c:forEach items="${adminMaketList }" var="row" varStatus="loop">
+										<tr>
+											<td>${row.prod_idx }</td>
+											<td>${row.category }</td>
+											<td>${row.name }</td>
+											<td><a href="">${row.prod_name }</a></td>
+											<td><span>${row.prod_price }</span> 원</td>
+                                            <td><span>${row.prod_sale }</span> %</td>
+                                            <td>${row.seller }</td>
+                                            <td>${row.prod_name }</td>
+                                            <td>${row.prod_name }</td>
                                             <td>
-                                                <img src="../images/products/thumb2.jpg" alt="" width="100px">
+                                                <img src="../images/products/${row.prod_thumbnail }.jpg" alt="${row.prod_thumbnail }" width="100px">
                                             </td>
-                                        </tr>
-                                        <tr>
-                                            <td>3</td>
-                                            <td>밀키트</td>
-                                            <td>한식</td>
-                                            <td>밥볶아먹는 떡볶이(2인)</td>
-                                            <td><span>5,500</span> 원</td>
-                                            <td><span>30</span> %</td>
-                                            <td>마이셰프</td>
-                                            <td>300</td>
-                                            <td>2011/04/25</td>
-                                            <td>
-                                                <img src="../images/products/thumb3.jpg" alt="" width="100px">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>4</td>
-                                            <td>특산품</td>
-                                            <td>한식</td>
-                                            <td>밥볶아먹는 떡볶이(2인)</td>
-                                            <td><span>5,500</span> 원</td>
-                                            <td><span>30</span> %</td>
-                                            <td>마이셰프</td>
-                                            <td>300</td>
-                                            <td>2011/04/25</td>
-                                            <td>
-                                                <img src="../images/products/thumb4.jpg" alt="" width="100px">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>5</td>
-                                            <td>특산품</td>
-                                            <td>한식</td>
-                                            <td>밥볶아먹는 떡볶이(2인)</td>
-                                            <td><span>5,500</span> 원</td>
-                                            <td><span>30</span> %</td>
-                                            <td>마이셰프</td>
-                                            <td>300</td>
-                                            <td>2011/04/25</td>
-                                            <td>
-                                                <img src="../images/products/thumb5.jpg" alt="" width="100px">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>6</td>
-                                            <td>밀키트</td>
-                                            <td>한식</td>
-                                            <td>밥볶아먹는 떡볶이(2인)</td>
-                                            <td><span>5,500</span> 원</td>
-                                            <td><span>30</span> %</td>
-                                            <td>마이셰프</td>
-                                            <td>300</td>
-                                            <td>2011/04/25</td>
-                                            <td>
-                                                <img src="../images/products/thumb6.jpg" alt="" width="100px">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>7</td>
-                                            <td>특산품</td>
-                                            <td>한식</td>
-                                            <td>밥볶아먹는 떡볶이(2인)</td>
-                                            <td><span>5,500</span> 원</td>
-                                            <td><span>30</span> %</td>
-                                            <td>마이셰프</td>
-                                            <td>300</td>
-                                            <td>2011/04/25</td>
-                                            <td>
-                                                <img src="../images/products/thumb7.jpg" alt="" width="100px">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>8</td>
-                                            <td>밀키트</td>
-                                            <td>한식</td>
-                                            <td>밥볶아먹는 떡볶이(2인)</td>
-                                            <td><span>5,500</span> 원</td>
-                                            <td><span>30</span> %</td>
-                                            <td>마이셰프</td>
-                                            <td>300</td>
-                                            <td>2011/04/25</td>
-                                            <td>
-                                                <img src="../images/products/thumb8.jpg" alt="" width="100px">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>9</td>
-                                            <td>밀키트</td>
-                                            <td>한식</td>
-                                            <td>밥볶아먹는 떡볶이(2인)</td>
-                                            <td><span>5,500</span> 원</td>
-                                            <td><span>30</span> %</td>
-                                            <td>마이셰프</td>
-                                            <td>300</td>
-                                            <td>2011/04/25</td>
-                                            <td>
-                                                <img src="../images/products/thumb9.jpg" alt="" width="100px">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>10</td>
-                                            <td>밀키트</td>
-                                            <td>한식</td>
-                                            <td>밥볶아먹는 떡볶이(2인)</td>
-                                            <td><span>5,500</span> 원</td>
-                                            <td><span>30</span> %</td>
-                                            <td>마이셰프</td>
-                                            <td>300</td>
-                                            <td>2011/04/25</td>
-                                            <td>
-                                                <img src="../images/products/thumb10.jpg" alt="" width="100px">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>11</td>
-                                            <td>특산품</td>
-                                            <td>한식</td>
-                                            <td>밥볶아먹는 떡볶이(2인)</td>
-                                            <td><span>5,500</span> 원</td>
-                                            <td><span>30</span> %</td>
-                                            <td>마이셰프</td>
-                                            <td>300</td>
-                                            <td>2011/04/25</td>
-                                            <td>
-                                                <img src="../images/products/thumb11.jpg" alt="" width="100px">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>12</td>
-                                            <td>밀키트</td>
-                                            <td>한식</td>
-                                            <td>밥볶아먹는 떡볶이(2인)</td>
-                                            <td><span>5,500</span> 원</td>
-                                            <td><span>30</span> %</td>
-                                            <td>마이셰프</td>
-                                            <td>300</td>
-                                            <td>2011/04/25</td>
-                                            <td>
-                                                <img src="../images/products/thumb12.jpg" alt="" width="100px">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>13</td>
-                                            <td>밀키트</td>
-                                            <td>한식</td>
-                                            <td>밥볶아먹는 떡볶이(2인)</td>
-                                            <td><span>5,500</span> 원</td>
-                                            <td><span>30</span> %</td>
-                                            <td>마이셰프</td>
-                                            <td>300</td>
-                                            <td>2011/04/25</td>
-                                            <td>
-                                                <img src="../images/products/thumb13.jpg" alt="" width="100px">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>14</td>
-                                            <td>밀키트</td>
-                                            <td>한식</td>
-                                            <td>밥볶아먹는 떡볶이(2인)</td>
-                                            <td><span>5,500</span> 원</td>
-                                            <td><span>30</span> %</td>
-                                            <td>마이셰프</td>
-                                            <td>300</td>
-                                            <td>2011/04/25</td>
-                                            <td>
-                                                <img src="../images/products/thumb14.jpg" alt="" width="100px">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>15</td>
-                                            <td>특산품</td>
-                                            <td>한식</td>
-                                            <td>밥볶아먹는 떡볶이(2인)</td>
-                                            <td><span>5,500</span> 원</td>
-                                            <td><span>30</span> %</td>
-                                            <td>마이셰프</td>
-                                            <td>300</td>
-                                            <td>2011/04/25</td>
-                                            <td>
-                                                <img src="../images/products/thumb15.jpg" alt="" width="100px">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>16</td>
-                                            <td>밀키트</td>
-                                            <td>한식</td>
-                                            <td>밥볶아먹는 떡볶이(2인)</td>
-                                            <td><span>5,500</span> 원</td>
-                                            <td><span>30</span> %</td>
-                                            <td>마이셰프</td>
-                                            <td>300</td>
-                                            <td>2011/04/25</td>
-                                            <td>
-                                                <img src="../images/products/thumb16.jpg" alt="" width="100px">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>17</td>
-                                            <td>밀키트</td>
-                                            <td>한식</td>
-                                            <td>밥볶아먹는 떡볶이(2인)</td>
-                                            <td><span>5,500</span> 원</td>
-                                            <td><span>30</span> %</td>
-                                            <td>마이셰프</td>
-                                            <td>300</td>
-                                            <td>2011/04/25</td>
-                                            <td>
-                                                <img src="../images/products/thumb17.jpg" alt="" width="100px">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>18</td>
-                                            <td>특산품</td>
-                                            <td>한식</td>
-                                            <td>밥볶아먹는 떡볶이(2인)</td>
-                                            <td><span>5,500</span> 원</td>
-                                            <td><span>30</span> %</td>
-                                            <td>마이셰프</td>
-                                            <td>300</td>
-                                            <td>2011/04/25</td>
-                                            <td>
-                                                <img src="../images/products/thumb18.jpg" alt="" width="100px">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>19</td>
-                                            <td>특산품</td>
-                                            <td>한식</td>
-                                            <td>밥볶아먹는 떡볶이(2인)</td>
-                                            <td><span>5,500</span> 원</td>
-                                            <td><span>30</span> %</td>
-                                            <td>마이셰프</td>
-                                            <td>300</td>
-                                            <td>2011/04/25</td>
-                                            <td>
-                                                <img src="../images/products/thumb19.jpg" alt="" width="100px">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>20</td>
-                                            <td>밀키트</td>
-                                            <td>한식</td>
-                                            <td>밥볶아먹는 떡볶이(2인)</td>
-                                            <td><span>5,500</span> 원</td>
-                                            <td><span>30</span> %</td>
-                                            <td>마이셰프</td>
-                                            <td>300</td>
-                                            <td>2011/04/25</td>
-                                            <td>
-                                                <img src="../images/products/thumb20.jpg" alt="" width="100px">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>21</td>
-                                            <td>밀키트</td>
-                                            <td>한식</td>
-                                            <td>밥볶아먹는 떡볶이(2인)</td>
-                                            <td><span>5,500</span> 원</td>
-                                            <td><span>30</span> %</td>
-                                            <td>마이셰프</td>
-                                            <td>300</td>
-                                            <td>2011/04/25</td>
-                                            <td>
-                                                <img src="../images/products/thumb21.jpg" alt="" width="100px">
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>22</td>
-                                            <td>밀키트</td>
-                                            <td>한식</td>
-                                            <td>밥볶아먹는 떡볶이(2인)</td>
-                                            <td><span>5,500</span> 원</td>
-                                            <td><span>30</span> %</td>
-                                            <td>마이셰프</td>
-                                            <td>300</td>
-                                            <td>2011/04/25</td>
-                                            <td>
-                                                <img src="../images/products/thumb22.jpg" alt="" width="100px">
-                                            </td>
-                                        </tr>
+										</tr>		
+										</c:forEach>
                                        
                                     </tbody>
                                 </table>
