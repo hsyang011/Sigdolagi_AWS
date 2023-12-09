@@ -37,9 +37,6 @@ import utils.PagingUtil;
 public class CommunityController {
 	
 	@Autowired
-	IMyFileService filedao;
-	
-	@Autowired
 	IBoardService dao;
 	
 	@Autowired
@@ -139,12 +136,6 @@ public class CommunityController {
 		
 		return "redirect:freeboard_list.do";
 	}
-<<<<<<< HEAD
-=======
-	
-	//------------------------------------------------------------------------------------
-	
->>>>>>> branch 'main' of https://github.com/hsyang011/Sigdolagi.git
 	@RequestMapping("/community/photoboard_list.do")
 		//포토  포토보드 리스트
 		
