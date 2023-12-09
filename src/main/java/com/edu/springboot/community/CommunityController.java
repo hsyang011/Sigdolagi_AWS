@@ -71,15 +71,7 @@ public class CommunityController {
 		return "community/freeboard_write";
 	}
 	
-	
-	//포토 게시판 글쓰기 페이지 이
-		@GetMapping("/community/photoboard_write.do")
-		public String photoboardWriteGet(Model model) {
-			return "community/photoboard_write";
-		}
-	
-	
-	
+
 	
 	@PostMapping("/community/freeboard_write.do")
 
@@ -110,19 +102,7 @@ public class CommunityController {
 	}
 	//  ./photoboard_view.do
 	
-	@RequestMapping("/community/photoboard_view.do")
-	public String photoboardView(Model model, PhotoBoardDTO photoBoardDTO) {
-		photoBoardDTO = photoboarddao.photoview(photoBoardDTO);
-		photoBoardDTO.setContent(photoBoardDTO.getContent().replace("\r\n", "<br>"));
-		model.addAttribute("photoBoardDTO", photoBoardDTO);
-		
-		return "community/photoboard_view";
-	}
-	
-	
-	
-	
-	
+
 	
 	//자유게시판 수정하기
 	@GetMapping("/community/freeboard_edit.do")
@@ -150,6 +130,8 @@ public class CommunityController {
 		
 		return "redirect:freeboard_list.do";
 	}
+	
+	//------------------------------------------------------------------------------------
 	
 	@RequestMapping("/community/photoboard_list.do")
 		//포토  포토보드 리스트
@@ -206,11 +188,27 @@ public class CommunityController {
 		return "community/photoboard_list";
 	}
 	
+	//포토 게시판 글쓰기 페이지 이
+		@GetMapping("/community/photoboard_write.do")
+		public String photoboardWriteGet(Model model) {
+			return "community/photoboard_write";
+		}
+	
+	
+	
 	
 	
 	//사진 게시판 	쓰기. /community/freeboard_write.do
 //	community/photoboard_writeprocess.do     /community/freeboard_write.do
 	
+	@RequestMapping("/community/photoboard_view.do")
+	public String photoboardView(Model model, PhotoBoardDTO photoBoardDTO) {
+		photoBoardDTO = photoboarddao.photoview(photoBoardDTO);
+		photoBoardDTO.setContent(photoBoardDTO.getContent().replace("\r\n", "<br>"));
+		model.addAttribute("photoBoardDTO", photoBoardDTO);
+		
+		return "community/photoboard_view";
+	}
 	
 
 	
