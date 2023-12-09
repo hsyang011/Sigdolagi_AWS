@@ -98,7 +98,7 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">쇼핑몰관리하기:</h6>
                 <a class="collapse-item" href="../administrator/admin_maket_list.do">상품관리</a>
-                <a class="collapse-item" href="utilities-border.html">주문현황</a>
+                <a class="collapse-item" href="../administrator/admin_order_list.do">주문현황</a>
             </div>
         </div>
     </li>

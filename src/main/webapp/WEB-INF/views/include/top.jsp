@@ -13,6 +13,9 @@
 				</c:if>
 	                     
                 <c:if test="${not empty sessionEmail}">
+                	<c:if test="${sessionEmail eq 'admin'}">
+                		<li><a href="../administrator/admin_main.do">관리자</a></li>
+                	</c:if>
                 	<li><a href="../member/logout.do">로그아웃</a></li>
 				</c:if>
                 
