@@ -43,6 +43,11 @@ public class adminController {
 		return "administrator/admin_notice_list";
 	}
 	
+	@RequestMapping("/administrator/admin_inquiry_list.do")
+	public String adminInquiry() {
+		return "administrator/admin_inquiry_list";
+	}
+	
 	@RequestMapping("/administrator/admin_maket_list.do")
 	public String adminMaketList() {
 		return "administrator/admin_maket_list";
