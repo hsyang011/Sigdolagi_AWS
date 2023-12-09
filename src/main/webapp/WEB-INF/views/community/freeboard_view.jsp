@@ -75,18 +75,17 @@ main > * { margin: 50px 0; }
 </style>
 
 <script>
-function deletePost(freeboard_idx){
-	var answer = confirm("정말?");
-	if(answer==true){
-		var form = document.createElement("form");
-		form.method = "post";
-		form.action="./community/freeboard_delete.do?freeboard_idx=${boardDTO.freeboard_idx}";
-		form.submit();
-		location.href = "freeboard_list.do";
-		
-	}
-	else {
-		return false;
+
+let deletePost = function(user_id){
+	let frm = document.frm;
+	if(confirm('정말 삭제할까요?')){
+		//인수로 전달된 아이디를 hidden박스에 추가
+		frm.id.value= user_id;
+		//action과 method속성값 추가
+		frm.action = "delete.do";
+		frm.method = "post";
+		//여기서 전송(submit);
+		frm.submit();
 	}
 } 
 </script>
