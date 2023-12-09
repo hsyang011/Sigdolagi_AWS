@@ -73,6 +73,23 @@ main > * { margin: 50px 0; }
 }
 
 </style>
+
+<script>
+function deletePost(freeboard_idx){
+	var answer = confirm("정말?");
+	if(answer==true){
+		var form = document.createElement("form");
+		form.method = "post";
+		form.action="./community/freeboard_delete.do?freeboard_idx=${boardDTO.freeboard_idx}";
+		form.submit();
+		location.href = "freeboard_list.do";
+		
+	}
+	else {
+		return false;
+	}
+} 
+</script>
 </head>
 <body>
 <!-- wrapper 시작 -->
@@ -156,7 +173,7 @@ main > * { margin: 50px 0; }
                                 <tr>
                                     <td colspan="4" align="center" class="btn_td">
                                         <button type="button" onclick="location.href='./freeboard_edit.do?freeboard_idx=${ param.freeboard_idx }';">수정하기</button>
-                                        <button type="button" onclick="deletePost(${ param.freeboard_idx });">삭제하기</button>
+                                        <button type="button" onclick="deletePost(${param.freeboard_idx });">삭제하기</button>
                                         <button type="button" class="writeFrm_list" onclick="location.href='./freeboard_list.do';">목록 보기</button>
                                     </td>
                                 </tr>
