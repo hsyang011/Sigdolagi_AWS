@@ -107,19 +107,19 @@
                                                 <img src="../images/products/thumb1.jpg" alt="" width="100px">
                                             </td>
                                         </tr> -->
-                                        <c:forEach items="${adminMaketList }" var="row" varStatus="loop">
+                                        <c:forEach items="${adminMaketSelect }" var="row" varStatus="loop">
 										<tr>
 											<td>${row.prod_idx }</td>
 											<td>${row.category }</td>
-											<td>${row.name }</td>
+											<td>한식</td>
 											<td><a href="">${row.prod_name }</a></td>
 											<td><span>${row.prod_price }</span> 원</td>
-                                            <td><span>${row.prod_sale }</span> %</td>
+                                            <td><span>${Math.round((row.prod_sale/row.prod_price)*100)}</span> %</td>
                                             <td>${row.seller }</td>
-                                            <td>${row.prod_name }</td>
-                                            <td>${row.prod_name }</td>
+                                            <td>재고</td>
+                                            <td>날짜</td>
                                             <td>
-                                                <img src="../images/products/${row.prod_thumbnail }.jpg" alt="${row.prod_thumbnail }" width="100px">
+                                                <img src="../images/products/${row.prod_thumbnail }.jpg" alt="" width="100px">
                                             </td>
 										</tr>		
 										</c:forEach>
