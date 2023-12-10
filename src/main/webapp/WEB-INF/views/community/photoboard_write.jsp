@@ -108,6 +108,7 @@ $(function() {
         function uploadSummernoteImageFile(file, editor) {
         	
         	 const title = document.getElementById('title').value;
+        	 const email = document.getElementById('email').value;
              const content = $('#summernote').summernote('code');
 
         	
@@ -119,25 +120,44 @@ $(function() {
             data.append("file", file);
             console.log(content);
             console.log(title);
-            $.ajax({
-                data: data,
-                type: "POST",
-                url: "/community/photoboard_writeprocess.do",
-                dataType: "JSON",
-                contentType: false,
-                processData: false,
-                success: function (data) {
-                    $(editor).summernote("insertImage", data.url);
-                    $("#thumbnailPath").append("<option value=" + data.url + ">" + data.originName + "</option>");
-                    // 성공할 때 콘솔에 로그 출력
-                    console.log("이미지 업로드 성공");
-                    console.log(data);
-                },
-                error: function (err) {
-                    // 실패할 때 콘솔에 로그 출력
-                    console.error("이미지 업로드 실패", err);
-                }
+            
+            
+            
+            
+         // '작성하기' 버튼 클릭 이벤트 핸들러 등록
+            $("#saveBtn").on("click", function () {
+                // AJAX 요청 코드
+                $.ajax({
+                    data: data,
+                    type: "POST",
+                    url: "/community/photoboard_writeprocess.do",
+                    dataType: "JSON",
+                    contentType: false,
+                    processData: false,
+                    success: function (data) {
+                        $(editor).summernote("insertImage", data.url);
+                        $("#thumbnailPath").append("<option value=" + data.url + ">" + data.originName + "</option>");
+                        // 성공할 때 콘솔에 로그 출력
+                        console.log("이미지 업로드 성공");
+                        console.log(data);
+
+                        // 성공했을 때만 페이지 이동
+                        window.location.href = './photoboard_list.do';
+                    },
+                    error: function (err) {
+                        // 실패할 때 콘솔에 로그 출력
+                        console.error("이미지 업로드 실패", err);
+                    }
+                });
             });
+            
+            
+            
+            
+            
+            
+            
+            
         }
     });
 </script>
