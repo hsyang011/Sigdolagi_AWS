@@ -28,12 +28,6 @@
 		) WHERE rNum<![CDATA[>=]]>#{start} AND rNum<![CDATA[<=]]>#{end}
 	</select>
 	
-	<!-- 관리자 마켓 -->
-	<select id="adminMaketSelect"
-		resultType="com.edu.springboot.market.ProductDTO"> 
-		SELECT * FROM product ORDER BY prod_idx DESC
-	</select>
-	
 	<!-- 상품 상세보기 -->
 	<select id="view" parameterType="com.edu.springboot.market.ProductDTO" resultType="com.edu.springboot.market.ProductDTO">
 		SELECT * FROM product WHERE prod_idx=${prod_idx}
@@ -43,5 +37,28 @@
 	<select id="recommendList" parameterType="com.edu.springboot.market.ProductDTO" resultType="com.edu.springboot.market.ProductDTO">
 		SELECT * FROM product WHERE prod_idx BETWEEN ${prod_idx}-2 AND ${prod_idx}+2 AND NOT prod_idx=${prod_idx}
 	</select>
+	
+	
+	
+	<!-- 관리자 마켓리스트 -->
+	<select id="adminMaketSelect"
+		resultType="com.edu.springboot.market.ProductDTO"> 
+		SELECT * FROM product ORDER BY prod_idx DESC
+	</select>
+	
+	<!-- 관리자 마켓상품등록 -->
+	<insert id="adminMaketInsert"
+		parameterType="com.edu.springboot.market.ProductDTO">
+		insert into product (prod_idx, category, prod_name, prod_price, prod_sale,
+			prod_thumbnail, prod_detail, seller, img1, img2, img3, img4, img5, sub_cate, inventory, prod_discount) values
+			(seq_product_idx.nextval,#{category},#{prod_name},#{prod_price},#{prod_sale},#{prod_thumbnail},
+				#{prod_detail},#{seller},#{img1},#{img2},#{img3},#{img4},#{img5},#{sub_cate},#{inventory},#{prod_discount})
+	</insert>
+	
+	<!-- 관리자 마켓상품삭제 -->
+	<delete id="adminMaketDelete"
+		parameterType="com.edu.springboot.market.ProductDTO">
+		delete from product where prod_idx=${prod_idx}
+	</delete>
 	
 </mapper>

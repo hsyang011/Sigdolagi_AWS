@@ -61,8 +61,9 @@
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 	                                <colgroup>
-	                                	<col width="5%" /><col width="8%" /><col width="8%" /><col width="25%" /><col width="10%" />
-	                                	<col width="8%" /><col width="10%" /><col width="7%" /><col width="10%" /><col width="10%" />
+	                                	<col width="5%" /><col width="6%" /><col width="6%" /><col width="20%" /><col width="10%" />
+	                                	<col width="6%" /><col width="10%" /><col width="7%" /><col width="10%" /><col width="10%" />
+	                                	<col width="10%" />
 	                                </colgroup>
                                     <thead>
                                         <tr>
@@ -76,6 +77,7 @@
                                             <th>재고</th>
                                             <th>등록일</th>
                                             <th>상품이미지</th>
+                                            <th>삭제</th>
                                         </tr>
                                     </thead>
                                     <tfoot>
@@ -90,36 +92,31 @@
                                             <th>재고</th>
                                             <th>등록일</th>
                                             <th>상품이미지</th>
+                                            <th>삭제</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                        <!-- <tr>
-                                            <td>1</td>
-                                            <td>밀키트</td>
-                                            <td>한식</td>
-                                            <td><a href="">밥볶아먹는 떡볶이(2인)</a></td>
-                                            <td><span>5,500</span> 원</td>
-                                            <td><span>30</span> %</td>
-                                            <td>마이셰프</td>
-                                            <td>300</td>
-                                            <td>2011/04/25</td>
-                                            <td>
-                                                <img src="../images/products/thumb1.jpg" alt="" width="100px">
-                                            </td>
-                                        </tr> -->
                                         <c:forEach items="${adminMaketSelect }" var="row" varStatus="loop">
 										<tr>
 											<td>${row.prod_idx }</td>
 											<td>${row.category }</td>
-											<td>한식</td>
+											<td>${row.sub_cate }</td>
 											<td><a href="">${row.prod_name }</a></td>
 											<td><span>${row.prod_price }</span> 원</td>
                                             <td><span>${Math.round((row.prod_sale/row.prod_price)*100)}</span> %</td>
                                             <td>${row.seller }</td>
-                                            <td>재고</td>
-                                            <td>날짜</td>
+                                            <td>${row.inventory }</td>
+                                            <td>${row.regidate }</td>
                                             <td>
                                                 <img src="../images/products/${row.prod_thumbnail }.jpg" alt="" width="100px">
+                                            </td>
+                                            <td>
+                                            	<a href="#" class="btn btn-warning btn-icon-split">
+                                                    <span class="text">수정</span>
+                                                </a>
+                                            	<a href="javascript:deletePost('${row.prod_idx }')" class="btn btn-danger btn-icon-split">
+                                                    <span class="text">삭제</span>
+                                                </a>
                                             </td>
 										</tr>		
 										</c:forEach>
