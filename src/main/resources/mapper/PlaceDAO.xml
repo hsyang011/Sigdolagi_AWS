@@ -65,4 +65,9 @@
 	    )
 	</insert>
 	
+	<!-- 플래너에서 장소 삭제 -->
+	<delete id="deleteFromPlanner" parameterType="com.edu.springboot.planner.PlaceDTO">
+		DELETE FROM place WHERE place_idx=${place_idx}
+	</delete>
+	
 </mapper>

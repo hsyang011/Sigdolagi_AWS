@@ -55,4 +55,11 @@ public class PlannerController {
 		return ResponseEntity.ok(placeDTO);
 	}
 	
+	@RequestMapping("/planner/deleteFromPlanner.do")
+	public ResponseEntity<String> deleteFromPlanner(PlaceDTO placeDTO) {
+		// place_idx를 삭제
+		placeDAO.deleteFromPlanner(placeDTO);
+		return ResponseEntity.ok("삭제가 완료되었습니다.");
+	}
+	
 }
