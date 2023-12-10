@@ -15,5 +15,6 @@ public class PlaceDTO {
 	private String y_point;
 	private String place_url;
 	private String memo;
+	private String place_idx;
 	
 }
