@@ -1,6 +1,8 @@
 package com.edu.springboot.member;
 
 
+import java.security.Principal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,7 +27,17 @@ public class MemberController {
 	
 	
 	@RequestMapping("/member/login.do")
-	public String login() {
+	public String login(Principal principal, Model model) {
+		try {
+			// 로그인 아이디를 얻어온다.
+			String email = principal.getName();
+			// 아이디를 Model객체에 저장한다.
+			model.addAttribute("email", email);
+		} catch (Exception e) {
+			/* 최초로 접근시에는 로그인 정보가 없으므로 NullPointerException예외가 발생된다. 따라서 예외처리 해야
+			한다. */
+			System.out.println("로그인 전입니다.");
+		}
 		return "member/login";
 	}
 	
@@ -119,7 +131,7 @@ public class MemberController {
 	
 	
 	
-	@PostMapping("/member/loginprocess.do")
+//	@PostMapping("/member/loginprocess.do")
 	public String loginProcess(MemberDTO memberDTO, jakarta.servlet.http.HttpServletRequest req, jakarta.servlet.http.HttpSession session, 
 			org.springframework.ui.Model model, HttpServletResponse response) {
 	
@@ -134,9 +146,6 @@ public class MemberController {
 		
 		
 		System.out.println("쿠키저장성공?");
-		
-		
-		
 		///
 		memberDTO.setEmail(req.getParameter("email"));
 		memberDTO.setPassword(req.getParameter("password"));
