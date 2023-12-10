@@ -22,6 +22,20 @@
 
     <!-- Custom styles for this page -->
     <link href="../bootstrap/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    
+    
+    <script>
+    function deletePost(idx){
+    	let frm = document.frm;
+    	if(confirm("정말?")){
+    		frm.prod_idx.value = idx;
+    		frm.action = "/administrator/admin_maket_delete.do";
+    		frm.method = "post";
+    		frm.submit();
+    	}
+    }
+    
+    </script>
 </head>
 <body id="page-top">
 
@@ -59,6 +73,9 @@
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
+                            	<form name="frm">
+                            		<input type="hidden" name="prod_idx"/>
+                            	</form>
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 	                                <colgroup>
 	                                	<col width="5%" /><col width="6%" /><col width="6%" /><col width="20%" /><col width="10%" />
@@ -101,7 +118,7 @@
 											<td>${row.prod_idx }</td>
 											<td>${row.category }</td>
 											<td>${row.sub_cate }</td>
-											<td><a href="">${row.prod_name }</a></td>
+											<td><a href="../market/market_view.do?prod_idx=${row.prod_idx }">${row.prod_name }</a></td>
 											<td><span>${row.prod_price }</span> 원</td>
                                             <td><span>${Math.round((row.prod_sale/row.prod_price)*100)}</span> %</td>
                                             <td>${row.seller }</td>
