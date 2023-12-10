@@ -14,6 +14,9 @@ public class PlannerController {
 	@Autowired
 	IPlannerService plannerDAO;
 	
+	@Autowired
+	IPlaceService placeDAO;
+	
 	@RequestMapping("/planner/planner_list.do")
 	public String plannerList() {
 		return "planner/planner_list";
@@ -42,9 +45,14 @@ public class PlannerController {
 	}
 	
 	@RequestMapping("/planner/addToPlanner.do")
-	public ResponseEntity<String> addToPlanner(PlaceDTO placeDTO, Model model) {
+	public ResponseEntity<PlaceDTO> addToPlanner(PlaceDTO placeDTO, Model model) {
+		System.out.println("ajax로 들어온 파라미터 : " + placeDTO);
+		// 카테고리가 너무 길어서 > 을 기준으로 0번 인덱스만 반영
+		placeDTO.setPlace_category(placeDTO.getPlace_category().split(">")[0]);
+		// place테이블에 장소 추가
+		placeDAO.addPlaceToPlanner(placeDTO);
 		
-		return ResponseEntity.ok("장소가 성공적으로 추가되었습니다.");
+		return ResponseEntity.ok(placeDTO);
 	}
 	
 }

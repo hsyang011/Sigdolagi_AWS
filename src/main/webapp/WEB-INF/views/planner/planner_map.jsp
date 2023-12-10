@@ -113,27 +113,34 @@
 	        	<c:set var="lastIndex">${places.size()-1}</c:set>
 	            나의 플래너 <span style="color: #FF7A00;">(${places[0].place_name} > ${places[lastIndex].place_name})</span>
 	        </div>  
-	        <hr>
-	        <div>
+	        <ul id="myplaceList">
 	        	<c:forEach items="${places}" var="row" varStatus="loop">						        	
-		            <li>
-		                <div class="d-flex my-3 px-2" id="list_head">
+	            <li>
+	                <div id="list_head" class="d-flex justify-content-between">
+	                	<div class="d-flex my-3 px-2">		                	
 		                    <div class="circle">${loop.count}</div>
 		                    <span>${row.place_name}</span>
 		                    <span style="color: #999999;">${row.place_category}</span>
-		                </div>
-		                <div class="d-flex justify-content-between my-3 px-3">
-		                    <span style="width: 66%; color: gray;" class="ellipsis">
-		                    	${row.road_addr} <br />
-		                    	${row.place_telecom}
-		                    	<%-- ${row.memo} --%>
-		                    </span>
-		                    <button style="float: right; background-color: #FF7A00; color: white;" onclick="window.open().location.href='${row.place_url}'" class="btn rounded-4 px-3 py-2 me-1">상세정보</button></div>
-		                </div>
-	                    <div class="text-center" style="color: #FF7A00;">▼</div>
-		            </li>
+	                	</div>
+	                	<div class="mt-2 me-1">
+                           	<img src="../images/cross-wish-ico.png" alt="" class="deletePlace" style="cursor: pointer;">
+	                	</div>
+	                </div>
+	                <div class="d-flex justify-content-between my-3 px-3">
+	                    <span style="width: 66%; color: gray;" class="ellipsis">
+	                    	${row.road_addr} <br />
+	                    	${row.place_telecom}
+	                    	<%-- ${row.memo} --%>
+	                    </span>
+	                    <button style="float: right; background-color: #FF7A00; color: white;" onclick="window.open().location.href='${row.place_url}'" class="btn rounded-4 px-3 py-2 me-1">상세정보</button>
+	                </div>
+	                <!-- 마지막 요소가 아니면 화살표 추가 -->
+					<c:if test="${not loop.last}">
+					    <div class="text-center" style="color: #FF7A00;">▼</div>
+					</c:if>
+	            </li>
 	        	</c:forEach>
-	        </div>
+	        </ul>
 	    </div>
     </c:when>
     <c:otherwise>
@@ -148,19 +155,25 @@
 
 	<!-- 검색결과 리스트 -->
     <div class="menu_wrap bg_white searchResult">
-        <div class="option py-3">
+        <div class="option py-3" style="font-family: 'NPSfontRegular'; font-size: 16px;">
             코코 위례점 검색결과 <span style="color: #FF7A00;">2건</span>
+            <img src="../images/cross-wish-ico.png" alt="" id="closeSearchResult" class="me-2" style="cursor: pointer; float: right;">
         </div>
         <hr>
-        <ul id="placesList" style="padding-left: 0;"></ul>
-        <div id="pagination"></div>
+        <ul id="placesList" style="padding-left: 0; font-family: 'NPSfontRegular'; font-size: 16px;"></ul>
+        <div id="pagination" style="font-family: 'NPSfontRegular'; font-size: 16px;"></div>
     </div>
 </div>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=58c1517c26a147b5119aacb8ce4f7d5c&libraries=services"></script>
 <script>
 $(function() {
-	$(".searchResult").hide();	
+	// 문서가 로드되면 검색결과만 숨겨서 나의 플래너가 먼저 보이게 처리한다.
+	$(".searchResult").hide();
+	// 나의 플래너에서 x를 누르면 해당 일정이 삭제됨
+	$(".deletePlace").click((e) => {
+		$(e.target).parent().parent().parent().remove();
+	});
 });
 
 // 마커를 담을 배열입니다
@@ -186,8 +199,14 @@ var infowindow = new kakao.maps.InfoWindow({zIndex:1});
 
 // 키워드 검색을 요청하는 함수입니다
 function searchPlaces() {
+	// 나의 플래너를 숨기고 검색 결과를 보여준다.
 	$(".myplanner").hide();
-	$(".searchResult").show();	
+	$(".searchResult").show();
+	// 검색결과 닫기 버튼을 누르면 나의 플래너가 나옴.
+	$("#closeSearchResult").click((e) => {
+		$(".searchResult").hide();
+		$(".myplanner").show();
+	});
 
     var keyword = document.getElementById('keyword').value;
 
@@ -394,8 +413,8 @@ function addList(i) {
 	let place = placeArr[i];
 	let data = {
 		planner_idx: ${planner_idx},
-		lot_address: place.address_name,
-		road_address: place.road_address_name,
+		lot_addr: place.address_name,
+		road_addr: place.road_address_name,
 		place_name: place.place_name,
 		place_category: place.category_name,
 		place_telecom: place.phone,
@@ -410,6 +429,10 @@ function addList(i) {
         data: data,
         success: function(res) {
             console.log("요청성공");
+            $(".searchResult").hide();
+            $(".myplanner").show();
+            // 새로고침하여 플래너 추가 업데이트
+            location.reload();
         },
         error: function(err) {
     		console.log("요청실패");
