@@ -13,6 +13,8 @@ public interface IProductService {
 	public int getTotalCount(ParameterDTO parameterDTO);
 	// 상품 목록 (페이징 기능 추가)
 	public List<ProductDTO> list(ParameterDTO parameterDTO);
+	// 상품 목록
+	public List<ProductDTO> adminMaketSelect();
 	// 내용보기
 	public ProductDTO view(ProductDTO productDTO);
 	// 추천상품

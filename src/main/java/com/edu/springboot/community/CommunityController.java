@@ -1,10 +1,15 @@
 package com.edu.springboot.community;
 
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
+
+import org.apache.commons.io.FileUtils;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,18 +18,26 @@ import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+import com.google.gson.JsonObject;
 import com.edu.springboot.community.BoardDTO;
 
 import jakarta.mail.Session;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequestWrapper;
 import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.Part;
 import oracle.jdbc.proxy.annotation.Post;
+import utils.MyFunctions;
 import utils.PagingUtil;
 
 @Controller
 public class CommunityController {
+	
+	@Autowired
+	IMyFileService filedao;
 	
 	
 	@Autowired
@@ -71,23 +84,13 @@ public class CommunityController {
 		return "community/freeboard_write";
 	}
 	
-	
-	//포토 게시판 글쓰기 페이지 이
-		@GetMapping("/community/photoboard_write.do")
-		public String photoboardWriteGet(Model model) {
-			return "community/photoboard_write";
-		}
-	
-	
-	
+
 	
 	@PostMapping("/community/freeboard_write.do")
 
 	public String freeboardWrite(Model model, HttpServletRequest req, HttpSession session) {
 		String email= req.getParameter("email");
-
 		String nickname= (String)session.getAttribute("sessionNickname");
-
 		String title= req.getParameter("title");
 		String content= req.getParameter("content");
 		//폼값을 개별적으로 전달한다.
@@ -98,31 +101,20 @@ public class CommunityController {
 	}
 	
 	
-	
-	
 	@RequestMapping("/community/freeboard_view.do")
 	public String freeboardView(Model model, BoardDTO boardDTO) {
+		dao.update(boardDTO);
 		boardDTO = dao.view(boardDTO);
 		boardDTO.setContent(boardDTO.getContent().replace("\r\n", "<br>"));
+		
+		
 		model.addAttribute("boardDTO", boardDTO);
 		
 		return "community/freeboard_view";
 	}
-	//  ./photoboard_view.do
+
 	
-	@RequestMapping("/community/photoboard_view.do")
-	public String photoboardView(Model model, PhotoBoardDTO photoBoardDTO) {
-		photoBoardDTO = photoboarddao.photoview(photoBoardDTO);
-		photoBoardDTO.setContent(photoBoardDTO.getContent().replace("\r\n", "<br>"));
-		model.addAttribute("photoBoardDTO", photoBoardDTO);
-		
-		return "community/photoboard_view";
-	}
-	
-	
-	
-	
-	
+
 	
 	//자유게시판 수정하기
 	@GetMapping("/community/freeboard_edit.do")
@@ -138,8 +130,6 @@ public class CommunityController {
 	public String boardEditPost(BoardDTO boardDTO) {
 		int result = dao.edit(boardDTO);
 		System.out.println("result:"+result);
-		System.out.println("글수정결과:"+result);
-		System.out.println("boardDto"+boardDTO+"result"+result);
 		return "redirect:freeboard_view.do?freeboard_idx="+boardDTO.getFreeboard_idx();
 	}
 	
@@ -150,7 +140,6 @@ public class CommunityController {
 		
 		return "redirect:freeboard_list.do";
 	}
-	
 	@RequestMapping("/community/photoboard_list.do")
 		//포토  포토보드 리스트
 		
@@ -194,22 +183,103 @@ public class CommunityController {
 		return "community/photoboard_list";
 	}
 	
-	@PostMapping("/community/photoboard_writeProcess.do")
-	public String photoboardWrite(HttpServletRequest req, Model model, PhotoBoardDTO photoBoardDTO) {
-		
-		String title = req.getParameter("title");
-		
-		
-		
-		
-		
-		return "community/photoboard_list";
-	}
+
+	
+	//포토 게시판 글쓰기 페이지 이
+		@GetMapping("/community/photoboard_write.do")
+		public String photoboardWriteGet(Model model) {
+			return "community/photoboard_write";
+		}
+	
+	
 	
 	
 	
 	//사진 게시판 	쓰기. /community/freeboard_write.do
 //	community/photoboard_writeprocess.do     /community/freeboard_write.do
+	
+	@RequestMapping("/community/photoboard_view.do")
+	public String photoboardView(Model model, PhotoBoardDTO photoBoardDTO) {
+		photoBoardDTO = photoboarddao.photoview(photoBoardDTO);
+		photoBoardDTO.setContent(photoBoardDTO.getContent().replace("\r\n", "<br>"));
+		model.addAttribute("photoBoardDTO", photoBoardDTO);
+		
+		return "community/photoboard_view";
+	}
+	
+	
+	@RequestMapping(value="/community/photoboard_writeprocess.do", produces = "application/json; charset=utf8")
+	@ResponseBody
+	public String uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile, HttpServletRequest request, PhotoBoardDTO photoBoardDTO
+			,Model model)  {
+		JsonObject jsonObject = new JsonObject();
+		
+		System.out.println("포토 게시판 들어오나?");
+		
+		String title = request.getParameter("title");
+		System.out.println("타이"+title);
+		System.out.println(photoBoardDTO);
+		String files = request.getParameter("files");
+		System.out.println(files);
+        /*
+		 * String fileRoot = "C:\\summernote_image\\"; // 외부경로로 저장을 희망할때.
+		 */
+		
+		// 내부경로로 저장
+		String contextRoot = (String) request.getServletContext().getRealPath("/");
+		System.out.println("컨텍스트루트"+contextRoot);
+		String fileRoot = contextRoot+"resources/static/uploads/";
+		System.out.println("파일루트"+fileRoot);
+		
+		String originalFileName = multipartFile.getOriginalFilename();	//오리지날 파일명
+		System.out.println("오리지날파일명"+originalFileName);
+		photoBoardDTO.setOfile(originalFileName);
+		String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//파일 확장자
+		String savedFileName = UUID.randomUUID() + extension;	//저장될 파일 명
+		System.out.println("저장된 파일명"+savedFileName);
+		photoBoardDTO.setSfile(savedFileName);
+		System.out.println(photoBoardDTO);
+		
+		
+		
+		File targetFile = new File(fileRoot + savedFileName);	
+		try {
+			InputStream fileStream = multipartFile.getInputStream();
+			FileUtils.copyInputStreamToFile(fileStream, targetFile);	//파일 저장
+			//jsonObject.addProperty("url", "/summernote/resources/fileupload/"+savedFileName); // contextroot + resources + 저장할 내부 폴더명
+			
+			jsonObject.addProperty("url", contextRoot+"resources/static/uploads/"+savedFileName); 
+			jsonObject.addProperty("responseCode", "success");
+			
+			System.out.println(savedFileName);
+			
+			
+			
+			//db집어넣기
+			
+			int result2 = filedao.insertMultiFile(photoBoardDTO);
+			if(result2 == 1) {
+				System.out.println("멀티성공(?)");
+				model.addAttribute("originalFileName", request.getParameter("originalFileName"));
+				model.addAttribute("savedFileName", request.getParameter("savedFileName"));
+				model.addAttribute("title", request.getParameter("title"));
+				model.addAttribute("cate", request.getParameterValues("cate"));
+				
+			}
+
+			
+				
+		} catch (IOException e) {
+			FileUtils.deleteQuietly(targetFile);	//저장된 파일 삭제
+			jsonObject.addProperty("responseCode", "error");
+			e.printStackTrace();
+		}
+		String a = jsonObject.toString();
+		return a;
+	}
+	
+	
+	
 	
 	
 

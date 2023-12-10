@@ -21,9 +21,9 @@
 <script src="/js/summernote/lang/summernote-ko-KR.js"></script>
 <link href="/css/summernote/summernote-lite.css" rel="stylesheet">
 
-<!-- include summernote css/js -->
-<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+ <!-- include summernote css/js -->
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
 
 <style>
     
@@ -92,6 +92,46 @@ $(function() {
 	});
 });
 </script>
+ <script>
+    $(document).ready(function () {
+        $('#summernote').summernote({
+            height: 300,
+            width: 700,
+            lang: "ko-KR",
+            callbacks: {
+                onImageUpload: function (files) {
+                    uploadSummernoteImageFile(files[0], this);
+                }
+            }
+        });
+
+        function uploadSummernoteImageFile(file, editor) {
+            data = new FormData();
+            data.append("file", file);
+            $.ajax({
+                data: data,
+                type: "POST",
+                url: "/community/photoboard_writeprocess.do",
+                dataType: "JSON",
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    $(editor).summernote("insertImage", data.url);
+                    $("#thumbnailPath").append("<option value=" + data.url + ">" + data.originName + "</option>");
+                    // 성공할 때 콘솔에 로그 출력
+                    console.log("이미지 업로드 성공");
+                    console.log(data);
+                },
+                error: function (err) {
+                    // 실패할 때 콘솔에 로그 출력
+                    console.error("이미지 업로드 실패", err);
+                }
+            });
+        }
+    });
+</script>
+      
+ 
 </head>
 <body>
 <!-- wrapper 시작 -->
@@ -100,6 +140,7 @@ $(function() {
     <!-- header, nav 추가 -->
     <%@ include file="../include/top.jsp" %>
     
+   <br><br><br>
     <!-- 배너 시작 -->
     <div id="banner" class="mt-3">
         <div id="banner_contents" class="container d-flex align-items-center">
@@ -153,7 +194,8 @@ $(function() {
                     <div class="freeboard_write_frm" >
 
                         <!-- 게시판 들어가는 부분 (시작) -->
-                        <form name="writeFrm" method="get" onsubmit="return validateForm(this);" class="writeFrm">
+                        <form name="writeFrm" method="post" onsubmit="return validateForm(this);" class="writeFrm"
+                        action="/community/photoboard_writeprocess.do">
                             <input type="hidden" name="tname"  />
                             <table class="table table-bordered" id="free_write_frm_table" width="100%" >
                                 <tr>
@@ -165,14 +207,14 @@ $(function() {
                                 <tr>
                                     <td>내용</td>
                                     <td>
-                                        <!-- <textarea name="content"></textarea> -->
-                                        <div id="summernote"></div>
+                                         <textarea id="summernote" name="summernote"  ></textarea> 
+                                       <!--  <div id="summernote" ></div> -->
                                     </td>
                                 </tr>
-                             
+                             	
                                 <tr>
                                     <td colspan="2" align="center" class="btn_td">
-                                        <button type="submit" class="writeFrm_end" id="getSummernote">작성 완료</button>
+                                        <button type="button" class="writeFrm_end" id="saveBtn">작성 완료</button>
                                         <button type="reset" class="writeFrm_reset">다시 입력</button>
                                         <button type="button" class="writeFrm_list" onclick="">목록 보기</button>
                                     </td>
@@ -180,16 +222,7 @@ $(function() {
                             </table>
                         </form>
                     </div>
-                    <script>
-                        // 메인화면 페이지 로드 함수
-                        $(document).ready(function () {
-                            $('#summernote').summernote({
-                                placeholder: '내용을 작성하세요',
-                                height: 400,
-                                maxHeight: 400
-                            });
-                        });
-                    </script>
+                    
                 </div>
               
               
