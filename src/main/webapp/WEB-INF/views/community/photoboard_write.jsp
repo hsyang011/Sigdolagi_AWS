@@ -21,9 +21,9 @@
 <script src="/js/summernote/lang/summernote-ko-KR.js"></script>
 <link href="/css/summernote/summernote-lite.css" rel="stylesheet">
 
-<!-- include summernote css/js -->
-<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+ <!-- include summernote css/js -->
+<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
+<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
 
 <style>
     
@@ -222,16 +222,7 @@ $(function() {
                             </table>
                         </form>
                     </div>
-                    <script>
-                        // 메인화면 페이지 로드 함수
-                        $(document).ready(function () {
-                            $('#summernote').summernote({
-                                placeholder: '내용을 작성하세요',
-                                height: 400,
-                                maxHeight: 400
-                            });
-                        });
-                    </script>
+                    
                 </div>
               
               

@@ -206,10 +206,14 @@ public class CommunityController {
 	
 	@RequestMapping(value="/community/photoboard_writeprocess.do", produces = "application/json; charset=utf8")
 	@ResponseBody
-	public String uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile, HttpServletRequest request )  {
+	public String uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile, HttpServletRequest request, PhotoBoardDTO photoDTO )  {
 		JsonObject jsonObject = new JsonObject();
 		
 		System.out.println("포토 게시판 들어오나?");
+		
+		System.out.println(photoDTO);
+		String files = request.getParameter("files");
+		System.out.println(files);
         /*
 		 * String fileRoot = "C:\\summernote_image\\"; // 외부경로로 저장을 희망할때.
 		 */
@@ -217,10 +221,13 @@ public class CommunityController {
 		// 내부경로로 저장
 		String contextRoot = (String) request.getServletContext().getRealPath("/");
 		String fileRoot = contextRoot+"resources/static/uploads/";
+		System.out.println("파일루트"+fileRoot);
 		
 		String originalFileName = multipartFile.getOriginalFilename();	//오리지날 파일명
+		System.out.println("오리지날파일명"+originalFileName);
 		String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//파일 확장자
 		String savedFileName = UUID.randomUUID() + extension;	//저장될 파일 명
+		System.out.println("저장된 파일명"+savedFileName);
 		
 		File targetFile = new File(fileRoot + savedFileName);	
 		try {
@@ -230,6 +237,8 @@ public class CommunityController {
 			
 			jsonObject.addProperty("url", "/resources/static/uploads/"+savedFileName); 
 			jsonObject.addProperty("responseCode", "success");
+			
+			System.out.println(savedFileName);
 				
 		} catch (IOException e) {
 			FileUtils.deleteQuietly(targetFile);	//저장된 파일 삭제
