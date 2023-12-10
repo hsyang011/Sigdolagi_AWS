@@ -195,7 +195,7 @@ $(function() {
 
                         <!-- 게시판 들어가는 부분 (시작) -->
                         <form name="writeFrm" method="post" onsubmit="return validateForm(this);" class="writeFrm"
-                        action="/community/photoboard_writeprocess.do" enctype="multipart/form-data">
+                        action="/community/photoboard_writeprocess.do">
                             <input type="hidden" name="tname"  />
                             <table class="table table-bordered" id="free_write_frm_table" width="100%" >
                                 <tr>
@@ -207,7 +207,7 @@ $(function() {
                                 <tr>
                                     <td>내용</td>
                                     <td>
-                                         <textarea id="summernote" name="summernote" ></textarea> 
+                                         <textarea id="summernote" name="summernote"  ></textarea> 
                                        <!--  <div id="summernote" ></div> -->
                                     </td>
                                 </tr>
