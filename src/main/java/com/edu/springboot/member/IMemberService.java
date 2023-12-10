@@ -1,5 +1,7 @@
 package com.edu.springboot.member;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -25,8 +27,10 @@ public interface IMemberService {
 			@Param("addr1") String addr1, @Param("addr2") String addr2,
 			@Param("mailing") String mailing, @Param("sms") String sms);
 	
-	
-	
+	//관리자 멤버관리리스트
+	public List<MemberDTO> adminMemberSelect();
+	//관리자 회원탈퇴여부변경
+	public int adminMemberEnabled(MemberDTO memberDTO);
 	
 }
 
