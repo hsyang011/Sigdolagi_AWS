@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -193,102 +194,21 @@ function resizeCardSize() {
                     <li class="nav-item me-3"><button type="button" class="btn rounded-pill" style="background-color: #FFA24D; color: white;">남녀함께</button></li>
                 </ul>
                 <!-- 준비중인 여행자들의 플래너 썸네일 리스트 시작 -->
-                <!-- 1행 시작 -->
+                <!-- 리스트 반복 시작 -->
                 <figure class="row thumbnail">
-                    <!-- 1열 시작 -->
+                <c:forEach items="${plannerList}" var="row" varStatus="loop">                
                     <div class="card custom-col">
                         <div>
-                            <img class="card-img-top" src="../images/1572507524886qqw0qpSy16.jpg" height="250" alt="Card image">
+                            <img class="card-img-top" src="../uploads/${row.sfile}" height="250" alt="Card image">
                             <div class="card-body">
-                                <h5 class="card-title">강릉 > 정동진</h5>
-                                <p class="card-text">홍길동</p>
+                                <h5 class="card-title">${row.plan_start} > ${row.plan_end}</h5>
+                                <p class="card-text">${row.nickname}</p>
                             </div>
                         </div>
                     </div>
-                    <!-- 1열 끝 -->
-                    <!-- 2열 시작 -->
-                    <div class="card custom-col">
-                        <div>
-                            <img class="card-img-top" src="../images/1572507528895QeeKZ94w4s.jpg" height="250" alt="Card image">
-                            <div class="card-body">
-                                <h5>전주 > 무등산</h5>
-                                <p class="card-text">강감찬</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 2열 끝 -->
-                    <!-- 3열 시작 -->
-                    <div class="card custom-col">
-                        <div>
-                            <img class="card-img-top" src="../images/1576040661397F0AFLiH3DC.JPG" height="250" alt="Card image">
-                            <div class="card-body">
-                                <h5 class="card-title">송도 > 김포</h5>
-                                <p class="card-text">김수로</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 3열 끝 -->
-                    <!-- 4열 시작 -->
-                    <div class="card custom-col">
-                        <div>
-                            <img class="card-img-top" src="../images/1576040664317UklvFY678H.JPG" height="250" alt="Card image">
-                            <div class="card-body">
-                                <h5 class="card-title">서귀포 > 제주</h5>
-                                <p class="card-text">이순신</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 4열 끝 -->
+                </c:forEach>
                 </figure>
-                <!-- 1행 끝 -->
-                <!-- 2행 시작 -->
-                <figure class="row thumbnail">
-                    <!-- 1열 시작 -->
-                    <div class="card custom-col">
-                        <div>
-                            <img class="card-img-top" src="../images/1572507524886qqw0qpSy16.jpg" height="250" alt="Card image">
-                            <div class="card-body">
-                                <h5 class="card-title">울릉도 > 부산</h5>
-                                <p class="card-text">김유신</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 1열 끝 -->
-                    <!-- 2열 시작 -->
-                    <div class="card custom-col">
-                        <div>
-                            <img class="card-img-top" src="../images/1572507528895QeeKZ94w4s.jpg" height="250" alt="Card image">
-                            <div class="card-body">
-                                <h5 class="card-title">성남 > 강남</h5>
-                                <p class="card-text">김부식</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 2열 끝 -->
-                    <!-- 3열 시작 -->
-                    <div class="card custom-col">
-                        <div>
-                            <img class="card-img-top" src="../images/1576040661397F0AFLiH3DC.JPG" height="250" alt="Card image">
-                            <div class="card-body">
-                                <h5 class="card-title">속초 > 동해</h5>
-                                <p class="card-text">최무선</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 3열 끝 -->
-                    <!-- 4열 시작 -->
-                    <div class="card custom-col">
-                        <div>
-                            <img class="card-img-top" src="../images/1576040664317UklvFY678H.JPG" height="250" alt="Card image">
-                            <div class="card-body">
-                                <h5 class="card-title">천안 > 평택</h5>
-                                <p class="card-text">이성계</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 4열 끝 -->
-                </figure>
-                <!-- 2행 끝 -->
+                <!-- 리스트 반복 끝 -->
                 <!-- 준비중인 여행자들의 플래너 썸네일 리스트 끝 -->
             </article>
             <!-- 플래너 끝 -->

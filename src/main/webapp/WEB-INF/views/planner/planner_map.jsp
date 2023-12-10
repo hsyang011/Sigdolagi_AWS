@@ -93,13 +93,13 @@
     <!-- 장소 검색 버튼 -->
     <div class="search-bar me-2">
         <form onsubmit="searchPlaces(); return false;" class="d-flex align-items-center">
-            <input type="text" id="keyword" value="코코 위례점" class="form-control rounded-4 p-2" size="15" placeholder="장소 검색" style="height: 60px; width: 240px;">
+            <input type="text" id="keyword" class="form-control rounded-4 p-2" size="15" placeholder="장소 검색" style="height: 60px; width: 240px;">
             <input type="image" id="search_image" src="../images/search_icon.png" height="30" class="rounded-pill" style="position: relative; right: 40px; cursor: pointer;">
         </form>
     </div>
     <!-- 작업 완료 버튼 -->
     <div class="submit me-2">
-        <button class="btn rounded-4 px-5 py-3" style="background-color: #FF7A00; color: white; position: relative; right: 30px;">작업 완료</button>
+        <button class="btn rounded-4 px-5 py-3" style="background-color: #FF7A00; color: white; position: relative; right: 30px;" data-bs-toggle="modal" id="addBtn" data-bs-target="#addPlannerModal">작업 완료</button>
     </div>
     <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
 
@@ -157,7 +157,7 @@
 	<!-- 검색결과 리스트 -->
     <div class="menu_wrap bg_white searchResult">
         <div class="option py-3" style="font-family: 'NPSfontRegular'; font-size: 16px;">
-            코코 위례점 검색결과 <span style="color: #FF7A00;">2건</span>
+            <span id="searchText"></span>
             <img src="../images/cross-wish-ico.png" alt="" id="closeSearchResult" class="me-2" style="cursor: pointer; float: right;">
         </div>
         <hr>
@@ -242,6 +242,8 @@ let placeArr = [];
 // 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
 function placesSearchCB(data, status, pagination) {
     if (status === kakao.maps.services.Status.OK) {
+
+        $("#searchText").html('<span style="color: #FF7A00;">' + $("#keyword").val() + '</span> 검색결과'); // 검색결과 텍스트 반영
 
         // 정상적으로 검색이 완료됐으면
         // 검색 목록과 마커를 표출합니다
@@ -429,7 +431,7 @@ function addList(i) {
 	// console.log('하이', i, placeArr[i]);
 	let place = placeArr[i];
 	let data = {
-		planner_idx: ${planner_idx},
+		planner_idx: $("#planner_idx").val(),
 		lot_addr: place.address_name,
 		road_addr: place.road_address_name,
 		place_name: place.place_name,
@@ -458,5 +460,103 @@ function addList(i) {
 	
 }
 </script>
+
+	
+<!-- The Modal -->
+<style>
+#addPlannerModal * { font-size: 16px; font-family: "NPSfontRegular"; }
+#select_cate .btn { background-color: #FF7A00; color: white; }
+</style>
+<div class="modal" id="addPlannerModal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <div id="thumbnail" style="width:100%;height:350px;">
+                	<form name="savePlanner" action="./saveProcess.do" enctype="multipart/form-data" method="post">
+                		<input type="hidden" name="planner_idx" id="planner_idx" value="${planner_idx}" />
+                		<input type="hidden" name="cate" id="cate" />
+                		<input type="hidden" name="plan_start" value="${places[0].place_name}" />
+                		<input type="hidden" name="plan_end" value="${places[lastIndex].place_name}" />
+                		<input type="file" name="ofile" />
+                	</form>
+                </div>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <h3 style="font-weight: bold; font-size: 1.5em;">카테고리 선택 <span id="select_val" style="color: #FF7A00;"></span></h3>
+                <div id="select_cate" class="d-flex align-items-center justify-content-between">
+                    <button class="btn rounded-pill">아이들과</button>
+                    <button class="btn rounded-pill">커플/신혼</button>
+                    <button class="btn rounded-pill">부모님과</button>
+                    <button class="btn rounded-pill">남자혼자</button>
+                    <button class="btn rounded-pill">여자혼자</button>
+                    <button class="btn rounded-pill">여자끼리</button>
+                    <button class="btn rounded-pill">남자끼리</button>
+                    <button class="btn rounded-pill">남녀함께</button>
+                </div>
+            </div>
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <div id="review" class="my-5" style="width: 100%;">
+                    <div class="d-flex justify-content-between">
+                        <p>장소 <span style="color: #FF7A00;">${places.size()}건</span></p>
+                        <div></div>
+                    </div>
+                    <ul id="myplaceList">
+                    <c:if test="${not empty planner_idx}">
+			        	<c:forEach items="${places}" var="row" varStatus="loop">						        	
+			            <li>
+			                <div id="list_head" class="d-flex justify-content-between">
+			                	<div class="d-flex my-3 px-2">		                	
+				                    <div class="circle">${loop.count}</div>
+				                    <span>${row.place_name}</span>
+				                    <span style="color: #999999;">${row.place_category}</span>
+			                	</div>
+			                	<div class="mt-2 me-1">
+			                          	<img src="../images/cross-wish-ico.png" alt="" class="deletePlace" style="cursor: pointer;">
+			                          	<input type="hidden" value="${row.place_idx}" />
+			                	</div>
+			                </div>
+			                <div class="d-flex justify-content-between my-3 px-3">
+			                    <span style="width: 66%; color: gray;" class="ellipsis">
+			                    	${row.road_addr} <br />
+			                    	${row.place_telecom}
+			                    	<%-- ${row.memo} --%>
+			                    </span>
+			                    <button style="float: right; background-color: #FF7A00; color: white;" onclick="window.open().location.href='${row.place_url}'" class="btn rounded-4 px-3 py-2 me-1">상세정보</button>
+			                </div>
+			                <!-- 마지막 요소가 아니면 화살표 추가 -->
+							<c:if test="${not loop.last}">
+							    <div class="text-center" style="color: #FF7A00;">▼</div>
+							</c:if>
+			            </li>
+			        	</c:forEach>
+                    </c:if>
+			        </ul>
+                </div>
+                <div class="d-flex">
+	                <button type="button" id="save" class="btn rounded-pill me-3" style="background-color: #FF7A00; color: white;">저장하기</button>
+	                <button type="button" class="btn rounded-pill" style="background-color: #FF7A00; color: white;" data-bs-dismiss="modal">닫기</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+$("#select_cate .btn").click((e) => {
+	$("#select_val").text($(e.target).text());
+	$("#cate").val($(e.target).text());
+});
+$("#save").click((e) => {
+	if ($("#select_val").text() == '') {
+		alert("카테고리를 선택해주세요!");
+	} else {
+		// 저장요청 보내기 코드
+		document.savePlanner.submit();
+	}
+});
+</script>
+
 </body>
 </html>
