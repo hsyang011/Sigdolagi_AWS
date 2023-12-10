@@ -44,7 +44,7 @@ public class WebSecurityConfig {
 			.authorizeHttpRequests((request) -> request
 				.dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
 				.requestMatchers("/").permitAll()
-				.requestMatchers("/css/**", "/js/**", "/images/**", "/bootstrap/**").permitAll()
+				.requestMatchers("/css/**", "/js/**", "/images/**", "/bootstrap/**", "/uploads/**").permitAll()
 				.requestMatchers("/community/**", "/main/**", "/market/**", "/planner/**", "/administrator/**", "/restaurant/**", "/search/**", "/service/**").permitAll()
 				.requestMatchers("/admin/**").hasAnyRole("USER", "ADMIN")
 				.requestMatchers("/admin/**").hasRole("ADMIN")
