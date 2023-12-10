@@ -18,6 +18,8 @@
 <script src="https://kit.fontawesome.com/98401b861d.js" crossorigin="anonymous"></script>
 <!-- 전역 설정 css 링크  -->
 <link rel="stylesheet" href="../css/common_board.css">
+<!-- <!-- 댓글 js -->
+<script type="text/javascript" src="/resources/js/reply.js"></script> -->
 <style>
     
 /*main nav_location 설정*/
@@ -98,6 +100,7 @@ function deletePost(){
 		return false;
 	}
 } 
+
 </script>
 </head>
 <body>
@@ -178,6 +181,7 @@ function deletePost(){
 							        	${ boardDTO.content }	        	
 							        </td>
 							    </tr>
+							  
                                 <tr>
 		                        <%--      <% 
 		                             if(session.getAttribute("sessionNickname")!=null && session.getAttribute("sessionNickname").toString().equals(dto.getNickname())){
@@ -194,6 +198,16 @@ function deletePost(){
                                 </tr>
                             </table>
                         </form>
+                        <div>
+								<ul id="replyUL"></ul>
+						</div>
+                        <div>
+							<label>댓글</label>
+						</div>
+						<div style="width:100%">
+							<textarea rows="4" style="width: 100%;"></textarea>
+							<button type="button" id="btn_add">댓글쓰기</button>
+						</div>
                     </div> 
                 </div>
               
