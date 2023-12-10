@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,6 +22,19 @@
 
     <!-- Custom styles for this page -->
     <link href="../bootstrap/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" />
+
+	<script>
+    function memberEnabled(email){
+    	let frm = document.frm;
+    	if(confirm("정말?")){
+    		frm.email.value = email;
+    		frm.action = "/administrator/admin_member_enabled.do";
+    		frm.method = "post";
+    		frm.submit();
+    	}
+    }
+    
+    </script>
 </head>
 <body id="page-top">
 
@@ -52,10 +66,15 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+							<a class="btn btn-primary float-end" href="../administrator/admin_maket_write.do">
+                               <i class="fas fa-edit"></i> 글 작성
+                            </a>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
+                            	<form name="frm">
+                            		<input type="hidden" name="email"/>
+                            	</form>
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
@@ -80,188 +99,22 @@
                                         </tr>
                                     </tfoot>
                                     <tbody>
+                                        <c:forEach items="${adminMemberSelect }" var="row" varStatus="loop">
                                         <tr>
-                                            <td>TigerNixon@naver.com</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                            <td>Nomal</td>
-                                            <td>2008/12/19</td>
-                                            <td>N</td>
+                                            <td>${row.email }</td>
+                                            <td>${row.name }</td>
+                                            <td>${row.nickname }</td>
+                                            <td>${row.grade }</td>
+                                            <td>${row.regidate }</td>
+                                            <td>${row.enabled }</td>
                                             <td>
-                                                <a href="#" class="btn btn-danger btn-icon-split">
+                                                <a href="javascript:memberEnabled('${row.email }')" class="btn btn-danger btn-icon-split">
                                                     <span class="text">회원탈퇴</span>
                                                 </a>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td>TigerNixon@naver.com</td>
-                                            <td>Accountant</td>
-                                            <td>Tokyo</td>
-                                            <td>Nomal</td>
-                                            <td>2008/12/19</td>
-                                            <td>N</td>
-                                            <td>
-                                                <a href="#" class="btn btn-danger btn-icon-split">
-                                                    <span class="text">회원탈퇴</span>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Ashton Cox@naver.com</td>
-                                            <td>Junior Technical Author</td>
-                                            <td>San Francisco</td>
-                                            <td>Nomal</td>
-                                            <td>2008/12/19</td>
-                                            <td>N</td>
-                                            <td>
-                                                <a href="#" class="btn btn-danger btn-icon-split">
-                                                    <span class="text">회원탈퇴</span>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Cedric Kelly@naver.com</td>
-                                            <td>Senior Javascript Developer</td>
-                                            <td>Edinburgh</td>
-                                            <td>Nomal</td>
-                                            <td>2008/12/19</td>
-                                            <td>N</td>
-                                            <td>
-                                                <a href="#" class="btn btn-danger btn-icon-split">
-                                                    <span class="text">회원탈퇴</span>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Airi Satou@naver.com</td>
-                                            <td>Accountant</td>
-                                            <td>Tokyo</td>
-                                            <td>Nomal</td>
-                                            <td>2008/12/19</td>
-                                            <td>N</td>
-                                            <td>
-                                                <a href="#" class="btn btn-danger btn-icon-split">
-                                                    <span class="text">회원탈퇴</span>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Brielle Williamson@naver.com</td>
-                                            <td>Integration Specialist</td>
-                                            <td>New York</td>
-                                            <td>Nomal</td>
-                                            <td>2008/12/19</td>
-                                            <td>N</td>
-                                            <td>
-                                                <a href="#" class="btn btn-danger btn-icon-split">
-                                                    <span class="text">회원탈퇴</span>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Herrod Chandler@naver.com</td>
-                                            <td>Sales Assistant</td>
-                                            <td>San Francisco</td>
-                                            <td>Nomal</td>
-                                            <td>2008/12/19</td>
-                                            <td>N</td>
-                                            <td>
-                                                <a href="#" class="btn btn-danger btn-icon-split">
-                                                    <span class="text">회원탈퇴</span>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Rhona Davidson@naver.com</td>
-                                            <td>Integration Specialist</td>
-                                            <td>Tokyo</td>
-                                            <td>Nomal</td>
-                                            <td>2008/12/19</td>
-                                            <td>N</td>
-                                            <td>
-                                                <a href="#" class="btn btn-danger btn-icon-split">
-                                                    <span class="text">회원탈퇴</span>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Colleen Hurst@naver.com</td>
-                                            <td>Javascript Developer</td>
-                                            <td>San Francisco</td>
-                                            <td>Nomal</td>
-                                            <td>2008/12/19</td>
-                                            <td>N</td>
-                                            <td>
-                                                <a href="#" class="btn btn-danger btn-icon-split">
-                                                    <span class="text">회원탈퇴</span>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Sonya Frost@naver.com</td>
-                                            <td>Software Engineer</td>
-                                            <td>Edinburgh</td>
-                                            <td>Nomal</td>
-                                            <td>2008/12/19</td>
-                                            <td>N</td>
-                                            <td>
-                                                <a href="#" class="btn btn-danger btn-icon-split">
-                                                    <span class="text">회원탈퇴</span>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Jena Gaines</td>
-                                            <td>Office Manager</td>
-                                            <td>London</td>
-                                            <td>Nomal</td>
-                                            <td>2008/12/19</td>
-                                            <td>N</td>
-                                            <td>
-                                                <a href="#" class="btn btn-danger btn-icon-split">
-                                                    <span class="text">회원탈퇴</span>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Quinn Flynn</td>
-                                            <td>Support Lead</td>
-                                            <td>Edinburgh</td>
-                                            <td>Nomal</td>
-                                            <td>2012/12/18</td>
-                                            <td>N</td>
-                                            <td>
-                                                <a href="#" class="btn btn-danger btn-icon-split">
-                                                    <span class="text">회원탈퇴</span>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Charde Marshall</td>
-                                            <td>Regional Director</td>
-                                            <td>San Francisco</td>
-                                            <td>Nomal</td>
-                                            <td>2012/12/18</td>
-                                            <td>N</td>
-                                            <td>
-                                                <a href="#" class="btn btn-danger btn-icon-split">
-                                                    <span class="text">회원탈퇴</span>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>Haley Kennedy</td>
-                                            <td>Senior Marketing Designer</td>
-                                            <td>London</td>
-                                            <td>Nomal</td>
-                                            <td>2012/12/18</td>
-                                            <td>N</td>
-                                            <td>
-                                                <a href="#" class="btn btn-danger btn-icon-split">
-                                                    <span class="text">회원탈퇴</span>
-                                                </a>
-                                            </td>
-                                        </tr>
+										</c:forEach>
+                                        
                                         
                                     </tbody>
                                 </table>
