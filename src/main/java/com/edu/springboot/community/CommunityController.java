@@ -37,6 +37,10 @@ import utils.PagingUtil;
 public class CommunityController {
 	
 	@Autowired
+	IMyFileService filedao;
+	
+	
+	@Autowired
 	IBoardService dao;
 	
 	@Autowired
@@ -206,12 +210,15 @@ public class CommunityController {
 	
 	@RequestMapping(value="/community/photoboard_writeprocess.do", produces = "application/json; charset=utf8")
 	@ResponseBody
-	public String uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile, HttpServletRequest request, PhotoBoardDTO photoDTO )  {
+	public String uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile, HttpServletRequest request, PhotoBoardDTO photoBoardDTO
+			,Model model)  {
 		JsonObject jsonObject = new JsonObject();
 		
 		System.out.println("포토 게시판 들어오나?");
 		
-		System.out.println(photoDTO);
+		String title = request.getParameter("title");
+		System.out.println("타이"+title);
+		System.out.println(photoBoardDTO);
 		String files = request.getParameter("files");
 		System.out.println(files);
         /*
@@ -220,14 +227,20 @@ public class CommunityController {
 		
 		// 내부경로로 저장
 		String contextRoot = (String) request.getServletContext().getRealPath("/");
+		System.out.println("컨텍스트루트"+contextRoot);
 		String fileRoot = contextRoot+"resources/static/uploads/";
 		System.out.println("파일루트"+fileRoot);
 		
 		String originalFileName = multipartFile.getOriginalFilename();	//오리지날 파일명
 		System.out.println("오리지날파일명"+originalFileName);
+		photoBoardDTO.setOfile(originalFileName);
 		String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//파일 확장자
 		String savedFileName = UUID.randomUUID() + extension;	//저장될 파일 명
 		System.out.println("저장된 파일명"+savedFileName);
+		photoBoardDTO.setSfile(savedFileName);
+		System.out.println(photoBoardDTO);
+		
+		
 		
 		File targetFile = new File(fileRoot + savedFileName);	
 		try {
@@ -235,10 +248,26 @@ public class CommunityController {
 			FileUtils.copyInputStreamToFile(fileStream, targetFile);	//파일 저장
 			//jsonObject.addProperty("url", "/summernote/resources/fileupload/"+savedFileName); // contextroot + resources + 저장할 내부 폴더명
 			
-			jsonObject.addProperty("url", "/resources/static/uploads/"+savedFileName); 
+			jsonObject.addProperty("url", contextRoot+"resources/static/uploads/"+savedFileName); 
 			jsonObject.addProperty("responseCode", "success");
 			
 			System.out.println(savedFileName);
+			
+			
+			
+			//db집어넣기
+			
+			int result2 = filedao.insertMultiFile(photoBoardDTO);
+			if(result2 == 1) {
+				System.out.println("멀티성공(?)");
+				model.addAttribute("originalFileName", request.getParameter("originalFileName"));
+				model.addAttribute("savedFileName", request.getParameter("savedFileName"));
+				model.addAttribute("title", request.getParameter("title"));
+				model.addAttribute("cate", request.getParameterValues("cate"));
+				
+			}
+
+			
 				
 		} catch (IOException e) {
 			FileUtils.deleteQuietly(targetFile);	//저장된 파일 삭제

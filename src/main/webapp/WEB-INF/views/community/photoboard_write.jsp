@@ -106,27 +106,59 @@ $(function() {
         });
 
         function uploadSummernoteImageFile(file, editor) {
+        	
+        	 const title = document.getElementById('title').value;
+        	 const email = document.getElementById('email').value;
+             const content = $('#summernote').summernote('code');
+             const email = $("#email").val();
+
+        	
+        	
             data = new FormData();
+            data.append("title", title);
+            data.append("email", email);
+            data.append("content", content);
             data.append("file", file);
-            $.ajax({
-                data: data,
-                type: "POST",
-                url: "/community/photoboard_writeprocess.do",
-                dataType: "JSON",
-                contentType: false,
-                processData: false,
-                success: function (data) {
-                    $(editor).summernote("insertImage", data.url);
-                    $("#thumbnailPath").append("<option value=" + data.url + ">" + data.originName + "</option>");
-                    // 성공할 때 콘솔에 로그 출력
-                    console.log("이미지 업로드 성공");
-                    console.log(data);
-                },
-                error: function (err) {
-                    // 실패할 때 콘솔에 로그 출력
-                    console.error("이미지 업로드 실패", err);
-                }
+            console.log(content);
+            console.log(title);
+            
+            
+            
+            
+         // '작성하기' 버튼 클릭 이벤트 핸들러 등록
+            $("#saveBtn").on("click", function () {
+                // AJAX 요청 코드
+                $.ajax({
+                    data: data,
+                    type: "POST",
+                    url: "/community/photoboard_writeprocess.do",
+                    dataType: "JSON",
+                    contentType: false,
+                    processData: false,
+                    success: function (data) {
+                        $(editor).summernote("insertImage", data.url);
+                        $("#thumbnailPath").append("<option value=" + data.url + ">" + data.originName + "</option>");
+                        // 성공할 때 콘솔에 로그 출력
+                        console.log("이미지 업로드 성공");
+                        console.log(data);
+
+                        // 성공했을 때만 페이지 이동
+                        window.location.href = './photoboard_list.do';
+                    },
+                    error: function (err) {
+                        // 실패할 때 콘솔에 로그 출력
+                        console.error("이미지 업로드 실패", err);
+                    }
+                });
             });
+            
+            
+            
+            
+            
+            
+            
+            
         }
     });
 </script>
@@ -195,19 +227,20 @@ $(function() {
 
                         <!-- 게시판 들어가는 부분 (시작) -->
                         <form name="writeFrm" method="post" onsubmit="return validateForm(this);" class="writeFrm"
-                        action="/community/photoboard_writeprocess.do" enctype="multipart/form-data">
+                        action="/community/photoboard_writeprocess.do">
                             <input type="hidden" name="tname"  />
                             <table class="table table-bordered" id="free_write_frm_table" width="100%" >
                                 <tr>
                                     <td>제목</td>
                                     <td>
-                                        <input type="text" name="title" />
+                                        <input type="text" name="title" id="title" />
+                                        <input type="text" name="email" id="email"  value="이메일"/>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>내용</td>
                                     <td>
-                                         <textarea id="summernote" name="summernote" ></textarea> 
+                                         <textarea id="summernote" name="summernote"  ></textarea> 
                                        <!--  <div id="summernote" ></div> -->
                                     </td>
                                 </tr>
