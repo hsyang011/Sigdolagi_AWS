@@ -109,6 +109,7 @@ $(function() {
         	
         	 const title = document.getElementById('title').value;
              const content = $('#summernote').summernote('code');
+             const email = $("#email").val();
 
         	
         	

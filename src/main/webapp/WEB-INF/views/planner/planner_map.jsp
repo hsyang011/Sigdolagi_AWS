@@ -1,20 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html>
 <head>
-<!-- head 추가 -->
-<%@ include file="../include/global_head.jsp" %>
+<meta charset="utf-8">
+<title>식도라기 - 플래너 만들기</title>
+<!-- jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+<!-- Latest compiled and minified CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Latest compiled JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<!-- 아이콘 -->
+<script src="https://kit.fontawesome.com/98401b861d.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="../css/common.css">
 <style>
 .map_wrap, .map_wrap * {margin:0;padding:0;font-family:"NPSfontRegular"; font-size: 16px;}
 .map_wrap a, .map_wrap a:hover, .map_wrap a:active{color:#000;text-decoration: none;}
 .map_wrap {position:relative;width:100%;height:707px;}
-#menu_wrap {position:absolute;top:0;right:0;bottom:0;width:25%;overflow-y:auto;background:white;z-index: 1;font-size:12px;}
+.menu_wrap {position:absolute;top:0;right:0;bottom:0;width:25%;overflow-y:auto;background:white;z-index: 1;font-size:12px;}
 .bg_white {background:#fff;}
-#menu_wrap hr {display: block; height: 1px;border: 0; border-top: 2px solid #5F5F5F;margin:3px 0;}
-#menu_wrap .option{text-align: center;}
-#menu_wrap .option p {margin:10px 0;}  
-#menu_wrap .option button {margin-left:5px;}
+.menu_wrap hr {display: block; height: 1px;border: 0; border-top: 2px solid #5F5F5F;margin:3px 0;}
+.menu_wrap .option{text-align: center;}
+.menu_wrap .option p {margin:10px 0;}  
+.menu_wrap .option button {margin-left:5px;}
 #placesList li {list-style: none;}
 #placesList .item {position:relative;border-bottom:1px solid #888;overflow: hidden;cursor: pointer;min-height: 65px;}
 #placesList .item span {display: block;margin-top:4px;}
@@ -57,6 +67,25 @@
 }
 .search-bar input:focus { border: 3px solid #FF7A00; }
 #search_image:focus { border: none; }
+.circle {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: #FF7A00;
+    font-size: 16px;
+    color: white; /* 텍스트 색상을 흰색으로 설정합니다. */
+    text-align: center;
+    line-height: 24px; /* 텍스트를 원의 중앙에 정렬합니다. */
+}
+#list_head * { margin: 0 5px; }
+.ellipsis {
+  width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
 </style>
 </head>
 <body>
@@ -74,18 +103,66 @@
     </div>
     <div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
 
-    <div id="menu_wrap" class="bg_white">
+
+<c:choose>
+    <c:when test="${not empty planner_idx}">
+        <!-- planner_idx가 not null일 때 실행될 코드 -->
+	    <!-- 나의 플래너 리스트 -->
+	    <div class="menu_wrap bg_white myplanner">
+	        <div class="option py-3">
+	        	<c:set var="lastIndex">${places.size()-1}</c:set>
+	            나의 플래너 <span style="color: #FF7A00;">(${places[0].place_name} > ${places[lastIndex].place_name})</span>
+	        </div>  
+	        <hr>
+	        <div>
+	        	<c:forEach items="${places}" var="row" varStatus="loop">						        	
+		            <li>
+		                <div class="d-flex my-3 px-2" id="list_head">
+		                    <div class="circle">${loop.count}</div>
+		                    <span>${row.place_name}</span>
+		                    <span style="color: #999999;">${row.place_category}</span>
+		                </div>
+		                <div class="d-flex justify-content-between my-3 px-3">
+		                    <span style="width: 66%; color: gray;" class="ellipsis">
+		                    	${row.road_addr} <br />
+		                    	${row.place_telecom}
+		                    	<%-- ${row.memo} --%>
+		                    </span>
+		                    <button style="float: right; background-color: #FF7A00; color: white;" onclick="window.open().location.href='${row.place_url}'" class="btn rounded-4 px-3 py-2 me-1">상세정보</button></div>
+		                </div>
+	                    <div class="text-center" style="color: #FF7A00;">▼</div>
+		            </li>
+	        	</c:forEach>
+	        </div>
+	    </div>
+    </c:when>
+    <c:otherwise>
+        <!-- planner_idx가 null일 때 실행될 코드 -->
+	    <div class="menu_wrap bg_white myplanner">
+	        <div class="option py-3">
+	            장소를 탐색 후, 플래너에 추가해보세요!
+	        </div>  
+	    </div>
+    </c:otherwise>
+</c:choose>
+
+	<!-- 검색결과 리스트 -->
+    <div class="menu_wrap bg_white searchResult">
         <div class="option py-3">
             코코 위례점 검색결과 <span style="color: #FF7A00;">2건</span>
         </div>
         <hr>
-        <ul id="placesList"></ul>
+        <ul id="placesList" style="padding-left: 0;"></ul>
         <div id="pagination"></div>
     </div>
 </div>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=58c1517c26a147b5119aacb8ce4f7d5c&libraries=services"></script>
 <script>
+$(function() {
+	$(".searchResult").hide();	
+});
+
 // 마커를 담을 배열입니다
 var markers = [];
 
@@ -109,6 +186,8 @@ var infowindow = new kakao.maps.InfoWindow({zIndex:1});
 
 // 키워드 검색을 요청하는 함수입니다
 function searchPlaces() {
+	$(".myplanner").hide();
+	$(".searchResult").show();	
 
     var keyword = document.getElementById('keyword').value;
 
@@ -121,6 +200,9 @@ function searchPlaces() {
     ps.keywordSearch( keyword, placesSearchCB); 
 }
 
+// 전역변수 선언
+let placeArr = [];
+
 // 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
 function placesSearchCB(data, status, pagination) {
     if (status === kakao.maps.services.Status.OK) {
@@ -128,6 +210,7 @@ function placesSearchCB(data, status, pagination) {
         // 정상적으로 검색이 완료됐으면
         // 검색 목록과 마커를 표출합니다
         console.log(data[0]);
+        placeArr = data;
         displayPlaces(data);
 
         // 페이지 번호를 표출합니다
@@ -150,7 +233,7 @@ function placesSearchCB(data, status, pagination) {
 function displayPlaces(places) {
 
     var listEl = document.getElementById('placesList'), 
-    menuEl = document.getElementById('menu_wrap'),
+    menuEl = document.getElementsByClassName('searchResult')[0],
     fragment = document.createDocumentFragment(), 
     bounds = new kakao.maps.LatLngBounds(), 
     listStr = '';
@@ -221,7 +304,7 @@ function getListItem(index, places) {
                  
       itemStr += '  <span class="tel">' + places.phone  + '</span>' +
                 '</div>';
-    itemStr += '<button style="float: right; background-color: #FF7A00; color: white;" class="btn rounded-4 px-3 py-2 me-1">추가하기</button></div>'; 
+    itemStr += '<button style="float: right; background-color: #FF7A00; color: white;" onclick="addList('+index+');" class="btn rounded-4 px-3 py-2 me-1">추가하기</button></div>'; 
 
     el.innerHTML = itemStr;
     el.className = 'item';
@@ -298,11 +381,41 @@ function displayInfowindow(marker, title) {
     infowindow.open(map, marker);
 }
 
- // 검색결과 목록의 자식 Element를 제거하는 함수입니다
+// 검색결과 목록의 자식 Element를 제거하는 함수입니다
 function removeAllChildNods(el) {   
     while (el.hasChildNodes()) {
         el.removeChild (el.lastChild);
     }
+}
+
+// 추가하기 버튼을 눌렀을 때, DB에 저장 후, 나의 플래너 리스트로 전환
+function addList(i) {
+	// console.log('하이', i, placeArr[i]);
+	let place = placeArr[i];
+	let data = {
+		planner_idx: ${planner_idx},
+		lot_address: place.address_name,
+		road_address: place.road_address_name,
+		place_name: place.place_name,
+		place_category: place.category_name,
+		place_telecom: place.phone,
+		x_point: place.x,
+		y_point: place.y,
+		place_url: place.place_url
+	};
+	
+	$.ajax({
+        type: "POST",
+        url: "./addToPlanner.do",
+        data: data,
+        success: function(res) {
+            console.log("요청성공");
+        },
+        error: function(err) {
+    		console.log("요청실패");
+        }
+	});
+	
 }
 </script>
 </body>

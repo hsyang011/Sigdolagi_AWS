@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.edu.springboot.planner.IPlannerService">
+	
+	<!-- 이전에 만든 플래너가 있는지 확인 -->
+	<select id="getPlanner" parameterType="com.edu.springboot.planner.PlannerDTO" resultType="int">
+		SELECT COUNT(*) FROM planner WHERE email=#{email}
+	</select>
+	<!-- 플래너 생성 -->
+	<insert id="createPlanner" parameterType="com.edu.springboot.planner.PlannerDTO">
+		INSERT INTO planner (planner_idx, email) VALUES (seq_planner_idx.NEXTVAL, #{email})
+	</insert>
+	<!-- 플래너의 고유번호 얻어오기 -->
+	<select id="getPlannerIdx" parameterType="com.edu.springboot.planner.PlannerDTO" resultType="string">
+		SELECT planner_idx FROM planner WHERE email=#{email}
+	</select>
+	<!-- 플래너에 등록된 모든 장소 가져온다. -->
+	<select id="getAllPlaces" parameterType="com.edu.springboot.planner.PlannerDTO" resultType="com.edu.springboot.planner.PlaceDTO">
+		SELECT * FROM place WHERE planner_idx=${planner_idx}
+			ORDER BY place_idx ASC
+	</select>
+	
+</mapper>
