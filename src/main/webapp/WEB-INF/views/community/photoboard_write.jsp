@@ -106,8 +106,19 @@ $(function() {
         });
 
         function uploadSummernoteImageFile(file, editor) {
+        	
+        	 const title = document.getElementById('title').value;
+             const content = $('#summernote').summernote('code');
+
+        	
+        	
             data = new FormData();
+            data.append("title", title);
+            data.append("email", email);
+            data.append("content", content);
             data.append("file", file);
+            console.log(content);
+            console.log(title);
             $.ajax({
                 data: data,
                 type: "POST",
@@ -201,7 +212,8 @@ $(function() {
                                 <tr>
                                     <td>제목</td>
                                     <td>
-                                        <input type="text" name="title" />
+                                        <input type="text" name="title" id="title" />
+                                        <input type="text" name="email" id="email"  value="이메일"/>
                                     </td>
                                 </tr>
                                 <tr>
