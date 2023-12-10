@@ -9,7 +9,7 @@
 </head>
 <style>
     /* main 설정 */
-    .card { padding: 0; border: none; }
+    .card { padding: 0; border: none; cursor: pointer; }
     .card > div { border-radius: 15px; margin: 10px; border: 1px solid lightgray; } /* 테두리 둥글게는 .card의 자식 div에 부여 */
     .card-img-top { border-radius: 15px 15px 0 0; }
     .card-body { background-color: white; border-radius: 15px; }
@@ -76,11 +76,42 @@ $(function() {
     $("#makeplannerBtn").click(() => {
     	location.href = "./planner_map.do";
     });
+    
+    // 카테고리를 눌렀을 때 ajax요청
+    $(".cate").click((e) => {
+    	let cate = $(e.target).text();
+    	
+   		$.ajax({
+   	        type: "POST",
+   	        url: "./sortPlannerByCate.do",
+   	        data: {cate: cate},
+   	        success: function(res) {
+   	            console.log("정렬 성공", res[0]);
+   	            let str = '';
+   	            for (let i=0; i<res.length; i++) {   	            	
+	   	            str += '<div class="card custom-col">';
+		            str +=     '<div>';
+			        str +=         '<img class="card-img-top" src="../uploads/'+res[i].sfile+'" height="250" alt="Card image">';
+			        str +=         '<div class="card-body">';
+		        	str +=             '<h5 class="card-title">'+res[i].plan_start+' > '+res[i].plan_end+'</h5>';
+			        str +=             '<p class="card-text">'+res[i].nickname+'</p>';
+			        str +=         '</div>';
+			        str +=     '</div>';
+			        str += '</div>';
+   	            }
+            	
+            	$("#otherPlanners").html(str);
+   	        },
+   	        error: function(err) {
+   	    		console.log("정렬 실패");
+   	        }
+   		});
+    });
 });
 
 function resizeCardSize() {
     let cardImgWidth = $(".card-img-top").width();
-    $(".card-img-top").height(cardImgWidth*0.9);
+    $(".card-img-top").height(cardImgWidth);
 }
 </script>
 </head>
@@ -183,19 +214,19 @@ function resizeCardSize() {
             <div class="container">
                 <h4>준비중인 여행자들의 플래너</h4>
                 <ul class="nav my-3 category">
-                    <li class="nav-item me-3"><button type="button" class="btn rounded-pill" style="background-color: #FFA24D; color: white;">최신</button></li>
-                    <li class="nav-item me-3"><button type="button" class="btn rounded-pill" style="background-color: #FFA24D; color: white;">아이들과</button></li>
-                    <li class="nav-item me-3"><button type="button" class="btn rounded-pill" style="background-color: #FFA24D; color: white;">커플/신혼</button></li>
-                    <li class="nav-item me-3"><button type="button" class="btn rounded-pill" style="background-color: #FFA24D; color: white;">부모님과</button></li>
-                    <li class="nav-item me-3"><button type="button" class="btn rounded-pill" style="background-color: #FFA24D; color: white;">남자혼자</button></li>
-                    <li class="nav-item me-3"><button type="button" class="btn rounded-pill" style="background-color: #FFA24D; color: white;">여자혼자</button></li>
-                    <li class="nav-item me-3"><button type="button" class="btn rounded-pill" style="background-color: #FFA24D; color: white;">여자끼리</button></li>
-                    <li class="nav-item me-3"><button type="button" class="btn rounded-pill" style="background-color: #FFA24D; color: white;">남자끼리</button></li>
-                    <li class="nav-item me-3"><button type="button" class="btn rounded-pill" style="background-color: #FFA24D; color: white;">남녀함께</button></li>
+                    <li class="nav-item me-3"><button type="button" class="btn rounded-pill cate" style="background-color: #FFA24D; color: white;">최신</button></li>
+                    <li class="nav-item me-3"><button type="button" class="btn rounded-pill cate" style="background-color: #FFA24D; color: white;">아이들과</button></li>
+                    <li class="nav-item me-3"><button type="button" class="btn rounded-pill cate" style="background-color: #FFA24D; color: white;">커플/신혼</button></li>
+                    <li class="nav-item me-3"><button type="button" class="btn rounded-pill cate" style="background-color: #FFA24D; color: white;">부모님과</button></li>
+                    <li class="nav-item me-3"><button type="button" class="btn rounded-pill cate" style="background-color: #FFA24D; color: white;">남자혼자</button></li>
+                    <li class="nav-item me-3"><button type="button" class="btn rounded-pill cate" style="background-color: #FFA24D; color: white;">여자혼자</button></li>
+                    <li class="nav-item me-3"><button type="button" class="btn rounded-pill cate" style="background-color: #FFA24D; color: white;">여자끼리</button></li>
+                    <li class="nav-item me-3"><button type="button" class="btn rounded-pill cate" style="background-color: #FFA24D; color: white;">남자끼리</button></li>
+                    <li class="nav-item me-3"><button type="button" class="btn rounded-pill cate" style="background-color: #FFA24D; color: white;">남녀함께</button></li>
                 </ul>
                 <!-- 준비중인 여행자들의 플래너 썸네일 리스트 시작 -->
                 <!-- 리스트 반복 시작 -->
-                <figure class="row thumbnail">
+                <figure class="row thumbnail" id="otherPlanners">
                 <c:forEach items="${plannerList}" var="row" varStatus="loop">                
                     <div class="card custom-col">
                         <div>

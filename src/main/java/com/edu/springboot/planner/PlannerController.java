@@ -42,6 +42,20 @@ public class PlannerController {
 		return "planner/planner_list";
 	}
 	
+	// 플래너 정렬
+	@RequestMapping("/planner/sortPlannerByCate.do")
+	public ResponseEntity<List<PlannerDTO>> sortPlannerByCate(HttpServletRequest req) {
+		String cate = req.getParameter("cate");
+		List<PlannerDTO> list;
+		if (cate.equals("최신")) {
+			list = plannerDAO.getPlannerByRecent();
+		} else {
+			list = plannerDAO.getPlannerByCate(cate);
+		}
+		
+		return ResponseEntity.ok(list);
+	}
+	
 	// 플래너 만들기 페이지 진입 시 즉시 플래너 생성
 	@RequestMapping("/planner/planner_map.do")
 	public String plannerMap(PlannerDTO plannerDTO, Model model) {
