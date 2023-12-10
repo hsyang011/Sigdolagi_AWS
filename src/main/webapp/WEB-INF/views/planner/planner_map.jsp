@@ -124,6 +124,7 @@
 	                	</div>
 	                	<div class="mt-2 me-1">
                            	<img src="../images/cross-wish-ico.png" alt="" class="deletePlace" style="cursor: pointer;">
+                           	<input type="hidden" value="${row.place_idx}" />
 	                	</div>
 	                </div>
 	                <div class="d-flex justify-content-between my-3 px-3">
@@ -172,7 +173,23 @@ $(function() {
 	$(".searchResult").hide();
 	// 나의 플래너에서 x를 누르면 해당 일정이 삭제됨
 	$(".deletePlace").click((e) => {
-		$(e.target).parent().parent().parent().remove();
+		let data = {
+			place_idx: $(e.target).next().val()
+		};
+		// 삭제 요청 ajax
+		$.ajax({
+	        type: "POST",
+	        url: "./deleteFromPlanner.do",
+	        data: data,
+	        success: function(res) {
+	            console.log("요청성공");
+	            // 플래너에서 삭제
+				$(e.target).parent().parent().parent().remove();
+	        },
+	        error: function(err) {
+	    		console.log("요청실패");
+	        }
+		});
 	});
 });
 

@@ -6,5 +6,6 @@ import org.apache.ibatis.annotations.Mapper;
 public interface IPlaceService {
 	
 	public int addPlaceToPlanner(PlaceDTO placeDTO);
+	public int deleteFromPlanner(PlaceDTO placeDTO);
 	
 }
