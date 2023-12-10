@@ -16,6 +16,8 @@ import com.edu.springboot.market.ProductDTO;
 @Controller
 public class AdminController {
 
+	
+	
 	@RequestMapping("/administrator/admin_main.do") 
 	public String adminMain() {
 		
