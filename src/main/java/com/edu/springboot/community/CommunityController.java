@@ -29,7 +29,6 @@ import jakarta.mail.Session;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletRequestWrapper;
 import jakarta.servlet.http.HttpSession;
-import jakarta.servlet.http.Part;
 import oracle.jdbc.proxy.annotation.Post;
 import utils.MyFunctions;
 import utils.PagingUtil;
@@ -255,6 +254,7 @@ public class CommunityController {
 		System.out.println("저장된 파일명"+savedFileName);
 		photoBoardDTO.setSfile(savedFileName);
 		System.out.println(photoBoardDTO);
+		
 		
 		
 		

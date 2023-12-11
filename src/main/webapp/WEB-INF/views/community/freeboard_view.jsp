@@ -93,8 +93,6 @@ function deletePost(){
 
 		document.body.appendChild(form);
 		form.submit();
-	
-	
 	}
 	else {
 		return false;

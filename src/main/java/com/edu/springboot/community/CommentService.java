@@ -21,7 +21,7 @@ public class CommentService {
 	    @Transactional
 	    public String saveComment(CommentDTO params) {
 	        commentMapper.save(params);
-	        return params.getComment_id();
+	        return params.getComment_idx();
 	    }
 
 	    /**
@@ -41,7 +41,7 @@ public class CommentService {
 	    @Transactional
 	    public String updateComment(final CommentDTO params) {
 	        commentMapper.update(params);
-	        return params.getComment_id();
+	        return params.getComment_idx();
 	    }
 
 	    /**
