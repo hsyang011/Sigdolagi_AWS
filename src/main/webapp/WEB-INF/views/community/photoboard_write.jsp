@@ -145,7 +145,7 @@ $(function() {
                         console.log(data);
 						
                         // 성공했을 때만 페이지 이동
-                        //window.location.href = './photoboard_list.do';
+                        window.location.href = './photoboard_list.do';
                     },
                     error: function (err) {
                         // 실패할 때 콘솔에 로그 출력
