@@ -8,6 +8,8 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -188,9 +190,18 @@ public class MarketController {
 	
 	// 주문 처리
 	@RequestMapping("/market/orderProcess.do")
+	@Transactional(propagation=Propagation.REQUIRED)
 	public ResponseEntity<String> orderProcess(OrderDTO orderDTO) {
-//		System.out.println(orderDTO.getPayment() + " 결제가격");
-		orderDAO.orderProcess(orderDTO);
+		try {			
+			// System.out.println(orderDTO.getPayment() + " 결제가격");
+			// 결제 처리 완료
+			orderDAO.orderProcess(orderDTO);
+			// 장바구니 싹 비우기
+			orderDAO.deleteAll(orderDTO);
+		} catch (Exception e) {
+			System.out.println("주문 처리 중 오류가 발생했습니다.");
+			e.printStackTrace();
+		}
 		return ResponseEntity.ok("결제가 완료되었습니다!");
 	}
 	

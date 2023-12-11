@@ -133,14 +133,26 @@ $(function() {
 				alert("결제방식을 선택해주세요!");
 				return;
 			}
-			/* frm.submit(); */
+			
+			// ######################################################################3
+			// I'mport 코드 시작
+			let pm = frm.payment_method.value;
+			let pg = '';
+			if (pm == '카카오페이') {
+				pg = 'kakaopay'
+			} else if (pm == '토스페이') {
+				pg = 'tosspay'
+			} else if (pm == '신용카드') {
+				pg = 'html5_inicis'
+			}
+			
 			// I'mport 초기화
 			var IMP = window.IMP;
 			IMP.init('imp25411281');
 
 			// 결제 창 열기
 		    IMP.request_pay({
-		        pg: 'kakaopay', // PG사 (예: html5_inicis, kakaopay 등)
+		        pg: pg, // PG사 (예: html5_inicis, kakaopay 등)
 		        pay_method: 'card', // 결제 수단 (card, vbank, phone 등)
 		        merchant_uid: 'merchant_' + new Date().getTime(), // 상점에서 관리하는 고유 주문 번호
 		        amount: frm.payment.value, // 결제 금액
@@ -169,7 +181,13 @@ $(function() {
 		                },
 		                success: function (response) {
 		                    console.log('서버 응답:', response);
+		                    /* 이유는 모르겠으나 첫번째 alert창은 씹히는 버그가 존재. */
 		                    alert('결제가 완료되었습니다.');
+		                    if (confirm("결제가 완료되었습니다.\n주문 내역으로 이동할까요?")) {
+		                    	location.href = "../member/myordermanage.do";
+		                    } else {
+		                    	location.href = "./market_list.do";
+		                    }
 		                },
 		                error: function (error) {
 		                    console.error('서버 오류:', error);
@@ -360,7 +378,7 @@ $(function() {
                     <div style="border-top: 1px solid black;">
                         <div class="row" id="payment-method">
                             <div class="col"><button class="btn py-3 rounded-4 payment-method">카카오페이</button></div>
-                            <div class="col"><button class="btn py-3 rounded-4 payment-method">네이버페이</button></div>
+                            <div class="col"><button class="btn py-3 rounded-4 payment-method">토스페이</button></div>
                             <div class="col"><button class="btn py-3 rounded-4 payment-method">신용카드</button></div>
                         </div>
                     </div>
