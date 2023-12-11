@@ -106,7 +106,7 @@ $(function() {
 							    <div class="col-md-3">
 							        <figure class="thumbnail">
 							            <div class="card col custom-col" style="padding-right: 20px; border: none;">
-							                 <img class="card-img-top" src="../upload/${entry.sfile}" alt="이미지"> 
+							                 <img class="card-img-top" src="../uploads/${entry.sfile}" alt="이미지"> 
 							                <div class="card-body">
 							                    <h4 class="card-title" style="font-size: 18px; text-align: left;">
 							                        ${entry.title} <!-- 파일 이름 -->
