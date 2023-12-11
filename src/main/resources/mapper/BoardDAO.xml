@@ -40,6 +40,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT * FROM freeboard WHERE freeboard_idx=${freeboard_idx}
 	</select>
 	
+	
 	<update id="edit" parameterType="com.edu.springboot.community.BoardDTO">
 		UPDATE freeboard SET title=#{title}, content=#{content} WHERE freeboard_idx=${freeboard_idx}
 
