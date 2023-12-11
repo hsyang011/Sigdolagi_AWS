@@ -48,7 +48,7 @@
 	<!-- 관리자회원탈퇴처리변경 -->
 	<update id="adminMemberEnabled"
 		parameterType="com.edu.springboot.member.MemberDTO">
-		update member set enabled='Y' where email=#{email}
+		update member set enabled=0 where email=#{email}
 	</update>
 	
 	

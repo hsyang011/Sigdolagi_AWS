@@ -103,7 +103,7 @@ $(function() {
             lang: "ko-KR",
             callbacks: {
                 onImageUpload: function (files) {
-                    uploadSummernoteImageFile(files[0], this);
+                    
                 }
             }
         });
