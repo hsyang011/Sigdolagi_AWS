@@ -431,7 +431,7 @@ function addList(i) {
 	// console.log('하이', i, placeArr[i]);
 	let place = placeArr[i];
 	let data = {
-		planner_idx: $("#planner_idx").val(),
+		planner_idx: ${planner_idx},
 		lot_addr: place.address_name,
 		road_addr: place.road_address_name,
 		place_name: place.place_name,

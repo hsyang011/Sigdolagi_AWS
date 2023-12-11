@@ -96,7 +96,7 @@ public class CommunityController {
 	@PostMapping("/community/freeboard_write.do")
 
 	public String freeboardWrite(Model model, HttpServletRequest req, Principal principal) {
-		String email= req.getParameter("email");
+		String email = req.getParameter("email");
 		String nickname= principal.getName();
 		String title= req.getParameter("title");
 		String content= req.getParameter("content");

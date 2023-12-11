@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<!-- 스프링 시큐리티 전용 태그 -->
+<%@ taglib prefix="s" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,23 +30,22 @@
                 </div>
                 <div class="header_list">
                     <ul>
-	                    <%-- 세션에 로그인 정보가 없는 경우 --%>
-						<c:if test="${empty sessionEmail}">
+	                    <!-- 로그인 정보가 없는 경우 -->
+		                <s:authorize access="isAnonymous()">
 						    <li><a href="../member/login.do">로그인</a></li>
-						</c:if>
-                        
-                        <!-- 로그인했을때 -->
-                        <c:if test="${not empty sessionEmail}">
-                        	<!-- 관리자로그인했을경우 -->
-		                	<c:if test="${sessionEmail eq 'admin'}">
-		                		<li><a href="../administrator/admin_main.do">관리자</a></li>
-		                	</c:if>
+		                	<li><a href="../member/regist.do">회원가입</a></li>
+		                </s:authorize>
+			            
+			            <!-- 관리자로 로그인할 때 -->
+			            <s:authorize access="hasRole('ADMIN')">	            
+		               		<li><a href="../administrator/admin_main.do">관리자</a></li>
+			            </s:authorize>
+			            
+			            <!-- 로그인 했을 때 -->
+		                <s:authorize access="isAuthenticated()">
 		                	<li><a href="../member/logout.do">로그아웃</a></li>
-						</c:if>
-                        
-                        
-                        <li><a href="../member/regist.do">회원가입</a></li>
-                        <li><a href="../member/mypage.do">마이페이지</a></li>
+		                	<li><a href="../member/mypage.do">마이페이지</a></li>
+		                </s:authorize>
                     </ul>
                 </div>
             </div>    
