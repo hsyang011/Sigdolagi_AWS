@@ -71,6 +71,7 @@ main > * { margin: 50px 0; }
     .mealk_cate {font-size: 0.8em;}/* 밀키트 카테고리 사이즈 */
 }
 
+
 </style>
 </head>
 <body>
@@ -114,13 +115,18 @@ main > * { margin: 50px 0; }
                 <!-- 헤더제목 -->
                 <ul class="catemenu d-flex">
                     <li class="on"><a href="./freeboard_list.do">자유게시판</a></li>
-                    <li><a href="./photoboard_list.do">사진게시판</a></li>
+                    <li><a href="../community/photoboard_list.do">사진게시판</a></li>
                 </ul>
-
+				
+				
+				
+				
             </div>
             <!-- 컨텐츠 헤더 끝 -->
             <div class="shop_board container  mt-5" >
-
+				
+				
+				
                 <!-- 문의 폼 -->
                 <div class="container">
                     <div class="freeboard_write_frm" >
@@ -154,6 +160,9 @@ main > * { margin: 50px 0; }
                 </div>
               
               
+              
+              	
+              	
 
          
 

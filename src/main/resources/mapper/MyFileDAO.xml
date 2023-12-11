@@ -6,10 +6,12 @@
 
 <mapper namespace="com.edu.springboot.community.IMyFileService">
 	<insert id="insertMultiFile" parameterType="com.edu.springboot.community.PhotoBoardDTO">
-    INSERT INTO photoboard (photoboard_IDX, email, title, content, ofile, sfile)
+    INSERT INTO photoboard (photoboard_idx, email, title, content, ofile, sfile)
     VALUES (SEQ_PHOTOBOARD_IDX.nextval, #{email}, #{title}, 
             #{content}, #{ofile}, #{sfile})
 	</insert>
 </mapper>
+
+
 
 
