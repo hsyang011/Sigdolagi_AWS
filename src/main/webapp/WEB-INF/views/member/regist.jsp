@@ -7,13 +7,16 @@
 <link rel="stylesheet" href="../css/member.css">
 <script type="text/javascript">
 function emailSend(frm){
+	let data = {
+		email: frm.email1.value+'@'+frm.email2.value	
+	};
 	
-	alert("안녕?");
 	$.ajax({
-		url: "../main/emailSendProcess.do",
 		type: "post",
+		url: "./emailSendProcess.do",
+		data: data,
 		success: function() {
-			console.log("요청성공");
+			console.log("해당 이메일로 인증번호를 발송했습니다.");
 		},
 		error: function() {
 			console.log("요청실패");
