@@ -40,8 +40,6 @@
 	
 	
 	
-<<<<<<< HEAD
-=======
 	<!-- 관리자 마켓리스트 -->
 	<select id="adminMaketSelect"
 		resultType="com.edu.springboot.market.ProductDTO"> 
@@ -63,5 +61,4 @@
 		delete from product where prod_idx=${prod_idx}
 	</delete>
 	
->>>>>>> branch 'main' of https://github.com/hsyang011/Sigdolagi.git
 </mapper>
