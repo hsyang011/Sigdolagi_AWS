@@ -39,7 +39,17 @@
 	</insert>
 	
 	
+	<!-- 관리자회원관리리스트 -->
+	<select id="adminMemberSelect"
+		resultType="com.edu.springboot.member.MemberDTO">
+		SELECT * FROM member ORDER BY regidate DESC
+	</select>
 	
+	<!-- 관리자회원탈퇴처리변경 -->
+	<update id="adminMemberEnabled"
+		parameterType="com.edu.springboot.member.MemberDTO">
+		update member set enabled='Y' where email=#{email}
+	</update>
 	
 	
 </mapper>

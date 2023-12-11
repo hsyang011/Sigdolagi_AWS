@@ -1,5 +1,6 @@
 package com.edu.springboot.member;
 
+
 import lombok.Data;
 
 
@@ -16,6 +17,8 @@ public class MemberDTO {
 	private String sms;
 	private String grade;
 	private String password;
+	private java.sql.Date regidate;
+	private String enabled;
 	
 	
 	

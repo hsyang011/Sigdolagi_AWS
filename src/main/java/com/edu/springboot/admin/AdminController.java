@@ -12,6 +12,8 @@ import com.edu.springboot.community.BoardDTO;
 import com.edu.springboot.market.IProductService;
 import com.edu.springboot.market.ParameterDTO;
 import com.edu.springboot.market.ProductDTO;
+import com.edu.springboot.member.IMemberService;
+import com.edu.springboot.member.MemberDTO;
 
 @Controller
 public class AdminController {
@@ -23,10 +25,30 @@ public class AdminController {
 		
 		return "administrator/admin_main"; 
 	 }
-	 
+	
+	
+	@Autowired
+	IMemberService  memberdao;
+	
+	//관리자 회원목록 
 	@RequestMapping("/administrator/adminMemberList.do")
-	public String adminMemberList() {
+	public String adminMemberList(Model model) {
+		
+		// DB에서 인출한 게시물의 목록을 model객체에 저장한다.
+		
+		List<MemberDTO> adminMemberSelect = memberdao.adminMemberSelect();
+		model.addAttribute("adminMemberSelect", adminMemberSelect);
+//		System.out.println("adminMemberSelect="+adminMemberSelect);
 		return "administrator/admin_member_list";
+	}
+	
+	//관리자 마켓상품삭제
+	@PostMapping("/administrator/admin_member_enabled.do")
+	public String adminMemberEnabled(MemberDTO memberDTO) {
+		int result = memberdao.adminMemberEnabled(memberDTO);
+		if(result==1)System.out.println("탈퇴처리되었습니다.");
+		
+		return "redirect:admin_member_list.do";
 	}
 	
 	@RequestMapping("/administrator/admin_free_list.do")
@@ -63,6 +85,7 @@ public class AdminController {
 	@Autowired
 	IProductService productDAO;
 	
+	//관리자 마켓상품리스트
 	@RequestMapping("/administrator/admin_maket_list.do")
 	public String adminMaketList(Model model) {
 		
