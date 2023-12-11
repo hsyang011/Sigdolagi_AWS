@@ -3,6 +3,7 @@ package com.edu.springboot.planner;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.security.Principal;
 import java.util.Collection;
 import java.util.List;
 import java.util.Locale;
@@ -34,9 +35,14 @@ public class PlannerController {
 	
 	// 플래너 리스트 페이지
 	@RequestMapping("/planner/planner_list.do")
-	public String plannerList(MemberDTO memberDTO, Model model) {
-		memberDTO.setEmail("foo@gmail.com");
-		// 다른 유저의 모든 플래너를 불러온다.
+	public String plannerList(MemberDTO memberDTO, Model model, Principal principal) {
+		// 로그인 된 상태라면
+		if (principal != null) {
+			memberDTO.setEmail(principal.getName());
+		} else {
+			memberDTO.setEmail("null");
+		}
+
 		List<PlannerDTO> list = plannerDAO.getOtherUserPlanner(memberDTO);
 		model.addAttribute("plannerList", list);
 		return "planner/planner_list";
@@ -44,13 +50,14 @@ public class PlannerController {
 	
 	// 플래너 정렬
 	@RequestMapping("/planner/sortPlannerByCate.do")
-	public ResponseEntity<List<PlannerDTO>> sortPlannerByCate(HttpServletRequest req) {
+	public ResponseEntity<List<PlannerDTO>> sortPlannerByCate(HttpServletRequest req, Principal principal) {
 		String cate = req.getParameter("cate");
+		String email = principal.getName();
 		List<PlannerDTO> list;
 		if (cate.equals("최신")) {
-			list = plannerDAO.getPlannerByRecent();
+			list = plannerDAO.getPlannerByRecent(email);
 		} else {
-			list = plannerDAO.getPlannerByCate(cate);
+			list = plannerDAO.getPlannerByCate(cate, email);
 		}
 		
 		return ResponseEntity.ok(list);
@@ -58,13 +65,15 @@ public class PlannerController {
 	
 	// 플래너 만들기 페이지 진입 시 즉시 플래너 생성
 	@RequestMapping("/planner/planner_map.do")
-	public String plannerMap(PlannerDTO plannerDTO, Model model) {
-		plannerDTO.setEmail("foo@gmail.com");
+	public String plannerMap(PlannerDTO plannerDTO, Model model, Principal principal) {
+		plannerDTO.setEmail(principal.getName());
 		// 이전에 만든 플래너가 있는지 확인
 		int result = plannerDAO.getPlanner(plannerDTO);
 		if (result == 0) {			
 			// 플래너 생성
 			plannerDAO.createPlanner(plannerDTO);
+			String planner_idx = plannerDAO.getPlannerIdx(plannerDTO);
+			model.addAttribute("planner_idx", planner_idx);
 		} else {			
 			// 플래너의 식별변호를 가져온다.
 			String planner_idx = plannerDAO.getPlannerIdx(plannerDTO);

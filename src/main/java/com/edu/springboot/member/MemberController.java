@@ -4,6 +4,7 @@ package com.edu.springboot.member;
 import java.security.Principal;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -95,6 +96,7 @@ public class MemberController {
 		String email = req.getParameter("email1") + "@" + req.getParameter("email2");
 		String name = req.getParameter("name");
 		String password = req.getParameter("password");
+		password = PasswordEncoderFactories.createDelegatingPasswordEncoder().encode(password).replace("{bcrypt}", "");
 		String nickname = req.getParameter("nickname");
 		
 		String phone = req.getParameter("tel1") + "-" + req.getParameter("tel2") + "-" + req.getParameter("tel3");

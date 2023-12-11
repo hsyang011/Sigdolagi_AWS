@@ -81,6 +81,7 @@ $(function() {
                         <div class="write_btn" style="float: left;">
                             <button type="button" class="btn rounded-0" style="margin-bottom: 40px; margin-top:-40px; margin-right: 20px;" id="btn2" 
                             onclick="location.href='./photoboard_write.do';">글쓰기</button>
+                            
                         </div>
                     </div>
                 </div>
@@ -110,6 +111,7 @@ $(function() {
 							                <div class="card-body">
 							                    <h4 class="card-title" style="font-size: 18px; text-align: left;">
 							                        ${entry.title} <!-- 파일 이름 -->
+							                       <a href="./photoboard_view.do?photoboard_idx=${ entry.photoboard_idx }">${ entry.title }</a>
 							                    </h4>
 							                    <p class="card-text" style="text-align: left;">
 							                        <!-- 추가적인 내용을 필요에 따라 여기에 추가할 수 있습니다 -->
