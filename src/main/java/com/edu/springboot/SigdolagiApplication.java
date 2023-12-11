@@ -9,11 +9,8 @@ public class SigdolagiApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(SigdolagiApplication.class, args);
-<<<<<<< HEAD
-		// Spring Security 연동 전 인코딩하여 "1234"의 해쉬값을 알아내기
-=======
+
 //		Spring Security 연동 전 인코딩하여 "1234"의 해쉬값을 알아내기
->>>>>>> branch 'main' of https://github.com/hsyang011/Sigdolagi.git
 		//String passwd = PasswordEncoderFactories.createDelegatingPasswordEncoder().encode("1234");
 		//System.out.println(passwd);
 	}
