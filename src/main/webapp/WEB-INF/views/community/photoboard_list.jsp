@@ -81,6 +81,7 @@ $(function() {
                         <div class="write_btn" style="float: left;">
                             <button type="button" class="btn rounded-0" style="margin-bottom: 40px; margin-top:-40px; margin-right: 20px;" id="btn2" 
                             onclick="location.href='./photoboard_write.do';">글쓰기</button>
+                            
                         </div>
                     </div>
                 </div>

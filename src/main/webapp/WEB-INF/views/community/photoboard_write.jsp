@@ -228,7 +228,7 @@ $(function() {
                                     <td>제목</td>
                                     <td>
                                         <input type="text" name="title" id="title" />
-                                        <input type="text" name="email" id="email"  value="이메일"/>
+                                        <input type="text" name="email" id="email"  value="${email}"/>
                                     </td>
                                 </tr>
                                 <tr>
