@@ -42,13 +42,13 @@ public class AdminController {
 		return "administrator/admin_member_list";
 	}
 	
-	//관리자 마켓상품삭제
-	@PostMapping("/administrator/admin_member_enabled.do")
+	//관리자 회원탈퇴처리
+	@PostMapping("/administrator/adminMemberList.do")
 	public String adminMemberEnabled(MemberDTO memberDTO) {
 		int result = memberdao.adminMemberEnabled(memberDTO);
 		if(result==1)System.out.println("탈퇴처리되었습니다.");
 		
-		return "redirect:admin_member_list.do";
+		return "redirect:adminMemberList.do";
 	}
 	
 	@RequestMapping("/administrator/admin_free_list.do")

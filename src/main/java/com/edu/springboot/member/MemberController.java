@@ -131,7 +131,7 @@ public class MemberController {
 	
 	
 	
-//	@PostMapping("/member/loginprocess.do")
+	@PostMapping("/member/loginprocess.do")
 	public String loginProcess(MemberDTO memberDTO, jakarta.servlet.http.HttpServletRequest req, jakarta.servlet.http.HttpSession session, 
 			org.springframework.ui.Model model, HttpServletResponse response) {
 	
