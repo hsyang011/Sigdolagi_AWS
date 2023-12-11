@@ -13,5 +13,9 @@ public class CommentDTO {
     private String nickname;     // 작성자
 	private java.sql.Date replydate; // 생성일
 	private java.sql.Date modified_date; //최종 수정일시 
+	
+	
 
+	
+	
 }
