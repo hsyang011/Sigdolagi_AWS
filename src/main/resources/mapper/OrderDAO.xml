@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.edu.springboot.market.IOrderService">
+	
+	<!-- 결제 테이블에 결제 정보 추가 -->
+	<insert id="orderProcess" parameterType="com.edu.springboot.market.OrderDTO">
+		INSERT INTO marketorder (order_idx, email, name, phone, addr1, addr2, message, payment_method, payment, point, zipcode)
+			VALUES (seq_marketorder_idx.NEXTVAL, #{email}, #{name}, #{phone}, #{addr1}, #{addr2}, #{message},
+				#{payment_method}, ${payment}, ${point}, #{zipcode})
+	</insert>
+	
+	<!-- 결제 후, 장바구니에 담긴 모든 품목 제거 -->
+	<delete id="deleteAll" parameterType="com.edu.springboot.market.OrderDTO">
+		DELETE FROM cart WHERE email=#{email}
+	</delete>
+	
+</mapper>
