@@ -18,6 +18,8 @@
 <script src="https://kit.fontawesome.com/98401b861d.js" crossorigin="anonymous"></script>
 <!-- 전역 설정 css 링크  -->
 <link rel="stylesheet" href="../css/common_board.css">
+<!-- <!-- 댓글 js -->
+<script type="text/javascript" src="/resources/js/reply.js"></script> -->
 <style>
     
 /*main nav_location 설정*/
@@ -98,6 +100,47 @@ function deletePost(){
 		return false;
 	}
 } 
+
+// 댓글 길이 카운팅
+function countingLength(content) {
+    if (content.value.length > 300) {
+        alert('댓글을 300자 이하로 입력해 주세요.');
+        content.value = content.value.substring(0, 300);
+        content.focus();
+    }
+    document.getElementById('counter').innerText = content.value.length + '/300자';
+}
+
+
+// 댓글 저장
+function saveComment() {
+
+    const content = document.getElementById('content');
+    isValid(content, '댓글');
+
+    const comment_id = [[ ${post.comment_id} ]];
+    const params = {
+   		comment_id : comment_id,
+        content : content.value,
+        nickname : nickname
+    }
+
+    $.ajax({
+        url : `/posts/${freeboard_idx}/comments`,
+        type : 'post',
+        contentType : 'application/json; charset=utf-8',
+        dataType : 'json',
+        data : JSON.stringify(params),
+        async : false,
+        success : function (response) {
+            console.log(response);
+        },
+        error : function (request, status, error) {
+            console.log(error)
+        }
+    })
+}
+
 </script>
 </head>
 <body>
@@ -178,6 +221,7 @@ function deletePost(){
 							        	${ boardDTO.content }	        	
 							        </td>
 							    </tr>
+							  
                                 <tr>
 		                        <%--      <% 
 		                             if(session.getAttribute("sessionNickname")!=null && session.getAttribute("sessionNickname").toString().equals(dto.getNickname())){
@@ -194,6 +238,29 @@ function deletePost(){
                                 </tr>
                             </table>
                         </form>
+                        
+                          <!--/* 댓글 작성 */-->
+					    <div class="cm_write" style="width:100%">
+					        <fieldset>
+					            <legend class="skipinfo">댓글 입력</legend>
+					            <div class="cm_input">
+					                <p><textarea id="content" name="content" onkeyup="countingLength(this);"  style="width:100%" rows="4" placeholder="댓글을 입력해 주세요."></textarea></p>
+					                <span><button type="button" class="btns" onclick="saveComment();">등 록</button> <i id="counter">0/300자</i></span>
+					            </div>
+					        </fieldset>
+					    </div>
+                       <!--  <div>
+								<ul id="replyUL"></ul>
+						</div> -->
+						
+                       <!-- <div> 
+                         <form name="writeFrm" method="post" onsubmit="return validateForm(this);" action="/community/freeboard_write.do" class="writeFrm">
+							<label>댓글</label>
+						</div>
+						<div style="width:100%">
+							<textarea rows="4" style="width: 100%;"></textarea>
+							<button type="button" id="btn_add">댓글쓰기</button> -->
+						</div>
                     </div> 
                 </div>
               

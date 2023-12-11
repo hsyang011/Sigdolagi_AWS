@@ -99,7 +99,7 @@ $(function() {
     $(document).ready(function () {
         $('#summernote').summernote({
             height: 300,
-            width: 700,
+            width: 1170,
             lang: "ko-KR",
             callbacks: {
                 onImageUpload: function (files) {
@@ -113,6 +113,7 @@ $(function() {
         	 const title = document.getElementById('title').value;
         	 const email = document.getElementById('email').value;
              const content = $('#summernote').summernote('code');
+             const email = $("#email").val();
 
         	
         	

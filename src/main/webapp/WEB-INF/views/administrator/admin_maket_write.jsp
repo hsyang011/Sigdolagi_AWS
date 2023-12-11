@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,6 +22,20 @@
 
     <!-- Custom styles for this page -->
     <link href="../bootstrap/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" />
+	
+<script type="text/javascript">
+	function validateForm(form){
+		if (form.title.value == ""){
+			alert("제목을 입력하세요.");
+			form.title.focus();
+			return false;
+		}
+		if (form.ofile.value == ""){
+			alert("첨부파일은 필수 입력입니다.");
+			return false;
+		}
+	}
+</script>
 </head>
 <body id="page-top">
 
@@ -48,67 +63,69 @@
                     <h1 class="mt-4">상품 등록하기</h1>
                     <div class="card mb-4">
                         <div class="card-body">
-                            <form method="post">
+                        <!-- onsubmit="return validateForm(this)" -->
+                            <form name="prodForm" method="post" enctype="multipart/form-data" 
+									action="/administrator/admin_maket_write.do" >
                             	<div class="mb-3 mt-3">
-                                    <label for="maket_cate" class="form-label">분류</label>
-                                    <select name="" id="maket_cate">
-                                    	<option value="">밀키트</option>
-                                    	<option value="">특산품</option>
+                                    <label for="category" class="form-label">분류</label>
+                                    <select name="category" id="category">
+                                    	<option value="mealkit">밀키트</option>
+                                    	<option value="specialty">특산품</option>
                                     </select>
                                     &nbsp;&nbsp;&nbsp;&nbsp;
-                                    <label for="prod_cate" class="form-label">소분류</label>
-                                    <select name="" id="prod_cate">
-                                    	<option value="">한식</option>
-                                    	<option value="">일식</option>
-                                    	<option value="">중식</option>
-                                    	<option value="">양식</option>
-                                    	<option value="">기타</option>
+                                    <label for="sub_cate" class="form-label">소분류</label>
+                                    <select name="sub_cate" id="sub_cate">
+                                    	<option value="ko">한식</option>
+                                    	<option value="jp">일식</option>
+                                    	<option value="ch">중식</option>
+                                    	<option value="we">양식</option>
+                                    	<option value="etc">기타</option>
                                     </select>
                                 </div>
                                 <div class="mb-3 mt-3">
                                     <label for="title" class="form-label">상품명</label> <input
-                                        type="text" class="form-control" id="title" name="title"
-                                        value="${board.title}">
+                                        type="text" class="form-control" id="prod_name" name="prod_name"
+                                        value="">
                                 </div>
                                 <div class="mb-3 mt-3">
 	                                <div class="row">
 		                                <div class="col-2">
 		                                    <label for="prod_price" class="form-label">상품가격</label> 
 		                                    <input type="text" class="form-control" id="prod_price" name="prod_price"
-		                                        value="${board.title}" placeholder="원">
+		                                        value="" placeholder="원">
 	                                    </div>
 	                                    <div class="col-2">
 		                                    <label for="prod_discount" class="form-label">할인율</label> 
 		                                    <input type="text" class="form-control" id="prod_discount" name="prod_discount"
-		                                        value="${board.title}" placeholder="%">
+		                                        value="" placeholder="%">
 	                                	</div>
 	                                	<div class="col-2">
-		                                    <label for="prod_inventory" class="form-label">재고</label> 
-		                                    <input type="text" class="form-control" id="prod_inventory" name="prod_inventory"
-		                                        value="${board.title}" placeholder="개">
+		                                    <label for="inventory" class="form-label">재고</label> 
+		                                    <input type="text" class="form-control" id="inventory" name="inventory"
+		                                        value="" placeholder="개">
 	                                	</div>
 	                                </div>
                                 </div>
                                 <div class="mb-3">
-                                    <label for="content" class="form-label">상세내용</label>
-                                    <textarea class="form-control" cols="30" rows="10" id="content" name="content">${board.content}</textarea>
+                                    <label for="prod_detail" class="form-label">상세내용</label>
+                                    <textarea class="form-control" cols="30" rows="10" id="prod_detail" name="prod_detail"></textarea>
                                 </div>
                                 <div class="mb-3">
                                     <label for="seller" class="form-label">판매처</label> <input
                                         type="text" class="form-control" id="seller" name="seller"
-                                        value="${board.writer}">
+                                        value="">
                                 </div>
                                 <div class="mb-3">
                                     <label for="thumbnail" class="form-label">상품이미지</label> 
-                                    <input
-                                        type="text" class="form-control" id="thumbnail" name="writer"
-                                        value="">
-                                    <input type="file" />
+                                    <!-- <input
+                                        type="text" class="form-control" id="thumbnail" name="thumbnail"
+                                        value=""> -->
+                                    <input type="file" id="thumbnail" name="thumbnail"/>
                                 </div>
                                 
                                 
                                 <a href="admin_maket_list.do" class="btn btn-outline-secondary">목록</a>
-                                <button class="btn btn-outline-primary">작성완료</button>
+                                <button type="submit" class="btn btn-outline-primary">작성완료</button>
                             </form>
                         </div>
                     </div>
