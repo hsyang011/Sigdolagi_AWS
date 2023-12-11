@@ -51,7 +51,7 @@
                 </form>
             </div>
             <!-- mobile-offcanvas sidebar -->
-            <div id="mobile_slider">
+            <%-- <div id="mobile_slider">
                 <div class="offcanvas offcanvas-end" id="myinfo">
                     <div class="offcanvas-header">
                         <h1 class="offcanvas-title">닉네임</h1>
@@ -70,7 +70,7 @@
                 <button id="btn_more" class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#myinfo" style="position: absolute; top: 10px; right: 10px; transform: scale(0.7)">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-            </div>
+            </div> --%>
             <!-- 내비게이션 링크 -->
             <div class="navbar-collapse justify-content-center" id="pc_navbar">
                 <ul class="head_nav nav">
