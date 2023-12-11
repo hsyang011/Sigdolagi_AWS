@@ -99,7 +99,7 @@ $(function() {
     $(document).ready(function () {
         $('#summernote').summernote({
             height: 300,
-            width: 700,
+            width: 1100,
             lang: "ko-KR",
             callbacks: {
                 onImageUpload: function (files) {
