@@ -81,6 +81,9 @@ public class CommunityController {
 	//글쓰기 페이지 로딩
 	@GetMapping("/community/freeboard_write.do")
 	public String boardWriteGet(Model model) {
+		
+		
+		
 		return "community/freeboard_write";
 	}
 	
@@ -187,7 +190,9 @@ public class CommunityController {
 	
 	//포토 게시판 글쓰기 페이지 이
 		@GetMapping("/community/photoboard_write.do")
-		public String photoboardWriteGet(Model model) {
+		public String photoboardWriteGet(Model model, Principal principal) {
+			String email = principal.getName();
+			model.addAttribute("email", email);
 			return "community/photoboard_write";
 		}
 		
@@ -213,8 +218,13 @@ public class CommunityController {
 	@RequestMapping(value="/community/photoboard_writeprocess.do", produces = "application/json; charset=utf8")
 	@ResponseBody
 	public String uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile, HttpServletRequest request, PhotoBoardDTO photoBoardDTO
-			,Model model)  {
+			,Model model, Principal principal)  {
 		JsonObject jsonObject = new JsonObject();
+		
+		String email = principal.getName();
+		
+		model.addAttribute("email", email);
+		System.out.println(email);
 		
 		System.out.println("포토 게시판 들어오나?");
 		
