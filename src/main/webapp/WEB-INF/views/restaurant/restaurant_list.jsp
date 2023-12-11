@@ -79,6 +79,15 @@ strike {font-size: 18px;}
     .moreBtn { font-size: 0.75em; }
 }
 
+/* 25% */
+
+
+.card.custom-col {
+    flex: 0 0 25%;
+    margin-right: 10px;
+}
+
+
 </style>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
@@ -182,80 +191,35 @@ $(function() {
                 </div>
                 <!-- 한식 리스트 시작 -->
                 <!-- 1행 시작 -->
-                <figure class="row thumbnail">
-                    <!-- 1열 시작 -->
-                    <div class="card custom-col">
-                        <div>
-                            <div class="card_product_img">
-                                <button style="border: none;" data-bs-toggle="modal" class="viewBtn" data-bs-target="#restaurant_view">
-                                    <img class="shop_product_img card-img-top" src="../images/750_750_20210307074729929_photo_2c2906c7be9f.jpg" alt="Card image">
-                                </button>
-                                <div class="cart_icon_box">
-                                    <img class="p-1" src="../images/favor_icon.png" alt="">
-                                </div>
-                            </div>
-                            <div class="card-body text-center">
-                                <h5 class="card-title"><a class="mill_title" href="">가게명</a></h5>
-                                <p><span style="color: #f19d07;">★</span>4.8</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 1열 끝 -->
-                    <!-- 2열 시작 -->
-                    <div class="card custom-col">
-                        <div>
-                            <div class="card_product_img">
-                                <button style="border: none;" data-bs-toggle="modal" class="viewBtn" data-bs-target="#restaurant_view">
-                                    <img class="shop_product_img card-img-top" src="../images/750_750_20210323150206_photo1_a2e1b1990f36.jpg" alt="Card image">
-                                </button>
-                                <div class="cart_icon_box">
-                                    <img class="p-1" src="../images/favor_icon.png" alt="">
-                                </div>
-                            </div>
-                            <div class="card-body text-center">
-                                <h5 class="card-title"><a class="mill_title" href="">가게명</a></h5>
-                                <p><span style="color: #f19d07;">★</span>4.8</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 2열 끝 -->
-                    <!-- 3열 시작 -->
-                    <div class="card custom-col">
-                        <div>
-                            <div class="card_product_img">
-                                <button style="border: none;" data-bs-toggle="modal" class="viewBtn" data-bs-target="#restaurant_view">
-                                    <img class="shop_product_img card-img-top" src="../images/750_750_20210327051717494_photo_2c2906c7be9f.jpg" alt="Card image">
-                                </button>
-                                <div class="cart_icon_box">
-                                    <img class="p-1" src="../images/favor_icon.png" alt="">
-                                </div>
-                            </div>
-                            <div class="card-body text-center">
-                                <h5 class="card-title"><a class="mill_title" href="">가게명</a></h5>
-                                <p><span style="color: #f19d07;">★</span>4.8</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 3열 끝 -->
-                    <!-- 4열 시작 -->
-                    <div class="card custom-col">
-                        <div>
-                            <div class="card_product_img">
-                                <button style="border: none;" data-bs-toggle="modal" class="viewBtn" data-bs-target="#restaurant_view">
-                                    <img class="shop_product_img card-img-top" src="../images/750_750_20210405054021154_photo_fabc48758b07.jpg" alt="Card image">
-                                </button>
-                                <div class="cart_icon_box">
-                                    <img class="p-1" src="../images/favor_icon.png" alt="">
-                                </div>
-                            </div>
-                            <div class="card-body text-center">
-                                <h5 class="card-title"><a class="mill_title" href="">가게명</a></h5>
-                                <p><span style="color: #f19d07;">★</span>4.8</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 4열 끝 -->
-                </figure>
+               	<div style="display: flex; overflow-x: auto;">
+			    	<c:choose>
+				        <c:when test="${empty restaurantList}">
+				            <div align="center">등록된 게시물이 없습니다.</div>
+				        </c:when> 
+			        <c:otherwise>
+		            <c:forEach items="${restaurantList}" var="entry">
+		                <c:if test="${entry.category eq '한식'}">
+		                    <div class="card custom-col">
+		                        <div>
+		                            <div class="card_product_img">
+		                                <button style="border: none;" data-bs-toggle="modal" class="viewBtn" data-bs-target="#restaurant_view">
+		                                    <img class="shop_product_img card-img-top" src="../images/750_750_20210307074729929_photo_2c2906c7be9f.jpg" alt="Card image">
+		                                </button>
+		                                <div class="cart_icon_box">
+		                                    <img class="p-1" src="../images/favor_icon.png" alt="">
+		                                </div>
+		                            </div>
+		                            <div class="card-body text-center">
+		                                <h5 class="card-title"><a class="mill_title" href="">${entry.name}</a></h5>
+		                                <p><span style="color: #f19d07;">★</span>4.8</p>
+		                            </div>
+		                        </div>
+		                    </div>
+		                </c:if>
+		            </c:forEach>
+			        </c:otherwise>
+			    </c:choose>
+				</div>
                 <!-- 1행 끝 -->
                 <!-- 한식 리스트 끝 -->
                 <!-- 일식 -->
@@ -265,80 +229,35 @@ $(function() {
                 </div>
                 <!-- 일식 리스트 시작 -->
                 <!-- 2행 시작 -->
-                <figure class="row thumbnail">
-                    <!-- 1열 시작 -->
-                    <div class="card custom-col">
-                        <div>
-                            <div class="card_product_img">
-                                <button style="border: none;" data-bs-toggle="modal" class="viewBtn" data-bs-target="#restaurant_view">
-                                    <img class="shop_product_img card-img-top" src="../images/750_750_20210307074729929_photo_2c2906c7be9f.jpg" alt="Card image">
-                                </button>
-                                <div class="cart_icon_box">
-                                    <img class="p-1" src="../images/favor_icon.png" alt="">
-                                </div>
-                            </div>
-                            <div class="card-body text-center">
-                                <h5 class="card-title"><a class="mill_title" href="">가게명</a></h5>
-                                <p><span style="color: #f19d07;">★</span>4.8</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 1열 끝 -->
-                    <!-- 2열 시작 -->
-                    <div class="card custom-col">
-                        <div>
-                            <div class="card_product_img">
-                                <button style="border: none;" data-bs-toggle="modal" class="viewBtn" data-bs-target="#restaurant_view">
-                                    <img class="shop_product_img card-img-top" src="../images/750_750_20210323150206_photo1_a2e1b1990f36.jpg" alt="Card image">
-                                </button>
-                                <div class="cart_icon_box">
-                                    <img class="p-1" src="../images/favor_icon.png" alt="">
-                                </div>
-                            </div>
-                            <div class="card-body text-center">
-                                <h5 class="card-title"><a class="mill_title" href="">가게명</a></h5>
-                                <p><span style="color: #f19d07;">★</span>4.8</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 2열 끝 -->
-                    <!-- 3열 시작 -->
-                    <div class="card custom-col">
-                        <div>
-                            <div class="card_product_img">
-                                <button style="border: none;" data-bs-toggle="modal" class="viewBtn" data-bs-target="#restaurant_view">
-                                    <img class="shop_product_img card-img-top" src="../images/750_750_20210327051717494_photo_2c2906c7be9f.jpg" alt="Card image">
-                                </button>
-                                <div class="cart_icon_box">
-                                    <img class="p-1" src="../images/favor_icon.png" alt="">
-                                </div>
-                            </div>
-                            <div class="card-body text-center">
-                                <h5 class="card-title"><a class="mill_title" href="">가게명</a></h5>
-                                <p><span style="color: #f19d07;">★</span>4.8</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 3열 끝 -->
-                    <!-- 4열 시작 -->
-                    <div class="card custom-col">
-                        <div>
-                            <div class="card_product_img">
-                                <button style="border: none;" data-bs-toggle="modal" class="viewBtn" data-bs-target="#restaurant_view">
-                                    <img class="shop_product_img card-img-top" src="../images/750_750_20210405054021154_photo_fabc48758b07.jpg" alt="Card image">
-                                </button>
-                                <div class="cart_icon_box">
-                                    <img class="p-1" src="../images/favor_icon.png" alt="">
-                                </div>
-                            </div>
-                            <div class="card-body text-center">
-                                <h5 class="card-title"><a class="mill_title" href="">가게명</a></h5>
-                                <p><span style="color: #f19d07;">★</span>4.8</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 4열 끝 -->
-                </figure>
+                <div style="display: flex; overflow-x: auto;">
+			    	<c:choose>
+				        <c:when test="${empty restaurantList}">
+				            <div align="center">등록된 게시물이 없습니다.</div>
+				        </c:when> 
+			        <c:otherwise>
+		            <c:forEach items="${restaurantList}" var="entry">
+		                <c:if test="${entry.category eq  '일식'}">
+		                    <div class="card custom-col">
+		                        <div>
+		                            <div class="card_product_img">
+		                                <button style="border: none;" data-bs-toggle="modal" class="viewBtn" data-bs-target="#restaurant_view">
+		                                    <img class="shop_product_img card-img-top" src="../images/750_750_20210307074729929_photo_2c2906c7be9f.jpg" alt="Card image">
+		                                </button>
+		                                <div class="cart_icon_box">
+		                                    <img class="p-1" src="../images/favor_icon.png" alt="">
+		                                </div>
+		                            </div>
+		                            <div class="card-body text-center">
+		                                <h5 class="card-title"><a class="mill_title" href="">${entry.name}</a></h5>
+		                                <p><span style="color: #f19d07;">★</span>4.8</p>
+		                            </div>
+		                        </div>
+		                    </div>
+		                </c:if>
+		            </c:forEach>
+			        </c:otherwise>
+			    </c:choose>
+				</div>
                 <!-- 2행 끝 -->
                 <!-- 일식 리스트 끝 -->
                 <!-- 중식 -->
@@ -348,80 +267,35 @@ $(function() {
                 </div>
                 <!-- 중식 리스트 시작 -->
                 <!-- 3행 시작 -->
-                <figure class="row thumbnail">
-                    <!-- 1열 시작 -->
-                    <div class="card custom-col">
-                        <div>
-                            <div class="card_product_img">
-                                <button style="border: none;" data-bs-toggle="modal" class="viewBtn" data-bs-target="#restaurant_view">
-                                    <img class="shop_product_img card-img-top" src="../images/750_750_20210307074729929_photo_2c2906c7be9f.jpg" alt="Card image">
-                                </button>
-                                <div class="cart_icon_box">
-                                    <img class="p-1" src="../images/favor_icon.png" alt="">
-                                </div>
-                            </div>
-                            <div class="card-body text-center">
-                                <h5 class="card-title"><a class="mill_title" href="">가게명</a></h5>
-                                <p><span style="color: #f19d07;">★</span>4.8</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 1열 끝 -->
-                    <!-- 2열 시작 -->
-                    <div class="card custom-col">
-                        <div>
-                            <div class="card_product_img">
-                                <button style="border: none;" data-bs-toggle="modal" class="viewBtn" data-bs-target="#restaurant_view">
-                                    <img class="shop_product_img card-img-top" src="../images/750_750_20210323150206_photo1_a2e1b1990f36.jpg" alt="Card image">
-                                </button>
-                                <div class="cart_icon_box">
-                                    <img class="p-1" src="../images/favor_icon.png" alt="">
-                                </div>
-                            </div>
-                            <div class="card-body text-center">
-                                <h5 class="card-title"><a class="mill_title" href="">가게명</a></h5>
-                                <p><span style="color: #f19d07;">★</span>4.8</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 2열 끝 -->
-                    <!-- 3열 시작 -->
-                    <div class="card custom-col">
-                        <div>
-                            <div class="card_product_img">
-                                <button style="border: none;" data-bs-toggle="modal" class="viewBtn" data-bs-target="#restaurant_view">
-                                    <img class="shop_product_img card-img-top" src="../images/750_750_20210327051717494_photo_2c2906c7be9f.jpg" alt="Card image">
-                                </button>
-                                <div class="cart_icon_box">
-                                    <img class="p-1" src="../images/favor_icon.png" alt="">
-                                </div>
-                            </div>
-                            <div class="card-body text-center">
-                                <h5 class="card-title"><a class="mill_title" href="">가게명</a></h5>
-                                <p><span style="color: #f19d07;">★</span>4.8</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 3열 끝 -->
-                    <!-- 4열 시작 -->
-                    <div class="card custom-col">
-                        <div>
-                            <div class="card_product_img">
-                                <button style="border: none;" data-bs-toggle="modal" class="viewBtn" data-bs-target="#restaurant_view">
-                                    <img class="shop_product_img card-img-top" src="../images/750_750_20210405054021154_photo_fabc48758b07.jpg" alt="Card image">
-                                </button>
-                                <div class="cart_icon_box">
-                                    <img class="p-1" src="../images/favor_icon.png" alt="">
-                                </div>
-                            </div>
-                            <div class="card-body text-center">
-                                <h5 class="card-title"><a class="mill_title" href="">가게명</a></h5>
-                                <p><span style="color: #f19d07;">★</span>4.8</p>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- 4열 끝 -->
-                </figure>
+                <div style="display: flex; overflow-x: auto;">
+			    	<c:choose>
+				        <c:when test="${empty restaurantList}">
+				            <div align="center">등록된 게시물이 없습니다.</div>
+				        </c:when> 
+			        <c:otherwise>
+		            <c:forEach items="${restaurantList}" var="entry">
+		                <c:if test="${entry.category eq '중국식'}">
+		                    <div class="card custom-col">
+		                        <div>
+		                            <div class="card_product_img">
+		                                <button style="border: none;" data-bs-toggle="modal" class="viewBtn" data-bs-target="#restaurant_view">
+		                                    <img class="shop_product_img card-img-top" src="../images/750_750_20210307074729929_photo_2c2906c7be9f.jpg" alt="Card image">
+		                                </button>
+		                                <div class="cart_icon_box">
+		                                    <img class="p-1" src="../images/favor_icon.png" alt="">
+		                                </div>
+		                            </div>
+		                            <div class="card-body text-center">
+		                                <h5 class="card-title"><a class="mill_title" href="">${entry.name}</a></h5>
+		                                <p><span style="color: #f19d07;">★</span>4.8</p>
+		                            </div>
+		                        </div>
+		                    </div>
+		                </c:if>
+		            </c:forEach>
+			        </c:otherwise>
+			    </c:choose>
+				</div>
                 <!-- 3행 끝 -->
                 <!-- 중식 리스트 끝 -->
 

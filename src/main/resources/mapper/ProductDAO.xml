@@ -44,4 +44,6 @@
 		SELECT * FROM product WHERE prod_idx BETWEEN ${prod_idx}-2 AND ${prod_idx}+2 AND NOT prod_idx=${prod_idx}
 	</select>
 	
+	
+	
 </mapper>

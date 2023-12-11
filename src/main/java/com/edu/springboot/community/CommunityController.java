@@ -190,19 +190,21 @@ public class CommunityController {
 		public String photoboardWriteGet(Model model) {
 			return "community/photoboard_write";
 		}
+		
+		
 	
 	
 	
 	
 	
-	//사진 게시판 	쓰기. /community/freeboard_write.do
-//	community/photoboard_writeprocess.do     /community/freeboard_write.do
 	
 	@RequestMapping("/community/photoboard_view.do")
 	public String photoboardView(Model model, PhotoBoardDTO photoBoardDTO) {
 		photoBoardDTO = photoboarddao.photoview(photoBoardDTO);
 		photoBoardDTO.setContent(photoBoardDTO.getContent().replace("\r\n", "<br>"));
 		model.addAttribute("photoBoardDTO", photoBoardDTO);
+		
+		
 		
 		return "community/photoboard_view";
 	}
@@ -226,9 +228,22 @@ public class CommunityController {
 		 */
 		
 		// 내부경로로 저장
-		String contextRoot = (String) request.getServletContext().getRealPath("/");
+		//String contextRoot = request.getServletContext().getRealPath("/");
+		//String newContextRoot = contextRoot.replace("/Users/minseokkang/Desktop/Workplace/Sigdolagi/src/main/webapp/",
+		//                                             "/Users/minseokkang/Desktop/Workplace/Sigdolagi/bin/main/static/uploads/");
+		String contextRoot = null;
+		
+		try {
+		 contextRoot = ResourceUtils
+				.getFile("classpath:static/uploads/").toPath().toString();
+		System.out.println("물리적 경로:" +contextRoot);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		System.out.println("물리적 경로:" +contextRoot);
 		System.out.println("컨텍스트루트"+contextRoot);
-		String fileRoot = contextRoot+"resources/static/uploads/";
+		String fileRoot = contextRoot;
 		System.out.println("파일루트"+fileRoot);
 		
 		String originalFileName = multipartFile.getOriginalFilename();	//오리지날 파일명
@@ -246,27 +261,37 @@ public class CommunityController {
 		try {
 			InputStream fileStream = multipartFile.getInputStream();
 			FileUtils.copyInputStreamToFile(fileStream, targetFile);	//파일 저장
-			//jsonObject.addProperty("url", "/summernote/resources/fileupload/"+savedFileName); // contextroot + resources + 저장할 내부 폴더명
 			
 			jsonObject.addProperty("url", contextRoot+"resources/static/uploads/"+savedFileName); 
 			jsonObject.addProperty("responseCode", "success");
 			
-			System.out.println(savedFileName);
+			System.out.println("저장된파일명"+savedFileName);
 			
+			Map<String, String> saveFileMaps = new HashMap<>();
+
+			
+			
+			saveFileMaps.put(originalFileName, savedFileName);
+
 			
 			
 			//db집어넣기
+			
 			
 			int result2 = filedao.insertMultiFile(photoBoardDTO);
 			if(result2 == 1) {
 				System.out.println("멀티성공(?)");
 				model.addAttribute("originalFileName", request.getParameter("originalFileName"));
-				model.addAttribute("savedFileName", request.getParameter("savedFileName"));
+				model.addAttribute("saveFileMaps", saveFileMaps);
+				model.addAttribute("photolist", photoBoardDTO);
+				System.out.println(saveFileMaps);
 				model.addAttribute("title", request.getParameter("title"));
 				model.addAttribute("cate", request.getParameterValues("cate"));
 				
 			}
-
+			
+			
+			
 			
 				
 		} catch (IOException e) {
@@ -276,7 +301,12 @@ public class CommunityController {
 		}
 		String a = jsonObject.toString();
 		return a;
+		
+		
+		
+		 
 	}
+	
 	
 	
 	

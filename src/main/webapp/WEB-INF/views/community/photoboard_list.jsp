@@ -98,33 +98,28 @@ $(function() {
                             <tr>
                                 <td colspan="1" align="center">등록된 게시물이 없습니다.</td>
                             </tr>
+                            
                         </c:when>
-                        <c:otherwise>
+                        <c:otherwise>	
                             <div class="row">
-                                <c:forEach items="${photolists}" var="post" varStatus="loop">
-                                    <div class="col-md-3">
-                                        <figure class="thumbnail">
-                                            <!-- 1열 시작 -->
-                                            <div class="card col custom-col" style="padding-right: 20px; border: none;">
-                                                <!-- 오른쪽 패딩 추가, 테두리 없앰 -->
-                                                <img class="card-img-top" src="http://placehold.it/200x200" alt="이미지">
-                                                <div class="card-body">
-                                                    <h4 class="card-title" style="font-size: 18px; text-align: left;">
-                                                        ${post.title}
-                                                    </h4>
-                                                    <p class="card-text" style="text-align: left;">
-													    <a href="./photoboard_view.do?photoboard_idx=${post.photoboard_idx}">
-													        ${post.title}
-													    </a>
-													</p>
-                                                </div>
-                                            </div>
-                                            <input type="hidden" value=" ${post.photoboard_idx}">
-                                           	
-                                            <!-- 1열 끝 -->
-                                        </figure>
-                                    </div>
-                                </c:forEach>
+                               <c:forEach items="${photolists}" var="entry">
+							    <div class="col-md-3">
+							        <figure class="thumbnail">
+							            <div class="card col custom-col" style="padding-right: 20px; border: none;">
+							               <%--  <img class="card-img-top" src="/upload/${entry.value}" alt="이미지"> --%>
+							                <div class="card-body">
+							                    <h4 class="card-title" style="font-size: 18px; text-align: left;">
+							                        ${entry.title} <!-- 파일 이름 -->
+							                    </h4>
+							                    <p class="card-text" style="text-align: left;">
+							                        <!-- 추가적인 내용을 필요에 따라 여기에 추가할 수 있습니다 -->
+							                    </p>
+							                </div>
+							            </div>
+							        </figure>
+							    </div>
+							</c:forEach>
+                               
                             </div>
                         </c:otherwise>
                     </c:choose>

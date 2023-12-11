@@ -92,6 +92,9 @@ $(function() {
 	});
 });
 </script>
+
+
+
  <script>
     $(document).ready(function () {
         $('#summernote').summernote({
@@ -140,9 +143,9 @@ $(function() {
                         // 성공할 때 콘솔에 로그 출력
                         console.log("이미지 업로드 성공");
                         console.log(data);
-
+						
                         // 성공했을 때만 페이지 이동
-                        window.location.href = './photoboard_list.do';
+                        //window.location.href = './photoboard_list.do';
                     },
                     error: function (err) {
                         // 실패할 때 콘솔에 로그 출력
@@ -150,14 +153,6 @@ $(function() {
                     }
                 });
             });
-            
-            
-            
-            
-            
-            
-            
-            
         }
     });
 </script>
