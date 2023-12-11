@@ -91,9 +91,9 @@ public class CommunityController {
 	
 	@PostMapping("/community/freeboard_write.do")
 
-	public String freeboardWrite(Model model, HttpServletRequest req, HttpSession session) {
+	public String freeboardWrite(Model model, HttpServletRequest req, Principal principal) {
 		String email= req.getParameter("email");
-		String nickname= (String)session.getAttribute("sessionNickname");
+		String nickname= principal.getName();
 		String title= req.getParameter("title");
 		String content= req.getParameter("content");
 		//폼값을 개별적으로 전달한다.
@@ -146,7 +146,7 @@ public class CommunityController {
 	@RequestMapping("/community/photoboard_list.do")
 		//포토  포토보드 리스트
 		
-	public String photoBoardList(Model model, HttpServletRequest req, ParameterDTO parameterDTO, HttpSession httpSession) {
+	public String photoBoardList(Model model, HttpServletRequest req, ParameterDTO parameterDTO, Principal principal) {
 	
 		System.out.println("들어오나?");
 		

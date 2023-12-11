@@ -228,13 +228,17 @@ $(function() {
                                     <td>제목</td>
                                     <td>
                                         <input type="text" name="title" id="title" />
+<<<<<<< HEAD
                                         <input type="text" name="email" id="email"  value="${email}"/>
+=======
+                                        <input type="hidden" name="email" id="email"/>
+>>>>>>> branch 'main' of https://github.com/hsyang011/Sigdolagi.git
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>내용</td>
                                     <td>
-                                         <textarea id="summernote" name="summernote"  ></textarea> 
+                                         <textarea id="summernote" name="summernote" ></textarea> 
                                        <!--  <div id="summernote" ></div> -->
                                     </td>
                                 </tr>
