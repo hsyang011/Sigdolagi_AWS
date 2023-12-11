@@ -28,7 +28,7 @@
     	let frm = document.frm;
     	if(confirm("정말?")){
     		frm.email.value = email;
-    		frm.action = "/administrator/admin_member_enabled.do";
+    		frm.action = "/administrator/adminMemberList.do";
     		frm.method = "post";
     		frm.submit();
     	}

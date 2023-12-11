@@ -1,5 +1,7 @@
 package com.edu.springboot;
 
+import java.security.Principal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,7 +17,17 @@ public class MainController {
 	
 	
 	@RequestMapping("/main/main.do")
-	public String main() {
+	public String main(Principal principal) {
+		
+		try {
+			String userid = principal.getName();
+			System.out.println("아이디="+  userid);
+		}
+		catch (Exception e) {
+			System.out.println("로그인암됨.");
+			//e.printStackTrace();
+		}
+		
 		return "main/main";
 	}
 	

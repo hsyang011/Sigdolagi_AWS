@@ -1,4 +1,4 @@
-<%@page import="utils.CookieManager"%>
+<%--@page import="utils.CookieManager"--%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
@@ -51,25 +51,34 @@
 
 
         <!-- 로그인 폼 -->
-       	<form action="../member/loginprocess.do" method="post">
+       	<form action="../member/loginprocess1.do" method="post">
         <div class="container">
            <div class="login">
                	<div class="loginFrm">
+               	
+               	<c:choose>
+               		<c:when test="${not empty email }">
+               			로그인 성공
+               		</c:when>
+               		<c:otherwise>
+	               		 <div class="loginInput">
+	                      <input type="text" class="id" value="<%--=CookieManager.readCookie(request,"SavedEmail")--%>" name="email" placeholder="이메일"> 
+	                        <br>
+	                        <input type="password" class="pw" name="password"  placeholder="비밀번호">
+	                    </div>
+	                    <div class="submitFrm">
+	                        <input type="submit" class="submitBtn" value="로그인">
+	                        
+	                        
+	                        <c:if test="${not empty loginErrorMessage}">
+						    	<div style="color: red;">${loginErrorMessage}</div>
+							</c:if>
+	                        
+	                    </div>
+               		</c:otherwise>
+               	</c:choose>
               	
-                    <div class="loginInput">
-                      <input type="text" class="id" value="<%=CookieManager.readCookie(request,"SavedEmail")%>" name="email" placeholder="이메일"> 
-                        <br>
-                        <input type="password" class="pw" name="password"  placeholder="비밀번호">
-                    </div>
-                    <div class="submitFrm">
-                        <input type="submit" class="submitBtn" value="로그인">
-                        
-                        
-                        <c:if test="${not empty loginErrorMessage}">
-					    <div style="color: red;">${loginErrorMessage}</div>
-						</c:if>
-                        
-                    </div>
+                   
                    
                 </div>
            </div>
@@ -81,7 +90,7 @@
                 <div class="login_sub_list">
                     <div class="saveId_btn">
                         <label for="savedEmail">
-                            <input type="checkbox" name="savedEmail" value="1" id="savedEmail" <%=CookieManager.readCookie(request, "ischecked")%>> 이메일 저장
+                            <input type="checkbox" name="savedEmail" value="1" id="savedEmail" <%--=CookieManager.readCookie(request, "ischecked")--%>> 이메일 저장
                         </label>
                     </div>
                     <div class="find_id">
