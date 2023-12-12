@@ -93,10 +93,10 @@
 
             // 파일 선택 시 미리보기 기능 추가
              $("#ofile").change(function () {
-		        readURL(this);
-		        $("#deleteFileBtn").show(); // 파일을 선택하면 버튼을 보이도록 함
-		        $("#thumbnail").show();
-		    });
+              readURL(this);
+              $("#deleteFileBtn").show(); // 파일을 선택하면 버튼을 보이도록 함
+              $("#thumbnail").show();
+          });
             
             
             
@@ -115,7 +115,7 @@
                     data: { fileName: $("#ofile").val() },  // 파일명을 서버에 전달
                     success: function (data) {
                         // 성공적으로 파일 삭제된 경우
-                    	 $("#ofile").val("");
+                        $("#ofile").val("");
                          $('#thumbnail').attr('src', '#');
                          $("#thumbnail").hide(); // 파일 삭제 후 버튼을 다시 숨김
                          console.log("파일 삭제 성공");
