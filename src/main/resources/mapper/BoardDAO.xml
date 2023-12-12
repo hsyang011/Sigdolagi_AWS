@@ -52,5 +52,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		DELETE FROM freeboard WHERE freeboard_idx=#{freeboard_idx}
 	</delete>
 	
+<!-- 	<select id="nickname" resultType="string" parameterType="strg">
+		SELECT nickname FROM member WHERE email=${email}
+	</select> -->
+	
 		
 </mapper>

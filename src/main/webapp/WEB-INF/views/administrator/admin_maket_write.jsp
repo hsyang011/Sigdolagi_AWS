@@ -23,7 +23,7 @@
     <!-- Custom styles for this page -->
     <link href="../bootstrap/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" />
 	
-<script type="text/javascript">
+	<script type="text/javascript">
 	function validateForm(form){
 		if (form.title.value == ""){
 			alert("제목을 입력하세요.");

@@ -14,8 +14,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <!-- 아이콘 -->
 <script src="https://kit.fontawesome.com/98401b861d.js" crossorigin="anonymous"></script>
-<!-- 전역 설정 css 링크  -->
-<link rel="stylesheet" href="../css/common_board.css">
+
 
 <script src="/js/summernote/summernote-lite.js"></script>
 <script src="/js/summernote/lang/summernote-ko-KR.js"></script>
@@ -24,13 +23,14 @@
  <!-- include summernote css/js -->
 <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
 <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
-
+<!-- 전역 설정 css 링크  -->
+<link rel="stylesheet" href="../css/common_board.css">
 <style>
     
 /*main nav_location 설정*/
 .nav_locat {font-family: 'NPSfontRegular'; margin-left: -10px;}
 .nav_locat li a{color: #FF7A00;}
-.nav_locat li a:hover{color: #484848;}
+.nav_locat li a:hoverz{color: #484848;}
 .nav_locat li:first-child::before {            /* 첫번째 list에 적용 */
     content: " ";
 }
@@ -83,78 +83,20 @@ main > * { margin: 50px 0; }
 }
 
 </style>
-
 <script>
-$(function() {
-	$("#getSummernote").click(() => {
-		var markupStr = $("#summernote").summernote('code');
-		console.log(markupStr);
-	});
-});
-</script>
-
-
-
- <script>
-    $(document).ready(function () {
-        $('#summernote').summernote({
-            height: 300,
-            width: 1100,
-            lang: "ko-KR",
-            callbacks: {
-                onImageUpload: function (files) {
-                    uploadSummernoteImageFile(files[0], this);
-                }
+$(document).ready(function() {
+    $('#summernote').summernote({
+        height: 300,
+        lang: 'ko-KR',
+        callbacks: {
+            onImageUpload: function(files) {
+                // 파일 업로드 및 이미지 삽입 로직
+                // 적절한 파일 업로드 로직을 구현해야 합니다.
+                // 이미지를 업로드하고 삽입하는 코드를 작성해야 합니다.
             }
-        });
-
-        function uploadSummernoteImageFile(file, editor) {
-        	
-        	 const title = document.getElementById('title').value;
-        	 const email = document.getElementById('email').value;
-             const content = $('#summernote').summernote('code');
-
-        	
-        	
-            data = new FormData();
-            data.append("title", title);
-            data.append("email", email);
-            data.append("content", content);
-            data.append("file", file);
-            console.log(content);
-            console.log(title);
-            
-            
-            
-            
-         // '작성하기' 버튼 클릭 이벤트 핸들러 등록
-            $("#saveBtn").on("click", function () {
-                // AJAX 요청 코드
-                $.ajax({
-                    data: data,
-                    type: "POST",
-                    url: "/community/photoboard_writeprocess.do",
-                    dataType: "JSON",
-                    contentType: false,
-                    processData: false,
-                    success: function (data) {
-                        $(editor).summernote("insertImage", data.url);
-                        $("#thumbnailPath").append("<option value=" + data.url + ">" + data.originName + "</option>");
-                        // 성공할 때 콘솔에 로그 출력
-                        console.log("이미지 업로드 성공");
-                        console.log(data);
-						
-                        // 성공했을 때만 페이지 이동
-                        window.location.href = './photoboard_list.do';
-                    },
-                    error: function (err) {
-                        // 실패할 때 콘솔에 로그 출력
-                        console.error("이미지 업로드 실패", err);
-                    }
-                });
-            });
         }
     });
+});
 </script>
       
  
@@ -228,13 +170,13 @@ $(function() {
                                     <td>제목</td>
                                     <td>
                                         <input type="text" name="title" id="title" />
-                                        <input type="hidden" name="email" id="email"/>
+                                        <input type="hidden" name="email" id="email"  value="이메일"/>
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>내용</td>
                                     <td>
-                                         <textarea id="summernote" name="summernote" ></textarea> 
+                                         <textarea id="summernote" name="summernote"  ></textarea> 
                                        <!--  <div id="summernote" ></div> -->
                                     </td>
                                 </tr>

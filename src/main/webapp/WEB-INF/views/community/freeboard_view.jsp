@@ -18,8 +18,7 @@
 <script src="https://kit.fontawesome.com/98401b861d.js" crossorigin="anonymous"></script>
 <!-- 전역 설정 css 링크  -->
 <link rel="stylesheet" href="../css/common_board.css">
-<!-- <!-- 댓글 js -->
-<script type="text/javascript" src="/resources/js/reply.js"></script> -->
+
 <style>
     
 /*main nav_location 설정*/
@@ -78,26 +77,15 @@ main > * { margin: 50px 0; }
 </style>
 
 <script>
-function deletePost(){
-	var answer = confirm("정말?");
-	if(answer==true){
-		var form = document.createElement("form");
-		form.method = "post";
-		form.action="./freeboard_delete.do";
-		
-		var hiddenField = document.createElement("input");
-		hiddenField.type = "hidden";
-		hiddenField.name = "freeboard_idx";
-		hiddenField.value = "${boardDTO.freeboard_idx}";
-		form.appendChild(hiddenField); 
-
-		document.body.appendChild(form);
-		form.submit();
-	}
-	else {
-		return false;
-	}
-} 
+function deletePost(freeboard_idx){
+    var confirmed = confirm("정말로 삭제하겠습니까?"); 
+    if (confirmed) {
+        var form = document.writeFrm;      
+        form.method = "post";  
+        form.action = "./freeboard_delete.do";
+        form.submit();  
+    }
+}
 
 // 댓글 길이 카운팅
 function countingLength(content) {
@@ -193,7 +181,7 @@ function saveComment() {
                     <div class="freeboard_write_frm" >
                         <!-- 게시판 들어가는 부분 (시작) -->
                         <form name="writeFrm" method="post" onsubmit="return validateForm(this);" action="../community/freeboard_view.do" class="writeFrm">
-           					<input type="hidden" name="freeboard_idx"  />
+           					<input type="hidden" name="freeboard_idx" value="${ boardDTO.freeboard_idx }" />
                             <input type="hidden" name="email"  />
                             <table class="table table-bordered" id="free_write_frm_table" width="100%" >
                             	<colgroup>
@@ -221,38 +209,49 @@ function saveComment() {
 							    </tr>
 							  
                                 <tr>
-		                        <%--      <% 
-		                             if(session.getAttribute("sessionNickname")!=null && session.getAttribute("sessionNickname").toString().equals(dto.getNickname())){
-		                             %>    <%} %>--%>
                                     <td colspan="4" align="center" class="btn_td">
                                         <button type="button" class="writeFrm_edit" onclick="location.href='./freeboard_edit.do?freeboard_idx=${boardDTO.freeboard_idx }';">수정하기</button>
                                         <form id="deleteForm" action="./community/freeboard_delete.do" method="post">
-                                          	<input type="hidden" name="freeboard_idx" value="${boardDTO.freeboard_idx }"  />
-                                			<button type="button" class="writeFrm_reset"  onclick="deletePost();">삭제하기</button>
+                                          	<input type="hidden" name="freeboard_idx" value="${param.freeboard_idx }"  />
+                                			<button type="button" class="writeFrm_reset"  onclick="deletePost(${boardDTO.freeboard_idx});">삭제하기</button>
 								       	</form>
-                                   
                                         <button type="button" class="writeFrm_list" onclick="location.href='./freeboard_list.do';">목록 보기</button>
                                     </td>
                                 </tr>
                             </table>
                         </form>
                         
-                          <!--/* 댓글 작성 */-->
+                        <!--/* 댓글 작성 */-->
 					    <div class="cm_write" style="width:100%">
-					        <fieldset>
+					        <!-- <fieldset>
+					         <form name="writeFrm" method="post" onsubmit="return validateForm(this);" action="/community/freeboard_comment.do" class="writeFrm">-->
 					            <legend class="skipinfo">댓글 입력</legend>
 					            <div class="cm_input">
 					                <p><textarea id="content" name="content" onkeyup="countingLength(this);"  style="width:100%" rows="4" placeholder="댓글을 입력해 주세요."></textarea></p>
-					                <span><button type="button" class="btns" onclick="saveComment();">등 록</button> <i id="counter">0/300자</i></span>
+					                <span><button type="button" class="btns" onclick="saveComment();">등록</button> <i id="counter">0/300자</i></span>
 					            </div>
+					            </form>
 					        </fieldset>
 					    </div>
+					       <c:forEach items="${ CommentsLists }" var="row" varStatus="loop">    
+							        <tr align="center">
+							            <td>${ row.id }</td> 
+							            <td>${ row.boardidx }</td> 
+							             <td>${ row.content }</td> 
+							            <td>${ row.postdate }</td> 
+							            <td>${ row.idx }</td> 
+							            <form action="./hitsplus.do?idx=${ row.idx }" method="post">
+							            	<td><button>좋아요</button>${ row.hits }</td>
+							            </form>
+							           <br />
+							        </tr>
+						        </c:forEach> 
                        <!--  <div>
 								<ul id="replyUL"></ul>
 						</div> -->
 						
                        <!-- <div> 
-                         <form name="writeFrm" method="post" onsubmit="return validateForm(this);" action="/community/freeboard_write.do" class="writeFrm">
+                         
 							<label>댓글</label>
 						</div>
 						<div style="width:100%">
@@ -261,11 +260,6 @@ function saveComment() {
 						</div>
                     </div> 
                 </div>
-              
-              
-
-         
-
         <!-- 컨테이너 안쪽 컨텐츠 -->
         </div>
 
