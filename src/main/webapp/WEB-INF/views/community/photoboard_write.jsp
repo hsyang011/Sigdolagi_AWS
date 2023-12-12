@@ -105,8 +105,6 @@
             
             
             
-            
-            
             $("#deleteFileBtn").click(function () {
                 // 파일 삭제를 서버에 요청
                 $.ajax({

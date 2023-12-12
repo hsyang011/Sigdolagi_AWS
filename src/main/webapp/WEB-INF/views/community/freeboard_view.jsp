@@ -212,9 +212,15 @@ function saveComment() {
                                     <td colspan="4" align="center" class="btn_td">
                                         <button type="button" class="writeFrm_edit" onclick="location.href='./freeboard_edit.do?freeboard_idx=${boardDTO.freeboard_idx }';">수정하기</button>
                                         <form id="deleteForm" action="./community/freeboard_delete.do" method="post">
+<<<<<<< HEAD
                                              <input type="hidden" name="freeboard_idx" value="${param.freeboard_idx }"  />
                                          <button type="button" class="writeFrm_reset"  onclick="deletePost(${boardDTO.freeboard_idx});">삭제하기</button>
                                   </form>
+=======
+                                          	<input type="hidden" name="freeboard_idx" value="${param.freeboard_idx }"  />
+                                			<button type="button" class="writeFrm_reset"  onclick="deletePost(${boardDTO.freeboard_idx});">삭제하기</button>
+								       	</form>
+>>>>>>> branch 'main' of https://github.com/hsyang011/Sigdolagi.git
                                         <button type="button" class="writeFrm_list" onclick="location.href='./freeboard_list.do';">목록 보기</button>
                                     </td>
                                 </tr>
@@ -222,6 +228,7 @@ function saveComment() {
                         </form>
                         
                         <!--/* 댓글 작성 */-->
+<<<<<<< HEAD
                    <div class="cm_write" style="width:100%">
                        <!-- <fieldset>
                         <form name="writeFrm" method="post" onsubmit="return validateForm(this);" action="/community/freeboard_comment.do" class="writeFrm">-->
@@ -246,6 +253,32 @@ function saveComment() {
                                 <br />
                              </tr>
                           </c:forEach> 
+=======
+					    <div class="cm_write" style="width:100%">
+					        <!-- <fieldset>
+					         <form name="writeFrm" method="post" onsubmit="return validateForm(this);" action="/community/freeboard_comment.do" class="writeFrm">-->
+					            <legend class="skipinfo">댓글 입력</legend>
+					            <div class="cm_input">
+					                <p><textarea id="content" name="content" onkeyup="countingLength(this);"  style="width:100%" rows="4" placeholder="댓글을 입력해 주세요."></textarea></p>
+					                <span><button type="button" class="btns" onclick="saveComment();">등록</button> <i id="counter">0/300자</i></span>
+					            </div>
+					            </form>
+					        </fieldset>
+					    </div>
+					       <c:forEach items="${ CommentsLists }" var="row" varStatus="loop">    
+							        <tr align="center">
+							            <td>${ row.id }</td> 
+							            <td>${ row.boardidx }</td> 
+							             <td>${ row.content }</td> 
+							            <td>${ row.postdate }</td> 
+							            <td>${ row.idx }</td> 
+							            <form action="./hitsplus.do?idx=${ row.idx }" method="post">
+							            	<td><button>좋아요</button>${ row.hits }</td>
+							            </form>
+							           <br />
+							        </tr>
+						        </c:forEach> 
+>>>>>>> branch 'main' of https://github.com/hsyang011/Sigdolagi.git
                        <!--  <div>
                         <ul id="replyUL"></ul>
                   </div> -->

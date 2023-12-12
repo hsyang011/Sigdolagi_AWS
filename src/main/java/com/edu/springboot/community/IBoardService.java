@@ -11,6 +11,7 @@ import com.edu.springboot.member.MemberDTO;
 
 @Mapper
 public interface IBoardService {
+
    //paging처리를 위해 게시물의 갯수를 카운트
    public int getTotalCount(ParameterDTO parameterDTO);
    public ArrayList<BoardDTO> listPage(ParameterDTO parameterDTO);
@@ -27,3 +28,4 @@ public interface IBoardService {
    public List<BoardDTO> adminFreeSelect();
    
 }
+
