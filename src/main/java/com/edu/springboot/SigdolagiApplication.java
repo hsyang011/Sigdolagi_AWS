@@ -15,15 +15,4 @@ public class SigdolagiApplication {
 		//System.out.println(passwd);
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
 }
