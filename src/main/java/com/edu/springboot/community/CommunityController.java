@@ -52,7 +52,7 @@ public class CommunityController {
 	
 	@Autowired
 	IPhotoboardService photoboarddao;
-	
+
 	
 	@RequestMapping("/community/freeboard_list.do")
 	public String freeboardList(Model model, HttpServletRequest req, ParameterDTO parameterDTO, HttpSession httpSession) {
@@ -103,26 +103,58 @@ public class CommunityController {
 	
 	@PostMapping("/community/freeboard_write.do")
 
+
 	public String freeboardWrite(Model model, HttpServletRequest req, Principal principal) {
-		String email = req.getParameter("email");
+		String email= principal.getName();
 		String nickname= principal.getName();
 		String title= req.getParameter("title");
 		String content= req.getParameter("content");
 		//폼값을 개별적으로 전달한다.
-		int result = dao.write(email,nickname, title, content);
+		int result = dao.write(email, title, content);
 		System.out.println("글쓰기 결과:" +result);
+
+		model.addAttribute("nickname",principal.getName()); 
 
 		return "redirect:freeboard_list.do";
 	}
 	
+//	@PostMapping("/community/freeboard_comment_write.do")
+//
+//	public String freeboardCommetWrite(Model model, HttpServletRequest req, Principal principal) {
+//		String nickname= req.getParameter("nickname");
+//		String comment_idx = req.getParameter("comment_idx");
+//		String content= req.getParameter("content");
+//		//폼값을 개별적으로 전달한다.
+//		int com_result = commentdao.commentInsert(comment_idx,nickname,content);
+//		System.out.println("글쓰기 결과:" +com_result);
+//		
+//		model.addAttribute("nickname",principal.getName()); 
+//		
+//		return "redirect:freeboard_view.do";
+//	}
 	
 	@RequestMapping("/community/freeboard_view.do")
-	public String freeboardView(Model model, BoardDTO boardDTO) {
+	public String freeboardView(Model model, BoardDTO boardDTO,HttpServletRequest req,ParameterDTO parameterDTO) {
 		dao.update(boardDTO);
 		boardDTO = dao.view(boardDTO);
 		boardDTO.setContent(boardDTO.getContent().replace("\r\n", "<br>"));
-		model.addAttribute("boardDTO", boardDTO);
+
 		
+		
+//	    // 댓글 추가
+//		String nickname= req.getParameter("nickname");
+//		String comment_idx = req.getParameter("comment_idx");
+//		String content= req.getParameter("content");
+//	    int com_result = commentdao.commentInsert(comment_idx,nickname,content);
+//	    System.out.println("댓글 결과:" +com_result);
+//	    
+//	    // 댓글 리스트 가져오기
+//	    ArrayList<CommentDTO> com_List = commentdao.commentList(parameterDTO);
+	    
+	    model.addAttribute("boardDTO", boardDTO);
+//	    model.addAttribute("com_List", com_List); // 댓글 리스트를 모델에 추가
+
+
 		return "community/freeboard_view";
 	}
 
@@ -155,6 +187,20 @@ public class CommunityController {
 		
 		return "redirect:freeboard_list.do";
 	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	@RequestMapping("/community/photoboard_list.do")
 		//포토  포토보드 리스트
 		
@@ -333,7 +379,11 @@ public class CommunityController {
 		
 		
 		try {
+<<<<<<< HEAD
 	    	System.out.println("파일수정  컨트롤러 들어오나?");
+=======
+	    	System.out.println("파일수 컨트롤러 들어오나?");
+>>>>>>> branch 'main' of https://github.com/hsyang011/Sigdolagi.git
 	        // 물리적 경로 얻어오기
 	        String uploadDir = ResourceUtils.getFile("classpath:static/uploads/").toPath().toString();
 	        System.out.println("물리적 경로:" + uploadDir);
@@ -382,6 +432,7 @@ public class CommunityController {
 	            photoBoardDTO.setSfile(savedFileName);
 
 	            //여기서 부터 수정으로 고치기 
+<<<<<<< HEAD
 //	            int result2 = filedao.updateFIle(photoBoardDTO);
 //	            
 //	            if (result2 == 1) {
@@ -394,6 +445,16 @@ public class CommunityController {
 	           System.out.println("수정함수 들어가기 직전");
 	          int result = photoboarddao.photoedit(photoBoardDTO);
 	    		System.out.println("result:"+result);
+=======
+	            int result2 = filedao.updateFIle(photoBoardDTO);
+	            
+	            if (result2 == 1) {
+	                System.out.println("수정성공(?)");
+	                model.addAttribute("originalFileName", originalFileName);
+	                model.addAttribute("saveFileMaps", saveFileMaps);
+	                model.addAttribute("title", req.getParameter("title"));
+	            }
+>>>>>>> branch 'main' of https://github.com/hsyang011/Sigdolagi.git
 	        }
 	    } catch (Exception e) {
 	        e.printStackTrace();

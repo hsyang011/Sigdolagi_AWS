@@ -182,8 +182,8 @@ $(function() {
 		                success: function (response) {
 		                    console.log('서버 응답:', response);
 		                    /* 이유는 모르겠으나 첫번째 alert창은 씹히는 버그가 존재. */
-		                    alert('결제가 완료되었습니다.');
-		                    if (confirm("결제가 완료되었습니다.\n주문 내역으로 이동할까요?")) {
+		                    // alert('결제가 완료되었습니다.');
+		                    if (confirm("결제 완료!\n주문 내역으로 이동할까요?")) {
 		                    	location.href = "../member/myordermanage.do";
 		                    } else {
 		                    	location.href = "./market_list.do";

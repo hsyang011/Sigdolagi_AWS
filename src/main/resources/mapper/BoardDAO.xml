@@ -53,5 +53,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		DELETE FROM freeboard WHERE freeboard_idx=#{freeboard_idx}
 	</delete>
 	
+
+<!-- 	<select id="nickname" resultType="string" parameterType="string">
+		SELECT nickname FROM member WHERE email=${email}
+	</select> -->
+	
+
+	<!-- 관리자 자유게시판 목록 -->
+	<select id="adminFreeSelect"
+		resultType="com.edu.springboot.community.BoardDTO">
+		SELECT * FROM freeboard ORDER BY postdate DESC
+	</select>
+>>>>>>> branch 'main' of https://github.com/hsyang011/Sigdolagi.git
 		
 </mapper>
