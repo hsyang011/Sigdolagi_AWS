@@ -1,8 +1,11 @@
 package com.edu.springboot.community;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -13,6 +16,8 @@ import java.util.UUID;
 import org.apache.commons.io.FileUtils;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ResourceUtils;
@@ -39,6 +44,7 @@ public class CommunityController {
 	
 	@Autowired
 	IMyFileService filedao;
+	
 	
 	
 	@Autowired
@@ -91,7 +97,9 @@ public class CommunityController {
 		return "community/freeboard_write";
 	}
 	
-
+	
+	
+	
 	
 	@PostMapping("/community/freeboard_write.do")
 
@@ -113,11 +121,6 @@ public class CommunityController {
 		dao.update(boardDTO);
 		boardDTO = dao.view(boardDTO);
 		boardDTO.setContent(boardDTO.getContent().replace("\r\n", "<br>"));
-		
-		
-		
-		
-		
 		model.addAttribute("boardDTO", boardDTO);
 		
 		return "community/freeboard_view";
@@ -136,6 +139,7 @@ public class CommunityController {
 	
 	}
 	
+	//?이건 뭐지?
 	@PostMapping("/community/freeboard_edit.do")
 	public String boardEditPost(BoardDTO boardDTO) {
 		int result = dao.edit(boardDTO);
@@ -239,6 +243,7 @@ public class CommunityController {
 	public String multiUploadProcess(HttpServletRequest req, Model model, PhotoBoardDTO photoBoardDTO) {
 		System.out.println(photoBoardDTO);
 	    try {
+	    	System.out.println("파일업로드 컨트롤러 들어오나?");
 	        // 물리적 경로 얻어오기
 	        String uploadDir = ResourceUtils.getFile("classpath:static/uploads/").toPath().toString();
 	        System.out.println("물리적 경로:" + uploadDir);
@@ -299,6 +304,141 @@ public class CommunityController {
 	    //return "community/photoboard_list.do";
 		return "redirect:photoboard_list.do";
 	}
+	
+	
+	// 파일삭제
+	
+	 // 업로드 파일 삭제
+   
+	
+	
+	//포토게시판 수정
+	
+	//수정페이지 이동
+	@GetMapping("/community/photoboard_edit.do")
+	public String photoboardEdit(Model model, PhotoBoardDTO photoBoardDTO) {
+		System.out.println("포토 수정 이 컨트롤러 들어오니?");
+		photoBoardDTO = photoboarddao.photoview(photoBoardDTO);
+		model.addAttribute("photoBoardDTO", photoBoardDTO);
+		return "community/photoboard_edit";
+	
+	}
+	//포토 게시판 수정처리
+	@PostMapping("/community/photoboard_edit.do")
+	public String photoboardEditPost(HttpServletRequest req, Model model, PhotoBoardDTO photoBoardDTO) {
+		System.out.println("포토게시판 수정처리 컨트롤러 들어오나? ");
+		System.out.println(photoBoardDTO);
+		
+		
+		try {
+	    	System.out.println("파일수 컨트롤러 들어오나?");
+	        // 물리적 경로 얻어오기
+	        String uploadDir = ResourceUtils.getFile("classpath:static/uploads/").toPath().toString();
+	        System.out.println("물리적 경로:" + uploadDir);
+
+	        
+	        // 파일명 저장을 위한 Map 생성. Key는 원본 파일명, value는 서버에 저장된 파일명을 저장한다.
+	        Map<String, String> saveFileMaps = new HashMap<>();
+
+	        // 2개 이상의 파일 이므로 getParts()메서드를 통해 폼값을 받는다. 컬렉션타입으로 받음
+	        Collection<Part> parts = req.getParts();
+
+	        // 폼값의 갯수만큼 반복
+	        for (Part part : parts) {
+	            // 폼값 중 파일인 경우에만 업로드 처리를 위해 continue를 걸어준다.
+	            // 파일이 아니라면 for문의 처음으로 돌아간다.
+	            if (!part.getName().equals("ofile"))
+	                continue;
+
+	            // 파일명 추출을 위해 헤더값을 얻어온다.
+	            String partHeader = part.getHeader("content-disposition");
+	            System.out.println("partHeader=" + partHeader);
+
+	            String[] phArr = partHeader.split("filename=");
+	            // 파일명을 추출한 후 따옴푤ㄹ 제거한다.
+	            String originalFileName = phArr[1].trim().replace("\"", "");
+
+	            // 파일을 원본파일명으로 저장한다.
+	            if (!originalFileName.isEmpty()) {
+	                part.write(uploadDir + File.separator + originalFileName);
+	            }
+
+	            // 저장된 파일명을 UUID로 생성한 새로운 파일명으로 저장한다.
+	            String savedFileName = MyFunctions.renameFile(uploadDir, originalFileName);
+
+	            // Map 컬렉션에 원본파일명과 저장된 파일명을 key와 value로 저장한다.
+	            saveFileMaps.put(originalFileName, savedFileName);
+	            System.out.println(savedFileName);
+
+
+	            photoBoardDTO.setTitle(req.getParameter("title"));
+	            photoBoardDTO.setOfile(originalFileName);
+	            photoBoardDTO.setSfile(savedFileName);
+
+	            //여기서 부터 수정으로 고치기 
+	            int result2 = filedao.updateFIle(photoBoardDTO);
+	            
+	            if (result2 == 1) {
+	                System.out.println("수정성공(?)");
+	                model.addAttribute("originalFileName", originalFileName);
+	                model.addAttribute("saveFileMaps", saveFileMaps);
+	                model.addAttribute("title", req.getParameter("title"));
+	            }
+	        }
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        System.out.println("업로드 실패");
+	    }
+		
+		
+		
+		
+		
+		int result = photoboarddao.photoedit(photoBoardDTO);
+		System.out.println("result:"+result);
+		return "redirect:freeboard_view.do?photoboard_idx="+photoBoardDTO.getPhotoboard_idx();
+	}
+	//포토 게시판 삭제처리
+	@PostMapping("/community/photoboard_delete.do")
+	public String photoDeletePost(HttpServletRequest req ) {
+		int result = photoboarddao.photodelete(req.getParameter("photoboard_idx"));
+		System.out.println("글삭제결과:"+result);
+		
+		return "redirect:photoboard_list.do";
+	}
+	
+	
+	
+	
+	/** 업로드 파일 삭제
+	 * @throws FileNotFoundException 
+     */
+	//"/community/photoboard_writeprocess.do"
+    @PostMapping("/community/deleteFile.do")
+    public ResponseEntity<Boolean> removeFile(String fileName) throws FileNotFoundException{
+    	
+    	System.out.println("파일 삭제 매핑으로 들어오나?");
+        String srcFileName = null;
+        
+        
+        try{
+        	String uploadDir = ResourceUtils.getFile("classpath:static/uploads/").toPath().toString();
+            srcFileName = URLDecoder.decode(fileName,"UTF-8");
+            //UUID가 포함된 파일이름을 디코딩해줍니다.
+            File file = new File(uploadDir +File.separator + srcFileName);
+            //이게 sfile이구나
+            boolean result = file.delete();
+
+            
+            File thumbnail = new File(file.getParent(),"s_"+file.getName());
+            //이게 뭐지?
+            //getParent() - 현재 File 객체가 나태내는 파일의 디렉토리의 부모 디렉토리의 이름 을 String으로 리턴해준다.
+            return new ResponseEntity<>(result,HttpStatus.OK);
+        }catch (UnsupportedEncodingException e){
+            e.printStackTrace();
+            return new ResponseEntity<>(false,HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 	
 	
 	

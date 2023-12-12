@@ -73,6 +73,30 @@ main > * { margin: 50px 0; }
 }
 
 </style>
+
+<script>
+function deletePost(){
+	var answer = confirm("정말?");
+	if(answer==true){
+		var form = document.createElement("form");
+		form.method = "post";
+		form.action="./freeboard_delete.do";
+		
+		var hiddenField = document.createElement("input");
+		hiddenField.type = "hidden";
+		hiddenField.name = "freeboard_idx";
+		hiddenField.value = "${boardDTO.freeboard_idx}";
+		form.appendChild(hiddenField); 
+
+		document.body.appendChild(form);
+		form.submit();
+	}
+	else {
+		return false;
+	}
+} 
+</script>
+
 </head>
 <body>
 <!-- wrapper 시작 -->
@@ -138,13 +162,16 @@ main > * { margin: 50px 0; }
                                 <tr>
                                     <td>내용</td>
                                     <td>
-                                        <textarea name="content">${boardDTO.content }</textarea>
+                                        <textarea name="content">${boardDTO.content }
+                                        
+                                        </textarea>
                                     </td>
                                 </tr>
                              
                              
                                 <tr>
                                     <td colspan="2" align="center" class="btn_td">
+                                    	<!-- <button type="button" class="writeFrm_reset"  onclick="deletePost();">삭제하기</button> -->
                                         <button type="submit" class="writeFrm_end">작성 완료</button>
                                         <button type="reset" class="writeFrm_reset">다시 입력</button>
                                         <button type="button" class="writeFrm_list" onclick="location.href='./freeboard_list.do';">목록 보기</button>

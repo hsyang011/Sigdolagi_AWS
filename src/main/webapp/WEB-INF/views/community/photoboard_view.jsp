@@ -78,7 +78,28 @@ main > * { margin: 50px 0; }
 </style>
 
 
+<script>
+function deletePost(){
+	var answer = confirm("정말?");
+	if(answer==true){
+		var form = document.createElement("form");
+		form.method = "post";
+		form.action="./photoboard_delete.do";
+		
+		var hiddenField = document.createElement("input");
+		hiddenField.type = "hidden";
+		hiddenField.name = "photoboard_idx";
+		hiddenField.value = "${photoBoardDTO.photoboard_idx}";
+		form.appendChild(hiddenField); 
 
+		document.body.appendChild(form);
+		form.submit();
+	}
+	else {
+		return false;
+	}
+} 
+</script>
 
 
 
@@ -150,6 +171,7 @@ main > * { margin: 50px 0; }
                         class="writeFrm" enctype="multipart/form-data"
                         action="/community/photoboard_writeprocess.do">
                             <input type="hidden" name="tname"  />
+                            <input type="hidden" name="photoboard_idx" value="${photoBoardDTO.photoboard_idx }" />
                             <table class="table table-bordered" id="free_write_frm_table" width="100%" >
                                 <tr>
                                     <td>제목</td>
@@ -161,7 +183,7 @@ main > * { margin: 50px 0; }
                                     <td>내용</td>
                                     <td>
                                     <img width="30%"  class="card-img-top" src="../uploads/${photoBoardDTO.sfile}" alt="이미지">
-                                         <textarea id="content" name="content"  >
+                                         <textarea id="content" name="content" readonly  >${photoBoardDTO.content}
                                           
                                           
                                          
@@ -170,19 +192,15 @@ main > * { margin: 50px 0; }
                                        <!--  <div id="summernote" ></div> -->
                                     </td>
                                 </tr>
-                                 <tr>
-                                    <td>파일첨부</td>
-                                    
-                                    
-                                    <td>
-                                        <input type="file" name="ofile" id="ofile" />
-                                    </td>
-                                </tr>
                              	
                                 <tr>
                                     <td colspan="2" align="center" class="btn_td">
                                         <button type="submit" class="writeFrm_end" id="saveBtn">작성 완료</button>
+                                         <button type="button" class="writeFrm_edit" onclick="location.href='./photoboard_edit.do?photoboard_idx=${photoBoardDTO.photoboard_idx }';">수정하기</button>
+                    				                    
+                                    <%--     <a href="./photoboard_view.do?photoboard_idx=${ entry.photoboard_idx }">${ entry.title }</a> --%>
                                         <button type="reset" class="writeFrm_reset">다시 입력</button>
+                                        <button type="button" class="writeFrm_reset"  onclick="deletePost();">삭제하기</button>
                                         <button type="button" class="writeFrm_list" onclick="">목록 보기</button>
                                     </td>
                                 </tr>
