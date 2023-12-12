@@ -76,26 +76,6 @@ main > * { margin: 50px 0; }
 }
 
 </style>
-
-
-
-
- <script>
-    $(document).ready(function () {
-        $('#summernote').summernote({
-            height: 300,
-            width: 1100,
-            lang: "ko-KR",
-            callbacks: {
-                onImageUpload: function (files) {
-                    
-                }
-            }
-        });
-
-
-      
- 
 </head>
 <body>
 <!-- wrapper 시작 -->
