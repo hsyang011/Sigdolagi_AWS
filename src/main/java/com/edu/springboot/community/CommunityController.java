@@ -379,7 +379,6 @@ public class CommunityController {
 		
 		
 		try {
-	    	System.out.println("파일수정  컨트롤러 들어오나?");
 	        // 물리적 경로 얻어오기
 	        String uploadDir = ResourceUtils.getFile("classpath:static/uploads/").toPath().toString();
 	        System.out.println("물리적 경로:" + uploadDir);
@@ -427,7 +426,7 @@ public class CommunityController {
 	            photoBoardDTO.setOfile(originalFileName);
 	            photoBoardDTO.setSfile(savedFileName);
 
-	            //여기서 부터 수정으로 고치기
+	            //여기서 부터 수정으로 고치기 
 	            int result2 = filedao.updateFIle(photoBoardDTO);
 	            
 	            if (result2 == 1) {
