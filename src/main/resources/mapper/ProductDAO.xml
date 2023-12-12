@@ -57,8 +57,8 @@
 		 prod_thumbnail_o,prod_thumbnail,img1_o,img1,img2_o,img2,img3_o,img3,img4_o,img4,img5_o,img5) VALUES
 		(seq_product_idx.nextval, #{category},#{sub_cate}, #{seller}, #{prod_name}
 		, ${prod_price}, ${prod_sale},${inventory},
-			#{prod_detail_o},#{prod_detail},#{prod_thumbnail_o},#{prod_thumbnail},#{img1_o},#{img1},#{img2_o},
-			#{img2},#{img3_o},#{img3},#{img4_o},#{img4},#{img5_o},#{img5});
+			#{prod_detail_o,jdbcType=VARCHAR},#{prod_detail},#{prod_thumbnail_o , jdbcType=varchar2},#{prod_thumbnail},#{img1_o , jdbcType=varchar2},#{img1},#{img2_o , jdbcType=varchar2},
+			#{img2},#{img3_o,jdbcType=varchar2},#{img3},#{img4_o , jdbcType=varchar2},#{img4},#{img5_o , jdbcType=varchar2},#{img5});
 	</insert>
 	
 	<!-- 관리자 마켓상품삭제 -->

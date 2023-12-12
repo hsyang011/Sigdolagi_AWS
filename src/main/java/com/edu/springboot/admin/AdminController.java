@@ -193,18 +193,59 @@ public class AdminController {
 			//View로 전달하기 위해 Model객체에 저장한다.
 			model.addAttribute("saveFileMaps", saveFileMaps);
 			
-			
-			
-			
 			//JDBC 연동을 하지 않으므로 Model객체에 정보를 저장한다.
 			model.addAttribute("originalFileName", originalFileName);
 			model.addAttribute("savedFileName", savedFileName);
 			
+			//JDBC연동
+			//싱글파일
+			productDTO.setProd_detail_o(originalFileName);
+			productDTO.setProd_detail(savedFileName);
+			
+			System.out.println("productDTO.데이탈="+productDTO.getProd_detail());
+			
+			System.out.println("ofiles= "+ofiles);
+			System.out.println("sfiles= "+sfiles);
+			//멀티파일
+			String[] oArr = ofiles.split(":");
+			String[] sArr = sfiles.split(":");
+			for (int i=0; i<oArr.length && i<5; i++) {
+				if(i == 0) {
+					productDTO.setImg1_o(oArr[i]);
+					productDTO.setImg1(sArr[i]);
+				}
+				else if(i == 1) {
+						productDTO.setImg2_o(oArr[i]);
+						productDTO.setImg2(sArr[i]);
+				}
+				else if(i == 2) {
+						productDTO.setImg3_o(oArr[i]);
+						productDTO.setImg3(sArr[i]);
+				}
+				else if(i == 3) {
+						productDTO.setImg4_o(oArr[i]);
+						productDTO.setImg4(sArr[i]);
+				}
+				else if(i == 4) {
+						productDTO.setImg5_o(oArr[i]);
+						productDTO.setImg5(sArr[i]);
+				}
+			}
+			
+			System.out.println("productDTO 1="+productDTO.getImg1());
+			System.out.println("productDTO 2="+productDTO.getImg2());
+			System.out.println("productDTO 3="+productDTO.getImg3());
+			System.out.println("productDTO 4="+productDTO.getImg4());
+			System.out.println("productDTO 5="+productDTO.getImg5());
+			
+			int result = productDAO.adminMaketInsert(productDTO);
+			if(result==1)System.out.println("입력되었습니다.");
+			
 		} 
 		catch (Exception e) {
+			e.printStackTrace();
 			System.out.println("업로드 실패");
 		}
-		
 		
 		
 		return "redirect:admin_maket_list.do";
