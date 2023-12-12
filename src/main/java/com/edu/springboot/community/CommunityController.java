@@ -110,7 +110,7 @@ public class CommunityController {
 		String title= req.getParameter("title");
 		String content= req.getParameter("content");
 		//폼값을 개별적으로 전달한다.
-		int result = dao.write(email, title, content);
+		int result = dao.write(email, nickname, title, content);
 		System.out.println("글쓰기 결과:" +result);
 
 		model.addAttribute("nickname",principal.getName()); 
@@ -379,11 +379,7 @@ public class CommunityController {
 		
 		
 		try {
-<<<<<<< HEAD
 	    	System.out.println("파일수정  컨트롤러 들어오나?");
-=======
-	    	System.out.println("파일수 컨트롤러 들어오나?");
->>>>>>> branch 'main' of https://github.com/hsyang011/Sigdolagi.git
 	        // 물리적 경로 얻어오기
 	        String uploadDir = ResourceUtils.getFile("classpath:static/uploads/").toPath().toString();
 	        System.out.println("물리적 경로:" + uploadDir);
@@ -431,21 +427,7 @@ public class CommunityController {
 	            photoBoardDTO.setOfile(originalFileName);
 	            photoBoardDTO.setSfile(savedFileName);
 
-	            //여기서 부터 수정으로 고치기 
-<<<<<<< HEAD
-//	            int result2 = filedao.updateFIle(photoBoardDTO);
-//	            
-//	            if (result2 == 1) {
-//	                System.out.println("수정성공(?)");
-//	                model.addAttribute("originalFileName", originalFileName);
-//	                model.addAttribute("saveFileMaps", saveFileMaps);
-//	                model.addAttribute("title", req.getParameter("title"));
-//	            }
-	           System.out.println(photoBoardDTO);
-	           System.out.println("수정함수 들어가기 직전");
-	          int result = photoboarddao.photoedit(photoBoardDTO);
-	    		System.out.println("result:"+result);
-=======
+	            //여기서 부터 수정으로 고치기
 	            int result2 = filedao.updateFIle(photoBoardDTO);
 	            
 	            if (result2 == 1) {
@@ -454,7 +436,6 @@ public class CommunityController {
 	                model.addAttribute("saveFileMaps", saveFileMaps);
 	                model.addAttribute("title", req.getParameter("title"));
 	            }
->>>>>>> branch 'main' of https://github.com/hsyang011/Sigdolagi.git
 	        }
 	    } catch (Exception e) {
 	        e.printStackTrace();
