@@ -16,6 +16,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import utils.CookieManager;
+import utils.MyFunctions;
 
 
 
@@ -281,10 +282,25 @@ public class MemberController {
 		infoDTO.setTo(req.getParameter("email"));
 		infoDTO.setSubject("식도라기 회원가입");
 		infoDTO.setFormat("html");
-		infoDTO.setContent("식도라기 회원 인증을 위한 인증 코드 발송입니다. 아래 코드를 입력해주세요!");
+		
+		//UUID 6자리 
+		String uuid = MyFunctions.getUuid();
+		System.out.println(uuid);
+		uuid = uuid.substring(0, 6);
+		System.out.println(uuid);
+		
+		
+		infoDTO.setContent("식도라기 회원 인증을 위한 인증 코드 발송입니다. 아래 코드를 입력해주세요!"+uuid);
+		
+		
+		
+		
+		
+		
 		email.myEmailSender(infoDTO);
 		System.out.println("이메일 성공?");
 		
-		return ResponseEntity.ok("이메일 발송 성공!");
+		
+		return ResponseEntity.ok(uuid);
 	}
 }

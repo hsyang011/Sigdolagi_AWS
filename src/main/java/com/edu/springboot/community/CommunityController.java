@@ -333,7 +333,7 @@ public class CommunityController {
 		
 		
 		try {
-	    	System.out.println("파일수 컨트롤러 들어오나?");
+	    	System.out.println("파일수정  컨트롤러 들어오나?");
 	        // 물리적 경로 얻어오기
 	        String uploadDir = ResourceUtils.getFile("classpath:static/uploads/").toPath().toString();
 	        System.out.println("물리적 경로:" + uploadDir);
@@ -370,6 +370,7 @@ public class CommunityController {
 	            String savedFileName = MyFunctions.renameFile(uploadDir, originalFileName);
 	            
 	            
+	            
 	            // Map 컬렉션에 원본파일명과 저장된 파일명을 key와 value로 저장한다.
 	            saveFileMaps.put(originalFileName, savedFileName);
 	            System.out.println(savedFileName);
@@ -402,12 +403,15 @@ public class CommunityController {
 		
 		
 		
+		
+		
 		//return "redirect:freeboard_view.do?freeboard_idx="+boardDTO.getFreeboard_idx();
 		//int result = photoboarddao.photoedit(photoBoardDTO);
 		//System.out.println("result:"+result);
-		//return "redirect:photooard_view.do?photoboard_idx="+photoBoardDTO.getPhotoboard_idx();
+		model.addAttribute("photoboard_idx", photoBoardDTO.getPhotoboard_idx());
+		return "redirect:photoboard_view.do?photoboard_idx="+photoBoardDTO.getPhotoboard_idx();
 		//return "main/main";
-		return "redirect:photoboard_list.do";
+		//return "redirect:photoboard_list.do";
 	}
 	
 	
