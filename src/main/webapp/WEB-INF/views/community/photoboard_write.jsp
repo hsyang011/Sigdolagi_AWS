@@ -78,7 +78,14 @@
         max-width: 100%; /* 이미지 크기를 부모 요소에 맞게 조절 */
         height: auto;
     }
-    </style>
+    
+        
+@media screen and (max-width: 768px) {
+    .custom-col { flex: 0 0 50%; }
+    .mealk_cate {font-size: 0.8em;}/* 밀키트 카테고리 사이즈 */
+}
+    
+</style>
 
    <script>
         $(document).ready(function () {
@@ -90,6 +97,8 @@
 		        $("#deleteFileBtn").show(); // 파일을 선택하면 버튼을 보이도록 함
 		        $("#thumbnail").show();
 		    });
+            
+            
             
             
             
@@ -168,17 +177,6 @@
         
         
     </script>
-    
-    
-<<<<<<< HEAD
-=======
-}
-@media screen and (max-width: 768px) {
-    .custom-col { flex: 0 0 50%; }
-    .mealk_cate {font-size: 0.8em;}/* 밀키트 카테고리 사이즈 */
-}
-
-</style>
 
 
 
@@ -196,10 +194,9 @@
             }
         });
 
-
+</script>
       
  
->>>>>>> branch 'main' of https://github.com/hsyang011/Sigdolagi.git
 </head>
 <body>
     <!-- wrapper 시작 -->
@@ -207,6 +204,7 @@
 
         <!-- header, nav 추가 -->
         <%@ include file="../include/top.jsp" %>
+        
         
         <br><br><br>
         <!-- 배너 시작 -->

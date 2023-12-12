@@ -147,6 +147,7 @@ public class CommunityController {
 		return "redirect:freeboard_view.do?freeboard_idx="+boardDTO.getFreeboard_idx();
 	}
 	
+	
 	@PostMapping("/community/freeboard_delete.do")
 	public String boardDeletePost(HttpServletRequest req ) {
 		int result = dao.delete(req.getParameter("freeboard_idx"));
@@ -327,15 +328,17 @@ public class CommunityController {
 	@PostMapping("/community/photoboard_edit.do")
 	public String photoboardEditPost(HttpServletRequest req, Model model, PhotoBoardDTO photoBoardDTO) {
 		System.out.println("포토게시판 수정처리 컨트롤러 들어오나? ");
+		photoBoardDTO.setContent(photoBoardDTO.getContent().replace("<br>", "\r\n"));
 		System.out.println(photoBoardDTO);
 		
 		
 		try {
-	    	System.out.println("파일업로드 컨트롤러 들어오나?");
+	    	System.out.println("파일수 컨트롤러 들어오나?");
 	        // 물리적 경로 얻어오기
 	        String uploadDir = ResourceUtils.getFile("classpath:static/uploads/").toPath().toString();
 	        System.out.println("물리적 경로:" + uploadDir);
 
+	        
 	        
 	        // 파일명 저장을 위한 Map 생성. Key는 원본 파일명, value는 서버에 저장된 파일명을 저장한다.
 	        Map<String, String> saveFileMaps = new HashMap<>();
@@ -365,26 +368,31 @@ public class CommunityController {
 
 	            // 저장된 파일명을 UUID로 생성한 새로운 파일명으로 저장한다.
 	            String savedFileName = MyFunctions.renameFile(uploadDir, originalFileName);
-
+	            
+	            
 	            // Map 컬렉션에 원본파일명과 저장된 파일명을 key와 value로 저장한다.
 	            saveFileMaps.put(originalFileName, savedFileName);
 	            System.out.println(savedFileName);
-
+	            
+	            
 
 	            photoBoardDTO.setTitle(req.getParameter("title"));
 	            photoBoardDTO.setOfile(originalFileName);
 	            photoBoardDTO.setSfile(savedFileName);
 
 	            //여기서 부터 수정으로 고치기 
-	            int result2 = filedao.insertMultiFile(photoBoardDTO);
-	            
-	            if (result2 == 1) {
-	                System.out.println("수정성공(?)");
-	                model.addAttribute("originalFileName", originalFileName);
-	                model.addAttribute("saveFileMaps", saveFileMaps);
-	                model.addAttribute("title", req.getParameter("title"));
-	                model.addAttribute("cate", req.getParameterValues("cate"));
-	            }
+//	            int result2 = filedao.updateFIle(photoBoardDTO);
+//	            
+//	            if (result2 == 1) {
+//	                System.out.println("수정성공(?)");
+//	                model.addAttribute("originalFileName", originalFileName);
+//	                model.addAttribute("saveFileMaps", saveFileMaps);
+//	                model.addAttribute("title", req.getParameter("title"));
+//	            }
+	           System.out.println(photoBoardDTO);
+	           System.out.println("수정함수 들어가기 직전");
+	          int result = photoboarddao.photoedit(photoBoardDTO);
+	    		System.out.println("result:"+result);
 	        }
 	    } catch (Exception e) {
 	        e.printStackTrace();
@@ -394,11 +402,16 @@ public class CommunityController {
 		
 		
 		
-		
-		int result = photoboarddao.photoedit(photoBoardDTO);
-		System.out.println("result:"+result);
-		return "redirect:freeboard_view.do?photoboard_idx="+photoBoardDTO.getPhotoboard_idx();
+		//return "redirect:freeboard_view.do?freeboard_idx="+boardDTO.getFreeboard_idx();
+		//int result = photoboarddao.photoedit(photoBoardDTO);
+		//System.out.println("result:"+result);
+		//return "redirect:photooard_view.do?photoboard_idx="+photoBoardDTO.getPhotoboard_idx();
+		//return "main/main";
+		return "redirect:photoboard_list.do";
 	}
+	
+	
+	
 	//포토 게시판 삭제처리
 	@PostMapping("/community/photoboard_delete.do")
 	public String photoDeletePost(HttpServletRequest req ) {
