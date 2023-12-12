@@ -170,6 +170,36 @@
     </script>
     
     
+<<<<<<< HEAD
+=======
+}
+@media screen and (max-width: 768px) {
+    .custom-col { flex: 0 0 50%; }
+    .mealk_cate {font-size: 0.8em;}/* 밀키트 카테고리 사이즈 */
+}
+
+</style>
+
+
+
+
+ <script>
+    $(document).ready(function () {
+        $('#summernote').summernote({
+            height: 300,
+            width: 1100,
+            lang: "ko-KR",
+            callbacks: {
+                onImageUpload: function (files) {
+                    
+                }
+            }
+        });
+
+
+      
+ 
+>>>>>>> branch 'main' of https://github.com/hsyang011/Sigdolagi.git
 </head>
 <body>
     <!-- wrapper 시작 -->

@@ -8,9 +8,12 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.edu.springboot.member.IMemberService;
 import com.edu.springboot.member.MemberDTO;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -25,6 +28,14 @@ public class MarketController {
 	
 	@Autowired
 	ICartService cartDAO;
+	
+	// 멤버정보를 가져오기 위한 빈 자동 주입.
+	@Autowired
+	IMemberService memberDAO;
+	
+	// 결제를 위한 빈 자동 주입
+	@Autowired
+	IOrderService orderDAO;
 	
 	// 상품 리스트
 	@RequestMapping("/market/market_list.do")
@@ -169,7 +180,29 @@ public class MarketController {
 		model.addAttribute("_allPrice", allPrice);
 		model.addAttribute("payment", payment);
 		model.addAttribute("deliveryPrice", deliveryPrice);
+		
+		// 회원정보를 불러온다.
+		memberDTO = memberDAO.getoneMemberDTO(memberDTO);
+		model.addAttribute("memberDTO", memberDTO);
+		
 		return "market/order";
+	}
+	
+	// 주문 처리
+	@RequestMapping("/market/orderProcess.do")
+	@Transactional(propagation=Propagation.REQUIRED)
+	public ResponseEntity<String> orderProcess(OrderDTO orderDTO) {
+		try {			
+			// System.out.println(orderDTO.getPayment() + " 결제가격");
+			// 결제 처리 완료
+			orderDAO.orderProcess(orderDTO);
+			// 장바구니 싹 비우기
+			orderDAO.deleteAll(orderDTO);
+		} catch (Exception e) {
+			System.out.println("주문 처리 중 오류가 발생했습니다.");
+			e.printStackTrace();
+		}
+		return ResponseEntity.ok("결제가 완료되었습니다!");
 	}
 	
 }

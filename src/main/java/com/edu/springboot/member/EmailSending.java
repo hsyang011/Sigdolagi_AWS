@@ -1,4 +1,4 @@
-package com.edu.springboot;
+package com.edu.springboot.member;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -75,7 +75,7 @@ public class EmailSending {
     		//HTML 메일 템플릿이 있는 디렉토리의 물리적경로를 가져온다. 
     		String uploadDir = ResourceUtils
 					.getFile("classpath:static/").toPath().toString();				
-	        String templatePath = uploadDir+"/MailTemplate.html";
+	        String templatePath = uploadDir+"/html/MailTemplate.html";
 	        //HTML 파일을 IO스트림을 통해 읽는다. 
 	        BufferedReader br = new BufferedReader(new 
 	        		FileReader(templatePath));

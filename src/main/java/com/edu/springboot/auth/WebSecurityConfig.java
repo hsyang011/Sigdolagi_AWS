@@ -38,7 +38,7 @@ public class WebSecurityConfig {
 			.authorizeHttpRequests((request) -> request
 				.dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
 				.requestMatchers("/").permitAll()
-				.requestMatchers("/css/**", "/js/**", "/images/**", "/bootstrap/**", "/uploads/**").permitAll()
+				.requestMatchers("/html/**", "/css/**", "/js/**", "/images/**", "/bootstrap/**", "/uploads/**").permitAll()
 				// 게스트일 때
 				.requestMatchers(
 						// community 접근 권한

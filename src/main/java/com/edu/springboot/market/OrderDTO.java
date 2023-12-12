@@ -6,9 +6,7 @@ import lombok.Data;
 public class OrderDTO {
 	
 	private String order_idx;
-	private String cart_idx;
 	private String email;
-	private String prod_count;
 	private String name;
 	private String phone;
 	private String addr1;

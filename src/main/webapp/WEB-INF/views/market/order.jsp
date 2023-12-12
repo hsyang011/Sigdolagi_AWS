@@ -102,6 +102,131 @@ div.sticky{
 }
 
 </style>
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.5.js"></script>
+<script>
+$(function() {
+	// 주문하기 버튼을 눌렀을 때 히든폼 전송
+	$("#orderBtn").click((e) => {
+		if ($("#agree").prop("checked")) {
+			let frm = document.orderInfo;
+			if (frm.name.value == '') {
+				alert("이름을 입력해주세요!");
+				frm.name.focus();
+				return;
+			}
+			if (frm.addr1.value == '') {
+				alert("주소를 입력해주세요!");
+				frm.addr1.focus();
+				return;
+			}
+			if (frm.addr2.value == '') {
+				alert("상세주소 입력해주세요!");
+				frm.addr2.focus();
+				return;
+			}
+			if (frm.phone.value == '') {
+				alert("휴대폰 번호를 입력해주세요!");
+				frm.phone.focus();
+				return;
+			}
+			if (frm.payment_method.value == '') {
+				alert("결제방식을 선택해주세요!");
+				return;
+			}
+			
+			// ######################################################################3
+			// I'mport 코드 시작
+			let pm = frm.payment_method.value;
+			let pg = '';
+			if (pm == '카카오페이') {
+				pg = 'kakaopay'
+			} else if (pm == '토스페이') {
+				pg = 'tosspay'
+			} else if (pm == '신용카드') {
+				pg = 'html5_inicis'
+			}
+			
+			// I'mport 초기화
+			var IMP = window.IMP;
+			IMP.init('imp25411281');
+
+			// 결제 창 열기
+		    IMP.request_pay({
+		        pg: pg, // PG사 (예: html5_inicis, kakaopay 등)
+		        pay_method: 'card', // 결제 수단 (card, vbank, phone 등)
+		        merchant_uid: 'merchant_' + new Date().getTime(), // 상점에서 관리하는 고유 주문 번호
+		        amount: frm.payment.value, // 결제 금액
+		        name: frm.name.value, // 주문명
+		        buyer_name: frm.name.value, // 구매자 이름
+		        buyer_tel: frm.phone.value, // 구매자 전화번호
+		        buyer_email: frm.email.value, // 구매자 이메일
+		        m_redirect_url: '../main/main.do' // 결제 완료 후 리디렉션할 URL
+		    }, function (rsp) {
+		        if (rsp.success) {
+		            // 결제 성공 시 서버에 결제 완료를 알림
+		            $.ajax({
+		                type: 'POST',
+		                url: '/market/orderProcess.do',
+		                data: {
+		                	email: frm.email.value,
+		                	name: frm.name.value,
+		                	phone: frm.phone.value,
+		                	addr1: frm.addr1.value,
+		                	addr2: frm.addr2.value,
+		                	message: frm.message.value,
+		                	payment_method: frm.payment_method.value,
+		                	payment: frm.payment.value,
+		                	point: frm.point.value,
+		                	zipcode: frm.zipcode.value
+		                },
+		                success: function (response) {
+		                    console.log('서버 응답:', response);
+		                    /* 이유는 모르겠으나 첫번째 alert창은 씹히는 버그가 존재. */
+		                    alert('결제가 완료되었습니다.');
+		                    if (confirm("결제가 완료되었습니다.\n주문 내역으로 이동할까요?")) {
+		                    	location.href = "../member/myordermanage.do";
+		                    } else {
+		                    	location.href = "./market_list.do";
+		                    }
+		                },
+		                error: function (error) {
+		                    console.error('서버 오류:', error);
+		                    alert('결제가 실패하였습니다. 다시 시도해주세요.');
+		                }
+		            });
+		        } else {
+		            console.log('결제 실패:', rsp.error_msg);
+		            alert('결제가 실패하였습니다. 다시 시도해주세요.');
+		        }
+		    });
+		} else {
+			alert("구매 약관 동의에 체크해주세요!");
+		}
+	});
+	// 체크박스가 선택되었을 때 수행될 함수
+	$("#check-1").change((e) => {
+	    // 체크박스가 선택되었는지 여부를 확인하여 분기
+	    if ($(e.target).prop("checked")) {
+	        console.log("체크박스가 선택되었습니다.");
+			document.orderInfo.name.value ='${memberDTO.name}';
+			document.orderInfo.addr1.value ='${memberDTO.addr1}';
+			document.orderInfo.addr2.value = '${memberDTO.addr2}';
+			document.orderInfo.phone.value = '${memberDTO.phone}';
+	    } else {
+	        console.log("체크박스가 선택되지 않았습니다.");
+			document.orderInfo.name.value = "";
+			document.orderInfo.addr1.value = "";
+			document.orderInfo.addr2.value = "";
+			document.orderInfo.phone.value = "";
+	    }
+    });
+	// 결제 방법 선택했을 때
+	$(".payment-method").click((e) => {
+		$("#paymentMethod").text($(e.target).text());
+		document.orderInfo.payment_method.value = $(e.target).text();
+	});
+});
+</script>
 </head>
 <body>
 <!-- wrapper 시작 -->
@@ -136,41 +261,46 @@ div.sticky{
                     <!-- 주문자 정보 -->
                     <div class="cart_list_area">
                         <div class="p-4" style="border-top: 1px solid black; border-bottom: 1px solid lightgray;">
-                            <span class="me-5">아무개</span><span class="me-5">01012345678</span><span>foo@gmail.com</span>
+                            <span class="me-5">${memberDTO.name}</span><span class="me-5">${memberDTO.phone}</span><span>${memberDTO.email}</span>
                         </div>
                     </div>
                     <!-- 페이지 제목 -->
                     <div class="page_title_area d-flex align-items-center mt-5">
                         <h2>배송지 정보</h2>
                         <div class="custom_checkbox mx-4">
-                            <input type="checkbox" id="check-1" class="checkbox checkboxGroup" name="member_info_check">
+                            <input type="checkbox" id="check-1" value="1" class="checkbox checkboxGroup" name="member_info_check">
                             <label for="check-1" class="renewal-cart-label">회원정보와 동일</label>
                         </div>
                     </div>
                     <!-- 배송지 정보 -->
-                    <form action="">
-                    <table class="table" id="order_input" style="border-top: 1px solid black;">
-                        <tr>
-                            <th style="width: 15%;">받는 분</th>
-                            <td><input type="text" class="form-control"></td>
-                        </tr>
-                        <tr>
-                            <th>주소</th>
-                            <td><input type="text" class="form-control"></td>
-                        </tr>
-                        <tr>
-                            <th></th>
-                            <td><input type="text" class="form-control"></td>
-                        </tr>
-                        <tr>
-                            <th>휴대폰</th>
-                            <td><input type="text" class="form-control"></td>
-                        </tr>
-                        <tr>
-                            <th>배송 메세지</th>
-                            <td><input type="text" class="form-control"></td>
-                        </tr>
-                    </table>
+                    <form action="" method="post" name="orderInfo">
+                    	<input type="hidden" name="email" value="${memberDTO.email}">
+                    	<input type="hidden" name="payment_method" value="">
+                    	<input type="hidden" name="payment" value="${payment}">
+                    	<input type="hidden" name="point" value="${Math.floor(payment/100)}">
+                    	<input type="hidden" name="zipcode" value="${memberDTO.zipcode}">
+	                    <table class="table" id="order_input" style="border-top: 1px solid black;">
+	                        <tr>
+	                            <th style="width: 15%;">받는 분</th>
+	                            <td><input type="text" class="form-control" name="name"></td>
+	                        </tr>
+	                        <tr>
+	                            <th>주소</th>
+	                            <td><input type="text" class="form-control" name="addr1"></td>
+	                        </tr>
+	                        <tr>
+	                            <th></th>
+	                            <td><input type="text" class="form-control" name="addr2"></td>
+	                        </tr>
+	                        <tr>
+	                            <th>휴대폰</th>
+	                            <td><input type="text" class="form-control" name="phone"></td>
+	                        </tr>
+	                        <tr>
+	                            <th>배송 메세지</th>
+	                            <td><input type="text" class="form-control" name="message"></td>
+	                        </tr>
+	                    </table>
                     </form>
                     <!-- 페이지 제목 -->
                     <div class="page_title_area d-flex align-items-center mt-5">
@@ -238,7 +368,7 @@ div.sticky{
                     <!-- 포인트 사용 끝 -->
                     <!-- 페이지 제목 -->
                     <div class="page_title_area d-flex align-items-center mt-5">
-                        <h2>결제 방법</h2>
+                        <h2>결제 방법</h2><span style="color: #FF7A00;" id="paymentMethod"></span>
                         <div class="custom_checkbox mx-4">
                             <input type="checkbox" id="check-1" class="checkbox checkboxGroup" name="member_info_check">
                             <label for="check-1" class="renewal-cart-label">이 결제 수단을 다음에도 사용</label>
@@ -248,7 +378,7 @@ div.sticky{
                     <div style="border-top: 1px solid black;">
                         <div class="row" id="payment-method">
                             <div class="col"><button class="btn py-3 rounded-4 payment-method">카카오페이</button></div>
-                            <div class="col"><button class="btn py-3 rounded-4 payment-method">네이버페이</button></div>
+                            <div class="col"><button class="btn py-3 rounded-4 payment-method">토스페이</button></div>
                             <div class="col"><button class="btn py-3 rounded-4 payment-method">신용카드</button></div>
                         </div>
                     </div>
@@ -301,13 +431,13 @@ div.sticky{
                             <table>
                                 <tr class="payment_info_total_line">
                                     <td class="payment_info_txt lete_sp_1" style="width: 10%;">
-                                        <input type="checkbox" class="form-check-input">
+                                        <input type="checkbox" class="form-check-input" id="agree">
                                     </td>
                                     <td>구매조건 및 이용약관에 동의하며, 결제를 진행합니다.</td>
                                 </tr>
                             </table>
                             <div class="order_button">
-                                <button type="" class="" style="color: white;">주문하기</button>
+                                <button type="" class="" id="orderBtn" style="color: white;">주문하기</button>
                             </div>
                         </div>
                     </div>
