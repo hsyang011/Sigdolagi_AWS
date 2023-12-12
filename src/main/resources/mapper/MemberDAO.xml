@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.edu.springboot.member.IMemberService">
+	
+	<select id="getMemberDTO"  resultType="int"  parameterType="com.edu.springboot.member.MemberDTO">
+		select count(*) from member where email=#{email} and password = #{password}
+	</select>
+	
+	<select id="getoneMemberDTO" resultType="com.edu.springboot.member.MemberDTO" 
+		parameterType="com.edu.springboot.member.MemberDTO">
+		SELECT * FROM member WHERE email=#{email}
+	</select>
+	
+	
+	
+	
+	
+	
+	<select id="getoneEmailDTO">
+		SELECT email FROM member WHERE phone=#{phone}
+	</select>
+	
+	<select id="getonePasswordDTO">
+		SELECT password FROM member WHERE email=#{email} and  phone=#{phone} 
+	</select>
+	
+	
+	
+	<insert id="insertMember" >
+		INSERT INTO member (email, name, nickname, phone, addr1,addr2, zipcode, mailing,
+		sms, password )
+		VALUES
+		(#{email}, #{name}, #{nickname}, #{phone},#{addr1},
+		#{addr2}, #{zipcode}, #{mailing}, #{sms}, #{password}) 
+	</insert>
+	
+	
+	<!-- 관리자회원관리리스트 -->
+	<select id="adminMemberSelect"
+		resultType="com.edu.springboot.member.MemberDTO">
+		SELECT * FROM member ORDER BY regidate DESC
+	</select>
+	
+	<!-- 관리자회원탈퇴처리변경 -->
+	<update id="adminMemberEnabled"
+		parameterType="com.edu.springboot.member.MemberDTO">
+		update member set enabled=0 where email=#{email}
+	</update>
+	
+	
+</mapper>

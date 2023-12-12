@@ -1,15 +1,22 @@
 plugins {
 	id 'java'
 	id 'war'
-	id 'org.springframework.boot' version '3.2.0'
-	id 'io.spring.dependency-management' version '1.1.4'
+	id 'org.springframework.boot' version '3.1.0'
+	id 'io.spring.dependency-management' version '1.1.0'
 }
+
+
 
 group = 'com.edu'
 version = '0.0.1-SNAPSHOT'
 
 java {
 	sourceCompatibility = '17'
+}
+
+eclipse.wtp.facet {
+    // Change the version of the Dynamic Web Module facet
+    facet name: 'jst.web', version: '5.0'
 }
 
 configurations {
@@ -23,11 +30,44 @@ repositories {
 }
 
 dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	
+	
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.2'
 	compileOnly 'org.projectlombok:lombok'
+	runtimeOnly 'com.oracle.database.jdbc:ojdbc11'
 	annotationProcessor 'org.projectlombok:lombok'
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
+	testImplementation 'org.springframework.security:spring-security-test'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter-test:3.0.2'
+	
+	implementation 'org.springframework.security:spring-security-taglibs'
+	
+	
+	implementation 'jakarta.servlet:jakarta.servlet-api'
+    implementation 'jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api'
+    implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl'
+    implementation 'org.apache.tomcat.embed:tomcat-embed-jasper'
+    
+    
+    //파일게시판 의존추가 
+    
+    
+    // https://mvnrepository.com/artifact/com.google.code.gson/gson
+	implementation group: 'com.google.code.gson', name: 'gson', version: '2.10'
+	// https://mvnrepository.com/artifact/commons-io/commons-io
+	// implementation 'commons-io:commons-io:2.11.0'  // 현재 최신 버전인지 확인 필요
+	implementation 'commons-io:commons-io:2.6' // 현재 최신 버전으로 업데이트하세요
+	//implementation 'commons-io:commons-io:2.11.0' // 현재 최신 버전인지 확인 필요
+	// https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload
+	
+    /* 이 프로젝트의 libs폴더에 있는 모든 jar 파일을 라이브러리로
+    사용하겠다는 선언 문장 추가 */
+    implementation fileTree(dir: 'libs', include: ['*.jar']) 
+
 }
 
 tasks.named('test') {
