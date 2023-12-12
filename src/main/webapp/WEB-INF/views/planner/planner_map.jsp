@@ -106,20 +106,24 @@
 
 <c:choose>
     <c:when test="${not empty planner_idx}">
+       	<c:set var="lastIndex">${places.size()-1}</c:set>
+    	<input type="hidden" id="x_point" value="${places[lastIndex].x_point}" />
+    	<input type="hidden" id="y_point" value="${places[lastIndex].y_point}" />
         <!-- planner_idx가 not null일 때 실행될 코드 -->
 	    <!-- 나의 플래너 리스트 -->
 	    <div class="menu_wrap bg_white myplanner">
 	        <div class="option py-3">
-	        	<c:set var="lastIndex">${places.size()-1}</c:set>
 	            나의 플래너 <span style="color: #FF7A00;">(${places[0].place_name} > ${places[lastIndex].place_name})</span>
 	        </div>  
 	        <ul id="myplaceList">
-	        	<c:forEach items="${places}" var="row" varStatus="loop">						        	
+	        	<c:forEach items="${places}" var="row" varStatus="loop">
 	            <li>
 	                <div id="list_head" class="d-flex justify-content-between">
 	                	<div class="d-flex my-3 px-2">		                	
 		                    <div class="circle">${loop.count}</div>
-		                    <span>${row.place_name}</span>
+		                    <span class="placeName">${row.place_name}</span>
+		                    <input type="hidden" class="pos_x" value="${row.x_point}" />
+		                    <input type="hidden" class="pos_y" value="${row.y_point}" />
 		                    <span style="color: #999999;">${row.place_category}</span>
 	                	</div>
 	                	<div class="mt-2 me-1">
@@ -196,9 +200,21 @@ $(function() {
 // 마커를 담을 배열입니다
 var markers = [];
 
+// 마지막 장소의 x, y좌표를 갖고 온다.
+var x_point = $("#x_point").val();
+var y_point = $("#y_point").val();
+// 정보가 없다면 기본값을 시청역으로 합니다.
+if (x_point=='' || y_point=='') {
+	x_point = 126.9786567;
+	y_point = 37.566826;
+} else {
+	x_point = parseFloat(x_point);
+	y_point = parseFloat(y_point);
+}
+
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = {
-        center: new kakao.maps.LatLng(37.566826, 126.9786567), // 지도의 중심좌표
+        center: new kakao.maps.LatLng(y_point, x_point), // 지도의 중심좌표
         level: 3 // 지도의 확대 레벨
     };  
 
@@ -259,7 +275,38 @@ function drawRoutes(start, end) {
         }
     });
 }
-// ##############################################################################33
+// ################################################################################
+// 각 경로마다 마커를 띄워줍니다.
+// 마커를 표시할 위치와 title 객체 배열입니다 
+/* var x_pos = $(".x_pos").val();
+var y_pos = $(".y_pos").val();
+var placeNames = $(".placeName").text();
+var positions = [];
+for (let i=0; i<x_pos.length; i++) {
+	positions.push({ title: placeNames[i], latlng: new kakao.maps.LatLng(y_pos[i], x_pos[i]) });
+}
+console.log(positions);
+
+// 마커 이미지의 이미지 주소입니다
+var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+    
+for (var i=0; i<positions.length; i++) {
+    
+    // 마커 이미지의 이미지 크기 입니다
+    var imageSize = new kakao.maps.Size(24, 35); 
+    
+    // 마커 이미지를 생성합니다    
+    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
+    
+    // 마커를 생성합니다
+    var marker = new kakao.maps.Marker({
+        map: map, // 마커를 표시할 지도
+        position: positions[i].latlng, // 마커를 표시할 위치
+        title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+        image : markerImage // 마커 이미지 
+    });
+} */
+// ################################################################################
 
 // 키워드 검색을 요청하는 함수입니다
 function searchPlaces() {
