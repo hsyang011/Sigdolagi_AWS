@@ -1,11 +1,13 @@
 package com.edu.springboot.community;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.edu.springboot.community.BoardDTO;
+import com.edu.springboot.member.MemberDTO;
 
 
 @Mapper
@@ -21,5 +23,8 @@ public interface IBoardService {
 	public int edit(BoardDTO boardDTO);
 	public int delete(String idx);
 	public int update(BoardDTO boardDTO);
+	
+	//관리자 자유게시판목록
+	public List<BoardDTO> adminFreeSelect();
 	
 }
