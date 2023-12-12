@@ -64,6 +64,5 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		resultType="com.edu.springboot.community.BoardDTO">
 		SELECT * FROM freeboard ORDER BY postdate DESC
 	</select>
->>>>>>> branch 'main' of https://github.com/hsyang011/Sigdolagi.git
 		
 </mapper>
