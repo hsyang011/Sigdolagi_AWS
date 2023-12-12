@@ -277,7 +277,8 @@ function saveComment() {
 
                        <!--  <div>
                         <ul id="replyUL"></ul>
-                  </div> -->
+                  </div> 
+                  -->
                   
                        <!-- <div> 
                          
@@ -289,18 +290,18 @@ function saveComment() {
                   </div>
                     </div> 
                 </div>
-        <!— 컨테이너 안쪽 컨텐츠 —>
+        <!-- 컨테이너 안쪽 컨텐츠 -->
         </div>
 
 
 
     </main>
-    <!— main 끝 —>
+    <!-- main 끝 -->
     
-    <!— footer 추가 —>
+    <!-- footer 추가 -->
     <%@ include file="../include/footer.jsp" %>
     
 </div>
-<!— wrapper 끝 —>
+<!-- wrapper 끝 -->
 </body>
 </html>
