@@ -171,7 +171,6 @@ public class CommunityController {
 	
 	}
 	
-	//?이건 뭐지?
 	@PostMapping("/community/freeboard_edit.do")
 	public String boardEditPost(BoardDTO boardDTO) {
 		int result = dao.edit(boardDTO);
@@ -245,7 +244,7 @@ public class CommunityController {
 	
 
 	
-	//포토 게시판 글쓰기 페이지 이
+		//포토 게시판 글쓰기 페이지 이
 		@GetMapping("/community/photoboard_write.do")
 		public String photoboardWriteGet(Model model, Principal principal) {
 			String email = principal.getName();
