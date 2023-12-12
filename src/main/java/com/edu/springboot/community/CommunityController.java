@@ -52,7 +52,7 @@ public class CommunityController {
 	
 	@Autowired
 	IPhotoboardService photoboarddao;
-	
+
 	
 	@RequestMapping("/community/freeboard_list.do")
 	public String freeboardList(Model model, HttpServletRequest req, ParameterDTO parameterDTO, HttpSession httpSession) {
@@ -103,26 +103,58 @@ public class CommunityController {
 	
 	@PostMapping("/community/freeboard_write.do")
 
+
 	public String freeboardWrite(Model model, HttpServletRequest req, Principal principal) {
-		String email = req.getParameter("email");
+		String email= principal.getName();
 		String nickname= principal.getName();
 		String title= req.getParameter("title");
 		String content= req.getParameter("content");
 		//폼값을 개별적으로 전달한다.
-		int result = dao.write(email,nickname, title, content);
+		int result = dao.write(email, title, content);
 		System.out.println("글쓰기 결과:" +result);
+
+		model.addAttribute("nickname",principal.getName()); 
 
 		return "redirect:freeboard_list.do";
 	}
 	
+//	@PostMapping("/community/freeboard_comment_write.do")
+//
+//	public String freeboardCommetWrite(Model model, HttpServletRequest req, Principal principal) {
+//		String nickname= req.getParameter("nickname");
+//		String comment_idx = req.getParameter("comment_idx");
+//		String content= req.getParameter("content");
+//		//폼값을 개별적으로 전달한다.
+//		int com_result = commentdao.commentInsert(comment_idx,nickname,content);
+//		System.out.println("글쓰기 결과:" +com_result);
+//		
+//		model.addAttribute("nickname",principal.getName()); 
+//		
+//		return "redirect:freeboard_view.do";
+//	}
 	
 	@RequestMapping("/community/freeboard_view.do")
-	public String freeboardView(Model model, BoardDTO boardDTO) {
+	public String freeboardView(Model model, BoardDTO boardDTO,HttpServletRequest req,ParameterDTO parameterDTO) {
 		dao.update(boardDTO);
 		boardDTO = dao.view(boardDTO);
 		boardDTO.setContent(boardDTO.getContent().replace("\r\n", "<br>"));
-		model.addAttribute("boardDTO", boardDTO);
+
 		
+		
+//	    // 댓글 추가
+//		String nickname= req.getParameter("nickname");
+//		String comment_idx = req.getParameter("comment_idx");
+//		String content= req.getParameter("content");
+//	    int com_result = commentdao.commentInsert(comment_idx,nickname,content);
+//	    System.out.println("댓글 결과:" +com_result);
+//	    
+//	    // 댓글 리스트 가져오기
+//	    ArrayList<CommentDTO> com_List = commentdao.commentList(parameterDTO);
+	    
+	    model.addAttribute("boardDTO", boardDTO);
+//	    model.addAttribute("com_List", com_List); // 댓글 리스트를 모델에 추가
+
+
 		return "community/freeboard_view";
 	}
 
@@ -154,6 +186,20 @@ public class CommunityController {
 		
 		return "redirect:freeboard_list.do";
 	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	@RequestMapping("/community/photoboard_list.do")
 		//포토  포토보드 리스트
 		

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.edu.springboot.community.BoardDTO;
+import com.edu.springboot.community.IBoardService;
 import com.edu.springboot.market.IProductService;
 import com.edu.springboot.market.ParameterDTO;
 import com.edu.springboot.market.ProductDTO;
@@ -36,15 +37,14 @@ public class AdminController {
 	
 	
 	@Autowired
-	IMemberService  memberdao;
+	IMemberService  memberDao;
 	
 	//관리자 회원목록 
 	@RequestMapping("/administrator/adminMemberList.do")
 	public String adminMemberList(Model model) {
 		
 		// DB에서 인출한 게시물의 목록을 model객체에 저장한다.
-		
-		List<MemberDTO> adminMemberSelect = memberdao.adminMemberSelect();
+		List<MemberDTO> adminMemberSelect = memberDao.adminMemberSelect();
 		model.addAttribute("adminMemberSelect", adminMemberSelect);
 //		System.out.println("adminMemberSelect="+adminMemberSelect);
 		return "administrator/admin_member_list";
@@ -53,14 +53,23 @@ public class AdminController {
 	//관리자 회원탈퇴처리
 	@PostMapping("/administrator/adminMemberList.do")
 	public String adminMemberEnabled(MemberDTO memberDTO) {
-		int result = memberdao.adminMemberEnabled(memberDTO);
+		int result = memberDao.adminMemberEnabled(memberDTO);
 		if(result==1)System.out.println("탈퇴처리되었습니다.");
 		
 		return "redirect:adminMemberList.do";
 	}
 	
+	@Autowired
+	IBoardService  boardDao;
+	
+	//관리자 자유게시판목록
 	@RequestMapping("/administrator/admin_free_list.do")
-	public String adminCommunity() {
+	public String adminCommunity(Model model) {
+		
+		// DB에서 인출한 게시물의 목록을 model객체에 저장한다.
+		List<BoardDTO> adminFreeSelect = boardDao.adminFreeSelect();
+		model.addAttribute("adminFreeSelect", adminFreeSelect);
+		
 		return "administrator/admin_community_list";
 	}
 	
@@ -125,89 +134,32 @@ public class AdminController {
 			String uploadDir = ResourceUtils.getFile("classpath:static/uploads/").toPath().toString();
 			System.out.println("물리적경로:" + uploadDir);
 			
-			// 파일명 저장을 위한 Map 생성. Key는 원본파일명, value는 서버에 저장된 파일명을 저장한다.
-	        Map<String, String> saveFileMaps = new HashMap<>();
-
-	        // 파일 폼의 이름들을 배열로 저장
-	        String[] fileFormNames = {"prod_thumbnail_o", "img1_o", "img2_o", "img3_o", "img4_o", "img5_o"};
-
-	        // 폼값의 갯수만큼 반복
-	        for (String fileFormName : fileFormNames) {
-	            // 해당 이름의 파일 파트를 받아온다.
-	            Part part = req.getPart(fileFormName);
-	            
-	            // 파일 파트가 존재하지 않으면 다음 파일로 넘어감
-	            if (part == null) {
-	                continue;
-	            }
-	            
-	            // 파일명 추출을 위해 헤더값을 얻어온다.
-	            String partHeader = part.getHeader("content-disposition");
-	            System.out.println("partHeader=" + partHeader);
-
-	            // 파일명을 추출한 후 따옴표를 제거한다.
-	            String[] phArr = partHeader.split("filename=");
-	            String originalFileName = phArr[1].trim().replace("\"", "");
-
-	            // 파일을 원본파일명으로 저장한다.
-	            if (!originalFileName.isEmpty()) {
-	                part.write(uploadDir + File.separator + originalFileName);
-	            }
-
-	            // 저장된 파일명을 UUID로 생성한 새로운 파일명으로 저장한다.
-	            String savedFileName = MyFunctions.renameFile(uploadDir, originalFileName);
-
-	            /* Map 컬렉션에 원본파일명과 저장된파일명을 Key와 value로
-	               저장한다. */
-	            saveFileMaps.put(originalFileName, savedFileName);
-	        }
+			//전송된 첨부파일을 Part객체를 통해 얻어온다. 
+			Part part = req.getPart("prod_detail_o");
+			//파일명 확인을 위해 헤더값을 얻어온다. 
+			String partHeader = part.getHeader("content-disposition");
+			System.out.println("partHeader="+ partHeader);
+			//헤더값에서 파일명 추출을 위해 문자열을 split()한다. 
+			String[] phArr = partHeader.split("filename=");
+			//따옴표를 제거한 후 원본파일명을 추출한다.
+			String originalFileName = phArr[1].trim().replace("\"", "");
+			//전송된 파일이 있다면 서버에 저장한다.
+			if(!originalFileName.isEmpty()) {
+				part.write(uploadDir+File.separator + originalFileName);
+			}
 			
+			//서버에 저장된 파일명을 중복되지 않는 이름으로 변경한다.
+			String savedFileName = MyFunctions.renameFile(uploadDir, originalFileName);
 			
-	     // View로 전달하기 위해 Model객체에 저장한다.
-	        model.addAttribute("saveFileMaps", saveFileMaps);
-			
-	     // 파일 DTO에 정보 저장
-	        for (Map.Entry<String, String> entry : saveFileMaps.entrySet()) {
-	            String originalFileName = entry.getKey();
-	            String savedFileName = entry.getValue();
-
-	            if (originalFileName.equals("prod_thumbnail_o")) {
-	                productDTO.setProd_thumbnail(savedFileName);
-	            } 
-	            else if(originalFileName.equals("img1_o")){
-	            	// 이미지 파일이 여러 개일 경우, 각각의 필드에 저장하거나 리스트에 추가할 수 있음
-	            	// 예시: productDTO.setImg1O(savedFileName);
-	            	//      productDTO.setImg2O(savedFileName);
-	            	//      ...
-	            	productDTO.setImg1(savedFileName);
-	            }
-	            else if(originalFileName.equals("img2_o")){
-	            	productDTO.setImg2(savedFileName);
-	            }
-	            else if(originalFileName.equals("img3_o")){
-	            	productDTO.setImg3(savedFileName);
-	            }
-	            else if(originalFileName.equals("img4_o")){
-	            	productDTO.setImg4(savedFileName);
-	            }
-	            else if(originalFileName.equals("img5_o")){
-	            	productDTO.setImg5(savedFileName);
-	            }
-	            
-	        }
-
-	        // JDBC 연동
-//	        int result = dao.write(productDTO);
-	        int result = productDAO.adminMaketInsert(productDTO);
-			if(result==1)System.out.println("입력되었습니다.");
-			System.out.println("글쓰기결과:" + result);
-			
-			
+			//JDBC 연동을 하지 않으므로 Model객체에 정보를 저장한다.
+			model.addAttribute("originalFileName", originalFileName);
+			model.addAttribute("savedFileName", savedFileName);
 		} 
 		catch (Exception e) {
-			e.printStackTrace();
 			System.out.println("업로드 실패");
 		}
+		
+		
 		
 		return "redirect:admin_maket_list.do";
 	}
