@@ -174,7 +174,7 @@ $(function() {
 							</td>
 							<td scope="row"><a href="./freeboard_view.do?freeboard_idx=${ post.freeboard_idx }">${ post.title }</td>
 
-							<td>${ post.nickname }</td>
+							<td>${ post.email }</td>
 							<td>${ post.postdate }</td>
 							<td>${ post.visitcount }</td>		
 							</tr> 

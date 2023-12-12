@@ -1,6 +1,7 @@
 package com.edu.springboot.admin;
 
 import java.io.File;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -151,9 +152,54 @@ public class AdminController {
 			//서버에 저장된 파일명을 중복되지 않는 이름으로 변경한다.
 			String savedFileName = MyFunctions.renameFile(uploadDir, originalFileName);
 			
+			//멀티관련
+			/*파일명 저장을 위한 Map생성. Key는 원본파일명, value는 서버에 저장된 
+			파일명을 저장한다.*/
+			Map<String, String> saveFileMaps = new HashMap<>();
+			
+			
+			String ofiles = "";
+			String sfiles = "";
+			
+			//2개 이상의 파일이므로 getParts() 메서드를 통해 폼값을 받는다.
+			Collection<Part> parts = req.getParts();
+			//폼값의 갯수만큼 반복
+			for(Part part2 : parts) {
+				/* 폼값 중 파일인 경우에만 업로드처리를 위해 continue를 걸어준다.
+				즉 파일이 아니라면 for문의 처음으로 돌아간다. */
+				if(!part2.getName().equals("imgs")) continue;
+				
+				//파일명 추출을 위해 헤더값을 얻어온다.
+				String partHeader2 = part2.getHeader("content-disposition");
+				// System.out.println("partHeader="+partHeader);
+				//파일명을 추출한 후 따옴표를 제거한다.
+				String[] phArr2 = partHeader2.split("filename=");
+				String originalFileName2 = phArr2[1].trim().replace("\"","");
+				//파일을 원본파일명으로 저장한다.
+				if(!originalFileName2.isEmpty()) {
+					part2.write(uploadDir+File.separator+originalFileName2);
+				}
+				//저장된 파일명을 UUID로 생성한 새로운 파일명으로 저장한다.
+				String savedFileName2 = MyFunctions.renameFile(uploadDir, originalFileName2);
+				
+				/* Map컬렉션에 원본파일명과 저장된파일명을 Key와 value로
+				저장한다. */
+				saveFileMaps.put(originalFileName2, savedFileName2);
+				System.out.println("오리지날:"+originalFileName2 +", 복제본:"+savedFileName2);
+			
+				ofiles += originalFileName2 + ":";
+				sfiles += savedFileName2 + ":";
+			}
+			//View로 전달하기 위해 Model객체에 저장한다.
+			model.addAttribute("saveFileMaps", saveFileMaps);
+			
+			
+			
+			
 			//JDBC 연동을 하지 않으므로 Model객체에 정보를 저장한다.
 			model.addAttribute("originalFileName", originalFileName);
 			model.addAttribute("savedFileName", savedFileName);
+			
 		} 
 		catch (Exception e) {
 			System.out.println("업로드 실패");
