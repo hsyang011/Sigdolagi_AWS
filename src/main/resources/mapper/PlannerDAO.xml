@@ -13,12 +13,12 @@
 	
 	<!-- 플래너를 최신순으로 정렬 -->
 	<select id="getPlannerByRecent">
-		SELECT * FROM planner WHERE NOT email='foo@gmail.com' ORDER BY planner_idx desc
+		SELECT * FROM planner WHERE NOT email=#{email} ORDER BY planner_idx desc
 	</select>
 	
 	<!-- 플래너를 카테고리 별로 셀렉트 -->
 	<select id="getPlannerByCate" parameterType="string">
-		SELECT * FROM planner WHERE NOT email='foo@gmail.com' AND cate=#{cate}
+		SELECT * FROM planner WHERE NOT email=#{email} AND cate=#{cate}
 	</select>
 	
 	<!-- 이전에 만든 플래너가 있는지 확인 -->

@@ -1,26 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<!-- 스프링 시큐리티 전용 태그 -->
+<%@ taglib prefix="s" uri="http://www.springframework.org/security/tags" %>
 <!-- header 시작 -->
 <header class="container">
     <div class="row">
         <div class="col-sm-12" style="height: 30px;">
             <ul class="topmenu" style="float: right;">
             
-                <%-- 세션에 로그인 정보가 없는 경우 --%>
-				<c:if test="${empty sessionEmail}">
+                <!-- 로그인 정보가 없는 경우 -->
+                <s:authorize access="isAnonymous()">
 				    <li><a href="../member/login.do">로그인</a></li>
-				</c:if>
-	                     
-                <c:if test="${not empty sessionEmail}">
-                	<c:if test="${sessionEmail eq 'admin'}">
-                		<li><a href="../administrator/admin_main.do">관리자</a></li>
-                	</c:if>
+                	<li><a href="../member/regist.do">회원가입</a></li>
+                </s:authorize>
+	            
+	            <!-- 관리자로 로그인할 때 -->
+	            <s:authorize access="hasRole('ADMIN')">	            
+               		<li><a href="../administrator/admin_main.do">관리자</a></li>
+	            </s:authorize>
+	            
+	            <!-- 로그인 했을 때 -->
+                <s:authorize access="isAuthenticated()">
                 	<li><a href="../member/logout.do">로그아웃</a></li>
-				</c:if>
-                
-                <li><a href="../member/regist.do">회원가입</a></li>
-                <li><a href="#">마이페이지</a></li>
+                	<li><a href="../member/mypage.do">마이페이지</a></li>
+                </s:authorize>
             </ul>
         </div>
     </div>
@@ -47,7 +51,7 @@
                 </form>
             </div>
             <!-- mobile-offcanvas sidebar -->
-            <div id="mobile_slider">
+            <%-- <div id="mobile_slider">
                 <div class="offcanvas offcanvas-end" id="myinfo">
                     <div class="offcanvas-header">
                         <h1 class="offcanvas-title">닉네임</h1>
@@ -66,7 +70,7 @@
                 <button id="btn_more" class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#myinfo" style="position: absolute; top: 10px; right: 10px; transform: scale(0.7)">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-            </div>
+            </div> --%>
             <!-- 내비게이션 링크 -->
             <div class="navbar-collapse justify-content-center" id="pc_navbar">
                 <ul class="head_nav nav">

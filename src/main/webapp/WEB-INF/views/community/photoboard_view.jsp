@@ -17,16 +17,6 @@
 <!-- 전역 설정 css 링크  -->
 <link rel="stylesheet" href="../css/common_board.css">
 
-<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
-<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script>
-<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script>
-
-<!-- include summernote css/js-->
-
-<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.css" rel="stylesheet">
-<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote.js"></script>
-
-
 
 <style>
     
@@ -86,14 +76,35 @@ main > * { margin: 50px 0; }
 }
 
 </style>
+
+
 <script>
-$(function() {
-	$("#getSummernote").click(() => {
-		var markupStr = $("#summernote").summernote('code');
-		console.log(markupStr);
-	});
-});
+function deletePost(){
+	var answer = confirm("정말?");
+	if(answer==true){
+		var form = document.createElement("form");
+		form.method = "post";
+		form.action="./photoboard_delete.do";
+		
+		var hiddenField = document.createElement("input");
+		hiddenField.type = "hidden";
+		hiddenField.name = "photoboard_idx";
+		hiddenField.value = "${photoBoardDTO.photoboard_idx}";
+		form.appendChild(hiddenField); 
+
+		document.body.appendChild(form);
+		form.submit();
+	}
+	else {
+		return false;
+	}
+} 
 </script>
+
+
+
+      
+ 
 </head>
 <body>
 <!-- wrapper 시작 -->
@@ -102,6 +113,7 @@ $(function() {
     <!-- header, nav 추가 -->
     <%@ include file="../include/top.jsp" %>
     
+   <br><br><br>
     <!-- 배너 시작 -->
     <div id="banner" class="mt-3">
         <div id="banner_contents" class="container d-flex align-items-center">
@@ -155,46 +167,54 @@ $(function() {
                     <div class="freeboard_write_frm" >
 
                         <!-- 게시판 들어가는 부분 (시작) -->
-                        <form name="writeFrm" method="get" onsubmit="return validateForm(this);" class="writeFrm">
+                        <form name="writeFrm" method="post" onsubmit="return validateForm(this);" 
+                        class="writeFrm" enctype="multipart/form-data"
+                        action="/community/photoboard_writeprocess.do">
                             <input type="hidden" name="tname"  />
+                            <input type="hidden" name="photoboard_idx" value="${photoBoardDTO.photoboard_idx }" />
                             <table class="table table-bordered" id="free_write_frm_table" width="100%" >
                                 <tr>
                                     <td>제목</td>
                                     <td>
-                                        <input type="text" name="title" />
+                                       ${photoBoardDTO.title}
                                     </td>
                                 </tr>
                                 <tr>
                                     <td>내용</td>
                                     <td>
-                                        <!-- <textarea name="content"></textarea> -->
-                                        <div id="summernote"></div>
+                                    <img width="30%"  class="card-img-top" src="../uploads/${photoBoardDTO.sfile}" alt="이미지">
+                                         <textarea id="content" name="content" readonly  >${photoBoardDTO.content}
+                                          
+                                          
+                                         
+                                         </textarea> 
+                                         
+                                       <!--  <div id="summernote" ></div> -->
                                     </td>
                                 </tr>
-                             
+                             	
                                 <tr>
                                     <td colspan="2" align="center" class="btn_td">
-                                        <button type="submit" class="writeFrm_end" id="getSummernote">작성 완료</button>
+                                        <button type="submit" class="writeFrm_end" id="saveBtn">작성 완료</button>
+                                         <button type="button" class="writeFrm_edit" onclick="location.href='./photoboard_edit.do?photoboard_idx=${photoBoardDTO.photoboard_idx }';">수정하기</button>
+                    				                    
+                                    <%--     <a href="./photoboard_view.do?photoboard_idx=${ entry.photoboard_idx }">${ entry.title }</a> --%>
                                         <button type="reset" class="writeFrm_reset">다시 입력</button>
+                                        <button type="button" class="writeFrm_reset"  onclick="deletePost();">삭제하기</button>
                                         <button type="button" class="writeFrm_list" onclick="">목록 보기</button>
                                     </td>
                                 </tr>
+                                
+                                
+                                
+                                
                             </table>
                         </form>
                     </div>
-                    <script>
-                        // 메인화면 페이지 로드 함수
-                        $(document).ready(function () {
-                            $('#summernote').summernote({
-                                placeholder: '내용을 작성하세요',
-                                height: 400,
-                                maxHeight: 400
-                            });
-                        });
-                    </script>
                 </div>
-              
-              
+                
+
+				              
 
          
 

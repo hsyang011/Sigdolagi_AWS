@@ -38,9 +38,32 @@ public class WebSecurityConfig {
 			.authorizeHttpRequests((request) -> request
 				.dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
 				.requestMatchers("/").permitAll()
-				.requestMatchers("/css/**", "/js/**", "/images/**", "/bootstrap/**", "/uploads/**").permitAll()
-				.requestMatchers("/community/**", "/main/**", "/market/**", "/planner/**", "/administrator/**", "/restaurant/**", "/search/**", "/service/**").permitAll()
-				.requestMatchers("/admin/**").hasAnyRole("USER", "ADMIN")
+				.requestMatchers("/html/**", "/css/**", "/js/**", "/images/**", "/bootstrap/**", "/uploads/**").permitAll()
+				// 게스트일 때
+				.requestMatchers(
+						// community 접근 권한
+//						"/community/freeboard_list.do", "/community/freeboard_view.do", "/community/photoboard_list.do", "/community/photoboard_view.do",
+//						// main 접근 권한		
+//						"/main/**",
+//						// market 접근 권한
+//						"/market/market_list.do", "/market/market_view.do",
+//						// member 접근 권한
+//						"/member/login.do", "/member/findIdpw.do", "/member/findIdpw.do", "/member/doubleckeck.do", "/member/regist.do",
+//						"/member/registProcess.do", "/member/loginprocess.do", "/member/findEmail.do", "/member/findPass.do",
+//						// planner 접근 권한
+//						"/planner/planner_list.do", "/planner/sortPlannerByCate.do",
+//						// 관리자 접근 권한 (우선은 풀어두고 추후에 제한하기)
+//						"/administrator/**",
+//						// restaurant 접근 권한
+//						"/restaurant/**",
+//						// search 접근 권한
+//						"/search/**",
+//						// service 접근 권한
+//						"/service/**").permitAll()
+						"/community/**", "/main/**", "/market/**", "/member/**", "/planner/**", "/restaurant/**",
+						"/search/**", "/service/**").permitAll()
+				// 유저 접근 권한, 관리자 페이지 외에 모든 페이지에 대한 접근 가능
+				.requestMatchers("/community/**", "/market/**", "/member/**", "/planner/**").hasAnyRole("USER", "ADMIN")
 				.requestMatchers("/admin/**").hasRole("ADMIN")
 				.anyRequest().authenticated()
 			);

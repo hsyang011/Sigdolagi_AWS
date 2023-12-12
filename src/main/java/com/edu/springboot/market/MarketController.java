@@ -1,5 +1,6 @@
 package com.edu.springboot.market;
 
+import java.security.Principal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -7,9 +8,12 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.edu.springboot.member.IMemberService;
 import com.edu.springboot.member.MemberDTO;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -24,6 +28,14 @@ public class MarketController {
 	
 	@Autowired
 	ICartService cartDAO;
+	
+	// 멤버정보를 가져오기 위한 빈 자동 주입.
+	@Autowired
+	IMemberService memberDAO;
+	
+	// 결제를 위한 빈 자동 주입
+	@Autowired
+	IOrderService orderDAO;
 	
 	// 상품 리스트
 	@RequestMapping("/market/market_list.do")
@@ -75,9 +87,8 @@ public class MarketController {
 	
 	// 장바구니에 상품 추가
 	@RequestMapping("/market/addToCart.do") // cartDTO에는 email과 prod_idx만 담겨있는 상태
-	public ResponseEntity<String> addToCart(CartDTO cartDTO, Model model) {
-		// 임의로 이메일 설정 (시큐리티 연동 전)
-		cartDTO.setEmail("foo@gmail.com");
+	public ResponseEntity<String> addToCart(CartDTO cartDTO, Model model, Principal principal) {
+		cartDTO.setEmail(principal.getName());
 		// 추가된 적이 있는지 확인, 0이면 없고, 1이면 있음.
 		int result = cartDAO.getProdIdx(cartDTO);
 		// 추가된 적이 없다면 insert 쿼리를 실행
@@ -100,9 +111,9 @@ public class MarketController {
 	
 	// 장바구니 페이지
 	@RequestMapping("/market/cart.do")
-	public String cart(MemberDTO memberDTO, Model model) {
+	public String cart(MemberDTO memberDTO, Model model, Principal principal) {
 		// 임의로 이메일 설정 (시큐리티 연동 전)
-		memberDTO.setEmail("foo@gmail.com");
+		memberDTO.setEmail(principal.getName());
 		// cart_idx들을 모두 모아 List컬렉션에 담는다.
 		List<CartDTO> cartInfo = cartDAO.cartInfo(memberDTO);
 		// 키값이 cart_idx이고, 상품 정보가 List<ProductDTO>인 Map컬렉션 생성
@@ -121,9 +132,8 @@ public class MarketController {
 	
 	// 장바구니에 상품 수량 변경
 	@RequestMapping("/market/updateToCart.do") // cartDTO에는 email과 prod_idx만 담겨있는 상태
-	public ResponseEntity<CartDTO> updateToCart(CartDTO cartDTO, Model model) {
-		// 임의로 이메일 설정 (시큐리티 연동 전)
-		cartDTO.setEmail("foo@gmail.com");
+	public ResponseEntity<CartDTO> updateToCart(CartDTO cartDTO, Model model, Principal principal) {
+		cartDTO.setEmail(principal.getName());
 		// 상품 수량 변경
 		cartDAO.updateToCart(cartDTO);
 
@@ -140,18 +150,16 @@ public class MarketController {
 	
 	// 장바구니에 상품 제거
 	@RequestMapping("/market/deleteToCart.do") // cartDTO에는 email과 prod_idx만 담겨있는 상태
-	public ResponseEntity<CartDTO> deleteToCart(CartDTO cartDTO, Model model) {
-		// 임의로 이메일 설정 (시큐리티 연동 전)
-		cartDTO.setEmail("foo@gmail.com");
+	public ResponseEntity<CartDTO> deleteToCart(CartDTO cartDTO, Model model, Principal principal) {
+		cartDTO.setEmail(principal.getName());
 		// 상품 제거
 		cartDAO.deleteToCart(cartDTO);
 		return ResponseEntity.ok(cartDTO);
 	}
 	
 	@RequestMapping("/market/order.do")
-	public String order(MemberDTO memberDTO, HttpServletRequest req, Model model) {
-		// 임의로 이메일 설정 (시큐리티 연동 전)
-		memberDTO.setEmail("foo@gmail.com");
+	public String order(MemberDTO memberDTO, HttpServletRequest req, Model model, Principal principal) {
+		memberDTO.setEmail(principal.getName());
 		// cart_idx들을 모두 모아 List컬렉션에 담는다.
 		List<CartDTO> cartInfo = cartDAO.cartInfo(memberDTO);
 		// 키값이 cart_idx이고, 상품 정보가 List<ProductDTO>인 Map컬렉션 생성
@@ -172,7 +180,29 @@ public class MarketController {
 		model.addAttribute("_allPrice", allPrice);
 		model.addAttribute("payment", payment);
 		model.addAttribute("deliveryPrice", deliveryPrice);
+		
+		// 회원정보를 불러온다.
+		memberDTO = memberDAO.getoneMemberDTO(memberDTO);
+		model.addAttribute("memberDTO", memberDTO);
+		
 		return "market/order";
+	}
+	
+	// 주문 처리
+	@RequestMapping("/market/orderProcess.do")
+	@Transactional(propagation=Propagation.REQUIRED)
+	public ResponseEntity<String> orderProcess(OrderDTO orderDTO) {
+		try {			
+			// System.out.println(orderDTO.getPayment() + " 결제가격");
+			// 결제 처리 완료
+			orderDAO.orderProcess(orderDTO);
+			// 장바구니 싹 비우기
+			orderDAO.deleteAll(orderDTO);
+		} catch (Exception e) {
+			System.out.println("주문 처리 중 오류가 발생했습니다.");
+			e.printStackTrace();
+		}
+		return ResponseEntity.ok("결제가 완료되었습니다!");
 	}
 	
 }

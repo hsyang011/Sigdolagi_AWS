@@ -8,7 +8,7 @@
 
 	<!-- 상품이 담겨 있는지 확인하는 쿼리문 -->
 	<select id="getProdIdx" parameterType="com.edu.springboot.market.CartDTO" resultType="int">
-		SELECT COUNT(*) FROM cart WHERE prod_idx=${prod_idx}
+		SELECT COUNT(*) FROM cart WHERE prod_idx=${prod_idx} AND email=#{email}
 	</select>
 	
 	<!-- 장바구니에 상품 추가 -->
@@ -41,7 +41,7 @@
 	
 	<!-- 카트 일련번호 가져오기 -->
 	<select id="getCartIdx" parameterType="com.edu.springboot.market.CartDTO" resultType="string">
-		SELECT cart_idx FROM cart WHERE prod_idx=${prod_idx}
+		SELECT cart_idx FROM cart WHERE prod_idx=${prod_idx} AND email=#{email}
 	</select>
 	
 	<!-- 상품의 가격*수량 정보 구해오기 -->

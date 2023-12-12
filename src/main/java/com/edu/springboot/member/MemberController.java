@@ -4,6 +4,8 @@ package com.edu.springboot.member;
 import java.security.Principal;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.factory.PasswordEncoderFactories;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -95,6 +97,7 @@ public class MemberController {
 		String email = req.getParameter("email1") + "@" + req.getParameter("email2");
 		String name = req.getParameter("name");
 		String password = req.getParameter("password");
+		password = PasswordEncoderFactories.createDelegatingPasswordEncoder().encode(password).replace("{bcrypt}", "");
 		String nickname = req.getParameter("nickname");
 		
 		String phone = req.getParameter("tel1") + "-" + req.getParameter("tel2") + "-" + req.getParameter("tel3");
@@ -208,65 +211,80 @@ public class MemberController {
 	}
 	
 	//로그아웃 
-		@GetMapping("/member/logout.do")
-	    public String logoutprocess(HttpSession session) {
-			  System.out.println("세션제거전");
-	        // 세션에 저장된 정보 삭제
-	        session.removeAttribute("sessionEmail");
-	        session.removeAttribute("sessionPassword");
-	        session.removeAttribute("sessionName");
-	        System.out.println("세션제거 후");
+	@GetMapping("/member/logout.do")
+    public String logoutprocess(HttpSession session) {
+		  System.out.println("세션제거전");
+        // 세션에 저장된 정보 삭제
+        session.removeAttribute("sessionEmail");
+        session.removeAttribute("sessionPassword");
+        session.removeAttribute("sessionName");
+        System.out.println("세션제거 후");
 
-	        // 세션을 완전히 무효화
-	        session.invalidate();
+        // 세션을 완전히 무효화
+        session.invalidate();
 
-	        return "main/main";
-	    }
+        return "main/main";
+    }
+	
+	//아이디찾기" ../member/findEmail.do"
+	@PostMapping("/member/findEmail.do")
+	
+	public String findEmail(HttpServletRequest req, Model model) {
+		System.out.println("컨트롤러로 들어오나?");
+		String phone = req.getParameter("tel1")+"-"+req.getParameter("tel2")
+		+"-"+req.getParameter("tel3");
 		
-		//아이디찾기" ../member/findEmail.do"
-		@PostMapping("/member/findEmail.do")
-		
-		public String findEmail(HttpServletRequest req, Model model) {
-			System.out.println("컨트롤러로 들어오나?");
-			String phone = req.getParameter("tel1")+"-"+req.getParameter("tel2")
-			+"-"+req.getParameter("tel3");
-			
-			String email = memberdao.getoneEmailDTO(phone);
-			System.out.println(email);
-			
-			
-			 // 이메일 찾은거 
-		    model.addAttribute("foundEmail", email);
-		    
-		    
-		    
-		   
-		    
-			
-			
-			return "member/find_idpw";
-			}
+		String email = memberdao.getoneEmailDTO(phone);
+		System.out.println(email);
 		
 		
+		 // 이메일 찾은거 
+	    model.addAttribute("foundEmail", email);
+	    
+	    
+	    
+	   
+	    
+		
+		
+		return "member/find_idpw";
+	}
 
-			//비밀번호 찾" ../member/findPass.do ../member/findPass.do
-			@PostMapping("/member/findPass.do")
-			public String findPass(HttpServletRequest req, Model model) {
-			    System.out.println("q비번찾기 컨트롤러로 들어오나?");
-			    String phone = req.getParameter("tel1") + "-" + req.getParameter("tel2") + "-" + req.getParameter("tel3");
-			    String email = req.getParameter("email");
+
+
+	//비밀번호 찾" ../member/findPass.do ../member/findPass.do
+	@PostMapping("/member/findPass.do")
+	public String findPass(HttpServletRequest req, Model model) {
+	    System.out.println("q비번찾기 컨트롤러로 들어오나?");
+	    String phone = req.getParameter("tel1") + "-" + req.getParameter("tel2") + "-" + req.getParameter("tel3");
+	    String email = req.getParameter("email");
+
+	    String password = memberdao.getonePasswordDTO(phone, email);
+	    System.out.println(password);
+
+	    // 이메일 찾은거 
+	    model.addAttribute("foundPassword", password);
+
+	    return "member/find_idpw";
+	}
 	
-			    String password = memberdao.getonePasswordDTO(phone, email);
-			    System.out.println(password);
+	// 이메일 발송을 위한 빈 주입
+	@Autowired
+	EmailSending email;
 	
-			    // 이메일 찾은거 
-			    model.addAttribute("foundPassword", password);
-	
-			    return "member/find_idpw";
-			}
-	
-			
-	
-	
-	
+	// 이메일 발송 성공까지만 함. 추후에 인증코드 로직 제작해야됩니다.
+	@PostMapping("/member/emailSendProcess.do")
+	public ResponseEntity<String> emailSendProcess(HttpServletRequest req) {
+		System.out.println("이메일 전송할 곳 : " + req.getParameter("email"));
+		InfoDTO infoDTO = new InfoDTO();
+		infoDTO.setFrom("식도라기");
+		infoDTO.setTo(req.getParameter("email"));
+		infoDTO.setSubject("식도라기 회원가입");
+		infoDTO.setFormat("html");
+		infoDTO.setContent("식도라기 회원 인증을 위한 인증 코드 발송입니다. 아래 코드를 입력해주세요!");
+		email.myEmailSender(infoDTO);
+		System.out.println("이메일 성공?");
+		
+		return ResponseEntity.ok("이메일 발송 성공!");
+	}
 }

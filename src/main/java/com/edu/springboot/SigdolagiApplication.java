@@ -13,5 +13,16 @@ public class SigdolagiApplication {
 		//String passwd = PasswordEncoderFactories.createDelegatingPasswordEncoder().encode("1234");
 		//System.out.println(passwd);
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }
