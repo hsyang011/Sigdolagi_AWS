@@ -5,11 +5,19 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.edu.springboot.community.IMyFileService">
+
+
 	<insert id="insertMultiFile" parameterType="com.edu.springboot.community.PhotoBoardDTO">
     INSERT INTO photoboard (photoboard_idx, email, title, content, ofile, sfile)
     VALUES (SEQ_PHOTOBOARD_IDX.nextval, #{email}, #{title}, 
             #{content}, #{ofile}, #{sfile})
 	</insert>
+	
+	
+	 <update id="updateFIle" parameterType="com.edu.springboot.community.PhotoBoardDTO">
+	    UPDATE photoboard SET title = #{title}, content = #{content}, ofile=#{ofile}, sfile = #{sfile} 
+	    WHERE photoboard_idx = #{photoboard_idx}
+	</update>
 </mapper>
 
 

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %> <!-- 숫자의 3자릿수마다 콤마를 찍어주기 위한 jstl 추가 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -102,7 +103,7 @@ function addToCart(idx) {
 
                 <!-- 전체 게시물 갯수 셀렉트 끝 -->
                 <div class="select_box d-flex justify-content-between">
-                    <span class="">전체 <strong style="color: #FF7A00;">33</strong>개의 상품이 있습니다.</span>
+                    <span class="">전체 <strong style="color: #FF7A00;">${list.size()}</strong>개의 상품이 있습니다.</span>
                     <!-- ################################################################################ -->
                     <!-- 모바일에서 정렬이 안맞아서 input의 길이를 줄였고, rounded-pill속성을 부여하여 둥글게 처리 -->
                     <select name="" id="" class="rounded-pill" style="width: 120px; height: 30px;">
@@ -133,11 +134,11 @@ function addToCart(idx) {
 		                       <h5 class="card-title"><a class="mill_title" href="./market_view.do?prod_idx=${row.prod_idx}">${row.prod_name}</a></h5>
 		                       <c:choose>
 			                       <c:when test="${row.prod_sale eq 0}">
-				                       <p class="card-text"><strong>${row.prod_price}</strong></p>
+				                       <p class="card-text"><strong><fmt:formatNumber value="${row.prod_price}" pattern="#,###" /></strong></p>
 			                       </c:when>
 			                       <c:otherwise>
             						   <c:set var="sale" value="${(row.prod_sale/row.prod_price)*100}"/>
-				                       <p class="card-text"><span class="discount">${Math.round(sale)}%</span> <strong>${row.prod_price-row.prod_sale}</strong> <strike>${row.prod_price}</strike></p>
+				                       <p class="card-text"><span class="discount">${Math.round(sale)}%</span> <strong><fmt:formatNumber value="${row.prod_price-row.prod_sale}" pattern="#,###" /></strong> <strike><fmt:formatNumber value="${row.prod_price}" pattern="#,###" /></strike></p>
 			                       </c:otherwise>
 		                       </c:choose>
 		                   </div>

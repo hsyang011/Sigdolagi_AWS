@@ -106,7 +106,7 @@ function saveComment() {
 
     const comment_id = [[ ${post.comment_id} ]];
     const params = {
-   		comment_id : comment_id,
+         comment_id : comment_id,
         content : content.value,
         nickname : nickname
     }
@@ -181,40 +181,40 @@ function saveComment() {
                     <div class="freeboard_write_frm" >
                         <!-- 게시판 들어가는 부분 (시작) -->
                         <form name="writeFrm" method="post" onsubmit="return validateForm(this);" action="../community/freeboard_view.do" class="writeFrm">
-           					<input type="hidden" name="freeboard_idx" value="${ boardDTO.freeboard_idx }" />
+                          <input type="hidden" name="freeboard_idx" value="${ boardDTO.freeboard_idx }" />
                             <input type="hidden" name="email"  />
                             <table class="table table-bordered" id="free_write_frm_table" width="100%" >
-                            	<colgroup>
-                                	<col width="20%" /><col width="30%" /><col width="20%" /><col width="30%" />
-                                	
+                               <colgroup>
+                                   <col width="20%" /><col width="30%" /><col width="20%" /><col width="30%" />
+                                   
                                 </colgroup>
-							    <tr> 
-							        <td>작성일</td> <td>${ boardDTO.postdate }</td>
-							        <td>조회수</td> <td>${ boardDTO.visitcount }</td>
-							    </tr>
+                         <tr> 
+                             <td>작성일</td> <td>${ boardDTO.postdate }</td>
+                             <td>조회수</td> <td>${ boardDTO.visitcount }</td>
+                         </tr>
                                 <tr>
-							        <td>작성자</td>
-							        <td colspan=3>${ boardDTO.nickname }</td> <%-- 번호<td>${ boardDTO.freeboard_idx }</td>   --%> 
-							
-							    </tr>
-							    <tr>
-							        <td>제목</td>
-							        <td colspan="3">${ boardDTO.title }</td>
-							    </tr>
+                             <td>작성자</td>
+                             <td colspan=3>${ boardDTO.nickname }</td> <%-- 번호<td>${ boardDTO.freeboard_idx }</td>   --%> 
+                     
+                         </tr>
+                         <tr>
+                             <td>제목</td>
+                             <td colspan="3">${ boardDTO.title }</td>
+                         </tr>
                                 <tr>
-							        <td>내용</td>
-							        <td colspan="3" height="100">
-							        	${ boardDTO.content }	        	
-							        </td>
-							    </tr>
-							  
+                             <td>내용</td>
+                             <td colspan="3" height="100">
+                                ${ boardDTO.content }              
+                             </td>
+                         </tr>
+                       
                                 <tr>
                                     <td colspan="4" align="center" class="btn_td">
                                         <button type="button" class="writeFrm_edit" onclick="location.href='./freeboard_edit.do?freeboard_idx=${boardDTO.freeboard_idx }';">수정하기</button>
                                         <form id="deleteForm" action="./community/freeboard_delete.do" method="post">
-                                          	<input type="hidden" name="freeboard_idx" value="${boardDTO.freeboard_idx }"  />
-                                			 <button type="button" class="writeFrm_reset"  onclick="deletePost();">삭제하기</button> 
-								       	</form>
+                                             <input type="hidden" name="freeboard_idx" value="${param.freeboard_idx }"  />
+                                         <button type="button" class="writeFrm_reset"  onclick="deletePost(${boardDTO.freeboard_idx});">삭제하기</button>
+                                  </form>
                                         <button type="button" class="writeFrm_list" onclick="location.href='./freeboard_list.do';">목록 보기</button>
                                     </td>
                                 </tr>
@@ -222,31 +222,42 @@ function saveComment() {
                         </form>
                         
                         <!--/* 댓글 작성 */-->
-					    <div class="cm_write" style="width:100%">
-					        <fieldset>
-					        <form name="writeFrm" method="post" onsubmit="return validateForm(this);" action="/community/freeboard_comment.do" class="writeFrm">
-					            <legend class="skipinfo">댓글 입력</legend>
-					            <div class="cm_input">
-					                <p><textarea id="content" name="content" onkeyup="countingLength(this);"  style="width:100%" rows="4" placeholder="댓글을 입력해 주세요."></textarea></p>
-					                <span><button type="button" class="btns" onclick="saveComment();">등록</button> <i id="counter">0/300자</i></span>
-					            </div>
-					        </form>
-					        </fieldset>
-					    </div>
-					       <c:forEach items="${ CommentsLists }" var="row" varStatus="loop">    
-							        <tr align="center">
-							            <td>${ row.id }</td> 
-							            <td>${ row.boardidx }</td> 
-							            <td>${ row.content }</td> 
-							            <td>${ row.postdate }</td> 
-							            <td>${ row.idx }</td> 
-						            <form action="./hitsplus.do?idx=${ row.idx }" method="post">
-						            	<td><button>좋아요</button>${ row.hits }</td>
-						            </form>
-						           	<br />
-							        </tr>
-						   	</c:forEach> 
-						</div>
+                   <div class="cm_write" style="width:100%">
+                       <!-- <fieldset>
+                        <form name="writeFrm" method="post" onsubmit="return validateForm(this);" action="/community/freeboard_comment.do" class="writeFrm">-->
+                           <legend class="skipinfo">댓글 입력</legend>
+                           <div class="cm_input">
+                               <p><textarea id="content" name="content" onkeyup="countingLength(this);"  style="width:100%" rows="4" placeholder="댓글을 입력해 주세요."></textarea></p>
+                               <span><button type="button" class="btns" onclick="saveComment();">등록</button> <i id="counter">0/300자</i></span>
+                           </div>
+                           </form>
+                       </fieldset>
+                   </div>
+                      <c:forEach items="${ CommentsLists }" var="row" varStatus="loop">    
+                             <tr align="center">
+                                 <td>${ row.id }</td> 
+                                 <td>${ row.boardidx }</td> 
+                                  <td>${ row.content }</td> 
+                                 <td>${ row.postdate }</td> 
+                                 <td>${ row.idx }</td> 
+                                 <form action="./hitsplus.do?idx=${ row.idx }" method="post">
+                                    <td><button>좋아요</button>${ row.hits }</td>
+                                 </form>
+                                <br />
+                             </tr>
+                          </c:forEach> 
+                       <!--  <div>
+                        <ul id="replyUL"></ul>
+                  </div> -->
+                  
+                       <!-- <div> 
+                         
+                     <label>댓글</label>
+                  </div>
+                  <div style="width:100%">
+                     <textarea rows="4" style="width: 100%;"></textarea>
+                     <button type="button" id="btn_add">댓글쓰기</button> -->
+                  </div>
                     </div> 
                 </div>
         <!-- 컨테이너 안쪽 컨텐츠 -->

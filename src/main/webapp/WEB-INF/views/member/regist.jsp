@@ -6,42 +6,59 @@
 <%@ include file="../include/global_head.jsp" %>
 <link rel="stylesheet" href="../css/member.css">
 <script type="text/javascript">
+
+</script>
+
+<!-- // 이메일 발송    -->
+<script type="text/javascript">
+var code = '';
+
 function emailSend(frm){
-	let data = {
-		email: frm.email1.value+'@'+frm.email2.value	
-	};
-	
-	$.ajax({
-		type: "post",
-		url: "./emailSendProcess.do",
-		data: data,
-		success: function() {
-			console.log("해당 이메일로 인증번호를 발송했습니다.");
-		},
-		error: function() {
-			console.log("요청실패");
-		}
-	});
-	
-	
-/* 	alert("이메일 전송하기");
-	
-	$.ajax({
-		url : "../emailSendProcess.do",
-		type : "post",
-		
-		success : function(){
-			alert("전송성공했음");
-		}
-		error : function(){ */
-//			alert("전송실패");
-//		}
-	//
-//	});
-	
-	
-	
+    let data = {
+        email: frm.email1.value+'@'+frm.email2.value	
+    };
+    alert("email 로 인증코드 발송했습니다"); // 여기에 alert 추가
+    
+    $.ajax({
+        type: "post",
+        url: "./emailSendProcess.do",
+        data: data,
+        success: function(res) {
+            console.log("해당 이메일로 인증번호를 발송했습니다.\n인증코드:"+res);
+            code = res;
+        },
+        error: function() {
+            console.log("요청실패");
+        }
+    });
 }
+
+
+
+
+
+function checkVerification() {
+    //var userInput = prompt("이메일로 받은 인증번호를 입력하세요.");
+	
+    
+    // 서버에서 받은 값 (예: JSP나 서블릿에서 request.getAttribute로 설정한 값)
+    var serverValue = code;
+
+    var verifynum = $("#verifynum").val();
+   	
+    if (verifynum === serverValue) {
+        alert("인증 성공!");
+    } else {
+        alert("인증 실패. 다시 시도해주세요.");
+    }
+}
+
+
+
+
+
+
+
 /* 아이디 중복확인 */
 function checkaaa(frm) {
 	
@@ -197,8 +214,8 @@ function formValidate(frm) {
                         </div>
                         <div class="input_nickname">
                             <h4></h4><h4></h4>
-                            <input type="text" class="verifynum" name="verifynum" placeholder="인증번호.">
-                            <button type="button" >인증하기</button>
+                            <input type="text" class="verifynum" id="verifynum" name="verifynum" placeholder="인증번호.">
+                            <button type="button" id="emailnumber" name="emailnumber" onclick="checkVerification()">인증하기</button>
                         </div>
                         <div class="input_name">
                             <h4>이름</h4>

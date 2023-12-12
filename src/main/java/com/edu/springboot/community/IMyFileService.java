@@ -7,5 +7,8 @@ import org.apache.ibatis.annotations.Mapper;
 public interface IMyFileService {
 	public int insertMultiFile(PhotoBoardDTO photoBoardDTO);
 	public int updateFIle(PhotoBoardDTO photoBoardDTO);
+
 }
+
+
 

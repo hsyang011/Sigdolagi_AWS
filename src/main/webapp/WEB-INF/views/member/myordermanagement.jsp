@@ -8,8 +8,7 @@
 <link rel="stylesheet" href="../css/myorder.css">
 <style>
 
-
-    </style>
+</style>
 </head>
 <body>
 

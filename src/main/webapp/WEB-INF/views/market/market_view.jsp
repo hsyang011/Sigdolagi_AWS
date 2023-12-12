@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %> <!-- 숫자의 3자릿수마다 콤마를 찍어주기 위한 jstl 추가 -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -62,6 +63,14 @@ $(function() {
             $("#delivery_more").hide();
             $(e.target).text("↓");
         }
+    });
+    
+    // 수량 변경이 일어날 때 가격 반영
+   	let price = parseInt($("#product_price").text().replace(",", ""));
+    $("#count").change((e) => {
+    	let num = parseInt($(e.target).val());
+    	$("#product_price").text((num*price).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + "원");
+    	$("#willPay").text((num*price).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + "원");
     });
 });
 
@@ -152,12 +161,12 @@ function addToCart(idx, flag) {
                         <!-- 세일품목일 경우 정가만 표시, 아닐 경우 할인가와 할인율도 같이 표시 -->
                         <c:choose>
 	                       <c:when test="${productDTO.prod_sale eq 0}">
-                        	   <h4 class="me-2" style="font-family: 'NPSfontBold'">${productDTO.prod_price}원</h4>
+                        	   <h4 class="me-2" style="font-family: 'NPSfontBold'"><fmt:formatNumber value="${productDTO.prod_price}" pattern="#,###" />원</h4>
 	                       </c:when>
 	                       <c:otherwise>
 		            			<c:set var="sale" value="${(productDTO.prod_sale/productDTO.prod_price)*100}"/>
 		                        <h4 class="me-2" style="color: #FF7A00; font-family: 'NPSfontBold';">${Math.round(sale)}%</h4>
-                        	   <h4 class="me-2" style="font-family: 'NPSfontBold'">${productDTO.prod_price-productDTO.prod_sale}원</h4>
+                        	   <h4 class="me-2" style="font-family: 'NPSfontBold'"><fmt:formatNumber value="${productDTO.prod_price-productDTO.prod_sale}" pattern="#,###" />원</h4>
                            	   <h4 class="me-2 text-secondary" style="text-decoration: line-through;">${productDTO.prod_price}원</h4>
 	                       </c:otherwise>
                        </c:choose>
@@ -200,12 +209,12 @@ function addToCart(idx, flag) {
                             <h4>${productDTO.prod_name}</h4>
                             <input type="number" id="count" value="1" class="form-control rounded-pill text-center" style="width: 50%;">
                         </div>
-                        <h4 style="font-weight: bold;">${productDTO.prod_price-productDTO.prod_sale}원</h4>
+                        <h4 style="font-weight: bold;" id="product_price"><fmt:formatNumber value="${productDTO.prod_price-productDTO.prod_sale}" pattern="#,###" />원</h4>
                     </div>
                     <div>
                         <div class="d-flex justify-content-between">
                             <p>구매 예정 금액</p>
-                            <h2 style="color: #FF7A00; font-weight: bold; font-size: 2em;">${productDTO.prod_price-productDTO.prod_sale}원</h2>
+                            <h2 style="color: #FF7A00; font-weight: bold; font-size: 2em;" id="willPay"><fmt:formatNumber value="${productDTO.prod_price-productDTO.prod_sale}" pattern="#,###" />원</h2>
                         </div>
                         <button class="btn btn-outline-dark mb-3" style="width: 100%; height: 50px;" onclick="addToCart(${productDTO.prod_idx}, 0)">장바구니</button>
                         <button class="btn" style="width: 100%; height: 50px; background-color: #FF7A00; color: white;">바로 구매</button>
@@ -233,11 +242,11 @@ function addToCart(idx, flag) {
 			                        <h5 class="card-title"><a class="mill_title" href="./market_view.do?idx=${row.prod_idx}">${row.prod_name}</a></h5>
 			                        <c:choose>
 				                        <c:when test="${row.prod_sale eq 0}">
-					                        <p class="card-text"><strong>${row.prod_price}</strong></p>
+					                        <p class="card-text"><strong><fmt:formatNumber value="${row.prod_price}" pattern="#,###" /></strong></p>
 				                        </c:when>
 				                        <c:otherwise>
 	            						    <c:set var="sale" value="${(row.prod_sale/row.prod_price)*100}"/>
-					                        <p class="card-text"><span class="discount" style="color: #FF7A00; font-weight: bold;">${Math.round(sale)}%</span> <strong>${row.prod_price-row.prod_sale}</strong> <strike>${row.prod_price}</strike></p>
+					                        <p class="card-text"><span class="discount" style="color: #FF7A00; font-weight: bold;">${Math.round(sale)}%</span> <strong><fmt:formatNumber value="${row.prod_price-row.prod_sale}" pattern="#,###" /></strong> <strike><fmt:formatNumber value="${row.prod_price}" pattern="#,###" /></strike></p>
 				                        </c:otherwise>
 			                       </c:choose>
 			                    </div>

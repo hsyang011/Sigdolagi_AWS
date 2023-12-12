@@ -426,6 +426,65 @@ function removeAllChildNods(el) {
     }
 }
 
+//#####################################################################################
+//선을 구성하는 좌표 배열입니다. 이 좌표들을 이어서 선을 표시합니다
+var linePath = [
+  new kakao.maps.LatLng(37.4950381629493, 127.152859864985),
+  new kakao.maps.LatLng(33.452739313807456, 126.5709308145358),
+  new kakao.maps.LatLng(33.45178067090639, 126.5726886938753) 
+];
+
+//지도에 표시할 선을 생성합니다
+var polyline = new kakao.maps.Polyline({
+  path: linePath, // 선을 구성하는 좌표배열 입니다
+  strokeWeight: 5, // 선의 두께 입니다
+  strokeColor: '#FF7A00', // 선의 색깔입니다
+  strokeOpacity: 0.7, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+  strokeStyle: 'solid' // 선의 스타일입니다
+});
+
+getCarDirection();
+
+function getCarDirection() {
+    const REST_API_KEY = 'ada18f999f4c859dca4dc9e1707710b7';
+    // 호출방식의 URL을 입력합니다.
+    const url = 'https://apis-navi.kakaomobility.com/v1/directions';
+
+    // 출발지(origin), 목적지(destination)의 좌표를 문자열로 변환합니다.
+    const origin = '37.4950381629493, 127.152859864985'; 
+    const destination = '37.4933304500736, 127.143773841911';
+    
+    // 요청 헤더를 추가합니다.
+    const headers = {
+      Authorization: 'KakaoAK ' + REST_API_KEY,
+      'Content-Type': 'application/json'
+    };
+  
+    // 표3의 요청 파라미터에 필수값을 적어줍니다.
+    const queryParams = new URLSearchParams({
+      origin: origin,
+      destination: destination
+    });
+    
+    const requestUrl = url+'?'+queryParams; // 파라미터까지 포함된 전체 URL
+    
+    $.ajax({
+    	type: 'GET',
+    	url: requestUrl,
+    	headers: headers,
+    	success: function(res) {
+    		console.log("요청성공:"+res.json());
+    	},
+    	error: function(err) {
+    		console.log("요청실패:"+err);
+    	}
+    });
+}
+// #####################################################################################
+
+//지도에 선을 표시합니다 
+polyline.setMap(map); 
+
 // 추가하기 버튼을 눌렀을 때, DB에 저장 후, 나의 플래너 리스트로 전환
 function addList(i) {
 	// console.log('하이', i, placeArr[i]);
