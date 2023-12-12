@@ -228,7 +228,7 @@ function saveComment() {
                                         <button type="button" class="writeFrm_edit" onclick="location.href='./freeboard_edit.do?freeboard_idx=${boardDTO.freeboard_idx }';">수정하기</button>
                                         <form id="deleteForm" action="./community/freeboard_delete.do" method="post">
                                           	<input type="hidden" name="freeboard_idx" value="${boardDTO.freeboard_idx }"  />
-                                			<button type="button" class="writeFrm_reset"  onclick="deletePost();">삭제하기</button>
+                                			 <button type="button" class="writeFrm_reset"  onclick="deletePost();">삭제하기</button> 
 								       	</form>
                                    
                                         <button type="button" class="writeFrm_list" onclick="location.href='./freeboard_list.do';">목록 보기</button>
@@ -243,6 +243,7 @@ function saveComment() {
 					            <legend class="skipinfo">댓글 입력</legend>
 					            <div class="cm_input">
 					                <p><textarea id="content" name="content" onkeyup="countingLength(this);"  style="width:100%" rows="4" placeholder="댓글을 입력해 주세요."></textarea></p>
+					                
 					                <span><button type="button" class="btns" onclick="saveComment();">등 록</button> <i id="counter">0/300자</i></span>
 					            </div>
 					        </fieldset>
