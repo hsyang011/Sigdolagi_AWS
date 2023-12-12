@@ -33,7 +33,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- write  -->
 	<insert id="write">
-		INSERT INTO freeboard (freeboard_idx, email, title, content) VALUES (seq_freeboard_idx.nextval, #{_email},  #{_title}, #{_content} )
+		INSERT INTO freeboard (freeboard_idx, email, title, content) VALUES (seq_freeboard_idx.nextval, #{_email}, #{_title}, #{_content} )
 	</insert>
 	
 	<select id="view" resultType="com.edu.springboot.community.BoardDTO" parameterType="com.edu.springboot.community.BoardDTO">
@@ -54,9 +54,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>
 	
 
-<!-- 	<select id="nickname" resultType="string" parameterType="string">
-		SELECT nickname FROM member WHERE email=${email}
-	</select> -->
+	<!-- 맞는지 모르겠지만 닉네임 가져오려고  -->
+	<select id="getnickname" resultType="string" parameterType="string">
+		SELECT nickname FROM member WHERE email=#{email}
+	</select>
 	
 
 	<!-- 관리자 자유게시판 목록 -->
