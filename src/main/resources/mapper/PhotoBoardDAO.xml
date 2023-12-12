@@ -37,10 +37,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT * FROM photoboard WHERE photoboard_idx=${photoboard_idx}
 	</select>
 	
+	<update id="photoedit" parameterType="com.edu.springboot.community.PhotoBoardDTO">
+		UPDATE photoboard SET title=#{title}, sfile=#{sfile} content=#{content} WHERE photoboard_idx=${photoboard_idx}
+	</update>
 	
 	
-	
-	
+	<delete id="photodelete">
+		DELETE FROM photoboard WHERE photoboard_idx=#{photoboard_idx}
+	</delete>
 	
 	
 	
