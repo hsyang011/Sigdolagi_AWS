@@ -10,6 +10,24 @@
 <!-- head 추가 -->
 <%@ include file="../include/global_head.jsp" %>
 <link rel="stylesheet" href="../css/main.css" />
+<!-- 로그인에 성공했을 경우 alert창 -->
+<c:if test="${not empty loginSuccessMsg}">
+	<script>
+		alert("${loginSuccessMsg}");
+	</script>
+</c:if>
+<!-- 권한이 거부되었을 경우 alert창 -->
+<c:if test="${not empty permitDenyMsg}">
+	<script>
+		alert("${permitDenyMsg}");
+	</script>
+</c:if>
+<!-- 로그아웃에 성공했을 경우 alert창 -->
+<c:if test="${not empty logoutSuccessMsg}">
+	<script>
+		alert("${logoutSuccessMsg}");
+	</script>
+</c:if>
 </head>
 <body>
 <div class="container-fluid" id="wrap">
