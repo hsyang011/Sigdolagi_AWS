@@ -1,10 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!-- 탑네비 인클루드 -->
-<style>
-.ad_login{cursor: pointer; font-size:16px}
-.ad_login:hover {text-decoration: underline;}
-</style>
 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
     <!-- Sidebar Toggle (Topbar) -->
@@ -56,26 +52,25 @@
         
 
         <div class="topbar-divider d-none d-sm-block"></div>
-		
+
         <!-- Nav Item - User Information -->
         <li class="nav-item dropdown no-arrow">
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                
-                <!-- 로그인 정보가 없는 경우 -->
-                <s:authorize access="isAnonymous()">
-                	<span class="ad_login" onclick="loginLocation();" style="">로그인</span>
-               	</s:authorize>
-                	
-               	<!-- 로그인 했을 때 -->
-                <s:authorize access="isAuthenticated()">
-                	${nickname}
-                </s:authorize>
-                
+	                <!-- 로그인 정보가 없는 경우 -->
+	                <s:authorize access="isAnonymous()">
+				    	<a href="../member/login.do">로그인</a>
+	                </s:authorize>
+	                
+	                <!-- 로그인 했을 때 -->
+	                <s:authorize access="isAuthenticated()">
+	                	${nickname}
+	                </s:authorize>
                 </span>
                 <img class="img-profile rounded-circle"
-                    src="../bootstrap/img/undraw_profile.svg">
+                    src="../bootstrap/img/undraw_profile.svg"/>
             </a>
             <!-- Dropdown - User Information -->
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -101,12 +96,6 @@
         </li>
 
     </ul>
-    
-<script>
-function loginLocation(){
-	location.href = "../member/login.do";
-} 
-</script>
 
 </nav>
 <!-- 메인쪽 탑네비 인클루드 끝-->

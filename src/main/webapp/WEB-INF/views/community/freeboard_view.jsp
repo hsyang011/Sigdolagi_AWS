@@ -210,14 +210,15 @@ function saveComment() {
 	                         </tr>
                        
                                 <tr>
+               
+                                  <sec:authorize access="hasRole('ROLE_USER') and ${boardDTO.email eq authentication.email}">
                                     <td colspan="4" align="center" class="btn_td">
                                         <button type="button" class="writeFrm_edit" onclick="location.href='./freeboard_edit.do?freeboard_idx=${boardDTO.freeboard_idx }';">수정하기</button>
-                                        <form id="deleteForm" action="./community/freeboard_delete.do" method="post">
-
-                                          	<input type="hidden" name="freeboard_idx" value="${param.freeboard_idx }"  />
-                                			<button type="button" class="writeFrm_reset"  onclick="deletePost(${boardDTO.freeboard_idx});">삭제하기</button>
+                                      	<form id="deleteForm" action="./community/freeboard_delete.do" method="post">
+                                          	<input type="hidden" name="freeboard_idx" value="${param.freeboard_idx }"   />
+                                			<button type="button" class="writeFrm_reset"  onclick="deletePost(${boardDTO.freeboard_idx });">삭제하기</button>
 								       	</form>
-
+								     </sec:authorize>
                                         <button type="button" class="writeFrm_list" onclick="location.href='./freeboard_list.do';">목록 보기</button>
                                     </td>
                                 </tr>
@@ -228,7 +229,7 @@ function saveComment() {
 
                    <div class="cm_write" style="width:100%">
                        <fieldset>
-                        <form name="writeFrm" method="post" onsubmit="return validateForm(this);" action="/community/freeboard_comment.do" class="writeFrm">
+                        <form name="cm_Frm" method="post" onsubmit="return validateForm(this);" action="/community/freeboard_comment.do" class="writeFrm">
                            <legend class="skipinfo">댓글 입력</legend>
                            <div class="cm_input">
                                <p><textarea id="content" name="content" onkeyup="countingLength(this);"  style="width:100%" rows="4" placeholder="댓글을 입력해 주세요."></textarea></p>
@@ -249,7 +250,7 @@ function saveComment() {
                                  </form>
                                 <br />
                              </tr>
-                          </c:forEach> 
+                       </c:forEach> 
 
 					
 
