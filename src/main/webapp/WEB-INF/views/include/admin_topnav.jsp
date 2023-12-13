@@ -57,23 +57,8 @@
         <li class="nav-item dropdown no-arrow">
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-<<<<<<< HEAD
-                
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-	                <!-- 로그인 정보가 없는 경우 -->
-	                <s:authorize access="isAnonymous()">
-				    	<a href="../member/login.do">로그인</a>
-	                </s:authorize>
-	                
-	                <!-- 로그인 했을 때 -->
-	                <s:authorize access="isAuthenticated()">
-	                	${nickname}
-	                </s:authorize>
-                </span>
-=======
    
-            	<span class="mr-2 d-none d-lg-inline text-gray-600 small">${nickname}</span>
->>>>>>> branch 'main' of https://github.com/hsyang011/Sigdolagi.git
+            	<span class="mr-2 d-none d-lg-inline text-gray-600 small"><%= session.getAttribute("UserNickName").toString() %></span>
                 <img class="img-profile rounded-circle"
                     src="../bootstrap/img/undraw_profile.svg"/>
             </a>
@@ -87,10 +72,6 @@
             </div>
         </li>
     </ul>
-<<<<<<< HEAD
-=======
-    
->>>>>>> branch 'main' of https://github.com/hsyang011/Sigdolagi.git
 
 </nav>
 <!-- 메인쪽 탑네비 인클루드 끝-->

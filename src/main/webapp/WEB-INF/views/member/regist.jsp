@@ -11,20 +11,23 @@
 
 <!-- // 이메일 발송    -->
 <script type="text/javascript">
+// 전역변수 선언, 이메일 인증코드로 추후 ajax에서 초기화 예정
 var code = '';
 
 function emailSend(frm){
+	// 파라미터로 이메일을 넘겨줌
     let data = {
         email: frm.email1.value+'@'+frm.email2.value	
     };
-    alert("email 로 인증코드 발송했습니다"); // 여기에 alert 추가
     
     $.ajax({
         type: "post",
         url: "./emailSendProcess.do",
         data: data,
         success: function(res) {
+            alert(data.email+"로 인증코드 발송했습니다");
             console.log("해당 이메일로 인증번호를 발송했습니다.\n인증코드:"+res);
+            // 반환받은 인증코드로 전역변수 code를 초기화
             code = res;
         },
         error: function() {

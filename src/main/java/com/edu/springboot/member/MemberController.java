@@ -29,17 +29,21 @@ public class MemberController {
 	IMemberService  memberdao;
 	
 	
-	@GetMapping("/member/login.do")
-	public String login(Principal principal, Model model) {
-		int cnt = 1;
+	@RequestMapping("/member/login.do")
+	public String login(Principal principal, Model model, HttpServletRequest req) {
+		// 에러메시지가 존재하면 model에 저장
+		if (req.getAttribute("errorMsg") != null) {
+			System.out.println(req.getAttribute("errorMsg"));
+			model.addAttribute("errorMsg", req.getAttribute("errorMsg"));
+		}
+		
 		try {
 			// 로그인 아이디를 얻어온다.
 			String email = principal.getName();
 			// 아이디를 Model객체에 저장한다.
 			model.addAttribute("email", email);
 			System.out.println("로그인 되었습니다.");
-		} 
-		catch (Exception e) {
+		} catch (Exception e) {
 			/* 최초로 접근시에는 로그인 정보가 없으므로 NullPointerException예외가 발생된다. 따라서 예외처리 해야
 			한다. */
 			System.out.println("[login.do]로그인 전입니다.");
@@ -274,7 +278,7 @@ public class MemberController {
 	EmailSending email;
 	
 	// 이메일 발송 성공까지만 함. 추후에 인증코드 로직 제작해야됩니다.
-	@PostMapping("/member/emailSendProcess.do")
+	@RequestMapping("/member/emailSendProcess.do")
 	public ResponseEntity<String> emailSendProcess(HttpServletRequest req) {
 		System.out.println("이메일 전송할 곳 : " + req.getParameter("email"));
 		InfoDTO infoDTO = new InfoDTO();

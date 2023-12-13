@@ -87,6 +87,9 @@ function deletePost(freeboard_idx){
     }
 }
 
+
+
+
 // 댓글 길이 카운팅
 function countingLength(content) {
     if (content.value.length > 300) {

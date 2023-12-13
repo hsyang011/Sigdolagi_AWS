@@ -189,6 +189,8 @@ $(function() {
 	            console.log("요청성공");
 	            // 플래너에서 삭제
 				$(e.target).parent().parent().parent().remove();
+	            // 재실행
+	            location.reload();
 	        },
 	        error: function(err) {
 	    		console.log("요청실패");
@@ -255,16 +257,16 @@ function drawRoutes(start, end) {
             const linePath = [];
             res.routes[0].sections[0].roads.forEach(router => {
                 router.vertexes.forEach((vertex, index) => {
-                // x,y좌표가 우르르 들어온다. 그러니 인덱스가 5의 배수일때만 linePath에 넣는다.
-                if (index%8 == 0) {
-                    linePath.push(new kakao.maps.LatLng(router.vertexes[index+1], router.vertexes[index]));
-                }
+	                // x,y좌표가 우르르 들어온다. 그러니 인덱스가 8의 배수일때만 linePath에 넣는다.
+	                if (index%8 == 0) {
+	                    linePath.push(new kakao.maps.LatLng(router.vertexes[index+1], router.vertexes[index]));
+	                }
                 });
             });
             var polyline = new kakao.maps.Polyline({
                 path: linePath, // 선을 구성하는 좌표배열 입니다
                 strokeWeight: 5, // 선의 두께 입니다
-                strokeColor: '#FF7A00', // 선의 색깔입니다
+                strokeColor: '#FF0000', // 선의 색깔입니다
                 strokeOpacity: 0.7, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
                 strokeStyle: 'solid' // 선의 스타일입니다
             });

@@ -21,7 +21,7 @@ public class RestaurantController {
 
         
         // 모든 식당 정보를 리스트에 담기
-        List<RestaurantDTO> restaurantList = dao.allrestaurant(restaurantDTO);
+        List<RestaurantDTO> restaurantList = dao.allrestaurant();
         model.addAttribute("restaurantList", restaurantList);
 
         System.out.println("성공?");

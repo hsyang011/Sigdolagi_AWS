@@ -135,6 +135,34 @@ function deleteImageFile() {
 </script>
 
 
+
+<script>
+	function validateForm(form){
+		if(form.title.value==""){
+			alert("제목을 입력하세요");
+			form.title.focus();
+			return false;
+		}
+		
+		
+		if(form.content.value==""){
+			alert("내용은 필수 입력입니다.");
+			return false;
+		}
+		
+		if(form.ofile.value==""){
+			alert("첨부파일은 필수 입력입니다.");
+			return false;
+		}
+		
+		
+	}
+</script>
+
+
+
+
+
       
  <script>
         $(document).ready(function () {
@@ -284,6 +312,10 @@ function deleteImageFile() {
                     <li class="nav-item me-3"><button type="button" class="mealk_cate btn rounded-pill">#기타</button></li>
                 </ul> -->
             </div>
+            
+            
+            
+            
             <!-- 컨텐츠 헤더 끝 -->
             <div class="board_write container  mt-5" >
 
@@ -302,7 +334,7 @@ function deleteImageFile() {
                                         <td>제목</td>
                                         <td>
                                             <input type="text" name="title" id="title" value="${photoBoardDTO.title}" />
-                                            <input type="text" name="email" id="email"  value="이메일"/>
+                                            <input type="text" name="nickname" id="nicnkname"   value="${nickname}"    />
                                         </td>
                                     </tr>
                                     <tr>
