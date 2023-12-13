@@ -1,6 +1,7 @@
 package com.edu.springboot.admin;
 
 import java.io.File;
+import java.security.Principal;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -10,8 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ResourceUtils;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.edu.springboot.community.BoardDTO;
 import com.edu.springboot.community.IBoardService;
@@ -27,11 +30,23 @@ import utils.MyFunctions;
 
 @Controller
 public class AdminController {
-
 	
+	@Autowired
+   IBoardService dao;
 	
 	@RequestMapping("/administrator/admin_main.do") 
-	public String adminMain() {
+	public String adminMain(Model model, HttpServletRequest req,Principal principal) {
+		
+		try {
+			String userid = principal.getName();
+
+			String nickname = dao.getnickname(userid);
+	        System.out.println("nickname:결과"+nickname);
+	        model.addAttribute("nickname",nickname);
+		}
+		catch (Exception e) {
+			System.out.println("로그인암됨.");
+		}
 		
 		return "administrator/admin_main"; 
 	 }
@@ -209,6 +224,7 @@ public class AdminController {
 			//멀티파일
 			String[] oArr = ofiles.split(":");
 			String[] sArr = sfiles.split(":");
+			
 			for (int i=0; i<oArr.length && i<5; i++) {
 				if(i == 0) {
 					productDTO.setImg1_o(oArr[i]);

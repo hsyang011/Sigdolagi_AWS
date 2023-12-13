@@ -63,7 +63,6 @@ public class WebSecurityConfig {
 					.requestMatchers("/**", "/**/**").permitAll()
 					.anyRequest().authenticated());
       
-      
 		/* 로그인 페이지에 대한 디자인 커스터마이징
 		loginPage : 로그인 페이지의 요청명
 		loginProcessingUrl : 폼값을 전송하여 로그인 처리할 요청명
@@ -90,8 +89,39 @@ public class WebSecurityConfig {
 		// 권한이 부족한 경우 이동할 위치
 		http.exceptionHandling((expHanding) -> expHanding.accessDeniedPage("/main/main.do"));
       
+<<<<<<< HEAD
 		return http.build();
 	}
+=======
+      /* 로그인 페이지에 대한 디자인 커스터마이징
+      loginPage : 로그인 페이지의 요청명
+      loginProcessingUrl : 폼값을 전송하여 로그인 처리할 요청명
+      failureUrl : 로그인에 실패한 경우 이동할 요청명
+      failureHandler : 별도의 핸들러 인스턴스를 등록 후 에러처리
+      usernameParameter : 아이디 입력을 위한 <input>의 name속성값
+      passwordParameter : 패스워드의 name속성값 */
+      http.formLogin((formLogin) -> formLogin
+            .loginPage("/member/login.do") // default : /login
+            .loginProcessingUrl("/member/loginprocess1.do")
+            .defaultSuccessUrl("/main/main.do", true)
+            .failureUrl("/member/login.do?error") // default : /login?error
+//            .failureHandler(myAuthFailureHandler)
+            .usernameParameter("email") // default : username
+            .passwordParameter("password") // default : password
+            .permitAll());
+      /* 로그아웃에 대한 커스터마이징
+      logoutUrl : 로그아웃을 위한 요청명
+      logoutSuccessUrl : 로그아웃 이후 이동할 위치 */
+      http.logout((logout) -> logout
+            .logoutUrl("/member/logout.do") // default : /logout
+            .logoutSuccessUrl("/")
+            .permitAll());
+      // 권한이 부족한 경우 이동할 위치
+      http.exceptionHandling((expHanding) -> expHanding.accessDeniedPage("/main/main.do"));
+      
+      return http.build();
+   }
+>>>>>>> branch 'main' of https://github.com/hsyang011/Sigdolagi.git
    
 	// DB연결을 위한 데이터소스를 자동주입한다. 해당 설정은 프로퍼티 파일에 있다.
 	@Autowired
