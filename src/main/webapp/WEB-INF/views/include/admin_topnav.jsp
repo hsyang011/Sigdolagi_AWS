@@ -1,10 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!-- 탑네비 인클루드 -->
-<style>
-.ad_login{cursor: pointer; font-size:16px}
-.ad_login:hover {text-decoration: underline;}
-</style>
 <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
 
     <!-- Sidebar Toggle (Topbar) -->
