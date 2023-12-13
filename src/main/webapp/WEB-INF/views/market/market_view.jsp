@@ -126,22 +126,22 @@ function addToCart(idx, flag) {
             <!-- 상품 정보 시작 -->
             <div class="row">
                 <div id="col5">
-                    <img src="../images/products/${productDTO.prod_thumbnail}.jpg" width="100%" id="product_thumbnail" alt="">
+                    <img src="../images/products/${productDTO.img1}" width="100%" id="product_thumbnail" alt="">
                     <div class="d-flex justify-content-between" id="product_images">
                         <div style="padding-left: 0;">
-                            <img src="../images/products/${productDTO.img1}.jpg" width="100%" alt="">
+                            <img src="../images/products/${productDTO.img1}" width="100%" alt="">
                         </div>
                         <div>
-                            <img src="../images/products/${productDTO.img2}.jpg" width="100%" alt="">
+                            <img src="../images/products/${productDTO.img2}" width="100%" alt="">
                         </div>
                         <div>
-                            <img src="../images/products/${productDTO.img3}.jpg" width="100%" alt="">
+                            <img src="../images/products/${productDTO.img3}" width="100%" alt="">
                         </div>
                         <div>
-                            <img src="../images/products/${productDTO.img4}.jpg" width="100%" alt="">
+                            <img src="../images/products/${productDTO.img4}" width="100%" alt="">
                         </div>
                         <div style="padding-right: 0;">
-                            <img src="../images/products/${productDTO.img5}.jpg" width="100%" alt="">
+                            <img src="../images/products/${productDTO.img5}" width="100%" alt="">
                         </div>
                     </div>
                 </div>
@@ -232,7 +232,7 @@ function addToCart(idx, flag) {
 	                    <div class="card custom-col" style="cursor: pointer;">
 	                        <div>
 	                            <div class="card_product_img">
-                                    <img class="shop_product_img card-img-top" onclick="location.href='./market_view.do?prod_idx=${row.prod_idx}';" src="../images/products/${row.prod_thumbnail}.jpg">
+                                    <img class="shop_product_img card-img-top" onclick="location.href='./market_view.do?prod_idx=${row.prod_idx}';" src="../images/products/${row.img1}">
 	                                <div class="cart_icon_box">
 	                                    <img src="../images/shopping-bag3.png" onclick="addToCart(${row.prod_idx}, 1)" alt="">
 	                                </div>

@@ -317,7 +317,7 @@ $(function() {
        							<c:forEach items="${row.value}" var="col">
                                     <tr class="cart_product">
                                         <td class="product_img">
-                                            <img src="../images/products/${col.prod_thumbnail}.jpg" alt="" >
+                                            <img src="../images/products/${col.img1}" alt="" >
                                         </td>
                                         <td class="product_title">
                                             <div><span class="shop_title">${col.seller}</span></div>
