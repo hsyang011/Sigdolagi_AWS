@@ -232,7 +232,8 @@ public class CommunityController {
    
    @RequestMapping("/community/photoboard_list.do")
       //포토  포토보드 리스트
-      
+   
+   
    public String photoBoardList(Model model, HttpServletRequest req, ParameterDTO parameterDTO, Principal principal) {
    
       System.out.println("들어오나?");
@@ -266,12 +267,14 @@ public class CommunityController {
       model.addAttribute("photolists", photolists);
       System.out.println(photolists.size());
       
-      String pagingImg = PagingUtil.pagingImg(totalCount, pageSize, blockPage, pageNum, req.getContextPath()+"/list.do?");
+      String pagingImg = PagingUtil.pagingImg(totalCount, pageSize, blockPage, pageNum, req.getContextPath()+"./photoboard_list.do?");
       model.addAttribute("pagingImg", pagingImg);
+      
       
       
       return "community/photoboard_list";
    }
+   
    
    
    

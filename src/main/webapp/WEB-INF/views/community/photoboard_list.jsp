@@ -193,19 +193,7 @@ $(function() {
 
 
     <!-- 리스트 버튼 -->
-    <div class="container d-flex justify-content-center">
-        <div class="row">
-            <div class="col-12 d-flex justify-content-between" style="margin: 0 85px;">
-                <div class="list_btn">
-                    <button type="button" class="btn"> &lt; </button>
-                    <button type="button" class="btn" id="btn1"> 1 </button>
-                    <button type="button" class="btn" id="btn1"> 2 </button>
-                    <button type="button" class="btn" id="btn1"> 3 </button>
-                    <button type="button" class="btn"> &gt; </button>
-                </div>
-            </div>
-        </div>
-    </div>
+    <div class="text-center">${pagingImg}</div>
     
 
 
