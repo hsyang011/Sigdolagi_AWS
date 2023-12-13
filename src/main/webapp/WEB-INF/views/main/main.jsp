@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %> <!-- 숫자의 3자릿수마다 콤마를 찍어주기 위한 jstl 추가 -->
 <!-- 스프링 시큐리티 전용 태그 -->
 <%@ taglib prefix="s" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
@@ -107,87 +108,23 @@
                 <div class="main_plan_list">
                     <div class="swiper mySwiper">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <div class="card" style="width:250px">
-                                    <img class="card-img-top" src="../images/스크린샷 2023-11-29 224515.png" alt="Card image" style="width:100%">
-                                    <div class="card-body">
-                                    <h4 class="card-title">John Doe</h4>
-                                    <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="card" style="width:250px">
-                                    <img class="card-img-top" src="../images/스크린샷 2023-11-29 224515.png" alt="Card image" style="width:100%">
-                                    <div class="card-body">
-                                    <h4 class="card-title">John Doe</h4>
-                                    <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="card" style="width:250px">
-                                    <img class="card-img-top" src="../images/스크린샷 2023-11-29 224515.png" alt="Card image" style="width:100%">
-                                    <div class="card-body">
-                                    <h4 class="card-title">John Doe</h4>
-                                    <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="card" style="width:250px">
-                                    <img class="card-img-top" src="../images/스크린샷 2023-11-29 224515.png" alt="Card image" style="width:100%">
-                                    <div class="card-body">
-                                    <h4 class="card-title">John Doe</h4>
-                                    <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="card" style="width:250px">
-                                    <img class="card-img-top" src="../images/스크린샷 2023-11-29 224515.png" alt="Card image" style="width:100%">
-                                    <div class="card-body">
-                                    <h4 class="card-title">John Doe</h4>
-                                    <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="card" style="width:250px">
-                                    <img class="card-img-top" src="../images/스크린샷 2023-11-29 224515.png" alt="Card image" style="width:100%">
-                                    <div class="card-body">
-                                    <h4 class="card-title">John Doe</h4>
-                                    <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="card" style="width:250px">
-                                    <img class="card-img-top" src="../images/스크린샷 2023-11-29 224515.png" alt="Card image" style="width:100%">
-                                    <div class="card-body">
-                                    <h4 class="card-title">John Doe</h4>
-                                    <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="card" style="width:250px">
-                                    <img class="card-img-top" src="../images/스크린샷 2023-11-29 224515.png" alt="Card image" style="width:100%">
-                                    <div class="card-body">
-                                    <h4 class="card-title">John Doe</h4>
-                                    <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="card" style="width:250px">
-                                    <img class="card-img-top" src="../images/스크린샷 2023-11-29 224515.png" alt="Card image" style="width:100%">
-                                    <div class="card-body">
-                                    <h4 class="card-title">John Doe</h4>
-                                    <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
-                                    </div>
-                                </div>
-                            </div>
+                        <!-- 준비중인 여행자들의 플래너 썸네일 리스트 시작 -->
+		                <!-- 리스트 반복 시작 -->
+		                <c:forEach items="${plannerList}" var="row" varStatus="loop">      
+		                <div class="swiper-slide">          
+		                    <div class="card custom-col">
+		                        <div>
+		                            <img class="card-img-top" src="../uploads/${row.sfile}" style="height: 250px;" alt="Card image">
+		                            <div class="card-body">
+		                                <h5 class="card-title">${row.plan_start} > ${row.plan_end}</h5>
+		                                <p class="card-text">${row.nickname}</p>
+		                            </div>
+		                        </div>
+		                    </div>
+		                </div>
+		                </c:forEach>
+		                <!-- 리스트 반복 끝 -->
+		                <!-- 준비중인 여행자들의 플래너 썸네일 리스트 끝 -->
                         </div>
                         <div class="swiper-button-next"></div>
                         <div class="swiper-button-prev"></div>
@@ -208,87 +145,19 @@
                 <div class="main_sic_list">
                     <div class="swiper mySwiper">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <div class="card" style="width:250px">
-                                    <img class="card-img-top" src="../images/스크린샷 2023-11-29 224515.png" alt="Card image" style="width:100%">
-                                    <div class="card-body">
-                                    <h4 class="card-title">John Doe</h4>
-                                    <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="card" style="width:250px">
-                                    <img class="card-img-top" src="../images/스크린샷 2023-11-29 224515.png" alt="Card image" style="width:100%">
-                                    <div class="card-body">
-                                    <h4 class="card-title">John Doe</h4>
-                                    <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="card" style="width:250px">
-                                    <img class="card-img-top" src="../images/스크린샷 2023-11-29 224515.png" alt="Card image" style="width:100%">
-                                    <div class="card-body">
-                                    <h4 class="card-title">John Doe</h4>
-                                    <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="card" style="width:250px">
-                                    <img class="card-img-top" src="../images/스크린샷 2023-11-29 224515.png" alt="Card image" style="width:100%">
-                                    <div class="card-body">
-                                    <h4 class="card-title">John Doe</h4>
-                                    <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="card" style="width:250px">
-                                    <img class="card-img-top" src="../images/스크린샷 2023-11-29 224515.png" alt="Card image" style="width:100%">
-                                    <div class="card-body">
-                                    <h4 class="card-title">John Doe</h4>
-                                    <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="card" style="width:250px">
-                                    <img class="card-img-top" src="../images/스크린샷 2023-11-29 224515.png" alt="Card image" style="width:100%">
-                                    <div class="card-body">
-                                    <h4 class="card-title">John Doe</h4>
-                                    <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="card" style="width:250px">
-                                    <img class="card-img-top" src="../images/스크린샷 2023-11-29 224515.png" alt="Card image" style="width:100%">
-                                    <div class="card-body">
-                                    <h4 class="card-title">John Doe</h4>
-                                    <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="card" style="width:250px">
-                                    <img class="card-img-top" src="../images/스크린샷 2023-11-29 224515.png" alt="Card image" style="width:100%">
-                                    <div class="card-body">
-                                    <h4 class="card-title">John Doe</h4>
-                                    <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="card" style="width:250px">
-                                    <img class="card-img-top" src="../images/스크린샷 2023-11-29 224515.png" alt="Card image" style="width:100%">
-                                    <div class="card-body">
-                                    <h4 class="card-title">John Doe</h4>
-                                    <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
-                                    </div>
-                                </div>
-                            </div>
+                        <c:forEach items="${restaurantList}" var="entry">
+                           	<div class="swiper-slide">
+			                    <div class="card custom-col">
+			                    	<div>
+	                                    <img class="card-img-top" src="../images/750_750_20210307074729929_photo_2c2906c7be9f.jpg" style="height: 250px;">
+			                            <div class="card-body text-center">
+			                                <h5 class="card-title"><a class="mill_title" href="">${entry.name}</a></h5>
+			                                <p><span style="color: #f19d07;">★</span>4.8</p>
+			                            </div>
+			                    	</div>
+			                    </div>
+			            	</div>
+		            	</c:forEach>
                         </div>
                         <div class="swiper-button-next"></div>
                         <div class="swiper-button-prev"></div>
@@ -329,87 +198,30 @@
                 <div class="main_market_list">
                     <div class="swiper mySwiper">
                         <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <div class="card" style="width:250px">
-                                    <img class="card-img-top" src="../images/스크린샷 2023-11-29 224515.png" alt="Card image" style="width:100%">
-                                    <div class="card-body">
-                                    <h4 class="card-title">John Doe</h4>
-                                    <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="card" style="width:250px">
-                                    <img class="card-img-top" src="../images/스크린샷 2023-11-29 224515.png" alt="Card image" style="width:100%">
-                                    <div class="card-body">
-                                    <h4 class="card-title">John Doe</h4>
-                                    <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="card" style="width:250px">
-                                    <img class="card-img-top" src="../images/스크린샷 2023-11-29 224515.png" alt="Card image" style="width:100%">
-                                    <div class="card-body">
-                                    <h4 class="card-title">John Doe</h4>
-                                    <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="card" style="width:250px">
-                                    <img class="card-img-top" src="../images/스크린샷 2023-11-29 224515.png" alt="Card image" style="width:100%">
-                                    <div class="card-body">
-                                    <h4 class="card-title">John Doe</h4>
-                                    <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="card" style="width:250px">
-                                    <img class="card-img-top" src="../images/스크린샷 2023-11-29 224515.png" alt="Card image" style="width:100%">
-                                    <div class="card-body">
-                                    <h4 class="card-title">John Doe</h4>
-                                    <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="card" style="width:250px">
-                                    <img class="card-img-top" src="../images/스크린샷 2023-11-29 224515.png" alt="Card image" style="width:100%">
-                                    <div class="card-body">
-                                    <h4 class="card-title">John Doe</h4>
-                                    <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="card" style="width:250px">
-                                    <img class="card-img-top" src="../images/스크린샷 2023-11-29 224515.png" alt="Card image" style="width:100%">
-                                    <div class="card-body">
-                                    <h4 class="card-title">John Doe</h4>
-                                    <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="card" style="width:250px">
-                                    <img class="card-img-top" src="../images/스크린샷 2023-11-29 224515.png" alt="Card image" style="width:100%">
-                                    <div class="card-body">
-                                    <h4 class="card-title">John Doe</h4>
-                                    <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="card" style="width:250px">
-                                    <img class="card-img-top" src="../images/스크린샷 2023-11-29 224515.png" alt="Card image" style="width:100%">
-                                    <div class="card-body">
-                                    <h4 class="card-title">John Doe</h4>
-                                    <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
-                                    </div>
-                                </div>
-                            </div>
+			               <c:forEach items="${productList}" var="row" varStatus="loop">
+                           <div class="swiper-slide">
+					           <div class="card custom-col" style="cursor: pointer;">
+					               <div>
+					                   <div class="card_product_img">
+				                           <img class="shop_product_img card-img-top" onclick="location.href='../market/market_view.do?prod_idx=${row.prod_idx}';" src="../images/products/${row.img1}">
+					                   </div>
+					                   <div class="card-body justify-content-between">
+					                       <span class="shop_title">${row.seller}</span>
+					                       <h5 class="card-title"><a class="mill_title" href="../market/market_view.do?prod_idx=${row.prod_idx}">${row.prod_name}</a></h5>
+					                       <c:choose>
+						                       <c:when test="${row.prod_sale eq 0}">
+							                       <p class="card-text"><strong><fmt:formatNumber value="${row.prod_price}" pattern="#,###" /></strong></p>
+						                       </c:when>
+						                       <c:otherwise>
+			            						   <c:set var="sale" value="${(row.prod_sale/row.prod_price)*100}"/>
+							                       <p class="card-text"><span class="discount">${Math.round(sale)}%</span> <strong><fmt:formatNumber value="${row.prod_price-row.prod_sale}" pattern="#,###" /></strong> <strike><fmt:formatNumber value="${row.prod_price}" pattern="#,###" /></strike></p>
+						                       </c:otherwise>
+					                       </c:choose>
+					                   </div>
+					               </div>
+					           </div>
+					        </div>
+					       	</c:forEach>
                         </div>
                         <div class="swiper-button-next"></div>
                         <div class="swiper-button-prev"></div>
