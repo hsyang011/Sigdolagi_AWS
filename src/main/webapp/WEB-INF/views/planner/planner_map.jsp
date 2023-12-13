@@ -277,38 +277,60 @@ function drawRoutes(start, end) {
         }
     });
 }
-// ################################################################################
-// 각 경로마다 마커를 띄워줍니다.
-// 마커를 표시할 위치와 title 객체 배열입니다 
-/* var x_pos = $(".x_pos").val();
-var y_pos = $(".y_pos").val();
-var placeNames = $(".placeName").text();
+//################################################################################
+//각 경로마다 마커를 띄워줍니다.
+//마커를 표시할 위치와 title 객체 배열입니다 
+var x_pos = [];
+var y_pos = [];
+$(".pos_x").each(function() {
+	x_pos.push($(this).val());
+});
+$(".pos_y").each(function() {
+	y_pos.push($(this).val());
+});
+
+var placeNames = [];
+$(".placeName").each(function() {
+	placeNames.push($(this).text());
+});
+
 var positions = [];
 for (let i=0; i<x_pos.length; i++) {
 	positions.push({ title: placeNames[i], latlng: new kakao.maps.LatLng(y_pos[i], x_pos[i]) });
 }
-console.log(positions);
 
-// 마커 이미지의 이미지 주소입니다
-var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
-    
+console.log(y_pos[0], x_pos[0]);
+
+//마커 이미지의 이미지 주소입니다
+var imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png",
+imageSize = new kakao.maps.Size(64, 69),
+imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+ 
 for (var i=0; i<positions.length; i++) {
-    
-    // 마커 이미지의 이미지 크기 입니다
-    var imageSize = new kakao.maps.Size(24, 35); 
-    
-    // 마커 이미지를 생성합니다    
-    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize); 
-    
-    // 마커를 생성합니다
-    var marker = new kakao.maps.Marker({
-        map: map, // 마커를 표시할 지도
-        position: positions[i].latlng, // 마커를 표시할 위치
-        title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
-        image : markerImage // 마커 이미지 
-    });
-} */
-// ################################################################################
+ 
+	// 마커 이미지의 이미지 크기 입니다
+	
+	// 마커 이미지를 생성합니다    
+	var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
+	
+	// 마커를 생성합니다
+	var marker = new kakao.maps.Marker({
+	    map: map, // 마커를 표시할 지도
+	    position: positions[i].latlng, // 마커를 표시할 위치
+	    title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+	    image : markerImage // 마커 이미지 
+	});
+	
+	// 인포윈도우를 생성합니다
+	var infowindow = new kakao.maps.InfoWindow({
+	    position : positions[i].latlng, 
+	    content : "<div style='width: 150px; padding: 3px; background-color: #FF7A00; color: white; text-align: center;'>"+positions[i].title+"</div>"
+	});
+	  
+	// 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
+	infowindow.open(map, marker);
+}
+//################################################################################
 
 // 키워드 검색을 요청하는 함수입니다
 function searchPlaces() {

@@ -23,6 +23,8 @@ public interface IPlannerService {
 	public List<PlaceDTO> getAllPlaces(PlannerDTO plannerDTO);
 	// 플래너를 저장한다. 단 insert가 아닌 null값들을 채워주는 작업이므로 update이다.
 	public int savePlanner(PlannerDTO plannerDTO);
+	// 플래너의 정보를 가져옵니다.
+	public PlannerDTO getPlannerInfo(PlannerDTO plannerDTO);
 	
 	//관리자 플래너리스트불러오기
 	public List<PlannerDTO> adminPlannerSelect();

@@ -113,7 +113,7 @@
 		                <c:forEach items="${plannerList}" var="row" varStatus="loop">      
 		                <div class="swiper-slide">          
 		                    <div class="card custom-col">
-		                        <div>
+		                        <div style="cursor: pointer;" onclick="location.href='../planner/planner_view.do?planner_idx=${row.planner_idx}';">
 		                            <img class="card-img-top" src="../uploads/${row.sfile}" style="height: 250px;" alt="Card image">
 		                            <div class="card-body">
 		                                <h5 class="card-title">${row.plan_start} > ${row.plan_end}</h5>

@@ -8,7 +8,7 @@
 
 
 	<insert id="insertMultiFile" parameterType="com.edu.springboot.community.PhotoBoardDTO">
-    INSERT INTO photoboard (photoboard_idx, nickname, email,  title, content, ofile, sfile)
+    INSERT INTO photoboard (idx, nickname, email,  title, content, ofile, sfile)
     VALUES (SEQ_PHOTOBOARD_IDX.nextval, #{nickname}, #{email}, #{title}, 
             #{content}, #{ofile}, #{sfile})
 	</insert>
@@ -17,7 +17,7 @@
 	 <update id="updateFIle" parameterType="com.edu.springboot.community.PhotoBoardDTO">
 	    UPDATE photoboard SET title = #{title}, content = #{content}, email=#{email},
 	    nickname=#{nickname} , ofile=#{ofile}, sfile = #{sfile} 
-	    WHERE photoboard_idx = #{photoboard_idx}
+	    WHERE idx = #{idx}
 	</update>
 </mapper>
 

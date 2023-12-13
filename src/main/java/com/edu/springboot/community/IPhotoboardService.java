@@ -18,7 +18,7 @@ public interface IPhotoboardService {
 	public int photoedit(PhotoBoardDTO photoBoardDTO);
 	public int photodelete(String idx);
 	public int writeConmments(
-			@Param("photoboard_idx") int photoboard_idx,
+			@Param("idx") int idx,
 			@Param("content") String content,
 			@Param("nickname") String nickname,
 			@Param("email") String email

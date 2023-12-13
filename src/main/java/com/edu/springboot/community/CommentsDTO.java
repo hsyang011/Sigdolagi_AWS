@@ -9,7 +9,7 @@ public class CommentsDTO {
 	private String nickname;
 	private String content;
 	private String postdate;
-	private int photoboard_idx;
+	private int idx;
 	private String email;
 	
 	

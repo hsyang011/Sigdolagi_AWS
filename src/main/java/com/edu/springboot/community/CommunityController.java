@@ -58,17 +58,18 @@ public class CommunityController {
 		
 		
 		
-		int photoboard_idx = commentsDTO.getPhotoboard_idx();
+		int idx = commentsDTO.getIdx();
         String content = commentsDTO.getContent();
         String nickname = commentsDTO.getNickname();
-        String email = req.getParameter("email");
+        String email = commentsDTO.getEmail();
         
-        System.out.println(photoboard_idx);
+        
+        System.out.println(idx);
         System.out.println(content);
         System.out.println(nickname);
         System.out.println(email);
 
-        int result = photoboarddao.writeConmments(photoboard_idx, content, nickname, email);
+        int result = photoboarddao.writeConmments(idx, content, nickname, email);
 
         System.out.println("성공?");
         System.out.println(commentsDTO);
@@ -562,8 +563,8 @@ public class CommunityController {
       //return "redirect:freeboard_view.do?freeboard_idx="+boardDTO.getFreeboard_idx();
       //int result = photoboarddao.photoedit(photoBoardDTO);
       //System.out.println("result:"+result);
-      model.addAttribute("photoboard_idx", photoBoardDTO.getPhotoboard_idx());
-      return "redirect:photoboard_view.do?photoboard_idx="+photoBoardDTO.getPhotoboard_idx();
+      model.addAttribute("idx", photoBoardDTO.getIdx());
+      return "redirect:photoboard_view.do?idx="+photoBoardDTO.getIdx();
       //return "main/main";
       //return "redirect:photoboard_list.do";
    }
@@ -573,7 +574,7 @@ public class CommunityController {
    //포토 게시판 삭제처리
    @PostMapping("/community/photoboard_delete.do")
    public String photoDeletePost(HttpServletRequest req ) {
-      int result = photoboarddao.photodelete(req.getParameter("photoboard_idx"));
+      int result = photoboarddao.photodelete(req.getParameter("idx"));
       System.out.println("글삭제결과:"+result);
       
       return "redirect:photoboard_list.do";

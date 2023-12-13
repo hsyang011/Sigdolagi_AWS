@@ -327,7 +327,7 @@ function deleteImageFile() {
                         <form name="writeFrm" method="post" onsubmit="return validateForm(this);" 
                         class="writeFrm" enctype="multipart/form-data"
                         action="../community/photoboard_edit.do"">
-                        <input type="hid-den" name="photoboard_idx" value="${photoBoardDTO.photoboard_idx }" />
+                        <input type="hid-den" name="idx" value="${photoBoardDTO.idx }" />
                             <input type="hidden" name="tname" value=" ${photoBoardDTO.title}" />
                             <table class="table table-bordered" id="free_write_frm_table" width="100%" >
                                     <tr>
