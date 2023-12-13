@@ -123,7 +123,7 @@
                                             <td><span>${Math.round((row.prod_sale/row.prod_price)*100)}</span> %</td>
                                             <td>${row.seller }</td>
                                             <td>${row.inventory }</td>
-                                            <td>${row.regidate }</td>
+                                            <td>${row.postdate }</td>
                                             <td>
                                                 <img src="../images/products/${row.img1 }" alt="" width="100px">
                                             </td>
