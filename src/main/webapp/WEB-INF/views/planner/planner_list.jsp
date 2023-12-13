@@ -90,7 +90,7 @@ $(function() {
    	            let str = '';
    	            for (let i=0; i<res.length; i++) {   	            	
 	   	            str += '<div class="card custom-col">';
-		            str +=     '<div>';
+		            str +=     '<div style="cursor: pointer;" onclick="location.href=\'./planner_view.do?planner_idx='+res[i].planner_idx+'\';">';
 			        str +=         '<img class="card-img-top" src="../uploads/'+res[i].sfile+'" height="250" alt="Card image">';
 			        str +=         '<div class="card-body">';
 		        	str +=             '<h5 class="card-title">'+res[i].plan_start+' > '+res[i].plan_end+'</h5>';
@@ -229,7 +229,7 @@ function resizeCardSize() {
                 <figure class="row thumbnail" id="otherPlanners">
                 <c:forEach items="${plannerList}" var="row" varStatus="loop">                
                     <div class="card custom-col">
-                        <div>
+                        <div style="cursor: pointer;" onclick="location.href='./planner_view.do?planner_idx=${row.planner_idx}';">
                             <img class="card-img-top" src="../uploads/${row.sfile}" alt="Card image">
                             <div class="card-body">
                                 <h5 class="card-title">${row.plan_start} > ${row.plan_end}</h5>

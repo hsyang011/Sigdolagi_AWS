@@ -1,12 +1,8 @@
 package com.edu.springboot.planner;
 
 import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.security.Principal;
-import java.util.Collection;
 import java.util.List;
-import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.edu.springboot.member.IMemberService;
+import com.edu.springboot.member.MemberDAO;
 import com.edu.springboot.member.MemberDTO;
 
 import jakarta.servlet.ServletOutputStream;
@@ -32,6 +30,9 @@ public class PlannerController {
 	
 	@Autowired
 	IPlaceService placeDAO;
+	
+	@Autowired
+	IMemberService memberDAO;
 	
 	// 플래너 리스트 페이지
 	@RequestMapping("/planner/planner_list.do")
@@ -137,6 +138,25 @@ public class PlannerController {
 		plannerDAO.savePlanner(plannerDTO);
 		
 		return "redirect:/planner/planner_list.do";
+	}
+	
+	// 플래너 뷰 페이지
+	@RequestMapping("/planner/planner_view.do")
+	public String plannerView(PlannerDTO plannerDTO, Model model) {
+		String planner_idx = plannerDTO.getPlanner_idx();
+		List<PlaceDTO> allPlaces = plannerDAO.getAllPlaces(plannerDTO);
+		
+		model.addAttribute("planner_idx", planner_idx);
+		model.addAttribute("places", allPlaces);
+		System.out.println(allPlaces);
+		
+		// 멤버의 정보를 얻어오기 위한 객체 생성
+		MemberDTO memberDTO = new MemberDTO();
+		memberDTO.setEmail(plannerDAO.getPlannerInfo(plannerDTO).getEmail());
+		memberDTO = memberDAO.getoneMemberDTO(memberDTO);
+		model.addAttribute("memberDTO", memberDTO);
+		
+		return "planner/planner_view";
 	}
 	
 }

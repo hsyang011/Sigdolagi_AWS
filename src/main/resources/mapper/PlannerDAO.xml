@@ -43,4 +43,9 @@
 			WHERE planner_idx=${planner_idx}
 	</update>
 	
+	<!-- planner_idx로 planner의 정보를 가져온다. -->
+	<select id="getPlannerInfo" parameterType="com.edu.springboot.planner.PlannerDTO" resultType="com.edu.springboot.planner.PlannerDTO">
+		SELECT * FROM planner WHERE planner_idx=#{planner_idx}
+	</select>
+	
 </mapper>
