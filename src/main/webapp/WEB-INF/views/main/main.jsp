@@ -17,7 +17,7 @@
 <%@ include file="../include/top.jsp" %>
 
 <!-- main 시작 -->
-<main class="container-fluid" style="height: 3600px;">
+<main class="container-fluid">
     <!-- top slide start -->
     <div class="container-fluid">
         <div class="top_slide">
@@ -26,30 +26,27 @@
 
                 <!-- Indicators/dots -->
                 <div class="carousel-indicators">
-                <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
-                <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
-                <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+	                <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
+	                <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
+	                <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
                 </div>
                 
                 <!-- The slideshow/carousel -->
                 <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="http://via.placeholder.com/1920x550" style="width:100%;">
-                </div>
-                <div class="carousel-item">
-                    <img src="http://via.placeholder.com/1920x550" style="width:100%;">
-                </div>
-                <div class="carousel-item">
-                    <img src="http://via.placeholder.com/1920x550" style="width:100%;">
-                </div>
+	                <div class="carousel-item active">
+	                    <img src="../images/2f69e05d4d598d3959fb6d8a1801ef5a.jpg" style="width:100%;">
+	                </div>
+	                <div class="carousel-item">
+	                    <img src="../images/chicago.jpg" style="width:100%;">
+	                </div>
                 </div>
                 
                 <!-- Left and right controls/icons -->
                 <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon"></span>
+                	<span class="carousel-control-prev-icon"></span>
                 </button>
                 <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
-                <span class="carousel-control-next-icon"></span>
+                	<span class="carousel-control-next-icon"></span>
                 </button>
             </div>
         </div>
@@ -321,107 +318,6 @@
                 </a>
             </div>
         </div>
-
-        <!-- 맛집 -->
-        <div class="container">
-            <div class="main_food_title">
-                <h2><span>#</span> 맛집</h2>
-                <div class="food_line"></div>
-            </div>
-            <div class="main_food">
-                <div class="main_food_list">
-                    <div class="swiper mySwiper">
-                        <div class="swiper-wrapper">
-                            <div class="swiper-slide">
-                                <div class="card" style="width:250px">
-                                    <img class="card-img-top" src="../images/스크린샷 2023-11-29 224515.png" alt="Card image" style="width:100%">
-                                    <div class="card-body">
-                                    <h4 class="card-title">John Doe</h4>
-                                    <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="card" style="width:250px">
-                                    <img class="card-img-top" src="../images/스크린샷 2023-11-29 224515.png" alt="Card image" style="width:100%">
-                                    <div class="card-body">
-                                    <h4 class="card-title">John Doe</h4>
-                                    <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="card" style="width:250px">
-                                    <img class="card-img-top" src="../images/스크린샷 2023-11-29 224515.png" alt="Card image" style="width:100%">
-                                    <div class="card-body">
-                                    <h4 class="card-title">John Doe</h4>
-                                    <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="card" style="width:250px">
-                                    <img class="card-img-top" src="../images/스크린샷 2023-11-29 224515.png" alt="Card image" style="width:100%">
-                                    <div class="card-body">
-                                    <h4 class="card-title">John Doe</h4>
-                                    <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="card" style="width:250px">
-                                    <img class="card-img-top" src="../images/스크린샷 2023-11-29 224515.png" alt="Card image" style="width:100%">
-                                    <div class="card-body">
-                                    <h4 class="card-title">John Doe</h4>
-                                    <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="card" style="width:250px">
-                                    <img class="card-img-top" src="../images/스크린샷 2023-11-29 224515.png" alt="Card image" style="width:100%">
-                                    <div class="card-body">
-                                    <h4 class="card-title">John Doe</h4>
-                                    <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="card" style="width:250px">
-                                    <img class="card-img-top" src="../images/스크린샷 2023-11-29 224515.png" alt="Card image" style="width:100%">
-                                    <div class="card-body">
-                                    <h4 class="card-title">John Doe</h4>
-                                    <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="card" style="width:250px">
-                                    <img class="card-img-top" src="../images/스크린샷 2023-11-29 224515.png" alt="Card image" style="width:100%">
-                                    <div class="card-body">
-                                    <h4 class="card-title">John Doe</h4>
-                                    <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="card" style="width:250px">
-                                    <img class="card-img-top" src="../images/스크린샷 2023-11-29 224515.png" alt="Card image" style="width:100%">
-                                    <div class="card-body">
-                                    <h4 class="card-title">John Doe</h4>
-                                    <p class="card-text">Some example text some example text. John Doe is an architect and engineer</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swiper-button-next"></div>
-                        <div class="swiper-button-prev"></div>
-                        <div class="swiper-pagination"></div>
-                    </div>
-                </div>
-            </div>     
-        </div>
-        <!-- 맛집 끝 -->
 
         <!-- 마켓 시작 -->
         <div class="container">
