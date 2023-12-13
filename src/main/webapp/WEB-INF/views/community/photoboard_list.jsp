@@ -112,7 +112,6 @@ $(function() {
 							                    <div class="card-body">
 							                        <h4 class="card-title" style="font-size: 18px; text-align: left;">
 							                            ${entry.title} <!-- 파일 이름 -->
-							                            <a href="./photoboard_view.do?photoboard_idx=${ entry.photoboard_idx }">${ entry.title }</a>
 							                        </h4>
 							                        <p class="card-text" style="text-align: left;">
 							                            ${ entry.content }

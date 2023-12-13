@@ -154,6 +154,25 @@
 
 <script>
 
+function deletePost(freeboard_idx){
+    var confirmed = confirm("정말로 삭제하겠습니까?"); 
+    if (confirmed) {
+        var form = document.writeFrm;      
+        form.method = "post";  
+        form.action = "./photoboard_delete.do";
+        form.submit();  
+    }
+}
+
+
+
+</script>
+
+
+
+
+<script>
+
 
 function CommentSend(){
 	let frm = document.commentwriteFrm;
@@ -161,7 +180,7 @@ function CommentSend(){
     let data = {
     		
     	photoboard_idx : frm.photoboard_idx.value,
-    	email : frm.email.value,
+    	nickname : frm.nickname.value,
     	content : frm.content.value
     };
     //alert("댓글작성 "); // 여기에 alert 추가
@@ -183,30 +202,44 @@ function CommentSend(){
 }
 </script>
 
-
-    
 <script>
-   // 댓글을 화면에 추가하는 함수
-   function displayComment(res) {
-	   // 받은 댓글 데이터를 이용하여 화면에 추가하는 로직을 작성
-	   console.log(res.email);
-	   console.log(res.photoboard_idx);
-	   console.log(res.content);
-	   var commentHTML = 
-	       "<tr align=\"center\">" +
-	           "<td>" + res.email + "</td>" +
-	           "<td>" + res.photoboard_idx + "</td>" +
-	           "<td>" + res.content + "</td>" +
-	       "</tr>";
-	   // 화면에 댓글 추가
-	   $("#commentsTableBody").append(commentHTML);
-	}
-   
-   
-   	
+    // 현재 날짜와 시간을 얻기 위한 함수
+    function getCurrentDateTime() {
+        var now = new Date();
+
+        // 날짜 및 시간을 원하는 형식으로 포맷팅
+        var formattedDateTime = now.getFullYear() + '-' +
+            padNumber(now.getMonth() + 1) + '-' +
+            padNumber(now.getDate()) + ' ' +
+            padNumber(now.getHours()) + ':' +
+            padNumber(now.getMinutes()) + ':' +
+            padNumber(now.getSeconds());
+
+        return formattedDateTime;
+    }
+
+    // 숫자를 두 자리로 패딩하는 함수
+    function padNumber(number) {
+        return (number < 10 ? '0' : '') + number;
+    }
+
+    // 댓글을 화면에 추가하는 함수
+    function displayComment(res) {
+        // 받은 댓글 데이터를 이용하여 화면에 추가하는 로직을 작성
+        console.log(res.email);
+        console.log(res.photoboard_idx);
+        console.log(res.content);
+        var commentHTML =
+            "<tr align=\"center\">" +
+            "<td>" + res.nickname + "</td>" +
+            "<td>" + res.photoboard_idx + "</td>" +
+            "<td>" + res.content + "</td>" +
+            "<td>" + getCurrentDateTime() + "</td>" +
+            "</tr>";
+        // 화면에 댓글 추가
+        $("#commentsTableBody").append(commentHTML);
+    }
 </script>
-     
-    
     
     
     </head>
@@ -276,6 +309,8 @@ function CommentSend(){
                                             <textarea id="" name="content" readonly>${photoBoardDTO.content}</textarea>
                                         </td>
                                     </tr>
+                                    
+                                    
                                     <tr>
                                         <td colspan="2" align="center" class="btn_td">
                                             <button type="button" class="writeFrm_edit" onclick="location.href='./photoboard_edit.do?photoboard_idx=${photoBoardDTO.photoboard_idx }';">수정하기</button>
@@ -286,6 +321,7 @@ function CommentSend(){
                                 </table>
                             </form>
                             
+                            
 
                             <div class="cm_write" style="width:100%">
                                 <fieldset>
@@ -293,30 +329,33 @@ function CommentSend(){
                                         <legend class="skipinfo">댓글 입력</legend>
                                         <div class="cm_input">
                                             <input type="text" name="photoboard_idx" value="${photoBoardDTO.photoboard_idx }">
-                                            <input type="text" name="email" value="이메일">
+                                            <input type="text" name="nickname" value="${nickname}">
                                             <p><textarea id="content" name="content" onkeyup=""  style="width:100%" rows="4" placeholder="댓글을 입력해 주세요."></textarea></p>
                                             <span><button type="button" class="btns" onclick="CommentSend();">등록</button> <i id="counter">0/300자</i></span>
                                         </div>
                                     </form>
                                 </fieldset>
                             </div>
-                            
-                            
+
+							
+							
+
+
 
                             <table class="table table-border">
                                 <thead>
                                     <tr>
-                                        <th>Email</th>
-                                        <th>Comments Index</th>
-                                        <th>Content</th>
-                                        <th>Post Date</th>
+                                        <th style="text-align: center;">Nickname</th>
+                                        <th style="text-align: center;">Comments Index</th>
+                                        <th style="text-align: center;">Content</th>
+                                        <th style="text-align: center;">Post Date</th>
                                     </tr>
                                 </thead>
                                 <tbody id="commentsTableBody">
                                     <!-- Existing comments will be added here dynamically -->
                                     <c:forEach items="${CommentsLists}" var="row" varStatus="loop">
                                         <tr align="center">
-                                            <td>${row.email}</td>
+                                            <td>${row.nickname}</td>
                                             <td>${row.comments_idx}</td>
                                             <td>${row.content}</td>
                                             <td>${row.postdate}</td>
@@ -330,7 +369,7 @@ function CommentSend(){
             </div>
         </main>
         <!-- main 끝 -->
-
+		
         <!-- footer 추가 -->
         <%@ include file="../include/footer.jsp" %>
 

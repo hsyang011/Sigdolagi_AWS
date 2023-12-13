@@ -73,19 +73,47 @@
         display: none;
     }
 
+	
+
+	
+	
+	
     #thumbnail {
         display: none; /* 초기에 숨김 */
         max-width: 100%; /* 이미지 크기를 부모 요소에 맞게 조절 */
         height: auto;
     }
-    
-        
-@media screen and (max-width: 768px) {
-    .custom-col { flex: 0 0 50%; }
-    .mealk_cate {font-size: 0.8em;}/* 밀키트 카테고리 사이즈 */
-}
-    
-</style>
+    </style>
+	
+	
+	
+	
+
+
+
+<script>
+	function validateForm(form){
+		if(form.title.value==""){
+			alert("제목을 입력하세요");
+			form.title.focus();
+			return false;
+		}
+		
+		if(form.content.value==""){
+			alert("내용은 필수 입력입니다.");
+			return false;
+		}
+		
+		if(form.ofile.value==""){
+			alert("첨부파일은 필수 입력입니다.");
+			return false;
+		}
+		
+		
+	}
+</script>
+
+
 
    <script>
         $(document).ready(function () {
@@ -93,12 +121,10 @@
 
             // 파일 선택 시 미리보기 기능 추가
              $("#ofile").change(function () {
-              readURL(this);
-              $("#deleteFileBtn").show(); // 파일을 선택하면 버튼을 보이도록 함
-              $("#thumbnail").show();
-          });
-            
-            
+		        readURL(this);
+		        $("#deleteFileBtn").show(); // 파일을 선택하면 버튼을 보이도록 함
+		        $("#thumbnail").show();
+		    });
             
             
             
@@ -115,7 +141,7 @@
                     data: { fileName: $("#ofile").val() },  // 파일명을 서버에 전달
                     success: function (data) {
                         // 성공적으로 파일 삭제된 경우
-                        $("#ofile").val("");
+                    	 $("#ofile").val("");
                          $('#thumbnail').attr('src', '#');
                          $("#thumbnail").hide(); // 파일 삭제 후 버튼을 다시 숨김
                          console.log("파일 삭제 성공");
@@ -177,26 +203,8 @@
         
         
     </script>
-
-
-
-
- <script>
-    $(document).ready(function () {
-        $('#summernote').summernote({
-            height: 300,
-            width: 1100,
-            lang: "ko-KR",
-            callbacks: {
-                onImageUpload: function (files) {
-                    
-                }
-            }
-        });
-
-</script>
-      
- 
+    
+    
 </head>
 <body>
     <!-- wrapper 시작 -->
@@ -204,7 +212,6 @@
 
         <!-- header, nav 추가 -->
         <%@ include file="../include/top.jsp" %>
-        
         
         <br><br><br>
         <!-- 배너 시작 -->
@@ -259,8 +266,7 @@
                                         <td>제목</td>
                                         <td>
                                             <input type="text" name="title" id="title" />
-                                            <input type="text" name="email" id="email" value="${email} " placeholder="이메일"/>
-                                            
+                                            <input type="text" name="nickname" id="nickname"  value="${nickname}" />
                                         </td>
                                     </tr>
                                     <tr>
@@ -291,12 +297,12 @@
                 </div>
             </div>
         </main>
-        <!— main 끝 —>
+        <!-- main 끝 -->
         
-        <!— footer 추가 —>
+        <!-- footer 추가 -->
         <%@ include file="../include/footer.jsp" %>
         
     </div>
-    <!— wrapper 끝 —>
+    <!-- wrapper 끝 -->
 </body>
 </html>

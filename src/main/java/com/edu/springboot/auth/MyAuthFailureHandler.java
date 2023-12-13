@@ -40,6 +40,8 @@ public class MyAuthFailureHandler implements AuthenticationFailureHandler {
 			errorMsg = "비밀번호 유효기간이 만료되었습니다. 관리자에게 문의하세요. (4)";
 		}
 		
+		
+		
 		// 에러메세지를 request영역에 저장한다.
 		request.setAttribute("errorMsg", errorMsg);
 		// 로그인 페이지로 포워드한다. 이때 파라미터 error를 전달한다.
