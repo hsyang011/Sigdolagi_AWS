@@ -61,12 +61,14 @@ public class CommunityController {
 		int photoboard_idx = commentsDTO.getPhotoboard_idx();
         String content = commentsDTO.getContent();
         String nickname = commentsDTO.getNickname();
+        String email = req.getParameter("email");
         
         System.out.println(photoboard_idx);
         System.out.println(content);
         System.out.println(nickname);
+        System.out.println(email);
 
-        int result = photoboarddao.writeConmments(photoboard_idx, content, nickname);
+        int result = photoboarddao.writeConmments(photoboard_idx, content, nickname, email);
 
         System.out.println("성공?");
         System.out.println(commentsDTO);
@@ -229,11 +231,8 @@ public class CommunityController {
    
    
    
-   
+ //포토  포토보드 리스트
    @RequestMapping("/community/photoboard_list.do")
-      //포토  포토보드 리스트
-   
-   
    public String photoBoardList(Model model, HttpServletRequest req, ParameterDTO parameterDTO, Principal principal) {
    
       System.out.println("들어오나?");
@@ -474,9 +473,6 @@ public class CommunityController {
       
       String email = principal.getName();
       String nickname= dao.getnickname(email);
-      
-      
-      
       
       
       

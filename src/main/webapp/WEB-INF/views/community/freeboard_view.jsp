@@ -214,14 +214,12 @@ function saveComment() {
                        
                                 <tr>
                
-                                  <sec:authorize access="hasRole('ROLE_USER') and ${boardDTO.email eq authentication.email}">
                                     <td colspan="4" align="center" class="btn_td">
                                         <button type="button" class="writeFrm_edit" onclick="location.href='./freeboard_edit.do?freeboard_idx=${boardDTO.freeboard_idx }';">수정하기</button>
                                       	<form id="deleteForm" action="./community/freeboard_delete.do" method="post">
                                           	<input type="hidden" name="freeboard_idx" value="${param.freeboard_idx }"   />
                                 			<button type="button" class="writeFrm_reset"  onclick="deletePost(${boardDTO.freeboard_idx });">삭제하기</button>
 								       	</form>
-								     </sec:authorize>
                                         <button type="button" class="writeFrm_list" onclick="location.href='./freeboard_list.do';">목록 보기</button>
                                     </td>
                                 </tr>

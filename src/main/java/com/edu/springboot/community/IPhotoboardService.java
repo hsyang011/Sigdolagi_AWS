@@ -20,7 +20,8 @@ public interface IPhotoboardService {
 	public int writeConmments(
 			@Param("photoboard_idx") int photoboard_idx,
 			@Param("content") String content,
-			@Param("nickname") String nickname
+			@Param("nickname") String nickname,
+			@Param("email") String email
 			);
 	
 	
