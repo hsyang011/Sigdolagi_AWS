@@ -146,7 +146,7 @@ function formValidate(frm) {
     </div>
     <!-- 배너 끝 -->
     <!-- main 시작 -->
-    <main style="height: 1100px;">
+    <main style="height: 1300px;">
         <div class="container">
             <div class="memberPage_title">
                 <h2>회원가입</h2>
@@ -204,7 +204,7 @@ function formValidate(frm) {
                             <h4>이메일</h4>
                             <input type="text" name="email1" class="email_id">@
                             <input type="text" name="email2" class="domain">
-                            <button type="button" class="btn rounded-4" style="background-color: #FF7A00; color: white;" onclick="emailSend(this.form);"  >전송하기</button>
+                            <button type="button" class="btn rounded-4" style="background-color: #FF7A00; color: white;" onclick="emailSend(this.form);"  >전송</button>
                             
                         </div>
             
@@ -230,7 +230,7 @@ function formValidate(frm) {
                             <h4>비밀번호 확인</h4>
                             <input type="password" name="password2" class="pw2">
                         </div>
-                        <div class="input_phone">
+                         <div class="input_phone">
                             <h4>연락처</h4>
                             <input type="text" name="tel1" maxlength="3" onkeyup="focusMove(this, 'tel2', 3);"  class="phone1">&nbsp;-&nbsp;
                             <input type="text" name="tel2" maxlength="4" onkeyup="focusMove(this, 'tel3', 4);" class="phone2">&nbsp;-&nbsp;
@@ -244,21 +244,21 @@ function formValidate(frm) {
                                     <input type="text" class="add2" name="zipcode" placeholder="우편번호">
                                     <button onclick="postOpen(event)" >주소찾기</button>
                                  
-                                    <input type="text" class="add1" name="addr1" style="width: 90%; margin-top: 20px;"><br>
-                                    <input type="text" class="add2" name="addr2" style="width: 90%;" placeholder="상세주소">
+                                    <input type="text" class="add1" name="addr1" style="width: 80%; margin-top: 20px;"><br>
+                                    <input type="text" class="add2" name="addr2" style="width: 80%;" placeholder="상세주소">
                                 </div>
                             </div>
                         </div>
                         <div class="email_radio">
                             <h4>이메일 수신 여부</h4>
-                           <input type="radio" name="mailing" value="1">&nbsp;수신동의
-                          <input type="radio" name="mailing" value="0">&nbsp;수신거부 
+                           <input type="radio" name="mailing"id="y_email" value="1">&nbsp;수신동의
+                          <input type="radio" name="mailing"id="n_email" value="0">&nbsp;수신거부 
                             
                         </div>
                         <div class="sms_radio">
                             <h4>sms 수신 여부</h4>
-                            <input type="radio" name="sms" value="1">&nbsp;수신동의
-                            <input type="radio" name="sms" value="0">&nbsp;수신거부 
+                            <input type="radio" name="sms" value="1" id="y_sms">&nbsp;수신동의
+                            <input type="radio" name="sms" value="0" id="n_sms">&nbsp;수신거부 
                             
                             
                         </div>
