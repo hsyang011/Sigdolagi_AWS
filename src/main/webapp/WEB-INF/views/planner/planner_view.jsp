@@ -255,9 +255,18 @@ for (var i=0; i<positions.length; i++) {
     var marker = new kakao.maps.Marker({
         map: map, // 마커를 표시할 지도
         position: positions[i].latlng, // 마커를 표시할 위치
-        title : positions[i].title, // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+        title : positions[i].title, // 마커의 타이틀
         image : markerImage // 마커 이미지 
     });
+    
+    // 인포윈도우를 생성합니다
+    var infowindow = new kakao.maps.InfoWindow({
+        position : positions[i].latlng, 
+        content : "<div style='width: 150px; padding: 3px; background-color: #FF7A00; color: white; text-align: center;'>"+positions[i].title+"</div>"
+    });
+      
+    // 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
+    infowindow.open(map, marker);
 }
 // ################################################################################
 </script>
