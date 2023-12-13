@@ -25,6 +25,7 @@ import com.edu.springboot.member.IMemberService;
 import com.edu.springboot.member.MemberDTO;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.Part;
 import utils.MyFunctions;
 
@@ -35,14 +36,17 @@ public class AdminController {
    IBoardService dao;
 	
 	@RequestMapping("/administrator/admin_main.do") 
-	public String adminMain(Model model, HttpServletRequest req,Principal principal) {
+	public String adminMain(Model model, HttpServletRequest req, HttpSession session, Principal principal) {
 		
 		try {
 			String userid = principal.getName();
 
 			String nickname = dao.getnickname(userid);
-	        System.out.println("nickname:결과"+nickname);
-	        model.addAttribute("nickname",nickname);
+	        System.out.println("nickname:결과 "+nickname);
+//	        model.addAttribute("nickname",nickname);
+	        session.setAttribute("UserNickName", nickname);
+	        String userNick = session.getAttribute("UserNickName").toString(); 
+	        System.out.println("UserNick = "+userNick);
 		}
 		catch (Exception e) {
 			System.out.println("로그인암됨.");
