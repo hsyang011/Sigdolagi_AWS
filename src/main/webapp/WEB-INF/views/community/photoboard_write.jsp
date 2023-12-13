@@ -73,47 +73,12 @@
         display: none;
     }
 
-	
-
-	
-	
-	
     #thumbnail {
         display: none; /* 초기에 숨김 */
         max-width: 100%; /* 이미지 크기를 부모 요소에 맞게 조절 */
         height: auto;
     }
     </style>
-	
-	
-	
-	
-
-
-
-<script>
-	function validateForm(form){
-		if(form.title.value==""){
-			alert("제목을 입력하세요");
-			form.title.focus();
-			return false;
-		}
-		
-		if(form.content.value==""){
-			alert("내용은 필수 입력입니다.");
-			return false;
-		}
-		
-		if(form.ofile.value==""){
-			alert("첨부파일은 필수 입력입니다.");
-			return false;
-		}
-		
-		
-	}
-</script>
-
-
 
    <script>
         $(document).ready(function () {
@@ -203,6 +168,31 @@
         
         
     </script>
+    
+    
+    <script>
+	function validateForm(form){
+		if(form.title.value==""){
+			alert("제목을 입력하세요");
+			form.title.focus();
+			return false;
+		}
+		
+		
+		if(form.content.value==""){
+			alert("내용은 필수 입력입니다.");
+			return false;
+		}
+		
+		if(form.ofile.value==""){
+			alert("첨부파일은 필수 입력입니다.");
+			return false;
+		}
+		
+		
+	}
+</script>
+    
     
     
 </head>

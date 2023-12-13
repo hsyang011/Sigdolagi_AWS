@@ -7,7 +7,9 @@ public interface IOrderService {
 	
 	// 결제 테이블에 결제 정보 담기
 	public int orderProcess(OrderDTO orderDTO);
+	// orderDTO로 order_idx를 얻어옵니다.
+	public String getOrderIdx(OrderDTO orderDTO);
 	// 결제 완료 후, 장바구니에 담긴 모든 품목 제거
-	public int deleteAll(OrderDTO orderDTO);
+	public int updateAll(OrderDTO orderDTO);
 	
 }

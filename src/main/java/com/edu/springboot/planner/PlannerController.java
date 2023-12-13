@@ -35,29 +35,21 @@ public class PlannerController {
 	
 	// 플래너 리스트 페이지
 	@RequestMapping("/planner/planner_list.do")
-	public String plannerList(MemberDTO memberDTO, Model model, Principal principal) {
-		// 로그인 된 상태라면
-		if (principal != null) {
-			memberDTO.setEmail(principal.getName());
-		} else {
-			memberDTO.setEmail("null");
-		}
-
-		List<PlannerDTO> list = plannerDAO.getOtherUserPlanner(memberDTO);
+	public String plannerList(Model model) {
+		List<PlannerDTO> list = plannerDAO.getPlannerByRecent();
 		model.addAttribute("plannerList", list);
 		return "planner/planner_list";
 	}
 	
 	// 플래너 정렬
 	@RequestMapping("/planner/sortPlannerByCate.do")
-	public ResponseEntity<List<PlannerDTO>> sortPlannerByCate(HttpServletRequest req, Principal principal) {
+	public ResponseEntity<List<PlannerDTO>> sortPlannerByCate(HttpServletRequest req) {
 		String cate = req.getParameter("cate");
-		String email = principal.getName();
 		List<PlannerDTO> list;
 		if (cate.equals("최신")) {
-			list = plannerDAO.getPlannerByRecent(email);
+			list = plannerDAO.getPlannerByRecent();
 		} else {
-			list = plannerDAO.getPlannerByCate(cate, email);
+			list = plannerDAO.getPlannerByCate(cate);
 		}
 		
 		return ResponseEntity.ok(list);

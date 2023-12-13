@@ -16,6 +16,11 @@
 		SELECT * FROM restaurant
 	</select>
 	
+	<!-- 식당 일부만 가져오기 -->
+	<select id="getRestaurant"  resultType="com.edu.springboot.restaurant.RestaurantDTO">
+		SELECT * FROM restaurant WHERE restaurant_idx<![CDATA[<=]]>10
+	</select>
+	
 	
 	
 	

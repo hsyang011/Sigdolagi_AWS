@@ -18,7 +18,9 @@ public interface IRestaurantService  {
 	// 상품 목록 (페이징 기능 추가)
 	
 	// 모든 식당  정보를 가져오기
-	public List<RestaurantDTO> allrestaurant(RestaurantDTO restaurantDTO);
+	public List<RestaurantDTO> allrestaurant();
 	
+	// 식당 10개만 가져오기
+	public List<RestaurantDTO> getRestaurant();
 	
 }

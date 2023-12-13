@@ -229,12 +229,12 @@ $(function() {
 
 
  
-    <!-- main 끝 -->
+    <!— main 끝 —>
     
-    <!-- footer 시작 -->
+    <!— footer 시작 —>
     <%@ include file="../include/footer.jsp" %>
     
 </div>
-<!-- wrapper 끝 -->
+<!— wrapper 끝 —>
 </body>
 </html>

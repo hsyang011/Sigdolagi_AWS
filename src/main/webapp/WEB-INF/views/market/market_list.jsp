@@ -124,7 +124,7 @@ function addToCart(idx) {
 		           <div class="card custom-col" style="cursor: pointer;">
 		               <div>
 		                   <div class="card_product_img">
-	                           <img class="shop_product_img card-img-top" onclick="location.href='./market_view.do?prod_idx=${row.prod_idx}';" src="../images/products/${row.prod_thumbnail}.jpg">
+	                           <img class="shop_product_img card-img-top" onclick="location.href='./market_view.do?prod_idx=${row.prod_idx}';" src="../images/products/${row.img1}">
 		                       <div class="cart_icon_box">
 		                           <img src="../images/shopping-bag3.png" onclick="addToCart(${row.prod_idx})" alt="">
 		                       </div>

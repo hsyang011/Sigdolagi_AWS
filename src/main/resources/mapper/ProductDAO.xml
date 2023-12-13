@@ -15,7 +15,8 @@
 	</select>
 	
 	<!-- 상품 리스트 -->
-	<select id="list" parameterType="com.edu.springboot.market.ParameterDTO" resultType="com.edu.springboot.market.ProductDTO">
+	<select id="list" parameterType="com.edu.springboot.market.ParameterDTO" 
+		resultType="com.edu.springboot.market.ProductDTO">
 		SELECT * FROM (
 			SELECT Tb.*, ROWNUM rNum FROM (
 				SELECT * FROM product
@@ -28,13 +29,20 @@
 		) WHERE rNum<![CDATA[>=]]>#{start} AND rNum<![CDATA[<=]]>#{end}
 	</select>
 	
+	<!-- 상품을 셀렉트 하기 -->
+	<select id="getAllProducts" resultType="com.edu.springboot.market.ProductDTO">
+		SELECT * FROM product ORDER BY prod_idx DESC
+	</select>
+	
 	<!-- 상품 상세보기 -->
-	<select id="view" parameterType="com.edu.springboot.market.ProductDTO" resultType="com.edu.springboot.market.ProductDTO">
+	<select id="view" parameterType="com.edu.springboot.market.ProductDTO" 
+		resultType="com.edu.springboot.market.ProductDTO">
 		SELECT * FROM product WHERE prod_idx=${prod_idx}
 	</select>
 	
 	<!-- 상품 추천 리스트 -2~2사이 -->
-	<select id="recommendList" parameterType="com.edu.springboot.market.ProductDTO" resultType="com.edu.springboot.market.ProductDTO">
+	<select id="recommendList" parameterType="com.edu.springboot.market.ProductDTO" 
+		resultType="com.edu.springboot.market.ProductDTO">
 		SELECT * FROM product WHERE prod_idx BETWEEN ${prod_idx}-2 AND ${prod_idx}+2 AND NOT prod_idx=${prod_idx}
 	</select>
 	
@@ -49,42 +57,78 @@
 	<!-- 관리자 마켓상품등록 -->
 	<insert id="adminMaketInsert"
 		parameterType="com.edu.springboot.market.ProductDTO">
-		<!-- insert into product (prod_idx, category, prod_name, prod_price, prod_sale,
-			prod_thumbnail, prod_detail, seller, img1, img2, img3, img4, img5, sub_cate, inventory, prod_discount) values
-			(seq_product_idx.nextval,#{category},#{prod_name},#{prod_price},#{prod_sale},#{prod_thumbnail},
-				#{prod_detail},#{seller},#{img1},#{img2},#{img3},#{img4},#{img5},#{sub_cate},#{inventory},#{prod_discount}) -->
-	INSERT INTO product (prod_idx, category, sub_cate, seller,  prod_name, prod_price,  prod_sale,  inventory, prod_detail_o, prod_detail
-		 <if test="prod_thumbnail_o != null">
-            prod_thumbnail_o,
-        </if>
-		<if test="prod_thumbnail != null">
-            prod_thumbnail,
-        </if>
+	<!-- insert into product (prod_idx, category, prod_name, prod_price, prod_sale,
+		prod_thumbnail, prod_detail, seller, img1, img2, img3, img4, img5, sub_cate, inventory, prod_discount) values
+		(seq_product_idx.nextval,#{category},#{prod_name},#{prod_price},#{prod_sale},#{prod_thumbnail},
+			#{prod_detail},#{seller},#{img1},#{img2},#{img3},#{img4},#{img5},#{sub_cate},#{inventory},#{prod_discount}) -->
+	INSERT INTO product (
+	 category, sub_cate, seller,  prod_name, prod_price,  prod_sale,  inventory, prod_detail_o, prod_detail,
+        <if test="img1_o != null">
 		 img1_o,
+		</if>
+		<if test="img1 != null">
 		 img1,
+	 	</if>	
+	 	<if test="img2_o != null">
 		 img2_o,
+		 </if>
+		 <if test="img2 != null">
 		 img2,
+		 </if>
+		 <if test="img3_o != null">
 		 img3_o,
+		 </if>
+		 <if test="img3 != null">
 		 img3,
+		 </if>
+		 <if test="img4_o != null">
 		 img4_o,
+		 </if>
+		 <if test="img4 != null">
 		 img4,
+		 </if>
+		 <if test="img5_o != null">
 		 img5_o,
-		 img5) VALUES
-		(seq_product_idx.nextval, #{category},#{sub_cate}, #{seller}, #{prod_name}
-		, ${prod_price}, ${prod_sale},${inventory},
-			#{prod_detail_o,jdbcType=VARCHAR},#{prod_detail},
-			#{prod_thumbnail_o},
-			#{prod_thumbnail},
+		 </if>
+		 <if test="img5 != null">
+		 img5,
+		 </if>
+		  prod_idx 
+		 ) VALUES
+		( #{category}, #{sub_cate}, #{seller}, #{prod_name}, ${prod_price}, ${prod_sale}, ${inventory},
+			#{prod_detail_o},#{prod_detail},
+			<if test="img1_o != null">
 			#{img1_o},
+			</if>
+			<if test="img1 != null">
 			#{img1},
+			</if>
+			<if test="img2_o != null">
 			#{img2_o},
+			</if>
+			<if test="img2 != null">
 			#{img2},
+			</if>
+			<if test="img3_o != null">
 			#{img3_o},
+			</if>
+			<if test="img3 != null">
 			#{img3},
+			</if>
+			<if test="img4_o != null">
 			#{img4_o},
+			</if>
+			<if test="img4 != null">
 			#{img4},
+			</if>
+			<if test="img5_o != null">
 			#{img5_o},
-			#{img5});
+			</if>
+			<if test="img5 != null">
+			#{img5},
+			</if>
+			 seq_product_idx.nextval
+			)
 	</insert>
 	
 	<!-- 관리자 마켓상품삭제 -->

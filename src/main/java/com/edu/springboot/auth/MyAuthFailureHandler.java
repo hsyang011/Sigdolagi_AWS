@@ -45,7 +45,7 @@ public class MyAuthFailureHandler implements AuthenticationFailureHandler {
 		// 에러메세지를 request영역에 저장한다.
 		request.setAttribute("errorMsg", errorMsg);
 		// 로그인 페이지로 포워드한다. 이때 파라미터 error를 전달한다.
-		request.getRequestDispatcher("/member/login.do?error").forward(request, response);
+		request.getRequestDispatcher("/member/login.do").forward(request, response);
 	}
 	
 	// 예외의 종류에 따라 아래와 같이 계정을 잠그는 기능 등을 업무에 맞게 제작할 수 있다.
