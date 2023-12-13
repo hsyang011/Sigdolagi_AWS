@@ -9,6 +9,11 @@
 <%@ include file="../include/global_head.jsp" %>
 <!-- CSS -->
 <link rel="stylesheet" href="../css/login.css">
+<script>
+<c:if test="${not empty errorMsg}">
+	alert("${errorMsg}");
+</c:if>
+</script>
 </head>
 <body>
 <!-- wrapper 시작 -->

@@ -20,8 +20,8 @@ public class WebSecurityConfig {
    
    /* 에러핸들러 등록을 위해 빈을 자동주입 받는다.
    주입받은 빈은 failureHandler()에 등록하면 된다. */
-//   @Autowired
-//   public MyAuthFailureHandler myAuthFailureHandler;
+   @Autowired
+   public MyAuthFailureHandler myAuthFailureHandler;
    
    @Bean
    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -75,8 +75,8 @@ public class WebSecurityConfig {
             .loginPage("/member/login.do") // default : /login
             .loginProcessingUrl("/member/loginprocess1.do")
             .defaultSuccessUrl("/main/main.do", true)
-            .failureUrl("/member/login.do?error") // default : /login?error
-//            .failureHandler(myAuthFailureHandler)
+//            .failureUrl("/member/login.do?error") // default : /login?error
+            .failureHandler(myAuthFailureHandler)
             .usernameParameter("email") // default : username
             .passwordParameter("password") // default : password
             .permitAll());
