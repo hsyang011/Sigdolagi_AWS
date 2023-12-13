@@ -195,7 +195,7 @@ function saveComment() {
 	                         </tr>
 	                                <tr>
 	                             <td>작성자</td>
-	                             <td colspan=3>${ nickname1 }</td> <%-- 번호<td>${ boardDTO.freeboard_idx }</td>   --%> 
+	                             <td colspan=3>${ boardDTO.nickname }</td> <%-- 번호<td>${ boardDTO.freeboard_idx }</td>   --%> 
 	                     
 	                         </tr>
 	                         <tr>

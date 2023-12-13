@@ -85,17 +85,20 @@ main { margin-top: 3%; }
 .input_id { display: flex; justify-content: space-between; width: 570px; align-items: center; }
 .input_id input { border: none; border-radius: 10px; width: 190px; height: 46px; padding-left: 20px; font-size: 0.9em; }
 
+.input_email input{margin-left: 11%;border: none;border-radius: 10px;width: 230px;height: 46px;padding-left: 20px;padding-right: 20px;font-size: 0.9em;}
+.input_email button{ margin-left: 5%; border: none; background-color: #FF7A00; border-radius: 10px; width: 70px; height: 46px; font-size: 0.75em; font-family: NPSfontBold; color: white;}
+
 .input_name { display: flex; }
-.input_name input { margin-left: 9%; border: none; border-radius: 10px; width: 230px; height: 46px; padding-left: 20px; padding-right: 20px; font-size: 0.9em; }
+.input_name input { margin-left: 14%; border: none; border-radius: 10px; width: 230px; height: 46px; padding-left: 20px; padding-right: 20px; font-size: 0.9em; }
 
 .input_nickname { display: flex; }
-.input_nickname input { margin-left: 6.5%; border: none; border-radius: 10px; width: 230px; height: 46px; padding-left: 20px; padding-right: 20px; font-size: 0.9em; }
+.input_nickname input { margin-left: 11%; border: none; border-radius: 10px; width: 230px; height: 46px; padding-left: 20px; padding-right: 20px; font-size: 0.9em; }
 .input_nickname input::placeholder { text-align: center; font-size: 0.75em; }
 .input_nickname button { margin-left: 5%; border: none; background-color: #FF7A00; border-radius: 10px; width: 70px; height: 46px; font-size: 0.75em; font-family: NPSfontBold; color: white; }
 
 
 .input_searchadd { display: flex; }
-.input_searchadd input { margin-left: 6.5%; border: none; border-radius: 10px; width: 230px; height: 46px; padding-left: 20px; padding-right: 20px; font-size: 0.9em; }
+.input_searchadd input { margin-left: 11%; border: none; border-radius: 10px; width: 230px; height: 46px; padding-left: 20px; padding-right: 20px; font-size: 0.9em; }
 .input_searchadd input::placeholder { text-align: center; font-size: 0.75em; }
 .input_searchadd button { margin-left: 5%; border: none; background-color: #FF7A00; border-radius: 10px; width: 70px; height: 46px; font-size: 0.75em; font-family: NPSfontBold; color: white; }
 
@@ -103,7 +106,7 @@ main { margin-top: 3%; }
 
 
 .input_pw { display: flex; }
-.input_pw input { margin-left: 3.5%; width: 300px; height: 46px; border: none; border-radius: 10px; padding-left: 20px; padding-right: 20px; font-size: 0.9em; }
+.input_pw input { margin-left: 8%; width: 300px; height: 46px; border: none; border-radius: 10px; padding-left: 20px; padding-right: 20px; font-size: 0.9em; }
 .input_pw input::placeholder { text-align: center; font-size: 0.75em; }
 
 .input_pw2 { display: flex; }
