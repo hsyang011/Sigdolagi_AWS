@@ -40,8 +40,6 @@ public class WebSecurityConfig {
             .requestMatchers("/").permitAll()
 //            .requestMatchers("/**").permitAll()
             .requestMatchers("/html/**", "/css/**", "/js/**", "/images/**", "/bootstrap/**", "/uploads/**").permitAll()
-            // 유저 접근 권한, 관리자 페이지 외에 모든 페이지에 대한 접근 가능
-            .requestMatchers("/community/freeboard_write.do", "/market/**", "/member/**", "/planner/**").hasAnyRole("USER", "ADMIN")
             // 게스트일 때
             .requestMatchers(
                   // community 접근 권한
@@ -65,6 +63,8 @@ public class WebSecurityConfig {
                   "/service/**").permitAll()
 //                  "/community/**", "/main/**", "/market/**", "/member/**", "/planner/**", "/restaurant/**",
 //                  "/search/**", "/service/**").permitAll()
+            // 유저 접근 권한, 관리자 페이지 외에 모든 페이지에 대한 접근 가능
+            .requestMatchers("/community/**", "/market/**", "/member/**", "/planner/**").hasAnyRole("USER", "ADMIN")
             .requestMatchers("/admin/**").hasRole("ADMIN")
             .anyRequest().authenticated()
          );

@@ -106,14 +106,14 @@ public class CommunityController {
 
    public String freeboardWrite(Model model, HttpServletRequest req, Principal principal) {
       String email= principal.getName();
+      String nickname= dao.getnickname(email);
       String title= req.getParameter("title");
       String content= req.getParameter("content");
       //폼값을 개별적으로 전달한다.
-      int result = dao.write(email, title, content);
+      int result = dao.write(email,nickname,title, content);
       System.out.println("글쓰기 결과:" +result);
-      String nickname = dao.getnickname(email);
       System.out.println("nickname:결과"+nickname);
-      model.addAttribute("nickname",nickname); 
+      model.addAttribute("nickname1",nickname); 
 
       return "redirect:freeboard_list.do";
    }

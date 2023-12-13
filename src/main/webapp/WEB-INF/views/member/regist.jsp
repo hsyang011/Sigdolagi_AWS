@@ -194,7 +194,7 @@ function formValidate(frm) {
                     </div>
 
                     <div class="go_planner">
-                        <button class="go_planBtn" type="button">플래너 작성하기</button>
+                        <button class="go_planBtn" type="button">플래너 보러가기</button>
                     </div>
                 </div>
                 <div class="memberFrm">
@@ -207,15 +207,11 @@ function formValidate(frm) {
                             <button type="button" class="btn rounded-4" style="background-color: #FF7A00; color: white;" onclick="emailSend(this.form);"  >전송하기</button>
                             
                         </div>
-                        <div class="input_nickname">
-                            <h4></h4><h4></h4>
-                           
-                            
-                        </div>
-                        <div class="input_nickname">
-                            <h4></h4><h4></h4>
+            
+                        <div class="input_email">
+                 
                             <input type="text" class="verifynum" id="verifynum" name="verifynum" placeholder="인증번호.">
-                            <button type="button" id="emailnumber" name="emailnumber" onclick="checkVerification()">인증하기</button>
+                            <button type="button" id="emailnumber" name="emailnumber" onclick="checkVerification()" style="background-color: #FF7A00; color: white;">인증하기</button>
                         </div>
                         <div class="input_name">
                             <h4>이름</h4>
