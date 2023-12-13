@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.edu.springboot.service.INotiboardService">
+
+	<!-- list  -->
+	<select id="getTotalCount" resultType="int" parameterType="com.edu.springboot.community.ParameterDTO">
+	SELECT COUNT(*) from noticeboard
+			<if test="searchKeyword!=null and !searchKeyword.equals('')">
+		WHERE ${searchField} LIKE '%'||#{searchKeyword}||'%'
+		</if>
+	</select>
+	
+	
+	<select id="listPage"
+		resultType="com.edu.springboot.service.NotiDTO"
+		parameterType="com.edu.springboot.community.ParameterDTO">
+		SELECT * FROM (
+			SELECT Tb.*, rownum rNum FROM(
+				SELECT * FROM noticeboard
+				<if test="searchKeyword!=null and !searchKeyword.equals('')">
+				WHERE ${searchField} LIKE '%'||#{searchKeyword} ||'%'
+				</if>
+				ORDER BY freeboard_idx DESC
+			) Tb
+		)
+	 	WHERE rNum<![CDATA[>=]]>#{start} AND rNum<![CDATA[<=]]>#{end}
+	</select>
+	
+	<!-- write  -->
+	<insert id="write">
+		INSERT INTO noticeboard (noticeboard_idx, title, content) VALUES (seq_freeboard_idx.nextval, #{_title}, #{_content} )
+	</insert>
+	
+	<select id="view" resultType="com.edu.springboot.service.NotiDTO" parameterType="com.edu.springboot.service.NotiDTO">
+		SELECT * FROM noticeboard WHERE noticeboard_idx=${noticeboard_idx}
+	</select>
+
+</mapper>

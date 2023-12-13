@@ -3,6 +3,7 @@ package com.edu.springboot.auth;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -36,40 +37,31 @@ public class WebSecurityConfig {
       http.csrf((csrf) -> csrf.disable())
          .cors((cors) -> cors.disable())
          .authorizeHttpRequests((request) -> request
-            .dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
-            .requestMatchers("/").permitAll()
-//            .requestMatchers("/**").permitAll()
-            .requestMatchers("/html/**", "/css/**", "/js/**", "/images/**", "/bootstrap/**", "/uploads/**").permitAll()
-            // 게스트일 때
-            .requestMatchers(
-                  // community 접근 권한
-                  "/community/**",
-                  // main 접근 권한      
-                  "/main/**",
-                  // market 접근 권한
-                  
-                  "/market/market_list.do", "/market/market_view.do",
-                  // member 접근 권한
-                  "/member/login.do", "/member/findIdpw.do", "/member/findIdpw.do", "/member/doubleckeck.do", "/member/regist.do",
-                  "/member/registProcess.do", "/member/loginprocess.do", "/member/findEmail.do", "/member/findPass.do", "/member/emailSendProcess.do",
-                  // planner 접근 권한
-                  "/planner/planner_list.do", "/planner/sortPlannerByCate.do",
-                  // 관리자 접근 권한 (우선은 풀어두고 추후에 제한하기)
-                  "/administrator/**",
-                  // restaurant 접근 권한
-                  "/restaurant/**",
-                  // search 접근 권한
-                  "/search/**",
-                  // service 접근 권한
-                  "/service/**").permitAll()
-//                  "/community/**", "/main/**", "/market/**", "/member/**", "/planner/**", "/restaurant/**",
-//                  "/search/**", "/service/**").permitAll()
-            // 유저 접근 권한, 관리자 페이지 외에 모든 페이지에 대한 접근 가능
-            .requestMatchers("/market/**", "/member/**", "/planner/**").hasAnyRole("USER", "ADMIN")
-            .requestMatchers("/admin/**").hasRole("ADMIN")
-            .anyRequest().authenticated()
-         );
-      
+               .dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll()
+               .requestMatchers("/").permitAll()
+               // 정적파일 접근 모두 가능
+               .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
+               // 관리자 권한
+               .requestMatchers("/admin/**").hasRole("ADMIN")
+               // 유저 권한
+               .requestMatchers(
+                     // community 접근
+                     "/community/freeboard_write.do", "/community/freeboard_edit.do", "/community/freeboard_delete.do",
+                     "/community/photoboard_write.do", "/multiFileUpload.do", "/community/photoboard_writeprocess.do",
+                     "/community/photoboard_edit.do", "/community/photoboard_delete.do", "/community/deleteFile.do",
+                     // market 접근
+                     "/market/addToCart.do", "/market/cart.do", "/market/updateToCart.do", "/market/deleteToCart.do",
+                     "/market/order.do", "/market/orderProcess.do",
+                     // member 접근
+                     "/member/mypage.do", "/member/myinfo.do", "/member/myinfoEdit.do", "/member/myordermanage.do",
+                     "/member/logout.do",
+                     // planner 접근
+                     "/planner/planner_map.do", "/planner/addToPlanner.do", "/planner/deleteFromPlanner.do",
+                     "/planner/saveProcess.do"
+               ).hasAnyRole("USER", "ADMIN")
+               // 게스트 권한
+               .requestMatchers("/**", "/**/**").permitAll()
+               .anyRequest().authenticated());
       
       
       /* 로그인 페이지에 대한 디자인 커스터마이징
@@ -96,9 +88,7 @@ public class WebSecurityConfig {
             .logoutSuccessUrl("/")
             .permitAll());
       // 권한이 부족한 경우 이동할 위치
-//      http.exceptionHandling((expHanding) -> expHanding.accessDeniedPage("/main/main.do"));
-      
-      
+      http.exceptionHandling((expHanding) -> expHanding.accessDeniedPage("/main/main.do"));
       
       return http.build();
    }

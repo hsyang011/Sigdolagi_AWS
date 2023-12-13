@@ -115,12 +115,13 @@
                                 <div class="mb-3">
                                     <label for="prod_detail" class="form-label">상세내용</label>
                                     <!-- <textarea class="form-control" cols="30" rows="10" id="prod_detail" name="prod_detail"></textarea> -->
-                                	<input type="file" id="prod_detail" name="prod_detail_o"/>
-                                	
+                                	<input type="file" id="prod_detail" name="prod_detail_o"/><br />
+                                	<label for="thumbnail" class="form-label">상품이미지</label> 
+                                    <input type="file" id="thumbnail" name="prod_thumbnail_o"/><br />
                                 </div>
                                 
                                 <div class="mb-3">
-                                    <label for="thumbnail" class="form-label">상품이미지</label> 
+                                    <label for="imgs" class="form-label">상품이미지</label> 
                                     <input type="file" id="imgs" name="imgs" multiple/><br />
                                     <!-- 상품이미지1 <input type="file" id="img1_o" name="img1_o" /><br />
                                     상품이미지2 <input type="file" id="img2_o" name="img2_o" /><br />

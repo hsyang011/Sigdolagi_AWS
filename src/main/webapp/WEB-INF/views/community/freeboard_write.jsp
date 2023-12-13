@@ -134,6 +134,7 @@ main > * { margin: 50px 0; }
                         <form name="writeFrm" method="post" onsubmit="return validateForm(this);" action="/community/freeboard_write.do" class="writeFrm">
 
                             <input type="hidden" name="email" />
+                            <input type="hidden" name="nickname" />
                             <table class="table table-bordered" id="free_write_frm_table" width="100%" >
                                 <tr>
                                     <td>제목</td>

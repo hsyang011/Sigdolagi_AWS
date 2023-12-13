@@ -210,14 +210,14 @@ public class CommunityController {
 
    public String freeboardWrite(Model model, HttpServletRequest req, Principal principal) {
       String email= principal.getName();
-      String nickname= principal.getName();
+      String nickname= dao.getnickname(email);
       String title= req.getParameter("title");
       String content= req.getParameter("content");
       //폼값을 개별적으로 전달한다.
-      int result = dao.write(email, nickname, title, content);
+      int result = dao.write(email,nickname,title, content);
       System.out.println("글쓰기 결과:" +result);
-
-      model.addAttribute("nickname",principal.getName()); 
+      System.out.println("nickname:결과"+nickname);
+      model.addAttribute("nickname1",nickname); 
 
       return "redirect:freeboard_list.do";
    }
@@ -243,21 +243,7 @@ public class CommunityController {
       boardDTO = dao.view(boardDTO);
       boardDTO.setContent(boardDTO.getContent().replace("\r\n", "<br>"));
 
-      
-      
-//       // 댓글 추가
-//      String nickname= req.getParameter("nickname");
-//      String comment_idx = req.getParameter("comment_idx");
-//      String content= req.getParameter("content");
-//       int com_result = commentdao.commentInsert(comment_idx,nickname,content);
-//       System.out.println("댓글 결과:" +com_result);
-//       
-//       // 댓글 리스트 가져오기
-//       ArrayList<CommentDTO> com_List = commentdao.commentList(parameterDTO);
-       
-       model.addAttribute("boardDTO", boardDTO);
-//       model.addAttribute("com_List", com_List); // 댓글 리스트를 모델에 추가
-
+      model.addAttribute("boardDTO", boardDTO);
 
       return "community/freeboard_view";
    }
@@ -265,9 +251,9 @@ public class CommunityController {
    
 
    
-   //자유게시판 수정하기
+   //자유게시판 수정하기(겟)
    @GetMapping("/community/freeboard_edit.do")
-   public String freeboardEdit(Model model, BoardDTO boardDTO) {
+   public String freeboardEdit(Model model, BoardDTO boardDTO, Principal principal) {
       System.out.println("들어오니?");
       boardDTO = dao.view(boardDTO);
       model.addAttribute("boardDTO", boardDTO);
@@ -275,9 +261,9 @@ public class CommunityController {
    
    }
    
-   //?이건 뭐지?
+   //자유게시판 수정하기(포스트)
    @PostMapping("/community/freeboard_edit.do")
-   public String boardEditPost(BoardDTO boardDTO) {
+   public String boardEditPost(BoardDTO boardDTO, Principal principal) {
       int result = dao.edit(boardDTO);
       System.out.println("result:"+result);
       return "redirect:freeboard_view.do?freeboard_idx="+boardDTO.getFreeboard_idx();
@@ -285,7 +271,7 @@ public class CommunityController {
    
    
    @PostMapping("/community/freeboard_delete.do")
-   public String boardDeletePost(HttpServletRequest req ) {
+   public String boardDeletePost(HttpServletRequest req,Principal principal) {
       int result = dao.delete(req.getParameter("freeboard_idx"));
       System.out.println("글삭제결과:"+result);
       

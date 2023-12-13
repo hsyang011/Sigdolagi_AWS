@@ -21,9 +21,8 @@ public interface IBoardService {
    public int edit(BoardDTO boardDTO);
    public int delete(String idx);
    public int update(BoardDTO boardDTO);
-   public int nickname(String nickname);
+   public String getnickname(String email);
    
    //관리자 자유게시판목록
    public List<BoardDTO> adminFreeSelect();
-   
-}
+   }

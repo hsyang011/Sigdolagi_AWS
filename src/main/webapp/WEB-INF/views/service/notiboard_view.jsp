@@ -87,9 +87,6 @@ function deletePost(freeboard_idx){
     }
 }
 
-
-
-
 // 댓글 길이 카운팅
 function countingLength(content) {
     if (content.value.length > 300) {
@@ -143,12 +140,12 @@ function saveComment() {
     <div id="banner" class="mt-3">
         <div id="banner_contents" class="container d-flex align-items-center">
             <div id="info">
-                <h4>자유롭게 소통하세요</h4>
+                <h4>무엇이든 물어보세요</h4>
                 <div id="info_title" class="d-flex">
-                    <h2>커뮤니티</h2>
+                    <h2>고객센터</h2>
                 </div>
             </div>
-            <img id="page_icon" src="../images/com.png">
+            <img id="page_icon" src="../images/asd.png">
         </div>
     </div>
     <!-- 배너 끝 -->
@@ -165,15 +162,16 @@ function saveComment() {
                           <a class="nav-link" href="#">홈</a>
                         </li>
                         <li class="nav-item">
-                          <a class="nav-link" href="#">커뮤니티</a>
+                          <a class="nav-link" href="#">고객센터</a>
                         </li>
                     </ul>
                 </div>
                 <!-- 네비로케이션 끝 -->
                 <!-- 헤더제목 -->
-                <ul class="catemenu d-flex">
-                    <li class="on"><a href="./freeboard_list.do">자유게시판</a></li>
-                    <li><a href="./photoboard_list.do">사진게시판</a></li>
+               	<ul class="catemenu d-flex">
+                    <li class="on"><a href="../service/notiboard.do">공지사항</a></li>
+                    <li><a href="../service/inquiryboard.do">1:1문의하기</a></li>
+                    <li><a href="../service/faq.do">자주묻는질문</a></li>
                 </ul>
             </div>
             <!-- 컨텐츠 헤더 끝 -->
@@ -184,55 +182,53 @@ function saveComment() {
                     <div class="freeboard_write_frm" >
                         <!-- 게시판 들어가는 부분 (시작) -->
                         <form name="writeFrm" method="post" onsubmit="return validateForm(this);" action="../community/freeboard_view.do" class="writeFrm">
-                          <input type="hidden" name="freeboard_idx" value="${ boardDTO.freeboard_idx }" />
+                          <input type="hidden" name="freeboard_idx" value="${ notiDTO.notiboard_idx }" />
                             <input type="hidden" name="email"  />
-                            <input type="hidden" name="nickname" />	
                             <table class="table table-bordered" id="free_write_frm_table" width="100%" >
                                <colgroup>
                                    <col width="20%" /><col width="30%" /><col width="20%" /><col width="30%" />
                                    
                                 </colgroup>
-	                         <tr> 
-	                             <td>작성일</td> <td>${ boardDTO.postdate }</td>
-	                             <td>조회수</td> <td>${ boardDTO.visitcount }</td>
-	                         </tr>
-	                                <tr>
-	                             <td>작성자</td>
-	                             <td colspan=3>${ boardDTO.nickname }</td> <%-- 번호<td>${ boardDTO.freeboard_idx }</td>   --%> 
-	                     
-	                         </tr>
-	                         <tr>
-	                             <td>제목</td>
-	                             <td colspan="3">${ boardDTO.title }</td>
-	                         </tr>
-	                                <tr>
-	                             <td>내용</td>
-	                             <td colspan="3" height="100">
-	                                ${ boardDTO.content }              
-	                             </td>
-	                         </tr>
+		                         <tr> 
+		                             <td>작성일</td> <td>${ notiDTO.postdate }</td>
+		                       <%--       <td>조회수</td> <td>${ notiDTO..visitcount }</td> --%>
+		                         </tr>
+		                         <tr>
+		 <%--                             <td>작성자</td>
+		                             <td colspan=3>${ boardDTO.email }</td> 번호<td>${ boardDTO.freeboard_idx }</td>   
+		                      --%>
+		                         </tr>
+		                         <tr>
+		                             <td>제목</td>
+		                             <td colspan="3">${ notiDTO.title }</td>
+		                         </tr>
+		                                <tr>
+		                             <td>내용</td>
+		                             <td colspan="3" height="100">
+		                                ${ notiDTO.content }              
+		                             </td>
+		                         </tr>
                        
                                 <tr>
-               
-                                  <sec:authorize access="hasRole('ROLE_USER') and ${boardDTO.email eq authentication.email}">
                                     <td colspan="4" align="center" class="btn_td">
-                                        <button type="button" class="writeFrm_edit" onclick="location.href='./freeboard_edit.do?freeboard_idx=${boardDTO.freeboard_idx }';">수정하기</button>
-                                      	<form id="deleteForm" action="./community/freeboard_delete.do" method="post">
-                                          	<input type="hidden" name="freeboard_idx" value="${param.freeboard_idx }"   />
-                                			<button type="button" class="writeFrm_reset"  onclick="deletePost(${boardDTO.freeboard_idx });">삭제하기</button>
-								       	</form>
-								     </sec:authorize>
-                                        <button type="button" class="writeFrm_list" onclick="location.href='./freeboard_list.do';">목록 보기</button>
+             <%--                            <button type="button" class="writeFrm_edit" onclick="location.href='./freeboard_edit.do?freeboard_idx=${boardDTO.freeboard_idx }';">수정하기</button>
+                                        <form id="deleteForm" action="./community/freeboard_delete.do" method="post">
+
+                                          	<input type="hidden" name="freeboard_idx" value="${param.freeboard_idx }"  />
+                                			<button type="button" class="writeFrm_reset"  onclick="deletePost(${boardDTO.freeboard_idx});">삭제하기</button>
+								       	</form> --%>
+
+                                        <button type="button" class="writeFrm_list" onclick="location.href='./notiboard.do';">목록 보기</button>
                                     </td>
                                 </tr>
                             </table>
                         </form>
                         
-                        <!--/* 댓글 작성 */-->
+                       <%--  <!--/* 댓글 작성 */-->
 
                    <div class="cm_write" style="width:100%">
                        <fieldset>
-                        <form name="cm_Frm" method="post" onsubmit="return validateForm(this);" action="/community/freeboard_comment.do" class="writeFrm">
+                        <form name="writeFrm" method="post" onsubmit="return validateForm(this);" action="/community/freeboard_comment.do" class="writeFrm">
                            <legend class="skipinfo">댓글 입력</legend>
                            <div class="cm_input">
                                <p><textarea id="content" name="content" onkeyup="countingLength(this);"  style="width:100%" rows="4" placeholder="댓글을 입력해 주세요."></textarea></p>
@@ -253,13 +249,13 @@ function saveComment() {
                                  </form>
                                 <br />
                              </tr>
-                       </c:forEach> 
+                          </c:forEach> 
 
 					
 
                  
                   
-                  </div>
+                  </div> --%>
                     </div> 
                 </div>
         <!-- 컨테이너 안쪽 컨텐츠 -->

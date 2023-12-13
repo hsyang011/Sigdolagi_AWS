@@ -1,6 +1,7 @@
 package com.edu.springboot.admin;
 
 import java.io.File;
+import java.security.Principal;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
@@ -10,8 +11,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ResourceUtils;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.edu.springboot.community.BoardDTO;
 import com.edu.springboot.community.IBoardService;
@@ -27,11 +30,23 @@ import utils.MyFunctions;
 
 @Controller
 public class AdminController {
-
 	
+	@Autowired
+   IBoardService dao;
 	
 	@RequestMapping("/administrator/admin_main.do") 
-	public String adminMain() {
+	public String adminMain(Model model, HttpServletRequest req,Principal principal) {
+		
+		try {
+			String userid = principal.getName();
+
+			String nickname = dao.getnickname(userid);
+	        System.out.println("nickname:결과"+nickname);
+	        model.addAttribute("nickname",nickname);
+		}
+		catch (Exception e) {
+			System.out.println("로그인암됨.");
+		}
 		
 		return "administrator/admin_main"; 
 	 }
@@ -193,18 +208,60 @@ public class AdminController {
 			//View로 전달하기 위해 Model객체에 저장한다.
 			model.addAttribute("saveFileMaps", saveFileMaps);
 			
-			
-			
-			
 			//JDBC 연동을 하지 않으므로 Model객체에 정보를 저장한다.
 			model.addAttribute("originalFileName", originalFileName);
 			model.addAttribute("savedFileName", savedFileName);
 			
+			//JDBC연동
+			//싱글파일
+			productDTO.setProd_detail_o(originalFileName);
+			productDTO.setProd_detail(savedFileName);
+			
+			System.out.println("productDTO.데이탈="+productDTO.getProd_detail());
+			
+			System.out.println("ofiles= "+ofiles);
+			System.out.println("sfiles= "+sfiles);
+			//멀티파일
+			String[] oArr = ofiles.split(":");
+			String[] sArr = sfiles.split(":");
+			
+			for (int i=0; i<oArr.length && i<5; i++) {
+				if(i == 0) {
+					productDTO.setImg1_o(oArr[i]);
+					productDTO.setImg1(sArr[i]);
+				}
+				else if(i == 1) {
+						productDTO.setImg2_o(oArr[i]);
+						productDTO.setImg2(sArr[i]);
+				}
+				else if(i == 2) {
+						productDTO.setImg3_o(oArr[i]);
+						productDTO.setImg3(sArr[i]);
+				}
+				else if(i == 3) {
+						productDTO.setImg4_o(oArr[i]);
+						productDTO.setImg4(sArr[i]);
+				}
+				else if(i == 4) {
+						productDTO.setImg5_o(oArr[i]);
+						productDTO.setImg5(sArr[i]);
+				}
+			}
+			
+			System.out.println("productDTO 1="+productDTO.getImg1());
+			System.out.println("productDTO 2="+productDTO.getImg2());
+			System.out.println("productDTO 3="+productDTO.getImg3());
+			System.out.println("productDTO 4="+productDTO.getImg4());
+			System.out.println("productDTO 5="+productDTO.getImg5());
+			
+			int result = productDAO.adminMaketInsert(productDTO);
+			if(result==1)System.out.println("입력되었습니다.");
+			
 		} 
 		catch (Exception e) {
+			e.printStackTrace();
 			System.out.println("업로드 실패");
 		}
-		
 		
 		
 		return "redirect:admin_maket_list.do";

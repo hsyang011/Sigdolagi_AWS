@@ -274,7 +274,7 @@ public class MemberController {
 	EmailSending email;
 	
 	// 이메일 발송 성공까지만 함. 추후에 인증코드 로직 제작해야됩니다.
-	@PostMapping("/member/emailSendProcess.do")
+	@RequestMapping("/member/emailSendProcess.do")
 	public ResponseEntity<String> emailSendProcess(HttpServletRequest req) {
 		System.out.println("이메일 전송할 곳 : " + req.getParameter("email"));
 		InfoDTO infoDTO = new InfoDTO();
