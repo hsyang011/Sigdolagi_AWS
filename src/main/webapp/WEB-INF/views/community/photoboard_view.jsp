@@ -179,7 +179,7 @@ function CommentSend(){
 	console.log(frm.content.value);
     let data = {
     		
-    	photoboard_idx : frm.photoboard_idx.value,
+    	idx : frm.idx.value,
     	nickname : frm.nickname.value,
     	content : frm.content.value,
     	email : frm.email.value
@@ -228,12 +228,12 @@ function CommentSend(){
     function displayComment(res) {
         // 받은 댓글 데이터를 이용하여 화면에 추가하는 로직을 작성
         console.log(res.email);
-        console.log(res.photoboard_idx);
+        console.log(res.idx);
         console.log(res.content);
         var commentHTML =
             "<tr align=\"center\">" +
             "<td>" + res.nickname + "</td>" +
-            "<td>" + res.photoboard_idx + "</td>" +
+            "<td>" + res.idx + "</td>" +
             "<td>" + res.content + "</td>" +
             "<td>" + getCurrentDateTime() + "</td>" +
             "</tr>";
@@ -297,7 +297,7 @@ function CommentSend(){
                             <!-- 게시판 들어가는 부분 (시작) -->
                             <form name="writeFrm" method="post" onsubmit="return validateForm(this);" class="writeFrm" enctype="multipart/form-data">
                                 <input type="hidden" name="tname"  />
-                                <input type="hidden" name="photoboard_idx" value="${photoBoardDTO.photoboard_idx }" />
+                                <input type="hidden" name="idx" value="${photoBoardDTO.idx }" />
                                 <table class="table table-bordered" id="free_write_frm_table" width="100%" >
                                     <tr>
                                         <td>제목</td>
@@ -314,7 +314,7 @@ function CommentSend(){
                                     
                                     <tr>
                                         <td colspan="2" align="center" class="btn_td">
-                                            <button type="button" class="writeFrm_edit" onclick="location.href='./photoboard_edit.do?photoboard_idx=${photoBoardDTO.photoboard_idx }';">수정하기</button>
+                                            <button type="button" class="writeFrm_edit" onclick="location.href='./photoboard_edit.do?idx=${photoBoardDTO.idx }';">수정하기</button>
                                             <button type="button" class="writeFrm_reset"  onclick="deletePost();">삭제하기</button>
                                             <button type="button" class="writeFrm_list" onclick="location.href='./photoboard_list.do'">목록 보기</button>
                                         </td>
@@ -329,7 +329,7 @@ function CommentSend(){
                                     <form name="commentwriteFrm" method="post"  action="/community/photoboard_comment.do" class="writeFrm">
                                         <legend class="skipinfo">댓글 입력</legend>
                                         <div class="cm_input">
-                                            <input type="text" name="photoboard_idx" value="${photoBoardDTO.photoboard_idx }">
+                                            <input type="text" name="idx" value="${photoBoardDTO.idx }">
                                             <input type="text" name="nickname" value="${nickname}">
                                             <input type="text" name="email" value="${email}">
                                             

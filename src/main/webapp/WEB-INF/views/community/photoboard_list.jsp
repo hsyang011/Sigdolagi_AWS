@@ -106,7 +106,7 @@ $(function() {
 							        <div class="col-md-3">
 							            <figure class="thumbnail">
 							                <div class="card col custom-col" style="padding-right: 20px; border: none;">
-							                    <a href="./photoboard_view.do?photoboard_idx=${ entry.photoboard_idx }">
+							                    <a href="./photoboard_view.do?idx=${ entry.idx }">
 							                        <img class="card-img-top" src="../uploads/${entry.sfile}" alt="이미지" style="width: 100%; height: 200px; object-fit: cover;">
 							                    </a>
 							                    <div class="card-body">
