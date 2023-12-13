@@ -57,6 +57,7 @@
         <li class="nav-item dropdown no-arrow">
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+<<<<<<< HEAD
                 
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">
 	                <!-- 로그인 정보가 없는 경우 -->
@@ -69,33 +70,27 @@
 	                	${nickname}
 	                </s:authorize>
                 </span>
+=======
+   
+            	<span class="mr-2 d-none d-lg-inline text-gray-600 small">${nickname}</span>
+>>>>>>> branch 'main' of https://github.com/hsyang011/Sigdolagi.git
                 <img class="img-profile rounded-circle"
                     src="../bootstrap/img/undraw_profile.svg"/>
             </a>
             <!-- Dropdown - User Information -->
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                 aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="#">
-                    <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Profile
-                </a>
-                <a class="dropdown-item" href="#">
-                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Settings
-                </a>
-                <a class="dropdown-item" href="#">
-                    <i class="fas fa-list fa-sm fa-fw mr-2 text-gray-400"></i>
-                    Activity Log
-                </a>
-                <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                     Logout
                 </a>
             </div>
         </li>
-
     </ul>
+<<<<<<< HEAD
+=======
+    
+>>>>>>> branch 'main' of https://github.com/hsyang011/Sigdolagi.git
 
 </nav>
 <!-- 메인쪽 탑네비 인클루드 끝-->

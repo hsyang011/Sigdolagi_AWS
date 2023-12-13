@@ -51,11 +51,6 @@ public class AdminController {
 		return "administrator/admin_main"; 
 	 }
 	
-	@GetMapping("/username")
-	@ResponseBody
-	public String currentUserName(Principal principal) {
-		return principal.getName();
-	}
 	
 	@Autowired
 	IMemberService  memberDao;
@@ -229,6 +224,7 @@ public class AdminController {
 			//멀티파일
 			String[] oArr = ofiles.split(":");
 			String[] sArr = sfiles.split(":");
+			
 			for (int i=0; i<oArr.length && i<5; i++) {
 				if(i == 0) {
 					productDTO.setImg1_o(oArr[i]);
