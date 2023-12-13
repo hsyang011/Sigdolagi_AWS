@@ -57,78 +57,32 @@
 	<!-- 관리자 마켓상품등록 -->
 	<insert id="adminMaketInsert"
 		parameterType="com.edu.springboot.market.ProductDTO">
-	<!-- insert into product (prod_idx, category, prod_name, prod_price, prod_sale,
-		prod_thumbnail, prod_detail, seller, img1, img2, img3, img4, img5, sub_cate, inventory, prod_discount) values
-		(seq_product_idx.nextval,#{category},#{prod_name},#{prod_price},#{prod_sale},#{prod_thumbnail},
-			#{prod_detail},#{seller},#{img1},#{img2},#{img3},#{img4},#{img5},#{sub_cate},#{inventory},#{prod_discount}) -->
 	INSERT INTO product (
 	 category, sub_cate, seller,  prod_name, prod_price,  prod_sale,  inventory, prod_detail_o, prod_detail,
-        <if test="img1_o != null">
-		 img1_o,
-		</if>
-		<if test="img1 != null">
-		 img1,
-	 	</if>	
-	 	<if test="img2_o != null">
-		 img2_o,
-		 </if>
-		 <if test="img2 != null">
-		 img2,
-		 </if>
-		 <if test="img3_o != null">
-		 img3_o,
-		 </if>
-		 <if test="img3 != null">
-		 img3,
-		 </if>
-		 <if test="img4_o != null">
-		 img4_o,
-		 </if>
-		 <if test="img4 != null">
-		 img4,
-		 </if>
-		 <if test="img5_o != null">
-		 img5_o,
-		 </if>
-		 <if test="img5 != null">
-		 img5,
-		 </if>
-		  prod_idx 
-		 ) VALUES
+        <if test="img1_o != null">img1_o,</if>
+		<if test="img1 != null">img1,</if>	
+	 	<if test="img2_o != null">img2_o,</if>
+		<if test="img2 != null">img2,</if>
+		<if test="img3_o != null">img3_o,</if>
+		<if test="img3 != null">img3,</if>
+		<if test="img4_o != null">img4_o,</if>
+		<if test="img4 != null">img4,</if>
+		<if test="img5_o != null">img5_o,</if>
+		<if test="img5 != null">img5,</if>
+		 prod_idx ) VALUES
 		( #{category}, #{sub_cate}, #{seller}, #{prod_name}, ${prod_price}, ${prod_sale}, ${inventory},
 			#{prod_detail_o},#{prod_detail},
-			<if test="img1_o != null">
-			#{img1_o},
-			</if>
-			<if test="img1 != null">
-			#{img1},
-			</if>
-			<if test="img2_o != null">
-			#{img2_o},
-			</if>
-			<if test="img2 != null">
-			#{img2},
-			</if>
-			<if test="img3_o != null">
-			#{img3_o},
-			</if>
-			<if test="img3 != null">
-			#{img3},
-			</if>
-			<if test="img4_o != null">
-			#{img4_o},
-			</if>
-			<if test="img4 != null">
-			#{img4},
-			</if>
-			<if test="img5_o != null">
-			#{img5_o},
-			</if>
-			<if test="img5 != null">
-			#{img5},
-			</if>
-			 seq_product_idx.nextval
-			)
+			<if test="img1_o != null">#{img1_o},</if>
+			<if test="img1 != null">#{img1},</if>
+			<if test="img2_o != null">#{img2_o},</if>
+			<if test="img2 != null">#{img2},</if>
+			<if test="img3_o != null">#{img3_o},</if>
+			<if test="img3 != null">#{img3},</if>
+			<if test="img4_o != null">#{img4_o},</if>
+			<if test="img4 != null">#{img4},</if>
+			<if test="img5_o != null">#{img5_o},</if>
+			<if test="img5 != null">#{img5},</if>
+			 seq_product_idx.nextval )
 	</insert>
 	
 	<!-- 관리자 마켓상품삭제 -->

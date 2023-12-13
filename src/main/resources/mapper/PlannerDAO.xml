@@ -43,4 +43,10 @@
 			WHERE planner_idx=${planner_idx}
 	</update>
 	
+	<!-- 관리자 플래너 목록 -->
+	<select id="adminPlannerSelect"
+		resultType="com.edu.springboot.planner.PlannerDTO">
+		SELECT * FROM planner ORDER BY postdate DESC
+	</select>
+	
 </mapper>
