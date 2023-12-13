@@ -68,7 +68,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 
 	
-	
+	<!-- 관리자 자유게시판 목록 -->
+	<select id="adminPhotoSelect"
+		resultType="com.edu.springboot.community.PhotoBoardDTO">
+		SELECT * FROM photoboard ORDER BY regidate DESC
+	</select>
 	
 	
 	
