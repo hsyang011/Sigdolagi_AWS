@@ -1,6 +1,7 @@
 package com.edu.springboot.community;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -27,9 +28,9 @@ public interface IPhotoboardService {
 	//커멘트테이블 받아오기
 	public ArrayList<CommentsDTO> CommentsPage(CommentsDTO commentsDTO);
 	
-	
 
-	
+	//관리자 포토게시판목록
+	public List<PhotoBoardDTO> adminPhotoSelect();
 	
 	
 }

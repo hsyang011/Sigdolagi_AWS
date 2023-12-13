@@ -86,10 +86,10 @@
 
             // 파일 선택 시 미리보기 기능 추가
              $("#ofile").change(function () {
-		        readURL(this);
-		        $("#deleteFileBtn").show(); // 파일을 선택하면 버튼을 보이도록 함
-		        $("#thumbnail").show();
-		    });
+              readURL(this);
+              $("#deleteFileBtn").show(); // 파일을 선택하면 버튼을 보이도록 함
+              $("#thumbnail").show();
+          });
             
             
             
@@ -106,7 +106,7 @@
                     data: { fileName: $("#ofile").val() },  // 파일명을 서버에 전달
                     success: function (data) {
                         // 성공적으로 파일 삭제된 경우
-                    	 $("#ofile").val("");
+                        $("#ofile").val("");
                          $('#thumbnail').attr('src', '#');
                          $("#thumbnail").hide(); // 파일 삭제 후 버튼을 다시 숨김
                          console.log("파일 삭제 성공");
@@ -171,26 +171,26 @@
     
     
     <script>
-	function validateForm(form){
-		if(form.title.value==""){
-			alert("제목을 입력하세요");
-			form.title.focus();
-			return false;
-		}
-		
-		
-		if(form.content.value==""){
-			alert("내용은 필수 입력입니다.");
-			return false;
-		}
-		
-		if(form.ofile.value==""){
-			alert("첨부파일은 필수 입력입니다.");
-			return false;
-		}
-		
-		
-	}
+   function validateForm(form){
+      if(form.title.value==""){
+         alert("제목을 입력하세요");
+         form.title.focus();
+         return false;
+      }
+      
+      
+      if(form.content.value==""){
+         alert("내용은 필수 입력입니다.");
+         return false;
+      }
+      
+      if(form.ofile.value==""){
+         alert("첨부파일은 필수 입력입니다.");
+         return false;
+      }
+      
+      
+   }
 </script>
     
     
@@ -257,7 +257,6 @@
                                         <td>
                                             <input type="text" name="title" id="title" />
                                             <input type="text" name="nickname" id="nickname"  value="${nickname}" />
-                                             <input type="text" name="email" id="email"  value="${email}" />
                                         </td>
                                     </tr>
                                     <tr>

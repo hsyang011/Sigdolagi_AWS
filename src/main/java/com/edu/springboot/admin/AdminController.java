@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.edu.springboot.community.BoardDTO;
 import com.edu.springboot.community.IBoardService;
+import com.edu.springboot.community.IPhotoboardService;
+import com.edu.springboot.community.PhotoBoardDTO;
 import com.edu.springboot.market.IProductService;
 import com.edu.springboot.market.ParameterDTO;
 import com.edu.springboot.market.ProductDTO;
@@ -33,7 +35,18 @@ import utils.MyFunctions;
 public class AdminController {
 	
 	@Autowired
-   IBoardService dao;
+	IBoardService dao;
+
+	@Autowired
+	IMemberService  memberDao;
+	@Autowired
+	IBoardService  boardDao;
+	// DAO 호출을 위한 빈 자동 주입.
+	@Autowired
+	IProductService productDAO;
+	
+	@Autowired
+	IPhotoboardService photoDAO;
 	
 	@RequestMapping("/administrator/admin_main.do") 
 	public String adminMain(Model model, HttpServletRequest req, HttpSession session, Principal principal) {
@@ -56,9 +69,6 @@ public class AdminController {
 	 }
 	
 	
-	@Autowired
-	IMemberService  memberDao;
-	
 	//관리자 회원목록 
 	@RequestMapping("/administrator/adminMemberList.do")
 	public String adminMemberList(Model model) {
@@ -78,9 +88,6 @@ public class AdminController {
 		return "redirect:adminMemberList.do";
 	}
 	
-	@Autowired
-	IBoardService  boardDao;
-	
 	//관리자 자유게시판목록
 	@RequestMapping("/administrator/admin_free_list.do")
 	public String adminCommunity(Model model) {
@@ -93,7 +100,11 @@ public class AdminController {
 	}
 	
 	@RequestMapping("/administrator/admin_photo_list.do")
-	public String adminPhoto() {
+	public String adminPhoto(Model model) {
+		
+		// DB에서 인출한 게시물의 목록을 model객체에 저장한다.
+		List<PhotoBoardDTO> adminPhotoSelect = photoDAO.adminPhotoSelect();
+		model.addAttribute("adminPhotoSelect", adminPhotoSelect);
 		
 		return "administrator/admin_photo_list";
 	}
@@ -118,9 +129,6 @@ public class AdminController {
 		return "administrator/admin_inquiry_list";
 	}
 	
-	// DAO 호출을 위한 빈 자동 주입.
-	@Autowired
-	IProductService productDAO;
 	
 	//관리자 마켓상품리스트
 	@RequestMapping("/administrator/admin_maket_list.do")
