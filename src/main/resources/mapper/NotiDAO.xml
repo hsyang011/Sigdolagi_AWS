@@ -23,7 +23,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				<if test="searchKeyword!=null and !searchKeyword.equals('')">
 				WHERE ${searchField} LIKE '%'||#{searchKeyword} ||'%'
 				</if>
-				ORDER BY freeboard_idx DESC
+				ORDER BY noticeboard_idx DESC
 			) Tb
 		)
 	 	WHERE rNum<![CDATA[>=]]>#{start} AND rNum<![CDATA[<=]]>#{end}
@@ -31,11 +31,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- write  -->
 	<insert id="write">
-		INSERT INTO noticeboard (noticeboard_idx, title, content) VALUES (seq_freeboard_idx.nextval, #{_title}, #{_content} )
+		INSERT INTO noticeboard (noticeboard_idx, title, content) VALUES (seq_noticeboard_idx.nextval, #{_title}, #{_content} )
 	</insert>
 	
 	<select id="view" resultType="com.edu.springboot.service.NotiDTO" parameterType="com.edu.springboot.service.NotiDTO">
 		SELECT * FROM noticeboard WHERE noticeboard_idx=${noticeboard_idx}
+	</select>
+	
+	<!-- 관리자 공지사항 목록 -->
+	<select id="adminNoticeSelect"
+		resultType="com.edu.springboot.service.NotiDTO">
+		SELECT * FROM noticeboard ORDER BY regidate DESC
 	</select>
 
 </mapper>

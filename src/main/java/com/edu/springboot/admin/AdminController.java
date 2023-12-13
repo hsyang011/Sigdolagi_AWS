@@ -25,6 +25,10 @@ import com.edu.springboot.market.ParameterDTO;
 import com.edu.springboot.market.ProductDTO;
 import com.edu.springboot.member.IMemberService;
 import com.edu.springboot.member.MemberDTO;
+import com.edu.springboot.planner.IPlannerService;
+import com.edu.springboot.planner.PlannerDTO;
+import com.edu.springboot.service.INotiboardService;
+import com.edu.springboot.service.NotiDTO;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
@@ -47,6 +51,12 @@ public class AdminController {
 	
 	@Autowired
 	IPhotoboardService photoDAO;
+	
+	@Autowired
+	IPlannerService plannerDAO;
+	
+	@Autowired
+	INotiboardService notiDAO;
 	
 	@RequestMapping("/administrator/admin_main.do") 
 	public String adminMain(Model model, HttpServletRequest req, HttpSession session, Principal principal) {
@@ -99,6 +109,7 @@ public class AdminController {
 		return "administrator/admin_community_list";
 	}
 	
+	//관리자 포토게시판목록
 	@RequestMapping("/administrator/admin_photo_list.do")
 	public String adminPhoto(Model model) {
 		
@@ -109,8 +120,14 @@ public class AdminController {
 		return "administrator/admin_photo_list";
 	}
 	
+	//관리자 플래너 목록
 	@RequestMapping("/administrator/admin_planner_list.do")
-	public String adminPlanner() {
+	public String adminPlanner(Model model) {
+		
+		// DB에서 인출한 게시물의 목록을 model객체에 저장한다.
+		List<PlannerDTO> adminPlannerSelect = plannerDAO.adminPlannerSelect();
+		model.addAttribute("adminPlannerSelect", adminPlannerSelect);
+		
 		return "administrator/admin_planner_list";
 	}
 	
@@ -119,10 +136,17 @@ public class AdminController {
 		return "administrator/admin_ad_list";
 	}
 	
+	//관리자 공지사항 목록
 	@RequestMapping("/administrator/admin_notice_list.do")
-	public String adminNotice() {
+	public String adminNotice(Model model) {
+		
+		// DB에서 인출한 게시물의 목록을 model객체에 저장한다.
+		List<NotiDTO> adminNoticeSelect = notiDAO.adminNoticeSelect();
+		model.addAttribute("adminNoticeSelect", adminNoticeSelect);
+		
 		return "administrator/admin_notice_list";
 	}
+	
 	
 	@RequestMapping("/administrator/admin_inquiry_list.do")
 	public String adminInquiry() {

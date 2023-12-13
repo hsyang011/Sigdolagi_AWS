@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,6 +23,17 @@
     <!-- Custom styles for this page -->
     <link href="../bootstrap/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" />
 </head>
+<script>
+function deletePost(idx){
+	let frm = document.frm;
+	if(confirm("정말?")){
+		frm.noticeboard_idx.value = idx;
+		frm.action = "/administrator/admin_notice_delete.do";
+		frm.method = "post";
+		frm.submit();
+	}
+}
+</script>
 <body id="page-top">
 
     <!-- Page Wrapper -->
@@ -99,6 +111,23 @@
                                                 </a>
                                             </td>
                                         </tr>
+                                        <c:forEach items="${adminNoticeSelect }" var="row" varStatus="loop">
+										<tr>
+											<td>${row.noticeboard_idx }</td>
+											<td><a href="../service/notiboard_view.do?noticeboard_idx=${row.noticeboard_idx }">${row.title }</a></td>
+											<td>${row.admin_name }</td>
+                                            <td>${row.postdate }</td>
+                                            <td>조회수</td>
+                                            <td>
+                                            	<a href="#" class="btn btn-warning btn-icon-split">
+                                                    <span class="text">수정</span>
+                                                </a>
+                                            	<a href="javascript:deletePost('${row.noticeboard_idx }')" class="btn btn-danger btn-icon-split">
+                                                    <span class="text">삭제</span>
+                                                </a>
+                                            </td>
+										</tr>		
+										</c:forEach>
                                         
                                        
                                     </tbody>
