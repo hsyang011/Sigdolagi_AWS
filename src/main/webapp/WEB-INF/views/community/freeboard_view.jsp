@@ -183,30 +183,31 @@ function saveComment() {
                         <form name="writeFrm" method="post" onsubmit="return validateForm(this);" action="../community/freeboard_view.do" class="writeFrm">
                           <input type="hidden" name="freeboard_idx" value="${ boardDTO.freeboard_idx }" />
                             <input type="hidden" name="email"  />
+                            <input type="hidden" name="nickname" />	
                             <table class="table table-bordered" id="free_write_frm_table" width="100%" >
                                <colgroup>
                                    <col width="20%" /><col width="30%" /><col width="20%" /><col width="30%" />
                                    
                                 </colgroup>
-		                         <tr> 
-		                             <td>작성일</td> <td>${ boardDTO.postdate }</td>
-		                             <td>조회수</td> <td>${ boardDTO.visitcount }</td>
-		                         </tr>
-		                                <tr>
-		                             <td>작성자</td>
-		                             <td colspan=3>${ boardDTO.email }</td> <%-- 번호<td>${ boardDTO.freeboard_idx }</td>   --%> 
-		                     
-		                         </tr>
-		                         <tr>
-		                             <td>제목</td>
-		                             <td colspan="3">${ boardDTO.title }</td>
-		                         </tr>
-		                                <tr>
-		                             <td>내용</td>
-		                             <td colspan="3" height="100">
-		                                ${ boardDTO.content }              
-		                             </td>
-		                         </tr>
+	                         <tr> 
+	                             <td>작성일</td> <td>${ boardDTO.postdate }</td>
+	                             <td>조회수</td> <td>${ boardDTO.visitcount }</td>
+	                         </tr>
+	                                <tr>
+	                             <td>작성자</td>
+	                             <td colspan=3>${ nickname1 }</td> <%-- 번호<td>${ boardDTO.freeboard_idx }</td>   --%> 
+	                     
+	                         </tr>
+	                         <tr>
+	                             <td>제목</td>
+	                             <td colspan="3">${ boardDTO.title }</td>
+	                         </tr>
+	                                <tr>
+	                             <td>내용</td>
+	                             <td colspan="3" height="100">
+	                                ${ boardDTO.content }              
+	                             </td>
+	                         </tr>
                        
                                 <tr>
                                     <td colspan="4" align="center" class="btn_td">
