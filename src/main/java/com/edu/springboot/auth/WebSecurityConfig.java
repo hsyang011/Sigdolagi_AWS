@@ -42,7 +42,7 @@ public class WebSecurityConfig {
                // 정적파일 접근 모두 가능
                .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                // 관리자 권한
-               .requestMatchers("/admin/**").hasRole("ADMIN")
+               .requestMatchers("/administrator/**").hasRole("ADMIN")
                // 유저 권한
                .requestMatchers(
                      // community 접근

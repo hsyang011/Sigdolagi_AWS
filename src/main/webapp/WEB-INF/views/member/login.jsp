@@ -9,11 +9,12 @@
 <%@ include file="../include/global_head.jsp" %>
 <!-- CSS -->
 <link rel="stylesheet" href="../css/login.css">
-<script>
+<!-- 에러메세지가 존재하면 alert창으로 띄우기 -->
 <c:if test="${not empty errorMsg}">
-	alert("${errorMsg}");
+	<script>
+		alert("${errorMsg}");
+	</script>
 </c:if>
-</script>
 </head>
 <body>
 <!-- wrapper 시작 -->
