@@ -99,30 +99,30 @@ $(function() {
                             <tr>
                                 <td colspan="1" align="center">등록된 게시물이 없습니다.</td>
                             </tr>
-                            
                         </c:when>
                         <c:otherwise>	
                             <div class="row">
-                               <c:forEach items="${photolists}" var="entry">
-							    <div class="col-md-3">
-							        <figure class="thumbnail">
-							            <div class="card col custom-col" style="padding-right: 20px; border: none;">
-							                 <img class="card-img-top" src="../uploads/${entry.sfile}" alt="이미지"> 
-							                <div class="card-body">
-							                    <h4 class="card-title" style="font-size: 18px; text-align: left;">
-							                        ${entry.title} <!-- 파일 이름 -->
-							                       <a href="./photoboard_view.do?photoboard_idx=${ entry.photoboard_idx }">${ entry.title }</a>
-							                    </h4>
-							                    <p class="card-text" style="text-align: left;">
-							                        <!-- 추가적인 내용을 필요에 따라 여기에 추가할 수 있습니다 -->
-							                    </p>
+							    <c:forEach items="${photolists}" var="entry">
+							        <div class="col-md-3">
+							            <figure class="thumbnail">
+							                <div class="card col custom-col" style="padding-right: 20px; border: none;">
+							                    <a href="./photoboard_view.do?photoboard_idx=${ entry.photoboard_idx }">
+							                        <img class="card-img-top" src="../uploads/${entry.sfile}" alt="이미지" style="width: 100%; height: 200px; object-fit: cover;">
+							                    </a>
+							                    <div class="card-body">
+							                        <h4 class="card-title" style="font-size: 18px; text-align: left;">
+							                            ${entry.title} <!-- 파일 이름 -->
+							                            <a href="./photoboard_view.do?photoboard_idx=${ entry.photoboard_idx }">${ entry.title }</a>
+							                        </h4>
+							                        <p class="card-text" style="text-align: left;">
+							                            ${ entry.content }
+							                        </p>
+							                    </div>
 							                </div>
-							            </div>
-							        </figure>
-							    </div>
-							</c:forEach>
-                               
-                            </div>
+							            </figure>
+							        </div>
+							    </c:forEach>
+							</div>
                         </c:otherwise>
                     </c:choose>
              
@@ -143,6 +143,7 @@ $(function() {
                                 <!-- 1열 끝 -->
                             </figure>
                         </td>
+                        
                         <td scope="col" style="width: 25%;">
                             <figure class="row thumbnail">
                                 <!-- 1열 시작 -->

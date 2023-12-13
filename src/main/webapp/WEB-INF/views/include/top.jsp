@@ -24,6 +24,7 @@
                 <s:authorize access="isAuthenticated()">
                 	<li><a href="../member/logout.do">로그아웃</a></li>
                 	<li><a href="../member/mypage.do">마이페이지</a></li>
+                	<li><a href="../market/cart.do">장바구니</a></li>
                 </s:authorize>
             </ul>
         </div>

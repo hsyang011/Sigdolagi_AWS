@@ -284,6 +284,10 @@ function deleteImageFile() {
                     <li class="nav-item me-3"><button type="button" class="mealk_cate btn rounded-pill">#기타</button></li>
                 </ul> -->
             </div>
+            
+            
+            
+            
             <!-- 컨텐츠 헤더 끝 -->
             <div class="board_write container  mt-5" >
 
@@ -302,7 +306,7 @@ function deleteImageFile() {
                                         <td>제목</td>
                                         <td>
                                             <input type="text" name="title" id="title" value="${photoBoardDTO.title}" />
-                                            <input type="text" name="email" id="email"  value="이메일"/>
+                                            <input type="text" name="email" id="email"   value="${email }"    />
                                         </td>
                                     </tr>
                                     <tr>
