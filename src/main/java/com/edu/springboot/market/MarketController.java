@@ -203,8 +203,10 @@ public class MarketController {
 					// System.out.println(orderDTO.getPayment() + " 결제가격");
 					// 결제 처리 완료
 					orderDAO.orderProcess(orderDTO);
+					// orderDTO로 order_idx를 가져옵니다.
+					orderDTO.setOrder_idx(orderDAO.getOrderIdx(orderDTO));
 					// 장바구니 싹 비우기
-					orderDAO.deleteAll(orderDTO);
+					orderDAO.updateAll(orderDTO);
 				}
 			});
 		} catch (Exception e) {

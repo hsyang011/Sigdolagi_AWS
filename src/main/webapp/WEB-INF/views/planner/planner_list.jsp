@@ -230,7 +230,7 @@ function resizeCardSize() {
                 <c:forEach items="${plannerList}" var="row" varStatus="loop">                
                     <div class="card custom-col">
                         <div>
-                            <img class="card-img-top" src="../uploads/${row.sfile}" height="250" alt="Card image">
+                            <img class="card-img-top" src="../uploads/${row.sfile}" alt="Card image">
                             <div class="card-body">
                                 <h5 class="card-title">${row.plan_start} > ${row.plan_end}</h5>
                                 <p class="card-text">${row.nickname}</p>
