@@ -2,6 +2,9 @@ package com.edu.springboot.member;
 
 
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -12,11 +15,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.edu.springboot.community.IPhotoboardService;
+import com.edu.springboot.community.ParameterDTO;
+import com.edu.springboot.community.PhotoBoardDTO;
+
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import utils.CookieManager;
 import utils.MyFunctions;
+import utils.PagingUtil;
 
 
 
@@ -24,6 +32,11 @@ import utils.MyFunctions;
 
 @Controller
 public class MemberController {
+	
+	
+	@Autowired
+	 IPhotoboardService photoboarddao;
+	
 	
 	@Autowired
 	IMemberService  memberdao;
@@ -63,7 +76,52 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/member/mypage.do")
-	public String mypage() {
+	public String mypage(Model model, HttpServletRequest req, ParameterDTO parameterDTO, Principal principal) {
+		  System.out.println("마이페이지 컨트롤러 들어오나?");
+		  
+		  //포토게시판 리스트 처리 
+	      
+	      int totalCount = photoboarddao.photoGetTotalCount(parameterDTO);
+	      System.out.println("토탈카운트"+totalCount);
+	      
+	      int pageSize = PagingUtil.getPageSize(); 
+	      System.out.println(pageSize);
+	      int blockPage = PagingUtil.getBlockPage(); 
+	      System.out.println(blockPage);
+	      
+	      int pageNum = (req.getParameter("pageNum")==null || req.getParameter("pageNum").equals("")) ? 1 : Integer.parseInt(req.getParameter("pageNum"));
+	      int start = (pageNum -1 ) * pageSize +1 ;
+	      int end = pageNum * pageSize;
+	      parameterDTO.setStart(start);
+	      parameterDTO.setEnd(end);
+	      
+	      
+	      Map<String, Object> maps = new HashMap<String, Object>();
+	      maps.put("totalCount", totalCount);
+	      maps.put("pageSize", pageSize);
+	      maps.put("pageNum", pageNum);
+	      model.addAttribute("maps", maps);
+	      
+	      
+	      
+	      
+	         
+	      ArrayList<PhotoBoardDTO> photolists = photoboarddao.PhotoListPage(parameterDTO);
+	      model.addAttribute("photolists", photolists);
+	      System.out.println(photolists.size());
+	      
+	      
+	      
+	      String pagingImg = PagingUtil.pagingImg(totalCount, pageSize, blockPage, pageNum, req.getContextPath()+"./mypage.do?");
+	      model.addAttribute("pagingImg", pagingImg);
+	      
+	      
+	      //포토 게시판 리스트 처리 끝 
+	      
+	      
+	      
+		
+		
 		return "member/mypage";
 	}
 	
@@ -81,6 +139,8 @@ public class MemberController {
 	public String myordermanage() {
 		return "member/myordermanagement";
 	}
+	
+	
 	
 	
 	//닉네임 중복확인

@@ -5,11 +5,12 @@ import lombok.Data;
 @Data
 public class CommentsDTO {
 	
-	private String comments_idx;
-	private String email;
+	private int comments_idx;
+	private String nickname;
 	private String content;
 	private String postdate;
-	private String photoboard_idx;
+	private int idx;
+	private String email;
 	
 	
 	

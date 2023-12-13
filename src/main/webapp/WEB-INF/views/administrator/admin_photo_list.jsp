@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -101,6 +102,20 @@
                                                 </a>
                                             </td>
                                         </tr>
+                                        <c:forEach items="${adminPhotoSelect }" var="row" varStatus="loop">
+										<tr>
+											<td>${row.photoboard_idx }</td>
+											<td><a href="../community/photoboard_view.do?photoboard_idx=${row.photoboard_idx }">${row.title }</a></td>
+											<%-- <td>${row.nickname }</td> --%>
+											<td>${row.postdate }</td>
+                                            <td>${row.visitcount }</td>
+                                            <td>
+                                            	<a href="#" class="btn btn-danger btn-icon-split">
+                                                    <span class="text">삭제</span>
+                                                </a>
+                                            </td>
+										</tr>		
+										</c:forEach>
                                         
                                        
                                     </tbody>

@@ -453,65 +453,45 @@
                       <div class="photoboard" style="text-align: center; display: none;">
                         <div style="float: left; ">#내가 쓴 포토게시판</div>
                         <br><br>
-                        <figure class="row thumbnail">
-                            <!-- 1열 시작 -->
-                            <div class="card custom-col">
-                                <div>
-                                    <img class="card-img-top" src="http://placehold.it/200x200" height="250" alt="Card image">
-                                    <div class="card-body">
-                                        <h4 class="card-title" style="font-size: 18px;">2023년 12월 출발</h4>
-                                        <p class="card-text">2일간</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- 1열 끝 -->
-                            <!-- 2열 시작 -->
-                            <div class="card custom-col">
-                                <div>
-                                    <img class="card-img-top" src="http://placehold.it/200x200" height="250" alt="Card image">
-                                    <div class="card-body">
-                                        <h4 class="card-title" style="font-size: 18px;">2023년 12월 출발</h4>
-                                        <p class="card-text">2일간</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- 2열 끝 -->
-                            <!-- 3열 시작 -->
-                            <div class="card custom-col">
-                                <div>
-                                    <img class="card-img-top" src="http://placehold.it/200x200" height="250" alt="Card image">
-                                    <div class="card-body">
-                                        <h4 class="card-title" style="font-size: 18px;">2023년 12월 출발</h4>
-                                        <p class="card-text">2일간</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- 3열 끝 -->
-                            <div class="card custom-col">
-                                <div>
-                                    <img class="card-img-top" src="http://placehold.it/200x200" height="250" alt="Card image">
-                                    <div class="card-body">
-                                        <h4 class="card-title" style="font-size: 18px;">2023년 12월 출발</h4>
-                                        <p class="card-text">2일간</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </figure>
+                        <table class="table table-border" id="pctable">
+	                    <tr style="text-align: center;" >
+	                        <td scope="col" style="width: 25%;">
+		                       	<c:choose>
+			                        <c:when test="${empty photolists}">
+			                            <tr>
+			                                <td colspan="1" align="center">등록된 게시물이 없습니다.</td>
+		                            	</tr>
+		                        	</c:when>
+	                        	<c:otherwise>	
+	                            <div class="row">
+								    <c:forEach items="${photolists}" var="entry">
+								        <div class="col-md-3">
+								            <figure class="thumbnail">
+								                <div class="card col custom-col" style="padding-right: 20px; border: none;">
+								                    <a href="./photoboard_view.do?photoboard_idx=${ entry.photoboard_idx }">
+								                        <img class="card-img-top" src="../uploads/${entry.sfile}" alt="이미지" style="width: 100%; height: 200px; object-fit: cover;">
+							                    	</a>
+								                    <div class="card-body">
+								                        <h4 class="card-title" style="font-size: 18px; text-align: left;">
+								                            ${entry.title} <!-- 파일 이름 -->
+								                        </h4>
+								                        <p class="card-text" style="text-align: left;">
+								                            ${ entry.content }
+								                        </p>
+								                    </div>
+							                	</div>
+							            	</figure>
+							        	</div>
+							    	</c:forEach>
+								</div>
+                        </c:otherwise>
+	                    </c:choose>
+	                    </td>
+		                </tr>
+			            </table>
 
                        <!-- 리스트 버튼 -->
-                       <div class="container d-flex justify-content-center">
-                        <div class="row">
-                            <div class="col-12 d-flex justify-content-center">
-                                <div class="list_btn">
-                                    <button type="button" class="btn"> &lt; </button>
-                                    <button type="button" class="btn" id="btn1"> 1 </button>
-                                    <button type="button" class="btn" id="btn1"> 2 </button>
-                                    <button type="button" class="btn" id="btn1"> 3 </button>
-                                    <button type="button" class="btn"> &gt; </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                     	<div class="text-center">${pagingImg}</div>
                         <!-- 포토끝 -->
                       <!-- 맛집 -->
                      

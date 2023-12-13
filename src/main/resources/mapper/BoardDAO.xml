@@ -50,7 +50,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	<delete id="delete">
-		DELETE FROM freeboard WHERE freeboard_idx=${freeboard_idx}
+		DELETE FROM freeboard WHERE freeboard_idx=#{freeboard_idx}
 	</delete>
 	
 

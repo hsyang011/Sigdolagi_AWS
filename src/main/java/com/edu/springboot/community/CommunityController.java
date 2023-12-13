@@ -42,6 +42,9 @@ import utils.PagingUtil;
 
 
 
+
+
+
 @Controller
 public class CommunityController {
    
@@ -55,15 +58,18 @@ public class CommunityController {
 		
 		
 		
-		String photoboard_idx = commentsDTO.getPhotoboard_idx();
+		int idx = commentsDTO.getIdx();
         String content = commentsDTO.getContent();
+        String nickname = commentsDTO.getNickname();
         String email = commentsDTO.getEmail();
-
-        System.out.println(photoboard_idx);
+        
+        
+        System.out.println(idx);
         System.out.println(content);
+        System.out.println(nickname);
         System.out.println(email);
 
-        int result = photoboarddao.writeConmments(photoboard_idx, content, email);
+        int result = photoboarddao.writeConmments(idx, content, nickname, email);
 
         System.out.println("성공?");
         System.out.println(commentsDTO);
@@ -83,60 +89,7 @@ public class CommunityController {
 		model.addAttribute("photoBoardDTO",photoBoardDTO);
 		model.addAttribute("result", result);
         
-		
-		//하나의 댓글 테이블 가져오기 
-//		commentsDTO = 
-//		memberDTO = memberdao.getoneMemberDTO(memberDTO);
-		
         return commentsDTO;
-        
-	        
-	        
-//		JsonObject jsonObject = new JsonObject();
-//		ArrayList<CommentsDTO> commentsLists = null;
-//		try {
-//	        System.out.println("댓글 추가 컨트롤러 들어오나? ");
-//	        
-//	        
-//	        
-//	        String photoboard_idx = commentsDTO.getPhotoboard_idx();
-//	        String content = commentsDTO.getContent();
-//	        String email = commentsDTO.getEmail();
-//
-//	        System.out.println(photoboard_idx);
-//	        System.out.println(content);
-//	        System.out.println(email);
-//
-//	        int result = photoboarddao.writeConmments(photoboard_idx, content, email);
-//
-//	        System.out.println("성공?");
-//	        System.out.println(commentsDTO);
-//	        System.out.println("글쓰기결과:" + result);
-//	        
-        
-//	        
-//	        // 코멘트 테이블 전부다 얻어와서 저장하기
-//	        commentsLists = photoboarddao.CommentsPage(commentsDTO);
-//	        // 빈에 저장
-//
-//	        System.out.println("댓글 디비에 있는거 가져오는거 성공?");
-//	        System.out.println(commentsLists);
-//
-//	        model.addAttribute("commentsLists", commentsLists);
-//	        model.addAttribute("result", result);
-//
-//	        
-//	       
-//	        
-//	        // 비동기로 댓글 추가 후 응답
-//	    } catch (Exception e) {
-//	        e.printStackTrace();
-//	    }
-//	    
-//	    String a = jsonObject.toString();
-//        return ResponseEntity.ok(commentsLists); 
-	   
-	    
 	}
 
 
@@ -156,6 +109,8 @@ public class CommunityController {
    @Autowired
    IPhotoboardService photoboarddao;
 
+   
+   
    
    @RequestMapping("/community/freeboard_list.do")
    public String freeboardList(Model model, HttpServletRequest req, ParameterDTO parameterDTO, HttpSession httpSession) {
@@ -222,20 +177,7 @@ public class CommunityController {
       return "redirect:freeboard_list.do";
    }
    
-//   @PostMapping("/community/freeboard_comment_write.do")
-//
-//   public String freeboardCommetWrite(Model model, HttpServletRequest req, Principal principal) {
-//      String nickname= req.getParameter("nickname");
-//      String comment_idx = req.getParameter("comment_idx");
-//      String content= req.getParameter("content");
-//      //폼값을 개별적으로 전달한다.
-//      int com_result = commentdao.commentInsert(comment_idx,nickname,content);
-//      System.out.println("글쓰기 결과:" +com_result);
-//      
-//      model.addAttribute("nickname",principal.getName()); 
-//      
-//      return "redirect:freeboard_view.do";
-//   }
+
    
    @RequestMapping("/community/freeboard_view.do")
    public String freeboardView(Model model, BoardDTO boardDTO,HttpServletRequest req,ParameterDTO parameterDTO) {
@@ -249,7 +191,7 @@ public class CommunityController {
    }
 
    
-
+   
    
    //자유게시판 수정하기(겟)
    @GetMapping("/community/freeboard_edit.do")
@@ -290,10 +232,8 @@ public class CommunityController {
    
    
    
-   
+ //포토  포토보드 리스트
    @RequestMapping("/community/photoboard_list.do")
-      //포토  포토보드 리스트
-      
    public String photoBoardList(Model model, HttpServletRequest req, ParameterDTO parameterDTO, Principal principal) {
    
       System.out.println("들어오나?");
@@ -327,8 +267,9 @@ public class CommunityController {
       model.addAttribute("photolists", photolists);
       System.out.println(photolists.size());
       
-      String pagingImg = PagingUtil.pagingImg(totalCount, pageSize, blockPage, pageNum, req.getContextPath()+"/list.do?");
+      String pagingImg = PagingUtil.pagingImg(totalCount, pageSize, blockPage, pageNum, req.getContextPath()+"./photoboard_list.do?");
       model.addAttribute("pagingImg", pagingImg);
+      
       
       
       return "community/photoboard_list";
@@ -336,14 +277,18 @@ public class CommunityController {
    
    
    
-   //포토 게시판 글쓰기 페이지 이
+   
+   //포토 게시판 글쓰기 페이지 이동  
       @GetMapping("/community/photoboard_write.do")
       public String photoboardWriteGet(Model model, Principal principal) {
     	  System.out.println("포토글쓰기 페이지이동 ");
          String email = principal.getName();
+         String nickname= dao.getnickname(email);
          System.out.println(email);
          model.addAttribute("email", email);
+         model.addAttribute("nickname",nickname); 
          return "community/photoboard_write";
+         
       }
       
       
@@ -355,41 +300,50 @@ public class CommunityController {
    
    
    
-   @RequestMapping("/community/photoboard_view.do")
-   public String photoboardView(Model model, PhotoBoardDTO photoBoardDTO, CommentsDTO commentsDTO) {
-      
-      
-      photoBoardDTO = photoboarddao.photoview(photoBoardDTO);
-      System.out.println(photoBoardDTO);
-      photoBoardDTO.setContent(photoBoardDTO.getContent().replace("<br>", "\r\n"));
-      model.addAttribute("photoBoardDTO", photoBoardDTO);
-      System.out.println(photoBoardDTO);
-      
-      
-      
-      
-      // 뷰 테이블에 댓글 얻어오기 추가
-      // 코멘트 테이블 전부다  얻어와서 저장하기  
-   		ArrayList<CommentsDTO> CommentsLists = photoboarddao.CommentsPage(commentsDTO);
-   		//빈에 저장
-   		
-   		
-   		System.out.println("댓글 디비에 있는거 가저오는거 성공?");
-   		System.out.println(CommentsLists);
-   		
-   		
-   		
-   		model.addAttribute("CommentsLists", CommentsLists);
-   		model.addAttribute("photoBoardDTO",photoBoardDTO);
-   		
-   		
-      
-   		
-      
-      
-      return "community/photoboard_view";
-   }
-   
+
+      @RequestMapping("/community/photoboard_view.do")
+      public String photoboardView(Model model, PhotoBoardDTO photoBoardDTO,
+    		  CommentsDTO commentsDTO, Principal principal) {
+         
+         
+         photoBoardDTO = photoboarddao.photoview(photoBoardDTO);
+         System.out.println(photoBoardDTO);
+         photoBoardDTO.setContent(photoBoardDTO.getContent().replace("<br>", "\r\n"));
+         model.addAttribute("photoBoardDTO", photoBoardDTO);
+         System.out.println(photoBoardDTO);
+         
+         
+         
+         
+         // 뷰 테이블에 댓글 얻어오기 추가
+         // 코멘트 테이블 전부다  얻어와서 저장하기  
+      		ArrayList<CommentsDTO> CommentsLists = photoboarddao.CommentsPage(commentsDTO);
+      		//빈에 저장
+      		
+      		
+      		System.out.println("댓글 디비에 있는거 가저오는거 성공?");
+      		System.out.println(CommentsLists);
+      		
+      		
+      		
+      		
+      		
+      		model.addAttribute("CommentsLists", CommentsLists);
+      		model.addAttribute("photoBoardDTO",photoBoardDTO);
+      		
+      		if(principal!=null) {
+      			String email = principal.getName();
+      	         String nickname= dao.getnickname(email);
+      	         System.out.println(email);
+      	         model.addAttribute("email", email);
+      	         model.addAttribute("nickname",nickname); 
+      		}
+         
+      		
+         
+         
+         return "community/photoboard_view";
+      }
    
    
    
@@ -458,7 +412,6 @@ public class CommunityController {
                    model.addAttribute("originalFileName", originalFileName);
                    model.addAttribute("saveFileMaps", saveFileMaps);
                    model.addAttribute("title", req.getParameter("title"));
-                   model.addAttribute("cate", req.getParameterValues("cate"));
                }
            }
        } catch (Exception e) {
@@ -475,7 +428,39 @@ public class CommunityController {
    // 파일삭제
    
     // 업로드 파일 삭제
-   
+   /** 업로드 파일 삭제
+	 * @throws FileNotFoundException 
+    */
+	//"/community/photoboard_writeprocess.do"
+   @PostMapping("/community/deleteFile.do")
+   public ResponseEntity<Boolean> removeFile(String fileName) throws FileNotFoundException{
+   	
+   	System.out.println("파일 삭제 매핑으로 들어오나?");
+       String srcFileName = null;
+       
+       
+       try{
+       	String uploadDir = ResourceUtils.getFile("classpath:static/uploads/").toPath().toString();
+           srcFileName = URLDecoder.decode(fileName,"UTF-8");
+           //UUID가 포함된 파일이름을 디코딩해줍니다.
+           File file = new File(uploadDir +File.separator + srcFileName);
+           //이게 sfile이구나
+           boolean result = file.delete();
+
+           
+           File thumbnail = new File(file.getParent(),"s_"+file.getName());
+           //이게 뭐지?
+           //getParent() - 현재 File 객체가 나태내는 파일의 디렉토리의 부모 디렉토리의 이름 을 String으로 리턴해준다.
+           return new ResponseEntity<>(result,HttpStatus.OK);
+       }catch (UnsupportedEncodingException e){
+           e.printStackTrace();
+           return new ResponseEntity<>(false,HttpStatus.INTERNAL_SERVER_ERROR);
+       }
+   }
+	
+	
+	
+	
    
    
    //포토게시판 수정
@@ -488,8 +473,13 @@ public class CommunityController {
       photoBoardDTO = photoboarddao.photoview(photoBoardDTO);
       
       String email = principal.getName();
+      String nickname= dao.getnickname(email);
+      
+      
+      
       System.out.println(email);
       model.addAttribute("email", email);
+      model.addAttribute("nickname", nickname);
       model.addAttribute("photoBoardDTO", photoBoardDTO);
       return "community/photoboard_edit";
    
@@ -573,8 +563,8 @@ public class CommunityController {
       //return "redirect:freeboard_view.do?freeboard_idx="+boardDTO.getFreeboard_idx();
       //int result = photoboarddao.photoedit(photoBoardDTO);
       //System.out.println("result:"+result);
-      model.addAttribute("photoboard_idx", photoBoardDTO.getPhotoboard_idx());
-      return "redirect:photoboard_view.do?photoboard_idx="+photoBoardDTO.getPhotoboard_idx();
+      model.addAttribute("idx", photoBoardDTO.getIdx());
+      return "redirect:photoboard_view.do?idx="+photoBoardDTO.getIdx();
       //return "main/main";
       //return "redirect:photoboard_list.do";
    }
@@ -584,7 +574,7 @@ public class CommunityController {
    //포토 게시판 삭제처리
    @PostMapping("/community/photoboard_delete.do")
    public String photoDeletePost(HttpServletRequest req ) {
-      int result = photoboarddao.photodelete(req.getParameter("photoboard_idx"));
+      int result = photoboarddao.photodelete(req.getParameter("idx"));
       System.out.println("글삭제결과:"+result);
       
       return "redirect:photoboard_list.do";
@@ -596,222 +586,6 @@ public class CommunityController {
    
    
    
-   /** 업로드 파일 삭제
-    * @throws FileNotFoundException 
-     */
-   //"/community/photoboard_writeprocess.do"
-//    @PostMapping("/community/deleteFile.do")
-//    public ResponseEntity<Boolean> removeFile(String fileName) throws FileNotFoundException{
-//       
-//       System.out.println("파일 삭제 매핑으로 들어오나?");
-//        String srcFileName = null;
-//        
-//        
-//        try{
-//           String uploadDir = ResourceUtils.getFile("classpath:static/uploads/").toPath().toString();
-//            srcFileName = URLDecoder.decode(fileName,"UTF-8");
-//            //UUID가 포함된 파일이름을 디코딩해줍니다.
-//            File file = new File(uploadDir +File.separator + srcFileName);
-//            //이게 sfile이구나
-//            boolean result = file.delete();
-//
-//            
-//            File thumbnail = new File(file.getParent(),"s_"+file.getName());
-//            //이게 뭐지?
-//            //getParent() - 현재 File 객체가 나태내는 파일의 디렉토리의 부모 디렉토리의 이름 을 String으로 리턴해준다.
-//            return new ResponseEntity<>(result,HttpStatus.OK);
-//        }catch (UnsupportedEncodingException e){
-//            e.printStackTrace();
-//            return new ResponseEntity<>(false,HttpStatus.INTERNAL_SERVER_ERROR);
-//        }
-//    }
-//    
-//    //포토게시판 댓글추가
-//    
-//	@PostMapping("/community/photoboard_comment.do")
-//	public String boardCommentPost(Model model,  HttpServletRequest req, PhotoBoardDTO photoBoardDTO ,
-//			CommentsDTO commentsDTO) {
-//		
-//		System.out.println("댓글 추가 컨트롤러 들어오나? ");
-//		
-//		String photoboard_idx = req.getParameter("photoboard_idx");
-//		String content = req.getParameter("content");
-//		String email = req.getParameter("email");
-//		
-//		System.out.println(photoboard_idx);
-//		System.out.println(content);
-//		System.out.println(email);
-//		
-//		
-//		
-//		int result = photoboarddao.writeConmments(photoboard_idx, content ,email);
-//		
-//		
-//		
-//	
-//		
-//		System.out.println("성공?");
-//		System.out.println(commentsDTO);
-//		System.out.println("글쓰기결과:"+ result);
-//		
-//		// 코멘트 테이블 전부다  얻어와서 저장하기  
-//		ArrayList<CommentsDTO> CommentsLists = photoboarddao.CommentsPage(commentsDTO);
-//		//빈에 저장
-//		
-//		
-//		System.out.println("댓글 디비에 있는거 가저오는거 성공?");
-//		System.out.println(CommentsLists);
-//		
-//		
-//		
-//		model.addAttribute("CommentsLists", CommentsLists);
-//		model.addAttribute("photoBoardDTO",photoBoardDTO);
-//		model.addAttribute("result", result);
-//		
-//		
-//	
-//
-//		
-//		
-//		return "community/photoboard_view";
-//		//return "redirect:view.do";
-//	}
-//   
-   
-   
-   
-   
-   
-   
- 
-   
-   
-       
-   
-   
-   
-   
-   
 
 }
 
-
-
-      
-      
-      
-   
-//   @RequestMapping(value="/community/photoboard_writeprocess.do", produces = "application/json; charset=utf8")
-//   @ResponseBody
-//   public String uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile, HttpServletRequest request, PhotoBoardDTO photoBoardDTO
-//         ,Model model, Principal principal)  {
-//      JsonObject jsonObject = new JsonObject();
-//      
-//      String email = principal.getName();
-//      
-//      model.addAttribute("email", email);
-//      System.out.println(email);
-//      
-//      System.out.println("포토 게시판 들어오나?");
-//      
-//      String title = request.getParameter("title");
-//      System.out.println("타이"+title);
-//      System.out.println(photoBoardDTO);
-//      String files = request.getParameter("files");
-//      System.out.println(files);
-//        /*
-//       * String fileRoot = "C:\\summernote_image\\"; // 외부경로로 저장을 희망할때.
-//       */
-//      
-//      // 내부경로로 저장
-//      //String contextRoot = request.getServletContext().getRealPath("/");
-//      //String newContextRoot = contextRoot.replace("/Users/minseokkang/Desktop/Workplace/Sigdolagi/src/main/webapp/",
-//      //                                             "/Users/minseokkang/Desktop/Workplace/Sigdolagi/bin/main/static/uploads/");
-//      String contextRoot = null;
-//      
-//      try {
-//       contextRoot = ResourceUtils
-//            .getFile("classpath:static/uploads/").toPath().toString();
-//      System.out.println("물리적 경로:" +contextRoot);
-//      }catch (Exception e) {
-//         e.printStackTrace();
-//      }
-//      
-//      System.out.println("물리적 경로:" +contextRoot);
-//      System.out.println("컨텍스트루트"+contextRoot);
-//      String fileRoot = contextRoot;
-//      System.out.println("파일루트"+fileRoot);
-//      
-//      String originalFileName = multipartFile.getOriginalFilename();   //오리지날 파일명
-//      System.out.println("오리지날파일명"+originalFileName);
-//      photoBoardDTO.setOfile(originalFileName);
-//      String extension = originalFileName.substring(originalFileName.lastIndexOf("."));   //파일 확장자
-//      String savedFileName = UUID.randomUUID() + extension;   //저장될 파일 명
-//      System.out.println("저장된 파일명"+savedFileName);
-//      photoBoardDTO.setSfile(savedFileName);
-//      System.out.println(photoBoardDTO);
-//      
-//      
-//      
-//      
-//      File targetFile = new File(fileRoot +"/"+ savedFileName);   
-//      try {
-//         InputStream fileStream = multipartFile.getInputStream();
-//         FileUtils.copyInputStreamToFile(fileStream, targetFile);   //파일 저장
-//         
-//         jsonObject.addProperty("url", contextRoot+"resources/static/uploads/"+savedFileName); 
-//         jsonObject.addProperty("responseCode", "success");
-//         
-//         System.out.println("저장된파일명"+savedFileName);
-//         
-//         Map<String, String> saveFileMaps = new HashMap<>();
-//
-//         
-//         
-//         saveFileMaps.put(originalFileName, savedFileName);
-//
-//         
-//         
-//         //db집어넣기
-//         
-//         
-//         int result2 = filedao.insertMultiFile(photoBoardDTO);
-//         if(result2 == 1) {
-//            System.out.println("멀티성공(?)");
-//            model.addAttribute("originalFileName", request.getParameter("originalFileName"));
-//            model.addAttribute("saveFileMaps", saveFileMaps);
-//            model.addAttribute("photolist", photoBoardDTO);
-//            System.out.println(saveFileMaps);
-//            model.addAttribute("title", request.getParameter("title"));
-//            model.addAttribute("cate", request.getParameterValues("cate"));
-//            
-//         }
-//         
-//         
-//         
-//         
-//            
-//      } catch (IOException e) {
-//         FileUtils.deleteQuietly(targetFile);   //저장된 파일 삭제
-//         jsonObject.addProperty("responseCode", "error");
-//         e.printStackTrace();
-//      }
-//      String a = jsonObject.toString();
-//      return a; 
-//      
-//      
-//      
-//       
-//   }
-//   
-//   
-   
-
-
-
-
-
-
-   
-
-   

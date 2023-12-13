@@ -27,33 +27,33 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				<if test="searchKeyword!=null and !searchKeyword.equals('')">
 				WHERE ${searchField} LIKE '%'||#{searchKeyword} ||'%'
 				</if>
-				ORDER BY photoboard_idx DESC
+				ORDER BY idx DESC
 			) Tb
 		)
 	 	WHERE rNum<![CDATA[>=]]>#{start} AND rNum<![CDATA[<=]]>#{end}
 	</select>
 	
 	<select id="photoview" resultType="com.edu.springboot.community.PhotoBoardDTO" parameterType="com.edu.springboot.community.PhotoBoardDTO">
-		SELECT * FROM photoboard WHERE photoboard_idx=${photoboard_idx}
+		SELECT * FROM photoboard WHERE idx=${idx}
 	</select>
 	
 	<!-- <update id="photoedit" parameterType="com.edu.springboot.community.PhotoBoardDTO">
-		UPDATE photoboard SET title=#{title}, sfile=#{sfile} content=#{content} WHERE photoboard_idx=${photoboard_idx}
+		UPDATE photoboard SET title=#{title}, sfile=#{sfile} content=#{content} WHERE idx=${idx}
 	</update> -->
 	<update id="photoedit" parameterType="com.edu.springboot.community.PhotoBoardDTO">
 	    UPDATE photoboard SET title = #{title}, content = #{content}, ofile=#{ofile}, sfile = #{sfile} 
-	    WHERE photoboard_idx = #{photoboard_idx}
+	    WHERE idx = #{idx}
 	</update>
 	
 	
 	<delete id="photodelete">
-		DELETE FROM photoboard WHERE photoboard_idx=#{photoboard_idx}
+		DELETE FROM photoboard WHERE idx=#{idx}
 	</delete>
 	
 	
 	<insert id="writeConmments" >
-	   INSERT INTO  COMMENTS (comments_idx, email, content ,postdate, photoboard_idx )
-	   VALUES (seq_comments_idx.nextval,  #{email}, #{content} , sysdate , #{photoboard_idx} )
+	   INSERT INTO  COMMENTS (comments_idx, nickname, content ,postdate, idx , email)
+	   VALUES (seq_comments_idx.nextval,  #{nickname}, #{content} , sysdate , #{idx}, #{email} )
 	</insert>
 	
 	
@@ -61,11 +61,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="CommentsPage"
        resultType="com.edu.springboot.community.CommentsDTO"
        parameterType="com.edu.springboot.community.CommentsDTO">
-  		 SELECT * FROM COMMENTS WHERE photoboard_idx = #{photoboard_idx}
+  		 SELECT * FROM COMMENTS WHERE idx = #{idx}
 	
 	</select>
 	
 	
+
+	
+	<!-- 관리자 자유게시판 목록 -->
+	<select id="adminPhotoSelect"
+		resultType="com.edu.springboot.community.PhotoBoardDTO">
+		SELECT * FROM photoboard ORDER BY regidate DESC
+	</select>
 	
 	
 	

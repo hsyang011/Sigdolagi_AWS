@@ -154,15 +154,35 @@
 
 <script>
 
+function deletePost(freeboard_idx){
+    var confirmed = confirm("정말로 삭제하겠습니까?"); 
+    if (confirmed) {
+        var form = document.writeFrm;      
+        form.method = "post";  
+        form.action = "./photoboard_delete.do";
+        form.submit();  
+    }
+}
+
+
+
+</script>
+
+
+
+
+<script>
+
 
 function CommentSend(){
 	let frm = document.commentwriteFrm;
 	console.log(frm.content.value);
     let data = {
     		
-    	photoboard_idx : frm.photoboard_idx.value,
-    	email : frm.email.value,
-    	content : frm.content.value
+    	idx : frm.idx.value,
+    	nickname : frm.nickname.value,
+    	content : frm.content.value,
+    	email : frm.email.value
     };
     //alert("댓글작성 "); // 여기에 alert 추가
     console.log(data);
@@ -183,30 +203,44 @@ function CommentSend(){
 }
 </script>
 
-
-    
 <script>
-   // 댓글을 화면에 추가하는 함수
-   function displayComment(res) {
-	   // 받은 댓글 데이터를 이용하여 화면에 추가하는 로직을 작성
-	   console.log(res.email);
-	   console.log(res.photoboard_idx);
-	   console.log(res.content);
-	   var commentHTML = 
-	       "<tr align=\"center\">" +
-	           "<td>" + res.email + "</td>" +
-	           "<td>" + res.photoboard_idx + "</td>" +
-	           "<td>" + res.content + "</td>" +
-	       "</tr>";
-	   // 화면에 댓글 추가
-	   $("#commentsTableBody").append(commentHTML);
-	}
-   
-   
-   	
+    // 현재 날짜와 시간을 얻기 위한 함수
+    function getCurrentDateTime() {
+        var now = new Date();
+
+        // 날짜 및 시간을 원하는 형식으로 포맷팅
+        var formattedDateTime = now.getFullYear() + '-' +
+            padNumber(now.getMonth() + 1) + '-' +
+            padNumber(now.getDate()) + ' ' +
+            padNumber(now.getHours()) + ':' +
+            padNumber(now.getMinutes()) + ':' +
+            padNumber(now.getSeconds());
+
+        return formattedDateTime;
+    }
+
+    // 숫자를 두 자리로 패딩하는 함수
+    function padNumber(number) {
+        return (number < 10 ? '0' : '') + number;
+    }
+
+    // 댓글을 화면에 추가하는 함수
+    function displayComment(res) {
+        // 받은 댓글 데이터를 이용하여 화면에 추가하는 로직을 작성
+        console.log(res.email);
+        console.log(res.idx);
+        console.log(res.content);
+        var commentHTML =
+            "<tr align=\"center\">" +
+            "<td>" + res.nickname + "</td>" +
+            "<td>" + res.idx + "</td>" +
+            "<td>" + res.content + "</td>" +
+            "<td>" + getCurrentDateTime() + "</td>" +
+            "</tr>";
+        // 화면에 댓글 추가
+        $("#commentsTableBody").append(commentHTML);
+    }
 </script>
-     
-    
     
     
     </head>
@@ -263,7 +297,7 @@ function CommentSend(){
                             <!-- 게시판 들어가는 부분 (시작) -->
                             <form name="writeFrm" method="post" onsubmit="return validateForm(this);" class="writeFrm" enctype="multipart/form-data">
                                 <input type="hidden" name="tname"  />
-                                <input type="hidden" name="photoboard_idx" value="${photoBoardDTO.photoboard_idx }" />
+                                <input type="hidden" name="idx" value="${photoBoardDTO.idx }" />
                                 <table class="table table-bordered" id="free_write_frm_table" width="100%" >
                                     <tr>
                                         <td>제목</td>
@@ -280,7 +314,7 @@ function CommentSend(){
                                     
                                     <tr>
                                         <td colspan="2" align="center" class="btn_td">
-                                            <button type="button" class="writeFrm_edit" onclick="location.href='./photoboard_edit.do?photoboard_idx=${photoBoardDTO.photoboard_idx }';">수정하기</button>
+                                            <button type="button" class="writeFrm_edit" onclick="location.href='./photoboard_edit.do?idx=${photoBoardDTO.idx }';">수정하기</button>
                                             <button type="button" class="writeFrm_reset"  onclick="deletePost();">삭제하기</button>
                                             <button type="button" class="writeFrm_list" onclick="location.href='./photoboard_list.do'">목록 보기</button>
                                         </td>
@@ -295,8 +329,10 @@ function CommentSend(){
                                     <form name="commentwriteFrm" method="post"  action="/community/photoboard_comment.do" class="writeFrm">
                                         <legend class="skipinfo">댓글 입력</legend>
                                         <div class="cm_input">
-                                            <input type="text" name="photoboard_idx" value="${photoBoardDTO.photoboard_idx }">
-                                            <input type="text" name="email" value="이메일">
+                                            <input type="text" name="idx" value="${photoBoardDTO.idx }">
+                                            <input type="text" name="nickname" value="${nickname}">
+                                            <input type="text" name="email" value="${email}">
+                                            
                                             <p><textarea id="content" name="content" onkeyup=""  style="width:100%" rows="4" placeholder="댓글을 입력해 주세요."></textarea></p>
                                             <span><button type="button" class="btns" onclick="CommentSend();">등록</button> <i id="counter">0/300자</i></span>
                                         </div>
@@ -312,17 +348,17 @@ function CommentSend(){
                             <table class="table table-border">
                                 <thead>
                                     <tr>
-                                        <th>Email</th>
-                                        <th>Comments Index</th>
-                                        <th>Content</th>
-                                        <th>Post Date</th>
+                                        <th style="text-align: center;">Nickname</th>
+                                        <th style="text-align: center;">Photo Index</th>
+                                        <th style="text-align: center;">Content</th>
+                                        <th style="text-align: center;">Post Date</th>
                                     </tr>
                                 </thead>
                                 <tbody id="commentsTableBody">
                                     <!-- Existing comments will be added here dynamically -->
                                     <c:forEach items="${CommentsLists}" var="row" varStatus="loop">
                                         <tr align="center">
-                                            <td>${row.email}</td>
+                                            <td>${row.nickname}</td>
                                             <td>${row.comments_idx}</td>
                                             <td>${row.content}</td>
                                             <td>${row.postdate}</td>
