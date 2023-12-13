@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.edu.springboot.market.IProductService">
+	
+	<!-- 검색 결과 상품의 갯수 -->
+	<select id="getTotalCount" parameterType="com.edu.springboot.market.ParameterDTO" resultType="int">
+		SELECT COUNT(*) FROM product
+		<if test="searchKeyword!=null and !searchKeyword.equals('')">
+			WHERE ${searchField} LIKE '%'||#{searchKeyword}||'%'
+		</if>
+	</select>
+	
+	<!-- 상품 리스트 -->
+	<select id="list" parameterType="com.edu.springboot.market.ParameterDTO" resultType="com.edu.springboot.market.ProductDTO">
+		SELECT * FROM (
+			SELECT Tb.*, ROWNUM rNum FROM (
+				SELECT * FROM product
+				<!-- 검색어가 null, 빈값이 아닐때만 where절을 동적으로 추가한다. -->
+				<if test="searchKeyword!=null and !searchKeyword.equals('')">
+					WHERE ${searchField} LIKE '%'||#{searchKeyword}||'%'
+				</if>
+				ORDER BY prod_idx DESC
+			) Tb
+		) WHERE rNum<![CDATA[>=]]>#{start} AND rNum<![CDATA[<=]]>#{end}
+	</select>
+	
+	<!-- 상품 상세보기 -->
+	<select id="view" parameterType="com.edu.springboot.market.ProductDTO" resultType="com.edu.springboot.market.ProductDTO">
+		SELECT * FROM product WHERE prod_idx=${prod_idx}
+	</select>
+	
+	<!-- 상품 추천 리스트 -2~2사이 -->
+	<select id="recommendList" parameterType="com.edu.springboot.market.ProductDTO" resultType="com.edu.springboot.market.ProductDTO">
+		SELECT * FROM product WHERE prod_idx BETWEEN ${prod_idx}-2 AND ${prod_idx}+2 AND NOT prod_idx=${prod_idx}
+	</select>
+	
+	
+	
+	<!-- 관리자 마켓리스트 -->
+	<select id="adminMaketSelect"
+		resultType="com.edu.springboot.market.ProductDTO"> 
+		SELECT * FROM product ORDER BY prod_idx DESC
+	</select>
+	
+	<!-- 관리자 마켓상품등록 -->
+	<insert id="adminMaketInsert"
+		parameterType="com.edu.springboot.market.ProductDTO">
+		<!-- insert into product (prod_idx, category, prod_name, prod_price, prod_sale,
+			prod_thumbnail, prod_detail, seller, img1, img2, img3, img4, img5, sub_cate, inventory, prod_discount) values
+			(seq_product_idx.nextval,#{category},#{prod_name},#{prod_price},#{prod_sale},#{prod_thumbnail},
+				#{prod_detail},#{seller},#{img1},#{img2},#{img3},#{img4},#{img5},#{sub_cate},#{inventory},#{prod_discount}) -->
+	INSERT INTO product (prod_idx, category, sub_cate, seller,  prod_name, prod_price,  prod_sale,  inventory, prod_detail_o, prod_detail
+		 prod_thumbnail_o,prod_thumbnail,img1_o,img1,img2_o,img2,img3_o,img3,img4_o,img4,img5_o,img5) VALUES
+		(seq_product_idx.nextval, #{category},#{sub_cate}, #{seller}, #{prod_name}
+		, ${prod_price}, ${prod_sale},${inventory},
+			#{prod_detail_o},#{prod_detail},#{prod_thumbnail_o},#{prod_thumbnail},#{img1_o},#{img1},#{img2_o},
+			#{img2},#{img3_o},#{img3},#{img4_o},#{img4},#{img5_o},#{img5});
+	</insert>
+	
+	<!-- 관리자 마켓상품삭제 -->
+	<delete id="adminMaketDelete"
+		parameterType="com.edu.springboot.market.ProductDTO">
+		delete from product where prod_idx=${prod_idx}
+	</delete>
+	
+</mapper>

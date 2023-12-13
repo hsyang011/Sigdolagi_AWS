@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.edu.springboot.community.IBoardService">
+	
+	 
+	
+	<!-- list  -->
+	<select id="getTotalCount" resultType="int" parameterType="com.edu.springboot.community.ParameterDTO">
+	SELECT COUNT(*) from freeboard
+			<if test="searchKeyword!=null and !searchKeyword.equals('')">
+		WHERE ${searchField} LIKE '%'||#{searchKeyword}||'%'
+		</if>
+	</select>
+	
+	
+	<select id="listPage"
+		resultType="com.edu.springboot.community.BoardDTO"
+		parameterType="com.edu.springboot.community.ParameterDTO">
+		SELECT * FROM (
+			SELECT Tb.*, rownum rNum FROM(
+				SELECT * FROM freeboard
+				<if test="searchKeyword!=null and !searchKeyword.equals('')">
+				WHERE ${searchField} LIKE '%'||#{searchKeyword} ||'%'
+				</if>
+				ORDER BY freeboard_idx DESC
+			) Tb
+		)
+	 	WHERE rNum<![CDATA[>=]]>#{start} AND rNum<![CDATA[<=]]>#{end}
+	</select>
+	
+	<!-- write  -->
+	<insert id="write">
+		INSERT INTO freeboard (freeboard_idx, email, title, content) VALUES (seq_freeboard_idx.nextval, #{_email},  #{_title}, #{_content} )
+	</insert>
+	
+	<select id="view" resultType="com.edu.springboot.community.BoardDTO" parameterType="com.edu.springboot.community.BoardDTO">
+		SELECT * FROM freeboard WHERE freeboard_idx=${freeboard_idx}
+	</select>
+	
+	
+	<update id="edit" parameterType="com.edu.springboot.community.BoardDTO">
+		UPDATE freeboard SET title=#{title}, content=#{content} WHERE freeboard_idx=${freeboard_idx}
+
+	</update>
+	<update id="update" parameterType="com.edu.springboot.community.BoardDTO">
+   		UPDATE freeboard SET visitcount=visitcount+1 WHERE freeboard_idx=${freeboard_idx}
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM freeboard WHERE freeboard_idx=#{freeboard_idx}
+	</delete>
+	
+
+<!-- 	<select id="nickname" resultType="string" parameterType="string">
+		SELECT nickname FROM member WHERE email=${email}
+	</select> -->
+	
+
+	<!-- 관리자 자유게시판 목록 -->
+	<select id="adminFreeSelect"
+		resultType="com.edu.springboot.community.BoardDTO">
+		SELECT * FROM freeboard ORDER BY postdate DESC
+	</select>
+
+		
+</mapper>
