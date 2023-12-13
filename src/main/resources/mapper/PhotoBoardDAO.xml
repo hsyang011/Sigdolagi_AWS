@@ -52,8 +52,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	<insert id="writeConmments" >
-	   INSERT INTO  COMMENTS (comments_idx, nickname, content ,postdate, photoboard_idx )
-	   VALUES (seq_comments_idx.nextval,  #{nickname}, #{content} , sysdate , #{photoboard_idx} )
+	   INSERT INTO  COMMENTS (comments_idx, nickname, content ,postdate, photoboard_idx , email)
+	   VALUES (seq_comments_idx.nextval,  #{nickname}, #{content} , sysdate , #{photoboard_idx}, #{email} )
 	</insert>
 	
 	

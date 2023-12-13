@@ -257,6 +257,7 @@
                                         <td>
                                             <input type="text" name="title" id="title" />
                                             <input type="text" name="nickname" id="nickname"  value="${nickname}" />
+                                             <input type="text" name="email" id="email"  value="${email}" />
                                         </td>
                                     </tr>
                                     <tr>

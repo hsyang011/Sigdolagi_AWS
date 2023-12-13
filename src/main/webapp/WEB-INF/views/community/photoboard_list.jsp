@@ -124,36 +124,40 @@ $(function() {
 							</div>
                         </c:otherwise>
                     </c:choose>
+                    </td>
+                </tr>
+             </table>
+                
              
               <!-- 모바일 테이블 -->
-              <table class="table table-border" id="mobiletable">
+             <!--  <table class="table table-border" id="mobiletable">
                
                     <tr style="text-align: center;" >
                         <td scope="col" style="width: 25%;">
                             <figure class="row thumbnail">
-                                <!-- 1열 시작 -->
-                                <div class="card col" style="padding-right: 20px; border: none;"> <!-- 오른쪽 패딩 추가, 테두리 없앰 -->
+                                1열 시작
+                                <div class="card col" style="padding-right: 20px; border: none;"> 오른쪽 패딩 추가, 테두리 없앰
                                     <img class="card-img-top" src="http://placehold.it/200x200" alt="이미지" alt="Card image">
                                     <div class="card-body ">
                                         <h4 class="card-title" style="font-size: 18px; text-align: left;">게시판타이틀</h4>
                                         <p class="card-text" style="text-align: left;">닉네임</p>
                                     </div>
                                 </div>
-                                <!-- 1열 끝 -->
+                                1열 끝
                             </figure>
                         </td>
                         
                         <td scope="col" style="width: 25%;">
                             <figure class="row thumbnail">
-                                <!-- 1열 시작 -->
-                                <div class="card col" style="padding-right: 20px; border: none;"> <!-- 오른쪽 패딩 추가, 테두리 없앰 -->
+                                1열 시작
+                                <div class="card col" style="padding-right: 20px; border: none;"> 오른쪽 패딩 추가, 테두리 없앰
                                     <img class="card-img-top" src="http://placehold.it/200x200" alt="이미지" alt="Card image">
                                     <div class="card-body ">
                                         <h4 class="card-title" style="font-size: 18px; text-align: left;">게시판타이틀</h4>
                                         <p class="card-text" style="text-align: left;">닉네임</p>
                                     </div>
                                 </div>
-                                <!-- 1열 끝 -->
+                                1열 끝
                             </figure>
                         </td>
                       </tr>
@@ -161,33 +165,33 @@ $(function() {
                       <tr style="text-align: center;" >
                         <td scope="col" style="width: 25%;">
                             <figure class="row thumbnail">
-                                <!-- 1열 시작 -->
-                                <div class="card col" style="padding-right: 20px; border: none;"> <!-- 오른쪽 패딩 추가, 테두리 없앰 -->
+                                1열 시작
+                                <div class="card col" style="padding-right: 20px; border: none;"> 오른쪽 패딩 추가, 테두리 없앰
                                     <img class="card-img-top" src="http://placehold.it/200x200" alt="이미지" alt="Card image">
                                     <div class="card-body ">
                                         <h4 class="card-title" style="font-size: 18px; text-align: left;">게시판타이틀</h4>
                                         <p class="card-text" style="text-align: left;">닉네임</p>
                                     </div>
                                 </div>
-                                <!-- 1열 끝 -->
+                                1열 끝
                             </figure>
                         </td>
                         <td scope="col" style="width: 25%;">
                             <figure class="row thumbnail">
-                                <!-- 1열 시작 -->
-                                <div class="card col" style="padding-right: 20px; border: none;"> <!-- 오른쪽 패딩 추가, 테두리 없앰 -->
+                                1열 시작
+                                <div class="card col" style="padding-right: 20px; border: none;"> 오른쪽 패딩 추가, 테두리 없앰
                                     <img class="card-img-top" src="http://placehold.it/200x200" alt="이미지" alt="Card image">
                                     <div class="card-body ">
                                         <h4 class="card-title" style="font-size: 18px; text-align: left;">게시판타이틀</h4>
                                         <p class="card-text" style="text-align: left;">닉네임</p>
                                     </div>
                                 </div>
-                                <!-- 1열 끝 -->
+                                1열 끝
                             </figure>
                         </td>
                       </tr>
             
-              </table>
+              </table> -->
             </div>
         </div>
 
@@ -202,11 +206,11 @@ $(function() {
         <table class="table"width="100%"  >
         <tr>
             <td align="center">
-                <select name="searchField_list" class="searchField_list"> 
+                <select name="searchField" class="searchField_list"> 
                     <option value="title">제목</option> 
                     <option value="content" >내용</option>
                 </select>
-                <input type="text" name="searchWord_list" class="searchWord_list" style="width: 300px;" />
+                <input type="text" name="searchKeyword" class="searchWord_list" style="width: 300px;" />
                 <input type="submit" value="검색하기" class="btn2 "/>
             </td>
         </tr>   

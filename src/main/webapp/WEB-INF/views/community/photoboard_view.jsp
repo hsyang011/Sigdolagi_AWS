@@ -181,7 +181,8 @@ function CommentSend(){
     		
     	photoboard_idx : frm.photoboard_idx.value,
     	nickname : frm.nickname.value,
-    	content : frm.content.value
+    	content : frm.content.value,
+    	email : frm.email.value
     };
     //alert("댓글작성 "); // 여기에 alert 추가
     console.log(data);
@@ -330,6 +331,8 @@ function CommentSend(){
                                         <div class="cm_input">
                                             <input type="text" name="photoboard_idx" value="${photoBoardDTO.photoboard_idx }">
                                             <input type="text" name="nickname" value="${nickname}">
+                                            <input type="text" name="email" value="${email}">
+                                            
                                             <p><textarea id="content" name="content" onkeyup=""  style="width:100%" rows="4" placeholder="댓글을 입력해 주세요."></textarea></p>
                                             <span><button type="button" class="btns" onclick="CommentSend();">등록</button> <i id="counter">0/300자</i></span>
                                         </div>
@@ -346,7 +349,7 @@ function CommentSend(){
                                 <thead>
                                     <tr>
                                         <th style="text-align: center;">Nickname</th>
-                                        <th style="text-align: center;">Comments Index</th>
+                                        <th style="text-align: center;">Photo Index</th>
                                         <th style="text-align: center;">Content</th>
                                         <th style="text-align: center;">Post Date</th>
                                     </tr>

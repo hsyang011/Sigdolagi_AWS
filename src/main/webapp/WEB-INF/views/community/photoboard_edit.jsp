@@ -335,6 +335,7 @@ function deleteImageFile() {
                                         <td>
                                             <input type="text" name="title" id="title" value="${photoBoardDTO.title}" />
                                             <input type="text" name="nickname" id="nicnkname"   value="${nickname}"    />
+                                            <input type="text" name="email" id="email"   value="${email}"    />
                                         </td>
                                     </tr>
                                     <tr>
