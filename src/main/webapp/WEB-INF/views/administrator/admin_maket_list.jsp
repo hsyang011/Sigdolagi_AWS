@@ -125,7 +125,7 @@
                                             <td>${row.inventory }</td>
                                             <td>${row.regidate }</td>
                                             <td>
-                                                <img src="../images/products/${row.prod_thumbnail }.jpg" alt="" width="100px">
+                                                <img src="../images/products/${row.img1 }" alt="" width="100px">
                                             </td>
                                             <td>
                                             	<a href="#" class="btn btn-warning btn-icon-split">

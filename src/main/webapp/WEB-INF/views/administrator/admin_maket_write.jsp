@@ -116,8 +116,6 @@
                                     <label for="prod_detail" class="form-label">상세내용</label>
                                     <!-- <textarea class="form-control" cols="30" rows="10" id="prod_detail" name="prod_detail"></textarea> -->
                                 	<input type="file" id="prod_detail" name="prod_detail_o"/><br />
-                                	<label for="thumbnail" class="form-label">상품이미지</label> 
-                                    <input type="file" id="thumbnail" name="prod_thumbnail_o"/><br />
                                 </div>
                                 
                                 <div class="mb-3">

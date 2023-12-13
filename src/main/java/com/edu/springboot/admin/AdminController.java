@@ -147,7 +147,7 @@ public class AdminController {
 		
 		try {
 			//업로드 디렉토리의 물리적경로 얻어오기
-			String uploadDir = ResourceUtils.getFile("classpath:static/uploads/").toPath().toString();
+			String uploadDir = ResourceUtils.getFile("classpath:static/images/products/").toPath().toString();
 			System.out.println("물리적경로:" + uploadDir);
 			
 			//전송된 첨부파일을 Part객체를 통해 얻어온다. 
