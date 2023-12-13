@@ -39,11 +39,11 @@ public class AdminController {
 	public String adminMain(Model model, HttpServletRequest req, HttpSession session, Principal principal) {
 		
 		try {
+			//시큐리티 principal로 유저이메일(아이디) 불러오기
 			String userid = principal.getName();
-
+			//이메일로 닉네임찾기
 			String nickname = dao.getnickname(userid);
-	        System.out.println("nickname:결과 "+nickname);
-//	        model.addAttribute("nickname",nickname);
+	        //세션UserNickName에 저장하기
 	        session.setAttribute("UserNickName", nickname);
 	        String userNick = session.getAttribute("UserNickName").toString(); 
 	        System.out.println("UserNick = "+userNick);
@@ -66,7 +66,6 @@ public class AdminController {
 		// DB에서 인출한 게시물의 목록을 model객체에 저장한다.
 		List<MemberDTO> adminMemberSelect = memberDao.adminMemberSelect();
 		model.addAttribute("adminMemberSelect", adminMemberSelect);
-//		System.out.println("adminMemberSelect="+adminMemberSelect);
 		return "administrator/admin_member_list";
 	}
 	
@@ -75,7 +74,7 @@ public class AdminController {
 	public String adminMemberEnabled(MemberDTO memberDTO) {
 		int result = memberDao.adminMemberEnabled(memberDTO);
 		if(result==1)System.out.println("탈퇴처리되었습니다.");
-		
+		//탈퇴회원 처리 해야함 컬럼 ENABLED이 0인 유저는 alert로 탈퇴회원입니다 띄워주기
 		return "redirect:adminMemberList.do";
 	}
 	
@@ -95,6 +94,7 @@ public class AdminController {
 	
 	@RequestMapping("/administrator/admin_photo_list.do")
 	public String adminPhoto() {
+		
 		return "administrator/admin_photo_list";
 	}
 	
@@ -139,13 +139,6 @@ public class AdminController {
 		return "administrator/admin_maket_write";
 	}
 	//관리자 마켓상품등록 처리
-//	@PostMapping("/administrator/admin_maket_write.do")
-//	public String adminMaketListWrite(Model model, ProductDTO productDTO) {
-//		int result = productDAO.adminMaketInsert(productDTO);
-//		if(result==1)System.out.println("입력되었습니다.");
-//		
-//		return "redirect:admin_maket_list.do";
-//	} admin_maket_write.do
 	@PostMapping("/administrator/admin_maket_write.do")
 	public String adminMaketWriteProcess(HttpServletRequest req, Model model, ProductDTO productDTO) {
 		
@@ -175,7 +168,6 @@ public class AdminController {
 			/*파일명 저장을 위한 Map생성. Key는 원본파일명, value는 서버에 저장된 
 			파일명을 저장한다.*/
 			Map<String, String> saveFileMaps = new HashMap<>();
-			
 			
 			String ofiles = "";
 			String sfiles = "";
@@ -212,7 +204,7 @@ public class AdminController {
 			//View로 전달하기 위해 Model객체에 저장한다.
 			model.addAttribute("saveFileMaps", saveFileMaps);
 			
-			//JDBC 연동을 하지 않으므로 Model객체에 정보를 저장한다.
+			// Model객체에 정보를 저장한다.
 			model.addAttribute("originalFileName", originalFileName);
 			model.addAttribute("savedFileName", savedFileName);
 			
@@ -220,11 +212,6 @@ public class AdminController {
 			//싱글파일
 			productDTO.setProd_detail_o(originalFileName);
 			productDTO.setProd_detail(savedFileName);
-			
-			System.out.println("productDTO.데이탈="+productDTO.getProd_detail());
-			
-			System.out.println("ofiles= "+ofiles);
-			System.out.println("sfiles= "+sfiles);
 			//멀티파일
 			String[] oArr = ofiles.split(":");
 			String[] sArr = sfiles.split(":");

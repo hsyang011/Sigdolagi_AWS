@@ -277,6 +277,9 @@
                                              <button type="button" id="deleteFileBtn">파일 삭제</button>
                                         </td>
                                     </tr>
+                                    
+                                    
+                                    
                                     <tr>
                                         <td colspan="2" align="center" class="btn_td">
                                             <button type="submit" class="writeFrm_end" id="saveBtn">작성 완료</button>
@@ -292,7 +295,6 @@
             </div>
         </main>
         <!— main 끝 —>
-        
         <!— footer 추가 —>
         <%@ include file="../include/footer.jsp" %>
         

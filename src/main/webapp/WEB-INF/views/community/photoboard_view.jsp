@@ -276,6 +276,8 @@ function CommentSend(){
                                             <textarea id="" name="content" readonly>${photoBoardDTO.content}</textarea>
                                         </td>
                                     </tr>
+                                    
+                                    
                                     <tr>
                                         <td colspan="2" align="center" class="btn_td">
                                             <button type="button" class="writeFrm_edit" onclick="location.href='./photoboard_edit.do?photoboard_idx=${photoBoardDTO.photoboard_idx }';">수정하기</button>
@@ -285,6 +287,7 @@ function CommentSend(){
                                     </tr>
                                 </table>
                             </form>
+                            
                             
 
                             <div class="cm_write" style="width:100%">
@@ -300,8 +303,11 @@ function CommentSend(){
                                     </form>
                                 </fieldset>
                             </div>
-                            
-                            
+
+							
+							
+
+
 
                             <table class="table table-border">
                                 <thead>
@@ -330,7 +336,7 @@ function CommentSend(){
             </div>
         </main>
         <!-- main 끝 -->
-
+		
         <!-- footer 추가 -->
         <%@ include file="../include/footer.jsp" %>
 
