@@ -28,5 +28,6 @@ public interface IPlannerService {
 	
 	//관리자 플래너리스트불러오기
 	public List<PlannerDTO> adminPlannerSelect();
-	
+	//관리자 자유게시판삭제
+	public int adminPlannerDelete(String idx);
 }

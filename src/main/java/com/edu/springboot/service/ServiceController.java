@@ -65,7 +65,7 @@ public class ServiceController {
    	public String freeboardView(Model model,NotiDTO notiDTO,HttpServletRequest req,ParameterDTO parameterDTO) {
 		notidao.update(notiDTO);
 		notiDTO = notidao.view(notiDTO);
-		notiDTO.setCONTENT(notiDTO.getCONTENT().replace("\r\n", "<br>"));
+		notiDTO.setContent(notiDTO.getContent().replace("\r\n", "<br>"));
 		model.addAttribute("notiDTO", notiDTO);
 		
 		return "community/notiboard_view";

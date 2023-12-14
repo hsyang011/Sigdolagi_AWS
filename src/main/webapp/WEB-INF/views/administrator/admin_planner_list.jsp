@@ -24,7 +24,7 @@
     <link href="../bootstrap/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" />
 </head>
 <script>
-function deletePost(idx){
+function listDelete(idx){
 	let frm = document.frm;
 	if(confirm("삭제하시겠습니까?")){
 		frm.planner_idx.value = idx;
@@ -71,10 +71,13 @@ function deletePost(idx){
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
+                            	<form name="frm">
+                            		<input type="hidden" name="idx"/>
+                            	</form>
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 	                                <colgroup>
-	                                	<col width="8%" /><col width="8%" /><col width="30%" /><col width="10%" /><col width="10%" />
-	                                	<col width="10%" /><col width="10%" /><col width="10%" />
+	                                	<col width="8%" /><col width="8%" /><col width="40%" /><col width="10%" /><col width="10%" />
+	                                	<col width="10%" /><col width="10%" />
 	                                </colgroup>
                                     <thead>
                                         <tr>
@@ -83,7 +86,6 @@ function deletePost(idx){
                                             <th>제목(루트)</th>
                                             <th>닉네임</th>
                                             <th>작성일</th>
-                                            <th>조회수</th>
                                             <th>대표이미지</th>
                                             <th>삭제</th>
                                         </tr>
@@ -95,57 +97,23 @@ function deletePost(idx){
                                             <th>제목(루트)</th>
                                             <th>닉네임</th>
                                             <th>작성일</th>
-                                            <th>조회수</th>
                                             <th>대표이미지</th>
                                             <th>삭제</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td>혼자여행</td>
-                                            <td><a href="">서울 > 대전</a></td>
-                                            <td>감자</td>
-                                            <td>2011/04/25</td>
-                                            <td>0</td>
-                                            <td>
-                                                <img src="../images/1572507524886qqw0qpSy16.jpg" alt="" width="100px" height="100px">
-                                            </td>
-                                            <td>
-                                            	<a href="#" class="btn btn-danger btn-icon-split">
-                                                    <span class="text">삭제</span>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>2</td>
-                                            <td>부모님과</td>
-                                            <td><a href="">울산 > 부산</a></td>
-                                            <td>호떡</td>
-                                            <td>2021/04/25</td>
-                                            <td>540</td>
-                                            <td>
-                                                <img src="../images/1576040661397F0AFLiH3DC.JPG" alt="" width="100px" height="100px">
-                                            </td>
-                                            <td>
-                                            	<a href="#" class="btn btn-danger btn-icon-split">
-                                                    <span class="text">삭제</span>
-                                                </a>
-                                            </td>
-                                        </tr>
                                         <c:forEach items="${adminPlannerSelect }" var="row" varStatus="loop">
                                         <tr>
                                             <td>${row.planner_idx }</td>
                                             <td>${row.cate }</td>
                                             <td><a href="">${row.plan_start } > ${row.plan_end }</a></td>
-                                            <td>${row.nickname}(닉네임)(${row.email})</td>
+                                            <td>${row.nickname}(${row.email})</td>
                                             <td>${row.postdate }</td>
-                                            <td>540(조회수)</td>
                                             <td>
                                                 <img src="../uploads/${row.sfile}" alt="" width="100px" height="100px">
                                             </td>
                                             <td>
-                                            	<a href="javascript:deletePost('${row.planner_idx }');" class="btn btn-danger btn-icon-split">
+                                            	<a href="javascript:listDelete('${row.planner_idx }');" class="btn btn-danger btn-icon-split">
                                                     <span class="text">삭제</span>
                                                 </a>
                                             </td>
