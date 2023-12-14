@@ -590,13 +590,13 @@ function addList(i) {
         <div class="modal-content">
             <!-- Modal Header -->
             <div class="modal-header">
-                <div id="thumbnail" style="width:100%;height:350px;">
+                <div id="thumbnail" style="width:100%;">
                 	<form name="savePlanner" action="./saveProcess.do" enctype="multipart/form-data" method="post">
                 		<input type="hidden" name="planner_idx" id="planner_idx" value="${planner_idx}" />
                 		<input type="hidden" name="cate" id="cate" />
                 		<input type="hidden" name="plan_start" value="${places[0].place_name}" />
                 		<input type="hidden" name="plan_end" value="${places[lastIndex].place_name}" />
-                		<input type="file" name="ofile" />
+                		첨부할 이미지 <input type="file" name="ofile" />
                 	</form>
                 </div>
             </div>
@@ -667,7 +667,9 @@ $("#select_cate .btn").click((e) => {
 	$("#cate").val($(e.target).text());
 });
 $("#save").click((e) => {
-	if ($("#select_val").text() == '') {
+	if (document.savePlanner.ofile.value == '') {
+		alert("파일을 첨부해주세요!");
+	} else if ($("#select_val").text() == '') {
 		alert("카테고리를 선택해주세요!");
 	} else {
 		// 저장요청 보내기 코드
