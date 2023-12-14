@@ -257,7 +257,6 @@ function saveComment(){
                            		<legend class="skipinfo">댓글 입력</legend>
                            			<div class="cm_input">
 		                                <input type="hidden" name="freeboard_idx" value="${boardDTO.freeboard_idx }">
-	                                   <input type="hidden" name="idx" value="${boardDTO.idx }">	
 		                                <input type="hidden" name="nickname" value="${boardDTO.nickname}">
 		                                <input type="hidden" name="email" value="${email}">
 		                               	<p><textarea id="content" name="content" onkeyup=""  style="width:100%" rows="4" placeholder="댓글을 입력해 주세요."></textarea></p>

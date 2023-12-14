@@ -111,20 +111,20 @@ public class CommunityController {
 		//자유게시판 댓글 
 		@RequestMapping("/community/freeboard_comment.do")
 		@ResponseBody
-		public CommentsDTO boardCommentPost(Model model, HttpServletRequest req, CommentsDTO commentsDTO, BoardDTO boardDTO) {
+		public CommentsDTO boardCommentPost(Model model, HttpServletRequest req, CommentsDTO commentsDTO, BoardDTO boardDTO, Principal principal) {
 	
-			int freeboard_idx = commentsDTO.getComments_idx();
+			int idx = commentsDTO.getComments_idx();
 	        String content = commentsDTO.getContent();
-	        String nickname = commentsDTO.getNickname();
-	        String email = commentsDTO.getEmail();
+	        String email =  principal.getName();
+	        String nickname = dao.getnickname(email);
 	        
 	        
-	        System.out.println(freeboard_idx);
+	        System.out.println(idx);
 	        System.out.println(content);
 	        System.out.println(nickname);
 	        System.out.println(email);
 	
-	        int result = dao.writeConmments(freeboard_idx, content, nickname, email);
+	        int result = dao.writeConmments(idx, content, nickname, email);
 	
 	        System.out.println("성공?");
 	        System.out.println(commentsDTO);
