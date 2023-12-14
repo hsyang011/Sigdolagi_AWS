@@ -15,6 +15,10 @@
 		SELECT * FROM member WHERE email=#{email}
 	</select>
 	
+	<select id="getMemberNickname"  resultType="string"  parameterType="string">
+		SELECT nickname FROM member WHERE email=#{email}
+	</select>
+	
 	
 	
 	
