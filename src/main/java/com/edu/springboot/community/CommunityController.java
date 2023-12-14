@@ -157,6 +157,7 @@ public class CommunityController {
 	      int pageSize = PagingUtil.getPageSize(); 
 	      int blockPage = PagingUtil.getBlockPage();
 	      
+	      
 	      int pageNum = (req.getParameter("pageNum")==null || req.getParameter("pageNum").equals("")) ? 1 : Integer.parseInt(req.getParameter("pageNum"));
 	      int start = (pageNum -1 ) * pageSize +1 ;
 	      int end = pageNum * pageSize;

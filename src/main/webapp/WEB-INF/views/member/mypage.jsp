@@ -252,7 +252,7 @@
                         <div id="leftname">회원이름</div>
                         <div id="leftreft" class="">
                         <div id="myactivity">
-                            <a href="./mypage.html">나의 활동관리</a>
+                            <a href="/member/mypage.do">나의 활동관리</a>
                         </div><br><br>
                         <div id="myinfomanage">
                             <a href="../member/myinfo.do">나의 정보관리</a>
