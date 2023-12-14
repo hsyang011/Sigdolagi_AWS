@@ -263,7 +263,7 @@
                         </div><!-- leftreft -->
                     </div> <!-- left메뉴끝 -->
                 </div>
-                <div id="col_hate">
+                <div id="col_hate" style="padding-left: 100px;">
                     <div class="d-flex">
                         <div id="myactivityR" style="width: 150px; "> <a href="./mypage.html">나의 활동관리</a>
                         </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
