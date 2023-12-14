@@ -141,7 +141,8 @@ public class AdminController {
 	public String adminPlanner(Model model) {
 		
 		// DB에서 인출한 게시물의 목록을 model객체에 저장한다.
-		List<PlannerDTO> adminPlannerSelect = plannerDAO.adminPlannerSelect();
+		/* List<PlannerDTO> adminPlannerSelect = plannerDAO.adminPlannerSelect(); */
+		List<PlannerDTO> adminPlannerSelect = plannerDAO.getPlannerByRecent();
 		model.addAttribute("adminPlannerSelect", adminPlannerSelect);
 		
 		return "administrator/admin_planner_list";
@@ -170,6 +171,22 @@ public class AdminController {
 		
 		return "administrator/admin_notice_list";
 	}
+	
+	//관리자 공지사항 작성페이지
+	@RequestMapping("/administrator/admin_notice_write.do")
+	public String adminNoticeWrite() {
+		return "administrator/admin_notice_write";
+	}
+	
+	//관리자 공지사항 작성처리
+		@PostMapping("/administrator/admin_notice_write.do")
+		public String adminNoticeWriteProcess(HttpServletRequest req, Model model, ProductDTO productDTO) {
+			
+			
+			
+			return "redirect:admin_notice_list.do";
+		}
+	
 	
 	//관리자 공지사항 삭제
 	@PostMapping("/administrator/adminNoticeDelete.do")
