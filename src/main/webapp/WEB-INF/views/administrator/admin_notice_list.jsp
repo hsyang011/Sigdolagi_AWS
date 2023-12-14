@@ -24,11 +24,11 @@
     <link href="../bootstrap/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" />
 </head>
 <script>
-function deletePost(idx){
+function listDelete(idx){
 	let frm = document.frm;
 	if(confirm("정말?")){
-		frm.noticeboard_idx.value = idx;
-		frm.action = "/administrator/admin_notice_delete.do";
+		frm.idx.value = idx;
+		frm.action = "/administrator/adminNoticeDelete.do";
 		frm.method = "post";
 		frm.submit();
 	}
@@ -69,6 +69,9 @@ function deletePost(idx){
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
+                            	<form name="frm">
+                            		<input type="hidden" name="idx"/>
+                            	</form>
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 	<colgroup>
 	                                	<col width="10%" /><col width="40%" /><col width="10%" /><col width="15%" />
@@ -115,14 +118,15 @@ function deletePost(idx){
 										<tr>
 											<td>${row.noticeboard_idx }</td>
 											<td><a href="../service/notiboard_view.do?noticeboard_idx=${row.noticeboard_idx }">${row.title }</a></td>
-											<td>${row.admin_name }</td>
+											<td>${row.nickname }</td>
                                             <td>${row.postdate }</td>
-                                            <td>조회수</td>
+                                            <td>${row.visitcount }</td>
                                             <td>
                                             	<a href="#" class="btn btn-warning btn-icon-split">
                                                     <span class="text">수정</span>
                                                 </a>
-                                            	<a href="javascript:deletePost('${row.noticeboard_idx }')" class="btn btn-danger btn-icon-split">
+                                            	<a href="javascript:listDelete('${row.noticeboard_idx }')" 
+                                            		class="btn btn-danger btn-icon-split">
                                                     <span class="text">삭제</span>
                                                 </a>
                                             </td>

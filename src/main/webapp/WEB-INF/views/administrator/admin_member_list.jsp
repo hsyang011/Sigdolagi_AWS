@@ -26,11 +26,12 @@
 	<script>
     function memberEnabled(email){
     	let frm = document.frm;
-    	if(confirm("정말?")){
+    	if(confirm("회원탈퇴를 하시겠습니까?")){
     		frm.email.value = email;
     		frm.action = "/administrator/adminMemberList.do";
     		frm.method = "post";
     		frm.submit();
+    		
     	}
     }
     
@@ -108,9 +109,20 @@
                                             <td>${row.regidate }</td>
                                             <td>${row.enabled }</td>
                                             <td>
-                                                <a href="javascript:memberEnabled('${row.email }')" class="btn btn-danger btn-icon-split">
-                                                    <span class="text">회원탈퇴</span>
-                                                </a>
+                                            <c:choose>
+                                            	<c:when test="${row.enabled eq 1 }">
+	                                            	<a href="javascript:memberEnabled('${row.email }')" 
+	                                                	class="btn btn-danger btn-icon-split">
+	                                                    <span class="text">회원탈퇴</span>
+	                                                </a>
+                                            	</c:when>
+                                            	<c:otherwise>
+	                                            	<a href="javascript:memberEnabled('${row.email }')" 
+	                                                	class="btn disabled btn-secondary btn-icon-split">
+	                                                    <span class="text">회원탈퇴</span>
+	                                                </a>
+                                            	</c:otherwise>
+                                            </c:choose>
                                             </td>
                                         </tr>
 										</c:forEach>

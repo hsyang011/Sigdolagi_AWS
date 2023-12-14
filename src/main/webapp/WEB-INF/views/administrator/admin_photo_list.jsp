@@ -23,6 +23,18 @@
     <!-- Custom styles for this page -->
     <link href="../bootstrap/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" />
 </head>
+<script>
+function listDelete(idx){
+	let frm = document.frm;
+	if(confirm("정말?")){
+		frm.idx.value = idx;
+		frm.action = "/administrator/adminPhotoDelete.do";
+		frm.method = "post";
+		frm.submit();
+	}
+}
+
+</script>
 <body id="page-top">
 
     <!-- Page Wrapper -->
@@ -53,12 +65,15 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3" style="text-align: right;">
-                            <a class="btn btn-primary float-end" href="../administrator/admin_maket_write.do">
+                            <!-- <a class="btn btn-primary float-end" href="../administrator/admin_maket_write.do">
                                 <i class="fas fa-edit"></i> 글 작성
-                            </a>
+                            </a> -->
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
+                           		<form name="frm">
+                            		<input type="hidden" name="idx"/>
+                            	</form>
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 	                                <colgroup>
 	                                	<col width="10%" /><col width="30%" /><col width="10%" /><col width="10%" /><col width="10%" />
@@ -87,30 +102,18 @@
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td><a href="">밥볶아먹는 떡볶이(2인)</a></td>
-                                            <td>밀키트</td>
-                                            <td>2011/04/25</td>
-                                            <td>0</td>
-                                            <td>
-                                                <img src="../images/products/thumb1.jpg" alt="" width="100px">
-                                            </td>
-                                            <td>
-                                            	<a href="#" class="btn btn-danger btn-icon-split">
-                                                    <span class="text">삭제</span>
-                                                </a>
-                                            </td>
-                                        </tr>
                                         <c:forEach items="${adminPhotoSelect }" var="row" varStatus="loop">
 										<tr>
-											<td>${row.photoboard_idx }</td>
-											<td><a href="../community/photoboard_view.do?photoboard_idx=${row.photoboard_idx }">${row.title }</a></td>
-											<%-- <td>${row.nickname }</td> --%>
-											<td>${row.postdate }</td>
+											<td>${row.idx }</td>
+											<td><a href="../community/photoboard_view.do?idx=${row.idx }">${row.title }</a></td>
+											<td>${row.nickname }</td>
+											<td>${row.regidate }</td>
                                             <td>${row.visitcount }</td>
                                             <td>
-                                            	<a href="#" class="btn btn-danger btn-icon-split">
+                                                <img src="../uploads/${row.sfile}" alt="" width="100px">
+                                            </td>
+                                            <td>
+                                            	<a href="javascript:listDelete('${row.idx }')" class="btn btn-danger btn-icon-split">
                                                     <span class="text">삭제</span>
                                                 </a>
                                             </td>

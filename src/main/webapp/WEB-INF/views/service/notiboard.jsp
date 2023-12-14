@@ -130,7 +130,7 @@ main > * { margin: 50px 0; }
         <div class="shop_board container  mt-5" >
 
         <!-- 글쓰기 버튼 -->
-         <div class="container">
+        <!--  <div class="container">
             <div class="row" style=" display: inline;
             float: right; margin-top: -80px;">
                 <div class="col-sm-12" >
@@ -140,7 +140,7 @@ main > * { margin: 50px 0; }
                     </div>
                 </div>
             </div>
-        </div>     
+        </div>      -->
         <!-- 문의 폼 -->
         <!-- 테이블 -->
         <div class="container">
@@ -170,9 +170,9 @@ main > * { margin: 50px 0; }
 							<!-- 게시물의 갯수, 페이지 번호, 페이지 사이즈를 통해 가상 번호를 계산해서 출력한다.  -->
 							${ maps.totalCount - (((maps.pageNum-1) * maps.pageSize) + loop.index)}
 							</td>
-							<td scope="row"><a href="./freeboard_view.do?notiboard_idx=${ post.notiboard_idx }">${ post.title }</td>
+							<td scope="row"><a href="./notiboard_view.do?noticeboard_idx=${ post.noticeboard_idx }">${ post.title }</td>
 
-							<td>${ post.email }</td>
+							<td>${ post.nickname }</td>
 							<td>${ post.postdate }</td>
 							<td>${ post.visitcount }</td>		
 							</tr> 

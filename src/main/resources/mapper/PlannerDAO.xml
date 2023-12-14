@@ -55,4 +55,9 @@
 		SELECT * FROM planner ORDER BY postdate DESC
 	</select>
 	
+	<!-- 관리자 플래너 삭제 무결성 제약조건 수정-->
+	<delete id="adminPlannerDelete">
+		delete FROM planner WHERE planner_idx=#{idx}
+	</delete>
+	
 </mapper>

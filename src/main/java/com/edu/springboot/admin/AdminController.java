@@ -109,7 +109,15 @@ public class AdminController {
 		return "administrator/admin_community_list";
 	}
 	
-	//관리자 포토게시판목록
+	//관리자 자유게시판 게시글 삭제
+	@PostMapping("/administrator/adminFreeDelete.do")
+	public String adminFreeDelete(HttpServletRequest req) {
+		int result = boardDao.adminFreeDelete(req.getParameter("idx"));
+		if(result==1)System.out.println("삭제되었습니다.");
+		return "redirect:admin_free_list.do";
+	}
+	
+	//관리자 사진게시판목록
 	@RequestMapping("/administrator/admin_photo_list.do")
 	public String adminPhoto(Model model) {
 		
@@ -118,6 +126,14 @@ public class AdminController {
 		model.addAttribute("adminPhotoSelect", adminPhotoSelect);
 		
 		return "administrator/admin_photo_list";
+	}
+	
+	//관리자 사진게시판 게시글 삭제
+	@PostMapping("/administrator/adminPhotoDelete.do")
+	public String adminPhotoDelete(HttpServletRequest req) {
+		int result = photoDAO.adminPhotoDelete(req.getParameter("idx"));
+		if(result==1)System.out.println("삭제되었습니다.");
+		return "redirect:admin_photo_list.do";
 	}
 	
 	//관리자 플래너 목록
@@ -129,6 +145,14 @@ public class AdminController {
 		model.addAttribute("adminPlannerSelect", adminPlannerSelect);
 		
 		return "administrator/admin_planner_list";
+	}
+	
+	//관리자 플래너 삭제
+	@PostMapping("/administrator/adminPlannerDelete.do")
+	public String adminPlannerDelete(HttpServletRequest req) {
+		int result = plannerDAO.adminPlannerDelete(req.getParameter("idx"));
+		if(result==1)System.out.println("삭제되었습니다.");
+		return "redirect:admin_planner_list.do";
 	}
 	
 	@RequestMapping("/administrator/admin_AD_list.do")
@@ -145,6 +169,14 @@ public class AdminController {
 		model.addAttribute("adminNoticeSelect", adminNoticeSelect);
 		
 		return "administrator/admin_notice_list";
+	}
+	
+	//관리자 공지사항 삭제
+	@PostMapping("/administrator/adminNoticeDelete.do")
+	public String adminNoticeDelete(HttpServletRequest req) {
+		int result = notiDAO.adminNoticeDelete(req.getParameter("idx"));
+		if(result==1)System.out.println("삭제되었습니다.");
+		return "redirect:admin_notice_list.do";
 	}
 	
 	

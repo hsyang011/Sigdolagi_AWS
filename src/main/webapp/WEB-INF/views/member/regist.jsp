@@ -11,23 +11,20 @@
 
 <!-- // 이메일 발송    -->
 <script type="text/javascript">
-// 전역변수 선언, 이메일 인증코드로 추후 ajax에서 초기화 예정
 var code = '';
 
 function emailSend(frm){
-	// 파라미터로 이메일을 넘겨줌
     let data = {
         email: frm.email1.value+'@'+frm.email2.value	
     };
+    alert("email 로 인증코드 발송했습니다"); // 여기에 alert 추가
     
     $.ajax({
         type: "post",
         url: "./emailSendProcess.do",
         data: data,
         success: function(res) {
-            alert(data.email+"로 인증코드 발송했습니다");
             console.log("해당 이메일로 인증번호를 발송했습니다.\n인증코드:"+res);
-            // 반환받은 인증코드로 전역변수 code를 초기화
             code = res;
         },
         error: function() {
@@ -149,7 +146,7 @@ function formValidate(frm) {
     </div>
     <!-- 배너 끝 -->
     <!-- main 시작 -->
-    <main style="height: 1300px;">
+    <main>
         <div class="container">
             <div class="memberPage_title">
                 <h2>회원가입</h2>
@@ -171,7 +168,6 @@ function formValidate(frm) {
                         </div>
             
                         <div class="input_email">
-                 
                             <input type="text" class="verifynum" id="verifynum" name="verifynum" placeholder="인증번호.">
                             <button type="button" id="emailnumber" name="emailnumber" onclick="checkVerification()" style="background-color: #FF7A00; color: white;">인증하기</button>
                         </div>
@@ -203,11 +199,11 @@ function formValidate(frm) {
                                 <h4>주소</h4>
                                 
                                 <div style="margin-bottom: 0;">
-                                    <input type="text" class="add2" name="zipcode" placeholder="우편번호">
+                                    <input type="text" class="add0" name="zipcode" placeholder="우편번호">
                                     <button onclick="postOpen(event)" >주소찾기</button>
                                  
-                                    <input type="text" class="add1" name="addr1" style="width: 80%; margin-top: 20px;"><br>
-                                    <input type="text" class="add2" name="addr2" style="width: 80%;" placeholder="상세주소">
+                                    <input type="text" class="add1" name="addr1" ><br>
+                                    <input type="text" class="add2" name="addr2" placeholder="상세주소">
                                 </div>
                             </div>
                         </div>

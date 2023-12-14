@@ -61,10 +61,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 
 	<!-- 관리자 자유게시판 목록 -->
-	<select id="adminFreeSelect"
-		resultType="com.edu.springboot.community.BoardDTO">
+	<select id="adminFreeSelect">
 		SELECT * FROM freeboard ORDER BY postdate DESC
 	</select>
+	
+	<!-- 관리자 자유게시판 삭제-->
+	<delete id="adminFreeDelete">
+		delete FROM freeboard WHERE freeboard_idx=#{idx}
+	</delete>
 
 		
 </mapper>
