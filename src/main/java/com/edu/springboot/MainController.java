@@ -15,6 +15,8 @@ import com.edu.springboot.planner.PlannerDTO;
 import com.edu.springboot.restaurant.IRestaurantService;
 import com.edu.springboot.restaurant.RestaurantDTO;
 
+import jakarta.servlet.http.HttpServletRequest;
+
 @Controller
 public class MainController {
 	
@@ -36,7 +38,19 @@ public class MainController {
 	}
 	
 	@RequestMapping("/main/main.do")
-	public String main(Model model) {
+	public String main(Model model, HttpServletRequest req) {
+		// 로그인에 성공했을 경우
+		if (req.getParameter("login")!=null && req.getParameter("login").equals("success")) {
+			model.addAttribute("loginSuccessMsg", "로그인에 성공하였습니다!");
+		}
+		// 로그아웃에 성공했을 경우
+		if (req.getParameter("logout")!=null && req.getParameter("logout").equals("success")) {
+			model.addAttribute("logoutSuccessMsg", "로그아웃 하였습니다.");
+		}
+		// 권한이 거부되었을 경우
+		if (req.getParameter("permit")!=null && req.getParameter("permit").equals("deny")) {
+			model.addAttribute("permitDenyMsg", "권한이 거부되었습니다.");
+		}
 		// 플래너를 모두 셀렉트 합니다.
 		List<PlannerDTO> plannerList = plannerDAO.getPlannerByRecent();
 		// 맛집탐방을 모두 셀렉트 합니다.

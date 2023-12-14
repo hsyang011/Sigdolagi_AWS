@@ -2,14 +2,30 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %> <!-- 숫자의 3자릿수마다 콤마를 찍어주기 위한 jstl 추가 -->
-<!-- 스프링 시큐리티 전용 태그 -->
-<%@ taglib prefix="s" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <!-- head 추가 -->
 <%@ include file="../include/global_head.jsp" %>
 <link rel="stylesheet" href="../css/main.css" />
+<!-- 로그인에 성공했을 경우 alert창 -->
+<c:if test="${not empty loginSuccessMsg}">
+	<script>
+		alert("${loginSuccessMsg}");
+	</script>
+</c:if>
+<!-- 권한이 거부되었을 경우 alert창 -->
+<c:if test="${not empty permitDenyMsg}">
+	<script>
+		alert("${permitDenyMsg}");
+	</script>
+</c:if>
+<!-- 로그아웃에 성공했을 경우 alert창 -->
+<c:if test="${not empty logoutSuccessMsg}">
+	<script>
+		alert("${logoutSuccessMsg}");
+	</script>
+</c:if>
 </head>
 <body>
 <div class="container-fluid" id="wrap">
@@ -113,7 +129,7 @@
 		                <c:forEach items="${plannerList}" var="row" varStatus="loop">      
 		                <div class="swiper-slide">          
 		                    <div class="card custom-col">
-		                        <div>
+		                        <div style="cursor: pointer;" onclick="location.href='../planner/planner_view.do?planner_idx=${row.planner_idx}';">
 		                            <img class="card-img-top" src="../uploads/${row.sfile}" style="height: 250px;" alt="Card image">
 		                            <div class="card-body">
 		                                <h5 class="card-title">${row.plan_start} > ${row.plan_end}</h5>

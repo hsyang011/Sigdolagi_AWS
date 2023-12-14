@@ -74,7 +74,7 @@ public class WebSecurityConfig {
       http.formLogin((formLogin) -> formLogin
             .loginPage("/member/login.do") // default : /login
             .loginProcessingUrl("/member/loginprocess1.do")
-            .defaultSuccessUrl("/main/main.do", true)
+            .defaultSuccessUrl("/main/main.do?login=success", true)
 //            .failureUrl("/member/login.do?error") // default : /login?error
             .failureHandler(myAuthFailureHandler)
             .usernameParameter("email") // default : username
@@ -85,10 +85,10 @@ public class WebSecurityConfig {
       logoutSuccessUrl : 로그아웃 이후 이동할 위치 */
       http.logout((logout) -> logout
             .logoutUrl("/member/logout.do") // default : /logout
-            .logoutSuccessUrl("/")
+            .logoutSuccessUrl("/main/main.do?logout=success")
             .permitAll());
       // 권한이 부족한 경우 이동할 위치
-      http.exceptionHandling((expHanding) -> expHanding.accessDeniedPage("/main/main.do"));
+      http.exceptionHandling((expHanding) -> expHanding.accessDeniedPage("/main/main.do?permit=deny"));
       
       return http.build();
    }

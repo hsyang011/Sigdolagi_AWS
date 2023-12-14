@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,6 +23,18 @@
     <!-- Custom styles for this page -->
     <link href="../bootstrap/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" />
 </head>
+<script>
+function deletePost(idx){
+	let frm = document.frm;
+	if(confirm("삭제하시겠습니까?")){
+		frm.planner_idx.value = idx;
+		frm.action = "/administrator/admin_planner_delete.do";
+		frm.method = "post";
+		frm.submit();
+	}
+}
+
+</script>
 <body id="page-top">
 
     <!-- Page Wrapper -->
@@ -120,9 +133,25 @@
                                                 </a>
                                             </td>
                                         </tr>
+                                        <c:forEach items="${adminPlannerSelect }" var="row" varStatus="loop">
+                                        <tr>
+                                            <td>${row.planner_idx }</td>
+                                            <td>${row.cate }</td>
+                                            <td><a href="">${row.plan_start } > ${row.plan_end }</a></td>
+                                            <td>${row.nickname}(닉네임)(${row.email})</td>
+                                            <td>${row.postdate }</td>
+                                            <td>540(조회수)</td>
+                                            <td>
+                                                <img src="../uploads/${row.sfile}" alt="" width="100px" height="100px">
+                                            </td>
+                                            <td>
+                                            	<a href="javascript:deletePost('${row.planner_idx }');" class="btn btn-danger btn-icon-split">
+                                                    <span class="text">삭제</span>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                        </c:forEach>
                                         
-                                        
-                                       
                                     </tbody>
                                 </table>
                             </div>
