@@ -58,7 +58,7 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="h3 mb-4 text-gray-800">상품 등록하기</h1>
+                    <!-- <h1 class="h3 mb-4 text-gray-800">상품 등록하기</h1> -->
 
                     <h1 class="mt-4">상품 등록하기</h1>
                     <div class="card mb-4">
@@ -70,8 +70,8 @@
                             	<div class="mb-3 mt-3">
                                     <label for="category" class="form-label">분류</label>
                                     <select name="category" id="category">
-                                    	<option value="mealkit">밀키트</option>
-                                    	<option value="specialty">특산품</option>
+                                    	<option value="밀키트">밀키트</option>
+                                    	<option value="특산품">특산품</option>
                                     </select>
                                     &nbsp;&nbsp;&nbsp;&nbsp;
                                     <label for="sub_cate" class="form-label">소분류</label>
@@ -89,7 +89,7 @@
                                         value="">
                                 </div>
                                 <div class="mb-3 mt-3">
-                                    <label for="title" class="form-label">상품명</label> <input
+                                    <label for="prod_name" class="form-label">상품명</label> <input
                                         type="text" class="form-control" id="prod_name" name="prod_name"
                                         value="">
                                 </div>
@@ -121,11 +121,6 @@
                                 <div class="mb-3">
                                     <label for="imgs" class="form-label">상품이미지</label> 
                                     <input type="file" id="imgs" name="imgs" multiple/><br />
-                                    <!-- 상품이미지1 <input type="file" id="img1_o" name="img1_o" /><br />
-                                    상품이미지2 <input type="file" id="img2_o" name="img2_o" /><br />
-                                    상품이미지3 <input type="file" id="img3_o" name="img3_o" /><br />
-                                    상품이미지4 <input type="file" id="img4_o" name="img4_o" /><br />
-                                    상품이미지5 <input type="file" id="img5_o" name="img5_o" /><br /> -->
                                 </div>
                                 
                                 <a href="admin_maket_list.do" class="btn btn-outline-secondary">목록</a>
