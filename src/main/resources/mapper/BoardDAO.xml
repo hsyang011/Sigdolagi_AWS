@@ -25,7 +25,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				<if test="searchKeyword!=null and !searchKeyword.equals('')">
 				WHERE ${searchField} LIKE '%'||#{searchKeyword} ||'%'
 				</if>
-				ORDER BY freeboard_idx DESC
+				ORDER BY idx DESC
 			) Tb
 		)
 	 	WHERE rNum<![CDATA[>=]]>#{start} AND rNum<![CDATA[<=]]>#{end}
@@ -33,25 +33,41 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- write  -->
 	<insert id="write">
-		INSERT INTO freeboard (freeboard_idx, email, nickname, title, content) VALUES (seq_freeboard_idx.nextval, #{_email},#{_nickname}, #{_title}, #{_content} )
+		INSERT INTO freeboard (idx, email, nickname, title, content) VALUES (seq_freeboard_idx.nextval, #{_email},#{_nickname}, #{_title}, #{_content} )
 	</insert>
 	
 	<select id="view" resultType="com.edu.springboot.community.BoardDTO" parameterType="com.edu.springboot.community.BoardDTO">
-		SELECT * FROM freeboard WHERE freeboard_idx=${freeboard_idx}
+		SELECT * FROM freeboard WHERE idx=${idx}
 	</select>
 	
 	
 	<update id="edit" parameterType="com.edu.springboot.community.BoardDTO">
-		UPDATE freeboard SET title=#{title}, content=#{content} WHERE freeboard_idx=${freeboard_idx}
+		UPDATE freeboard SET title=#{title}, content=#{content} WHERE idx=${idx}
 
 	</update>
 	<update id="update" parameterType="com.edu.springboot.community.BoardDTO">
-   		UPDATE freeboard SET visitcount=visitcount+1 WHERE freeboard_idx=${freeboard_idx}
+   		UPDATE freeboard SET visitcount=visitcount+1 WHERE idx=${idx}
 	</update>
 	
 	<delete id="delete">
-		DELETE FROM freeboard WHERE freeboard_idx=#{freeboard_idx}
+		DELETE FROM freeboard WHERE idx=#{idx}
 	</delete>
+	
+	<!-- 댓글 쓰기  -->
+	<insert id="writeConmments" >
+	   INSERT INTO  COMMENTS (comments_idx, nickname, content ,postdate, idx , email, tname)
+	   VALUES (seq_comments_idx.nextval,  #{nickname}, #{content} , sysdate , #{idx}, #{email}, 'freeboard' )
+	</insert>
+	
+	
+	
+	<!--코멘트 테이블 가져오기  -->
+	<select id="CommentsPage"
+       resultType="com.edu.springboot.community.CommentsDTO"
+       parameterType="com.edu.springboot.community.CommentsDTO">
+  		 SELECT * FROM COMMENTS WHERE idx = #{idx}
+	
+	</select>
 	
 
 	<!-- 맞는지 모르겠지만 닉네임 가져오려고  -->
@@ -67,7 +83,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 관리자 자유게시판 삭제-->
 	<delete id="adminFreeDelete">
-		delete FROM freeboard WHERE freeboard_idx=#{idx}
+		delete FROM freeboard WHERE idx=#{idx}
 	</delete>
 
 		
