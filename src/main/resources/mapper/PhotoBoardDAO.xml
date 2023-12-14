@@ -30,8 +30,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				ORDER BY idx DESC
 			) Tb
 		)
-	 	WHERE rNum<![CDATA[>=]]>#{start} AND rNum<![CDATA[<=]]>#{end}
+	 	WHERE rNum<![CDATA[>=]]>#{start} AND rNum<![CDATA[<=]]>#{end} 
 	</select>
+	
+	<!-- 마이페이지   -->
+	<select id= "MyPhotoListPage"
+		resultType="com.edu.springboot.community.PhotoBoardDTO"
+		parameterType="com.edu.springboot.community.ParameterDTO">
+		SELECT * FROM (
+			SELECT Tb.*, rownum rNum FROM(
+				SELECT * FROM photoboard
+				<if test="searchKeyword!=null and !searchKeyword.equals('')">
+				WHERE ${searchField} LIKE '%'||#{searchKeyword} ||'%'
+				</if>
+				ORDER BY idx DESC
+			) Tb
+		)
+	 	WHERE rNum<![CDATA[>=]]>#{start} AND rNum<![CDATA[<=]]>#{end} AND  email=#{email}
+	</select>
+	
 	
 	
 	
@@ -55,8 +72,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	
 	<insert id="writeConmments" >
-	   INSERT INTO  COMMENTS (comments_idx, nickname, content ,postdate, idx , email)
-	   VALUES (seq_comments_idx.nextval,  #{nickname}, #{content} , sysdate , #{idx}, #{email} )
+	   INSERT INTO  COMMENTS (comments_idx, nickname, content ,postdate, idx , email, tname)
+	   VALUES (seq_comments_idx.nextval,  #{nickname}, #{content} , sysdate , #{idx}, #{email}, 'photoboard' )
 	</insert>
 	
 	

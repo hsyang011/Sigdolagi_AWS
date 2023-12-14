@@ -6,15 +6,13 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import com.edu.springboot.community.BoardDTO;
 import com.edu.springboot.community.ParameterDTO;
-import com.edu.springboot.planner.PlannerDTO;
 
 @Mapper
 public interface INotiboardService {
 	
 	 	public int getTotalCount(ParameterDTO parameterDTO);
-	 	public ArrayList<BoardDTO> listPage(ParameterDTO parameterDTO);
+	 	public ArrayList<NotiDTO> listPage(ParameterDTO parameterDTO);
 	 	public int write(
 	         @Param("_title") String title,
 	         @Param("_content") String content);

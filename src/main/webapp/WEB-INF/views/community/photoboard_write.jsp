@@ -256,7 +256,7 @@
                                         <td>제목</td>
                                         <td>
                                             <input type="text" name="title" id="title" />
-                                            <input type="email" name= "email" id="email">
+                                            <input type="email" name= "email" id="email" value="${email}">
                                             <input type="text" name="nickname" id="nickname"  value="${nickname}" />
                                         </td>
                                     </tr>

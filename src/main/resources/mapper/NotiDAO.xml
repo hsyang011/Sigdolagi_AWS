@@ -38,6 +38,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT * FROM noticeboard WHERE noticeboard_idx=${noticeboard_idx}
 	</select>
 	
+	<update id="update" parameterType="com.edu.springboot.service.NotiDTO">
+   		UPDATE noticeboard SET visitcount=visitcount+1 WHERE noticeboard_idx=${noticeboard_idx}
+	</update>
+	
+	
 	<!-- 관리자 공지사항 목록 -->
 	<select id="adminNoticeSelect"
 		resultType="com.edu.springboot.service.NotiDTO">

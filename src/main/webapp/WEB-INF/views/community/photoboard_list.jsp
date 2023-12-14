@@ -111,10 +111,10 @@ $(function() {
 							                    </a>
 							                    <div class="card-body">
 							                        <h4 class="card-title" style="font-size: 18px; text-align: left;">
-							                            ${entry.title} <!-- 파일 이름 -->
+							                            ${entry.nickname} <!-- 파일 이름 -->
 							                        </h4>
 							                        <p class="card-text" style="text-align: left;">
-							                            ${ entry.content }
+							                            ${ entry.title }
 							                        </p>
 							                    </div>
 							                </div>
