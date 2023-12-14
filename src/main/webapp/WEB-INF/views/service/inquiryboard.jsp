@@ -133,20 +133,34 @@ main > * { margin: 50px 0; }
                 <div class="container">
                     <div class="freeboard_write_frm">
                         <!-- 게시판 들어가는 부분 (시작) -->
-                        <form name="writeFrm" method="post" onsubmit="return validateForm(this);" class="writeFrm">
+                        <form name="writeFrm" method="post" onsubmit="return validateForm(this);" class="writeFrm" action="/community/inquiryboard_write.do">
                             <input type="hidden" name="tname"  />
+                            <form>
                             <table class="table table-bordered" id="write_frm_table" width="90%">
                                 <tr>
                                     <td>문의유형</td>
                                     <td>
-                                        <select name="" id="" class="rounded-pill" style="width: 150px; height: 30px;">
-                                            <option value="" selected style="text-align: center;">선택해주세요.</option>
-                                            <option value="" style="text-align: center;">플래너</option>
-                                            <option value="" style="text-align: center;">마켓</option>
-                                            <option value="" style="text-align: center;">기타</option>
+                                        <select name="category" id="category" class="rounded-pill" style="width: 150px; height: 30px;">
+                                            <option value="선택해주세요" selected style="text-align: center;">선택해주세요.</option>
+                                            <option value="플래너" style="text-align: center;">플래너</option>
+                                            <option value="마켓" style="text-align: center;">마켓</option>
+                                            <option value="기타" style="text-align: center;">기타</option>
                                         </select>
                                     </td>
                                 </tr>
+                                <tr>
+                                    <td>이메일</td>
+                                    <td>
+                                        <input type="text" name="email" id="email" value="${email}" style="width: 95%;" />
+                                    </td>
+                                </tr>
+                                 <tr>
+                                    <td>닉네임</td>
+                                    <td>
+                                        <input type="text" name="nickname" id="nickname" value="${nickname}" style="width: 95%;" />
+                                    </td>
+                                </tr>
+                                
                                 <tr>
                                     <td>제목</td>
                                     <td>

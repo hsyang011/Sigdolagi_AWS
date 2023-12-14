@@ -186,6 +186,7 @@
 
    
     });
+        
 
     //호버
     $(".mealkitshow").hover(function() {
@@ -251,7 +252,7 @@
                         <div id="leftname">회원이름</div>
                         <div id="leftreft" class="">
                         <div id="myactivity">
-                            <a href="./mypage.html">나의 활동관리</a>
+                            <a href="/member/mypage.do">나의 활동관리</a>
                         </div><br><br>
                         <div id="myinfomanage">
                             <a href="../member/myinfo.do">나의 정보관리</a>
@@ -262,7 +263,7 @@
                         </div><!-- leftreft -->
                     </div> <!-- left메뉴끝 -->
                 </div>
-                <div id="col_hate">
+                <div id="col_hate" style="padding-left: 100px;">
                     <div class="d-flex">
                         <div id="myactivityR" style="width: 150px; "> <a href="./mypage.html">나의 활동관리</a>
                         </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -472,7 +473,7 @@
 								        <div class="col-md-3">
 								            <figure class="thumbnail">
 								                <div class="card col custom-col" style="padding-right: 20px; border: none;">
-								                    <a href="../member/community/photoboard_view.do?idx=${ entry.idx }">
+								                    <a href="../community/photoboard_view.do?idx=${ entry.idx }">
 								                        <img class="card-img-top" src="../uploads/${entry.sfile}" alt="이미지" style="width: 100%; height: 200px; object-fit: cover;">
 							                    	</a>
 							                    	
@@ -502,6 +503,67 @@
                       <!-- 맛집 -->
                      
                       </div>
+                      
+                      <!-- 내가 쓴 문의  -->
+                      
+                      <div class="photoboard" style="text-align: center; display: none;" >
+                        <br><br>
+                        <div style="float: left;">#내가 쓴 문의</div>
+                       
+                        <br><br>
+                        
+                        	 <div class="container" id="cont_wrap">
+            <div class="table_wrap" id="table_wrap">
+            <table class="table table-border">
+                <thead>
+                <tr style="text-align: center;" >
+
+
+                    <th scope="col">번호</th>
+                    <th scope="col" style="width: 20%;">제목</th>
+                    <th scope="col">분류</th>
+                    <th scope="col">작성자</th>
+                    <th scope="col">작성일</th>
+                </tr>
+                </thead>
+                <tbody>
+                	<tr>
+                	<c:choose>
+                		<c:when test="${ empty inquirylists }">
+						<tr>
+							<td colspan="5" align="center"> 등록된 게시물이 없습니다.</td>
+						</tr>
+						</c:when>
+					<c:otherwise>
+						<c:forEach items="${ inquirylists }" var="post" varStatus="loop">
+							<tr align="center">
+							<td>
+							<!-- 게시물의 갯수, 페이지 번호, 페이지 사이즈를 통해 가상 번호를 계산해서 출력한다.  -->
+							${ inquirymaps.totalCount - (((inquirymaps.pageNum-1) * inquirymaps.pageSize) + loop.index)}
+							</td>
+							<%-- <td scope="row"><a href="./freeboard_view.do?freeboard_idx=${ post.freeboard_idx }">${ post.title }</td> --%>
+							<td>${ post.title }</td>
+							<td>${ post.category }</td>
+							<td>${ post.nickname }</td>
+							<td>${ post.regidate }</td>
+							</tr> 
+						</c:forEach>
+					</c:otherwise>
+					</c:choose>
+			
+                </tbody>
+            </table>
+            </div>
+        </div>
+                        <div class="text-center">${pagingImg}</div>
+                        
+                      </div>
+                      
+                      
+                      <!-- 내가 쓴 문의 끝   -->
+                      
+                      
+                      <!-- 맛집 시작 -->
                       <div class="food" style="text-align: center; display: none;" >
                         <br><br>
                         <div style="float: left;"> ♥맛집</div>
@@ -607,9 +669,6 @@
                     </div>
                 </div> <!-- col-10 끝 --> 
             </div>
-
-
-
 
 
         <div id="footerArea">
