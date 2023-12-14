@@ -208,14 +208,14 @@ public class CommunityController {
 	
 	      model.addAttribute("boardDTO", boardDTO);
 	        // 코멘트 테이블 전부다  얻어와서 저장하기  
-			ArrayList<CommentsDTO> commentsLists = dao.CommentsPage(commentsDTO);
-			
-			
-			System.out.println("댓글 디비에 있는거 가저오는거 성공?");
-			System.out.println(commentsLists);
-			
-			
-			model.addAttribute("CommentsLists", commentsLists);
+	      ArrayList<CommentsDTO> commentsLists = dao.CommentsPage(commentsDTO);
+		
+		
+	      System.out.println("댓글 디비에 있는거 가저오는거 성공?");
+	      System.out.println(commentsLists);
+		
+		
+	      model.addAttribute("CommentsLists", commentsLists);
 	      return "community/freeboard_view";
 	   }
 	

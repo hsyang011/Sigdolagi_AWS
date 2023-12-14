@@ -18,6 +18,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.edu.springboot.community.IPhotoboardService;
 import com.edu.springboot.community.ParameterDTO;
 import com.edu.springboot.community.PhotoBoardDTO;
+import com.edu.springboot.service.InqueryBoardService;
+import com.edu.springboot.service.InqueryDTO;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -40,6 +42,9 @@ public class MemberController {
 	
 	@Autowired
 	IMemberService  memberdao;
+	
+	@Autowired
+	InqueryBoardService inquerydao;
 	
 	
 	@RequestMapping("/member/login.do")
@@ -84,9 +89,9 @@ public class MemberController {
 	      int totalCount = photoboarddao.photoGetTotalCount(parameterDTO);
 	      System.out.println("토탈카운트"+totalCount);
 	      
-	      int pageSize = PagingUtil.getPageSize(); 
+	      final int pageSize = PagingUtil.getPageSize(); 
 	      System.out.println(pageSize);
-	      int blockPage = PagingUtil.getBlockPage(); 
+	      final int blockPage = PagingUtil.getBlockPage(); 
 	      System.out.println(blockPage);
 	      
 	      int pageNum = (req.getParameter("pageNum")==null || req.getParameter("pageNum").equals("")) ? 1 : Integer.parseInt(req.getParameter("pageNum"));
@@ -95,38 +100,97 @@ public class MemberController {
 	      parameterDTO.setStart(start);
 	      parameterDTO.setEnd(end);
 	      parameterDTO.setEmail(principal.getName());
-	      
-	      
+	          
 	      Map<String, Object> maps = new HashMap<String, Object>();
 	      maps.put("totalCount", totalCount);
 	      maps.put("pageSize", pageSize);
 	      maps.put("pageNum", pageNum);
 	      model.addAttribute("maps", maps);
-	      
-	      
-	      
-	      
+	          
 	      //MyPhotoListPage
 	      ArrayList<PhotoBoardDTO> photolists = photoboarddao.MyPhotoListPage(parameterDTO);
 	      //ArrayList<PhotoBoardDTO> myphotolists = photoboarddao.MyPhotoListPage(parameterDTO);
 	      
 	      model.addAttribute("photolists", photolists);
 	      System.out.println(photolists.size());
-	      
-	      
-	      
+      
 	      String pagingImg = PagingUtil.pagingImg(totalCount, pageSize, blockPage, pageNum, req.getContextPath()+"./mypage.do?");
 	      model.addAttribute("pagingImg", pagingImg);
+	      //포토 게시판 리스트 처리 끝 #################################################### 
 	      
 	      
-	      //포토 게시판 리스트 처리 끝 
+	      //1:1문의 리스트 띄우기 
+	      
+		  
+		  //1:1 문의 리스트 처리 하기 
+	      
+	      System.out.println("1:1문의  리스트 들어오나?");
 	      
 	      
+	      int inquirytotalCount = inquerydao.inqueryGetTotalCount(parameterDTO);
+	      System.out.println("토탈카운트"+inquirytotalCount);
+	      
+	      System.out.println(pageSize);
+	      System.out.println(blockPage);
+	      
+	      
+	       pageNum = (req.getParameter("pageNum")==null || req.getParameter("pageNum").equals("")) ? 1 : Integer.parseInt(req.getParameter("pageNum"));
+	       start = (pageNum -1 ) * pageSize +1 ;
+	       end = pageNum * pageSize;
+	      parameterDTO.setStart(start);
+	      parameterDTO.setEnd(end);
+	      parameterDTO.setEmail(principal.getName());
+	      
+	      
+	      // 이거 바꿔야 된다. 
+	      Map<String, Object> inquirymaps = new HashMap<String, Object>();
+	      inquirymaps.put("totalCount", inquirytotalCount);
+	      inquirymaps.put("pageSize", pageSize);
+	      inquirymaps.put("pageNum", pageNum);
+	      System.out.println(inquirymaps);
+	      model.addAttribute("inquirymaps", inquirymaps);
+	      
+	      
+	      
+	      //리스트  띄워주기 
+	      
+	     //MyinquiryListPage
+	      ArrayList<InqueryDTO> inquirylists = inquerydao.MyInquiryListPage(parameterDTO);
+	      //ArrayList<PhotoBoardDTO> myphotolists = photoboarddao.MyPhotoListPage(parameterDTO);
+	      
+	      model.addAttribute("inquirylists", inquirylists);
+	      System.out.println(inquirylists);
+	      System.out.println(inquirymaps);
+	      System.out.println(inquirylists.size());
+      
+	      
+	  //    String pagingImg = PagingUtil.pagingImg(totalCount, pageSize, blockPage, pageNum, req.getContextPath()+"./mypage.do?");
+	  //    model.addAttribute("pagingImg", pagingImg);
+	      
+
 	      
 		
 		
 		return "member/mypage";
 	}
+	
+	
+	
+//	@RequestMapping("/member/mypage2.do")
+//	public String mypage2(Model model, HttpServletRequest req, ParameterDTO parameterDTO, Principal principal) {
+//		  System.out.println("마이페이지 컨트롤러 들어오나?");
+//		  
+//	
+//	      
+//	      
+//	      //1:1 게시판 리스트 처리 끝 
+//		  return "member/mypage";
+//		  
+//	}
+	
+	
+	
+	
 	
 	@RequestMapping("/member/myinfo.do")
 	public String myinfo() {

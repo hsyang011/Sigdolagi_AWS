@@ -164,7 +164,7 @@ $(function() {
 						<tr>
 							<td colspan="5" align="center"> 등록된 게시물이 없습니다.</td>
 						</tr>
-					</c:when>
+						</c:when>
 					<c:otherwise>
 						<c:forEach items="${ lists }" var="post" varStatus="loop">
 							<tr align="center">
