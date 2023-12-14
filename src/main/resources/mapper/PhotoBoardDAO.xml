@@ -30,8 +30,25 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				ORDER BY idx DESC
 			) Tb
 		)
-	 	WHERE rNum<![CDATA[>=]]>#{start} AND rNum<![CDATA[<=]]>#{end}
+	 	WHERE rNum<![CDATA[>=]]>#{start} AND rNum<![CDATA[<=]]>#{end} 
 	</select>
+	
+	<!-- 마이페이지   -->
+	<select id= "MyPhotoListPage"
+		resultType="com.edu.springboot.community.PhotoBoardDTO"
+		parameterType="com.edu.springboot.community.ParameterDTO">
+		SELECT * FROM (
+			SELECT Tb.*, rownum rNum FROM(
+				SELECT * FROM photoboard
+				<if test="searchKeyword!=null and !searchKeyword.equals('')">
+				WHERE ${searchField} LIKE '%'||#{searchKeyword} ||'%'
+				</if>
+				ORDER BY idx DESC
+			) Tb
+		)
+	 	WHERE rNum<![CDATA[>=]]>#{start} AND rNum<![CDATA[<=]]>#{end} AND  email=#{email}
+	</select>
+	
 	
 	
 	

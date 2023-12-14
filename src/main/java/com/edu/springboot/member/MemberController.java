@@ -94,6 +94,7 @@ public class MemberController {
 	      int end = pageNum * pageSize;
 	      parameterDTO.setStart(start);
 	      parameterDTO.setEnd(end);
+	      parameterDTO.setEmail(principal.getName());
 	      
 	      
 	      Map<String, Object> maps = new HashMap<String, Object>();
@@ -106,7 +107,7 @@ public class MemberController {
 	      
 	      
 	      //MyPhotoListPage
-	      ArrayList<PhotoBoardDTO> photolists = photoboarddao.PhotoListPage(parameterDTO);
+	      ArrayList<PhotoBoardDTO> photolists = photoboarddao.MyPhotoListPage(parameterDTO);
 	      //ArrayList<PhotoBoardDTO> myphotolists = photoboarddao.MyPhotoListPage(parameterDTO);
 	      
 	      model.addAttribute("photolists", photolists);
