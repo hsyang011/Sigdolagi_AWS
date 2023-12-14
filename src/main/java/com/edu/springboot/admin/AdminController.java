@@ -94,7 +94,6 @@ public class AdminController {
 	public String adminMemberEnabled(MemberDTO memberDTO) {
 		int result = memberDao.adminMemberEnabled(memberDTO);
 		if(result==1)System.out.println("탈퇴처리되었습니다.");
-		//탈퇴회원 처리 해야함 컬럼 ENABLED이 0인 유저는 alert로 탈퇴회원입니다 띄워주기
 		return "redirect:adminMemberList.do";
 	}
 	
@@ -172,21 +171,50 @@ public class AdminController {
 		return "administrator/admin_notice_list";
 	}
 	
-	//관리자 공지사항 작성페이지
-	@RequestMapping("/administrator/admin_notice_write.do")
-	public String adminNoticeWrite() {
+	//관리자 공지사항 작성페이지(진입시 불러오는값필요)
+	@GetMapping("/administrator/admin_notice_write.do")
+	public String adminNoticeWrite(Model model, Principal principal) {
+		
+		String email = principal.getName();
+        String nickname= dao.getnickname(email);
+        model.addAttribute("email", email);
+        model.addAttribute("nickname",nickname); 
+        
 		return "administrator/admin_notice_write";
 	}
 	
 	//관리자 공지사항 작성처리
-		@PostMapping("/administrator/admin_notice_write.do")
-		public String adminNoticeWriteProcess(HttpServletRequest req, Model model, ProductDTO productDTO) {
-			
-			
-			
-			return "redirect:admin_notice_list.do";
-		}
+	@PostMapping("/administrator/admin_notice_write.do")
+	public String adminNoticeWriteProcess(Model model, HttpServletRequest req, NotiDTO notiDTO) {
+		
+		System.out.println("notiDTO="+notiDTO);
+       
+		notiDAO.adminNoticeWrite(notiDTO);
+		
+		return "redirect:admin_notice_list.do";
+	}
 	
+	//관리자 공지사항 수정페이지(진입시 불러오는값필요)
+	@GetMapping("/administrator/admin_notice_edit.do")
+	public String adminNoticeEdit(Model model, NotiDTO notiDTO) {
+		
+		notiDTO = notiDAO.view(notiDTO);
+		model.addAttribute("notiDTO", notiDTO);
+		
+		return "administrator/admin_notice_edit";
+	}
+	
+	//관리자 공지사항 수정처리
+	@PostMapping("/administrator/admin_notice_edit.do")
+	public String adminNoticeEditProcess(Model model,NotiDTO notiDTO) {
+		int result = notiDAO.edit(notiDTO);
+		if(result==1)System.out.println("수정되었습니다.");
+		
+		//수정후 로케이션 이동 (관리자목록으로)
+//		return "redirect:admin_notice_list.do";
+		//수정후 로케이션 이동 (사용자뷰로)
+		return "redirect:../service/notiboard_view.do?noticeboard_idx="+notiDTO.getNoticeboard_idx();
+	}
 	
 	//관리자 공지사항 삭제
 	@PostMapping("/administrator/adminNoticeDelete.do")

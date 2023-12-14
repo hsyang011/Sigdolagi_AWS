@@ -66,10 +66,11 @@
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-							<a class="btn btn-primary float-end" href="../administrator/admin_maket_write.do">
-                               <i class="fas fa-edit"></i> 글 작성
-                            </a>
+                        <div class="card-header py-3" style="text-align: right;">
+							<!-- <a class="btn btn-primary float-end" href="../administrator/admin_member_write.do">
+                               <i class="fas fa-edit"></i> 회원 등록
+                            </a> 
+                            모달창으로 회원등록 시켜보기-->
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">

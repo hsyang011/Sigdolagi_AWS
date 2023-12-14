@@ -51,9 +51,9 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3" style="text-align: right;">
-                            <a class="btn btn-primary float-end" href="../administrator/admin_community_write.do">
+                            <!-- <a class="btn btn-primary float-end" href="../administrator/admin_community_write.do">
                                 <i class="fas fa-edit"></i> 글 작성
-                            </a>
+                            </a> -->
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
