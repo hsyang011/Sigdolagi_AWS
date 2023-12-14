@@ -12,6 +12,8 @@ public class PhotoBoardDTO {
 	private int visitcount;
 	private String nickname;
 	
+	
+	
 	private Object ofile;
 	private String sfile;
 	private java.sql.Date regidate;
