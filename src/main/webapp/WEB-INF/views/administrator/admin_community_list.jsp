@@ -26,7 +26,7 @@
 <script>
 function listDelete(idx){
 	let frm = document.frm;
-	if(confirm("정말?")){
+	if(confirm("삭제하시겠습니까?")){
 		frm.idx.value = idx;
 		frm.action = "/administrator/adminFreeDelete.do";
 		frm.method = "post";
