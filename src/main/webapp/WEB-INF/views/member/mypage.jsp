@@ -58,6 +58,9 @@
     });
     });
 
+    
+    
+    
     //호버
     $(".myplannershow").hover(function() {
     $(this).css({
@@ -65,6 +68,7 @@
         "border-bottom": "2px solid orange",
         "padding-bottom": "8px" // 필요한 만큼 패딩을 조절하세요
     });
+    
     }, function() {
         // 호버가 해제될 때 border와 글자 색상, 패딩을 초기 상태로 리셋하려면 이 함수를 추가하세요
         $(this).css({
@@ -468,9 +472,11 @@
 								        <div class="col-md-3">
 								            <figure class="thumbnail">
 								                <div class="card col custom-col" style="padding-right: 20px; border: none;">
-								                    <a href="./photoboard_view.do?photoboard_idx=${ entry.photoboard_idx }">
+								                    <a href="../member/community/photoboard_view.do?idx=${ entry.idx }">
 								                        <img class="card-img-top" src="../uploads/${entry.sfile}" alt="이미지" style="width: 100%; height: 200px; object-fit: cover;">
 							                    	</a>
+							                    	
+							                    	
 								                    <div class="card-body">
 								                        <h4 class="card-title" style="font-size: 18px; text-align: left;">
 								                            ${entry.title} <!-- 파일 이름 -->

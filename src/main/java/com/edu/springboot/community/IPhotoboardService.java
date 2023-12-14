@@ -14,6 +14,9 @@ public interface IPhotoboardService {
 	public int photoGetTotalCount(ParameterDTO parameterDTO);
 	public ArrayList<PhotoBoardDTO> PhotoListPage(ParameterDTO parameterDTO);
 	
+	//마이포토리스트 
+	public ArrayList<PhotoBoardDTO> MyPhotoListPage(ParameterDTO parameterDTO);
+	
 	public PhotoBoardDTO photoview(PhotoBoardDTO photoBoardDTO);
 	public int photoedit(PhotoBoardDTO photoBoardDTO);
 	public int photodelete(String idx);

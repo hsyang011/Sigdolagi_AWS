@@ -11,6 +11,9 @@ public class CommentsDTO {
 	private String postdate;
 	private int idx;
 	private String email;
+	private String tname; 
+	
+	
 	
 	
 	
