@@ -111,9 +111,9 @@ public class CommunityController {
 		//자유게시판 댓글 
 		@RequestMapping("/community/freeboard_comment.do")
 		@ResponseBody
-		public CommentsDTO boardCommentPost(Model model, HttpServletRequest req, CommentsDTO commentsDTO, BoardDTO boardDTO, Principal principal) {
+		public CommentsDTO boardCommentPost(Model model, HttpServletRequest req, CommentsDTO commentsDTO, Principal principal) {
 	
-			int idx = commentsDTO.getComments_idx();
+			int idx = commentsDTO.getIdx();
 	        String content = commentsDTO.getContent();
 	        String email =  principal.getName();
 	        String nickname = dao.getnickname(email);
@@ -131,17 +131,6 @@ public class CommunityController {
 	        System.out.println("글쓰기결과:" + result);
 	        
 	        
-	        // 코멘트 테이블 전부다  얻어와서 저장하기  
-			ArrayList<CommentsDTO> commentsLists = dao.CommentsPage(commentsDTO);
-			
-			
-			System.out.println("댓글 디비에 있는거 가저오는거 성공?");
-			System.out.println(commentsLists);
-			
-			
-			model.addAttribute("CommentsLists", commentsLists);
-			model.addAttribute("boardDTO",boardDTO);
-			model.addAttribute("result", result);
 	        
 	        return commentsDTO;
 		}
@@ -212,13 +201,21 @@ public class CommunityController {
 	
 	   //자유게시판 view 
 	   @RequestMapping("/community/freeboard_view.do")
-	   public String freeboardView(Model model, BoardDTO boardDTO,HttpServletRequest req,ParameterDTO parameterDTO) {
+	   public String freeboardView(Model model, BoardDTO boardDTO,HttpServletRequest req,CommentsDTO commentsDTO,ParameterDTO parameterDTO) {
 	      dao.update(boardDTO);
 	      boardDTO = dao.view(boardDTO);
 	      boardDTO.setContent(boardDTO.getContent().replace("\r\n", "<br>"));
 	
 	      model.addAttribute("boardDTO", boardDTO);
-	
+	        // 코멘트 테이블 전부다  얻어와서 저장하기  
+			ArrayList<CommentsDTO> commentsLists = dao.CommentsPage(commentsDTO);
+			
+			
+			System.out.println("댓글 디비에 있는거 가저오는거 성공?");
+			System.out.println(commentsLists);
+			
+			
+			model.addAttribute("CommentsLists", commentsLists);
 	      return "community/freeboard_view";
 	   }
 	

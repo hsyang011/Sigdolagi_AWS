@@ -24,12 +24,12 @@ public interface IBoardService {
    public int update(BoardDTO boardDTO);
    public String getnickname(String email);
    
-	public int writeConmments(
-			@Param("idx") int idx,
-			@Param("content") String content,
-			@Param("nickname") String nickname,
-			@Param("email") String email
-			);
+   public int writeConmments(
+		@Param("idx") int idx,
+		@Param("content") String content,
+		@Param("nickname") String nickname,
+		@Param("email") String email
+	);
 	
 	//커멘트테이블 받아오기
 	public ArrayList<CommentsDTO> CommentsPage(CommentsDTO commentsDTO);
