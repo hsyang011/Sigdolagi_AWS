@@ -72,6 +72,8 @@
                                     <label for="title" class="form-label">제목</label> 
                                     <input type="text" class="form-control" id="title" name="title"
                                         value="">
+                                     <input type="hid-den" name="email" value="${email}"/>
+                                     <input type="hid-den" name="nickname" value="${nickname }"/>
                                 </div>
                                 <div class="mb-3">
                                     <label for="content" class="form-label">상세내용</label>

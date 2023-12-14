@@ -173,19 +173,40 @@ public class AdminController {
 	}
 	
 	//관리자 공지사항 작성페이지
-	@RequestMapping("/administrator/admin_notice_write.do")
-	public String adminNoticeWrite() {
+	@GetMapping("/administrator/admin_notice_write.do")
+	public String adminNoticeWrite(Model model, Principal principal) {
+		
+		String email = principal.getName();
+        String nickname= dao.getnickname(email);
+        model.addAttribute("email", email);
+        model.addAttribute("nickname",nickname); 
+        
 		return "administrator/admin_notice_write";
 	}
 	
 	//관리자 공지사항 작성처리
-		@PostMapping("/administrator/admin_notice_write.do")
-		public String adminNoticeWriteProcess(HttpServletRequest req, Model model, ProductDTO productDTO) {
-			
-			
-			
-			return "redirect:admin_notice_list.do";
-		}
+	@PostMapping("/administrator/admin_notice_write.do")
+	public String adminNoticeWriteProcess(Model model, HttpServletRequest req, NotiDTO notiDTO) {
+		
+		System.out.println("notiDTO="+notiDTO);
+       
+		notiDAO.adminNoticeWrite(notiDTO);
+		
+		return "redirect:admin_notice_list.do";
+	}
+	
+	/*
+	 * @PostMapping("/administrator/admin_notice_write.do") public String
+	 * adminNoticeWriteProcess(Model model, HttpServletRequest req, Principal
+	 * principal) {
+	 * 
+	 * String title= req.getParameter("title"); String content=
+	 * req.getParameter("content"); //폼값을 개별적으로 전달한다. int result =
+	 * notiDAO.adminNoticeWrite(email,nickname,title, content);
+	 * model.addAttribute("nickname1",nickname);
+	 * 
+	 * return "redirect:admin_notice_list.do"; }
+	 */
 	
 	
 	//관리자 공지사항 삭제

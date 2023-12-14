@@ -29,10 +29,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 	WHERE rNum<![CDATA[>=]]>#{start} AND rNum<![CDATA[<=]]>#{end}
 	</select>
 	
-	<!-- write  -->
-	<insert id="write">
-		INSERT INTO noticeboard (noticeboard_idx, title, content) VALUES (seq_noticeboard_idx.nextval, #{_title}, #{_content} )
-	</insert>
+	<!-- 관리자 공지사항 작성  -->
+	<!-- <insert id="write">
+		INSERT INTO noticeboard (noticeboard_idx, email, nickname, title, content) VALUES (seq_noticeboard_idx.nextval,#{email}, #{nickname}, #{_title}, #{_content} )
+	</insert> -->
 	
 	<select id="view" resultType="com.edu.springboot.service.NotiDTO" parameterType="com.edu.springboot.service.NotiDTO">
 		SELECT * FROM noticeboard WHERE noticeboard_idx=${noticeboard_idx}
@@ -48,6 +48,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		resultType="com.edu.springboot.service.NotiDTO">
 		SELECT * FROM noticeboard ORDER BY postdate DESC
 	</select>
+	
+	<!-- 관리자 공지사항 작성  -->
+	<insert id="adminNoticeWrite"
+		 parameterType="com.edu.springboot.service.NotiDTO">
+		INSERT INTO noticeboard (noticeboard_idx, email, nickname, title, content) VALUES (seq_noticeboard_idx.nextval,#{email}, #{nickname}, #{title}, #{content} )
+	</insert>
 	
 	<!-- 관리자 공지사항 삭제 -->
 	<delete id="adminNoticeDelete">
