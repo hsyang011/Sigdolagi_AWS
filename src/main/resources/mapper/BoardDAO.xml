@@ -31,6 +31,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 	WHERE rNum<![CDATA[>=]]>#{start} AND rNum<![CDATA[<=]]>#{end}
 	</select>
 	
+	
+	
 	<!-- write  -->
 	<insert id="write">
 		INSERT INTO freeboard (freeboard_idx, email, nickname, title, content) VALUES (seq_freeboard_idx.nextval, #{_email},#{_nickname}, #{_title}, #{_content} )
