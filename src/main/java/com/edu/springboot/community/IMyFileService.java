@@ -9,3 +9,4 @@ public interface IMyFileService {
 	public int updateFIle(PhotoBoardDTO photoBoardDTO);
 }
 
+
