@@ -59,13 +59,13 @@
                         <div id="leftname">회원이름</div>
                         <div id="leftreft" class="">
                         <div id="myactivity">
-                            <a href="./mypage_.html">나의 활동관리</a>
+                            <a href="/member/mypage.do">나의 활동관리</a>
                         </div><br><br>
                         <div id="myinfomanage">
-                            <a href="./myinfo.html">나의 정보관리</a>
+                            <a href="../member/myinfo.do">나의 정보관리</a>
                         </div><br><br>
                         <div id="myorder">
-                            <a href="./myordermanage.html"> 나의주문관리</a>
+                            <a href="../member/myordermanage.do"> 나의주문관리</a>
                         </div>
                         </div><!-- leftreft -->
                     </div> <!-- left메뉴끝 -->

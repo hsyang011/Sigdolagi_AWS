@@ -31,6 +31,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 	WHERE rNum<![CDATA[>=]]>#{start} AND rNum<![CDATA[<=]]>#{end}
 	</select>
 	
+	
+	
 	<!-- write  -->
 	<insert id="write">
 		INSERT INTO freeboard (freeboard_idx, email, nickname, title, content) VALUES (seq_freeboard_idx.nextval, #{_email},#{_nickname}, #{_title}, #{_content} )
@@ -52,6 +54,23 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<delete id="delete">
 		DELETE FROM freeboard WHERE freeboard_idx=#{freeboard_idx}
 	</delete>
+	
+	<!-- 댓글 쓰기  -->
+	<insert id="writeConmments" >
+	   INSERT INTO COMMENTS (comments_idx, nickname, content ,postdate, idx , email, tname)
+	   VALUES (seq_comments_idx.nextval,  #{nickname}, #{content}, sysdate, #{idx}, #{email}, 'freeboard' )
+
+	</insert>
+	
+	
+	
+	<!--코멘트 테이블 가져오기  -->
+	<select id="CommentsPage"
+       resultType="com.edu.springboot.community.CommentsDTO"
+       parameterType="com.edu.springboot.community.CommentsDTO">
+  		 SELECT * FROM COMMENTS WHERE idx = #{idx} AND tname='freeboard'
+	
+	</select>
 	
 
 	<!-- 맞는지 모르겠지만 닉네임 가져오려고  -->

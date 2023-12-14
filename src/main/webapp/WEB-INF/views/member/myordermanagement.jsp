@@ -35,7 +35,7 @@
                     <h2>주문관리페이지</h2>
                 </div>
             </div>
-            <img id="page_icon" src="./images/calandar.png">
+            <img id="page_icon" src="../images/calandar.png">
         </div>
     </div>
     <!-- 배너 끝 -->
@@ -47,20 +47,20 @@
                     <!-- 첫 번째 열 -->
                     <br><br><br><br>
                     <div id="left" style="width: 100%;"><!-- 좌측메뉴-->
-                        <div id="profile"><img src="./images/logo.png" alt=""></div>
+                        <div id="profile"><img src="../images/logo.png" alt=""></div>
                         <div id="leftname">회원이름</div>
                         <div id="leftreft" class="">
                         <div id="myactivity">
-                            <a href="./mypage_.html">나의 활동관리</a>
+                            <a href="/member/mypage.do">나의 활동관리</a>
                         </div><br><br>
                         <div id="myinfomanage">
-                            <a href="./myinfo.html">나의 정보관리</a>
+                            <a href="../member/myinfo.do">나의 정보관리</a>
                         
                         
                         </div><br><br>
                         
                         <div id="myorder">
-                            <a href="./myordermanage.html"> 나의주문관리</a>
+                            <a href="../member/myordermanage.do"> 나의주문관리</a>
                         </div>
                         
                         
@@ -257,10 +257,13 @@
                     <h5 style="color: black;">더욱 다양하게 즐겨보세요</h5>
                 </div>
             </div>
-            <img id="page_icon" src="./images/pay.png">
+            <img id="page_icon" src="../images/pay.png">
         </div>
     </div>
     <!-- 배너 끝 -->
+	
+	
+
 	
 	<%@include file="../include/footer.jsp"%>
     <!-- footer 시작 -->
