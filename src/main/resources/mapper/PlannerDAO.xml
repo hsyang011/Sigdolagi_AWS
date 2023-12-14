@@ -55,4 +55,10 @@
 		SELECT * FROM planner ORDER BY postdate DESC
 	</select>
 	
+	<!-- 관리자 플래너 삭제 무결성 제약조건 수정-->
+	<delete id="adminPlannerDelete"
+		parameterType="com.edu.springboot.planner.PlannerDTO">
+		delete from planner where planner_idx=#{planner_idx}
+	</delete>
+	
 </mapper>

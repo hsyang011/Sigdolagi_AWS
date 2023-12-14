@@ -138,7 +138,7 @@ function deletePost(idx){
                                             <td>${row.planner_idx }</td>
                                             <td>${row.cate }</td>
                                             <td><a href="">${row.plan_start } > ${row.plan_end }</a></td>
-                                            <td>${row.nickname}(닉네임)(${row.email})</td>
+                                            <td>${row.nickname}(${row.email})</td>
                                             <td>${row.postdate }</td>
                                             <td>540(조회수)</td>
                                             <td>

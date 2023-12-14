@@ -23,6 +23,18 @@
     <!-- Custom styles for this page -->
     <link href="../bootstrap/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" />
 </head>
+<script>
+function listDelete(idx){
+	let frm = document.frm;
+	if(confirm("정말?")){
+		frm.idx.value = idx;
+		frm.action = "/administrator/adminFreeDelete.do";
+		frm.method = "post";
+		frm.submit();
+	}
+}
+
+</script>
 <body id="page-top">
 
     <!-- Page Wrapper -->
@@ -53,12 +65,15 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3" style="text-align: right;">
-                            <a class="btn btn-primary float-end" href="../administrator/admin_community_write.do">
+                            <!-- <a class="btn btn-primary float-end" href="../administrator/admin_community_write.do">
                                 <i class="fas fa-edit"></i> 글 작성
-                            </a>
+                            </a> -->
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
+                            	<form name="frm">
+                            		<input type="hidden" name="idx"/>
+                            	</form>
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 	<colgroup>
 	                                	<col width="5%" /><col width="*" /><col width="15%" /><col width="10%" />
@@ -93,7 +108,7 @@
 											<td>${row.postdate }</td>
                                             <td>${row.visitcount }</td>
                                             <td>
-                                            	<a href="#" class="btn btn-danger btn-icon-split">
+                                            	<a href="javascript:listDelete('${row.freeboard_idx }')" class="btn btn-danger btn-icon-split">
                                                     <span class="text">삭제</span>
                                                 </a>
                                             </td>

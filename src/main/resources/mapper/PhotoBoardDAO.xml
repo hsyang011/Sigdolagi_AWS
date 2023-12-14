@@ -71,14 +71,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 
 	
-	<!-- 관리자 자유게시판 목록 -->
+	<!-- 관리자 사진게시판 목록 -->
 	<select id="adminPhotoSelect"
 		resultType="com.edu.springboot.community.PhotoBoardDTO">
 		SELECT * FROM photoboard ORDER BY regidate DESC
 	</select>
 	
+	<!-- 관리자 사진게시판 삭제-->
+	<delete id="adminPhotoDelete">
+		delete from photoboard where idx=#{idx}
+	</delete>
 	
-	
-
 		
 </mapper>

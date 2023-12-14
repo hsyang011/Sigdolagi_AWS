@@ -34,6 +34,7 @@ public interface IPhotoboardService {
 
 	//관리자 포토게시판목록
 	public List<PhotoBoardDTO> adminPhotoSelect();
-	
+	//관리자 자유게시판삭제
+	public int adminPhotoDelete(String idx);
 	
 }

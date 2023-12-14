@@ -25,4 +25,6 @@ public interface IBoardService {
    
    //관리자 자유게시판목록
    public List<BoardDTO> adminFreeSelect();
+   //관리자 자유게시판삭제
+   public int adminFreeDelete(String idx);
    }
