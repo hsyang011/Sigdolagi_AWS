@@ -113,18 +113,18 @@ public class CommunityController {
 		@ResponseBody
 		public CommentsDTO boardCommentPost(Model model, HttpServletRequest req, CommentsDTO commentsDTO, BoardDTO boardDTO) {
 	
-			int idx = commentsDTO.getIdx();
+			int freeboard_idx = commentsDTO.getComments_idx();
 	        String content = commentsDTO.getContent();
 	        String nickname = commentsDTO.getNickname();
 	        String email = commentsDTO.getEmail();
 	        
 	        
-	        System.out.println(idx);
+	        System.out.println(freeboard_idx);
 	        System.out.println(content);
 	        System.out.println(nickname);
 	        System.out.println(email);
 	
-	        int result = dao.writeConmments(idx, content, nickname, email);
+	        int result = dao.writeConmments(freeboard_idx, content, nickname, email);
 	
 	        System.out.println("성공?");
 	        System.out.println(commentsDTO);
@@ -240,13 +240,13 @@ public class CommunityController {
 	   public String boardEditPost(BoardDTO boardDTO, Principal principal) {
 	      int result = dao.edit(boardDTO);
 	      System.out.println("result:"+result);
-	      return "redirect:freeboard_view.do?idx="+boardDTO.getIdx();
+	      return "redirect:freeboard_view.do?freeboard_idx="+boardDTO.getFreeboard_idx();
 	   }
 	   
 	   //자유게시판 삭제하기 
 	   @PostMapping("/community/freeboard_delete.do")
 	   public String boardDeletePost(HttpServletRequest req,Principal principal) {
-	      int result = dao.delete(req.getParameter("idx"));
+	      int result = dao.delete(req.getParameter("freeboard_idx"));
 	      System.out.println("글삭제결과:"+result);
 	      
 	      return "redirect:freeboard_list.do";

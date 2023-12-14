@@ -77,7 +77,7 @@ main > * { margin: 50px 0; }
 </style>
 
 <script>
-function deletePost(idx){
+function deletePost(freeboard_idx){
     var confirmed = confirm("정말로 삭제하겠습니까?"); 
     if (confirmed) {
         var form = document.writeFrm;      
@@ -97,7 +97,7 @@ function saveComment(){
 	console.log(frm.content.value);
     let data = {
     		
-    	idx : frm.idx.value,
+   		freeboard_idx : frm.freeboard_idx.value,
     	nickname : frm.nickname.value,
     	content : frm.content.value,
     	email : frm.email.value
@@ -144,7 +144,7 @@ function saveComment(){
     function displayComment(res) {
         // 받은 댓글 데이터를 이용하여 화면에 추가하는 로직을 작성
         console.log(res.email);
-        console.log(res.idx);
+        console.log(res.freeboard_idx);
         console.log(res.content);
         var commentHTML =
             "<tr align=\"center\">" +
@@ -211,7 +211,7 @@ function saveComment(){
                         <!-- 게시판 들어가는 부분 (시작) -->
                         <form name="writeFrm" method="post" onsubmit="return validateForm(this);" action="../community/freeboard_view.do" class="writeFrm">
                        		<input type="hidden" name="tname"  />
-                          	<input type="hidden" name="idx" value="${ boardDTO.idx }" />
+                          	<input type="hidden" name="freeboard_idx" value="${ boardDTO.freeboard_idx }" />
                             <input type="hidden" name="email"  />
                             <input type="hidden" name="nickname" />	
                             <table class="table table-bordered" id="free_write_frm_table" width="100%" >
@@ -239,9 +239,9 @@ function saveComment(){
 								</tr>
                                 <tr>
                                     <td colspan="4" align="center" class="btn_td">
-                                        <button type="button" class="writeFrm_edit" onclick="location.href='./freeboard_edit.do?idx=${boardDTO.idx }';">수정하기</button>
+                                        <button type="button" class="writeFrm_edit" onclick="location.href='./freeboard_edit.do?freeboard_idx=${boardDTO.freeboard_idx }';">수정하기</button>
                                       	<form id="deleteForm" action="./community/freeboard_delete.do" method="post">
-                                			<button type="button" class="writeFrm_reset"  onclick="deletePost(${boardDTO.idx });">삭제하기</button>
+                                			<button type="button" class="writeFrm_reset"  onclick="deletePost(${boardDTO.freeboard_idx});">삭제하기</button>
 								       	</form>
                                         <button type="button" class="writeFrm_list" onclick="location.href='./freeboard_list.do';">목록 보기</button>
                                     </td>
@@ -256,11 +256,12 @@ function saveComment(){
                        			<form name="commentwriteFrm" method="post" onsubmit="return validateForm(this);" action="/community/freeboard_comment.do" class="writeFrm">
                            		<legend class="skipinfo">댓글 입력</legend>
                            			<div class="cm_input">
-		                                <input type="hidden" name="idx" value="${boardDTO.idx }">
+		                                <input type="hidden" name="freeboard_idx" value="${boardDTO.freeboard_idx }">
+	                                   <input type="hidden" name="idx" value="${boardDTO.idx }">	
 		                                <input type="hidden" name="nickname" value="${boardDTO.nickname}">
 		                                <input type="hidden" name="email" value="${email}">
 		                               	<p><textarea id="content" name="content" onkeyup=""  style="width:100%" rows="4" placeholder="댓글을 입력해 주세요."></textarea></p>
-		                               	<span><button type="button" class="btns" onclick="saveComment();">등록</button> <i id="counter">0/300자</i></span>
+		                               	<span><button type="button" class="btns" onclick="saveComment();">등록</button></span>
                            			</div>
 								</form>
 	                       </fieldset>
