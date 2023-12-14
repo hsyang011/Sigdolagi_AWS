@@ -72,7 +72,7 @@
             data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">고객센터게시판:</h6>
-                <a class="collapse-item" href="../administrator/admin_notice_list.do">FAQ관리</a>
+                <!-- <a class="collapse-item" href="../administrator/admin_notice_list.do">FAQ관리</a> -->
                 <a class="collapse-item" href="../administrator/admin_notice_list.do">공지사항</a>
                 <a class="collapse-item" href="../administrator/admin_inquiry_list.do">1:1문의관리</a>
             </div>

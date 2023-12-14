@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,6 +23,18 @@
     <!-- Custom styles for this page -->
     <link href="../bootstrap/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" />
 </head>
+<script>
+function listDelete(idx){
+	let frm = document.frm;
+	if(confirm("삭제하시겠습니까?")){
+		frm.idx.value = idx;
+		frm.action = "/administrator/adminOrderDelete.do";
+		frm.method = "post";
+		frm.submit();
+	}
+}
+
+</script>
 <body id="page-top">
 
     <!-- Page Wrapper -->
@@ -50,13 +63,12 @@
 
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
-                        <div class="card-header py-3" style="text-align: right;">
-                            <!-- <a class="btn btn-primary float-end" href="../administrator/admin_maket_write.do">
-                                <i class="fas fa-edit"></i> 글 작성
-                            </a> -->
-                        </div>
+                        <div class="card-header py-3" style="text-align: right;"></div>
                         <div class="card-body">
                             <div class="table-responsive">
+                            	<form name="frm">
+                            		<input type="hidden" name="idx"/>
+                            	</form>
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 	                                <colgroup>
 	                                	<col width="10%" /><col width="15%" /><col width="10%" /><col width="15%" /><col width="10%" />
@@ -83,23 +95,24 @@
                                         </tr>
                                     </tfoot>
                                     <tbody>
+                                    	<c:forEach items="${adminOrderSelect }" var="row" varStatus="loop">
                                         <tr>
                                             <td style="text-align: center;">
                                             	<a href="#" data-toggle="modal" data-target="#orderNumModal">
-                                            		1
+                                            		${row.order_idx }
                                             	</a>
                                             </td>
-                                            <td>밀키트(dfawef@gmail.com)</td>
-                                            <td>2011/04/25</td>
-                                            <td><span>5,500</span> 원</td>
+                                            <td>${row.nickname }(${row.email })</td>
+                                            <td>${row.payment_date }</td>
+                                            <td><span>${row.payment }</span> 원</td>
                                             <td>상품준비중</td>
                                             <td>
-                                                <a href="#" class="btn btn-danger btn-icon-split">
+                                                <a href="javascript:listDelete('${row.order_idx }')" class="btn btn-danger btn-icon-split">
                                                     <span class="text">취소</span>
                                                 </a>
                                             </td>
                                         </tr>
-                                        
+                                        </c:forEach>	
                                        
                                     </tbody>
                                 </table>
