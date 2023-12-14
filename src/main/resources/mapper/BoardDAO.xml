@@ -67,7 +67,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 관리자 자유게시판 삭제-->
 	<delete id="adminFreeDelete">
-		delete from freeboard where freeboard_idx=#{idx}
+		delete FROM freeboard WHERE freeboard_idx=#{idx}
 	</delete>
 
 		

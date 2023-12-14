@@ -96,7 +96,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 관리자 사진게시판 삭제-->
 	<delete id="adminPhotoDelete">
-		delete from photoboard where idx=#{idx}
+		delete FROM photoboard WHERE idx=#{idx}
 	</delete>
 	
 		

@@ -71,6 +71,9 @@ function listDelete(idx){
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
+                           		<form name="frm">
+                            		<input type="hidden" name="idx"/>
+                            	</form>
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
 	                                <colgroup>
 	                                	<col width="10%" /><col width="30%" /><col width="10%" /><col width="10%" /><col width="10%" />

@@ -56,9 +56,8 @@
 	</select>
 	
 	<!-- 관리자 플래너 삭제 무결성 제약조건 수정-->
-	<delete id="adminPlannerDelete"
-		parameterType="com.edu.springboot.planner.PlannerDTO">
-		delete from planner where planner_idx=#{planner_idx}
+	<delete id="adminPlannerDelete">
+		delete FROM planner WHERE planner_idx=#{idx}
 	</delete>
 	
 </mapper>

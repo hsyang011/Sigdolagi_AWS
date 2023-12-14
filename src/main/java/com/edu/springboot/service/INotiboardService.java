@@ -23,5 +23,7 @@ public interface INotiboardService {
 	 	
 	 	//관리자 플래너리스트불러오기
 		public List<NotiDTO> adminNoticeSelect();
+		//관리자 자유게시판삭제
+		public int adminNoticeDelete(String idx);
 
 }

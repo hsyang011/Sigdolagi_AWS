@@ -147,6 +147,14 @@ public class AdminController {
 		return "administrator/admin_planner_list";
 	}
 	
+	//관리자 플래너 삭제
+	@PostMapping("/administrator/adminPlannerDelete.do")
+	public String adminPlannerDelete(HttpServletRequest req) {
+		int result = plannerDAO.adminPlannerDelete(req.getParameter("idx"));
+		if(result==1)System.out.println("삭제되었습니다.");
+		return "redirect:admin_planner_list.do";
+	}
+	
 	@RequestMapping("/administrator/admin_AD_list.do")
 	public String adminAd() {
 		return "administrator/admin_ad_list";
@@ -161,6 +169,14 @@ public class AdminController {
 		model.addAttribute("adminNoticeSelect", adminNoticeSelect);
 		
 		return "administrator/admin_notice_list";
+	}
+	
+	//관리자 공지사항 삭제
+	@PostMapping("/administrator/adminNoticeDelete.do")
+	public String adminNoticeDelete(HttpServletRequest req) {
+		int result = notiDAO.adminNoticeDelete(req.getParameter("idx"));
+		if(result==1)System.out.println("삭제되었습니다.");
+		return "redirect:admin_notice_list.do";
 	}
 	
 	
