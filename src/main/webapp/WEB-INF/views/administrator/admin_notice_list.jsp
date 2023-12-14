@@ -106,7 +106,7 @@ function listDelete(idx){
                                             <td>${row.postdate }</td>
                                             <td>${row.visitcount }</td>
                                             <td>
-                                            	<a href="#" class="btn btn-warning btn-icon-split">
+                                            	<a href="../administrator/admin_notice_edit.do?noticeboard_idx=${row.noticeboard_idx }" class="btn btn-warning btn-icon-split">
                                                     <span class="text">수정</span>
                                                 </a>
                                             	<a href="javascript:listDelete('${row.noticeboard_idx }')" 

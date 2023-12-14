@@ -38,6 +38,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT * FROM noticeboard WHERE noticeboard_idx=${noticeboard_idx}
 	</select>
 	
+	<update id="edit" parameterType="com.edu.springboot.service.NotiDTO">
+		UPDATE noticeboard SET title=#{title}, content=#{content} WHERE noticeboard_idx=${noticeboard_idx}
+	</update>
+	
 	<update id="update" parameterType="com.edu.springboot.service.NotiDTO">
    		UPDATE noticeboard SET visitcount=visitcount+1 WHERE noticeboard_idx=${noticeboard_idx}
 	</update>
@@ -57,7 +61,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 관리자 공지사항 삭제 -->
 	<delete id="adminNoticeDelete">
-		DELETE FROM noticeboard WHERE noticeboard=#{idx}
+		DELETE FROM noticeboard WHERE noticeboard_idx=#{idx}
 	</delete>
 
 </mapper>
