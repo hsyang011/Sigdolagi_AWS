@@ -31,6 +31,8 @@ public interface IMemberService {
 	public List<MemberDTO> adminMemberSelect();
 	//관리자 회원탈퇴여부변경
 	public int adminMemberEnabled(MemberDTO memberDTO);
+	// 이메일로 닉네임 얻어오기
+	public String getMemberNickname(String email);
 	
 }
 

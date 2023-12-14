@@ -23,7 +23,7 @@
 	
 	<!-- 플래너 생성 -->
 	<insert id="createPlanner" parameterType="com.edu.springboot.planner.PlannerDTO">
-		INSERT INTO planner (planner_idx, email) VALUES (seq_planner_idx.NEXTVAL, #{email})
+		INSERT INTO planner (planner_idx, email, nickname) VALUES (seq_planner_idx.NEXTVAL, #{email}, #{nickname})
 	</insert>
 	
 	<!-- 플래너의 고유번호 얻어오기 -->

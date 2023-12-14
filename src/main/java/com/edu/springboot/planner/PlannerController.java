@@ -60,6 +60,7 @@ public class PlannerController {
 	@RequestMapping("/planner/planner_map.do")
 	public String plannerMap(PlannerDTO plannerDTO, Model model, Principal principal) {
 		plannerDTO.setEmail(principal.getName());
+		plannerDTO.setNickname(memberDAO.getMemberNickname(principal.getName()));
 		// 이전에 만든 플래너가 있는지 확인
 		int result = plannerDAO.getPlanner(plannerDTO);
 		if (result == 0) {			
