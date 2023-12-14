@@ -35,7 +35,7 @@ public class MyAuthFailureHandler implements AuthenticationFailureHandler {
 			loginFailureCnt(request.getParameter("password"));
 			errorMsg = "이메일이나 비밀번호가 맞지 않습니다. 다시 확인해주세요. (2)";
 		} else if (exception instanceof DisabledException) {
-			errorMsg = "계정이 비활성화되었습니다. 관리자에게 문의하세요. (3)";
+			errorMsg = "탈퇴된 계정입니다. (3)";
 		} else if (exception instanceof CredentialsExpiredException) {
 			errorMsg = "비밀번호 유효기간이 만료되었습니다. 관리자에게 문의하세요. (4)";
 		}
