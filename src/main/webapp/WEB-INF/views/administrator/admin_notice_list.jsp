@@ -24,11 +24,11 @@
     <link href="../bootstrap/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" />
 </head>
 <script>
-function deletePost(idx){
+function listDelete(idx){
 	let frm = document.frm;
 	if(confirm("정말?")){
-		frm.noticeboard_idx.value = idx;
-		frm.action = "/administrator/admin_notice_delete.do";
+		frm.idx.value = idx;
+		frm.action = "/administrator/adminNoticeDelete.do";
 		frm.method = "post";
 		frm.submit();
 	}
@@ -69,6 +69,9 @@ function deletePost(idx){
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
+                            	<form name="frm">
+                            		<input type="hidden" name="idx"/>
+                            	</form>
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 	<colgroup>
 	                                	<col width="10%" /><col width="40%" /><col width="10%" /><col width="15%" />
@@ -95,6 +98,22 @@ function deletePost(idx){
                                         </tr>
                                     </tfoot>
                                     <tbody>
+                                        <tr>
+                                            <td>1</td>
+                                            <td><a href="">공지사항은 어떻게 쓰는거죠 진짜 금일 00시부터 플래너게시판을
+                                            점검하므로 사용시간이 제한됩니다.</a></td>
+                                            <td>관리자</td>
+                                            <td>2023/12/08</td>
+                                            <td>30</td>
+                                            <td>
+                                            	<a href="#" class="btn btn-warning btn-icon-split">
+                                                    <span class="text">수정</span>
+                                                </a>
+                                            	<a href="#" class="btn btn-danger btn-icon-split">
+                                                    <span class="text">삭제</span>
+                                                </a>
+                                            </td>
+                                        </tr>
                                         <c:forEach items="${adminNoticeSelect }" var="row" varStatus="loop">
 										<tr>
 											<td>${row.noticeboard_idx }</td>
@@ -106,7 +125,8 @@ function deletePost(idx){
                                             	<a href="#" class="btn btn-warning btn-icon-split">
                                                     <span class="text">수정</span>
                                                 </a>
-                                            	<a href="javascript:deletePost('${row.noticeboard_idx }')" class="btn btn-danger btn-icon-split">
+                                            	<a href="javascript:listDelete('${row.noticeboard_idx }')" 
+                                            		class="btn btn-danger btn-icon-split">
                                                     <span class="text">삭제</span>
                                                 </a>
                                             </td>

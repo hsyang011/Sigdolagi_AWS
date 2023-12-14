@@ -21,9 +21,9 @@ public interface INotiboardService {
 	 	public int delete(String NOTICEBOARD_IDX);
 	 	public int update(NotiDTO notiDTO);
 	 	
-	 	//관리자 플래너리스트불러오기
+	 	//관리자 공지사항 불러오기
 		public List<NotiDTO> adminNoticeSelect();
-		//관리자 자유게시판삭제
+		//관리자 공지사항 삭제
 		public int adminNoticeDelete(String idx);
 
 }
