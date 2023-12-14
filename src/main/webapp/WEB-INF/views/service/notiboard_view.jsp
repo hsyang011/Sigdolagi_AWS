@@ -87,45 +87,6 @@ function deletePost(freeboard_idx){
     }
 }
 
-// 댓글 길이 카운팅
-function countingLength(content) {
-    if (content.value.length > 300) {
-        alert('댓글을 300자 이하로 입력해 주세요.');
-        content.value = content.value.substring(0, 300);
-        content.focus();
-    }
-    document.getElementById('counter').innerText = content.value.length + '/300자';
-}
-
-
-// 댓글 저장
-function saveComment() {
-	 var content = $('#content').val();
-     var email = $('#email').val();
-   /*  const content = document.getElementById('content');
-    isValid(content, '댓글');
-
-    const comment_id = [[ ${post.comment_id} ]]; */
-    const params = {
-        content : content,
-        email : email
-    }
-
-    $.ajax({
-        url : `/posts/${freeboard_idx}/comments`,
-        type : 'post',
-        contentType : 'application/json; charset=utf-8',
-        dataType : 'json',
-        data : JSON.stringify(params),
-        async : false,
-        success : function (response) {
-            console.log(response);
-        },
-        error : function (request, status, error) {
-            console.log(error)
-        }
-    })
-}
 
 </script>
 </head>
@@ -181,8 +142,8 @@ function saveComment() {
                 <div class="container">
                     <div class="freeboard_write_frm" >
                         <!-- 게시판 들어가는 부분 (시작) -->
-                        <form name="writeFrm" method="post" onsubmit="return validateForm(this);" action="../community/freeboard_view.do" class="writeFrm">
-                          <input type="hidden" name="freeboard_idx" value="${ notiDTO.notiboard_idx }" />
+                        <form name="writeFrm" method="post" onsubmit="return validateForm(this);" action="../service/notiboard_view.do" class="writeFrm">
+                          <input type="hidden" name="notiboard_idx" value="${ notiDTO.noticeboard_idx }" />
                             <input type="hidden" name="email"  />
                             <table class="table table-bordered" id="free_write_frm_table" width="100%" >
                                <colgroup>
@@ -191,12 +152,12 @@ function saveComment() {
                                 </colgroup>
 		                         <tr> 
 		                             <td>작성일</td> <td>${ notiDTO.postdate }</td>
-		                       <%--       <td>조회수</td> <td>${ notiDTO..visitcount }</td> --%>
+                                     <td>조회수</td> <td>${ notiDTO.visitcount }</td> 
 		                         </tr>
 		                         <tr>
-		 <%--                             <td>작성자</td>
-		                             <td colspan=3>${ boardDTO.email }</td> 번호<td>${ boardDTO.freeboard_idx }</td>   
-		                      --%>
+		                             <td>작성자</td>
+		                             <td colspan=3>${ notiDTO.nickname }</td>   
+		     
 		                         </tr>
 		                         <tr>
 		                             <td>제목</td>
