@@ -44,7 +44,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				ORDER BY freeboard_idx DESC
 			) Tb
 		)
-	 	WHERE rNum<![CDATA[>=]]>#{start} AND rNum<![CDATA[<=]]>#{end} AND email=#{email}
+	 	WHERE rNum<![CDATA[>=]]>#{start} AND rNum<![CDATA[<=]]>#{end} and email=#{email}
 	</select>
 	
 	<!-- write  -->
