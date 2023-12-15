@@ -4,6 +4,7 @@ package com.edu.springboot.member;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,8 @@ import com.edu.springboot.community.IBoardService;
 import com.edu.springboot.community.IPhotoboardService;
 import com.edu.springboot.community.ParameterDTO;
 import com.edu.springboot.community.PhotoBoardDTO;
+import com.edu.springboot.planner.IPlannerService;
+import com.edu.springboot.planner.PlannerDTO;
 import com.edu.springboot.service.InqueryBoardService;
 import com.edu.springboot.service.InqueryDTO;
 
@@ -49,8 +52,10 @@ public class MemberController {
 	InqueryBoardService inquerydao;
 	
 	@Autowired
+	IPlannerService plannerDAO;
+	
+	@Autowired
 	IBoardService dao;
-	   
 	
 	@RequestMapping("/member/login.do")
 	public String login(Principal principal, Model model, HttpServletRequest req) {
@@ -87,6 +92,7 @@ public class MemberController {
 	
 	@RequestMapping("/member/mypage.do")
 	public String mypage(Model model, HttpServletRequest req, ParameterDTO parameterDTO, Principal principal) {
+		String email = principal.getName();
 		  System.out.println("마이페이지 컨트롤러 들어오나?");
 		  
 		  //포토게시판 리스트 처리 
@@ -177,7 +183,9 @@ public class MemberController {
 	  //    model.addAttribute("pagingImg", pagingImg);
 	      
 
-	      
+	    // 나의 플래너를 가져옵니다.
+		List<PlannerDTO> myPlannerList = plannerDAO.getMyPlanner(email);
+		model.addAttribute("myPlannerList", myPlannerList);
 		
 		
 		return "member/mypage";
@@ -443,4 +451,5 @@ public class MemberController {
 		
 		return ResponseEntity.ok(uuid);
 	}
+	
 }

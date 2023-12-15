@@ -48,6 +48,11 @@
 		SELECT * FROM planner WHERE planner_idx=#{planner_idx}
 	</select>
 	
+	<!-- 내가 작성한 모든 플래너를 불러옵니다. -->
+	<select id="getMyPlanner" parameterType="string" resultType="com.edu.springboot.planner.PlannerDTO">
+		SELECT * FROM planner WHERE email=#{email}
+	</select>
+	
 	
 	<!-- 관리자 플래너 목록 -->
 	<select id="adminPlannerSelect"

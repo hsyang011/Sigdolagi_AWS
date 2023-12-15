@@ -8,7 +8,7 @@
             <ul class="d-flex justify-content-center" style="padding-left: 0;">
                 <li><a href="#">회사소개</a></li>
                 <li><a href="#">서비스문의</a></li>
-                <li><a href="#">광고/제휴문의</a></li>
+                <li><a href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=sigdolagi1221@gmail.com" target="_blank">광고/제휴문의</a></li>
                 <li><a href="#">이용약관</a></li>
                 <li><a href="#">개인정보취급방침</a></li>
             </ul>
