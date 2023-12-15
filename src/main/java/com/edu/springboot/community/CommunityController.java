@@ -139,8 +139,7 @@ public class CommunityController {
 			
 			
 			model.addAttribute("CommentsLists", commentsLists);
-			model.addAttribute("boardDTO",boardDTO);
-	        
+
 	        
 	        return commentsDTO;
 		}
@@ -226,7 +225,7 @@ public class CommunityController {
 	      System.out.println(commentsLists);
 		
 	      model.addAttribute("CommentsLists", commentsLists);
-	      model.addAttribute("boardDTO", boardDTO);
+
 		  	if(principal!=null) {
 	  			String email = principal.getName();
 	  	         String nickname= dao.getnickname(email);
