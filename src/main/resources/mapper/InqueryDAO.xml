@@ -39,5 +39,11 @@
 	 	WHERE rNum<![CDATA[>=]]>#{start} AND rNum<![CDATA[<=]]>#{end}
 	</select>
 	
+	<!-- 관리자 1:1문의 목록 -->
+	<select id="adminInquirySelect"
+		resultType="com.edu.springboot.service.InqueryDTO">
+		SELECT * FROM inquiryboard ORDER BY regidate DESC
+	</select>
+	
 	
 </mapper>

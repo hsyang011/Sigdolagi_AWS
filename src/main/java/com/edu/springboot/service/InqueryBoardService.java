@@ -1,12 +1,12 @@
 package com.edu.springboot.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.edu.springboot.community.ParameterDTO;
-import com.edu.springboot.community.PhotoBoardDTO;
 
 @Mapper
 
@@ -22,5 +22,7 @@ public interface InqueryBoardService {
 	//리스트 
 	public ArrayList<InqueryDTO> MyInquiryListPage(ParameterDTO parameterDTO);
 	
+	//관리자 1:1문의 목록
+	public List<InqueryDTO> adminInquirySelect();
 }
 

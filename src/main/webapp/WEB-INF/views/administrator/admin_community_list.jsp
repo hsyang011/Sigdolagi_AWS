@@ -76,7 +76,7 @@ function listDelete(idx){
                             	</form>
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 	<colgroup>
-	                                	<col width="5%" /><col width="*" /><col width="15%" /><col width="10%" />
+	                                	<col width="10%" /><col width="*" /><col width="15%" /><col width="10%" />
 	                                	<col width="6%" /><col width="8%" />
 	                                </colgroup>
                                     <thead>
