@@ -37,16 +37,16 @@ public class ServiceController {
 	   
 	//글쓰기 페이지 로딩
 	//글쓰기 페이지로 이동한다. 
-	@GetMapping("/community/notiboard_write.do")
+	@GetMapping("/service/notiboard_write.do")
 	public String notiboardWriteGet(Model model, Principal principal) {
 		
 		
 		
-		return "community/notiboard_write";
+		return "service/notiboard_write";
 	}
 	
 	
-	@PostMapping("/community/notiboard_write.do")
+	@PostMapping("/service/notiboard_write.do")
    	public String notiboardWrite(Model model, HttpServletRequest req, Principal principal) {
       String title= req.getParameter("title");
       String content= req.getParameter("content");
@@ -61,14 +61,14 @@ public class ServiceController {
    }
 	   
 
-	@RequestMapping("/community/notiboard_view.do")
+	@RequestMapping("/service/notiboard_view.do")
    	public String freeboardView(Model model,NotiDTO notiDTO,HttpServletRequest req,ParameterDTO parameterDTO) {
 		notidao.update(notiDTO);
 		notiDTO = notidao.view(notiDTO);
 		notiDTO.setContent(notiDTO.getContent().replace("\r\n", "<br>"));
 		model.addAttribute("notiDTO", notiDTO);
 		
-		return "community/notiboard_view";
+		return "service/notiboard_view";
    }
 
 	
@@ -93,7 +93,7 @@ public class ServiceController {
 	//1:1 문의  게시판 글쓰기
 	
 
-	   @PostMapping("/community/inquiryboard_write.do")
+	   @PostMapping("/service/inquiryboard_write.do")
 	   public String freeboardWrite(Model model, HttpServletRequest req, Principal principal, InqueryDTO inqueryDTO) {
 		  System.out.println("문의 게시판 글쓰기 컨트롤러 들어오나? ");
 		  System.out.println(inqueryDTO);
@@ -116,7 +116,7 @@ public class ServiceController {
 	      
 	      
 	      
-	      return "redirect:freeboard_list.do";
+	      return "redirect:inquiryboard_list.do";
 	   }
 	   
 	
