@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.edu.springboot.community.BoardDTO;
 import com.edu.springboot.community.IBoardService;
 import com.edu.springboot.community.ParameterDTO;
 
@@ -35,6 +34,7 @@ public class ServiceController {
 	@Autowired
 	IBoardService dao;
 	
+	//공지사항 목록
 	@RequestMapping("/service/notiboard.do")
 	public String notiboard(Model model, HttpServletRequest req, ParameterDTO parameterDTO, HttpSession httpSession) {
 		   
@@ -69,12 +69,9 @@ public class ServiceController {
 	}
 	
 	   
-	//글쓰기 페이지 로딩
 	//글쓰기 페이지로 이동한다. 
 	@GetMapping("/service/notiboard_write.do")
 	public String notiboardWriteGet(Model model, Principal principal) {
-		
-		
 		
 		return "service/notiboard_write";
 	}
@@ -146,13 +143,10 @@ public class ServiceController {
 	      System.out.println("nickname:결과"+nickname);
 	      model.addAttribute("nickname1",nickname); 
 	      
-	    
-	      
-	      
-	      
-	      return "redirect:/member/mypage.do";
-	   }
 	   
+	      return "redirect:/member/mypage.do";
+
+	   }
 	
 	
 	
