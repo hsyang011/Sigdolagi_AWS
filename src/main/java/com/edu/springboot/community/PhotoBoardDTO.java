@@ -17,6 +17,7 @@ public class PhotoBoardDTO {
 	private Object ofile;
 	private String sfile;
 	private java.sql.Date regidate;
+	private java.sql.Date postdate;
 	
 	
 	

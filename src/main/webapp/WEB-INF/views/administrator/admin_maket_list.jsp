@@ -128,9 +128,9 @@
                                                 <img src="../images/products/${row.img1 }" alt="" width="100px">
                                             </td>
                                             <td>
-                                            	<a href="#" class="btn btn-warning btn-icon-split">
+                                            	<!-- <a href="#" class="btn btn-warning btn-icon-split">
                                                     <span class="text">수정</span>
-                                                </a>
+                                                </a> -->
                                             	<a href="javascript:deletePost('${row.prod_idx }')" class="btn btn-danger btn-icon-split">
                                                     <span class="text">삭제</span>
                                                 </a>

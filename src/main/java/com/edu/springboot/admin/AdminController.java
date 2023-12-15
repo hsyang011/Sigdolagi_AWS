@@ -158,7 +158,7 @@ public class AdminController {
 	}
 	
 	//관리자 플래너 삭제
-	@PostMapping("/administrator/adminPlannerDelete.do")
+	@PostMapping("/administrator/admin_planner_delete.do")
 	public String adminPlannerDelete(HttpServletRequest req) {
 		int result = plannerDAO.adminPlannerDelete(req.getParameter("idx"));
 		if(result==1)System.out.println("삭제되었습니다.");

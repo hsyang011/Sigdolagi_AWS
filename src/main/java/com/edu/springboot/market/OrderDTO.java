@@ -17,5 +17,7 @@ public class OrderDTO {
 	private String point;
 	private String payment_date;
 	private String zipcode;
+	private String nickname;
+	private String state;
 	
 }
