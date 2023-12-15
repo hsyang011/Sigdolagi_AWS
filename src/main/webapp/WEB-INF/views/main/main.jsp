@@ -252,7 +252,7 @@
         <div class="container-fluid">
             <div class="bottom_ad">
                 <h2>우리집을 <span>맛집</span> 으로 만들어보세요!</h2>
-                <a href=""><input type="button" value="마켓 둘러보기"></a>
+                <a href="../market/market_list.do"><input type="button" value="마켓 둘러보기"></a>
             </div>
         </div>
     </div>

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,6 +23,17 @@
     <!-- Custom styles for this page -->
     <link href="../bootstrap/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" />
 </head>
+<script>
+function listDelete(idx){
+	let frm = document.frm;
+	if(confirm("삭제하시겠습니까?")){
+		frm.idx.value = idx;
+		frm.action = "/administrator/adminInquiryDelete.do";
+		frm.method = "post";
+		frm.submit();
+	}
+}
+</script>
 <body id="page-top">
 
     <!-- Page Wrapper -->
@@ -51,16 +63,19 @@
                     <!-- DataTales Example -->
                     <div class="card shadow mb-4">
                         <div class="card-header py-3" style="text-align: right;">
-                            <a class="btn btn-primary float-end" href="../administrator/admin_community_write.do">
+                            <!-- <a class="btn btn-primary float-end" href="../administrator/admin_community_write.do">
                                 <i class="fas fa-edit"></i> 글 작성
-                            </a>
+                            </a> -->
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
+                            	<form name="frm">
+                            		<input type="hidden" name="idx"/>
+                            	</form>
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                 	<colgroup>
 	                                	<col width="6%" /><col width="10%" /><col width="30%" />
-	                                	<col width="10%" /><col width="20%" /><col width="10%" /><col width="10%" />
+	                                	<col width="10%" /><col width="15%" /><col width="15%" /><col width="10%" />
 	                                </colgroup>
                                     <thead>
                                         <tr>
@@ -68,7 +83,7 @@
                                             <th>분류</th>
                                             <th>제목</th>
                                             <th>작성자</th>
-                                            <th>회신이메일</th>
+                                            <th>이메일</th>
                                             <th>작성일</th>
                                             <th>답변</th>
                                         </tr>
@@ -79,13 +94,13 @@
                                             <th>분류</th>
                                             <th>제목</th>
                                             <th>작성자</th>
-                                            <th>회신이메일</th>
+                                            <th>이메일</th>
                                             <th>작성일</th>
                                             <th>답변</th>
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                        <tr>
+                                        <!-- <tr>
                                             <td>1</td>
                                             <td>플래너문의</td>
                                             <td><a href="">뭐뭐가 안됩니다 왜그런가요?</a></td>
@@ -148,7 +163,25 @@
                                                     <span class="text">삭제</span>
                                                 </a>
                                             </td>
-                                        </tr>
+                                        </tr> -->
+										<c:forEach items="${adminInquirySelect }" var="row" varStatus="loop">
+										<tr>
+											<td>${row.inquiryboard_idx }</td>
+											<td>${row.category }</td>
+											<td><a href="${row.inquiryboard_idx }">${row.title }</a></td>
+                                            <td>${row.nickname }</td>
+                                            <td>${row.email }</td>
+                                            <td>${row.regidate }</td>
+                                            <td>
+                                            	<a href="#" class="btn btn-warning btn-icon-split">
+                                                    <span class="text">답변</span>
+                                                </a>
+                                            	<a href="javascript:listDelete('${row.inquiryboard_idx }')" class="btn btn-danger btn-icon-split">
+                                                    <span class="text">삭제</span>
+                                                </a>
+                                            </td>
+										</tr>		
+										</c:forEach>
                                         
                                        
                                     </tbody>

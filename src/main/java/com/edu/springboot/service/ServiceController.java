@@ -1,6 +1,9 @@
 package com.edu.springboot.service;
 
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +16,8 @@ import com.edu.springboot.community.IBoardService;
 import com.edu.springboot.community.ParameterDTO;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
+import utils.PagingUtil;
 
 
 
@@ -29,24 +34,50 @@ public class ServiceController {
 	@Autowired
 	IBoardService dao;
 	
+	//공지사항 목록
 	@RequestMapping("/service/notiboard.do")
-	public String notiboard() {
+	public String notiboard(Model model, HttpServletRequest req, ParameterDTO parameterDTO, HttpSession httpSession) {
+		   
+	      int totalCount = dao.getTotalCount(parameterDTO);
+	      
+	      int pageSize = PagingUtil.getPageSize(); 
+	      int blockPage = PagingUtil.getBlockPage();
+	      
+	      int pageNum = (req.getParameter("pageNum")==null || req.getParameter("pageNum").equals("")) ? 1 : Integer.parseInt(req.getParameter("pageNum"));
+	      int start = (pageNum -1 ) * pageSize +1 ;
+	      int end = pageNum * pageSize;
+	      parameterDTO.setStart(start);
+	      parameterDTO.setEnd(end);
+	      
+	      
+	      
+	      
+	      Map<String, Object> maps = new HashMap<String, Object>();
+	      maps.put("totalCount", totalCount);
+	      maps.put("pageSize", pageSize);
+	      maps.put("pageNum", pageNum);
+	      model.addAttribute("maps", maps);
+	         
+	      ArrayList<NotiDTO> lists = notidao.listPage(parameterDTO);
+	      model.addAttribute("lists", lists);
+	      System.out.println(lists.size());
+	      
+	      String pagingImg = PagingUtil.pagingImg(totalCount, pageSize, blockPage, pageNum, req.getContextPath()+"./freeboard_list.do?");
+	      model.addAttribute("pagingImg", pagingImg);
+	   
 		return "service/notiboard";
 	}
 	
 	   
-	//글쓰기 페이지 로딩
 	//글쓰기 페이지로 이동한다. 
-	@GetMapping("/community/notiboard_write.do")
+	@GetMapping("/service/notiboard_write.do")
 	public String notiboardWriteGet(Model model, Principal principal) {
 		
-		
-		
-		return "community/notiboard_write";
+		return "service/notiboard_write";
 	}
 	
 	
-	@PostMapping("/community/notiboard_write.do")
+	@PostMapping("/service/notiboard_write.do")
    	public String notiboardWrite(Model model, HttpServletRequest req, Principal principal) {
       String title= req.getParameter("title");
       String content= req.getParameter("content");
@@ -61,14 +92,14 @@ public class ServiceController {
    }
 	   
 
-	@RequestMapping("/community/notiboard_view.do")
+	@RequestMapping("/service/notiboard_view.do")
    	public String freeboardView(Model model,NotiDTO notiDTO,HttpServletRequest req,ParameterDTO parameterDTO) {
 		notidao.update(notiDTO);
 		notiDTO = notidao.view(notiDTO);
 		notiDTO.setContent(notiDTO.getContent().replace("\r\n", "<br>"));
 		model.addAttribute("notiDTO", notiDTO);
 		
-		return "community/notiboard_view";
+		return "service/notiboard_view";
    }
 
 	
@@ -92,7 +123,6 @@ public class ServiceController {
 	
 	//1:1 문의  게시판 글쓰기
 	
-	
 	   @PostMapping("/service/inquiryboard_write.do")
 	   public String freeboardWrite(Model model, HttpServletRequest req, Principal principal, InqueryDTO inqueryDTO) {
 		  System.out.println("문의 게시판 글쓰기 컨트롤러 들어오나? ");
@@ -112,16 +142,11 @@ public class ServiceController {
 	      System.out.println("nickname:결과"+nickname);
 	      model.addAttribute("nickname1",nickname); 
 	      
-	     
-	      
-	      
-	      
+
+	   
 	      return "redirect:/member/mypage.do";
 	   }
-	   
-	   
-	   
-	
+
 	
 	
 	@RequestMapping("/service/faq.do")

@@ -93,12 +93,12 @@ function deletePost(freeboard_idx){
 
 <script>
 
-function saveComment(){
+function SaveComment(){
 	let frm = document.commentwriteFrm;
 	console.log(frm.content.value);
     let data = {
     		
-   		freeboard_idx : frm.freeboard_idx.value,
+   		idx : frm.idx.value,
     	nickname : frm.nickname.value,
     	content : frm.content.value,
     	email : frm.email.value
@@ -257,11 +257,11 @@ function saveComment(){
                        			<form name="commentwriteFrm" method="post" onsubmit="return validateForm(this);" action="/community/freeboard_comment.do" class="writeFrm">
                            		<legend class="skipinfo">댓글 입력</legend>
                            			<div class="cm_input">
-		                                <input type="hidden" name="freeboard_idx" value="${boardDTO.freeboard_idx }">
+		                                <input type="hidden" name="idx" value="${boardDTO.freeboard_idx }">
 		                                <input type="hidden" name="nickname" value="${boardDTO.nickname}">
 		                                <input type="hidden" name="email" value="${email}">
 		                               	<p><textarea id="content" name="content" onkeyup=""  style="width:100%" rows="4" placeholder="댓글을 입력해 주세요."></textarea></p>
-		                               	<span><button type="button" class="btns" onclick="saveComment();">등록</button></span>
+		                               	<span><button type="button" class="btns" onclick="SaveComment();">등록</button></span>
                            			</div>
 								</form>
 	                       </fieldset>
@@ -280,8 +280,7 @@ function saveComment(){
 		                             <tr align="center">
 		                                 <td>${ row.nickname }</td> 
 		                                 <td>${ row.content }</td> 
-		                                 <td>${ row.postdate }</td> 
-		                                <br/>
+		                                 <td>${ row.postdate }</td>
 		                             </tr>
 	                       		</c:forEach> 
 		                    </tbody>

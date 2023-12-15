@@ -20,7 +20,9 @@ import com.edu.springboot.community.BoardDTO;
 import com.edu.springboot.community.IBoardService;
 import com.edu.springboot.community.IPhotoboardService;
 import com.edu.springboot.community.PhotoBoardDTO;
+import com.edu.springboot.market.IOrderService;
 import com.edu.springboot.market.IProductService;
+import com.edu.springboot.market.OrderDTO;
 import com.edu.springboot.market.ParameterDTO;
 import com.edu.springboot.market.ProductDTO;
 import com.edu.springboot.member.IMemberService;
@@ -28,6 +30,8 @@ import com.edu.springboot.member.MemberDTO;
 import com.edu.springboot.planner.IPlannerService;
 import com.edu.springboot.planner.PlannerDTO;
 import com.edu.springboot.service.INotiboardService;
+import com.edu.springboot.service.InqueryBoardService;
+import com.edu.springboot.service.InqueryDTO;
 import com.edu.springboot.service.NotiDTO;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -42,9 +46,9 @@ public class AdminController {
 	IBoardService dao;
 
 	@Autowired
-	IMemberService  memberDao;
+	IMemberService  memberDAO;
 	@Autowired
-	IBoardService  boardDao;
+	IBoardService  boardDAO;
 	// DAO 호출을 위한 빈 자동 주입.
 	@Autowired
 	IProductService productDAO;
@@ -57,6 +61,12 @@ public class AdminController {
 	
 	@Autowired
 	INotiboardService notiDAO;
+	
+	@Autowired
+	InqueryBoardService inqueryDAO;
+	
+	@Autowired
+	IOrderService orderDAO;
 	
 	@RequestMapping("/administrator/admin_main.do") 
 	public String adminMain(Model model, HttpServletRequest req, HttpSession session, Principal principal) {
@@ -84,7 +94,7 @@ public class AdminController {
 	public String adminMemberList(Model model) {
 		
 		// DB에서 인출한 게시물의 목록을 model객체에 저장한다.
-		List<MemberDTO> adminMemberSelect = memberDao.adminMemberSelect();
+		List<MemberDTO> adminMemberSelect = memberDAO.adminMemberSelect();
 		model.addAttribute("adminMemberSelect", adminMemberSelect);
 		return "administrator/admin_member_list";
 	}
@@ -92,9 +102,8 @@ public class AdminController {
 	//관리자 회원탈퇴처리
 	@PostMapping("/administrator/adminMemberList.do")
 	public String adminMemberEnabled(MemberDTO memberDTO) {
-		int result = memberDao.adminMemberEnabled(memberDTO);
+		int result = memberDAO.adminMemberEnabled(memberDTO);
 		if(result==1)System.out.println("탈퇴처리되었습니다.");
-		//탈퇴회원 처리 해야함 컬럼 ENABLED이 0인 유저는 alert로 탈퇴회원입니다 띄워주기
 		return "redirect:adminMemberList.do";
 	}
 	
@@ -103,7 +112,7 @@ public class AdminController {
 	public String adminCommunity(Model model) {
 		
 		// DB에서 인출한 게시물의 목록을 model객체에 저장한다.
-		List<BoardDTO> adminFreeSelect = boardDao.adminFreeSelect();
+		List<BoardDTO> adminFreeSelect = boardDAO.adminFreeSelect();
 		model.addAttribute("adminFreeSelect", adminFreeSelect);
 		
 		return "administrator/admin_community_list";
@@ -112,7 +121,7 @@ public class AdminController {
 	//관리자 자유게시판 게시글 삭제
 	@PostMapping("/administrator/adminFreeDelete.do")
 	public String adminFreeDelete(HttpServletRequest req) {
-		int result = boardDao.adminFreeDelete(req.getParameter("idx"));
+		int result = boardDAO.adminFreeDelete(req.getParameter("idx"));
 		if(result==1)System.out.println("삭제되었습니다.");
 		return "redirect:admin_free_list.do";
 	}
@@ -172,21 +181,50 @@ public class AdminController {
 		return "administrator/admin_notice_list";
 	}
 	
-	//관리자 공지사항 작성페이지
-	@RequestMapping("/administrator/admin_notice_write.do")
-	public String adminNoticeWrite() {
+	//관리자 공지사항 작성페이지(진입시 불러오는값필요)
+	@GetMapping("/administrator/admin_notice_write.do")
+	public String adminNoticeWrite(Model model, Principal principal) {
+		
+		String email = principal.getName();
+        String nickname= dao.getnickname(email);
+        model.addAttribute("email", email);
+        model.addAttribute("nickname",nickname); 
+        
 		return "administrator/admin_notice_write";
 	}
 	
 	//관리자 공지사항 작성처리
-		@PostMapping("/administrator/admin_notice_write.do")
-		public String adminNoticeWriteProcess(HttpServletRequest req, Model model, ProductDTO productDTO) {
-			
-			
-			
-			return "redirect:admin_notice_list.do";
-		}
+	@PostMapping("/administrator/admin_notice_write.do")
+	public String adminNoticeWriteProcess(Model model, HttpServletRequest req, NotiDTO notiDTO) {
+		
+		System.out.println("notiDTO="+notiDTO);
+       
+		notiDAO.adminNoticeWrite(notiDTO);
+		
+		return "redirect:admin_notice_list.do";
+	}
 	
+	//관리자 공지사항 수정페이지(진입시 불러오는값필요)
+	@GetMapping("/administrator/admin_notice_edit.do")
+	public String adminNoticeEdit(Model model, NotiDTO notiDTO) {
+		
+		notiDTO = notiDAO.view(notiDTO);
+		model.addAttribute("notiDTO", notiDTO);
+		
+		return "administrator/admin_notice_edit";
+	}
+	
+	//관리자 공지사항 수정처리
+	@PostMapping("/administrator/admin_notice_edit.do")
+	public String adminNoticeEditProcess(Model model,NotiDTO notiDTO) {
+		int result = notiDAO.edit(notiDTO);
+		if(result==1)System.out.println("수정되었습니다.");
+		
+		//수정후 로케이션 이동 (관리자목록으로)
+//		return "redirect:admin_notice_list.do";
+		//수정후 로케이션 이동 (사용자뷰로)
+		return "redirect:../service/notiboard_view.do?noticeboard_idx="+notiDTO.getNoticeboard_idx();
+	}
 	
 	//관리자 공지사항 삭제
 	@PostMapping("/administrator/adminNoticeDelete.do")
@@ -196,9 +234,14 @@ public class AdminController {
 		return "redirect:admin_notice_list.do";
 	}
 	
-	
+	//관리자 1:1문의 목록
 	@RequestMapping("/administrator/admin_inquiry_list.do")
-	public String adminInquiry() {
+	public String adminInquiry(Model model) {
+		
+		// DB에서 인출한 게시물의 목록을 model객체에 저장한다.
+		List<InqueryDTO> adminInquirySelect = inqueryDAO.adminInquirySelect();
+		model.addAttribute("adminInquirySelect", adminInquirySelect);
+		
 		return "administrator/admin_inquiry_list";
 	}
 	
@@ -303,20 +346,20 @@ public class AdminController {
 					productDTO.setImg1(sArr[i]);
 				}
 				else if(i == 1) {
-						productDTO.setImg2_o(oArr[i]);
-						productDTO.setImg2(sArr[i]);
+					productDTO.setImg2_o(oArr[i]);
+					productDTO.setImg2(sArr[i]);
 				}
 				else if(i == 2) {
-						productDTO.setImg3_o(oArr[i]);
-						productDTO.setImg3(sArr[i]);
+					productDTO.setImg3_o(oArr[i]);
+					productDTO.setImg3(sArr[i]);
 				}
 				else if(i == 3) {
-						productDTO.setImg4_o(oArr[i]);
-						productDTO.setImg4(sArr[i]);
+					productDTO.setImg4_o(oArr[i]);
+					productDTO.setImg4(sArr[i]);
 				}
 				else if(i == 4) {
-						productDTO.setImg5_o(oArr[i]);
-						productDTO.setImg5(sArr[i]);
+					productDTO.setImg5_o(oArr[i]);
+					productDTO.setImg5(sArr[i]);
 				}
 			}
 			
@@ -348,8 +391,14 @@ public class AdminController {
 		return "redirect:admin_maket_list.do";
 	}
 	
+	//관리자 주문현황목록
 	@RequestMapping("/administrator/admin_order_list.do")
-	public String adminOrderList() {
+	public String adminOrderList(Model model) {
+		
+		// DB에서 인출한 게시물의 목록을 model객체에 저장한다.
+		List<OrderDTO> adminOrderSelect = orderDAO.adminOrderSelect();
+		model.addAttribute("adminOrderSelect", adminOrderSelect);
+		
 		return "administrator/admin_order_list";
 	}
 	

@@ -28,4 +28,10 @@
 		UPDATE cart SET payed='true', order_idx=#{order_idx} WHERE email=#{email} AND payed='false'
 	</delete>
 	
+	<!-- 관리자 주문리스트 -->
+	<select id="adminOrderSelect"
+		resultType="com.edu.springboot.market.OrderDTO"> 
+		SELECT * FROM marketorder ORDER BY order_idx DESC
+	</select>
+	
 </mapper>

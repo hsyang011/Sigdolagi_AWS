@@ -9,7 +9,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 	<meta name="description" content="" />
 	<meta name="author" content="" />
-	<title>공지사항 작성</title>
+	<title>공지사항 수정</title>
 	
     <!-- Custom fonts for this template -->
     <link href="../bootstrap/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
@@ -28,6 +28,11 @@
 		if (form.title.value == ""){
 			alert("제목을 입력하세요.");
 			form.title.focus();
+			return false;
+		}
+		if (form.content.value == ""){
+			alert("내용을 입력하세요.");
+			form.content.focus();
 			return false;
 		}
 	}
@@ -54,13 +59,13 @@
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
-                    <h1 class="mt-4">공지사항 작성하기</h1>
+                    <h1 class="mt-4">공지사항 수정하기</h1>
                     <div class="card mb-4">
                         <div class="card-body">
                         <!-- onsubmit="return validateForm(this)" -->
                         
-                            <form name="noticeWriteForm" method="post" enctype="multipart/form-data" 
-									action="/administrator/admin_notice_write.do" >
+                            <form name="noticeEditForm" method="post" enctype="multipart/form-data" 
+									action="/administrator/admin_notice_edit.do" >
                             	<!-- <div class="mb-3 mt-3">
                                     <label for="category" class="form-label">분류</label>
                                     <select name="category" id="category">
@@ -71,17 +76,20 @@
                                 <div class="mb-3 mt-3">
                                     <label for="title" class="form-label">제목</label> 
                                     <input type="text" class="form-control" id="title" name="title"
-                                        value="">
-                                     <input type="hid-den" name="email" value="${email}"/>
-                                     <input type="hid-den" name="nickname" value="${nickname }"/>
+                                        value="${notiDTO.title }">
+                                     <input type="hid-den" name="noticeboard_idx" value="${notiDTO.noticeboard_idx }" />
+                                     <input type="hid-den" name="email" value="${notiDTO.email}"/>
+                                     <input type="hid-den" name="nickname" value="${notiDTO.nickname }"/>
                                 </div>
                                 <div class="mb-3">
                                     <label for="content" class="form-label">상세내용</label>
-                                    <textarea class="form-control" cols="40" rows="10" id="content" name="content"></textarea>
+                                    <textarea class="form-control" cols="40" rows="10" id="content" 
+                                    	name="content">${notiDTO.content }</textarea>
                                 	<!-- <input type="file" id="content" name="content"/><br /> -->
                                 </div>
                                 
                                 <a href="admin_notice_list.do" class="btn btn-outline-secondary">목록</a>
+                                <button type="reset" class="btn btn-outline-warning">다시작성</button>
                                 <button type="submit" class="btn btn-outline-primary">작성완료</button>
                             </form>
                         </div>
