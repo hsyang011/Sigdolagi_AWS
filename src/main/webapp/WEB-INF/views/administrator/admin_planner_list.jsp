@@ -27,7 +27,7 @@
 function listDelete(idx){
 	let frm = document.frm;
 	if(confirm("삭제하시겠습니까?")){
-		frm.planner_idx.value = idx;
+		frm.idx.value = idx;
 		frm.action = "/administrator/admin_planner_delete.do";
 		frm.method = "post";
 		frm.submit();
