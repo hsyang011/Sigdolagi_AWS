@@ -29,8 +29,11 @@ public class ServiceController {
 	@Autowired
 	IBoardService dao;
 	
+	//공지사항 목록
 	@RequestMapping("/service/notiboard.do")
 	public String notiboard() {
+		
+		
 		return "service/notiboard";
 	}
 	
@@ -39,8 +42,6 @@ public class ServiceController {
 	//글쓰기 페이지로 이동한다. 
 	@GetMapping("/service/notiboard_write.do")
 	public String notiboardWriteGet(Model model, Principal principal) {
-		
-		
 		
 		return "service/notiboard_write";
 	}
@@ -116,7 +117,7 @@ public class ServiceController {
 	      
 	      
 	      
-	      return "redirect:inquiryboard_list.do";
+	      return "redirect:inquiryboard.do";
 	   }
 	   
 	
