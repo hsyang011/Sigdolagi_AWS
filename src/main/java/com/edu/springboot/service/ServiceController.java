@@ -1,6 +1,9 @@
 package com.edu.springboot.service;
 
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,10 +12,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.edu.springboot.community.BoardDTO;
 import com.edu.springboot.community.IBoardService;
 import com.edu.springboot.community.ParameterDTO;
 
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
+import utils.PagingUtil;
 
 
 
@@ -30,7 +36,35 @@ public class ServiceController {
 	IBoardService dao;
 	
 	@RequestMapping("/service/notiboard.do")
-	public String notiboard() {
+	public String notiboard(Model model, HttpServletRequest req, ParameterDTO parameterDTO, HttpSession httpSession) {
+		   
+	      int totalCount = dao.getTotalCount(parameterDTO);
+	      
+	      int pageSize = PagingUtil.getPageSize(); 
+	      int blockPage = PagingUtil.getBlockPage();
+	      
+	      int pageNum = (req.getParameter("pageNum")==null || req.getParameter("pageNum").equals("")) ? 1 : Integer.parseInt(req.getParameter("pageNum"));
+	      int start = (pageNum -1 ) * pageSize +1 ;
+	      int end = pageNum * pageSize;
+	      parameterDTO.setStart(start);
+	      parameterDTO.setEnd(end);
+	      
+	      
+	      
+	      
+	      Map<String, Object> maps = new HashMap<String, Object>();
+	      maps.put("totalCount", totalCount);
+	      maps.put("pageSize", pageSize);
+	      maps.put("pageNum", pageNum);
+	      model.addAttribute("maps", maps);
+	         
+	      ArrayList<NotiDTO> lists = notidao.listPage(parameterDTO);
+	      model.addAttribute("lists", lists);
+	      System.out.println(lists.size());
+	      
+	      String pagingImg = PagingUtil.pagingImg(totalCount, pageSize, blockPage, pageNum, req.getContextPath()+"./freeboard_list.do?");
+	      model.addAttribute("pagingImg", pagingImg);
+	   
 		return "service/notiboard";
 	}
 	
