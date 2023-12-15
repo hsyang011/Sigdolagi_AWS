@@ -28,6 +28,8 @@ public interface IPhotoboardService {
 			@Param("nickname") String nickname,
 			@Param("email") String email
 			);
+   	//자유게시판 조회수 업데이트 
+	public int photoupdate(PhotoBoardDTO photoBoardDTO);
 	
 	
 	//커멘트테이블 받아오기

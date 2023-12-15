@@ -62,7 +62,7 @@ public class ServiceController {
 	      model.addAttribute("lists", lists);
 	      System.out.println(lists.size());
 	      
-	      String pagingImg = PagingUtil.pagingImg(totalCount, pageSize, blockPage, pageNum, req.getContextPath()+"./freeboard_list.do?");
+	      String pagingImg = PagingUtil.pagingImg(totalCount, pageSize, blockPage, pageNum, req.getContextPath()+"./notiboard.do?");
 	      model.addAttribute("pagingImg", pagingImg);
 	   
 		return "service/notiboard";
