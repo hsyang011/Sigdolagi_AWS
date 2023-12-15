@@ -65,7 +65,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="CommentsPage"
        resultType="com.edu.springboot.community.CommentsDTO"
        parameterType="com.edu.springboot.community.CommentsDTO">
-  		 SELECT * FROM COMMENTS WHERE idx = #{idx} AND tname='freeboard'
+  		 SELECT * FROM COMMENTS WHERE idx = #{idx} AND tname=freeboard
 	
 	</select>
 	
