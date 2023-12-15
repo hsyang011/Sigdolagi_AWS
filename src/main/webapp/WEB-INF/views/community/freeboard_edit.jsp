@@ -162,9 +162,7 @@ function deletePost(){
                                 <tr>
                                     <td>내용</td>
                                     <td>
-                                        <textarea name="content">${boardDTO.content }
-                                        
-                                        </textarea>
+                                        <textarea name="content">${boardDTO.content }</textarea>
                                     </td>
                                 </tr>
                              
