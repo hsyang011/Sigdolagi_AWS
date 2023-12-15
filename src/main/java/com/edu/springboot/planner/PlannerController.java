@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.edu.springboot.member.IMemberService;
 import com.edu.springboot.member.MemberDAO;
@@ -158,6 +159,15 @@ public class PlannerController {
 		model.addAttribute("memberDTO", memberDTO);
 		
 		return "planner/planner_view";
+	}
+	
+	// 나의 플래너 삭제
+	@RequestMapping("/planner/deleteMyPlanner.do")
+	@ResponseBody
+	public String deleteMyPlanner(PlannerDTO plannerDTO) {
+		plannerDAO.deleteMyPlanner(plannerDTO);
+		
+		return "삭제완료";
 	}
 	
 }
