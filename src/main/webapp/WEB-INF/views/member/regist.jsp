@@ -141,7 +141,7 @@ function formValidate(frm) {
                     <h2>회원가입</h2>
                 </div>
             </div>
-            <img id="page_icon" src="images/mdi_register-outline.svg">
+            <img id="page_icon" src="../images/mdi_register-outline.png">
         </div>
     </div>
     <!-- 배너 끝 -->
