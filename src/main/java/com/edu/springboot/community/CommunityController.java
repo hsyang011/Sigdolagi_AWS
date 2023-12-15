@@ -111,13 +111,11 @@ public class CommunityController {
 		//자유게시판 댓글 
 		@RequestMapping("/community/freeboard_comment.do")
 		@ResponseBody
-		public CommentsDTO boardCommentPost(Model model, HttpServletRequest req, BoardDTO boardDTO, CommentsDTO commentsDTO, Principal principal) {
-	
+		public CommentsDTO boardCommentPost(Model model, HttpServletRequest req, CommentsDTO commentsDTO, Principal principal) {
 			int idx = commentsDTO.getIdx();
 	        String content = commentsDTO.getContent();
 	        String email =  principal.getName();
 	        String nickname = dao.getnickname(email);
-	        
 	        
 	        System.out.println(idx);
 	        System.out.println(content);
@@ -129,18 +127,6 @@ public class CommunityController {
 	        System.out.println("성공?");
 	        System.out.println(commentsDTO);
 	        System.out.println("글쓰기결과:" + result);
-	     // 코멘트 테이블 전부다  얻어와서 저장하기  
-			ArrayList<CommentsDTO> commentsLists = photoboarddao.CommentsPage(commentsDTO);
-			//빈에 저장
-			
-			
-			System.out.println("댓글 디비에 있는거 가저오는거 성공?");
-			System.out.println(commentsLists);
-			
-			
-			model.addAttribute("CommentsLists", commentsLists);
-			model.addAttribute("boardDTO",boardDTO);
-	        
 	        
 	        return commentsDTO;
 		}
@@ -211,7 +197,7 @@ public class CommunityController {
 	
 	   //자유게시판 view 
 	   @RequestMapping("/community/freeboard_view.do")
-	   public String freeboardView(Model model, BoardDTO boardDTO,HttpServletRequest req,CommentsDTO commentsDTO,ParameterDTO parameterDTO,Principal principal) {
+	   public String freeboardView(Model model, BoardDTO boardDTO,HttpServletRequest req, CommentsDTO commentsDTO,ParameterDTO parameterDTO,Principal principal) {
 	      boardDTO = dao.view(boardDTO);
 	      dao.update(boardDTO);
 	      boardDTO.setContent(boardDTO.getContent().replace("\r\n", "<br>"));

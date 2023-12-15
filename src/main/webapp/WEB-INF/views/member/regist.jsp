@@ -61,10 +61,6 @@ function checkVerification() {
 
 /* 아이디 중복확인 */
 function checkaaa(frm) {
-	
-	
-		alert('hello world!');
-	
 	    if (frm.nickname.value == ''){
 	        alert("아이디를 닉네임입력후 중복확인 해주세요.");
 	        frm.nickname.focus();

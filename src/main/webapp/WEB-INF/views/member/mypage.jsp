@@ -233,7 +233,7 @@
             <div id="info">
                 <h4>나만 불 수 있는</h4>
                 <div id="info_title" class="d-flex">
-                    <h2>마이플레너</h2>
+                    <h2>마이페이지</h2>
                 </div>
             </div>
             <img id="page_icon" src="../images/calandar.png">

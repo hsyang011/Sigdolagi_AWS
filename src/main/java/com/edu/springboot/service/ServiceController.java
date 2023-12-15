@@ -150,7 +150,7 @@ public class ServiceController {
 	      
 	      
 	      
-	      return "redirect:freeboard_list.do";
+	      return "redirect:/member/mypage.do";
 	   }
 	   
 	
