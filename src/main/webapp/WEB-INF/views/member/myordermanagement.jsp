@@ -1,21 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
+<%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <%@include file = "../include/global_head.jsp" %>
 <!-- 전역 설정 css 링크  -->
 <link rel="stylesheet" href="../css/myorder.css">
-<style>
-
-</style>
-</head>
-<body>
-
-    
-
-</style>
 <script>
+$(function() {
+	$(".detail_head").hide();
+	$(".detail_body").hide();
+
+    $(".orderSummary").click(function(e) {
+    	$(e.target).parent().css("background-color", "lightyellow");
+        var details = $(this).nextUntil('.orderSummary');
+        details.toggle();
+    });
+});
+
+function showDetails(e) {
+	
+}
 </script>
 </head>
 <body>
@@ -23,9 +30,6 @@
 <div class="container-fluid" id="wrap">
     <!-- header 시작 --><!-- nav 시작 -->
     <%@ include file="../include/top.jsp" %>
-    <!-- nav 끝 -->
-    <!-- mobile 내비게이션 시작 -->
-    <!-- mobile 내비게이션 끝 -->
     <!-- 배너 시작 -->
     <div id="banner" class="mt-3">
         <div id="banner_contents" class="container d-flex align-items-center">
@@ -93,7 +97,7 @@
                     <br><br><br>
                     <!-- 테이블 -->
                         <div class="table_wrap" id="table_wrap">
-                        <table class="table table-border">
+                        <table class="table table-hover" style="cursor: pointer;">
                               <colgroup>
                                 <col width="20%"/>
                                 <col width="20%"/>
@@ -103,52 +107,37 @@
                               </colgroup>
                             <thead>
                             <tr style="text-align: center;" >
-                                <th scope="col">번호</th>
-                                <th scope="col" style="">제목</th>
-                                <th scope="col">작성자</th>
-                                <th scope="col">작성일</th>
-                                <th scope="col">조회</th>
+                                <th scope="col">주문일자</th>
+                                <th scope="col" style="">상품명</th>
+                                <th scope="col">결제금액</th>
+                                <th scope="col">결제방식</th>
                             </tr>
                             </thead>
-                            <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td id="table_title">집</td>
-                                <td>Otto</td>
-                                <td>@mdo</td>
-                                <td>33</td>
+                            <c:forEach items="${myOrderList}" var="row" varStatus="loop">
+                            <tbody onclick="showDetails(event)">
+                            <tr class="text-center orderSummary">
+                                <th scope="row">${row.payment_date}</th>
+                                <td id="table_title">${orderMap[row.order_idx][0].prod_name} 외 ${orderMap[row.order_idx].size()-1}건</td>
+                                <td><fmt:formatNumber value="${row.payment}" pattern="#,###" />원</td>
+                                <td>${row.payment_method}</td>
                             </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>최고</td>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                                <td>4</td>
+                            <tr class="detail_head" style="text-align: center;">
+                                <th scope="col">번호</th>
+                                <th scope="col" style="">상품명</th>
+                                <th scope="col">상품 수량</th>
+                                <th scope="col">가격</th>
                             </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>Larry the Bird</td>
-                                <td>Larry the Bird</td>
-                                <td>@twitter</td>
-                                <td>5</td>
-                            </tr>
+                           		<c:forEach items="${orderMap[row.order_idx]}" var="col" varStatus="loop_2">
+	                            <tr class="text-center detail_body">
+	                            	<th scope="row">${loop_2.count}</th>
+	                                <td id="table_title">${col.prod_name}</td>
+	                                <td>${col.prod_count}</td>
+	                                <td><fmt:formatNumber value="${col.prod_totprice}" pattern="#,###" />원</td>
+	                            </tr>
+	                            </c:forEach>
                             </tbody>
+                            </c:forEach>
                         </table>
-                        </div>
-          
-                      <!-- 리스트 버튼 -->
-                        <div class="container d-flex justify-content-center">
-                            <div class="row">
-                                <div class="col-12 d-flex justify-content-center">
-                                    <div class="list_btn">
-                                        <button type="button" class="btn"> &lt; </button>
-                                        <button type="button" class="btn" id="btn1"> 1 </button>
-                                        <button type="button" class="btn" id="btn1"> 2 </button>
-                                        <button type="button" class="btn" id="btn1"> 3 </button>
-                                        <button type="button" class="btn"> &gt; </button>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
 
 

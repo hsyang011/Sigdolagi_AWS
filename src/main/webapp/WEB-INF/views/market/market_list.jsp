@@ -10,12 +10,14 @@
 <link rel="stylesheet" href="../css/market_list.css" />
 <script>
 /* 장바구니에 상품 추가 */
-function addToCart(idx) {
+function addToCart(idx, name) {
 	var prod_idx = idx;
 	var prod_count = 1;
+	var prod_name = name;
 	var data = {
 		prod_idx: prod_idx,
-		prod_count: prod_count
+		prod_count: prod_count,
+		prod_name: prod_name
     };
 	
 	$.ajax({
@@ -126,7 +128,7 @@ function addToCart(idx) {
 		                   <div class="card_product_img">
 	                           <img class="shop_product_img card-img-top" onclick="location.href='./market_view.do?prod_idx=${row.prod_idx}';" src="../images/products/${row.img1}">
 		                       <div class="cart_icon_box">
-		                           <img src="../images/shopping-bag3.png" onclick="addToCart(${row.prod_idx})" alt="">
+		                           <img src="../images/shopping-bag3.png" onclick="addToCart(${row.prod_idx}, '${row.prod_name}');" alt="">
 		                       </div>
 		                   </div>
 		                   <div class="card-body justify-content-between">
