@@ -147,7 +147,7 @@ public class ServiceController {
 	      
 	      
 	      
-	      return "redirect:inquiryboard.do";
+	      return "redirect:/service/inquiryboard.do";
 	   }
 	   
 	
