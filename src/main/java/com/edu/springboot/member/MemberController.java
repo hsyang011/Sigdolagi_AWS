@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.edu.springboot.community.BoardDTO;
+import com.edu.springboot.community.IBoardService;
 import com.edu.springboot.community.IPhotoboardService;
 import com.edu.springboot.community.ParameterDTO;
 import com.edu.springboot.community.PhotoBoardDTO;
@@ -46,6 +48,9 @@ public class MemberController {
 	@Autowired
 	InqueryBoardService inquerydao;
 	
+	@Autowired
+	IBoardService dao;
+	   
 	
 	@RequestMapping("/member/login.do")
 	public String login(Principal principal, Model model, HttpServletRequest req) {
@@ -106,7 +111,11 @@ public class MemberController {
 	      maps.put("pageSize", pageSize);
 	      maps.put("pageNum", pageNum);
 	      model.addAttribute("maps", maps);
-	          
+	      
+	      ArrayList<BoardDTO> lists = dao.mylistPage(parameterDTO);
+	      model.addAttribute("lists", lists);
+	      System.out.println(lists.size());
+	      
 	      //MyPhotoListPage
 	      ArrayList<PhotoBoardDTO> photolists = photoboarddao.MyPhotoListPage(parameterDTO);
 	      //ArrayList<PhotoBoardDTO> myphotolists = photoboarddao.MyPhotoListPage(parameterDTO);
@@ -318,25 +327,25 @@ public class MemberController {
 			
 			
 			memberDTO = memberdao.getoneMemberDTO(memberDTO);
-		
-		 session.setAttribute("sessionEmail",memberDTO.getEmail());
-		 System.out.println("세션에 저장된 이메일 "+memberDTO.getEmail());
-		 session.setAttribute("sessionName",memberDTO.getName());
-		 System.out.println("세션에 저장된 이름"+memberDTO.getName());
-		 session.setAttribute("sessionPassword", memberDTO.getPassword());
-		 session.setAttribute("sessionNickname", memberDTO.getNickname());
-		 System.out.println("세션에 저장된 이름"+memberDTO.getNickname());
-		 System.out.println("로그인 성공");
-		    //return "main.do";
-		 
-		 return "main/main";
-	}
-	else {
-		System.out.println("로그인 실패");
-		//메세지 추가
-		model.addAttribute("loginErrorMessage", "로그인 실패");
-		return "member/login";
-	}
+			
+			 session.setAttribute("sessionEmail",memberDTO.getEmail());
+			 System.out.println("세션에 저장된 이메일 "+memberDTO.getEmail());
+			 session.setAttribute("sessionName",memberDTO.getName());
+			 System.out.println("세션에 저장된 이름"+memberDTO.getName());
+			 session.setAttribute("sessionPassword", memberDTO.getPassword());
+			 session.setAttribute("sessionNickname", memberDTO.getNickname());
+			 System.out.println("세션에 저장된 이름"+memberDTO.getNickname());
+			 System.out.println("로그인 성공");
+			    //return "main.do";
+			 
+			 return "main/main";
+		}
+		else {
+			System.out.println("로그인 실패");
+			//메세지 추가
+			model.addAttribute("loginErrorMessage", "로그인 실패");
+			return "member/login";
+		}
 		
 		
 
