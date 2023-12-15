@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.edu.springboot.planner.IPlaceService">
+	
+	<!-- 장소추가 -->
+	<insert id="addPlaceToPlanner" parameterType="com.edu.springboot.planner.PlaceDTO">
+		INSERT INTO place (planner_idx,
+        <if test="lot_addr != null">
+            lot_addr,
+        </if>
+        <if test="road_addr != null">
+            road_addr,
+        </if>
+        <if test="place_name != null">
+            place_name,
+        </if>
+        <if test="place_category != null">
+            place_category,
+        </if>
+        <if test="place_telecom != null">
+            place_telecom,
+        </if>
+        <if test="x_point != null">
+            x_point,
+        </if>
+        <if test="y_point != null">
+            y_point,
+        </if>
+        <if test="place_url != null">
+            place_url,
+        </if>
+			place_idx
+		)
+			VALUES (
+	        ${planner_idx},
+	        <if test="lot_addr != null">
+	            #{lot_addr},
+	        </if>
+	        <if test="road_addr != null">
+	            #{road_addr},
+	        </if>
+	        <if test="place_name != null">
+	            #{place_name},
+	        </if>
+	        <if test="place_category != null">
+	            #{place_category},
+	        </if>
+	        <if test="place_telecom != null">
+	            #{place_telecom},
+	        </if>
+	        <if test="x_point != null">
+	            #{x_point},
+	        </if>
+	        <if test="y_point != null">
+	            #{y_point},
+	        </if>
+	        <if test="place_url != null">
+	            #{place_url},
+	        </if>
+	        seq_place_idx.NEXTVAL
+	    )
+	</insert>
+	
+	<!-- 플래너에서 장소 삭제 -->
+	<delete id="deleteFromPlanner" parameterType="com.edu.springboot.planner.PlaceDTO">
+		DELETE FROM place WHERE place_idx=${place_idx}
+	</delete>
+	
+</mapper>

@@ -1,0 +1,318 @@
+/* font 설정 */
+@font-face {
+    font-family: 'NPSfontBold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/NPSfontBold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'NPSfontExtraBold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/NPSfontExtraBold.woff2') format('woff2');
+    font-weight: 800;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'NPSfontRegular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/NPSfontRegular.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* global 설정 */
+* { margin: 0; padding: 0; }
+li{ list-style: none; }
+a{ text-decoration: none; color: gray; }
+a:hover { color: #FF7A00; }
+.container-fluid{ padding-left: 0; padding-right: 0; padding: 0;line-height:20px; }
+
+/* header 설정 */
+.navbar{ margin: 0; }
+.topmenu{ margin-top: 10px; padding: 0; float: right; }
+.topmenu li{ display: inline-block; text-align: center; font-size: 14px; padding: 0 5px; }
+.topmenu a:hover{ color: #000; font-weight: bold; }
+#myinfo { max-width: 60%; }
+#m_link li { margin: 20px 0; }
+#btn_more { position: absolute; top: 10px; right: 10px; transform: scale(0.7) }
+#header_box { height: 30px; }
+
+/* nav 설정 */
+#logo { width: 20%; text-align: center; line-height: 100px; } 
+.main_nav{ border-bottom: 3px solid #FF7A00; background-color: white; z-index: 1000; }
+.head_nav a{ font-size: 1.2em; color: #000; font-family: 'NPSfontBold';}
+.head_nav a:hover{ color: #FF7A00; font-weight: bold;}
+.top_logo { width: 100%; line-height: 100px; min-width: 100px; max-width: 220px;}
+/* mobile_navbar 설정 */
+#mobile_navbar { position: -webkit-sticky; position: sticky; top: 0; padding: 5px 10px; background-color: white; z-index: 1000; }
+
+/* search form 설정 */
+.seach_bar{ border: 3px solid #FF7A00; border-radius: 30px; background-color: white; padding: 5px; margin: 0px 20px; width: 33%;}
+.form-control:focus { border-color: initial; box-shadow: none; }
+#btn_more:hover { border: 3px solid #FF7A00; box-shadow: none; }
+.seach_bar input::placeholder{ font-family: 'NPSfontRegular'; text-align: center;}
+.seach_bar input{ border: 0px solid white; width: 100%; height: 25px; }
+.seach_bar button{ border: 0px solid white; background-color: white; border-radius: 50px;}
+.seach_bar i { color: #FF7A00; margin-right: 5px;}
+
+/* banner 설정 */
+#banner { height: 240px; background-color: #FFA24D }
+#banner * { font-family: "NPSfontRegular";  color: white; }
+#banner h4 { font-size: 1.5em; }
+#banner h2 { font-family: "NPSfontExtraBold"; font-size: 3em; }
+#banner_contents { padding: 30px 200px; }
+#banner #page_icon { float: right; height: 170px; width: 170px; }
+
+/* main 설정 */
+main { margin-top: 3%;  height: 1300px;}
+.memberPage_title { width: 130px; margin: 0 auto; margin-left: 30%; }
+.memberPage_title h2 { font-size: 1.7em; font-family: NPSfontBold; padding: 0 5px; }
+.bottom_line { width: 110px; border: 2px solid #FF7A00; border-radius: 32px; }
+.member_main { display: flex; justify-content: center; margin: 0 auto; margin-top: 3%; }
+
+.side_ad { background-color: #fdf0e7; width: 220px; height: 700px; border-radius: 32px; text-align: center; padding-top: 70px; padding-bottom: 70px; }
+.side_ad div { margin-top: 13%; }
+.side_1, .side_2, .side_3, .side_4, .side_5 { font-family: NPSfontBold; font-size: 1.2em; }
+.side_2 span, .side_3 span { font-family: NPSfontExtraBold; font-size: 1.5em; color: #FF7A00; }
+.side_1 { padding-right: 60px; }
+.side_2 { padding-left: 60px; }
+.go_planner button { margin-top: 20%; border: none; background-color: #FF7A00; border-radius: 10px; width: 130px; height: 50px; color: white; font-family: NPSfontRegular; font-size: 0.9em; }
+
+.memberFrm { background-color: #ededed; width: 650px;  border-radius: 32px; padding: 20px 40px; }
+.memberFrm div { margin-bottom: 30px; }
+.memberFrm h4 { font-family: NPSfontBold; font-size: 1.2em; padding-top: 10px; }
+
+.input_id input:focus, .input_name input:focus, .input_searchadd, .input_nickname input:focus, .input_pw input:focus, .input_pw2 input:focus, .input_phone input:focus, .input_address input { outline: none; }
+
+.input_id { display: flex; justify-content: space-between; width: 570px; align-items: center; }
+.input_id input {margin-left: 2%; border: none; border-radius: 10px; width: 190px; height: 46px; font-size: 0.9em;padding-left: 20px; }
+.input_id .email_id {margin-left: 9%;}
+.input_id .domain {width: 150px;}
+
+.input_email input{margin-left: 20%;border: none;border-radius: 10px;width: 230px;height: 46px;padding-left: 20px;padding-right: 20px;font-size: 0.9em;}
+.input_email button{ margin-left: 5%; border: none; background-color: #FF7A00; border-radius: 10px; width: 70px; height: 46px; font-size: 0.75em; font-family: NPSfontBold; color: white;}
+
+.input_name { display: flex; }
+.input_name input { margin-left: 14%; border: none; border-radius: 10px; width: 230px; height: 46px; padding-left: 20px; padding-right: 20px; font-size: 0.9em; }
+
+.input_nickname { display: flex; }
+.input_nickname input { margin-left: 11%; border: none; border-radius: 10px; width: 230px; height: 46px; padding-left: 20px; padding-right: 20px; font-size: 0.9em; }
+.input_nickname input::placeholder { text-align: center; font-size: 0.75em; }
+.input_nickname button { margin-left: 5%; border: none; background-color: #FF7A00; border-radius: 10px; width: 70px; height: 46px; font-size: 0.75em; font-family: NPSfontBold; color: white; }
+
+
+.input_searchadd { display: flex; }
+.input_searchadd input { margin-left: 15%; border: none; border-radius: 10px; width: 230px; height: 46px;  font-size: 0.9em; }
+.input_searchadd input::placeholder { text-align: center; font-size: 0.75em; }
+.input_searchadd button { margin-left: 5%; border: none; background-color: #FF7A00; border-radius: 10px; width: 70px; height: 46px; font-size: 0.75em; font-family: NPSfontBold; color: white; }
+.input_searchadd div .add1{width: 80%;  margin-top: 20px;}
+.input_searchadd div .add2{width: 80%;}
+
+
+
+.input_pw { display: flex; }
+.input_pw input { margin-left: 8%; width: 300px; height: 46px; border: none; border-radius: 10px; padding-left: 20px; padding-right: 20px; font-size: 0.9em; }
+.input_pw input::placeholder { text-align: center; font-size: 0.75em; }
+
+.input_pw2 { display: flex; }
+.input_pw2 input { margin-left: 1.3%; width: 300px; height: 46px; border: none; border-radius: 10px; padding-left: 20px; padding-right: 20px; font-size: 0.9em; }
+.input_pw2 input::placeholder { text-align: center; font-size: 0.75em; }
+
+.input_phone { display: flex; align-items: center; }
+.input_phone h4 { margin-right: 7%; }
+.input_phone .phone1{margin-left: 5%;}
+.input_phone input { width: 70px; height: 46px; border: none; border-radius: 10px;}
+.input_address h4 { width: 50px; }
+.input_address { display: flex; align-items: center; }
+
+.input_address input { border: none; border-radius: 10px; padding-left: 20px; padding-right: 20px; }
+.add1 { margin-left: 10%; width: 300px; height: 46px; }
+.add2 { margin-left: 10%; margin-top: 2%; width: 300px; height: 46px; }
+.add2::placeholder { font-size: 0.75em; text-align: center; }
+
+.email_radio, .sms_radio { display: flex; align-items: center; }
+.email_radio input { margin-left: 5%; }
+.email_radio #n_email {margin-left: 5%;}
+.sms_radio input { margin-left: 5%; }
+.sms_radio #y_sms {margin-left:7.2%;}
+
+.member_subBtn { display: flex; justify-content: space-between; padding: 30px 120px; }
+.member_subBtn input { border: none; border-radius: 10px; background-color: #FFA24D; color: white; width: 120px; height: 50px; font-family: NPSfontBold; }
+.member_subBtn input:last-child{ background-color: #FF7A00;}
+
+/* footer 설정 */
+footer { border-top:3px solid #FF7A00; background-color: white;padding-top: 0; }
+#footer-nav li { margin: 0 45px; }
+#footer-nav li a { font-size: 0.75em; }
+#footer-nav ul { padding-left: 0; }
+.foot_nav { font-size: 0.75em; text-align: center; }
+.foot_nav li { padding: 0 30px; }
+.foot_logo { max-width: 320px;text-align: center; }
+.foot_logo img{ width: 60%; }
+.foot_info_box { background-color: white;}
+.foot_info p { font-size: 0.75em; width: 100% }
+.foot_icon { padding: 0; }
+.foot_icon img { width: 30px; }
+.foot_icon li {  margin-right: 10px; }
+.foot_icon_text { text-align: right; font-family: 'NPSfontExtraBold'; }
+.foot_icon_text span{ color: #FF7A00; }
+
+/* pc environment */
+@media screen and (max-width: 1456px) { 
+    /* 개발자모드 켠 상태에서 스타일 padding줬던거 때문에 ad와 memberFrm이 붙음.. */
+    .member_main { padding-left: 100px; padding-right: 350px; }
+}
+
+@media screen and (max-width: 1336px) { 
+    /* 개발자모드 켠 상태에서 스타일 padding줬던거 때문에 ad와 memberFrm이 붙음.. */
+    .side_ad { display: none; }
+}
+
+@media screen and (min-width:1201px) {
+    #mobile_slider { display: none; }
+    #mobile_navbar { display: none; }
+    #banner_contents { justify-content: space-between; }
+    #sticky_top { position: -webkit-sticky; position: sticky; top: -2px; }
+    .memberPage_title { margin-left: 27%; }
+}
+
+/* mobile environment */
+/* 화면크기 최대 1200px까지 */
+@media screen and (max-width:1200px) {
+    #logo {
+        width: 100%; /* 로고 너비를 100%로 설정하여 가로 중앙에 배치 */
+        text-align: center;
+        height: 50px;
+        position: relative;
+        top: -30px;
+    }
+    #logo a img { width: 20%; margin-left: 20px; } /* 로고 위치 조정 */
+    .seach_bar{ width: 100%; margin: 0 5px; }
+    #mobile_navbar ul li { margin: 0 auto; }
+    header { display: none; } /* header는 안보이게 처리 */
+    #pc_navbar { display: none; }
+    .main_nav{ border-bottom: none; background-color: white; }
+    #mobile_navbar { border-bottom: 3px solid #FF7A00; padding: 10px; }
+
+    #banner { height: 160px; }
+    #banner #page_icon { display: none; }
+    #banner_contents { justify-content: center; padding: 30px; height: 160px; }
+    #banner_contents #info_title { justify-content: center; }
+    #banner h4 { font-size: 1em; }
+    #banner h2 { font-size: 1.5em; }
+
+    /* o */
+    /* member */
+    .memberPage_title { margin-left: 0; }
+    .side_ad { display: none; }
+    .member_main { padding: 0 13px; }
+
+    
+}
+/* 화면크기 최대 768px까지 */
+@media screen and (max-width:768px) {
+    .foot_logo { display: none;}
+    #mobile_navbar { font-size: 0.65em; }
+    #img_footer_logo{ display: none; }
+    #img_footer_icon{ display: none; }
+    .seach_bar input::placeholder{ font-size: 0.8em; }
+    
+    /* o */
+    /* 회원가입 폼 크기 바꾸기 (컴) */
+    .memberFrm { background-color: #ededed; width: 550px; height: 850px; border-radius: 32px; padding: 20px 65px; margin-top: 3%; margin-left: 10%; }
+    .memberFrm div { margin-bottom: 30px; }
+    .input_id, .input_name, .input_nickname, .input_pw, .input_pw2, .input_phone, .input_address, .email_radio, .sms_radio{ display: inline; }
+    .input_id input { width: 190px; }
+    .input_name input, .input_nickname input, .input_address input, .email_radio input, .sms_radio input { margin-left: 0; }
+    .input_pw input { margin-left: 0; width: 300px; height: 46px; border: none; border-radius: 10px; padding-left: 20px; font-size: 0.9em; }
+    .input_pw input::placeholder { text-align: center; font-size: 0.75em; }
+    .input_pw2 input { margin-left: 0; width: 300px; height: 46px; border: none; border-radius: 10px; padding-left: 20px; font-size: 0.9em; }
+    .input_pw2 input::placeholder { text-align: center; font-size: 0.75em; }
+    .add2 { margin-top: 2%; }
+
+    .member_subBtn { display: flex; justify-content: space-between; padding: 80px 0px; }
+    .member_subBtn input { width: 120px; height: 50px; color: white; background-color: #FF7A00; font-family: NPSfontBold; }	.member_subBtn input {  color: white; background-color: #FFA24D; font-family: NPSfontBold}
+	.member_subBtn input:last-child{ background-color: #FF7A00;}
+    .add2 { width: 300px; }
+}
+
+/* 화면크기 최소641px 부터 1120px까지 */
+@media screen and (min-width: 641px) and (max-width:1120px) {
+    .container-fluid { line-height:25px;}
+    #footer-nav li { margin: 0 20px; }
+    .foot_logo{ display: none;}
+    #row_footer{ width: 100%; text-align: center;}
+    #img_footer_icon{ display: none;}
+
+    /* x */
+}
+
+/* 화면크기 최소 481px 부터 최대 660px까지 */
+@media screen and (min-width: 481px) and (max-width: 660px) {
+    .foot_logo{ display: none; }
+    #footer-nav li { margin: 0 10px; }
+    .container-fluid { line-height: 1.3; }
+    #row_footer{ text-align: center;}
+    #img_footer_icon{  display: none;}
+
+    /* x */
+    .memberFrm { background-color: #ededed; width: 550px; height: 850px; border-radius: 32px; padding: 20px 40px; margin-top: 3%; margin-left: 10%; }
+    .input_id { display: inline; }
+    .input_id input { width: 150px; }
+}
+
+@media screen and (max-width:480px) {
+    .foot_logo{ display: none; }
+    /* #footer-nav li a { font-size: 0.5em; } */
+    #footer-nav li { margin: 0 5px; }
+    .container-fluid { line-height: 1.3; }
+    #row_footer{ text-align: center;}
+    #img_footer_icon{  display: none;}
+
+    /* o */
+    /* 모바일 회원가입 폼 */
+    .memberFrm { background-color: #ededed; width: 365px; height: 850px; border-radius: 32px; padding: 20px 30px; margin-left: 0; }
+    .memberFrm div { margin-bottom: 30px; }
+    .memberPage_title { margin-top: 10%; }
+    .memberPage_title h2 { font-size: 1.2em; }
+    .bottom_line { width: 80px; }
+    .input_id, .input_name, .input_phone { display: inline; }
+    .input_id h4, .input_name h4, .input_nickname h4, .input_pw h4, .input_pw2 h4, .input_phone h4, .input_address h4, .email_radio h4, .sms_radio h4 { font-size: 0.9em; }
+    .input_id input { width: 130px; padding-left: 20px; padding-right: 20px; }
+    .input_name input, .input_nickname input { margin-left: 0; }
+    .input_nickname button { margin-left: 2%; width: 60px; }
+
+    .add2 { width: 300px; }
+}
+
+@media screen and (min-width:300px) and (max-width:480px) {
+	 /* o */
+    /* 모바일 회원가입 폼 */
+    .memberFrm { background-color: #ededed; width: 365px; height: 1200px; border-radius: 32px; padding: 20px 30px; margin-left: 0; }
+    .memberPage_title { margin-top: 10%; }
+    .memberPage_title h2 { font-size: 1.2em; }
+    .bottom_line { width: 80px; }
+    .input_id, .input_name, .input_phone { display: inline; }
+    .input_id h4, .input_name h4, .input_nickname h4, .input_pw h4, .input_pw2 h4, .input_phone h4, .input_address h4, .email_radio h4, .sms_radio h4 { font-size: 0.9em; }
+    .input_id input { width: 130px; padding-left: 20px; padding-right: 20px; }
+    .input_id .email_id {margin-left: 0%; width: 125px;}
+    .input_id button{ width: 100%; margin: 10px 0px;}
+    .input_id .domain {width: 150px}
+   	.input_email {  margin: 0%; }
+    .input_email input{  margin: 0 auto; width: 100%;}
+    .input_email button{ width: 100%; margin: 10px 0px;}
+    .input_name input {width: 300px;}
+ 	.input_nickname input { margin-left: 0; }
+    .input_nickname button { margin-left: 2%; width: 60px; }
+    .input_phone input {width: 86px; height: 46px; border: none; border-radius: 10px;}
+    .input_phone .phone1{margin-left: 0%;}
+	.input_searchadd h4 {position: absolute;}
+	.input_searchadd div {margin-top: 30px;}
+	.input_searchadd div button{width: 50px;}
+	.input_searchadd div .add1{width: 100%;}
+	.input_searchadd div .add2{width: 100%;}
+	.email_radio #n_email {margin-left: 0%;}
+	.sms_radio #y_sms {margin-left: 0%;}
+    .add2 { width: 300px; }
+	.member_subBtn { display: flex;  }
+	.member_subBtn input {  color: white; background-color: #FFA24D; font-family: NPSfontBold}
+	.member_subBtn input:last-child{ background-color: #FF7A00;}
+}

@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.edu.springboot.planner.IPlannerService">
+	
+	<!-- 플래너를 최신순으로 정렬 -->
+	<select id="getPlannerByRecent">
+		SELECT * FROM planner WHERE saved='true' ORDER BY planner_idx desc
+	</select>
+	
+	<!-- 플래너를 카테고리 별로 셀렉트 -->
+	<select id="getPlannerByCate" parameterType="string">
+		SELECT * FROM planner WHERE saved='true' AND cate=#{cate}
+	</select>
+	
+	<!-- 이전에 만든 플래너가 있는지 확인 -->
+	<select id="getPlanner" parameterType="com.edu.springboot.planner.PlannerDTO" resultType="int">
+		SELECT COUNT(*) FROM planner WHERE email=#{email} AND saved='false'
+	</select>
+	
+	<!-- 플래너 생성 -->
+	<insert id="createPlanner" parameterType="com.edu.springboot.planner.PlannerDTO">
+		INSERT INTO planner (planner_idx, email, nickname) VALUES (seq_planner_idx.NEXTVAL, #{email}, #{nickname})
+	</insert>
+	
+	<!-- 플래너의 고유번호 얻어오기 -->
+	<select id="getPlannerIdx" parameterType="com.edu.springboot.planner.PlannerDTO" resultType="string">
+		SELECT planner_idx FROM planner WHERE email=#{email} AND saved='false'
+	</select>
+	
+	<!-- 플래너에 등록된 모든 장소 가져온다. -->
+	<select id="getAllPlaces" parameterType="com.edu.springboot.planner.PlannerDTO" resultType="com.edu.springboot.planner.PlaceDTO">
+		SELECT * FROM place WHERE planner_idx=${planner_idx}
+			ORDER BY place_idx ASC
+	</select>
+	
+	<!-- 플래너를 저장한다. 단 insert가 아닌 null값들을 채워주는 작업이므로 update이다. -->
+	<update id="savePlanner" parameterType="com.edu.springboot.planner.PlannerDTO">
+		UPDATE planner SET cate=#{cate}, plan_start=#{plan_start}, plan_end=#{plan_end}, ofile=#{ofile}, sfile=#{sfile}, saved='true'
+			WHERE planner_idx=${planner_idx}
+	</update>
+	
+	<!-- planner_idx로 planner의 정보를 가져온다. -->
+	<select id="getPlannerInfo" parameterType="com.edu.springboot.planner.PlannerDTO" resultType="com.edu.springboot.planner.PlannerDTO">
+		SELECT * FROM planner WHERE planner_idx=#{planner_idx}
+	</select>
+	
+	
+	<!-- 관리자 플래너 목록 -->
+	<select id="adminPlannerSelect"
+		resultType="com.edu.springboot.planner.PlannerDTO">
+		SELECT * FROM planner ORDER BY postdate DESC
+	</select>
+	
+	<!-- 관리자 플래너 삭제 무결성 제약조건 수정-->
+	<delete id="adminPlannerDelete">
+		delete FROM planner WHERE planner_idx=#{idx}
+	</delete>
+	
+</mapper>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.edu.springboot.service.INotiboardService">
+
+	<!-- list  -->
+	<select id="getTotalCount" resultType="int" parameterType="com.edu.springboot.community.ParameterDTO">
+	SELECT COUNT(*) from noticeboard
+			<if test="searchKeyword!=null and !searchKeyword.equals('')">
+		WHERE ${searchField} LIKE '%'||#{searchKeyword}||'%'
+		</if>
+	</select>
+	
+	
+	<select id="listPage"
+		resultType="com.edu.springboot.service.NotiDTO"
+		parameterType="com.edu.springboot.community.ParameterDTO">
+		SELECT * FROM (
+			SELECT Tb.*, rownum rNum FROM(
+				SELECT * FROM noticeboard
+				<if test="searchKeyword!=null and !searchKeyword.equals('')">
+				WHERE ${searchField} LIKE '%'||#{searchKeyword} ||'%'
+				</if>
+				ORDER BY noticeboard_idx DESC
+			) Tb
+		)
+	 	WHERE rNum<![CDATA[>=]]>#{start} AND rNum<![CDATA[<=]]>#{end}
+	</select>
+	
+	<!-- 관리자 공지사항 작성  -->
+	<!-- <insert id="write">
+		INSERT INTO noticeboard (noticeboard_idx, email, nickname, title, content) VALUES (seq_noticeboard_idx.nextval,#{email}, #{nickname}, #{_title}, #{_content} )
+	</insert> -->
+	
+	<select id="view" resultType="com.edu.springboot.service.NotiDTO" parameterType="com.edu.springboot.service.NotiDTO">
+		SELECT * FROM noticeboard WHERE noticeboard_idx=${noticeboard_idx}
+	</select>
+	
+	<update id="edit" parameterType="com.edu.springboot.service.NotiDTO">
+		UPDATE noticeboard SET title=#{title}, content=#{content} WHERE noticeboard_idx=${noticeboard_idx}
+	</update>
+	
+	<update id="update" parameterType="com.edu.springboot.service.NotiDTO">
+   		UPDATE noticeboard SET visitcount=visitcount+1 WHERE noticeboard_idx=${noticeboard_idx}
+	</update>
+	
+	
+	<!-- 관리자 공지사항 목록 -->
+	<select id="adminNoticeSelect"
+		resultType="com.edu.springboot.service.NotiDTO">
+		SELECT * FROM noticeboard ORDER BY postdate DESC
+	</select>
+	
+	<!-- 관리자 공지사항 작성  -->
+	<insert id="adminNoticeWrite"
+		 parameterType="com.edu.springboot.service.NotiDTO">
+		INSERT INTO noticeboard (noticeboard_idx, email, nickname, title, content) VALUES (seq_noticeboard_idx.nextval,#{email}, #{nickname}, #{title}, #{content} )
+	</insert>
+	
+	<!-- 관리자 공지사항 삭제 -->
+	<delete id="adminNoticeDelete">
+		DELETE FROM noticeboard WHERE noticeboard_idx=#{idx}
+	</delete>
+
+</mapper>

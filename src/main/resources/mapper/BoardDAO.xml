@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.edu.springboot.community.IBoardService">
+	
+	 
+	
+	<!-- list  -->
+	<select id="getTotalCount" resultType="int" parameterType="com.edu.springboot.community.ParameterDTO">
+	SELECT COUNT(*) from freeboard
+			<if test="searchKeyword!=null and !searchKeyword.equals('')">
+		WHERE ${searchField} LIKE '%'||#{searchKeyword}||'%'
+		</if>
+	</select>
+	
+	
+	<select id="listPage"
+		resultType="com.edu.springboot.community.BoardDTO"
+		parameterType="com.edu.springboot.community.ParameterDTO">
+		SELECT * FROM (
+			SELECT Tb.*, rownum rNum FROM(
+				SELECT * FROM freeboard
+				<if test="searchKeyword!=null and !searchKeyword.equals('')">
+				WHERE ${searchField} LIKE '%'||#{searchKeyword} ||'%'
+				</if>
+				ORDER BY freeboard_idx DESC
+			) Tb
+		)
+	 	WHERE rNum<![CDATA[>=]]>#{start} AND rNum<![CDATA[<=]]>#{end}
+	</select>
+	
+	
+	<select id="mylistPage"
+		resultType="com.edu.springboot.community.BoardDTO"
+		parameterType="com.edu.springboot.community.ParameterDTO">
+		SELECT * FROM (
+			SELECT Tb.*, rownum rNum FROM(
+				SELECT * FROM freeboard
+				<if test="searchKeyword!=null and !searchKeyword.equals('')">
+				WHERE ${searchField} LIKE '%'||#{searchKeyword} ||'%'
+				</if>
+				ORDER BY freeboard_idx DESC
+			) Tb
+		)
+	 	WHERE rNum<![CDATA[>=]]>#{start} AND rNum<![CDATA[<=]]>#{end} AND email=#{email}
+	</select>
+	
+	<!-- write  -->
+	<insert id="write">
+		INSERT INTO freeboard (freeboard_idx, email, nickname, title, content) VALUES (seq_freeboard_idx.nextval, #{_email},#{_nickname}, #{_title}, #{_content} )
+	</insert>
+	
+	<select id="view" resultType="com.edu.springboot.community.BoardDTO" parameterType="com.edu.springboot.community.BoardDTO">
+		SELECT * FROM freeboard WHERE freeboard_idx=${freeboard_idx}
+	</select>
+	
+	
+	<update id="edit" parameterType="com.edu.springboot.community.BoardDTO">
+		UPDATE freeboard SET title=#{title}, content=#{content} WHERE freeboard_idx=${freeboard_idx}
+
+	</update>
+	<update id="update" parameterType="com.edu.springboot.community.BoardDTO">
+   		UPDATE freeboard SET visitcount=visitcount+1 WHERE freeboard_idx=${freeboard_idx}
+	</update>
+	
+	<delete id="delete">
+		DELETE FROM freeboard WHERE freeboard_idx=#{freeboard_idx}
+	</delete>
+	
+	<!-- 댓글 쓰기  -->
+	<insert id="writeConmments" >
+	   INSERT INTO COMMENTS (comments_idx, nickname, content ,postdate, idx , email, tname)
+	   VALUES (seq_comments_idx.nextval,  #{nickname}, #{content}, sysdate, #{idx}, #{email}, 'freeboard' )
+	</insert>
+	
+	
+	
+	<!--코멘트 테이블 가져오기  -->
+	<select id="CommentsPage"
+       resultType="com.edu.springboot.community.CommentsDTO"
+       parameterType="com.edu.springboot.community.CommentsDTO">
+  		 SELECT * FROM COMMENTS WHERE idx = #{idx} AND tname='freeboard'
+	
+	</select>
+	
+
+	<!-- 맞는지 모르겠지만 닉네임 가져오려고  -->
+	<select id="getnickname" resultType="string" parameterType="string">
+		SELECT nickname FROM member WHERE email=#{email}
+	</select>
+	
+
+	<!-- 관리자 자유게시판 목록 -->
+	<select id="adminFreeSelect">
+		SELECT * FROM freeboard ORDER BY postdate DESC
+	</select>
+	
+	<!-- 관리자 자유게시판 삭제-->
+	<delete id="adminFreeDelete">
+		delete FROM freeboard WHERE freeboard_idx=#{idx}
+	</delete>
+
+		
+</mapper>

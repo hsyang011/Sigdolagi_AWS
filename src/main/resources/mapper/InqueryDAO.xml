@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.edu.springboot.service.InqueryBoardService">
+	
+	
+	 
+	<!-- write  -->
+	<insert id="write">
+		INSERT INTO inquiryboard (inquiryboard_idx, email, category, title, content, nickname)
+		 VALUES (seq_inquiryboard_idx.nextval, #{email},#{category}, #{title}, #{content}, #{nickname} )
+	</insert>
+	
+	
+	<!-- list  -->
+	<select id="inqueryGetTotalCount" resultType="int" parameterType="com.edu.springboot.community.ParameterDTO">
+	SELECT COUNT(*) from inquiryboard
+			<if test="searchKeyword!=null and !searchKeyword.equals('')">
+		WHERE ${searchField} LIKE '%'||#{searchKeyword}||'%'
+		</if>
+	</select>
+	
+	<!-- 마이페이지   -->
+	<select id= "MyInquiryListPage"
+		resultType="com.edu.springboot.service.InqueryDTO"
+		parameterType="com.edu.springboot.community.ParameterDTO">
+		SELECT * FROM (
+			SELECT Tb.*, rownum rNum FROM(
+				SELECT * FROM inquiryboard
+				<if test="searchKeyword!=null and !searchKeyword.equals('')">
+				WHERE ${searchField} LIKE '%'||#{searchKeyword} ||'%'
+				</if>
+				ORDER BY inquiryboard_idx DESC
+			) Tb
+		)
+	 	WHERE rNum<![CDATA[>=]]>#{start} AND rNum<![CDATA[<=]]>#{end}
+	</select>
+	
+	<!-- 관리자 1:1문의 목록 -->
+	<select id="adminInquirySelect"
+		resultType="com.edu.springboot.service.InqueryDTO">
+		SELECT * FROM inquiryboard ORDER BY regidate DESC
+	</select>
+	
+	
+</mapper>

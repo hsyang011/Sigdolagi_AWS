@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.edu.springboot.market.IOrderService">
+	
+	<!-- 결제 테이블에 결제 정보 추가 -->
+	<insert id="orderProcess" parameterType="com.edu.springboot.market.OrderDTO">
+		INSERT INTO marketorder (order_idx, email, name, phone, addr1, addr2, message, payment_method, payment, point, zipcode)
+			VALUES (seq_marketorder_idx.NEXTVAL, #{email}, #{name}, #{phone}, #{addr1}, #{addr2}, #{message},
+				#{payment_method}, ${payment}, ${point}, #{zipcode})
+	</insert>
+	
+	<!-- orderDTO로 order_idx를 가져옵니다. -->
+	<select id="getOrderIdx" parameterType="com.edu.springboot.market.OrderDTO" resultType="string">
+		SELECT order_idx 
+			FROM (
+			  SELECT order_idx FROM marketorder WHERE email=#{email}
+			  ORDER BY order_idx DESC
+			)
+			WHERE ROWNUM=1
+	</select>
+	
+	<!-- 결제 후, 장바구니에 담긴 모든 품목 제거 -->
+	<delete id="updateAll" parameterType="com.edu.springboot.market.OrderDTO">
+		UPDATE cart SET payed='true', order_idx=#{order_idx} WHERE email=#{email} AND payed='false'
+	</delete>
+	
+	<!-- 관리자 주문리스트 -->
+	<select id="adminOrderSelect"
+		resultType="com.edu.springboot.market.OrderDTO"> 
+		SELECT * FROM marketorder ORDER BY order_idx DESC
+	</select>
+	
+</mapper>
