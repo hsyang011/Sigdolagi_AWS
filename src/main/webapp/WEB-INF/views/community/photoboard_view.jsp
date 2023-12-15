@@ -154,15 +154,17 @@
 
 <script>
 
-function deletePost(freeboard_idx){
-    var confirmed = confirm("정말로 삭제하겠습니까?"); 
+function deleteCommentPost(comments_idx){
+    var confirmed = confirm(" 댓글 정말로 삭제하겠습니까?"); 
     if (confirmed) {
-        var form = document.writeFrm;      
+    	var form = document.commentwriteFrm;
         form.method = "post";  
-        form.action = "./photoboard_delete.do";
+        form.action = "./photoboardcommnt_delete.do";
         form.submit();  
     }
 }
+
+
 
 
 
@@ -361,7 +363,7 @@ function CommentSend(){
                                             <td>${row.nickname}</td>
                                             <td>${row.comments_idx}</td>
                                             <td>${row.content}</td>
-                                            <td>${row.postdate}</td>
+                                            <td>${row.postdate} &nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="삭제" onclick="deleteCommentPost(${row.comments_idx});">삭제하기</td>
                                         </tr>
                                     </c:forEach>
                                 </tbody>

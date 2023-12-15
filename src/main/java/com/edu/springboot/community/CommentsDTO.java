@@ -12,13 +12,7 @@ public class CommentsDTO {
 	private int idx;
 	private String email;
 	private String tname; 
-	
-	
-	
-	
-	
-	
-	
+
 	
 
 }

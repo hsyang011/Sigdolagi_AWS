@@ -92,8 +92,8 @@ public class ServiceController {
 	
 	//1:1 문의  게시판 글쓰기
 	
-
-	   @PostMapping("/community/inquiryboard_write.do")
+	
+	   @PostMapping("/service/inquiryboard_write.do")
 	   public String freeboardWrite(Model model, HttpServletRequest req, Principal principal, InqueryDTO inqueryDTO) {
 		  System.out.println("문의 게시판 글쓰기 컨트롤러 들어오나? ");
 		  System.out.println(inqueryDTO);
@@ -112,12 +112,14 @@ public class ServiceController {
 	      System.out.println("nickname:결과"+nickname);
 	      model.addAttribute("nickname1",nickname); 
 	      
-	    
+	     
 	      
 	      
 	      
-	      return "redirect:freeboard_list.do";
+	      return "redirect:/member/mypage.do";
 	   }
+	   
+	   
 	   
 	
 	

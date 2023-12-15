@@ -88,6 +88,7 @@ function deletePost(freeboard_idx){
 }
 
 
+
 </script>
 
 <script>

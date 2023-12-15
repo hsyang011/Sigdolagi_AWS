@@ -35,6 +35,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletRequestWrapper;
 import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.Part;
+import oracle.jdbc.proxy.annotation.Post;
 import utils.MyFunctions;
 import utils.PagingUtil;
 
@@ -613,6 +614,26 @@ public class CommunityController {
       return "redirect:photoboard_list.do";
    }
    
+   //포토 게시판 댓글 삭제 처리  /photoboardcommnt_delete.do
+   @PostMapping("/community/photoboardcommnt_delete.do")
+   public String photoCommentDeletePost(HttpServletRequest req, CommentsDTO commentsDTO ) {
+	   
+	   
+	   	System.out.println("포토게시판 댓글 삭제 들어오나? ");
+	   	System.out.println(commentsDTO);
+	   
+	   	System.out.println();
+	   
+	   	  
+	      int result = photoboarddao.photodelete(req.getParameter("idx"));
+	      System.out.println("글삭제결과:"+result);
+	      
+	      return "redirect:photoboard_list.do";
+	   }
+   
+   
+   		
+   		
    
    
    
