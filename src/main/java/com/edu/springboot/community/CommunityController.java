@@ -209,10 +209,19 @@ public class CommunityController {
 	
 	   //자유게시판 view 
 	   @RequestMapping("/community/freeboard_view.do")
-	   public String freeboardView(Model model, BoardDTO boardDTO,HttpServletRequest req, CommentsDTO commentsDTO,ParameterDTO parameterDTO,Principal principal) {
+	   public String freeboardView(Model model, BoardDTO boardDTO, HttpServletRequest req,Principal principal) {
 	      boardDTO = dao.view(boardDTO);
 	      dao.update(boardDTO);
 	      boardDTO.setContent(boardDTO.getContent().replace("\r\n", "<br>"));
+	      
+	      // boardDTO에서 idx값을 가져와서 commentsDTO에 채우기
+	      CommentsDTO commentsDTO = new CommentsDTO();
+	      try {	    	  
+	    	  commentsDTO.setIdx(Integer.parseInt(boardDTO.getFreeboard_idx()));
+	      } catch (Exception e) {
+	    	  System.out.println("idx가 null입니다.");
+	    	  e.printStackTrace();
+	      }
 	
 	      model.addAttribute("boardDTO", boardDTO);
 	        // 코멘트 테이블 전부다  얻어와서 저장하기  
