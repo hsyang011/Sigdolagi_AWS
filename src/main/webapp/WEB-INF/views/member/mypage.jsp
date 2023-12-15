@@ -299,48 +299,17 @@
                         <div style="float: left;">#내가 쓴 플래너</div>
                         <br><br>
                         <figure class="row thumbnail">
-                            <!-- 1열 시작 -->
-                            <div class="card custom-col">
-                                <div>
-                                    <img class="card-img-top" src="http://placehold.it/200x200" height="250" alt="Card image">
-                                    <div class="card-body">
-                                        <h4 class="card-title" style="font-size: 18px;">2023년 12월 출발</h4>
-                                        <p class="card-text">2일간</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- 1열 끝 -->
-                            <!-- 2열 시작 -->
-                            <div class="card custom-col">
-                                <div>
-                                    <img class="card-img-top" src="http://placehold.it/200x200" height="250" alt="Card image">
-                                    <div class="card-body">
-                                        <h4 class="card-title" style="font-size: 18px;">2023년 12월 출발</h4>
-                                        <p class="card-text">2일간</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- 2열 끝 -->
-                            <!-- 3열 시작 -->
-                            <div class="card custom-col">
-                                <div>
-                                    <img class="card-img-top" src="http://placehold.it/200x200" height="250" alt="Card image">
-                                    <div class="card-body">
-                                        <h4 class="card-title" style="font-size: 18px;">2023년 12월 출발</h4>
-                                        <p class="card-text">2일간</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card custom-col">
-                                <div>
-                                    <img class="card-img-top" src="http://placehold.it/200x200" height="250" alt="Card image">
-                                    <div class="card-body">
-                                        <h4 class="card-title" style="font-size: 18px;">2023년 12월 출발</h4>
-                                        <p class="card-text">2일간</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- 3열 끝 -->
+                            <c:forEach items="${myPlannerList}" var="row" varStatus="loop">                
+		                    <div class="card custom-col">
+		                        <div style="cursor: pointer;" onclick="location.href='../planner/planner_view.do?planner_idx=${row.planner_idx}';">
+		                            <img class="card-img-top" src="../uploads/${row.sfile}" alt="Card image">
+		                            <div class="card-body">
+		                                <h5 class="card-title">${row.plan_start} > ${row.plan_end}</h5>
+		                                <p class="card-text">${row.nickname}</p>
+		                            </div>
+		                        </div>
+		                    </div>
+			                </c:forEach>
                         </figure>
                         <div style="float: left;">♥플래너</div>
                         <br><br>
