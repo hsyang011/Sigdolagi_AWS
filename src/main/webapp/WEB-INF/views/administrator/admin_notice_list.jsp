@@ -98,22 +98,6 @@ function listDelete(idx){
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                        <tr>
-                                            <td>1</td>
-                                            <td><a href="">공지사항은 어떻게 쓰는거죠 진짜 금일 00시부터 플래너게시판을
-                                            점검하므로 사용시간이 제한됩니다.</a></td>
-                                            <td>관리자</td>
-                                            <td>2023/12/08</td>
-                                            <td>30</td>
-                                            <td>
-                                            	<a href="#" class="btn btn-warning btn-icon-split">
-                                                    <span class="text">수정</span>
-                                                </a>
-                                            	<a href="#" class="btn btn-danger btn-icon-split">
-                                                    <span class="text">삭제</span>
-                                                </a>
-                                            </td>
-                                        </tr>
                                         <c:forEach items="${adminNoticeSelect }" var="row" varStatus="loop">
 										<tr>
 											<td>${row.noticeboard_idx }</td>
@@ -122,7 +106,7 @@ function listDelete(idx){
                                             <td>${row.postdate }</td>
                                             <td>${row.visitcount }</td>
                                             <td>
-                                            	<a href="#" class="btn btn-warning btn-icon-split">
+                                            	<a href="../administrator/admin_notice_edit.do?noticeboard_idx=${row.noticeboard_idx }" class="btn btn-warning btn-icon-split">
                                                     <span class="text">수정</span>
                                                 </a>
                                             	<a href="javascript:listDelete('${row.noticeboard_idx }')" 
@@ -132,8 +116,6 @@ function listDelete(idx){
                                             </td>
 										</tr>		
 										</c:forEach>
-                                        
-                                       
                                     </tbody>
                                 </table>
                             </div>

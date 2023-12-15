@@ -106,7 +106,7 @@ function listDelete(idx){
                                         <tr>
                                             <td>${row.planner_idx }</td>
                                             <td>${row.cate }</td>
-                                            <td><a href="">${row.plan_start } > ${row.plan_end }</a></td>
+                                            <td><a href="../planner/planner_view.do?planner_idx=${row.planner_idx }">${row.plan_start } > ${row.plan_end }</a></td>
                                             <td>${row.nickname}(${row.email})</td>
                                             <td>${row.postdate }</td>
                                             <td>

@@ -1,5 +1,7 @@
 package com.edu.springboot.market;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
@@ -11,5 +13,8 @@ public interface IOrderService {
 	public String getOrderIdx(OrderDTO orderDTO);
 	// 결제 완료 후, 장바구니에 담긴 모든 품목 제거
 	public int updateAll(OrderDTO orderDTO);
+	
+	//관리자 주문현황목록
+	public List<OrderDTO> adminOrderSelect();
 	
 }
