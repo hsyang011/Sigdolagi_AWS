@@ -143,11 +143,11 @@ public class ServiceController {
 	      System.out.println("nickname:결과"+nickname);
 	      model.addAttribute("nickname1",nickname); 
 	      
+
 	   
 	      return "redirect:/member/mypage.do";
-
 	   }
-	
+
 	
 	
 	@RequestMapping("/service/faq.do")

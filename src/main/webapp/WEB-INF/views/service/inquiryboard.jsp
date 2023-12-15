@@ -133,7 +133,11 @@ main > * { margin: 50px 0; }
                 <div class="container">
                     <div class="freeboard_write_frm">
                         <!-- 게시판 들어가는 부분 (시작) -->
+<<<<<<< HEAD
                         <form name="writeFrm" method="post" onsubmit="return validateForm(this);" class="writeFrm" action="../service/inquiryboard_write.do">
+=======
+                        <form name="writeFrm" method="post" onsubmit="return validateForm(this);" class="writeFrm" action="/service/inquiryboard_write.do">
+>>>>>>> branch 'main' of https://github.com/hsyang011/Sigdolagi.git
                             <input type="hidden" name="tname"  />
                             <form>
                             <table class="table table-bordered" id="write_frm_table" width="90%">
