@@ -100,6 +100,7 @@ main > * { margin: 50px 0; font-family: "NPSfontRegular"; }
 /*자유게시판 댓글 */
 .cm_input textarea {width: 97%;}
 .cm_input .btns {float:right; height: 82px;background-color: #ffebd3; border: none;}
+.dele {background-color: #ffc187; color: white; font-family: "NPSfontRegular";border: none; font-size: 15px;}
 
 /* 테이블 검색어 */
 .searchField_list{ height: 40px;  border: 1px solid #FF7A00;font-family: 'NPSfontRegular';}
