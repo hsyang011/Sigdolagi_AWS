@@ -273,6 +273,20 @@ public class CommunityController {
 	      
 	      return "redirect:freeboard_list.do";
 	   }
+	   
+	   
+	   //자유게시판 댓글삭제하기 
+	   @PostMapping("/community/freeboard_Comments_delete.do")
+	   public String boardDeleteComments(HttpServletRequest req,CommentsDTO commentsDTO) {
+		  System.out.println("댓글 삭제 확인을 위해 댓글 불러오기 테스트 ");
+		  System.out.println(commentsDTO);
+		  int result = dao.deleteComments(req.getParameter("comments_idx"));
+	      System.out.println("글삭제결과:"+result);
+	      
+	      return "redirect:freeboard_list.do";
+//	      return "redirect:freeboard_view.do?freeboard_idx="+boardDTO.getFreeboard_idx();
+	   }
+
 
    
    

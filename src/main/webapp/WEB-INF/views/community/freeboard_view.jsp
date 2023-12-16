@@ -88,6 +88,17 @@ function deletePost(freeboard_idx){
 }
 
 
+function deleteComment(comments_idx){
+    var confirmed = confirm("정말로 댓글을 삭제하겠습니까?"); 
+    if (confirmed) {
+        var form = document.commentwriteFrm;      
+        form.method = "post";  
+        form.action = "./freeboard_Comments_delete.do";
+        form.submit();  
+    }
+}
+
+
 
 </script>
 
@@ -260,8 +271,9 @@ function SaveComment(){
 		                                <input type="hidden" name="idx" value="${boardDTO.freeboard_idx }">
 		                                <input type="hidden" name="nickname" value="${boardDTO.nickname}">
 		                                <input type="hidden" name="email" value="${email}">
-		                               	<p><textarea id="content" name="content" onkeyup=""  style="width:100%" rows="4" placeholder="댓글을 입력해 주세요."></textarea></p>
-		                               	<span><button type="button" class="btns" onclick="SaveComment();">등록</button></span>
+		                               	<p><textarea id="content" name="content" onkeyup="" rows="4" placeholder="댓글을 입력해 주세요."></textarea>
+		                               	  	<button type="button" class="btns"  onclick="SaveComment();">등록</button></p>
+		                             
                            			</div>
 								</form>
 	                       </fieldset>
@@ -273,6 +285,7 @@ function SaveComment(){
 		                           <th style="text-align: center;">작성자</th>
 		                           <th style="text-align: center;">내용</th>
 		                           <th style="text-align: center;">작성일</th>
+	                            	<th style="text-align: center;"></th>	
 		                       	</tr>
 	                   		</thead>
 			                   <tbody id="commentsTableBody">
@@ -281,6 +294,7 @@ function SaveComment(){
 		                                 <td>${ row.nickname }</td> 
 		                                 <td>${ row.content }</td> 
 		                                 <td>${ row.postdate }</td>
+		                                 <td><input type="button" value="삭제" onclick="deleteComment(${row.comments_idx});"></td>
 		                             </tr>
 	                       		</c:forEach> 
 		                    </tbody>
