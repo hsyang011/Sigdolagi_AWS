@@ -218,8 +218,24 @@
     });
     });
  });
+    
+function deletePlanner(idx, e) {
+	$.ajax({
+		type: 'get',
+		url: '../planner/deleteMyPlanner.do',
+		data: { planner_idx: idx },
+		success: function(res) {
+			$(e.target).parent().parent().parent().remove();
+			console.log("삭제성공!");
+			alert("삭제가 완료되었습니다.");
+		},
+		error: function(err) {
+			console.log(err);
+		}
+	});
+}
 
-  </script>
+</script>
 </head>
 <body>
 <!-- wrapper 시작 -->
@@ -301,11 +317,12 @@
                         <figure class="row thumbnail">
                             <c:forEach items="${myPlannerList}" var="row" varStatus="loop">                
 		                    <div class="card custom-col">
-		                        <div style="cursor: pointer;" onclick="location.href='../planner/planner_view.do?planner_idx=${row.planner_idx}';">
-		                            <img class="card-img-top" src="../uploads/${row.sfile}" alt="Card image">
+		                        <div style="cursor: pointer;">
+		                            <img class="card-img-top" src="../uploads/${row.sfile}" alt="Card image" onclick="location.href='../planner/planner_view.do?planner_idx=${row.planner_idx}';">
 		                            <div class="card-body">
 		                                <h5 class="card-title">${row.plan_start} > ${row.plan_end}</h5>
-		                                <p class="card-text">${row.nickname}</p>
+                                        <img src="../images/cross-wish-ico.png" alt="" onclick="deletePlanner(${row.planner_idx}, event)" style="cursor: pointer;">
+                                        <input type="hidden" value="${row.planner_idx}" />
 		                            </div>
 		                        </div>
 		                    </div>
