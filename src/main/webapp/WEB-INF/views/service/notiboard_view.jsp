@@ -143,7 +143,7 @@ function deletePost(freeboard_idx){
                     <div class="freeboard_write_frm" >
                         <!-- 게시판 들어가는 부분 (시작) -->
                         <form name="writeFrm" method="post" onsubmit="return validateForm(this);" action="../service/notiboard_view.do" class="writeFrm">
-                          <input type="hidden" name="notiboard_idx" value="${ notiDTO.noticeboard_idx }" />
+                          <input type="hidden" name="noticeboard_idx" value="${ notiDTO.noticeboard_idx }" />
                             <input type="hidden" name="email"  />
                             <table class="table table-bordered" id="free_write_frm_table" width="100%" >
                                <colgroup>
