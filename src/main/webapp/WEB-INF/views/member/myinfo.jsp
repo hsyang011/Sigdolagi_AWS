@@ -42,7 +42,7 @@
                     <br><br><br><br>
                     <div id="left"><!-- 좌측메뉴-->
                         <div id="profile"><img src="../images/logo.png" alt=""></div>
-                        <div id="leftname">회원이름</div>
+                        <div id="leftname">${nickname}님 </div>
                         <div id="leftreft" class="">
                         <div id="myactivity">
                             <a href="/member/mypage.do">나의 활동관리</a>
@@ -58,11 +58,11 @@
                 </div>
                 <div class="col-10" id="col10" style="padding-left: 100px;">
                     <div class="d-flex">
-                        <div id="myactivityR" style="width: 200px; "> <a href="./mypage_.html">나의 활동관리</a>
+                        <div id="myactivityR" style="width: 200px; "> <a href="/member/mypage.do">나의 활동관리</a>
                         </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <div id="myinfoR" style="width: 150px; "> <a href="./myinfo.html">나의 정보관리</a>
+                        <div id="myinfoR" style="width: 150px; "> <a href="../member/myinfo.do">나의 정보관리</a>
                         </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <div id="myorderR" style="width: 200px; "> <a href="./myordermanage.html">나의 주문관리</a>
+                        <div id="myorderR" style="width: 200px; "> <a href="../member/myordermanage.do">나의 주문관리</a>
                         </div>
                      </div>
                     

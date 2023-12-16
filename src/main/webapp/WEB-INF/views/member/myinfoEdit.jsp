@@ -56,7 +56,7 @@
                     <br><br><br><br>
                     <div id="left"><!-- 좌측메뉴-->
                         <div id="profile"><img src="../images/logo.png" alt=""></div>
-                        <div id="leftname">회원이름</div>
+                        <div id="leftname">${leftname}님</div>
                         <div id="leftreft" class="">
                         <div id="myactivity">
                             <a href="/member/mypage.do">나의 활동관리</a>
@@ -72,11 +72,11 @@
                 </div>
                 <div class="col-10" style="padding-left: 100px;" id="col10" >
                     <div class="d-flex">
-                        <div id="myactivityR" style="width: 200px; "> <a href="./mypage_.html">나의 활동관리</a>
+                        <div id="myactivityR" style="width: 200px; "> <a href="/member/mypage.do">나의 활동관리</a>
                         </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <div id="myinfoR" style="width: 200px; position: relative; right: 20px; "> <a href="./myinfo.html">나의 정보관리</a>
+                        <div id="myinfoR" style="width: 200px; position: relative; right: 20px; "> <a href="../member/myinfo.do">나의 정보관리</a>
                         </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <div id="myorderR" style="width: 150px; "> <a href="./myordermanage.html">나의 주문관리</a>
+                        <div id="myorderR" style="width: 150px; "> <a href="../member/myordermanage.do">나의 주문관리</a>
                         </div>
                     </div>
                     <br><br><br>
@@ -90,7 +90,7 @@
                             <table id="infotable">
                               <tr>
                                 <td style="margin-bottom: 10px;">아이디 :</td>
-                                <td style="margin-bottom: 10px;"><input type="text" id="id" placeholder="아이디는 변경할  수 없습니다."></td>
+                                <td style="margin-bottom: 10px;"><input type="text" value="${memberDTO.email}" id="id" placeholder=""readonly></td>
                             </tr>
                                     
                                 <tr>
@@ -103,27 +103,28 @@
                                 <tr>
                                   <td>이름:</td>
                                   <td>
-                                      <input type="text" id="name" style="padding-right: 20px;">
+                                      <input type="text" id="name" value="${memberDTO.name}" style="padding-right: 20px;" readonly>
                                   </td>
                                 </tr>
                                 <tr>
                                   <td>닉네임:</td>
                                   <td>
-                                      <input type="text" id="nickname" style="padding-right: 20px;">
+                                      <input type="text" id="nickname" value="${memberDTO.nickname }" style="padding-right: 20px;">
                                       <button id="doublecheck" style="margin-left: 20px; text-align: center;">중복확인</button>
                                   </td>
                                 </tr>
                                 <tr id="pctall">
                                   <td> 연락처 :</td>
-                                  <td><input type="text" id="tel1" style="width: 100px;"><span id="hypoon1"  style="padding-left: 20px; font-size: 30px;">-</span><input type="text" id="tel2" style="width: 100px; margin-left: 20px; " ><span id="hypoon2" style="padding-left: 20px; font-size: 30px;">-</span><input type="text" id="tel3" style="width: 100px; margin-left: 20px;"></td>
+                                   <td><input type="text" id="tel1" value="${tel1}" style="width: 100px;"><span id="hypoon1"  style="padding-left: 20px; font-size: 30px;">-</span><input type="text" id="tel2" value="${tel2}" style="width: 100px; margin-left: 20px; " ><span id="hypoon2" style="padding-left: 20px; font-size: 30px;">-</span><input type="text" id="tel3" value="${tel3}" style="width: 100px; margin-left: 20px;" ></td>
+                                	<%-- <input type="text" id="nickname" name="nickname" value="${memberDTO.phone }" style="padding-right: 20px;"> --%>
                                 </tr>
                                 </tr>
                                   <td> 주소 : </td>
                                   <td> 
-                                    <input type="text" id="addr1" style="margin-bottom: 40px; margin-right: 50px; width: 200px;"  placeholder="우편번호"> 
+                                    <input type="text" id="addr1"  value="${memberDTO.zipcode }" style="margin-bottom: 40px; margin-right: 50px; width: 200px;"  placeholder="우편번호"> 
                                     <button  id="addrsearch">주소찾기</button>
-                                    <input type="text" id="addr2"style="margin-bottom: 40px;" >
-                                    <input type="text" id="addr3" placeholder="상세주소" >
+                                    <input type="text" id="addr2" value="${memberDTO.addr1 }" style="margin-bottom: 40px;" >
+                                    <input type="text" id="addr3" value="${memberDTO.addr2 }" placeholder="상세주소" >
                                   </td>
                                 </tr>
                                 <tr>

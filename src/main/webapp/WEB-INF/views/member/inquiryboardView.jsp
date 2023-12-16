@@ -168,14 +168,14 @@ main > * { margin: 50px 0; }
                                 <tr>
                                     <td>제목</td>
                                     <td>
-                                        <input type="text" name="title" value="${inquiryDTO.title}" style="width: 95%;" />
+                                        <input type="text" name="title" value="${inquiryDTO.title}" style="width: 95%;" readonly />
                                     </td>
                                 </tr>
             
                                 <tr>
                                     <td>내용</td>
                                     <td>
-                                        <textarea name="content" value="${inquiryDTO.content}" style="width: 95%; height: 300px;"></textarea>
+                                        <textarea name="content"  style="width: 95%; height: 300px;" readonly>${inquiryDTO.content}</textarea>
                                     </td>
                                 </tr>
                                 <!-- <tr>
@@ -189,9 +189,7 @@ main > * { margin: 50px 0; }
                                 </tr> -->
                                 <tr>
                                     <td colspan="2" align="center" class="btn_td">
-                                        <button type="submit" class="writeFrm_end">작성 완료</button>
-                                        <button type="reset" class="writeFrm_reset">다시 입력</button>
-                                        <button type="button" class="writeFrm_list" onclick="">목록 보기</button>
+                                        <button type="button" class="writeFrm_list"  onclick="location.href='./mypage.do'">목록 보기</button>
                                     </td>
                                 </tr>
                             </table>

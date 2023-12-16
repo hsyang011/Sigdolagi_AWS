@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;import org.yaml.snakeyaml.comments.CommentLine;
 
 import com.edu.springboot.community.BoardDTO;
+import com.edu.springboot.member.IMemberService;
 import com.google.gson.JsonObject;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -62,6 +63,9 @@ public class CommunityController {
 	   @Autowired
 	   IPhotoboardService photoboarddao;
 
+	   @Autowired
+	   IMemberService memberdao;
+	   
 	   
 	   
 	   
@@ -196,7 +200,7 @@ public class CommunityController {
 	   
 	   
 	   
-	   //글쓰기 페이지 
+	   //글쓰기 페이지
 	   @PostMapping("/community/freeboard_write.do")
 	   public String freeboardWrite(Model model, HttpServletRequest req, Principal principal) {
 	      String email= principal.getName();
@@ -212,7 +216,8 @@ public class CommunityController {
 	      return "redirect:freeboard_list.do";
 	   }
 	   
-	
+	   
+	   
 	   //자유게시판 view 
 	   @RequestMapping("/community/freeboard_view.do")
 	   public String freeboardView(Model model, BoardDTO boardDTO, HttpServletRequest req,Principal principal) {
@@ -228,7 +233,7 @@ public class CommunityController {
 	    	  System.out.println("idx가 null입니다.");
 	    	  e.printStackTrace();
 	      }
-	
+	      
 	      model.addAttribute("boardDTO", boardDTO);
 	        // 코멘트 테이블 전부다  얻어와서 저장하기  
 	      ArrayList<CommentsDTO> commentsLists = dao.CommentsPage(commentsDTO);
