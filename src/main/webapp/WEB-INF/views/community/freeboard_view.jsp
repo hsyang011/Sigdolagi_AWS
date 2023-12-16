@@ -92,7 +92,7 @@ function deletePost(freeboard_idx){
 function deleteComment(comments_idx){
     var confirmed = confirm("정말로 댓글을 삭제하겠습니까?"); 
     if (confirmed) {
-        var form = document.commentsdeletefrm; 
+        var form = document.writeFrm; 
         form.method = "post";  
         form.action = "./freeboard_Comments_delete.do";
         form.submit();  
@@ -163,7 +163,7 @@ function SaveComment(){
             "<tr align=\"center\">" +
             "<td>" + res.nickname + "</td>" +
             "<td>" + res.content + "</td>" +
-            "<td>" + getCurrentDateTime() + <button onclick='deleteComment(" + res.comments_idx + ")'>삭제</button></td>" +
+            "<td>" + getCurrentDateTime() + "</td>" +
             "</tr>";
         // 화면에 댓글 추가
         $("#commentsTableBody").append(commentHTML);
@@ -290,22 +290,21 @@ function SaveComment(){
 	                            	<th style="text-align: center;"></th>	
 		                       	</tr>
 	                   		</thead>
-			                 <tbody id="commentsTableBody">
-							    <c:forEach items="${ CommentsLists }" var="row" varStatus="loop">    
-							        <tr align="center">
-							            <form name="commentsdeletefrm" action="/community/freeboard_Comments_delete.do" method="post">
-							                <input type="hidden" name="comments_idx" value="${row.comments_idx}" >
-							                <td>${ row.nickname }</td>
-											<td name="idx" style="text-align: center; display: none;">
-										    <input type="text" name="idx" value="${row.idx}">
-											</td>
-                                            <td>${row.content}</td>
-							                <td>${ row.postdate } <button type="submit" class="writeFrm_reset"  onclick="">삭제</td>
-							                <!-- <input type="button" value="삭제" onclick="deleteComment();"> -->
-							            </form>
-							        </tr>
-							    </c:forEach> 
-							</tbody>
+			                   <tbody id="commentsTableBody">
+			                      <c:forEach items="${ CommentsLists }" var="row" varStatus="loop">    
+		                             <tr align="center">
+		                                 <td>${ row.nickname }</td> 
+		                                 <td>${ row.content }</td> 
+		                                 <td>${ row.postdate }</td>
+                   						<td>
+	                   						<form id="commentsdeletefrm" action="/community/freeboard_Comments_delete.do" method="post">
+	                   		   					<input type="hidden" name="comments_idx" value="${row.comments_idx}" >
+	                   		   					<input type="button" value="삭제" onclick="deleteComment(${row.comments_idx });">
+						                  	</form>
+		                                 </td>
+		                             </tr>
+	                       		</c:forEach> 
+		                    </tbody>
 						</table>
 					</div>
 				</div> 

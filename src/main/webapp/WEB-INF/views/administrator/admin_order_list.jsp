@@ -97,7 +97,7 @@ function listDelete(idx){
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                   <!--  <script type="text/javascript">
+                                    <script type="text/javascript">
 	                                    $(function(){
 		                                   /*  function orderList(idx){
 		                                    	
@@ -133,7 +133,7 @@ function listDelete(idx){
 	                                    function errCallBack(errData){
 	                                    	console.log(errData.status+":"+errData.statusText);
 	                                    }
-									</script> -->
+									</script>
                                     	<c:forEach items="${adminOrderSelect }" var="row" varStatus="loop">
                                         <tr>
                                             <td style="text-align: center;">
@@ -230,15 +230,19 @@ function listDelete(idx){
                                     <tr>
                                     	<th colspan="4" style="text-align: center;">주문상품</th>
                                     </tr>
-                                    <c:forEach items="${boards}" var="board">
+                                    <tr>
+                                    	<td colspan="3" style="text-align: center;">
+                                    		상품명 ㅁ잗러미잗러미ㅏㅈㄷ러맞ㄷㄹ0000
+                                    	</td>
+                                    	<td>2개</td>
+                                    </tr>
+                                    <c:forEach items="${prodList}" var="row">
                                         <tr>
-                                            <td>
-												<img src="../images/products/thumb1.jpg" alt="" width="50px" height="50px">
-											</td>
-                                            <td><a href="get?bno=${board.bno} ">상품번호</a></td>
-                                            <td><span>2</span>개</td>
-                                            <td>총합계: <span>11,000</span>원</td>
-                                        </tr>
+	                                    	<td colspan="3" style="text-align: center;">
+	                                    		<a href="">상품명 ㅁ잗러미잗러미ㅏㅈㄷ러맞ㄷㄹ0000</a>
+	                                    	</td>
+	                                    	<td>2개</td>
+	                                    </tr>
                                     </c:forEach>
                                 </tbody>
                             </table>
