@@ -101,11 +101,7 @@ public class CommunityController {
 		System.out.println("댓글 디비에 있는거 가저오는거 성공?");
 		System.out.println(commentsLists);
 		
-		//테이블 하나 가저오기 방금쓴 댓글 테이블 
 		
-		
-		
-		model.addAttribute("commentsDTO", commentsDTO);
 		model.addAttribute("CommentsLists", commentsLists);
 		model.addAttribute("photoBoardDTO",photoBoardDTO);
 		model.addAttribute("result", result);
@@ -139,8 +135,6 @@ public class CommunityController {
 			
 			System.out.println("댓글 디비에 있는거 가저오는거 성공?");
 			System.out.println(commentsLists);
-			
-			
 			
 			
 			model.addAttribute("CommentsLists", commentsLists);
@@ -281,17 +275,16 @@ public class CommunityController {
 	   }
 	   
 	   
-	   //자유게시판 댓글삭제하기 
+	   //자유게시판 댓글 삭제하기 
 	   @PostMapping("/community/freeboard_Comments_delete.do")
 	   public String boardDeleteComments(HttpServletRequest req,CommentsDTO commentsDTO) {
-		  System.out.println("댓글 삭제 확인을 위해 댓글 불러오기 테스트 ");
-		  System.out.println(commentsDTO);
-		  int result = dao.deleteComments(req.getParameter("comments_idx"));
-		  System.out.println("comments_idx");
-	      System.out.println("글삭제결과:"+result);
-	      
+		   	System.out.println("댓글 삭제 확인을 위해 댓글 불러오기 테스트 ");
+		   	System.out.println(commentsDTO);
+		   	System.out.println(req.getParameter("comments_idx"));
+		   	int result = dao.deleteComments(req.getParameter("comments_idx"));
+		   	System.out.println("comments_idx");
+		   	System.out.println("글삭제결과:"+result);
 	      return "redirect:freeboard_list.do";
-//	      return "redirect:freeboard_view.do?freeboard_idx="+boardDTO.getFreeboard_idx();
 	   }
 
 
@@ -301,26 +294,7 @@ public class CommunityController {
    
    
    
-	   
-   //댓글 삭제하기 
-	   
-	   @PostMapping("/community/photoboardcommnt_delete.do")
-	   public String photoboardDeleteCommentPost(HttpServletRequest req,Principal principal, CommentsDTO commentsDTO,
-			   PhotoBoardDTO photoBoardDTO) {
-		   System.out.println(photoBoardDTO);
-		   System.out.println("comments_idx");
-		   System.out.println("idx");
-		   String idx = req.getParameter("idx");
-		   System.out.println(req.getParameter("idx"));
-		   System.out.println(req.getParameter("comments_idx"));
-		   System.out.println("포토게시판 댓글 제거 컨트롤러 ");
-		   System.out.println(commentsDTO);
-		   System.out.println(photoBoardDTO);
-	      int result = photoboarddao.deletecomment(req.getParameter("comments_idx"));
-	      System.out.println("글삭제결과:"+result);
-	      
-	      return "redirect:photoboard_view.do?idx="+idx;
-	   }
+   
    
    
    
@@ -668,32 +642,28 @@ public class CommunityController {
    //포토 게시판 삭제처리
    @PostMapping("/community/photoboard_delete.do")
    public String photoDeletePost(HttpServletRequest req ) {
-	   System.out.println("idx");
-	   
       int result = photoboarddao.photodelete(req.getParameter("idx"));
       System.out.println("글삭제결과:"+result);
-      
-      
       
       return "redirect:photoboard_list.do";
    }
    
    //포토 게시판 댓글 삭제 처리  /photoboardcommnt_delete.do
-//   @PostMapping("/community/photoboardcommnt_delete.do")
-//   public String photoCommentDeletePost(HttpServletRequest req, CommentsDTO commentsDTO ) {
-//	   
-//	   
-//	   	System.out.println("포토게시판 댓글 삭제 들어오나? ");
-//	   	System.out.println(commentsDTO);
-//	   
-//	   	System.out.println();
-//	   
-//	   	  
-//	      int result = photoboarddao.photodelete(req.getParameter("idx"));
-//	      System.out.println("글삭제결과:"+result);
-//	      
-//	      return "redirect:photoboard_list.do";
-//	   }
+   @PostMapping("/community/photoboardcommnt_delete.do")
+   public String photoCommentDeletePost(HttpServletRequest req, CommentsDTO commentsDTO ) {
+	   
+	   
+	   	System.out.println("포토게시판 댓글 삭제 들어오나? ");
+	   	System.out.println(commentsDTO);
+	   
+	   	System.out.println();
+	   
+	   	  
+	      int result = photoboarddao.photodelete(req.getParameter("idx"));
+	      System.out.println("글삭제결과:"+result);
+	      
+	      return "redirect:photoboard_list.do";
+	   }
    
    
    		

@@ -92,7 +92,7 @@ function deletePost(freeboard_idx){
 function deleteComment(comments_idx){
     var confirmed = confirm("정말로 댓글을 삭제하겠습니까?"); 
     if (confirmed) {
-        var form = document.commentsdeletefrm; 
+        var form = document.writeFrm; 
         form.method = "post";  
         form.action = "./freeboard_Comments_delete.do";
         form.submit();  
@@ -298,8 +298,8 @@ function SaveComment(){
 		                                 <td>${ row.postdate }</td>
                    						<td>
 	                   						<form id="commentsdeletefrm" action="/community/freeboard_Comments_delete.do" method="post">
-	                   		   				<input type="hidden" name="comments_idx" value="{row.comments_idx}" >
-	                   		   				<input type="button" value="삭제" onclick="deleteComment(${row.comments_idx});">
+	                   		   					<input type="hidden" name="comments_idx" value="${row.comments_idx}" >
+	                   		   					<input type="button" value="삭제" onclick="deleteComment(${row.comments_idx });">
 						                  	</form>
 		                                 </td>
 		                             </tr>
