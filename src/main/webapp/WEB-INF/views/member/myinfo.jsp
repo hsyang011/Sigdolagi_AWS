@@ -75,7 +75,7 @@
                                     <div class="title_line" style="border-bottom: 3px solid #FFA24D; width: 85px; border-radius: 32px;"></div>
                                 </div>
                                 <div class="check_frm" style="display: flex; justify-content: space-between; margin-top: 10%; align-items: center;">
-                                    <input type="text" class="input_pw" placeholder="비밀번호입력" style="width: 200px; height: 40px; border: none; border-radius: 32px; padding-left: 15px; outline: none;">
+                                    <input type="password" class="input_pw" placeholder="비밀번호입력" style="width: 200px; height: 40px; border: none; border-radius: 32px; padding-left: 15px; outline: none;">
                                     <input type="submit" value="인증하기" style="border: none; background-color: #FFA24D; border-radius: 10px; color: white; width: 100px; height: 40px;">
                                 </div>
                             </div>
