@@ -36,7 +36,7 @@
 				ORDER BY inquiryboard_idx DESC
 			) Tb
 		)
-	 	WHERE rNum<![CDATA[>=]]>#{start} AND rNum<![CDATA[<=]]>#{end}
+	 	WHERE rNum<![CDATA[>=]]>#{start} AND rNum<![CDATA[<=]]>#{end} AND email=#{email}
 	</select>
 	
 	<!-- 관리자 1:1문의 목록 -->

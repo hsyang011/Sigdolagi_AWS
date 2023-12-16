@@ -59,6 +59,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		INSERT INTO noticeboard (noticeboard_idx, email, nickname, title, content) VALUES (seq_noticeboard_idx.nextval,#{email}, #{nickname}, #{title}, #{content} )
 	</insert>
 	
+	
+	
+	
+	
+
+	
+	
 	<!-- 관리자 공지사항 삭제 -->
 	<delete id="adminNoticeDelete">
 		DELETE FROM noticeboard WHERE noticeboard_idx=#{idx}

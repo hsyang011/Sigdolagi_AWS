@@ -158,7 +158,7 @@ public class AdminController {
 	}
 	
 	//관리자 플래너 삭제
-	@PostMapping("/administrator/adminPlannerDelete.do")
+	@PostMapping("/administrator/admin/PlannerDelete.do")
 	public String adminPlannerDelete(HttpServletRequest req) {
 		int result = plannerDAO.adminPlannerDelete(req.getParameter("idx"));
 		if(result==1)System.out.println("삭제되었습니다.");
@@ -328,6 +328,7 @@ public class AdminController {
 			//View로 전달하기 위해 Model객체에 저장한다.
 			model.addAttribute("saveFileMaps", saveFileMaps);
 			
+			
 			// Model객체에 정보를 저장한다.
 			model.addAttribute("originalFileName", originalFileName);
 			model.addAttribute("savedFileName", savedFileName);
@@ -339,6 +340,7 @@ public class AdminController {
 			//멀티파일
 			String[] oArr = ofiles.split(":");
 			String[] sArr = sfiles.split(":");
+			
 			
 			for (int i=0; i<oArr.length && i<5; i++) {
 				if(i == 0) {

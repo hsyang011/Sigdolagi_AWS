@@ -119,7 +119,8 @@ main > * { margin: 50px 0; }
                     <li class="on"><a href="../service/inquiryboard.do">1:1문의하기</a></li>
                     <li><a href="../service/faq.do">자주묻는질문</a></li>
                 </ul>
-                <!-- <ul class="nav my-3 category mt-4">
+                <!-- 
+                <ul class="nav my-3 category mt-4">
                     <li class="nav-item me-3"><button type="button" class="mealk_cate btn rounded-pill on">#전체</button></li>
                     <li class="nav-item me-3"><button type="button" class="mealk_cate btn rounded-pill">#한식</button></li>
                     <li class="nav-item me-3"><button type="button" class="mealk_cate btn rounded-pill">#일식</button></li>
@@ -130,7 +131,6 @@ main > * { margin: 50px 0; }
             </div>
             <!-- 컨텐츠 헤더 끝 -->
             <div class="shop_board container  mt-5" >
-
                 <!-- 문의 폼 -->
                 <div class="container">
                     <div class="freeboard_write_frm">
@@ -196,18 +196,11 @@ main > * { margin: 50px 0; }
                         </form>
                     </div>
                 </div>
-              
-              
-
-         
-
         <!-- 컨테이너 안쪽 컨텐츠 -->
         </div>
-
-
-
     </main>
     <!-- main 끝 -->
+    
     
     <!-- footer 추가 -->
     <%@ include file="../include/footer.jsp" %>

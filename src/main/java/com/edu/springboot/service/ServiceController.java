@@ -23,7 +23,7 @@ import utils.PagingUtil;
 
 @Controller
 public class ServiceController {
-	
+	 
 	@Autowired
 	INotiboardService notidao;
 	

@@ -21,6 +21,9 @@
 
 <style>
     
+
+
+
 /*main nav_location 설정*/
 .nav_locat {font-family: 'NPSfontRegular'; margin-left: -10px;}
 .nav_locat li a{color: #FF7A00;}

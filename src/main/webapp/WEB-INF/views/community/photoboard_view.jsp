@@ -154,12 +154,12 @@
 
 <script>
 
-function deleteCommentPost(comments_idx){
-    var confirmed = confirm(" 댓글 정말로 삭제하겠습니까?"); 
+function deletePost(photoboard_idx){
+    var confirmed = confirm("정말로 삭제하겠습니까?"); 
     if (confirmed) {
-    	var form = document.commentwriteFrm;
+        var form = document.writeFrm;      
         form.method = "post";  
-        form.action = "./photoboardcommnt_delete.do";
+        form.action = "./photoboard_delete.do";
         form.submit();  
     }
 }
@@ -167,13 +167,15 @@ function deleteCommentPost(comments_idx){
 
 
 
-
-</script>
-
-
-
-
-<script>
+function deleteCommentPost(comments_idx){
+    var confirmed = confirm("정말로 삭제하겠습니까?"); 
+    if (confirmed) {
+        var form = document.writeFrm;      
+        form.method = "post";  
+        form.action = "./photoboardcommnt_delete.do";
+        form.submit();  
+    }
+}
 
 
 function CommentSend(){
@@ -185,6 +187,7 @@ function CommentSend(){
     	nickname : frm.nickname.value,
     	content : frm.content.value,
     	email : frm.email.value
+    	
     };
     //alert("댓글작성 "); // 여기에 alert 추가
     console.log(data);
@@ -196,7 +199,12 @@ function CommentSend(){
         data: data,
         success: function(res) {
             console.log("댓글작성 "+res.email);
+            console.log("댓글 작성 후 서버 응답 데이터:");
+            console.log(res);
+            // 댓글 작성 성공 후 페이지 새로고침
+            location.reload();
             displayComment(res);
+           	
         },
         error: function() {
             console.log("요청실패");
@@ -236,8 +244,11 @@ function CommentSend(){
             "<tr align=\"center\">" +
             "<td>" + res.nickname + "</td>" +
             "<td>" + res.idx + "</td>" +
+            "<td name=\"comments_idx\">" + res.comments_idx + "</td>" +
             "<td>" + res.content + "</td>" +
             "<td>" + getCurrentDateTime() + "</td>" +
+            "<td>" + res.comments_idx + "</td>" +
+            "<td><button onclick='deleteComment(" + res.comments_idx + ")'>삭제</button></td>" +
             "</tr>";
         // 화면에 댓글 추가
         $("#commentsTableBody").append(commentHTML);
@@ -245,7 +256,7 @@ function CommentSend(){
 </script>
     
     
-    </head>
+</head>
 <body>
     <!-- wrapper 시작 -->
     <div class="container-fluid" id="wrap">
@@ -323,9 +334,8 @@ function CommentSend(){
                                     </tr>
                                 </table>
                             </form>
-                            
-                            
-
+							
+							
                             <div class="cm_write" style="width:100%">
                                 <fieldset>
                                     <form name="commentwriteFrm" method="post"  action="/community/photoboard_comment.do" class="writeFrm">
@@ -334,7 +344,6 @@ function CommentSend(){
                                             <input type="text" name="idx" value="${photoBoardDTO.idx }">
                                             <input type="text" name="nickname" value="${nickname}">
                                             <input type="text" name="email" value="${email}">
-                                            
                                             <p><textarea id="content" name="content" onkeyup=""  style="width:100%" rows="4" placeholder="댓글을 입력해 주세요."></textarea></p>
                                             <span><button type="button" class="btns" onclick="CommentSend();">등록</button> <i id="counter">0/300자</i></span>
                                         </div>
@@ -342,31 +351,35 @@ function CommentSend(){
                                 </fieldset>
                             </div>
 
-							
-							
-
-
-
                             <table class="table table-border">
                                 <thead>
                                     <tr>
                                         <th style="text-align: center;">Nickname</th>
-                                        <th style="text-align: center;">Photo Index</th>
+                                         <!-- <th style="text-align: center;">Comments Index</th> 
+                                         <th style="text-align: center;">Photo Index</th>  -->
                                         <th style="text-align: center;">Content</th>
                                         <th style="text-align: center;">Post Date</th>
                                     </tr>
                                 </thead>
+                                <form id="commentDelete" action="/community/photoboardcommnt_delete.do" method="post">
                                 <tbody id="commentsTableBody">
                                     <!-- Existing comments will be added here dynamically -->
                                     <c:forEach items="${CommentsLists}" var="row" varStatus="loop">
                                         <tr align="center">
                                             <td>${row.nickname}</td>
-                                            <td>${row.comments_idx}</td>
+                                            <td name="comments_idx" style="text-align: center; display: none;">
+										    <input type="text" name="comments_idx" value="${row.comments_idx}">
+											</td>
+											<td name="idx" style="text-align: center; display: none;">
+										    <input type="text" name="idx" value="${row.idx}">
+											</td>
                                             <td>${row.content}</td>
-                                            <td>${row.postdate} &nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="삭제" onclick="deleteCommentPost(${row.comments_idx});">삭제하기</td>
+                                            <td>${row.postdate} &nbsp;&nbsp;&nbsp;&nbsp;
+                                			<button type="submit" class="writeFrm_reset"  onclick="">삭제하기</button>
                                         </tr>
                                     </c:forEach>
                                 </tbody>
+                      			</form>
                             </table>
                         </div>
                     </div>

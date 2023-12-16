@@ -4,13 +4,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-	<meta name="description" content="" />
-	<meta name="author" content="" />
-	<title>관리자 플래너목록</title>
-	
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+   <meta name="description" content="" />
+   <meta name="author" content="" />
+   <title>관리자 플래너목록</title>
+   
     <!-- Custom fonts for this template -->
     <link href="../bootstrap/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
     <link
@@ -25,13 +25,13 @@
 </head>
 <script>
 function listDelete(idx){
-	let frm = document.frm;
-	if(confirm("삭제하시겠습니까?")){
-		frm.planner_idx.value = idx;
-		frm.action = "/administrator/admin_planner_delete.do";
-		frm.method = "post";
-		frm.submit();
-	}
+   let frm = document.frm;
+   if(confirm("삭제하시겠습니까?")){
+      frm.idx.value = idx;
+      frm.action = "/administrator/admin_planner_delete.do";
+      frm.method = "post";
+      frm.submit();
+   }
 }
 
 </script>
@@ -40,7 +40,7 @@ function listDelete(idx){
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-		<!-- 사이드메뉴 추가 -->
+      <!-- 사이드메뉴 추가 -->
         <%@ include file="../include/admin_leftmenu.jsp" %>
 
         <!-- 메인 Wrapper -->
@@ -58,8 +58,8 @@ function listDelete(idx){
                     <!-- Page Heading -->
                     <h1 class="h3 mb-2 text-gray-800">플래너목록</h1>
                     <p class="mb-4">
-                    	플래너목록 관리하는 곳 입니다.
-                    	<!-- <a target="_blank" href="https://datatables.net">official DataTables documentation</a>. -->
+                       플래너목록 관리하는 곳 입니다.
+                       <!-- <a target="_blank" href="https://datatables.net">official DataTables documentation</a>. -->
                     </p>
 
                     <!-- DataTales Example -->
@@ -71,14 +71,14 @@ function listDelete(idx){
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
-                            	<form name="frm">
-                            		<input type="hidden" name="idx"/>
-                            	</form>
+                               <form name="frm">
+                                  <input type="hidden" name="idx"/>
+                               </form>
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-	                                <colgroup>
-	                                	<col width="8%" /><col width="8%" /><col width="40%" /><col width="10%" /><col width="10%" />
-	                                	<col width="10%" /><col width="10%" />
-	                                </colgroup>
+                                   <colgroup>
+                                      <col width="8%" /><col width="8%" /><col width="40%" /><col width="10%" /><col width="10%" />
+                                      <col width="10%" /><col width="10%" />
+                                   </colgroup>
                                     <thead>
                                         <tr>
                                             <th>번호</th>
@@ -113,7 +113,7 @@ function listDelete(idx){
                                                 <img src="../uploads/${row.sfile}" alt="" width="100px" height="100px">
                                             </td>
                                             <td>
-                                            	<a href="javascript:listDelete('${row.planner_idx }');" class="btn btn-danger btn-icon-split">
+                                               <a href="javascript:listDelete('${row.planner_idx }');" class="btn btn-danger btn-icon-split">
                                                     <span class="text">삭제</span>
                                                 </a>
                                             </td>
@@ -132,7 +132,7 @@ function listDelete(idx){
             </div>
             <!-- End of Main Content -->
 
-			<!-- footer 추가 -->
+         <!-- footer 추가 -->
             <%@ include file="../include/admin_footer.jsp" %>
 
         </div>

@@ -129,6 +129,7 @@ public class MemberController {
 	      
 	      int inquirytotalCount = inquerydao.inqueryGetTotalCount(parameterDTO);
 	      System.out.println("토탈카운트"+inquirytotalCount);
+	      String email = principal.getName();
 	      
 	      System.out.println(pageSize);
 	      System.out.println(blockPage);
@@ -139,7 +140,8 @@ public class MemberController {
 	       end = pageNum * pageSize;
 	      parameterDTO.setStart(start);
 	      parameterDTO.setEnd(end);
-	      parameterDTO.setEmail(principal.getName());
+	      parameterDTO.setEmail(email);
+	      //parameterDTO.setEmail(principal.getName());
 	      
 	      
 	      // 이거 바꿔야 된다. 
