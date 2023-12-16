@@ -66,6 +66,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	
 	
+	<update id="photoupdate" parameterType="com.edu.springboot.community.PhotoBoardDTO">
+   		UPDATE photoboard SET visitcount=visitcount+1 WHERE idx=${idx}
+	</update>
+	
+	
 	<delete id="photodelete">
 		DELETE FROM photoboard WHERE idx=#{idx}
 	</delete>

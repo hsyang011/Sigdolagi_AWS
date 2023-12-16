@@ -13,8 +13,8 @@
 	
 	<!-- 장바구니에 상품 추가 -->
 	<insert id="addToCart1" parameterType="com.edu.springboot.market.CartDTO">
-		INSERT INTO cart (cart_idx, prod_idx, email, prod_count)
-			VALUES (seq_cart_idx.NEXTVAL, ${prod_idx}, #{email}, ${prod_count})
+		INSERT INTO cart (cart_idx, prod_idx, email, prod_count, prod_name)
+			VALUES (seq_cart_idx.NEXTVAL, ${prod_idx}, #{email}, ${prod_count}, #{prod_name})
 	</insert>
 	
 	<!-- 장바구니에 담긴 상품의 갯수를 증가 -->

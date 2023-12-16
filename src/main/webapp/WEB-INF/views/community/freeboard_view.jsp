@@ -233,7 +233,7 @@ function SaveComment(){
 		                             <td>제목</td>
 		                             <td colspan="3">${ boardDTO.title }</td>
 								</tr>
-		                                <tr>
+		                        <tr>
 		                             <td>내용</td>
 		                             <td colspan="3" height="100">
 		                                ${ boardDTO.content }              

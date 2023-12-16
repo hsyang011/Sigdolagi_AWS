@@ -312,13 +312,24 @@ function CommentSend(){
                                 <input type="hidden" name="tname"  />
                                 <input type="hidden" name="idx" value="${photoBoardDTO.idx }" />
                                 <table class="table table-bordered" id="free_write_frm_table" width="100%" >
+                                  <colgroup>
+                                   		<col width="20%" /><col width="30%" /><col width="20%" /><col width="30%" />
+                                	</colgroup>
+                                   	<tr> 
+		                             	<td>작성일</td> <td>${ photoBoardDTO.postdate }</td>
+		                             	<td>조회수</td> <td>${ photoBoardDTO.visitcount }</td>
+									</tr>
+									<tr>
+		                             	<td>작성자</td>
+		                             	<td colspan=3>${ photoBoardDTO.nickname }</td>  
+									</tr>
                                     <tr>
                                         <td>제목</td>
-                                        <td>${photoBoardDTO.title}</td>
+                                        <td colspan="3">${photoBoardDTO.title}</td>
                                     </tr>
                                     <tr>
                                         <td>내용</td>
-                                        <td>
+                                        <td colspan="3">
                                             <img width="30%"  class="card-img-top" src="../uploads/${photoBoardDTO.sfile}" alt="이미지">
                                             <textarea id="" name="content" readonly>${photoBoardDTO.content}</textarea>
                                         </td>
@@ -326,7 +337,7 @@ function CommentSend(){
                                     
                                     
                                     <tr>
-                                        <td colspan="2" align="center" class="btn_td">
+                                        <td colspan="4"  align="center" class="btn_td">
                                             <button type="button" class="writeFrm_edit" onclick="location.href='./photoboard_edit.do?idx=${photoBoardDTO.idx }';">수정하기</button>
                                             <button type="button" class="writeFrm_reset"  onclick="deletePost();">삭제하기</button>
                                             <button type="button" class="writeFrm_list" onclick="location.href='./photoboard_list.do'">목록 보기</button>

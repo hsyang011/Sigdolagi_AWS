@@ -28,6 +28,16 @@
 		UPDATE cart SET payed='true', order_idx=#{order_idx} WHERE email=#{email} AND payed='false'
 	</delete>
 	
+	<!-- 나의 주문내역을 가져옵니다. -->
+	<select id="getAllMyOrder" parameterType="string" resultType="com.edu.springboot.market.OrderDTO">
+		SELECT * FROM marketorder WHERE email=#{email} ORDER BY order_idx DESC
+	</select>
+	
+	<!-- 주문번호로 모든 상품들을 가져옵니다. -->
+	<select id="getCartList" parameterType="string" resultType="com.edu.springboot.market.CartDTO">
+		SELECT * FROM cart WHERE order_idx=#{order_idx}
+	</select>
+	
 	<!-- 관리자 주문리스트 -->
 	<select id="adminOrderSelect"
 		resultType="com.edu.springboot.market.OrderDTO"> 

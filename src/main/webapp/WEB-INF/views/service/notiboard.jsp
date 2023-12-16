@@ -192,11 +192,11 @@ main > * { margin: 50px 0; }
             <table class="table" width="100%" >
             <tr>
                 <td align="center">
-                    <select name="searchField_list" class="searchField_list"> 
+                    <select name="searchField" class="searchField"> 
                         <option value="title">제목</option> 
                         <option value="content" >내용</option>
                     </select>
-                    <input type="text" name="searchWord_list" class="searchWord_list" />
+                    <input type="text" name="searchKeyword" class="searchKeyword" />
                     <input type="submit" value="검색하기" class="btn2 "/>
                 </td>
             </tr>   

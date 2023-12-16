@@ -31,6 +31,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	 	WHERE rNum<![CDATA[>=]]>#{start} AND rNum<![CDATA[<=]]>#{end}
 	</select>
 	
+	
+	<select id="mylistPage"
+		resultType="com.edu.springboot.community.BoardDTO"
+		parameterType="com.edu.springboot.community.ParameterDTO">
+		SELECT * FROM (
+			SELECT Tb.*, rownum rNum FROM(
+				SELECT * FROM freeboard
+				<if test="searchKeyword!=null and !searchKeyword.equals('')">
+				WHERE ${searchField} LIKE '%'||#{searchKeyword} ||'%'
+				</if>
+				ORDER BY freeboard_idx DESC
+			) Tb
+		)
+	 	WHERE rNum<![CDATA[>=]]>#{start} AND rNum<![CDATA[<=]]>#{end} and email=#{email}
+	</select>
+	
 	<!-- write  -->
 	<insert id="write">
 		INSERT INTO freeboard (freeboard_idx, email, nickname, title, content) VALUES (seq_freeboard_idx.nextval, #{_email},#{_nickname}, #{_title}, #{_content} )

@@ -75,12 +75,14 @@ $(function() {
 });
 
 /* 장바구니에 상품 추가 */
-function addToCart(idx, flag) {
+function addToCart(idx, flag, name) {
 	var prod_idx = idx;
 	var prod_count = (flag==1) ? 1 : $("#count").val();
+	var prod_name = name;
 	var data = {
 		prod_idx: prod_idx,
-		prod_count: prod_count
+		prod_count: prod_count,
+		prod_name: prod_name
     };
 	
 	$.ajax({
@@ -216,7 +218,7 @@ function addToCart(idx, flag) {
                             <p>구매 예정 금액</p>
                             <h2 style="color: #FF7A00; font-weight: bold; font-size: 2em;" id="willPay"><fmt:formatNumber value="${productDTO.prod_price-productDTO.prod_sale}" pattern="#,###" />원</h2>
                         </div>
-                        <button class="btn btn-outline-dark mb-3" style="width: 100%; height: 50px;" onclick="addToCart(${productDTO.prod_idx}, 0)">장바구니</button>
+                        <button class="btn btn-outline-dark mb-3" style="width: 100%; height: 50px;" onclick="addToCart(${productDTO.prod_idx}, 0, '${productDTO.prod_name}');">장바구니</button>
                         <button class="btn" style="width: 100%; height: 50px; background-color: #FF7A00; color: white;">바로 구매</button>
                     </div>
                 </div>

@@ -25,6 +25,10 @@ public interface IPlannerService {
 	public int savePlanner(PlannerDTO plannerDTO);
 	// 플래너의 정보를 가져옵니다.
 	public PlannerDTO getPlannerInfo(PlannerDTO plannerDTO);
+	// 내가 작성했던 모든 플래너를 불러옵니다.
+	public List<PlannerDTO> getMyPlanner(String email);
+	// 선택한 플래너를 삭제합니다.
+	public int deleteMyPlanner(PlannerDTO plannerDTO);
 	
 	//관리자 플래너리스트불러오기
 	public List<PlannerDTO> adminPlannerSelect();

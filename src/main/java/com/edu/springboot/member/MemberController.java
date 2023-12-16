@@ -4,6 +4,7 @@ package com.edu.springboot.member;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,10 +15,18 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.edu.springboot.community.BoardDTO;
+import com.edu.springboot.community.IBoardService;
 import com.edu.springboot.community.IPhotoboardService;
 import com.edu.springboot.community.ParameterDTO;
 import com.edu.springboot.community.PhotoBoardDTO;
+import com.edu.springboot.market.CartDTO;
+import com.edu.springboot.market.IOrderService;
+import com.edu.springboot.market.OrderDTO;
+import com.edu.springboot.planner.IPlannerService;
+import com.edu.springboot.planner.PlannerDTO;
 import com.edu.springboot.service.InqueryBoardService;
 import com.edu.springboot.service.InqueryDTO;
 
@@ -46,6 +55,14 @@ public class MemberController {
 	@Autowired
 	InqueryBoardService inquerydao;
 	
+	@Autowired
+	IPlannerService plannerDAO;
+	
+	@Autowired
+	IBoardService dao;
+	
+	@Autowired
+	IOrderService orderDAO;
 	
 	@RequestMapping("/member/login.do")
 	public String login(Principal principal, Model model, HttpServletRequest req) {
@@ -82,6 +99,7 @@ public class MemberController {
 	
 	@RequestMapping("/member/mypage.do")
 	public String mypage(Model model, HttpServletRequest req, ParameterDTO parameterDTO, Principal principal) {
+		String email = principal.getName();
 		  System.out.println("마이페이지 컨트롤러 들어오나?");
 		  
 		  //포토게시판 리스트 처리 
@@ -106,7 +124,11 @@ public class MemberController {
 	      maps.put("pageSize", pageSize);
 	      maps.put("pageNum", pageNum);
 	      model.addAttribute("maps", maps);
-	          
+	      
+	      ArrayList<BoardDTO> lists = dao.mylistPage(parameterDTO);
+	      model.addAttribute("lists", lists);
+	      System.out.println(lists.size());
+	      
 	      //MyPhotoListPage
 	      ArrayList<PhotoBoardDTO> photolists = photoboarddao.MyPhotoListPage(parameterDTO);
 	      //ArrayList<PhotoBoardDTO> myphotolists = photoboarddao.MyPhotoListPage(parameterDTO);
@@ -170,7 +192,9 @@ public class MemberController {
 	  //    model.addAttribute("pagingImg", pagingImg);
 	      
 
-	      
+	    // 나의 플래너를 가져옵니다.
+		List<PlannerDTO> myPlannerList = plannerDAO.getMyPlanner(email);
+		model.addAttribute("myPlannerList", myPlannerList);
 		
 		
 		return "member/mypage";
@@ -205,7 +229,22 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/member/myordermanage.do")
-	public String myordermanage() {
+	public String myordermanage(Principal principal, Model model) {
+		String email = principal.getName();
+		
+		// 나의 주문내역을 가져옵니다.
+		List<OrderDTO> myOrderList = orderDAO.getAllMyOrder(email);
+		// Map컬렉션을 생성하여, key값을 order_idx, value값을 List<Cart>로 선언하여 각 주문번호별 상품들을 담습니다.
+		Map<String, List<CartDTO>> orderMap = new HashMap<String, List<CartDTO>>();
+		for (OrderDTO orderDTO : myOrderList) {
+			String order_idx = orderDTO.getOrder_idx();
+			List<CartDTO> cartList = orderDAO.getCartList(order_idx);
+			orderMap.put(order_idx, cartList);
+		}
+		model.addAttribute("myOrderList", myOrderList);
+		System.out.println("마이오더리스트:"+myOrderList);
+		model.addAttribute("orderMap", orderMap);
+		
 		return "member/myordermanagement";
 	}
 	
@@ -320,25 +359,25 @@ public class MemberController {
 			
 			
 			memberDTO = memberdao.getoneMemberDTO(memberDTO);
-		
-		 session.setAttribute("sessionEmail",memberDTO.getEmail());
-		 System.out.println("세션에 저장된 이메일 "+memberDTO.getEmail());
-		 session.setAttribute("sessionName",memberDTO.getName());
-		 System.out.println("세션에 저장된 이름"+memberDTO.getName());
-		 session.setAttribute("sessionPassword", memberDTO.getPassword());
-		 session.setAttribute("sessionNickname", memberDTO.getNickname());
-		 System.out.println("세션에 저장된 이름"+memberDTO.getNickname());
-		 System.out.println("로그인 성공");
-		    //return "main.do";
-		 
-		 return "main/main";
-	}
-	else {
-		System.out.println("로그인 실패");
-		//메세지 추가
-		model.addAttribute("loginErrorMessage", "로그인 실패");
-		return "member/login";
-	}
+			
+			 session.setAttribute("sessionEmail",memberDTO.getEmail());
+			 System.out.println("세션에 저장된 이메일 "+memberDTO.getEmail());
+			 session.setAttribute("sessionName",memberDTO.getName());
+			 System.out.println("세션에 저장된 이름"+memberDTO.getName());
+			 session.setAttribute("sessionPassword", memberDTO.getPassword());
+			 session.setAttribute("sessionNickname", memberDTO.getNickname());
+			 System.out.println("세션에 저장된 이름"+memberDTO.getNickname());
+			 System.out.println("로그인 성공");
+			    //return "main.do";
+			 
+			 return "main/main";
+		}
+		else {
+			System.out.println("로그인 실패");
+			//메세지 추가
+			model.addAttribute("loginErrorMessage", "로그인 실패");
+			return "member/login";
+		}
 		
 		
 
@@ -436,4 +475,5 @@ public class MemberController {
 		
 		return ResponseEntity.ok(uuid);
 	}
+	
 }

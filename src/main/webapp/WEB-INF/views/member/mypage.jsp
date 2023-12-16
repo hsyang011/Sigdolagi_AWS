@@ -218,8 +218,24 @@
     });
     });
  });
+    
+function deletePlanner(idx, e) {
+	$.ajax({
+		type: 'get',
+		url: '../planner/deleteMyPlanner.do',
+		data: { planner_idx: idx },
+		success: function(res) {
+			$(e.target).parent().parent().parent().remove();
+			console.log("삭제성공!");
+			alert("삭제가 완료되었습니다.");
+		},
+		error: function(err) {
+			console.log(err);
+		}
+	});
+}
 
-  </script>
+</script>
 </head>
 <body>
 <!-- wrapper 시작 -->
@@ -299,48 +315,18 @@
                         <div style="float: left;">#내가 쓴 플래너</div>
                         <br><br>
                         <figure class="row thumbnail">
-                            <!-- 1열 시작 -->
-                            <div class="card custom-col">
-                                <div>
-                                    <img class="card-img-top" src="http://placehold.it/200x200" height="250" alt="Card image">
-                                    <div class="card-body">
-                                        <h4 class="card-title" style="font-size: 18px;">2023년 12월 출발</h4>
-                                        <p class="card-text">2일간</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- 1열 끝 -->
-                            <!-- 2열 시작 -->
-                            <div class="card custom-col">
-                                <div>
-                                    <img class="card-img-top" src="http://placehold.it/200x200" height="250" alt="Card image">
-                                    <div class="card-body">
-                                        <h4 class="card-title" style="font-size: 18px;">2023년 12월 출발</h4>
-                                        <p class="card-text">2일간</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- 2열 끝 -->
-                            <!-- 3열 시작 -->
-                            <div class="card custom-col">
-                                <div>
-                                    <img class="card-img-top" src="http://placehold.it/200x200" height="250" alt="Card image">
-                                    <div class="card-body">
-                                        <h4 class="card-title" style="font-size: 18px;">2023년 12월 출발</h4>
-                                        <p class="card-text">2일간</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card custom-col">
-                                <div>
-                                    <img class="card-img-top" src="http://placehold.it/200x200" height="250" alt="Card image">
-                                    <div class="card-body">
-                                        <h4 class="card-title" style="font-size: 18px;">2023년 12월 출발</h4>
-                                        <p class="card-text">2일간</p>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- 3열 끝 -->
+                            <c:forEach items="${myPlannerList}" var="row" varStatus="loop">                
+		                    <div class="card custom-col">
+		                        <div style="cursor: pointer;">
+		                            <img class="card-img-top" src="../uploads/${row.sfile}" alt="Card image" onclick="location.href='../planner/planner_view.do?planner_idx=${row.planner_idx}';">
+		                            <div class="card-body">
+		                                <h5 class="card-title">${row.plan_start} > ${row.plan_end}</h5>
+                                        <img src="../images/cross-wish-ico.png" alt="" onclick="deletePlanner(${row.planner_idx}, event)" style="cursor: pointer;">
+                                        <input type="hidden" value="${row.planner_idx}" />
+		                            </div>
+		                        </div>
+		                    </div>
+			                </c:forEach>
                         </figure>
                         <div style="float: left;">♥플래너</div>
                         <br><br>
@@ -396,64 +382,51 @@
                         #내가 쓴 자유 게시판
                         <br> <br> <br> <br>
                           <!-- 테이블 -->
-                        <div class="container" id="cont_wrap">
-                            <div class="table_wrap" id="table_wrap">
-                            <table class="table table-border"">
-                                <colgroup>
-                                    <col width="25%"/>
-                                    <col width="25%"/>
-                                    <col width="25%"/>
-                                    <col width="25%" />
-                                </colgroup>
-                                
-                                <thead>
-                                <tr style="text-align: center;" >
-                                    <th scope="col" style="font-size: 1em; " id="freebum">번호</th>
-                                    <th scope="col"  id="freetitle" >제목</th>
-                                    <th scope="col" >작성일</th>
-                                    <th scope="col"  id="">조회</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td id="table_title">집</td>
-                                    <td>@mdo</td>
-                                    <td>33</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>최고</td>
-                                    <td>@fat</td>
-                                    <td>4</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td>Larry the Bird</td>
-                                    <td>@twitter</td>
-                                    <td>5</td>
-                                </tr>
-                                </tbody>
-                            </table>
-                            </div>
-                        </div>
-                
-                
-                        <!-- 리스트 버튼 -->
-                        <div class="container d-flex justify-content-center mb-5">
-                            <div class="row">
-                                <div class="col-12 d-flex justify-content-center">
-                                    <div class="list_btn">
-                                        <button type="button" class="btn"> &lt; </button>
-                                        <button type="button" class="btn" id="btn1"> 1 </button>
-                                        <button type="button" class="btn" id="btn1"> 2 </button>
-                                        <button type="button" class="btn" id="btn1"> 3 </button>
-                                        <button type="button" class="btn"> &gt; </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                      </div>
+                         <div class="container" id="cont_wrap">
+				            <div class="table_wrap" id="table_wrap">
+				            <table class="table table-border">
+				                <thead>
+				                <tr style="text-align: center;" >
+				
+				                    <th scope="col">번호</th>
+				                    <th scope="col" style="width: 60%;">제목</th>
+				                    <th scope="col">작성자</th>
+				                    <th scope="col">작성일</th>
+				                    <th scope="col">조회</th>
+				                </tr>
+				                </thead>
+				                <tbody>
+				                	<tr>
+				                	<c:choose>
+				                		<c:when test="${ empty lists }">
+										<tr>
+											<td colspan="5" align="center"> 등록된 게시물이 없습니다.</td>
+										</tr>
+										</c:when>
+									<c:otherwise>
+										<c:forEach items="${ lists }" var="post" varStatus="loop">
+											<tr align="center">
+											<td>
+											<!-- 게시물의 갯수, 페이지 번호, 페이지 사이즈를 통해 가상 번호를 계산해서 출력한다.  -->
+											${ maps.totalCount - (((maps.pageNum-1) * maps.pageSize) + loop.index)}
+											</td>
+											<td scope="row"><a href="../community/freeboard_view.do?freeboard_idx=${ post.freeboard_idx }">${ post.title }</td>
+				
+											<td>${ post.nickname }</td>
+											<td>${ post.postdate }</td>
+											<td>${ post.visitcount }</td>		
+											</tr> 
+										</c:forEach>
+									</c:otherwise>
+									</c:choose>
+							
+				                </tbody>
+				            </table>
+				            </div>
+				        </div>
+
+       				<div class="text-center">${pagingImg}</div>
+                      
                       <!-- 나의 포토게시판 시작 -->
                       <div class="photoboard" style="text-align: center; display: none;">
                         <div style="float: left; ">#내가 쓴 포토게시판</div>

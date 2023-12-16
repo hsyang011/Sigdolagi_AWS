@@ -384,7 +384,7 @@ public class CommunityController {
       public String photoboardView(Model model, PhotoBoardDTO photoBoardDTO,
     		  CommentsDTO commentsDTO, Principal principal) {
          
-         
+    	 photoboarddao.photoupdate(photoBoardDTO);
          photoBoardDTO = photoboarddao.photoview(photoBoardDTO);
          System.out.println(photoBoardDTO);
          photoBoardDTO.setContent(photoBoardDTO.getContent().replace("<br>", "\r\n"));
