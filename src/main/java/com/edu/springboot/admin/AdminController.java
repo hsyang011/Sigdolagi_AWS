@@ -409,4 +409,17 @@ public class AdminController {
 		return "administrator/admin_order_list";
 	}
 	
+	//관리자 주문현황목록 모달창.
+	/*
+	 * @RequestMapping("/administrator/order_modal_list.do") public String
+	 * orderModalList(Model model,HttpServletRequest req) {
+	 * 
+	 * // DB에서 인출한 게시물의 목록을 model객체에 저장한다. List<OrderDTO> adminOrderSelect =
+	 * orderDAO.adminOrderSelect();
+	 * 
+	 * model.addAttribute("orderSelect", adminOrderSelect);
+	 * 
+	 * return "administrator/admin_order_list"; }
+	 */
+	
 }

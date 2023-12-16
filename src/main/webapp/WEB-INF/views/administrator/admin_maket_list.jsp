@@ -27,7 +27,7 @@
     <script>
     function deletePost(idx){
     	let frm = document.frm;
-    	if(confirm("정말?")){
+    	if(confirm("삭제하시겠습니까?")){
     		frm.prod_idx.value = idx;
     		frm.action = "/administrator/admin_maket_delete.do";
     		frm.method = "post";

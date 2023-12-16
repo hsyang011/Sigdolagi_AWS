@@ -75,6 +75,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	   VALUES (seq_comments_idx.nextval,  #{nickname}, #{content}, sysdate, #{idx}, #{email}, 'freeboard' )
 	</insert>
 	
+	<!-- 댓글 삭제 -->  
+	<delete id="deleteComments">
+		DELETE FROM comments WHERE comments_idx=#{comments_idx}
+	</delete>
 	
 	
 	<!--코멘트 테이블 가져오기  -->

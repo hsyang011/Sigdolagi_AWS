@@ -247,7 +247,7 @@ function deletePlanner(idx, e) {
     <div id="banner" class="mt-3">
         <div id="banner_contents" class="container d-flex align-items-center">
             <div id="info">
-                <h4>나만 불 수 있는</h4>
+                <h4>나만 볼 수 있는</h4>
                 <div id="info_title" class="d-flex">
                     <h2>마이페이지</h2>
                 </div>
