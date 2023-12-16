@@ -76,9 +76,10 @@ main > * { margin: 50px 0; }
 </style>
 </head>
 <body>
+<h2>inquiryBoardView${inquiryDTO.title}</h2>
 <!-- wrapper 시작 -->
 <div class="container-fluid" id="wrap">
-
+	
     <!-- header, nav 추가 -->
     <%@ include file="../include/top.jsp" %>
     
@@ -142,12 +143,13 @@ main > * { margin: 50px 0; }
                                 <tr>
                                     <td>문의유형</td>
                                     <td>
-                                        <select name="category" id="category" class="rounded-pill" style="width: 150px; height: 30px;">
+                                        <!-- select name="category" id="category" class="rounded-pill" style="width: 150px; height: 30px;">
                                             <option value="선택해주세요" selected style="text-align: center;">선택해주세요.</option>
                                             <option value="플래너" style="text-align: center;">플래너</option>
                                             <option value="마켓" style="text-align: center;">마켓</option>
                                             <option value="기타" style="text-align: center;">기타</option>
-                                        </select>
+                                        </select> -->
+                                        <input type="text" value="${inquiryDTO.category}">
                                     </td>
                                 </tr>
                                 <tr>
@@ -166,14 +168,14 @@ main > * { margin: 50px 0; }
                                 <tr>
                                     <td>제목</td>
                                     <td>
-                                        <input type="text" name="title" style="width: 95%;" />
+                                        <input type="text" name="title" value="${inquiryDTO.title}" style="width: 95%;" />
                                     </td>
                                 </tr>
             
                                 <tr>
                                     <td>내용</td>
                                     <td>
-                                        <textarea name="content" style="width: 95%; height: 300px;"></textarea>
+                                        <textarea name="content" value="${inquiryDTO.content}" style="width: 95%; height: 300px;"></textarea>
                                     </td>
                                 </tr>
                                 <!-- <tr>

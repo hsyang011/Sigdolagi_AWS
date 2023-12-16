@@ -30,8 +30,8 @@ import com.edu.springboot.member.MemberDTO;
 import com.edu.springboot.planner.IPlannerService;
 import com.edu.springboot.planner.PlannerDTO;
 import com.edu.springboot.service.INotiboardService;
-import com.edu.springboot.service.InqueryBoardService;
-import com.edu.springboot.service.InqueryDTO;
+import com.edu.springboot.service.InquiryBoardService;
+import com.edu.springboot.service.InquiryDTO;
 import com.edu.springboot.service.NotiDTO;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -63,10 +63,15 @@ public class AdminController {
 	INotiboardService notiDAO;
 	
 	@Autowired
-	InqueryBoardService inqueryDAO;
+	InquiryBoardService inquiryDAO;
 	
 	@Autowired
 	IOrderService orderDAO;
+	
+	
+
+	
+	
 	
 	@RequestMapping("/administrator/admin_main.do") 
 	public String adminMain(Model model, HttpServletRequest req, HttpSession session, Principal principal) {
@@ -239,7 +244,7 @@ public class AdminController {
 	public String adminInquiry(Model model) {
 		
 		// DB에서 인출한 게시물의 목록을 model객체에 저장한다.
-		List<InqueryDTO> adminInquirySelect = inqueryDAO.adminInquirySelect();
+		List<InquiryDTO> adminInquirySelect = inquiryDAO.adminInquirySelect();
 		model.addAttribute("adminInquirySelect", adminInquirySelect);
 		
 		return "administrator/admin_inquiry_list";
@@ -328,6 +333,7 @@ public class AdminController {
 			//View로 전달하기 위해 Model객체에 저장한다.
 			model.addAttribute("saveFileMaps", saveFileMaps);
 			
+			
 			// Model객체에 정보를 저장한다.
 			model.addAttribute("originalFileName", originalFileName);
 			model.addAttribute("savedFileName", savedFileName);
@@ -339,6 +345,7 @@ public class AdminController {
 			//멀티파일
 			String[] oArr = ofiles.split(":");
 			String[] sArr = sfiles.split(":");
+			
 			
 			for (int i=0; i<oArr.length && i<5; i++) {
 				if(i == 0) {

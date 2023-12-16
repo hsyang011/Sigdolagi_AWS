@@ -41,4 +41,7 @@ public interface IPhotoboardService {
 	//관리자 자유게시판삭제
 	public int adminPhotoDelete(String idx);
 	
+	//댓글 삭제
+	public int deletecomment(String comments_idx);
+	
 }

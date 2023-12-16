@@ -23,12 +23,12 @@ import utils.PagingUtil;
 
 @Controller
 public class ServiceController {
-	
+	 
 	@Autowired
 	INotiboardService notidao;
 	
 	@Autowired
-	InqueryBoardService inquerydao;
+	InquiryBoardService inquirydao;
 
 	
 	@Autowired
@@ -124,9 +124,9 @@ public class ServiceController {
 	//1:1 문의  게시판 글쓰기
 	
 	   @PostMapping("/service/inquiryboard_write.do")
-	   public String freeboardWrite(Model model, HttpServletRequest req, Principal principal, InqueryDTO inqueryDTO) {
+	   public String freeboardWrite(Model model, HttpServletRequest req, Principal principal, InquiryDTO inquiryDTO) {
 		  System.out.println("문의 게시판 글쓰기 컨트롤러 들어오나? ");
-		  System.out.println(inqueryDTO);
+		  System.out.println(inquiryDTO);
 	      String email= principal.getName();
 	      String nickname= dao.getnickname(email);
 	      String title= req.getParameter("title");
@@ -137,7 +137,7 @@ public class ServiceController {
 	      
 	      
 	      //폼값을 개별적으로 전달한다.
-	      int result = inquerydao.write(email,category,title, content, nickname);
+	      int result = inquirydao.write(email,category,title, content, nickname);
 	      System.out.println("글쓰기 결과:" +result);
 	      System.out.println("nickname:결과"+nickname);
 	      model.addAttribute("nickname1",nickname); 

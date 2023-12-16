@@ -23,6 +23,7 @@ public interface INotiboardService {
 	 	
 	 	
 	 	
+	 	
 	 	//관리자 공지사항 불러오기
 		public List<NotiDTO> adminNoticeSelect();
 		//관리자 공지사항 작성
