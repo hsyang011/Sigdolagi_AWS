@@ -286,8 +286,8 @@ public class CommunityController {
 	   public String boardDeleteComments(HttpServletRequest req,CommentsDTO commentsDTO) {
 		  System.out.println("댓글 삭제 확인을 위해 댓글 불러오기 테스트 ");
 		  System.out.println(commentsDTO);
-		  System.out.println(req.getParameter("comments_idx"));
 		  int result = dao.deleteComments(req.getParameter("comments_idx"));
+		  System.out.println("comments_idx");
 	      System.out.println("글삭제결과:"+result);
 	      
 	      return "redirect:freeboard_list.do";
