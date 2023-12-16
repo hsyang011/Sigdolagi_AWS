@@ -104,5 +104,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete FROM photoboard WHERE idx=#{idx}
 	</delete>
 	
+	<!--  댓글 삭제 -->
+	
+	<delete id="deletecomment">
+		delete FROM comments WHERE comments_idx=#{comments_idx}
+	</delete>
+	
 		
 </mapper>

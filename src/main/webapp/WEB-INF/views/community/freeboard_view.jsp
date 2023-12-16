@@ -227,9 +227,10 @@ function SaveComment(){
                             <input type="hidden" name="email"  />
                             <input type="hidden" name="nickname" />	
                             <table class="table table-bordered" id="free_write_frm_table" width="100%" >
-                               <colgroup>
+                               	<colgroup>
                                    <col width="20%" /><col width="30%" /><col width="20%" /><col width="30%" />
                                 </colgroup>
+                                
 								<tr> 
 		                             <td>작성일</td> <td>${ boardDTO.postdate }</td>
 		                             <td>조회수</td> <td>${ boardDTO.visitcount }</td>
@@ -308,6 +309,13 @@ function SaveComment(){
     
     <!-- footer 추가 -->
     <%@ include file="../include/footer.jsp" %>
+    
+    
+    
+    
+    
+    
+    
     
 </div>
 <!-- wrapper 끝 -->

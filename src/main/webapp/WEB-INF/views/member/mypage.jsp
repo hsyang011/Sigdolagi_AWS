@@ -247,7 +247,7 @@ function deletePlanner(idx, e) {
     <div id="banner" class="mt-3">
         <div id="banner_contents" class="container d-flex align-items-center">
             <div id="info">
-                <h4>나만 불 수 있는</h4>
+                <h4>나만 볼 수 있는</h4>
                 <div id="info_title" class="d-flex">
                     <h2>마이페이지</h2>
                 </div>
@@ -510,12 +510,13 @@ function deletePlanner(idx, e) {
 										<c:otherwise>
 											<c:forEach items="${ inquirylists }" var="post" varStatus="loop">
 												<tr align="center">
-												<td>
+												<%-- <td>
 												<!-- 게시물의 갯수, 페이지 번호, 페이지 사이즈를 통해 가상 번호를 계산해서 출력한다.  -->
 												${ inquirymaps.totalCount - (((inquirymaps.pageNum-1) * inquirymaps.pageSize) + loop.index)}
-												</td>
+												</td> --%>
+												<td scope="row"><a href="../member/inquiryboard_view.do?inquiryboard_idx=${ post.inquiryboard_idx }">${ post.inquiryboard_idx }</td>
+												<td scope="row"><a href="../member/inquiryboard_view.do?inquiryboard_idx=${ post.inquiryboard_idx }">${ post.title }</td>
 												<%-- <td scope="row"><a href="./freeboard_view.do?freeboard_idx=${ post.freeboard_idx }">${ post.title }</td> --%>
-												<td>${ post.title }</td>
 												<td>${ post.category }</td>
 												<td>${ post.nickname }</td>
 												<td>${ post.regidate }</td>
@@ -528,13 +529,10 @@ function deletePlanner(idx, e) {
 					            </table>
 					            </div>
 					        </div>
-                        <div class="text-center">${pagingImg}</div>
-                        
+                        	<div class="text-center">${pagingImg}</div>
+                     	 </div>
                       </div>
-                      
-                      
                       <!-- 내가 쓴 문의 끝   -->
-                      
                       
                       <!-- 맛집 시작 -->
                       <div class="food" style="text-align: center; display: none;" >
@@ -639,7 +637,7 @@ function deletePlanner(idx, e) {
                         </figure>
                       </div>
                    
-                    </div>
+                    
                 </div> <!-- col-10 끝 --> 
             </div>
 

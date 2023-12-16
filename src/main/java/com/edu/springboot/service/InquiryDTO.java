@@ -3,7 +3,7 @@ package com.edu.springboot.service;
 import lombok.Data;
 
 @Data
-public class InqueryDTO {
+public class InquiryDTO {
 	
 	private String inquiryboard_idx;
 	private String email;

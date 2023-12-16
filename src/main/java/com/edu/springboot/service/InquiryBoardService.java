@@ -6,23 +6,26 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import com.edu.springboot.community.BoardDTO;
 import com.edu.springboot.community.ParameterDTO;
 
 @Mapper
 
-public interface InqueryBoardService {
+public interface InquiryBoardService {
 	public int write(@Param("email") String email, @Param("category") String category,
 	         @Param("title") String title,
 	         @Param("content") String content, 
 	         @Param("nickname") String nickname
 	);
-	public int inqueryGetTotalCount(ParameterDTO parameterDTO);
+	public int inquiryGetTotalCount(ParameterDTO parameterDTO);
 	
 	
 	//리스트 
-	public ArrayList<InqueryDTO> MyInquiryListPage(ParameterDTO parameterDTO);
+	public ArrayList<InquiryDTO> MyInquiryListPage(ParameterDTO parameterDTO);
 	
 	//관리자 1:1문의 목록
-	public List<InqueryDTO> adminInquirySelect();
+	public List<InquiryDTO> adminInquirySelect();
+	//인쿼리보드 뷰페이지 
+	public InquiryDTO view(InquiryDTO inquiryDTO);
 }
 

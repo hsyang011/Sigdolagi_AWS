@@ -13,6 +13,5 @@ public class CommentsDTO {
 	private String email;
 	private String tname; 
 
-	
 
 }

@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.edu.springboot.community.BoardDTO;
+import com.edu.springboot.community.CommentsDTO;
 import com.edu.springboot.community.IBoardService;
 import com.edu.springboot.community.IPhotoboardService;
 import com.edu.springboot.community.ParameterDTO;
@@ -27,8 +28,8 @@ import com.edu.springboot.market.IOrderService;
 import com.edu.springboot.market.OrderDTO;
 import com.edu.springboot.planner.IPlannerService;
 import com.edu.springboot.planner.PlannerDTO;
-import com.edu.springboot.service.InqueryBoardService;
-import com.edu.springboot.service.InqueryDTO;
+import com.edu.springboot.service.InquiryBoardService;
+import com.edu.springboot.service.InquiryDTO;
 
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -53,7 +54,7 @@ public class MemberController {
 	IMemberService  memberdao;
 	
 	@Autowired
-	InqueryBoardService inquerydao;
+	InquiryBoardService inquirydao;
 	
 	@Autowired
 	IPlannerService plannerDAO;
@@ -149,8 +150,9 @@ public class MemberController {
 	      System.out.println("1:1문의  리스트 들어오나?");
 	      
 	      
-	      int inquirytotalCount = inquerydao.inqueryGetTotalCount(parameterDTO);
+	      int inquirytotalCount = inquirydao.inquiryGetTotalCount(parameterDTO);
 	      System.out.println("토탈카운트"+inquirytotalCount);
+	       email = principal.getName();
 	      
 	      System.out.println(pageSize);
 	      System.out.println(blockPage);
@@ -161,7 +163,8 @@ public class MemberController {
 	       end = pageNum * pageSize;
 	      parameterDTO.setStart(start);
 	      parameterDTO.setEnd(end);
-	      parameterDTO.setEmail(principal.getName());
+	      parameterDTO.setEmail(email);
+	      //parameterDTO.setEmail(principal.getName());
 	      
 	      
 	      // 이거 바꿔야 된다. 
@@ -177,7 +180,7 @@ public class MemberController {
 	      //리스트  띄워주기 
 	      
 	     //MyinquiryListPage
-	      ArrayList<InqueryDTO> inquirylists = inquerydao.MyInquiryListPage(parameterDTO);
+	      ArrayList<InquiryDTO> inquirylists = inquirydao.MyInquiryListPage(parameterDTO);
 	      //ArrayList<PhotoBoardDTO> myphotolists = photoboarddao.MyPhotoListPage(parameterDTO);
 	      
 	      model.addAttribute("inquirylists", inquirylists);
@@ -197,6 +200,34 @@ public class MemberController {
 		
 		return "member/mypage";
 	}
+	
+	// 1:1문의 뷰페이지 member/inquiryboard_view.do
+	   @RequestMapping("/member/inquiryboard_view.do")
+	   
+	   public String freeboardView(Model model, InquiryDTO inquiryDTO, HttpServletRequest req,Principal principal) {
+		   
+		   System.out.println("문의 뷰페이지 컨트롤러 들어오나?");
+		   System.out.println(inquiryDTO);
+		   inquiryDTO = inquirydao.view(inquiryDTO);
+		   System.out.println(inquiryDTO);
+		   inquiryDTO.setContent(inquiryDTO.getContent().replace("\r\n", "<br>"));
+	      
+	     
+		   
+	      model.addAttribute("inquiryDTO", inquiryDTO);
+		
+		
+			
+
+		  	if(principal!=null) {
+	  			String email = principal.getName();
+	  	         String nickname= dao.getnickname(email);
+	  	         System.out.println(email);
+	  	         model.addAttribute("email", email);
+	  	         model.addAttribute("nickname",nickname); 
+	  		}
+	      return "member/inquiryboardView";
+	   }
 	
 	
 	
