@@ -163,7 +163,7 @@ function SaveComment(){
             "<tr align=\"center\">" +
             "<td>" + res.nickname + "</td>" +
             "<td>" + res.content + "</td>" +
-            "<td>" + getCurrentDateTime() + <button onclick='deleteComment(" + res.comments_idx + ")'>삭제</button></td>" +
+            "<td>" + getCurrentDateTime() + "<button class=\"dele\"  onclick='deleteComment(" + res.comments_idx + ")'></button></td>" +
             "</tr>";
         // 화면에 댓글 추가
         $("#commentsTableBody").append(commentHTML);
@@ -300,7 +300,7 @@ function SaveComment(){
 										    <input type="text" name="idx" value="${row.idx}">
 											</td>
                                             <td>${row.content}</td>
-							                <td>${ row.postdate } <button type="submit" class="writeFrm_reset"  onclick="">삭제</td>
+							                <td>${ row.postdate } <button type="submit" class="dele"  onclick="deleteComment();">삭제</td>
 							                <!-- <input type="button" value="삭제" onclick="deleteComment();"> -->
 							            </form>
 							        </tr>
