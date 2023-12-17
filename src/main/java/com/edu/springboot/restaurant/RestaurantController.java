@@ -48,7 +48,9 @@ public class RestaurantController {
         for (int i = 1; i <= 7; i++) {
             numbers.add(i);
         }
-
+        
+        
+        
         Collections.shuffle(numbers);
 
         return numbers;

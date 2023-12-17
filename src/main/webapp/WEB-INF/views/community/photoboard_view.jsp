@@ -186,7 +186,8 @@ function CommentSend(){
     	idx : frm.idx.value,
     	nickname : frm.nickname.value,
     	content : frm.content.value,
-    	email : frm.email.value
+    	email : frm.email.value,
+    	starRating : frm.starRating.value
     	
     };
     //alert("댓글작성 "); // 여기에 alert 추가
@@ -248,6 +249,7 @@ function CommentSend(){
             "<td>" + res.content + "</td>" +
             "<td>" + getCurrentDateTime() + "</td>" +
             "<td>" + res.comments_idx + "</td>" +
+            "<td>" + res.starRating + "</td>" +
             "<td><button onclick='deleteComment(" + res.comments_idx + ")'>삭제</button></td>" +
             "</tr>";
         // 화면에 댓글 추가
@@ -356,12 +358,14 @@ function CommentSend(){
                                             <input type="text" name="nickname" value="${nickname}">
                                             <input type="text" name="email" value="${email}">
                                             <p><textarea id="content" name="content" onkeyup=""  style="width:100%" rows="4" placeholder="댓글을 입력해 주세요."></textarea></p>
+                                            ★별점 <input style="width: 30px;" id="starRating" name="starRating" value="5">
                                             <span><button type="button" class="" onclick="CommentSend();">등록</button> <i id="counter">0/300자</i></span>
                                         </div>
                                     </form>
                                 </fieldset>
                             </div>
-
+                            
+		
                             <table class="table table-border">
                                 <thead>
                                     <tr>
@@ -370,6 +374,7 @@ function CommentSend(){
                                          <th style="text-align: center;">Photo Index</th>  -->
                                         <th style="text-align: center;">Content</th>
                                         <th style="text-align: center;">Post Date</th>
+                                        <th style="text-align: center;"> 별점★ </th>
                                     </tr>
                                 </thead>
                                 <form id="commentDelete" name="deleteForm" action="/community/photoboardcommnt_delete.do" method="post">
@@ -387,6 +392,7 @@ function CommentSend(){
                                             <td>${row.content}</td>
                                             <td>${row.postdate} &nbsp;&nbsp;&nbsp;&nbsp;
                                 			<button type="button" class="writeFrm_reset"  onclick="commentDelete();">삭제하기</button>
+                                       		<td>★${row.starRating} &nbsp;&nbsp;&nbsp;&nbsp;
                                         </tr>
                                     </c:forEach>
                                 </tbody>

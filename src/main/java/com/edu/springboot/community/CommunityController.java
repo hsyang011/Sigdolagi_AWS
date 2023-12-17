@@ -70,12 +70,13 @@ public class CommunityController {
 	   
 	   
 	
-	
+	///댓글 작성  
 	@RequestMapping("/community/photoboard_comment.do")
 	@ResponseBody
 	public CommentsDTO boardCommentPost(Model model, HttpServletRequest req, 
 			CommentsDTO commentsDTO, PhotoBoardDTO photoBoardDTO) {
 		
+		System.out.println("댓글 작성 컨트롤러 들어오나?");
 		
 		
 		
@@ -83,6 +84,10 @@ public class CommunityController {
         String content = commentsDTO.getContent();
         String nickname = commentsDTO.getNickname();
         String email = commentsDTO.getEmail();
+        String starRating = req.getParameter("starRating");
+        System.out.println("별점주기 ");
+        System.out.println(starRating);
+        
         
         
         System.out.println(idx);
@@ -90,7 +95,7 @@ public class CommunityController {
         System.out.println(nickname);
         System.out.println(email);
 
-        int result = photoboarddao.writeConmments(idx, content, nickname, email);
+        int result = photoboarddao.writeConmments(idx, content, nickname, email, starRating);
 
         System.out.println("성공?");
         System.out.println(commentsDTO);
@@ -671,12 +676,15 @@ public class CommunityController {
 	   	
 	   	System.out.println();
 	   
+	   	
 	   	  
 	      int result = photoboarddao.deletecomment(comments_idx);
 	      System.out.println("글삭제결과:"+result);
 	      
 	      return "redirect:photoboard_view.do?idx="+idx;
 	   }
+   
+   		
    
    
    		
