@@ -3,6 +3,55 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html>
+<script type="text/javascript">
+
+/* $(function(){
+ $('#mbtn').click(function(){
+ 	var idx = $('#mbtn').val;
+ 	console.log(idx);
+ });
+}); */
+
+    function orderModal(order_idx){
+    	console.log("order_idx=", order_idx );
+    	$.ajax({
+    		type : 'get', //전송방식 (form태그의 method)
+			url : '../administrator/order_modal_list.do', //요청Url
+			data : { order_idx : order_idx }, //파라미터 (객체형태로 넘기는)
+			contentType : "text/html;charset:utf-8", //컨텐츠타입
+			dataType : "json", //콜백데이터의 타입(형식)
+			success : sucCallBack, //성공시 호출할 콜백함수
+			error : errCallBack //실패시 호출할 콜백함수
+    	});
+    }
+    function sucCallBack(resData){
+    	/*콜백받은 데이터를 각각의 td태그에 삽입한다. 콜백 데이터는
+    	JSON 객체이므로 즉시 파싱한 후 적용할 수 있다. */
+    	let tableData = "";
+    	$('#td1').html(resData.order_idx);
+    	$('#td2').html(resData.payment_date);
+    	$('#td3').html(resData.name);
+    	$('#td4').html(resData.phone);
+    	$('#td5').html(resData.zipcode);
+    	$('#td6').html(resData.point);
+    	$('#td7').html(resData.addr1 + resData.addr2);
+    	$('#td8').html(resData.message);
+    	
+    	$(resData).each(function(index, data){
+    		tableData += ""
+    		+"<tr>"
+    		+"	<td colspan='3' style='text-align: center;'>"
+    		+"		<a href=''>"+data.prod_name+"</a></td>"
+    		+"	<td>"+data.prod_count+"개</td>"
+    		+"</tr>";
+    	});
+    	//앞에서 만든 <tr>태그를 table에 적용한다. 
+    	$('#show_data').html(tableData);
+    }
+    function errCallBack(errData){
+    	console.log(errData.status+":"+errData.statusText);
+    }
+</script>
 <head>
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -97,47 +146,12 @@ function listDelete(idx){
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                    <script type="text/javascript">
-	                                    $(function(){
-		                                   /*  function orderList(idx){
-		                                    	
-		                                    } */
-		                                    $('#mbtn').click(function(){
-		                                    	/* var idx = $('#mbtn').val;
-		                                    	console.log(idx); */
-		                                    	
-		                                    	$.ajax({
-		                                    		type : 'get', //전송방식 (form태그의 method)
-		                                			url : './restBoardList.do', //요청Url
-		                                			data : { idx : $('#mbtn').val }, //파라미터 (객체형태로 넘기는)
-		                                			contentType : "text/html;charset:utf-8", //컨텐츠타입
-		                                			dataType : "json", //콜백데이터의 타입(형식)
-		                                			success : sucCallBack, //성공시 호출할 콜백함수
-		                                			error : errCallBack //실패시 호출할 콜백함수
-		                                    	});
-		                                    });
-	                                    	
-	                                    });
-	                                    
-	                                    function sucCallBack(resData){
-	                                    	/*콜백받은 데이터를 각각의 td태그에 삽입한다. 콜백 데이터는
-	                                    	JSON 객체이므로 즉시 파싱한 후 적용할 수 있다. */
-	                                    	let tableData = "";
-	                                    	$('#td1').html(resData.num);
-	                                    	$('#td2').html(resData.id);
-	                                    	$('#td3').html(resData.postdate);
-	                                    	$('#td4').html(resData.visitcount);
-	                                    	$('#td5').html(resData.title);
-	                                    	$('#td6').html(resData.content);
-	                                    }
-	                                    function errCallBack(errData){
-	                                    	console.log(errData.status+":"+errData.statusText);
-	                                    }
-									</script>
+                                    
                                     	<c:forEach items="${adminOrderSelect }" var="row" varStatus="loop">
                                         <tr>
                                             <td style="text-align: center;">
-                                            	<a id="mbtn" href="javascript:void(0)" data-toggle="modal" data-target="#orderNumModal">
+                                            	<a id="mbtn" href="javascript:void(0)" data-toggle="modal" 
+                                            		data-target="#orderNumModal" onclick="orderModal('${row.order_idx }');">
                                             		${row.order_idx }
                                             	</a>
                                             </td>
@@ -202,29 +216,29 @@ function listDelete(idx){
                                 <tbody>
                                     <tr>
                                         <th>주문번호</th>
-                                        <td> </td>
+                                        <td id="td1"></td>
                                         <th>주문일자</th>
-                                        <td> </td>
+                                        <td id="td2"></td>
                                     </tr>
                                     <tr>
                                         <th>이름</th>
-                                        <td> </td>
+                                        <td id="td3"></td>
                                         <th>연락처</th>
-                                        <td> </td>
+                                        <td id="td4"></td>
                                    	</tr>	
                                     <tr>    
                                         <th>우편번호</th>
-                                        <td> </td>
+                                        <td id="td5"></td>
                                         <th>포인트 사용</th>
-                                        <td> </td>
+                                        <td id="td6"></td>
                                    </tr>
                                     <tr>
                                         <th>주소</th>
-                                        <td colspan="3"> </td>
+                                        <td colspan="3" id="td7"></td>
                                     </tr>
                                     <tr>
                                         <th>배송메세지</th>
-                                        <td colspan="3"> </td>
+                                        <td colspan="3" id="td8"></td>
                                     </tr>
                                     
                                     <tr>
@@ -236,14 +250,7 @@ function listDelete(idx){
                                     	</td>
                                     	<td>2개</td>
                                     </tr>
-                                    <c:forEach items="${prodList}" var="row">
-                                        <tr>
-	                                    	<td colspan="3" style="text-align: center;">
-	                                    		<a href="">상품명 ㅁ잗러미잗러미ㅏㅈㄷ러맞ㄷㄹ0000</a>
-	                                    	</td>
-	                                    	<td>2개</td>
-	                                    </tr>
-                                    </c:forEach>
+                                    <tbody id="show_data"></tbody>
                                 </tbody>
                             </table>
                         </div>
@@ -257,7 +264,6 @@ function listDelete(idx){
 	        </div>
 	    </div>
 	</div>
-    
 
     <!-- Bootstrap core JavaScript-->
     <script src="../bootstrap/vendor/jquery/jquery.min.js"></script>

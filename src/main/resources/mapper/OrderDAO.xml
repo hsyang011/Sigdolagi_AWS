@@ -43,5 +43,31 @@
 		resultType="com.edu.springboot.market.OrderDTO"> 
 		SELECT * FROM marketorder ORDER BY order_idx DESC
 	</select>
+	<!-- 관리자 주문내역 불러오기 -->
+	<select id="orderView"
+		resultType="com.edu.springboot.market.OrderDTO"
+		parameterType="com.edu.springboot.market.OrderDTO"> 
+		SELECT * FROM marketorder WHERE order_idx=${idx}
+	</select>
+	<!-- 관리자 주문내역 상품 불러오기 -->
+	<!-- <select id="orderViewList"
+		resultType="com.edu.springboot.market.OrderDTO"
+		parameterType="string"> 
+		SELECT  mo.order_idx, mo.email, mo.name, payment_date, cart_idx, pr.prod_idx, cr.prod_count, prod_totprice, pr.prod_name
+	    FROM marketorder mo 
+	        INNER JOIN cart cr on mo.order_idx=cr.order_idx
+	        INNER JOIN product pr on cr.prod_idx=pr.prod_idx
+	    WHERE mo.order_idx=${idx};
+	</select> -->
+	<select id="orderViewList"
+		resultType="com.edu.springboot.market.OrderDTO"
+		parameterType="string"> 
+		SELECT  mo.order_idx, mo.email, mo.name, mo.phone, addr1, addr2, message, payment_method, payment, point
+	    , payment_date, zipcode, cart_idx, pr.prod_idx, cr.prod_count, prod_totprice, pr.prod_name
+	    FROM marketorder mo 
+	        INNER JOIN cart cr on mo.order_idx=cr.order_idx
+	        INNER JOIN product pr on cr.prod_idx=pr.prod_idx
+	    WHERE mo.order_idx=${order_idx}
+	</select>
 	
 </mapper>
