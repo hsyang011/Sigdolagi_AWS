@@ -35,7 +35,7 @@ main > * { margin: 50px 0; }
 .card { padding: 0; position: relative; border: none;} /* 좌우 마진 속성 제거, 테두리 둥글게 삭제 */
 .card > div { border-radius: 15px; margin: 10px; border: 1px solid lightgray; } /* 테두리 둥글게는 .card의 자식 div에 부여 */
 .card a > img { border-radius: 15px 15px 0 0; }
-.discount { color: #FF7A00; font-weight: bold; font-size: 1.5em;}
+.discount { color: #FF7A00; font-weight: bold; }
 .shop_title{color: #999999; font-size: 14px; display: block;}
 .card-text{ font-size: 20px;}
 strike {font-size: 18px;}

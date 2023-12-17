@@ -78,16 +78,6 @@ strike {font-size: 18px;}
     .thumbnail {margin: 0 0;}
     .moreBtn { font-size: 0.75em; }
 }
-
-/* 25% */
-
-
-.card.custom-col {
-    flex: 0 0 25%;
-    margin-right: 10px;
-}
-
-
 </style>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
