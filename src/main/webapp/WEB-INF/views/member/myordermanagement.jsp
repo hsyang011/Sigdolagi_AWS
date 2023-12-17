@@ -111,6 +111,7 @@ function showDetails(e) {
                                 <th scope="col" style="">상품명</th>
                                 <th scope="col">결제금액</th>
                                 <th scope="col">결제방식</th>
+                                <th scope="col">배송현황</th>
                             </tr>
                             </thead>
                             <c:forEach items="${myOrderList}" var="row" varStatus="loop">
@@ -120,12 +121,26 @@ function showDetails(e) {
                                 <td id="table_title">${orderMap[row.order_idx][0].prod_name} 외 ${orderMap[row.order_idx].size()-1}건</td>
                                 <td><fmt:formatNumber value="${row.payment}" pattern="#,###" />원</td>
                                 <td>${row.payment_method}</td>
+                                <td>
+                                	<c:choose>
+                                		<c:when test="${row.state.equals('prepare')}">
+                                		결제완료
+                                		</c:when>
+                                		<c:when test="${row.state.equals('delivery')}">
+                                		배송중
+                                		</c:when>
+                                		<c:otherwise>
+                                		배송완료
+                                		</c:otherwise>
+                                	</c:choose>
+                                </td>
                             </tr>
                             <tr class="detail_head" style="text-align: center;">
                                 <th scope="col">번호</th>
                                 <th scope="col" style="">상품명</th>
                                 <th scope="col">상품 수량</th>
                                 <th scope="col">가격</th>
+                                <th scope="col">총 가격</th>
                             </tr>
                            		<c:forEach items="${orderMap[row.order_idx]}" var="col" varStatus="loop_2">
 	                            <tr class="text-center detail_body">
@@ -133,6 +148,7 @@ function showDetails(e) {
 	                                <td id="table_title">${col.prod_name}</td>
 	                                <td>${col.prod_count}</td>
 	                                <td><fmt:formatNumber value="${col.prod_totprice}" pattern="#,###" />원</td>
+	                                <td><fmt:formatNumber value="${col.prod_totprice * col.prod_count}" pattern="#,###" />원</td>
 	                            </tr>
 	                            </c:forEach>
                             </tbody>

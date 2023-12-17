@@ -8,6 +8,11 @@
 <!-- head 추가 -->
 <%@ include file="../include/global_head.jsp" %>
 <link rel="stylesheet" href="../css/main.css" />
+<style>
+@media screen and (max-width: 768px) {
+	.card-body * { font-size: 0.9em; }
+}
+</style>
 <!-- 로그인에 성공했을 경우 alert창 -->
 <c:if test="${not empty loginSuccessMsg}">
 	<script>
