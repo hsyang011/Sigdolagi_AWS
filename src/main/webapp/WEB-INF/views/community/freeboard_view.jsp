@@ -86,6 +86,18 @@ function deletePost(freeboard_idx){
         form.submit();  
     }
 }
+</script>
+<script>
+
+function deleteComment(comments_idx){
+    var confirmed = confirm("정말로 댓글을 삭제하겠습니까?"); 
+    if (confirmed) {
+        var form = document.writeFrm; 
+        form.method = "post";  
+        form.action = "./freeboard_Comments_delete.do";
+        form.submit();  
+    }
+}
 
 
 
@@ -151,7 +163,7 @@ function SaveComment(){
             "<tr align=\"center\">" +
             "<td>" + res.nickname + "</td>" +
             "<td>" + res.content + "</td>" +
-            "<td>" + getCurrentDateTime() + "</td>" +
+            "<td>" + getCurrentDateTime() + "<button class=\"dele\"  onclick='deleteComment(" + res.comments_idx + ")'></button></td>" +
             "</tr>";
         // 화면에 댓글 추가
         $("#commentsTableBody").append(commentHTML);
@@ -261,8 +273,9 @@ function SaveComment(){
 		                                <input type="hidden" name="idx" value="${boardDTO.freeboard_idx }">
 		                                <input type="hidden" name="nickname" value="${boardDTO.nickname}">
 		                                <input type="hidden" name="email" value="${email}">
-		                               	<p><textarea id="content" name="content" onkeyup=""  style="width:100%" rows="4" placeholder="댓글을 입력해 주세요."></textarea></p>
-		                               	<span><button type="button" class="btns" onclick="SaveComment();">등록</button></span>
+		                               	<p><textarea id="content" name="content" onkeyup="" rows="4" placeholder="댓글을 입력해 주세요."></textarea>
+		                               	  	<button type="button" class="btns"  onclick="SaveComment();">등록</button></p>
+		                             
                            			</div>
 								</form>
 	                       </fieldset>
@@ -274,17 +287,25 @@ function SaveComment(){
 		                           <th style="text-align: center;">작성자</th>
 		                           <th style="text-align: center;">내용</th>
 		                           <th style="text-align: center;">작성일</th>
+	                            	<th style="text-align: center;"></th>	
 		                       	</tr>
 	                   		</thead>
-			                   <tbody id="commentsTableBody">
-			                      <c:forEach items="${ CommentsLists }" var="row" varStatus="loop">    
-		                             <tr align="center">
-		                                 <td>${ row.nickname }</td> 
-		                                 <td>${ row.content }</td> 
-		                                 <td>${ row.postdate }</td>
-		                             </tr>
-	                       		</c:forEach> 
-		                    </tbody>
+			                 <tbody id="commentsTableBody">
+							    <c:forEach items="${ CommentsLists }" var="row" varStatus="loop">    
+							        <tr align="center">
+							            <form name="commentsdeletefrm" action="/community/freeboard_Comments_delete.do" method="post">
+							                <input type="hidden" name="comments_idx" value="${row.comments_idx}" >
+							                <td>${ row.nickname }</td>
+											<td name="idx" style="text-align: center; display: none;">
+										    <input type="text" name="idx" value="${row.idx}">
+											</td>
+                                            <td>${row.content}</td>
+							                <td>${ row.postdate } <button type="submit" class="dele"  onclick="deleteComment();">삭제</td>
+							                <!-- <input type="button" value="삭제" onclick="deleteComment();"> -->
+							            </form>
+							        </tr>
+							    </c:forEach> 
+							</tbody>
 						</table>
 					</div>
 				</div> 

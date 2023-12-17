@@ -117,30 +117,10 @@ main > * { margin: 50px 0; }
                     <li><a href="../service/inquiryboard.do">1:1문의하기</a></li>
                     <li><a href="../service/faq.do">자주묻는질문</a></li>
                 </ul>
-                <!-- <ul class="nav my-3 category mt-4">
-                    <li class="nav-item me-3"><button type="button" class="mealk_cate btn rounded-pill on">#전체</button></li>
-                    <li class="nav-item me-3"><button type="button" class="mealk_cate btn rounded-pill">#한식</button></li>
-                    <li class="nav-item me-3"><button type="button" class="mealk_cate btn rounded-pill">#일식</button></li>
-                    <li class="nav-item me-3"><button type="button" class="mealk_cate btn rounded-pill">#중식</button></li>
-                    <li class="nav-item me-3"><button type="button" class="mealk_cate btn rounded-pill">#양식</button></li>
-                    <li class="nav-item me-3"><button type="button" class="mealk_cate btn rounded-pill">#기타</button></li>
-                </ul> -->
             </div>
             <!-- 컨텐츠 헤더 끝 -->
         <div class="shop_board container  mt-5" >
 
-        <!-- 글쓰기 버튼 -->
-        <!--  <div class="container">
-            <div class="row" style=" display: inline;
-            float: right; margin-top: -80px;">
-                <div class="col-sm-12" >
-                    <div class="write_btn" style="float: left;">
-                        <button type="button" class="btn rounded-pill" onclick="location.href='./notiboard_write.do';" >글쓰기</button>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>      -->
         <!-- 문의 폼 -->
         <!-- 테이블 -->
         <div class="container">
@@ -159,22 +139,22 @@ main > * { margin: 50px 0; }
               	<tr>
                 	<c:choose>
                 		<c:when test="${ empty lists }">
-						<tr>
-							<td colspan="5" align="center"> 등록된 게시물이 없습니다.</td>
-						</tr>
-					</c:when>
+							<tr>
+								<td colspan="5" align="center"> 등록된 게시물이 없습니다.</td>
+							</tr>
+						</c:when>
 					<c:otherwise>
 						<c:forEach items="${ lists }" var="post" varStatus="loop">
 							<tr align="center">
-							<td>
-							<!-- 게시물의 갯수, 페이지 번호, 페이지 사이즈를 통해 가상 번호를 계산해서 출력한다.  -->
-							${ maps.totalCount - (((maps.pageNum-1) * maps.pageSize) + loop.index)}
-							</td>
-							<td scope="row"><a href="./notiboard_view.do?noticeboard_idx=${ post.noticeboard_idx }">${ post.title }</td>
-
-							<td>${ post.nickname }</td>
-							<td>${ post.postdate }</td>
-							<td>${ post.visitcount }</td>		
+								<td>
+								<!-- 게시물의 갯수, 페이지 번호, 페이지 사이즈를 통해 가상 번호를 계산해서 출력한다.  -->
+								${ maps.totalCount - (((maps.pageNum-1) * maps.pageSize) + loop.index)}
+								</td>
+								<td scope="row"><a href="./notiboard_view.do?noticeboard_idx=${ post.noticeboard_idx }">${ post.title }</td>
+	
+								<td>${ post.nickname }</td>
+								<td>${ post.postdate }</td>
+								<td>${ post.visitcount }</td>		
 							</tr> 
 						</c:forEach>
 					</c:otherwise>

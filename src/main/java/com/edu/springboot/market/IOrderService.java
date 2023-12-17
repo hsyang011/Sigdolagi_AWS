@@ -20,5 +20,6 @@ public interface IOrderService {
 	
 	//관리자 주문현황목록
 	public List<OrderDTO> adminOrderSelect();
+	public List<OrderDTO> orderModalSelect(String idx);
 	
 }

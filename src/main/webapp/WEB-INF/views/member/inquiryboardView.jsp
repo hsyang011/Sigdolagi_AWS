@@ -76,7 +76,7 @@ main > * { margin: 50px 0; }
 </style>
 </head>
 <body>
-<h2>inquiryBoardView${inquiryDTO.title}</h2>
+<%-- <h2>inquiryBoardView${inquiryDTO.title}</h2> --%>
 <!-- wrapper 시작 -->
 <div class="container-fluid" id="wrap">
 	
@@ -149,33 +149,33 @@ main > * { margin: 50px 0; }
                                             <option value="마켓" style="text-align: center;">마켓</option>
                                             <option value="기타" style="text-align: center;">기타</option>
                                         </select> -->
-                                        <input type="text" value="${inquiryDTO.category}">
+                                        <input type="text" value="${inquiryDTO.category}" readonly>
                                     </td>
                                 </tr>
-                                <tr>
+                                        <input type="hidden" name="email" id="email" value="${email}" style="width: 95%;" />
+                                        <input type="hidden" name="nickname" id="nickname" value="${nickname}" style="width: 95%;" />
+                                <!-- <tr>
                                     <td>이메일</td>
                                     <td>
-                                        <input type="text" name="email" id="email" value="${email}" style="width: 95%;" />
                                     </td>
                                 </tr>
                                  <tr>
                                     <td>닉네임</td>
                                     <td>
-                                        <input type="text" name="nickname" id="nickname" value="${nickname}" style="width: 95%;" />
                                     </td>
-                                </tr>
+                                </tr> -->
                                 
                                 <tr>
                                     <td>제목</td>
                                     <td>
-                                        <input type="text" name="title" value="${inquiryDTO.title}" style="width: 95%;" />
+                                        <input type="text" name="title" value="${inquiryDTO.title}" style="width: 95%;" readonly />
                                     </td>
                                 </tr>
             
                                 <tr>
                                     <td>내용</td>
                                     <td>
-                                        <textarea name="content" value="${inquiryDTO.content}" style="width: 95%; height: 300px;"></textarea>
+                                        <textarea name="content"  style="width: 95%; height: 300px;" readonly>${inquiryDTO.content}</textarea>
                                     </td>
                                 </tr>
                                 <!-- <tr>
@@ -189,9 +189,7 @@ main > * { margin: 50px 0; }
                                 </tr> -->
                                 <tr>
                                     <td colspan="2" align="center" class="btn_td">
-                                        <button type="submit" class="writeFrm_end">작성 완료</button>
-                                        <button type="reset" class="writeFrm_reset">다시 입력</button>
-                                        <button type="button" class="writeFrm_list" onclick="">목록 보기</button>
+                                        <button type="button" class="writeFrm_list"  onclick="location.href='./mypage.do'">목록 보기</button>
                                     </td>
                                 </tr>
                             </table>

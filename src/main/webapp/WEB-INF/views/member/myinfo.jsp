@@ -24,7 +24,7 @@
     <div id="banner" class="mt-3">
         <div id="banner_contents" class="container d-flex align-items-center">
             <div id="info">
-                <h4>나만 불 수 있는</h4>
+                <h4>나만 볼 수 있는</h4>
                 <div id="info_title" class="d-flex">
                     <h2>나의정보관리</h2>
                 </div>
@@ -42,7 +42,7 @@
                     <br><br><br><br>
                     <div id="left"><!-- 좌측메뉴-->
                         <div id="profile"><img src="../images/logo.png" alt=""></div>
-                        <div id="leftname">회원이름</div>
+                        <div id="leftname">${nickname}님 </div>
                         <div id="leftreft" class="">
                         <div id="myactivity">
                             <a href="/member/mypage.do">나의 활동관리</a>
@@ -58,11 +58,11 @@
                 </div>
                 <div class="col-10" id="col10" style="padding-left: 100px;">
                     <div class="d-flex">
-                        <div id="myactivityR" style="width: 200px; "> <a href="./mypage_.html">나의 활동관리</a>
+                        <div id="myactivityR" style="width: 200px; "> <a href="/member/mypage.do">나의 활동관리</a>
                         </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <div id="myinfoR" style="width: 150px; "> <a href="./myinfo.html">나의 정보관리</a>
+                        <div id="myinfoR" style="width: 150px; "> <a href="../member/myinfo.do">나의 정보관리</a>
                         </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <div id="myorderR" style="width: 200px; "> <a href="./myordermanage.html">나의 주문관리</a>
+                        <div id="myorderR" style="width: 200px; "> <a href="../member/myordermanage.do">나의 주문관리</a>
                         </div>
                      </div>
                     
@@ -75,7 +75,7 @@
                                     <div class="title_line" style="border-bottom: 3px solid #FFA24D; width: 85px; border-radius: 32px;"></div>
                                 </div>
                                 <div class="check_frm" style="display: flex; justify-content: space-between; margin-top: 10%; align-items: center;">
-                                    <input type="text" class="input_pw" placeholder="비밀번호입력" style="width: 200px; height: 40px; border: none; border-radius: 32px; padding-left: 15px; outline: none;">
+                                    <input type="password" class="input_pw" placeholder="비밀번호입력" style="width: 200px; height: 40px; border: none; border-radius: 32px; padding-left: 15px; outline: none;">
                                     <input type="submit" value="인증하기" style="border: none; background-color: #FFA24D; border-radius: 10px; color: white; width: 100px; height: 40px;">
                                 </div>
                             </div>

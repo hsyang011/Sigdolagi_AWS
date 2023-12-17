@@ -43,7 +43,8 @@ public interface IBoardService {
 	
 	//커멘트테이블 받아오기
 	public ArrayList<CommentsDTO> CommentsPage(CommentsDTO commentsDTO);
-	
+   	//자유게시판 댓글 삭제 
+	public int deleteComments(String comments_idx);
    
    //관리자 자유게시판목록
    public List<BoardDTO> adminFreeSelect();

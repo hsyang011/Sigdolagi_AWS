@@ -247,7 +247,7 @@ function deletePlanner(idx, e) {
     <div id="banner" class="mt-3">
         <div id="banner_contents" class="container d-flex align-items-center">
             <div id="info">
-                <h4>나만 불 수 있는</h4>
+                <h4>나만 볼 수 있는</h4>
                 <div id="info_title" class="d-flex">
                     <h2>마이페이지</h2>
                 </div>
@@ -265,7 +265,7 @@ function deletePlanner(idx, e) {
                     <br><br><br><br>
                     <div id="left"><!-- 좌측메뉴-->
                         <div id="profile"><img src="../images/logo.png" alt=""></div>
-                        <div id="leftname">회원이름</div>
+                        <div id="leftname">${nickname}님</div>
                         <div id="leftreft" class="">
                         <div id="myactivity">
                             <a href="/member/mypage.do">나의 활동관리</a>
@@ -281,11 +281,11 @@ function deletePlanner(idx, e) {
                 </div>
                 <div id="col_hate" style="padding-left: 100px;">
                     <div class="d-flex">
-                        <div id="myactivityR" style="width: 150px; "> <a href="./mypage.html">나의 활동관리</a>
+                        <div id="myactivityR" style="width: 150px; "> <a href="/member/mypage.do">나의 활동관리</a>
                         </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <div id="myinfoR" style="width: 200px; "> <a href="./myinfo.html">나의 정보관리</a>
+                        <div id="myinfoR" style="width: 200px; "> <a href="../member/myinfo.do"">나의 정보관리</a>
                         </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <div id="myorderR" style="width: 200px; "> <a href="./myordermanage.html">나의 주문관리</a>
+                        <div id="myorderR" style="width: 200px; "> <a href="../member/myordermanage.do">나의 주문관리</a>
                         </div>
                      </div>
                     <br><br>

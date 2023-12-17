@@ -87,16 +87,20 @@ public class MemberController {
 		return "member/login";
 	}
 	
+	
+	
 	@RequestMapping("/member/findIdpw.do")
 	public String findIdpw() {
 		return "member/find_idpw";
 	}
 	
 	
+	
 	@RequestMapping("/member/regist.do")
 	public String regist() {
 		return "member/regist";
 	}
+	
 	
 	@RequestMapping("/member/mypage.do")
 	public String mypage(Model model, HttpServletRequest req, ParameterDTO parameterDTO, Principal principal) {
@@ -119,7 +123,9 @@ public class MemberController {
 	      parameterDTO.setStart(start);
 	      parameterDTO.setEnd(end);
 	      parameterDTO.setEmail(principal.getName());
-	          
+	      
+	      
+	      
 	      Map<String, Object> maps = new HashMap<String, Object>();
 	      maps.put("totalCount", totalCount);
 	      maps.put("pageSize", pageSize);
@@ -130,9 +136,20 @@ public class MemberController {
 	      model.addAttribute("lists", lists);
 	      System.out.println(lists.size());
 	      
+	      email= principal.getName();
+	      String nickname= dao.getnickname(email);
+	      String title= req.getParameter("title");
+	      String content= req.getParameter("content");
+	      model.addAttribute("email",email); 
+	      model.addAttribute("nickname",nickname); 
 	      //MyPhotoListPage
 	      ArrayList<PhotoBoardDTO> photolists = photoboarddao.MyPhotoListPage(parameterDTO);
 	      //ArrayList<PhotoBoardDTO> myphotolists = photoboarddao.MyPhotoListPage(parameterDTO);
+	      
+	      
+	      
+	      
+	      
 	      
 	      model.addAttribute("photolists", photolists);
 	      System.out.println(photolists.size());
@@ -248,18 +265,52 @@ public class MemberController {
 	
 	
 	@RequestMapping("/member/myinfo.do")
-	public String myinfo() {
+	public String myinfo(Principal principal, Model model, HttpServletRequest req) {
+		
+		String  email= principal.getName();
+	      String nickname= dao.getnickname(email);
+	      String title= req.getParameter("title");
+	      String content= req.getParameter("content");
+	      model.addAttribute("email",email); 
+	      model.addAttribute("nickname",nickname); 
 		return "member/myinfo";
 	}
 	
 	@RequestMapping("/member/myinfoEdit.do")
-	public String myinfoEdit() {
+	public String myinfoEdit(Principal principal, Model model, HttpServletRequest req, MemberDTO memberDTO) {
+		
+		System.out.println("myinfoedit 컨트롤러 들어오나? ");
+		String email= principal.getName();
+	      String nickname= dao.getnickname(email);
+	      String title= req.getParameter("title");
+	      String content= req.getParameter("content");
+	      memberDTO.setEmail(email);
+		 
+	      System.out.println(memberDTO);
+	      memberDTO = memberdao.getoneMemberDTO(memberDTO);
+	      System.out.println(memberDTO);
+	      String tel1 = memberDTO.getPhone().substring(0,3);
+	    		  String tel2 = memberDTO.getPhone().substring(4,8);
+	    		  String tel3 = memberDTO.getPhone().substring(9,13);
+	    		  System.out.println(tel1);
+	    		  System.out.println(tel2);
+	    		  System.out.println(tel3);
+	    		  model.addAttribute("tel1", tel1);
+	    		  model.addAttribute("tel2", tel2);
+	    		  model.addAttribute("tel3", tel3);
+	      model.addAttribute("memberDTO",memberDTO);
+	      
+	      
+	      
 		return "member/myinfoEdit";
 	}
 	
 	@RequestMapping("/member/myordermanage.do")
-	public String myordermanage(Principal principal, Model model) {
-		String email = principal.getName();
+	public String myordermanage(Principal principal, Model model, HttpServletRequest req) {
+		String  email= principal.getName();
+	      String nickname= dao.getnickname(email);
+	      model.addAttribute("email",email); 
+	      model.addAttribute("nickname",nickname); 
 		
 		// 나의 주문내역을 가져옵니다.
 		List<OrderDTO> myOrderList = orderDAO.getAllMyOrder(email);
