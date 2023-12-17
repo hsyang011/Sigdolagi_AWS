@@ -400,7 +400,7 @@ public class AdminController {
 	
 	//관리자 주문현황목록
 	@RequestMapping("/administrator/admin_order_list.do")
-	public String adminOrderList(Model model) {
+	public String adminOrderList(Model model,HttpServletRequest req) {
 		
 		// DB에서 인출한 게시물의 목록을 model객체에 저장한다.
 		List<OrderDTO> adminOrderSelect = orderDAO.adminOrderSelect();
@@ -410,16 +410,24 @@ public class AdminController {
 	}
 	
 	//관리자 주문현황목록 모달창.
-	/*
-	 * @RequestMapping("/administrator/order_modal_list.do") public String
-	 * orderModalList(Model model,HttpServletRequest req) {
-	 * 
-	 * // DB에서 인출한 게시물의 목록을 model객체에 저장한다. List<OrderDTO> adminOrderSelect =
-	 * orderDAO.adminOrderSelect();
-	 * 
-	 * model.addAttribute("orderSelect", adminOrderSelect);
-	 * 
-	 * return "administrator/admin_order_list"; }
-	 */
+	@ResponseBody
+	 @RequestMapping("/administrator/order_modal_list.do") 
+	 public List<OrderDTO> orderModalList(Model model,HttpServletRequest req, OrderDTO orderDTO) {
+	 
+		//주문내역 불러오기
+		/*
+		 * orderDTO = orderDAO.orderView(req.getParameter("order_idx"));
+		 * System.out.println("idx="+req.getParameter("order_idx"));
+		 * System.out.println("orderDTO="+orderDTO); model.addAttribute("orderDTO",
+		 * orderDTO);
+		 */
+		//주문내역 상품 불러오기
+		//List<OrderDTO> orderViewList = orderDAO.orderViewList(req.getParameter("order_idx"));
+		List<OrderDTO> orderViewList = orderDAO.orderViewList(req.getParameter("order_idx"));
+		model.addAttribute("orderViewList", orderViewList);
+		 
+		 return orderViewList; 
+	 }
+	 
 	
 }
