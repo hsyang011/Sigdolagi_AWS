@@ -279,7 +279,7 @@ function deletePlanner(idx, e) {
                         </div><!-- leftreft -->
                     </div> <!-- left메뉴끝 -->
                 </div>
-                <div id="col_hate" style="padding-left: 100px;">
+                <div id="col_hate" >
                     <div class="d-flex">
                         <div id="myactivityR" style="width: 150px; "> <a href="/member/mypage.do">나의 활동관리</a>
                         </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
