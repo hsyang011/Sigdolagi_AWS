@@ -110,5 +110,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		delete FROM comments WHERE comments_idx=#{comments_idx}
 	</delete>
 	
+	<!-- 평균 리뷰값 구하기 avgStar  -->
+	<!-- 관리자 사진게시판 목록 -->
+	<select id="avgStar" resultType="double">
+    SELECT NVL(AVG(starRating), 0) FROM comments
+	</select>
+	
 		
 </mapper>
