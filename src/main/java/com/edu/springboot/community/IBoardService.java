@@ -40,6 +40,7 @@ public interface IBoardService {
 		@Param("nickname") String nickname,
 		@Param("email") String email
 	);
+   
 	
 	//커멘트테이블 받아오기
 	public ArrayList<CommentsDTO> CommentsPage(CommentsDTO commentsDTO);

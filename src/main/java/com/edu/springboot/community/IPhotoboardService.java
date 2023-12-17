@@ -45,4 +45,7 @@ public interface IPhotoboardService {
 	//댓글 삭제
 	public int deletecomment(String comments_idx);
 	
+	// 평균 값 구해오기 
+	public double avgStar(PhotoBoardDTO photoBoardDTO);
+	
 }

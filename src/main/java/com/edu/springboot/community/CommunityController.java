@@ -96,10 +96,17 @@ public class CommunityController {
         System.out.println(email);
 
         int result = photoboarddao.writeConmments(idx, content, nickname, email, starRating);
-
+        System.out.println("평균 구하기 시도");
+        double RateAve = photoboarddao.avgStar(photoBoardDTO);
+        System.out.println("평균값 ");
+        System.out.println(RateAve);
+        model.addAttribute("RateAve",RateAve);
         System.out.println("성공?");
         System.out.println(commentsDTO);
         System.out.println("글쓰기결과:" + result);
+        
+        
+        
         
         
      // 코멘트 테이블 전부다  얻어와서 저장하기  
@@ -224,6 +231,7 @@ public class CommunityController {
 	      dao.update(boardDTO);
 	      boardDTO.setContent(boardDTO.getContent().replace("\r\n", "<br>"));
 	      
+	      
 	      // boardDTO에서 idx값을 가져와서 commentsDTO에 채우기
 	      CommentsDTO commentsDTO = new CommentsDTO();
 	      try {	    	  
@@ -233,11 +241,13 @@ public class CommunityController {
 	    	  e.printStackTrace();
 	      }
 	      
+	      
 	      model.addAttribute("boardDTO", boardDTO);
 	        // 코멘트 테이블 전부다  얻어와서 저장하기  
 	      ArrayList<CommentsDTO> commentsLists = dao.CommentsPage(commentsDTO);
 		
-		
+	      
+	      
 			
 	      System.out.println("댓글 디비에 있는거 가저오는거 성공?");
 	      System.out.println(commentsLists);
@@ -418,7 +428,12 @@ public class CommunityController {
       	         model.addAttribute("email", email);
       	         model.addAttribute("nickname",nickname); 
       		}
-         
+      		
+             System.out.println("평균 구하기 시도");
+             double RateAve = photoboarddao.avgStar(photoBoardDTO);
+             System.out.println("평균값 ");
+             System.out.println(RateAve);
+             model.addAttribute("RateAve",RateAve);
       		
          
          
@@ -511,6 +526,7 @@ public class CommunityController {
    /** 업로드 파일 삭제
 	 * @throws FileNotFoundException 
     */
+   
 	//"/community/photoboard_writeprocess.do"
    @PostMapping("/community/deleteFile.do")
    public ResponseEntity<Boolean> removeFile(String fileName) throws FileNotFoundException{
@@ -527,6 +543,8 @@ public class CommunityController {
            //이게 sfile이구나
            boolean result = file.delete();
 
+           
+           
            
            File thumbnail = new File(file.getParent(),"s_"+file.getName());
            //이게 뭐지?
