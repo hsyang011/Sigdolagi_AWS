@@ -662,14 +662,20 @@ public class CommunityController {
 	   
 	   	System.out.println("포토게시판 댓글 삭제 들어오나? ");
 	   	System.out.println(commentsDTO);
-	   
+	   	String comments_idx = req.getParameter("comments_idx");
+	   	System.out.println("comments_idx");
+	   	System.out.println(comments_idx);
+	   	String idx = req.getParameter("idx");
+	   	System.out.println("idx");
+	   	System.out.println(idx);
+	   	
 	   	System.out.println();
 	   
 	   	  
-	      int result = photoboarddao.photodelete(req.getParameter("idx"));
+	      int result = photoboarddao.deletecomment(comments_idx);
 	      System.out.println("글삭제결과:"+result);
 	      
-	      return "redirect:photoboard_list.do";
+	      return "redirect:photoboard_view.do?idx="+idx;
 	   }
    
    

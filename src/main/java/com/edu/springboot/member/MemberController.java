@@ -107,6 +107,7 @@ public class MemberController {
 		String email = principal.getName();
 		  System.out.println("마이페이지 컨트롤러 들어오나?");
 		  
+		  
 		  //포토게시판 리스트 처리 
 	      
 	      int totalCount = photoboarddao.photoGetTotalCount(parameterDTO);
@@ -145,6 +146,7 @@ public class MemberController {
 	      //MyPhotoListPage
 	      ArrayList<PhotoBoardDTO> photolists = photoboarddao.MyPhotoListPage(parameterDTO);
 	      //ArrayList<PhotoBoardDTO> myphotolists = photoboarddao.MyPhotoListPage(parameterDTO);
+	      
 	      
 	      
 	      
