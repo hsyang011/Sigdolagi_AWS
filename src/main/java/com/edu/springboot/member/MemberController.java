@@ -544,7 +544,7 @@ public class MemberController {
 		System.out.println(uuid);
 		
 		
-		infoDTO.setContent("식도라기 회원 인증을 위한 인증 코드 발송입니다. 아래 코드를 입력해주세요!"+uuid);
+		infoDTO.setContent("식도라기 회원 인증을 위한 인증 코드 발송입니다. 아래 코드를 입력해주세요! \r\n"+uuid);
 		
 		
 		
