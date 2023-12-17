@@ -514,8 +514,8 @@ function deletePlanner(idx, e) {
 												<!-- 게시물의 갯수, 페이지 번호, 페이지 사이즈를 통해 가상 번호를 계산해서 출력한다.  -->
 												${ inquirymaps.totalCount - (((inquirymaps.pageNum-1) * inquirymaps.pageSize) + loop.index)}
 												</td> --%>
-												<td scope="row"><a href="../member/inquiryboard_view.do?inquiryboard_idx=${ post.inquiryboard_idx }">${ post.inquiryboard_idx }</td>
-												<td scope="row"><a href="../member/inquiryboard_view.do?inquiryboard_idx=${ post.inquiryboard_idx }">${ post.title }</td>
+												<td scope="row"><a href="../service/inquiryboard_view.do?inquiryboard_idx=${ post.inquiryboard_idx }">${ post.inquiryboard_idx }</a></td>
+												<td scope="row"><a href="../service/inquiryboard_view.do?inquiryboard_idx=${ post.inquiryboard_idx }">${ post.title }</a></td>
 												<%-- <td scope="row"><a href="./freeboard_view.do?freeboard_idx=${ post.freeboard_idx }">${ post.title }</td> --%>
 												<td>${ post.category }</td>
 												<td>${ post.nickname }</td>

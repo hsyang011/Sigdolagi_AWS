@@ -220,34 +220,6 @@ public class MemberController {
 		return "member/mypage";
 	}
 	
-	// 1:1문의 뷰페이지 member/inquiryboard_view.do
-	   @RequestMapping("/member/inquiryboard_view.do")
-	   
-	   public String freeboardView(Model model, InquiryDTO inquiryDTO, HttpServletRequest req,Principal principal) {
-		   
-		   System.out.println("문의 뷰페이지 컨트롤러 들어오나?");
-		   System.out.println(inquiryDTO);
-		   inquiryDTO = inquirydao.view(inquiryDTO);
-		   System.out.println(inquiryDTO);
-		   inquiryDTO.setContent(inquiryDTO.getContent().replace("\r\n", "<br>"));
-	      
-	     
-		   
-	      model.addAttribute("inquiryDTO", inquiryDTO);
-		
-		
-			
-
-		  	if(principal!=null) {
-	  			String email = principal.getName();
-	  	         String nickname= dao.getnickname(email);
-	  	         System.out.println(email);
-	  	         model.addAttribute("email", email);
-	  	         model.addAttribute("nickname",nickname); 
-	  		}
-	      return "member/inquiryboardView";
-	   }
-	
 	
 	
 //	@RequestMapping("/member/mypage2.do")
@@ -557,5 +529,8 @@ public class MemberController {
 		
 		return ResponseEntity.ok(uuid);
 	}
+	
+	
+	
 	
 }

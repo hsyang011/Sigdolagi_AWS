@@ -23,9 +23,9 @@ public interface InquiryBoardService {
 	//리스트 
 	public ArrayList<InquiryDTO> MyInquiryListPage(ParameterDTO parameterDTO);
 	
-	//관리자 1:1문의 목록
-	public List<InquiryDTO> adminInquirySelect();
 	//인쿼리보드 뷰페이지 
 	public InquiryDTO view(InquiryDTO inquiryDTO);
+	//관리자 1:1문의 목록
+	public List<InquiryDTO> adminInquirySelect();
 }
 

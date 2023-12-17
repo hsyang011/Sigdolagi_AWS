@@ -74,6 +74,86 @@ main > * { margin: 50px 0; }
 }
 
 </style>
+
+<script>
+
+function deleteComment(comments_idx){
+    var confirmed = confirm("정말로 댓글을 삭제하겠습니까?"); 
+    if (confirmed) {
+        var form = document.writeFrm; 
+        form.method = "post";  
+        form.action = "./inquiryboard_Comments_delete.do";
+        form.submit();  
+    }
+}
+
+
+function SaveComment(){
+	let frm = document.commentwriteFrm;
+	console.log(frm.content.value);
+    let data = {
+    		
+   		idx : frm.idx.value,
+    	nickname : frm.nickname.value,
+    	content : frm.content.value,
+    	email : frm.email.value
+    };
+    //alert("댓글작성 "); // 여기에 alert 추가
+    console.log(data);
+    
+    
+    $.ajax({
+        type: "post",
+        url: "./inquiryboard_comment.do",
+        data: data,
+        success: function(res) {
+            console.log("댓글작성 "+res.email);
+            displayComment(res);
+            content.value="";
+        },
+        error: function() {
+            console.log("요청실패");
+        }
+    }); 
+}
+
+// 현재 날짜와 시간을 얻기 위한 함수
+function getCurrentDateTime() {
+    var now = new Date();
+
+    // 날짜 및 시간을 원하는 형식으로 포맷팅
+    var formattedDateTime = now.getFullYear() + '-' +
+        padNumber(now.getMonth() + 1) + '-' +
+        padNumber(now.getDate()) + ' ' +
+        padNumber(now.getHours()) + ':' +
+        padNumber(now.getMinutes()) + ':' +
+        padNumber(now.getSeconds());
+
+    return formattedDateTime;
+}
+
+// 숫자를 두 자리로 패딩하는 함수
+function padNumber(number) {
+    return (number < 10 ? '0' : '') + number;
+}
+
+// 댓글을 화면에 추가하는 함수
+function displayComment(res) {
+    // 받은 댓글 데이터를 이용하여 화면에 추가하는 로직을 작성
+    console.log(res.email);
+    console.log(res.inquiryboard_idx);
+    console.log(res.content);
+    var commentHTML =
+        "<tr align=\"center\">" +
+        "<td>" + res.nickname + "</td>" +
+        "<td>" + res.content + "</td>" +
+        "<td>" + getCurrentDateTime() + "<button class=\"dele\"  onclick='deleteComment(" + res.comments_idx + ")'></button></td>" +
+        "</tr>";
+    // 화면에 댓글 추가
+    $("#commentsTableBody").append(commentHTML);
+}
+
+</script>
 </head>
 <body>
 <!-- wrapper 시작 -->
@@ -119,15 +199,6 @@ main > * { margin: 50px 0; }
                     <li class="on"><a href="../service/inquiryboard.do">1:1문의하기</a></li>
                     <li><a href="../service/faq.do">자주묻는질문</a></li>
                 </ul>
-                <!-- 
-                <ul class="nav my-3 category mt-4">
-                    <li class="nav-item me-3"><button type="button" class="mealk_cate btn rounded-pill on">#전체</button></li>
-                    <li class="nav-item me-3"><button type="button" class="mealk_cate btn rounded-pill">#한식</button></li>
-                    <li class="nav-item me-3"><button type="button" class="mealk_cate btn rounded-pill">#일식</button></li>
-                    <li class="nav-item me-3"><button type="button" class="mealk_cate btn rounded-pill">#중식</button></li>
-                    <li class="nav-item me-3"><button type="button" class="mealk_cate btn rounded-pill">#양식</button></li>
-                    <li class="nav-item me-3"><button type="button" class="mealk_cate btn rounded-pill">#기타</button></li>
-                </ul> -->
             </div>
             <!-- 컨텐츠 헤더 끝 -->
             <div class="shop_board container  mt-5" >
@@ -137,19 +208,18 @@ main > * { margin: 50px 0; }
                         <!-- 게시판 들어가는 부분 (시작) -->
                         <form name="writeFrm" method="post" onsubmit="return validateForm(this);" class="writeFrm" action="./inquiryboard_write.do">
                             <input type="hidden" name="tname"  />
-                            <form>
+                            <input type="hidden" name="inquiryboard_idx" value="${ inquiryDTO.inquiryboard_idx }" />
+                            <input type="hidden" name="email"  />
+                            <input type="hidden" name="nickname" />
                             <table class="table table-bordered" id="write_frm_table" width="90%">
                                 <tr>
                                     <td>문의유형</td>
                                     <td>
-                                        <!-- select name="category" id="category" class="rounded-pill" style="width: 150px; height: 30px;">
-                                            <option value="선택해주세요" selected style="text-align: center;">선택해주세요.</option>
-                                            <option value="플래너" style="text-align: center;">플래너</option>
-                                            <option value="마켓" style="text-align: center;">마켓</option>
-                                            <option value="기타" style="text-align: center;">기타</option>
-                                        </select> -->
-                                        <input type="text" value="${inquiryDTO.category}" readonly>
+                                        <%-- <input type="text" value="${inquiryDTO.category}" readonly> --%>
+                                        ${inquiryDTO.category}
                                     </td>
+                                    <td>작성일</td>
+                                    <td>${inquiryDTO.regidate}</td>
                                 </tr>
                                         <input type="hidden" name="email" id="email" value="${email}" style="width: 95%;" />
                                         <input type="hidden" name="nickname" id="nickname" value="${nickname}" style="width: 95%;" />
@@ -166,33 +236,78 @@ main > * { margin: 50px 0; }
                                 
                                 <tr>
                                     <td>제목</td>
-                                    <td>
-                                        <input type="text" name="title" value="${inquiryDTO.title}" style="width: 95%;" readonly />
+                                    <td colspan="4">
+                                        <%-- <input type="text" name="title" value="${inquiryDTO.title}" style="width: 95%;" readonly /> --%>
+                                    	${inquiryDTO.title}
                                     </td>
                                 </tr>
             
                                 <tr>
                                     <td>내용</td>
-                                    <td>
-                                        <textarea name="content"  style="width: 95%; height: 300px;" readonly>${inquiryDTO.content}</textarea>
+                                    <td colspan="4" style="height: 300px;">
+                                       <%--  <textarea name="content"  style="width: 95%; height: 300px;" readonly>${inquiryDTO.content}</textarea> --%>
+                                        ${inquiryDTO.content}
                                     </td>
                                 </tr>
-                                <!-- <tr>
-                                    <td>답변등록 알림</td>
-                                    <td>
-                                        <input type="checkbox" name="inq_sms" id="sms알림">sms
-                                        <input type="text" name="cel1" size="3"> -
-                                        <input type="text" name="cel2_1" size="4" title="전화번호"> -
-                                        <input type="text" name="cel2_2" size="4">
-                                    </td>
-                                </tr> -->
                                 <tr>
-                                    <td colspan="2" align="center" class="btn_td">
+                                    <td colspan="4" align="center" class="btn_td">
                                         <button type="button" class="writeFrm_list"  onclick="location.href='./mypage.do'">목록 보기</button>
                                     </td>
                                 </tr>
                             </table>
                         </form>
+                        
+                        <!-- 관리자로 로그인할 때 -->
+	            		<s:authorize access="hasRole('ADMIN')">
+                        <!--/* 댓글 작성 */-->
+						<div class="cm_write" style="width:100%">
+                       		<fieldset>
+                       			<form name="commentwriteFrm" method="post" onsubmit="return validateForm(this);" action="/service/inquiryboard_comment.do" class="writeFrm">
+                           		<legend class="skipinfo">댓글 입력</legend>
+                           			<div class="cm_input">
+		                                <input type="hidden" name="idx" value="${inquiryDTO.inquiryboard_idx }">
+		                                <input type="hidden" name="nickname" value="${inquiryDTO.nickname}">
+		                                <input type="hidden" name="email" value="${email}">
+		                               	<p><textarea id="content" name="content" onkeyup="" rows="4" placeholder="댓글을 입력해 주세요."></textarea>
+		                               	  	<button type="button" class="btns"  onclick="SaveComment();">등록</button></p>
+		                             
+                           			</div>
+								</form>
+	                       </fieldset>
+	                   	</div>
+	                   	</s:authorize>
+	                   	
+                        <!-- 댓글 리스트 -->
+               			<table class="table table-border">
+	                   		<thead>
+		                       	<tr>
+		                           <th style="text-align: center;">작성자</th>
+		                           <th style="text-align: center;">내용</th>
+		                           <th style="text-align: center;">작성일</th>	
+		                           <th style="text-align: center;"></th>	
+		                       	</tr>
+	                   		</thead>
+		                 	<tbody id="commentsTableBody">
+							    <c:forEach items="${ CommentsLists }" var="row" varStatus="loop">    
+							        <tr align="center">
+							            <form name="commentsdeletefrm" action="/service/inquiryboard_Comments_delete.do" method="post">
+							                <input type="hidden" name="comments_idx" value="${row.comments_idx}" >
+							                <td>${ row.nickname }</td>
+											<td name="idx" style="text-align: center; display: none;">
+										    	<input type="text" name="idx" value="${row.idx}">
+											</td>
+                                            <td>${row.content}</td>
+							                <td>${ row.postdate } <button type="submit" class="dele"  onclick="deleteComment();">삭제</td>
+							                <!-- <input type="button" value="삭제" onclick="deleteComment();"> -->
+							            </form>
+							        </tr>
+							    </c:forEach> 
+							</tbody>
+						 </table>
+                        
+                        
+                        
+                        
                     </div>
                 </div>
         <!-- 컨테이너 안쪽 컨텐츠 -->
