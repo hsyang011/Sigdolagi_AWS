@@ -69,9 +69,6 @@ public class AdminController {
 	IOrderService orderDAO;
 	
 	
-
-	
-	
 	
 	@RequestMapping("/administrator/admin_main.do") 
 	public String adminMain(Model model, HttpServletRequest req, HttpSession session, Principal principal) {
@@ -411,23 +408,23 @@ public class AdminController {
 	
 	//관리자 주문현황목록 모달창.
 	@ResponseBody
-	 @RequestMapping("/administrator/order_modal_list.do") 
-	 public List<OrderDTO> orderModalList(Model model,HttpServletRequest req, OrderDTO orderDTO) {
+	@RequestMapping("/administrator/order_modal_list.do") 
+	public List<OrderDTO> orderModalList(Model model,HttpServletRequest req, OrderDTO orderDTO) {
 	 
-		//주문내역 불러오기
-		/*
-		 * orderDTO = orderDAO.orderView(req.getParameter("order_idx"));
-		 * System.out.println("idx="+req.getParameter("order_idx"));
-		 * System.out.println("orderDTO="+orderDTO); model.addAttribute("orderDTO",
-		 * orderDTO);
-		 */
 		//주문내역 상품 불러오기
-		//List<OrderDTO> orderViewList = orderDAO.orderViewList(req.getParameter("order_idx"));
 		List<OrderDTO> orderViewList = orderDAO.orderViewList(req.getParameter("order_idx"));
 		model.addAttribute("orderViewList", orderViewList);
 		 
 		 return orderViewList; 
 	 }
+	
+	//관리자 주문취소처리
+	@PostMapping("/administrator/admin_order_list.do")
+	public String adminOrderDelete(HttpServletRequest req,OrderDTO orderDTO) {
+		int result = orderDAO.adminOrderDelete(req.getParameter("idx"));
+		if(result==1)System.out.println("취소처리되었습니다.");
+		return "redirect:admin_order_list.do";
+	}
 	 
 	
 }

@@ -27,21 +27,23 @@
     function sucCallBack(resData){
     	/*콜백받은 데이터를 각각의 td태그에 삽입한다. 콜백 데이터는
     	JSON 객체이므로 즉시 파싱한 후 적용할 수 있다. */
+    	console.log("resData=", resData);
+    	console.log("resData[0]=", resData[0]);
     	let tableData = "";
-    	$('#td1').html(resData.order_idx);
-    	$('#td2').html(resData.payment_date);
-    	$('#td3').html(resData.name);
-    	$('#td4').html(resData.phone);
-    	$('#td5').html(resData.zipcode);
-    	$('#td6').html(resData.point);
-    	$('#td7').html(resData.addr1 + resData.addr2);
-    	$('#td8').html(resData.message);
+    	$('#td1').html(resData[0].order_idx);
+    	$('#td2').html(resData[0].payment_date);
+    	$('#td3').html(resData[0].name);
+    	$('#td4').html(resData[0].phone);
+    	$('#td5').html(resData[0].zipcode);
+    	$('#td6').html(resData[0].point);
+    	$('#td7').html(resData[0].addr1 +" - "+ resData[0].addr2);
+    	$('#td8').html(resData[0].message);
     	
     	$(resData).each(function(index, data){
     		tableData += ""
     		+"<tr>"
     		+"	<td colspan='3' style='text-align: center;'>"
-    		+"		<a href=''>"+data.prod_name+"</a></td>"
+    		+"		<a href='../market/market_view.do?prod_idx="+data.prod_idx+"'>"+data.prod_name+"</a></td>"
     		+"	<td>"+data.prod_count+"개</td>"
     		+"</tr>";
     	});
@@ -77,9 +79,9 @@
 <script>
 function listDelete(idx){
 	let frm = document.frm;
-	if(confirm("삭제하시겠습니까?")){
+	if(confirm("취소하시겠습니까?")){
 		frm.idx.value = idx;
-		frm.action = "/administrator/adminOrderDelete.do";
+		frm.action = "/administrator/admin_order_list.do";
 		frm.method = "post";
 		frm.submit();
 	}
@@ -244,12 +246,12 @@ function listDelete(idx){
                                     <tr>
                                     	<th colspan="4" style="text-align: center;">주문상품</th>
                                     </tr>
-                                    <tr>
+                                    <!-- <tr>
                                     	<td colspan="3" style="text-align: center;">
-                                    		상품명 ㅁ잗러미잗러미ㅏㅈㄷ러맞ㄷㄹ0000
+                                    		<a href="">상품명 ㅁ잗러미잗러미ㅏㅈㄷ러맞ㄷㄹ0000</a>
                                     	</td>
                                     	<td>2개</td>
-                                    </tr>
+                                    </tr> -->
                                     <tbody id="show_data"></tbody>
                                 </tbody>
                             </table>
