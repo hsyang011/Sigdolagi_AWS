@@ -264,13 +264,12 @@ function addToCart(idx, flag, name) {
                 <ul class="head_nav nav justify-content-center mt-5 mb-3 py-3" id="product_nav">
                     <li class="nav-item"><a class="nav-link" href="#detail_info">상세 정보</a></li>
                     <li class="nav-item"><a class="nav-link" href="#product_notice">배송 안내</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#product_review">상품 리뷰 33</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#product_inquiry">상품 문의 2</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#product_review">상품 리뷰</a></li>
                 </ul>
                 <hr>
                 <!-- 상세 정보 시작 -->
                 <div id="#detail_info" class="mt-5">
-                    <img src="../images/product_detail.jpg" style="width: 100%;" alt="">
+                    <img src="../images/products/${productDTO.prod_detail}" style="width: 100%;" alt="">
                 </div>
                 <!-- 상세 정보 끝 -->
                 <!-- 기본 정보 시작 -->
@@ -373,41 +372,6 @@ function addToCart(idx, flag, name) {
                     </table>
                 </div>
                 <!-- 상품 리뷰 끝 -->
-                <!-- 상품 문의 시작 -->
-                <div id="product_inquiry" class="my-5">
-                    <div class="d-flex justify-content-between">
-                        <p>상품문의 <span style="color: #FF7A00;">1건</span></p>
-                        <button class="btn btn-outline-dark px-5 rounded-pill">상품 문의하기</button>
-                    </div>
-                    <!-- 테이블 -->
-                    <table class="table table-border text-center">
-                        <tr>
-                            <th scope="col" style="width: 13%;">번호</th>
-                            <th scope="col" style="width: 60%;">문의내용</th>
-                            <th scope="col">작성자</th>
-                            <th scope="col">작성일</th>
-                        </tr>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td id="table_title">집</td>
-                            <td>Otto</td>
-                            <td>2023.12.05</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>최고</td>
-                            <td>Thornton</td>
-                            <td>2023.12.05</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Larry the Bird</td>
-                            <td>Larry the Bird</td>
-                            <td>2023.12.05</td>
-                        </tr>
-                    </table>
-                </div>
-                <!-- 상품 문의 끝 -->
             </div>
         </div>
     </main>

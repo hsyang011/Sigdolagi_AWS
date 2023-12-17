@@ -80,6 +80,8 @@ a:hover { color: #FF7A00; }
 
 /* main 설정 */
 main > * { margin: 50px 0; font-family: "NPSfontRegular"; }
+.card-body { height: 100px; max-height: 100px; min-height: 100px; }
+.card-body > * { text-overflow: ellipsis; white-space: nowrap; overflow: hidden; }
 
 /* footer 설정 */
 footer { border-top:3px solid #FF7A00; background-color: white;padding-top: 0; }
