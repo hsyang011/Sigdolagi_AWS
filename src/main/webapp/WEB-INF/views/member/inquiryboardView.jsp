@@ -76,7 +76,7 @@ main > * { margin: 50px 0; }
 </style>
 </head>
 <body>
-<h2>inquiryBoardView${inquiryDTO.title}</h2>
+<h2></h2>
 <!-- wrapper 시작 -->
 <div class="container-fluid" id="wrap">
 	

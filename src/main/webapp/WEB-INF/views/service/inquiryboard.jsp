@@ -202,6 +202,7 @@ main > * { margin: 50px 0; }
     <!-- main 끝 -->
     
     
+    
     <!-- footer 추가 -->
     <%@ include file="../include/footer.jsp" %>
     

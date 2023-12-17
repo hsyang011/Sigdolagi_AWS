@@ -167,10 +167,10 @@ function deletePost(photoboard_idx){
 
 
 
-function deleteCommentPost(comments_idx){
+function commentDelete(comments_idx){
     var confirmed = confirm("정말로 삭제하겠습니까?"); 
-    if (confirmed) {
-        var form = document.writeFrm;      
+    if (confirmed) {http://localhost:8586/community/photoboard_view.do?idx=191
+        var form = document.deleteForm;      
         form.method = "post";  
         form.action = "./photoboardcommnt_delete.do";
         form.submit();  
@@ -356,7 +356,7 @@ function CommentSend(){
                                             <input type="text" name="nickname" value="${nickname}">
                                             <input type="text" name="email" value="${email}">
                                             <p><textarea id="content" name="content" onkeyup=""  style="width:100%" rows="4" placeholder="댓글을 입력해 주세요."></textarea></p>
-                                            <span><button type="button" class="btns" onclick="CommentSend();">등록</button> <i id="counter">0/300자</i></span>
+                                            <span><button type="button" class="" onclick="CommentSend();">등록</button> <i id="counter">0/300자</i></span>
                                         </div>
                                     </form>
                                 </fieldset>
@@ -372,7 +372,7 @@ function CommentSend(){
                                         <th style="text-align: center;">Post Date</th>
                                     </tr>
                                 </thead>
-                                <form id="commentDelete" action="/community/photoboardcommnt_delete.do" method="post">
+                                <form id="commentDelete" name="deleteForm" action="/community/photoboardcommnt_delete.do" method="post">
                                 <tbody id="commentsTableBody">
                                     <!-- Existing comments will be added here dynamically -->
                                     <c:forEach items="${CommentsLists}" var="row" varStatus="loop">
@@ -386,7 +386,7 @@ function CommentSend(){
 											</td>
                                             <td>${row.content}</td>
                                             <td>${row.postdate} &nbsp;&nbsp;&nbsp;&nbsp;
-                                			<button type="submit" class="writeFrm_reset"  onclick="">삭제하기</button>
+                                			<button type="button" class="writeFrm_reset"  onclick="commentDelete();">삭제하기</button>
                                         </tr>
                                     </c:forEach>
                                 </tbody>
