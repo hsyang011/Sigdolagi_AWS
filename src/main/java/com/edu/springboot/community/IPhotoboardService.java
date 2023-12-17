@@ -26,7 +26,8 @@ public interface IPhotoboardService {
 			@Param("idx") int idx,
 			@Param("content") String content,
 			@Param("nickname") String nickname,
-			@Param("email") String email
+			@Param("email") String email,
+			@Param("starRating") String starRating
 			);
    	//자유게시판 조회수 업데이트 
 	public int photoupdate(PhotoBoardDTO photoBoardDTO);

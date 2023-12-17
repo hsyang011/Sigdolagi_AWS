@@ -203,7 +203,7 @@ $(function() {
 		                        <div>
 		                            <div class="card_product_img">
 		                                <button style="border: none;" data-bs-toggle="modal" class="viewBtn" data-bs-target="#restaurant_view">
-		                                    <img class="shop_product_img card-img-top" src="../images/750_750_20210307074729929_photo_2c2906c7be9f.jpg" alt="Card image">
+		                                    <img class="shop_product_img card-img-top" src="../images/Korea${randomNum}.jpeg" alt="Card image">
 		                                </button>
 		                                <div class="cart_icon_box">
 		                                    <img class="p-1" src="../images/favor_icon.png" alt="">
