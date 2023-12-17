@@ -50,15 +50,6 @@
 		SELECT * FROM marketorder WHERE order_idx=${idx}
 	</select>
 	<!-- 관리자 주문내역 상품 불러오기 -->
-	<!-- <select id="orderViewList"
-		resultType="com.edu.springboot.market.OrderDTO"
-		parameterType="string"> 
-		SELECT  mo.order_idx, mo.email, mo.name, payment_date, cart_idx, pr.prod_idx, cr.prod_count, prod_totprice, pr.prod_name
-	    FROM marketorder mo 
-	        INNER JOIN cart cr on mo.order_idx=cr.order_idx
-	        INNER JOIN product pr on cr.prod_idx=pr.prod_idx
-	    WHERE mo.order_idx=${idx};
-	</select> -->
 	<select id="orderViewList"
 		resultType="com.edu.springboot.market.OrderDTO"
 		parameterType="string"> 
@@ -69,5 +60,10 @@
 	        INNER JOIN product pr on cr.prod_idx=pr.prod_idx
 	    WHERE mo.order_idx=${order_idx}
 	</select>
+	<!-- 관리자 주문취소처리변경 -->
+	<update id="adminOrderDelete"
+		parameterType="com.edu.springboot.market.OrderDTO">
+		update marketorder set state='주문취소' where order_idx=#{idx}
+	</update>
 	
 </mapper>

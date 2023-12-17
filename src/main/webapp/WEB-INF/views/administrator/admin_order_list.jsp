@@ -79,9 +79,9 @@
 <script>
 function listDelete(idx){
 	let frm = document.frm;
-	if(confirm("삭제하시겠습니까?")){
+	if(confirm("취소하시겠습니까?")){
 		frm.idx.value = idx;
-		frm.action = "/administrator/adminOrderDelete.do";
+		frm.action = "/administrator/admin_order_list.do";
 		frm.method = "post";
 		frm.submit();
 	}
