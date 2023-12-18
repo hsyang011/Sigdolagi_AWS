@@ -151,7 +151,6 @@ function deletePost(freeboard_idx){
                             <table class="table table-bordered" id="free_write_frm_table" width="100%" >
                                <colgroup>
                                    <col width="20%" /><col width="30%" /><col width="20%" /><col width="30%" />
-                                   
                                 </colgroup>
 		                         <tr> 
 		                             <td>작성일</td> <td>${ notiDTO.postdate }</td>
@@ -172,54 +171,14 @@ function deletePost(freeboard_idx){
 		                                ${ notiDTO.content }              
 		                             </td>
 		                         </tr>
-                       
                                 <tr>
                                     <td colspan="4" align="center" class="btn_td">
-             <%--                            <button type="button" class="writeFrm_edit" onclick="location.href='./freeboard_edit.do?freeboard_idx=${boardDTO.freeboard_idx }';">수정하기</button>
-                                        <form id="deleteForm" action="./community/freeboard_delete.do" method="post">
-
-                                          	<input type="hidden" name="freeboard_idx" value="${param.freeboard_idx }"  />
-                                			<button type="button" class="writeFrm_reset"  onclick="deletePost(${boardDTO.freeboard_idx});">삭제하기</button>
-								       	</form> --%>
-
                                         <button type="button" class="writeFrm_list" onclick="location.href='./notiboard.do';">목록 보기</button>
                                     </td>
                                 </tr>
                             </table>
                         </form>
                         
-                       <%--  <!--/* 댓글 작성 */-->
-
-                   <div class="cm_write" style="width:100%">
-                       <fieldset>
-                        <form name="writeFrm" method="post" onsubmit="return validateForm(this);" action="/community/freeboard_comment.do" class="writeFrm">
-                           <legend class="skipinfo">댓글 입력</legend>
-                           <div class="cm_input">
-                               <p><textarea id="content" name="content" onkeyup="countingLength(this);"  style="width:100%" rows="4" placeholder="댓글을 입력해 주세요."></textarea></p>
-                               <span><button type="button" class="btns" onclick="saveComment();">등록</button> <i id="counter">0/300자</i></span>
-                           </div>
-                           </form>
-                       </fieldset>
-                   </div>
-                      <c:forEach items="${ CommentsLists }" var="row" varStatus="loop">    
-                             <tr align="center">
-                                 <td>${ row.email }</td> 
-                                 <td>${ row.freeboard_idx }</td> 
-                                  <td>${ row.content }</td> 
-                                 <td>${ row.postdate }</td> 
-                                 <td>${ row.comment_idx }</td> 
-                                 <form action="./hitsplus.do?idx=${ row.idx }" method="post">
-                                    <td><button>좋아요</button>${ row.hits }</td>
-                                 </form>
-                                <br />
-                             </tr>
-                          </c:forEach> 
-
-					
-
-                 
-                  
-                  </div> --%>
                     </div> 
                 </div>
         <!-- 컨테이너 안쪽 컨텐츠 -->
