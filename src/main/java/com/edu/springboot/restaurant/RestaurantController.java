@@ -29,18 +29,10 @@ public class RestaurantController {
 	   IBoardService boraddao;
 
     @RequestMapping("/restaurant/restaurant_list.do")
-    public String restaurantList(ParameterDTO parameterDTO, Model model, RestaurantDTO restaurantDTO, Principal principal) {
+    public String restaurantList(ParameterDTO parameterDTO, Model model, RestaurantDTO restaurantDTO) {
         System.out.println("레스토랑 리스트 컨트롤러 들어온다 ");
         int totalCount = restaurantdao.getTotalCount(parameterDTO);
         System.out.println(totalCount);
-        
-        String email =  principal.getName();
-        String nickname = boraddao.getnickname(email);
-        
-        model.addAttribute("email",email);
-        model.addAttribute("nickname",nickname);
-        
-      
         
         // 모든 식당 정보를 리스트에 담기
         List<RestaurantDTO> restaurantList = restaurantdao.allrestaurant();
@@ -80,6 +72,7 @@ public class RestaurantController {
 	   @RequestMapping("/restaurant/restaurant_view.do")
 	   public String restaurantView(Model model,HttpServletRequest req,Principal principal, RestaurantDTO restaurantDTO) {
 		  restaurantDTO = restaurantdao.rest_view(restaurantDTO);
+		  restaurantDTO.setRoad_address(restaurantDTO.getRoad_address());
 		  restaurantDTO.setX_point(restaurantDTO.getX_point());
 		  restaurantDTO.setY_point(restaurantDTO.getY_point());
 		  System.out.println("restaurantDTO"+ restaurantDTO);
