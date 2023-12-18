@@ -304,7 +304,7 @@ $(function() {
                     </form>
                     <!-- 페이지 제목 -->
                     <div class="page_title_area d-flex align-items-center mt-5">
-                        <h2>주문상품 <span style="color: #FF7A00;">2개</span></h2>
+                        <h2>주문상품 <span style="color: #FF7A00;"></span></h2>
                     </div>
                     <!-- 장바구니리스트 시작 -->
                     <div class="cart_list">
@@ -332,7 +332,7 @@ $(function() {
                                         <td>
                                         	<!-- ":"로 split해서 1번 인덱스(상품 수량)의 값을 가져온다. (짱대가리 굴림) -->
 											<c:set var="cnt" value="${fn:split(row.key, ':')}" />
-                                            <input style="width: 100%" class="product_quantity" type="number" readonly name="" id="" value="${cnt[1]}">
+                                            <input style="width: 100%; border: 0px" class="product_quantity" type="number" readonly name="" id="" value="${cnt[1]}">
                                             <input type="hidden" value="${col.prod_idx}" />
                                         </td>
                                         <td>
