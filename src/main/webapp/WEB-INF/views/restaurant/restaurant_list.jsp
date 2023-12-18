@@ -320,6 +320,7 @@ function SaveReview(){
 			        <c:otherwise>
 		            <c:forEach items="${restaurantList}" var="entry" varStatus="loop">
 		                <c:if test="${entry.category eq '한식'}">
+		                
 		                	<c:if test="${cnt eq 6 }" var="result">
                             	<c:set value="0" var="cnt"></c:set>
                             </c:if>
@@ -329,13 +330,8 @@ function SaveReview(){
 		                    <div class="card custom-col">
 		                        <div>
 		                            <div class="card_product_img">
-<<<<<<< HEAD
-		                                <button style="border: none;"  class="viewBtn"  type="submit" action="../restaurant/restaurantView.do">
-		                                    <img class="shop_product_img card-img-top" src="../images/Korea${randomNumbers[cnt]}.jpeg" alt="Card image">
-=======
 		                                <button style="border: none;" data-bs-toggle="modal" class="viewBtn" data-bs-target="#restaurant_view">
-		                                   	<img class="shop_product_img card-img-top" src="../images/Korea${randomNum}.jpeg" alt="Card image">
->>>>>>> branch 'main' of https://github.com/hsyang011/Sigdolagi.git
+		                                   	<img class="shop_product_img card-img-top" src="../images/Korea${randomNumbers[cnt]}.jpeg" alt="Card image">
 		                                </button>
 		                                
 		                                <div class="cart_icon_box">
