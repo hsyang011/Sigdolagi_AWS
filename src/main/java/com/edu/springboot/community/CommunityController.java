@@ -144,8 +144,8 @@ public class CommunityController {
 	        System.out.println("성공?");
 	        System.out.println(commentsDTO);
 	        System.out.println("글쓰기결과:" + result);
-	     // 코멘트 테이블 전부다  얻어와서 저장하기  
-			ArrayList<CommentsDTO> commentsLists = photoboarddao.CommentsPage(commentsDTO);
+	        // 코멘트 테이블 전부다  얻어와서 저장하기  
+			ArrayList<CommentsDTO> commentsLists = dao.CommentsPage(commentsDTO);
 			//빈에 저장
 			
 			

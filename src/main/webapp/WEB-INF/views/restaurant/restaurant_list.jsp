@@ -91,6 +91,34 @@ $(function() {
         }).open();
     });
 });
+
+function SaveReview(){
+	let frm = document.reviewFrm;
+	console.log(frm.content.value);
+    let data = {
+    		
+   		idx : frm.idx.value,
+    	nickname : frm.nickname.value,
+    	content : frm.content.value,
+    	email : frm.email.value
+    };
+    //alert("댓글작성 "); // 여기에 alert 추가
+    console.log(data);
+    
+    
+    $.ajax({
+        type: "post",
+        url: "./restaurant/restaurant_review.do",
+        data: data,
+        success: function(res) {
+            console.log("댓글작성 "+res.email);
+            displayComment(res);
+        },
+        error: function() {
+            console.log("요청실패");
+        }
+    }); 
+}
 </script>
 </head>
 <body>
@@ -330,10 +358,19 @@ $(function() {
                 </div>
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <div id="review" class="my-5" style="width: 100%;">
+                    <div id="review" class="my-5"  style="width: 100%;">
+                        <p>리뷰 <span style="color: #FF7A00;">3건</span></p>
                         <div class="d-flex justify-content-between">
-                            <p>리뷰 <span style="color: #FF7A00;">3건</span></p>
-                            <button class="btn btn-outline-dark px-5 rounded-pill">매장 리뷰쓰기</button>
+                        	<div class="cm_input" style="width:100%">
+                        	  <form name="reviewFrm" method="post" onsubmit="return validateForm(this);" action="/restaurant/restaurant_review.do" class="reviewFrm">
+	                            <input type="hidden" name="idx" value="${RestaurantDTO.restaurant_idx }">
+	                            <input type="hidden" name="nickname" value="${boardDTO.nickname}">
+	                            <input type="hidden" name="email" value="${email}">
+	                           	<p ><textarea id="content" name="content" onkeyup="" rows="4" placeholder="리뷰를 입력해주세요."  style="width: 100%;"></textarea>
+	                       	    <button type="button" class="btn btn-outline-dark px-5 rounded-pill" onclick="SaveReview();">매장 리뷰쓰기</button></p>
+                     		</div>
+                           
+
                         </div>
                         <!-- 테이블 -->
                         <table class="table table-border">

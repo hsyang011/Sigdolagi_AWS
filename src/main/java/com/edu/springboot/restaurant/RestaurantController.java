@@ -1,5 +1,6 @@
 package com.edu.springboot.restaurant;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -9,6 +10,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.edu.springboot.community.CommentsDTO;
+
+import jakarta.servlet.http.HttpServletRequest;
 
 @Controller
 public class RestaurantController {
@@ -56,6 +62,42 @@ public class RestaurantController {
         return numbers;
     }
     
+    	//리뷰 
+  		@RequestMapping("/restaurant/restaurant_review.do")
+  		@ResponseBody
+  		public CommentsDTO ReviewPost(Model model, HttpServletRequest req, CommentsDTO commentsDTO, Principal principal) {
+  			int idx = commentsDTO.getIdx();
+  	        String content = commentsDTO.getContent();
+  	        String email =  principal.getName();
+  	        String nickname = dao.getnickname(email);
+  	        
+  	        System.out.println(idx);
+  	        System.out.println(content);
+  	        System.out.println(nickname);
+  	        System.out.println(email);
+  	
+  	        int result = dao.writeReview(idx, content, nickname, email);
+  	
+  	        System.out.println("성공?");
+  	        System.out.println(commentsDTO);
+  	        System.out.println("글쓰기결과:" + result);
+  	        // 코멘트 테이블 전부다  얻어와서 저장하기  
+  			ArrayList<CommentsDTO> commentsLists = dao.CommentsPage(commentsDTO);
+  			//빈에 저장
+  			
+  			
+  			System.out.println("댓글 디비에 있는거 가저오는거 성공?");
+  			System.out.println(commentsLists);
+  			
+  			
+  			model.addAttribute("CommentsLists", commentsLists);
+
+  	        
+  	        return commentsDTO;
+  		}
+
+  	
+  	
     
     
 }
