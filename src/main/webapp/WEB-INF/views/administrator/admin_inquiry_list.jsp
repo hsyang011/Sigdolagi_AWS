@@ -171,7 +171,7 @@ function listDelete(idx){
 											<td><a href="../service/inquiryboard_view.do?inquiryboard_idx=${row.inquiryboard_idx }">${row.title }</a></td>
                                             <td>${row.nickname }</td>
                                             <td>${row.email }</td>
-                                            <td>${row.regidate }</td>
+                                            <td>${row.postdate }</td>
                                             <td>
                                             	<!-- <a href="#" class="btn btn-warning btn-icon-split">
                                                     <span class="text">답변</span>
