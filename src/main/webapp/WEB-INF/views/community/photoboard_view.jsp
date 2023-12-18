@@ -332,7 +332,7 @@ function CommentSend(){
                                     <tr>
                                         <td>내용</td>
                                         <td colspan="3">
-                                            <img width="30%"  class="card-img-top" src="../uploads/${photoBoardDTO.sfile}" alt="이미지">
+                                            <img width="200px"  class="card-img-top" src="../uploads/${photoBoardDTO.sfile}" alt="이미지">
                                             <textarea id="" name="content" readonly>${photoBoardDTO.content}</textarea>
                                         </td>
                                     </tr>
@@ -354,9 +354,9 @@ function CommentSend(){
                                     <form name="commentwriteFrm" method="post"  action="/community/photoboard_comment.do" class="writeFrm">
                                         <legend class="skipinfo">댓글 입력 </legend>
                                         <div class="cm_input">
-                                            <input type="text" name="idx" value="${photoBoardDTO.idx }">
-                                            <input type="text" name="nickname" value="${nickname}">
-                                            <input type="text" name="email" value="${email}">
+                                            <input type="hidden" name="idx" value="${photoBoardDTO.idx }">
+                                            <input type="hidden" name="nickname" value="${nickname}">
+                                            <input type="hidden" name="email" value="${email}">
                                             <p><textarea id="content" name="content" onkeyup=""  style="width:100%" rows="4" placeholder="댓글을 입력해 주세요."></textarea></p>
                                             ★별점 <input style="width: 30px;" id="starRating" name="starRating" value="5">
                                             <span><button type="button" class="" onclick="CommentSend();">등록</button> <i id="counter">0/300자 별점 평균 ${RateAve}</i></span>
