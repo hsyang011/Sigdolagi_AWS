@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.edu.springboot.community.BoardDTO;
 import com.edu.springboot.community.CommentsDTO;
 
 import jakarta.servlet.http.HttpServletRequest;
@@ -61,6 +62,51 @@ public class RestaurantController {
 
         return numbers;
     }
+    
+    
+    
+    
+	   //맛집 view 
+	   @RequestMapping("/restaurant/restaurant_view.do")
+	   public String restaurantView(Model model,HttpServletRequest req,Principal principal, RestaurantDTO restaurantDTO) {
+		  restaurantDTO = dao.rest_view(restaurantDTO);
+		  restaurantDTO.setX_point(restaurantDTO.getX_point());
+		  restaurantDTO.setY_point(restaurantDTO.getY_point());
+		  System.out.println("restaurantDTO"+ restaurantDTO);
+	      
+		  model.addAttribute("restaurantDTO", restaurantDTO);
+	      
+	      // boardDTO에서 idx값을 가져와서 commentsDTO에 채우기
+	      CommentsDTO commentsDTO = new CommentsDTO();
+	      try {	    	  
+	    	  commentsDTO.setIdx(Integer.parseInt(restaurantDTO.getRestaurant_idx()));
+	      } catch (Exception e) {
+	    	  System.out.println("idx가 null입니다.");
+	    	  e.printStackTrace();
+	      }
+	      
+	      
+	        // 코멘트 테이블 전부다  얻어와서 저장하기  
+	      ArrayList<CommentsDTO> commentsLists = dao.CommentsPage(commentsDTO);
+		
+	      
+	      
+			
+	      System.out.println("댓글 디비에 있는거 가저오는거 성공?");
+	      System.out.println(commentsLists);
+		
+	      model.addAttribute("CommentsLists", commentsLists);
+
+		  	if(principal!=null) {
+	  			String email = principal.getName();
+	  	        String nickname= dao.getnickname(email);
+	  	        System.out.println(email);
+	  	        model.addAttribute("email", email);
+	  	        model.addAttribute("nickname",nickname); 
+	  		}
+	      return "restaurant/restaurant_view";
+	   }
+	
     
     	//리뷰 
   		@RequestMapping("/restaurant/restaurant_review.do")

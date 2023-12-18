@@ -21,6 +21,11 @@
 		SELECT * FROM restaurant WHERE restaurant_idx<![CDATA[<=]]>10
 	</select>
 	
+	<!-- 뷰 페이지로 이동 -->
+	<select id="rest_view" resultType="com.edu.springboot.restaurant.RestaurantDTO" parameterType="com.edu.springboot.restaurant.RestaurantDTO">
+		SELECT * FROM restaurant WHERE restaurant_idx=${restaurant_idx}
+	</select>
+	
 	<!-- 리뷰 작성  -->
 	<insert id="writeReview" >
 	   INSERT INTO COMMENTS (comments_idx, nickname, content ,postdate, idx , email, tname)

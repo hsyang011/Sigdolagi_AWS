@@ -7,6 +7,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import com.edu.springboot.community.BoardDTO;
 import com.edu.springboot.community.CommentsDTO;
 import com.edu.springboot.market.CartDTO;
 import com.edu.springboot.market.ProductDTO;
@@ -25,6 +26,9 @@ public interface IRestaurantService  {
 	
 	// 식당 10개만 가져오기
 	public List<RestaurantDTO> getRestaurant();
+	
+	// 식당 view 
+	public RestaurantDTO rest_view(RestaurantDTO restaurantDTO);
 	
 	//닉네임 가져오기 
 	public String getnickname(String email);

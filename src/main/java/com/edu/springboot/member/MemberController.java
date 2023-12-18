@@ -356,7 +356,7 @@ public class MemberController {
 				addr1, addr2, mailing, sms);
 		System.out.println("회원가입결과 :" + result);
 		
-		return "main/main";
+		return "member/login";
 	}
 	
 	

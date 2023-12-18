@@ -228,7 +228,7 @@ function SaveReview(){
 		                                </div>
 		                            </div>
 		                            <div class="card-body text-center">
-		                                <h5 class="card-title"><a class="mill_title" href="">${entry.name}</a></h5>
+		                                <h5 class="card-title"><a class="mill_title" href="./restaurant_view.do?restaurant_idx=${ entry.restaurant_idx }">${entry.name}</a></h5>
 		                                <p><span style="color: #f19d07;">★</span>4.8</p>
 		                            </div>
 		                        </div>
@@ -295,7 +295,7 @@ function SaveReview(){
 		                <c:if test="${entry.category eq '중국식'}">
 		                    <div class="card custom-col">
 		                        <div>
-		                            <div class="card_product_img">
+		                            <div class="card_product_img"> 
 		                                <button style="border: none;" data-bs-toggle="modal" class="viewBtn" data-bs-target="#restaurant_view">
 		                                    <img class="shop_product_img card-img-top" src="../images/750_750_20210307074729929_photo_2c2906c7be9f.jpg" alt="Card image">
 		                                </button>
@@ -334,7 +334,7 @@ function SaveReview(){
 
 
     <!-- 맛집 상세보기를 위한 모달창 시작 -->
-    <div class="modal" id="restaurant_view">
+  <%--   <div class="modal" id="restaurant_view">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <!-- Modal Header -->
@@ -416,7 +416,7 @@ function SaveReview(){
                 </div>
             </div>
         </div>
-    </div>
+    </div> --%>
     <!-- 맛집 상세보기를 위한 모달창 끝 -->
 
 
