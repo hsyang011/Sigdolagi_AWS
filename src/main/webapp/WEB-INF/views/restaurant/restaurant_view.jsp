@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.7.5/proj4.js"></script>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=58c1517c26a147b5119aacb8ce4f7d5c"></script>
+
 
 
 <!-- head 추가 -->
@@ -189,7 +189,7 @@ function SaveReview(){
 		                <!-- Modal body -->
 		                <div class="content-body">
 		                <input type="hidden" name="idx" value="${RestaurantDTO.restaurant_idx }">	
-		               	<input type="hidden" name="lot_address" value="${RestaurantDTO.lot_address }">	
+		               	<input type="hidden" name="lot_address" value="${RestaurantDTO.road_address }">	
 		                    <h3 style="font-weight: bold;">${ restaurantDTO.name }</h3>
 		                    <div class="d-flex align-items-center justify-content-between">
 		                        <div>
@@ -287,12 +287,11 @@ function SaveReview(){
 <!-- wrapper 끝 -->
 <!-- 마커를 표시하는 JavaScript 코드 -->
 
-
+<!-- services 라이브러리 불러오기 -->
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=58c1517c26a147b5119aacb8ce4f7d5c&libraries=services"></script>
 <script>
-<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=58c1517c26a147b5119aacb8ce4f7d5c"></script>
-<script>
 
-//변환하려는 좌표 체계의 정의를 입력합니다.
+// 변환하려는 좌표 체계의 정의를 입력합니다.
 var projBessel = '+proj=tmerc +lat_0=38 +lon_0=127.5 +k=0.9996 +x_0=200000 +y_0=500000 +ellps=bessel +units=m +no_defs';
 var projWGS84 = '+proj=longlat +datum=WGS84 +no_defs';
 
@@ -303,23 +302,43 @@ var y = ${restaurantDTO.y_point};
 // 좌표 체계를 변환합니다. Bessel 좌표를 WGS84로 변환합니다.
 var coords = proj4(projBessel, projWGS84, [x, y]);
 
-// 변환된 좌표를 출력합니다.
-console.log('변환된 위도: ' + coords[1] + ', 변환된 경도: ' + coords[0]);
-
 // Kakao Maps API를 사용하여 지도를 생성합니다.
-var container = document.getElementById('map'); // 지도를 표시할 div 요소의 id를 지정합니다.
-var options = {
+var mapContainer = document.getElementById('map'); // 지도를 표시할 div 요소의 id를 지정합니다.
+var mapOption = {
   center: new kakao.maps.LatLng(coords[1], coords[0]), // 변환된 좌표를 중심으로 지도를 생성합니다.
   level: 3 // 지도의 확대 레벨을 설정합니다.
 };
-var map = new kakao.maps.Map(container, options);
 
-// 변환된 좌표에 마커를 표시합니다.
-var marker = new kakao.maps.Marker({
-  position: new kakao.maps.LatLng(coords[1], coords[0]), // 변환된 좌표를 지정합니다.
-  map: map // 마커를 표시할 지도 객체를 지정합니다.
-});
+//지도를 생성합니다    
+var map = new kakao.maps.Map(mapContainer, mapOption); 
+
+//주소-좌표 변환 객체를 생성합니다
+var geocoder = new kakao.maps.services.Geocoder();
+
+//주소로 좌표를 검색합니다
+geocoder.addressSearch('${restaurantDTO.road_address}', function(result, status) {
+
+// 정상적으로 검색이 완료됐으면 
+ if (status === kakao.maps.services.Status.OK) {
+
+    var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+    // 결과값으로 받은 위치를 마커로 표시합니다
+    var marker = new kakao.maps.Marker({
+        map: map,
+        position: coords
+    });
+
+    // 인포윈도우로 장소에 대한 설명을 표시합니다
+    var infowindow = new kakao.maps.InfoWindow({
+        content: '<div style="width:150px;text-align:center;padding:6px 0;">${restaurantDTO.name}</div>'
+    });
+    infowindow.open(map, marker);
+
+    // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+    map.setCenter(coords);
+} 
+});    
 </script>
-
 </body>
 </html>

@@ -72,6 +72,7 @@ public class RestaurantController {
 	   @RequestMapping("/restaurant/restaurant_view.do")
 	   public String restaurantView(Model model,HttpServletRequest req,Principal principal, RestaurantDTO restaurantDTO) {
 		  restaurantDTO = restaurantdao.rest_view(restaurantDTO);
+		  restaurantDTO.setRoad_address(restaurantDTO.getRoad_address());
 		  restaurantDTO.setX_point(restaurantDTO.getX_point());
 		  restaurantDTO.setY_point(restaurantDTO.getY_point());
 		  System.out.println("restaurantDTO"+ restaurantDTO);
