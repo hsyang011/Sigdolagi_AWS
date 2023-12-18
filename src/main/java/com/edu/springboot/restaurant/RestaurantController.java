@@ -16,7 +16,9 @@ import com.edu.springboot.community.CommentsDTO;
 import com.edu.springboot.community.IBoardService;
 import com.edu.springboot.community.PhotoBoardDTO;
 
+
 import jakarta.servlet.http.HttpServletRequest;
+
 
 @Controller
 public class RestaurantController {
