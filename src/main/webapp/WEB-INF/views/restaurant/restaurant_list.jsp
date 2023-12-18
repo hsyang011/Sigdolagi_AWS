@@ -79,25 +79,8 @@ strike {font-size: 18px;}
     .thumbnail {margin: 0 0;}
     .moreBtn { font-size: 0.75em; }
 }
-
-
-/* 25% */
-
-
-.card.custom-col {
-    flex: 0 0 25%;
-    margin-right: 10px;
-}
-
-
-
-
 </style>
-
-
 <script>
-
-
 function CommentSend(){
 	let frm = document.commentwriteFrm;
 	console.log(frm.content.value);
