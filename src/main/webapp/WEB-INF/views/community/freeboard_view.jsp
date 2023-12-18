@@ -126,6 +126,7 @@ function SaveComment(){
         success: function(res) {
             console.log("댓글작성 "+res.email);
             displayComment(res);
+            content.value="";
         },
         error: function() {
             console.log("요청실패");

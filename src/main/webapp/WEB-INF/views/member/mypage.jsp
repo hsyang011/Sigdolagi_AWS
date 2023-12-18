@@ -279,7 +279,7 @@ function deletePlanner(idx, e) {
                         </div><!-- leftreft -->
                     </div> <!-- left메뉴끝 -->
                 </div>
-                <div id="col_hate" style="padding-left: 100px;">
+                <div id="col_hate" >
                     <div class="d-flex">
                         <div id="myactivityR" style="width: 150px; "> <a href="/member/mypage.do">나의 활동관리</a>
                         </div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -294,18 +294,18 @@ function deletePlanner(idx, e) {
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <a href="javascript:void(0);" class="myboardshow">#나의 게시판</a>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href="javascript:void(0);" class="foodshow">#맛집</a>
+                        <!-- <a href="javascript:void(0);" class="foodshow">#맛집</a>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href="javascript:void(0);" class="mealkitshow">#밀키트</a>
+                        <a href="javascript:void(0);" class="mealkitshow">#밀키트</a> -->
                     </div><!-- show메뉴 끝 -->
                     <div id="showmenu" class="mobileshowmenu"><!--showmenu시작 -->
                         <a href="javascript:void(0);" class="myplannershow">#나의 플래너</a>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <a href="javascript:void(0);" class="myboardshow">#나의 게시판</a>
-                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <!-- &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <a href="javascript:void(0);" class="foodshow">#맛집</a>
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href="javascript:void(0);" class="mealkitshow">#밀키트</a>
+                        <a href="javascript:void(0);" class="mealkitshow">#밀키트</a> -->
                     </div><!-- show메뉴 끝 -->
                     <br><br>
                     <div class="container">
@@ -328,10 +328,10 @@ function deletePlanner(idx, e) {
 		                    </div>
 			                </c:forEach>
                         </figure>
-                        <div style="float: left;">♥플래너</div>
+                        <!-- <div style="float: left;">♥플래너</div>
                         <br><br>
                         <figure class="row thumbnail">
-                            <!-- 1열 시작 -->
+                            1열 시작
                             <div class="card custom-col">
                                 <div>
                                     <img class="card-img-top" src="http://placehold.it/200x200" height="250" alt="Card image">
@@ -341,8 +341,8 @@ function deletePlanner(idx, e) {
                                     </div>
                                 </div>
                             </div>
-                            <!-- 1열 끝 -->
-                            <!-- 2열 시작 -->
+                            1열 끝
+                            2열 시작
                             <div class="card custom-col">
                                 <div>
                                     <img class="card-img-top" src="http://placehold.it/200x200" height="250" alt="Card image">
@@ -352,8 +352,8 @@ function deletePlanner(idx, e) {
                                     </div>
                                 </div>
                             </div>
-                            <!-- 2열 끝 -->
-                            <!-- 3열 시작 -->
+                            2열 끝
+                            3열 시작
                             <div class="card custom-col">
                                 <div>
                                     <img class="card-img-top" src="http://placehold.it/200x200" height="250" alt="Card image">
@@ -363,7 +363,7 @@ function deletePlanner(idx, e) {
                                     </div>
                                 </div>
                             </div>
-                            <!-- 3열 끝 -->
+                            3열 끝
                             <div class="card custom-col">
                                 <div>
                                     <img class="card-img-top" src="http://placehold.it/200x200" height="250" alt="Card image">
@@ -373,7 +373,7 @@ function deletePlanner(idx, e) {
                                     </div>
                                 </div>
                             </div>
-                        </figure>
+                        </figure> -->
                     </div><!-- 플래너 끝 -->
                     <!--게시판 시작 -->
                     <br><br>
@@ -514,8 +514,8 @@ function deletePlanner(idx, e) {
 												<!-- 게시물의 갯수, 페이지 번호, 페이지 사이즈를 통해 가상 번호를 계산해서 출력한다.  -->
 												${ inquirymaps.totalCount - (((inquirymaps.pageNum-1) * inquirymaps.pageSize) + loop.index)}
 												</td> --%>
-												<td scope="row"><a href="../member/inquiryboard_view.do?inquiryboard_idx=${ post.inquiryboard_idx }">${ post.inquiryboard_idx }</td>
-												<td scope="row"><a href="../member/inquiryboard_view.do?inquiryboard_idx=${ post.inquiryboard_idx }">${ post.title }</td>
+												<td scope="row"><a href="../service/inquiryboard_view.do?inquiryboard_idx=${ post.inquiryboard_idx }">${ post.inquiryboard_idx }</a></td>
+												<td scope="row"><a href="../service/inquiryboard_view.do?inquiryboard_idx=${ post.inquiryboard_idx }">${ post.title }</a></td>
 												<%-- <td scope="row"><a href="./freeboard_view.do?freeboard_idx=${ post.freeboard_idx }">${ post.title }</td> --%>
 												<td>${ post.category }</td>
 												<td>${ post.nickname }</td>

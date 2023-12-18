@@ -168,14 +168,14 @@ function listDelete(idx){
 										<tr>
 											<td>${row.inquiryboard_idx }</td>
 											<td>${row.category }</td>
-											<td><a href="${row.inquiryboard_idx }">${row.title }</a></td>
+											<td><a href="../service/inquiryboard_view.do?inquiryboard_idx=${row.inquiryboard_idx }">${row.title }</a></td>
                                             <td>${row.nickname }</td>
                                             <td>${row.email }</td>
-                                            <td>${row.regidate }</td>
+                                            <td>${row.postdate }</td>
                                             <td>
-                                            	<a href="#" class="btn btn-warning btn-icon-split">
+                                            	<!-- <a href="#" class="btn btn-warning btn-icon-split">
                                                     <span class="text">답변</span>
-                                                </a>
+                                                </a> -->
                                             	<a href="javascript:listDelete('${row.inquiryboard_idx }')" class="btn btn-danger btn-icon-split">
                                                     <span class="text">삭제</span>
                                                 </a>

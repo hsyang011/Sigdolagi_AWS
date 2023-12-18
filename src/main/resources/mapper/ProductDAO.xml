@@ -19,10 +19,10 @@
 		resultType="com.edu.springboot.market.ProductDTO">
 		SELECT * FROM (
 			SELECT Tb.*, ROWNUM rNum FROM (
-				SELECT * FROM product
+				SELECT * FROM product WHERE category=#{category}
 				<!-- 검색어가 null, 빈값이 아닐때만 where절을 동적으로 추가한다. -->
 				<if test="searchKeyword!=null and !searchKeyword.equals('')">
-					WHERE ${searchField} LIKE '%'||#{searchKeyword}||'%'
+					AND ${searchField} LIKE '%'||#{searchKeyword}||'%'
 				</if>
 				ORDER BY prod_idx DESC
 			) Tb

@@ -79,6 +79,7 @@ strike {font-size: 18px;}
     .thumbnail {margin: 0 0;}
     .moreBtn { font-size: 0.75em; }
 }
+<<<<<<< HEAD
 
 /* 25% */
 
@@ -90,6 +91,8 @@ strike {font-size: 18px;}
 
 
 
+=======
+>>>>>>> branch 'main' of https://github.com/hsyang011/Sigdolagi.git
 </style>
 
 
@@ -190,6 +193,34 @@ $(function() {
         }).open();
     });
 });
+
+function SaveReview(){
+	let frm = document.reviewFrm;
+	console.log(frm.content.value);
+    let data = {
+    		
+   		idx : frm.idx.value,
+    	nickname : frm.nickname.value,
+    	content : frm.content.value,
+    	email : frm.email.value
+    };
+    //alert("댓글작성 "); // 여기에 alert 추가
+    console.log(data);
+    
+    
+    $.ajax({
+        type: "post",
+        url: "./restaurant/restaurant_review.do",
+        data: data,
+        success: function(res) {
+            console.log("댓글작성 "+res.email);
+            displayComment(res);
+        },
+        error: function() {
+            console.log("요청실패");
+        }
+    }); 
+}
 </script>
 </head>
 <body>
@@ -230,7 +261,7 @@ $(function() {
                     </ul>
                 </div>
                 <!-- 네비로케이션 끝 -->
-                <ul class="nav my-3 category mt-4">
+                <!-- <ul class="nav my-3 category mt-4">
                     <li class="nav-item me-3"><button type="button" class="mealk_cate btn rounded-pill on">#전체</button></li>
                     <li class="nav-item me-3"><button type="button" class="mealk_cate btn rounded-pill">#한식</button></li>
                     <li class="nav-item me-3"><button type="button" class="mealk_cate btn rounded-pill">#일식</button></li>
@@ -239,7 +270,7 @@ $(function() {
                     <li class="nav-item me-3"><button type="button" class="mealk_cate btn rounded-pill">#고깃집</button></li>
                     <li class="nav-item me-3"><button type="button" class="mealk_cate btn rounded-pill">#호프</button></li>
                     <li class="nav-item me-3"><button type="button" class="mealk_cate btn rounded-pill">#기타</button></li>
-                </ul>
+                </ul> -->
             </div>
             <!-- 컨텐츠 헤더 끝 -->
             <div class="shop_board container  mt-5">
@@ -298,8 +329,13 @@ $(function() {
 		                    <div class="card custom-col">
 		                        <div>
 		                            <div class="card_product_img">
+<<<<<<< HEAD
 		                                <button style="border: none;"  class="viewBtn"  type="submit" action="../restaurant/restaurantView.do">
 		                                    <img class="shop_product_img card-img-top" src="../images/Korea${randomNumbers[cnt]}.jpeg" alt="Card image">
+=======
+		                                <button style="border: none;" data-bs-toggle="modal" class="viewBtn" data-bs-target="#restaurant_view">
+		                                   	<img class="shop_product_img card-img-top" src="../images/Korea${randomNum}.jpeg" alt="Card image">
+>>>>>>> branch 'main' of https://github.com/hsyang011/Sigdolagi.git
 		                                </button>
 		                                
 		                                <div class="cart_icon_box">
@@ -453,8 +489,10 @@ $(function() {
                 </div>
                 <!-- Modal footer -->
                 <div class="modal-footer">
-                    <div id="review" class="my-5" style="width: 100%;">
+                    <div id="review" class="my-5"  style="width: 100%;">
+                        <p>리뷰 <span style="color: #FF7A00;">3건</span></p>
                         <div class="d-flex justify-content-between">
+<<<<<<< HEAD
                             <p>리뷰 <span style="color: #FF7A00;">3건</span></p>
                             <br>
                             
@@ -494,6 +532,18 @@ $(function() {
                             
                             
                             <!-- <button class="btn btn-outline-dark px-5 rounded-pill">매장 리뷰쓰기</button> -->
+=======
+                        	<div class="cm_input" style="width:100%">
+                        	  <form name="reviewFrm" method="post" onsubmit="return validateForm(this);" action="/restaurant/restaurant_review.do" class="reviewFrm">
+	                            <input type="hidden" name="idx" value="${RestaurantDTO.restaurant_idx }">
+	                            <input type="hidden" name="nickname" value="${boardDTO.nickname}">
+	                            <input type="hidden" name="email" value="${email}">
+	                           	<p ><textarea id="content" name="content" onkeyup="" rows="4" placeholder="리뷰를 입력해주세요."  style="width: 100%;"></textarea>
+	                       	    <button type="button" class="btn btn-outline-dark px-5 rounded-pill" onclick="SaveReview();">매장 리뷰쓰기</button></p>
+                     		</div>
+                           
+
+>>>>>>> branch 'main' of https://github.com/hsyang011/Sigdolagi.git
                         </div>
                         <!-- 테이블 -->
                         <table class="table table-border">

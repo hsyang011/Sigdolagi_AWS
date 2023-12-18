@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.edu.springboot.community.BoardDTO;
+import com.edu.springboot.member.MemberDTO;
 
 @Mapper
 public interface IOrderService {
@@ -26,5 +27,8 @@ public interface IOrderService {
 	public OrderDTO orderView(String idx);
 	//주문내역 상품가져오기
 	public List<OrderDTO> orderViewList(String idx);
+	//주문내역 취소처리
+	public int adminOrderDelete(String idx);
+	
 	
 }

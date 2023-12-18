@@ -45,6 +45,10 @@ public class MarketController {
 	// 상품 리스트
 	@RequestMapping("/market/market_list.do")
 	public String marketList(ParameterDTO parameterDTO, Model model, HttpServletRequest req) {
+		if (req.getParameter("category") == null) {
+			parameterDTO.setCategory("밀키트");
+		}
+		
 		int totalCount = productDAO.getTotalCount(parameterDTO); // 게시물의 갯수를 카운트
 		
 		int pageSize = 16; // 한 페이지당 게시물 수

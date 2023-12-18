@@ -78,7 +78,7 @@ main > * { margin: 50px 0; font-family: "NPSfontRegular"; }
 /* #table_wrap table tbody tr{margin: 5px 17px;} */
 #table_wrap table tbody tr {text-align: center; border-bottom: #FF7A00; } 
 #btn1{background-color: white; color: #FF7A00; border: 1px solid #FF7A00; }
-#col_hate {width: 80%;}
+#col_hate {width: 80%; padding-left: 100px;}
 
 /* footer 설정 */
 footer { border-top:3px solid #FF7A00; background-color: white;padding-top: 0; }
@@ -458,6 +458,7 @@ height: 40px;
 @media screen and (min-width: 481px) and (max-width: 660px) {
   #col_hate{
     width: auto !important;
+    padding-left: 0;
   }
  
   #col10{
@@ -619,8 +620,11 @@ height: 40px;
      }
      #col_hate{
       width: auto !important;
+      padding-left: 0;
     }
-   
+	.mobileshowmenu{
+		padding: 0px 12px;
+	}
     
      /*INFO*/
      #checkAreaBox{

@@ -128,6 +128,42 @@ public class RestaurantController {
           return commentsDTO;
   	}
     
+    	//리뷰 
+  		@RequestMapping("/restaurant/restaurant_review.do")
+  		@ResponseBody
+  		public CommentsDTO ReviewPost(Model model, HttpServletRequest req, CommentsDTO commentsDTO, Principal principal) {
+  			int idx = commentsDTO.getIdx();
+  	        String content = commentsDTO.getContent();
+  	        String email =  principal.getName();
+  	        String nickname = restaurantdao.getnickname(email);
+  	        
+  	        System.out.println(idx);
+  	        System.out.println(content);
+  	        System.out.println(nickname);
+  	        System.out.println(email);
+  	
+  	        int result = restaurantdao.writeReview(idx, content, nickname, email);
+  	
+  	        System.out.println("성공?");
+  	        System.out.println(commentsDTO);
+  	        System.out.println("글쓰기결과:" + result);
+  	        // 코멘트 테이블 전부다  얻어와서 저장하기  
+  			ArrayList<CommentsDTO> commentsLists = restaurantdao.CommentsPage(commentsDTO);
+  			//빈에 저장
+  			
+  			
+  			System.out.println("댓글 디비에 있는거 가저오는거 성공?");
+  			System.out.println(commentsLists);
+  			
+  			
+  			model.addAttribute("CommentsLists", commentsLists);
+
+  	        
+  	        return commentsDTO;
+  		}
+
+  	
+  	
     
     
 }

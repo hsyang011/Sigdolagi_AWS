@@ -34,6 +34,14 @@ function addToCart(idx, name) {
         }
     });
 }
+
+$(function() {
+	if (<%= request.getParameter("category")!=null && request.getParameter("category").equals("특산품") %>) {
+        $("#mealkit").removeClass('on');
+        // 클릭한 li에 'on' 클래스 추가
+        $("#specialty").addClass('on');
+	}
+});
 </script>
 </head>
 <body>
@@ -77,8 +85,8 @@ function addToCart(idx, name) {
                 <!-- 네비로케이션 끝 -->
                 <!-- 헤더제목 -->
                 <ul class="catemenu d-flex">
-                    <li class="on"><a href="#">밀키트</a></li>
-                    <li><a href="#">특산품</a></li>
+                    <li class="on" id="mealkit"><a href="./market_list.do?category=밀키트">밀키트</a></li>
+                    <li id="specialty"><a href="./market_list.do?category=특산품">특산품</a></li>
                 </ul>
                 <ul class="nav my-3 category mt-4">
                     <li class="nav-item me-3"><button type="button" class="mealk_cate btn rounded-pill on">#전체</button></li>
