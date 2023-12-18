@@ -143,11 +143,18 @@ function displayComment(res) {
     console.log(res.email);
     console.log(res.inquiryboard_idx);
     console.log(res.content);
-    var commentHTML =
+    /* var commentHTML =
         "<tr align=\"center\">" +
         "<td>" + res.nickname + "</td>" +
         "<td>" + res.content + "</td>" +
         "<td>" + getCurrentDateTime() + "<button class=\"dele\"  onclick='deleteComment(" + res.comments_idx + ")'></button></td>" +
+        "</tr>"; */
+    var commentHTML =
+        "<tr align=\"left\">" +
+        "	<td>" + res.content + "</td>" +
+        "</tr>"+
+        "<tr align=\"right\">" +
+        "	<td>" + getCurrentDateTime() + "<button class=\"dele\"  onclick='deleteComment(" + res.comments_idx + ")'></button></td>" +
         "</tr>";
     // 화면에 댓글 추가
     $("#commentsTableBody").append(commentHTML);
@@ -264,12 +271,12 @@ function displayComment(res) {
 						<div class="cm_write" style="width:100%">
                        		<fieldset>
                        			<form name="commentwriteFrm" method="post" onsubmit="return validateForm(this);" action="/service/inquiryboard_comment.do" class="writeFrm">
-                           		<legend class="skipinfo">댓글 입력</legend>
+                           		<legend class="skipinfo">답변 입력</legend>
                            			<div class="cm_input">
 		                                <input type="hidden" name="idx" value="${inquiryDTO.inquiryboard_idx }">
 		                                <input type="hidden" name="nickname" value="${inquiryDTO.nickname}">
 		                                <input type="hidden" name="email" value="${email}">
-		                               	<p><textarea id="content" name="content" onkeyup="" rows="4" placeholder="댓글을 입력해 주세요."></textarea>
+		                               	<p><textarea id="content" name="content" onkeyup="" rows="4" placeholder="답변을 입력해 주세요."></textarea>
 		                               	  	<button type="button" class="btns"  onclick="SaveComment();">등록</button></p>
 		                             
                            			</div>
@@ -281,27 +288,29 @@ function displayComment(res) {
                         <!-- 댓글 리스트 -->
                			<table class="table table-border">
 	                   		<thead>
-		                       	<tr>
+		                       	<!-- <tr>
 		                           <th style="text-align: center;">작성자</th>
 		                           <th style="text-align: center;">내용</th>
 		                           <th style="text-align: center;">작성일</th>	
 		                           <th style="text-align: center;"></th>	
-		                       	</tr>
+		                       	</tr> -->
 	                   		</thead>
 		                 	<tbody id="commentsTableBody">
 							    <c:forEach items="${ CommentsLists }" var="row" varStatus="loop">    
-							        <tr align="center">
-							            <form name="commentsdeletefrm" action="/service/inquiryboard_Comments_delete.do" method="post">
+						            <form name="commentsdeletefrm" action="/service/inquiryboard_Comments_delete.do" method="post">
+							        	<tr align="left">
 							                <input type="hidden" name="comments_idx" value="${row.comments_idx}" >
-							                <td>${ row.nickname }</td>
+							                <%-- <td>${ row.nickname }</td>
 											<td name="idx" style="text-align: center; display: none;">
 										    	<input type="text" name="idx" value="${row.idx}">
-											</td>
-                                            <td>${row.content}</td>
-							                <td>${ row.postdate } <button type="submit" class="dele"  onclick="deleteComment();">삭제</td>
+											</td> --%>
+                                            <td style="height: 30px">${row.content}</td>
 							                <!-- <input type="button" value="삭제" onclick="deleteComment();"> -->
-							            </form>
-							        </tr>
+							        	</tr>
+							        	<tr align="right">
+							                <td>${ row.postdate } <button type="submit" class="dele"  onclick="deleteComment();">삭제</td>
+							        	</tr>
+						            </form>
 							    </c:forEach> 
 							</tbody>
 						 </table>

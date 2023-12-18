@@ -77,9 +77,9 @@
                                     <label for="title" class="form-label">제목</label> 
                                     <input type="text" class="form-control" id="title" name="title"
                                         value="${notiDTO.title }">
-                                     <input type="hid-den" name="noticeboard_idx" value="${notiDTO.noticeboard_idx }" />
-                                     <input type="hid-den" name="email" value="${notiDTO.email}"/>
-                                     <input type="hid-den" name="nickname" value="${notiDTO.nickname }"/>
+                                     <input type="hidden" name="noticeboard_idx" value="${notiDTO.noticeboard_idx }" />
+                                     <input type="hidden" name="email" value="${notiDTO.email}"/>
+                                     <input type="hidden" name="nickname" value="${notiDTO.nickname }"/>
                                 </div>
                                 <div class="mb-3">
                                     <label for="content" class="form-label">상세내용</label>
