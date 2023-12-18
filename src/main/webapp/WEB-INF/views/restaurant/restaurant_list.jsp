@@ -79,7 +79,7 @@ strike {font-size: 18px;}
     .thumbnail {margin: 0 0;}
     .moreBtn { font-size: 0.75em; }
 }
-<<<<<<< HEAD
+
 
 /* 25% */
 
@@ -91,8 +91,7 @@ strike {font-size: 18px;}
 
 
 
-=======
->>>>>>> branch 'main' of https://github.com/hsyang011/Sigdolagi.git
+
 </style>
 
 
@@ -339,14 +338,11 @@ function SaveReview(){
 		                                </div>
 		                            </div>
 		                            <div class="card-body text-center">
-<<<<<<< HEAD
 		                                <h5 class="card-title"><a class="mill_title" href="./restaurant_view.do?restaurant_idx=${ entry.restaurant_idx }">${entry.name}</a></h5>
 		                                <p><span style="color: #f19d07;">★</span>4.8</p>
-=======
-		                                <h5 class="card-title"><a class="mill_title" href="">${entry.name}</a></h5>
-		                                <p><span style="color: #f19d07;">★4.8점</span>${cnt}번째사진</p>
-		                                 <p><span style="color: #f19d07;">index</span>${entry.restaurant_idx}</p>
->>>>>>> branch 'main' of https://github.com/hsyang011/Sigdolagi.git
+		                               <%--  <h5 class="card-title"><a class="mill_title" href="">${entry.name}</a></h5>
+		                                <p><span style="color: #f19d07;">★4.8점</span>${cnt}번째사진</p> 
+		                                 <p><span style="color: #f19d07;">index</span>${entry.restaurant_idx}</p>--%>
 		                            </div>
 		                        </div>
 		                    </div>
@@ -392,8 +388,8 @@ function SaveReview(){
 		                            </div>
 		                            <div class="card-body text-center">
 		                                <h5 class="card-title"><a class="mill_title" href="">${entry.name}</a></h5>
-		                                <p><span style="color: #f19d07;">★4.8점</span>${cnt}번째사진</p>
-		                                 <p><span style="color: #f19d07;">index</span>${entry.restaurant_idx}</p>
+		                                <p><span style="color: #f19d07;">★4.8점</span></p>
+		                          <!--        <p><span style="color: #f19d07;">index</span></p> -->
 		                            </div>
 		                        </div>
 		                    </div>
@@ -520,7 +516,7 @@ function SaveReview(){
 											</td>
 											<%-- <td name="idx" style="text-align: center; display: none;">
 										    <input type="text" name="idx" value="${row.idx}">
-											</td> --%>
+											</td> 
                                             <td>${row.content}</td>
                                             <td>${row.postdate} &nbsp;&nbsp;&nbsp;&nbsp;
                                 			<button type="button" class="writeFrm_reset"  onclick="commentDelete();">삭제하기</button>
@@ -528,12 +524,11 @@ function SaveReview(){
                                         </tr>
                                     </c:forEach>
                                     
-                               </div>
+                               </div>--%>
                             
                             
                             
                             <!-- <button class="btn btn-outline-dark px-5 rounded-pill">매장 리뷰쓰기</button> -->
-=======
                         	<div class="cm_input" style="width:100%">
                         	  <form name="reviewFrm" method="post" onsubmit="return validateForm(this);" action="/restaurant/restaurant_review.do" class="reviewFrm">
 	                            <input type="hidden" name="idx" value="${RestaurantDTO.restaurant_idx }">
@@ -544,7 +539,6 @@ function SaveReview(){
                      		</div>
                            
 
->>>>>>> branch 'main' of https://github.com/hsyang011/Sigdolagi.git
                         </div>
                         <!-- 테이블 -->
                         <table class="table table-border">

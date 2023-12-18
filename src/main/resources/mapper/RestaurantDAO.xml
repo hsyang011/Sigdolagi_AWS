@@ -26,6 +26,12 @@
 		SELECT * FROM restaurant WHERE restaurant_idx=${restaurant_idx}
 	</select>
 	
+	<!-- 맞는지 모르겠지만 닉네임 가져오려고  -->
+	<select id="getnickname" resultType="string" parameterType="string">
+		SELECT nickname FROM member WHERE email=#{email}
+	</select>
+	
+	
 	<!-- 리뷰 작성  -->
 	<insert id="writeReview" >
 	   INSERT INTO COMMENTS (comments_idx, nickname, content ,postdate, idx , email, tname)
@@ -41,5 +47,11 @@
     SELECT NVL(AVG(starRating), 0) FROM comments
 	</select>
 	
+	<!--코멘트 테이블 가져오기  -->
+	<select id="CommentsPage"
+       resultType="com.edu.springboot.community.CommentsDTO"
+       parameterType="com.edu.springboot.community.CommentsDTO">
+  		SELECT * FROM COMMENTS WHERE idx = #{idx} AND tname='restaurant'
 	
+	</select>
 </mapper>
