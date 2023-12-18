@@ -21,21 +21,24 @@
 		SELECT * FROM restaurant WHERE restaurant_idx<![CDATA[<=]]>10
 	</select>
 	
+	<!-- 뷰 페이지로 이동 -->
+	<select id="rest_view" resultType="com.edu.springboot.restaurant.RestaurantDTO" parameterType="com.edu.springboot.restaurant.RestaurantDTO">
+		SELECT * FROM restaurant WHERE restaurant_idx=${restaurant_idx}
+	</select>
+	
 	<!-- 리뷰 작성  -->
 	<insert id="writeReview" >
 	   INSERT INTO COMMENTS (comments_idx, nickname, content ,postdate, idx , email, tname)
 	   VALUES (seq_comments_idx.nextval,  #{nickname}, #{content}, sysdate, #{idx}, #{email}, 'restaurant' )
 	</insert>
-	
-	<!--코멘트 테이블 가져오기  -->
-	<select id="CommentsPage" resultType="com.edu.springboot.community.CommentsDTO"
-       parameterType="com.edu.springboot.community.CommentsDTO">
-		SELECT * FROM COMMENTS WHERE idx = #{idx} AND tname='restaurant'
-	</select>
-	
-	<!-- 맞는지 모르겠지만 닉네임 가져오려고  -->
-	<select id="getnickname" resultType="string" parameterType="string">
-		SELECT nickname FROM member WHERE email=#{email}
+	<insert id="writeConmments">
+	   INSERT INTO  COMMENTS (comments_idx, nickname, content ,postdate, idx , email, tname, starRating)
+	   VALUES (seq_comments_idx.nextval,  #{nickname}, #{content} , sysdate , #{idx}, #{email}, 'restaurant', #{starRating} )
+	</insert>
+	<!-- 평균 리뷰값 구하기 avgStar  -->
+	<!-- 관리자 사진게시판 목록 -->
+	<select id="avgStar" resultType="double">
+    SELECT NVL(AVG(starRating), 0) FROM comments
 	</select>
 	
 	
