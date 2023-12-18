@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.edu.springboot.community.BoardDTO;
 import com.edu.springboot.community.CommentsDTO;
 import com.edu.springboot.community.IBoardService;
 import com.edu.springboot.community.PhotoBoardDTO;
@@ -27,7 +28,7 @@ public class RestaurantController {
     IRestaurantService restaurantdao;
     
     @Autowired
-	   IBoardService boraddao;
+	   IBoardService boarddao;
 
     @RequestMapping("/restaurant/restaurant_list.do")
     public String restaurantList(ParameterDTO parameterDTO, Model model, RestaurantDTO restaurantDTO, Principal principal) {
@@ -36,7 +37,7 @@ public class RestaurantController {
         System.out.println(totalCount);
         
         String email =  principal.getName();
-        String nickname = boraddao.getnickname(email);
+        String nickname = boarddao.getnickname(email);
         
         model.addAttribute("email",email);
         model.addAttribute("nickname",nickname);
@@ -74,6 +75,54 @@ public class RestaurantController {
         return numbers;
     }
     
+
+    
+    
+	   //맛집 view 
+	   @RequestMapping("/restaurant/restaurant_view.do")
+	   public String restaurantView(Model model,HttpServletRequest req,Principal principal, RestaurantDTO restaurantDTO) {
+		   System.out.println("맛집 뷰 컨트롤러 들어오나? ");
+		 //restaurantDTO = restaurantdao.rest_view(restaurantDTO);
+		  restaurantDTO.setX_point(restaurantDTO.getX_point());
+		  restaurantDTO.setY_point(restaurantDTO.getY_point());
+		  System.out.println("restaurantDTO"+ restaurantDTO);
+	      
+		  model.addAttribute("restaurantDTO", restaurantDTO);
+	      
+	      // boardDTO에서 idx값을 가져와서 commentsDTO에 채우기
+	      CommentsDTO commentsDTO = new CommentsDTO();
+	      try {	    	  
+	    	  commentsDTO.setIdx(Integer.parseInt(restaurantDTO.getRestaurant_idx()));
+	      } catch (Exception e) {
+	    	  System.out.println("idx가 null입니다.");
+	    	  e.printStackTrace();
+	      }
+	      
+	      
+	      System.out.println("코멘트 테이블 얻어오기 직전 ");
+	        // 코멘트 테이블 전부다  얻어와서 저장하기  
+	      //ArrayList<CommentsDTO> commentsLists = restaurantdao.CommentsPage(commentsDTO);
+	      
+	      
+	      
+			
+	      System.out.println("댓글 디비에 있는거 가저오는거 성공?");
+	     // System.out.println(commentsLists);
+		
+	     // model.addAttribute("CommentsLists", commentsLists);
+
+		  	if(principal!=null) {
+	  			String email = principal.getName();
+	  	        String nickname= boarddao.getnickname(email);
+	  	        System.out.println(email);
+	  	        model.addAttribute("email", email);
+	  	        model.addAttribute("nickname",nickname); 
+	  		}
+	      return "restaurant/restaurant_view";
+	   }
+	   
+	   
+
     //맛집 댓글
     ///댓글 작성  
   	@RequestMapping("/restaurant/restaurant_comment.do")
@@ -129,6 +178,7 @@ public class RestaurantController {
           
           return commentsDTO;
   	}
+
     
     	//리뷰 
   		@RequestMapping("/restaurant/restaurant_review.do")

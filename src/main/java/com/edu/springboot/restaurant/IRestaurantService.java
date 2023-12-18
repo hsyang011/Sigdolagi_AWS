@@ -27,6 +27,9 @@ public interface IRestaurantService  {
 	// 식당 10개만 가져오기
 	public List<RestaurantDTO> getRestaurant();
 	
+	// 식당 view 
+	public RestaurantDTO rest_view(RestaurantDTO restaurantDTO);
+
 	// 댓글 작성 
 	public int writeConmments(
 			@Param("idx") int idx,

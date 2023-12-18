@@ -339,9 +339,11 @@ function SaveReview(){
 		                                </div>
 		                            </div>
 		                            <div class="card-body text-center">
-		                                <h5 class="card-title"><a class="mill_title" href="">${entry.name}</a></h5>
-		                                <p><span style="color: #f19d07;">★4.8점</span>${cnt}번째사진</p>
-		                                 <p><span style="color: #f19d07;">index</span>${entry.restaurant_idx}</p>
+		                                <h5 class="card-title"><a class="mill_title" href="./restaurant_view.do?restaurant_idx=${ entry.restaurant_idx }">${entry.name}</a></h5>
+		                                <p><span style="color: #f19d07;">★</span>4.8</p>
+		                               <%--  <h5 class="card-title"><a class="mill_title" href="">${entry.name}</a></h5>
+		                                <p><span style="color: #f19d07;">★4.8점</span>${cnt}번째사진</p> 
+		                                 <p><span style="color: #f19d07;">index</span>${entry.restaurant_idx}</p>--%>
 		                            </div>
 		                        </div>
 		                    </div>
@@ -387,8 +389,8 @@ function SaveReview(){
 		                            </div>
 		                            <div class="card-body text-center">
 		                                <h5 class="card-title"><a class="mill_title" href="">${entry.name}</a></h5>
-		                                <p><span style="color: #f19d07;">★4.8점</span>${cnt}번째사진</p>
-		                                 <p><span style="color: #f19d07;">index</span>${entry.restaurant_idx}</p>
+		                                <p><span style="color: #f19d07;">★4.8점</span></p>
+		                          <!--        <p><span style="color: #f19d07;">index</span></p> -->
 		                            </div>
 		                        </div>
 		                    </div>
@@ -422,7 +424,7 @@ function SaveReview(){
                             </c:if>
 		                    <div class="card custom-col">
 		                        <div>
-		                            <div class="card_product_img">
+		                            <div class="card_product_img"> 
 		                                <button style="border: none;" data-bs-toggle="modal" class="viewBtn" data-bs-target="#restaurant_view">
 		                                    <img class="shop_product_img card-img-top" src="../images/China${randomNumbers[cnt]}.jpeg" alt="Card image">
 		                                </button>
@@ -461,7 +463,7 @@ function SaveReview(){
 
 
     <!-- 맛집 상세보기를 위한 모달창 시작 -->
-    <div class="modal" id="restaurant_view">
+  <%--   <div class="modal" id="restaurant_view">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <!-- Modal Header -->
@@ -515,7 +517,7 @@ function SaveReview(){
 											</td>
 											<%-- <td name="idx" style="text-align: center; display: none;">
 										    <input type="text" name="idx" value="${row.idx}">
-											</td> --%>
+											</td> 
                                             <td>${row.content}</td>
                                             <td>${row.postdate} &nbsp;&nbsp;&nbsp;&nbsp;
                                 			<button type="button" class="writeFrm_reset"  onclick="commentDelete();">삭제하기</button>
@@ -523,26 +525,24 @@ function SaveReview(){
                                         </tr>
                                     </c:forEach>
                                     
-                               </div>
+                               </div>--%>
                             
                             
                             
                             <!-- <button class="btn btn-outline-dark px-5 rounded-pill">매장 리뷰쓰기</button> -->
-=======
-                        	<div class="cm_input" style="width:100%">
+                        	<%-- <div class="cm_input" style="width:100%">
                         	  <form name="reviewFrm" method="post" onsubmit="return validateForm(this);" action="/restaurant/restaurant_review.do" class="reviewFrm">
 	                            <input type="hidden" name="idx" value="${RestaurantDTO.restaurant_idx }">
 	                            <input type="hidden" name="nickname" value="${boardDTO.nickname}">
 	                            <input type="hidden" name="email" value="${email}">
 	                           	<p ><textarea id="content" name="content" onkeyup="" rows="4" placeholder="리뷰를 입력해주세요."  style="width: 100%;"></textarea>
 	                       	    <button type="button" class="btn btn-outline-dark px-5 rounded-pill" onclick="SaveReview();">매장 리뷰쓰기</button></p>
-                     		</div>
+                     		</div> --%>
                            
 
->>>>>>> branch 'main' of https://github.com/hsyang011/Sigdolagi.git
                         </div>
                         <!-- 테이블 -->
-                        <table class="table table-border">
+                        <!-- <table class="table table-border">
                             <tr>
                                 <td style="width: 85%;">
                                     <div>
@@ -579,13 +579,13 @@ function SaveReview(){
                                     <img src="../images/01100110101010102_2186962.png" width="120" alt="">
                                 </td>
                             </tr>
-                        </table>
+                        </table> -->
                     </div>
-                    <button type="button" class="btn rounded-pill" style="background-color: #FF7A00; color: white;" data-bs-dismiss="modal">닫기</button>
+                    <!-- <button type="button" class="btn rounded-pill" style="background-color: #FF7A00; color: white;" data-bs-dismiss="modal">닫기</button> -->
                 </div>
             </div>
         </div>
-    </div>
+    </div> 
     <!-- 맛집 상세보기를 위한 모달창 끝 -->
 
 

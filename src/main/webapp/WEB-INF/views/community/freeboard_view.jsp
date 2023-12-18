@@ -125,6 +125,7 @@ function SaveComment(){
         data: data,
         success: function(res) {
             console.log("댓글작성 "+res.email);
+            
             displayComment(res);
             content.value="";
         },
@@ -288,7 +289,7 @@ function SaveComment(){
 		                           <th style="text-align: center;">작성자</th>
 		                           <th style="text-align: center;">내용</th>
 		                           <th style="text-align: center;">작성일</th>
-	                            	<th style="text-align: center;"></th>	
+
 		                       	</tr>
 	                   		</thead>
 			                 <tbody id="commentsTableBody">
