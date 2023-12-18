@@ -212,6 +212,7 @@ function displayComment(res) {
                             <input type="hidden" name="email"  />
                             <input type="hidden" name="nickname" />
                             <table class="table table-bordered" id="write_frm_table" width="90%">
+                            <colgroup><col width="20%"><col width="30%"><col width="20%"><col width="30%"></colgroup>
                                 <tr>
                                     <td>문의유형</td>
                                     <td>
@@ -219,7 +220,7 @@ function displayComment(res) {
                                         ${inquiryDTO.category}
                                     </td>
                                     <td>작성일</td>
-                                    <td>${inquiryDTO.regidate}</td>
+                                    <td>${inquiryDTO.postdate}</td>
                                 </tr>
                                         <input type="hidden" name="email" id="email" value="${email}" style="width: 95%;" />
                                         <input type="hidden" name="nickname" id="nickname" value="${nickname}" style="width: 95%;" />

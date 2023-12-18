@@ -173,9 +173,9 @@ function listDelete(idx){
                                             <td>${row.email }</td>
                                             <td>${row.regidate }</td>
                                             <td>
-                                            	<a href="#" class="btn btn-warning btn-icon-split">
+                                            	<!-- <a href="#" class="btn btn-warning btn-icon-split">
                                                     <span class="text">답변</span>
-                                                </a>
+                                                </a> -->
                                             	<a href="javascript:listDelete('${row.inquiryboard_idx }')" class="btn btn-danger btn-icon-split">
                                                     <span class="text">삭제</span>
                                                 </a>
