@@ -4,7 +4,9 @@ package com.edu.springboot.restaurant;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
+import com.edu.springboot.community.PhotoBoardDTO;
 import com.edu.springboot.market.CartDTO;
 import com.edu.springboot.market.ProductDTO;
 import com.edu.springboot.member.MemberDTO;
@@ -22,5 +24,16 @@ public interface IRestaurantService  {
 	
 	// 식당 10개만 가져오기
 	public List<RestaurantDTO> getRestaurant();
+	
+	// 댓글 작성 
+	public int writeConmments(
+			@Param("idx") int idx,
+			@Param("content") String content,
+			@Param("nickname") String nickname,
+			@Param("email") String email,
+			@Param("starRating") String starRating
+			);
+	//평균 구하기 
+	public double avgStar(PhotoBoardDTO photoBoardDTO);
 	
 }

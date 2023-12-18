@@ -56,7 +56,6 @@ public class CommunityController {
 	   IMyFileService filedao;
 	   
 	   
-	   
 	   @Autowired
 	   IBoardService dao;
 	   
@@ -129,10 +128,12 @@ public class CommunityController {
 		@RequestMapping("/community/freeboard_comment.do")
 		@ResponseBody
 		public CommentsDTO boardCommentPost(Model model, HttpServletRequest req, CommentsDTO commentsDTO, Principal principal) {
+			
 			int idx = commentsDTO.getIdx();
 	        String content = commentsDTO.getContent();
 	        String email =  principal.getName();
 	        String nickname = dao.getnickname(email);
+	        
 	        
 	        System.out.println(idx);
 	        System.out.println(content);
@@ -147,6 +148,7 @@ public class CommunityController {
 	     // 코멘트 테이블 전부다  얻어와서 저장하기  
 			ArrayList<CommentsDTO> commentsLists = photoboarddao.CommentsPage(commentsDTO);
 			//빈에 저장
+			
 			
 			
 			System.out.println("댓글 디비에 있는거 가저오는거 성공?");

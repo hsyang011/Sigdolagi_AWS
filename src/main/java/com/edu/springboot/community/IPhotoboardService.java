@@ -48,4 +48,8 @@ public interface IPhotoboardService {
 	// 평균 값 구해오기 
 	public double avgStar(PhotoBoardDTO photoBoardDTO);
 	
+	
+	
+	
+	
 }

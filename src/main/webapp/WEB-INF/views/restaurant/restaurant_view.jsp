@@ -175,9 +175,6 @@ function CommentSend(){
     }
 </script>
 
-
-
-
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
 $(function() {
@@ -193,6 +190,7 @@ $(function() {
 </script>
 </head>
 <body>
+<h2>RestaurantView페이지</h2>
 <!-- wrapper 시작 -->
 <div class="container-fluid" id="wrap">
 
@@ -278,139 +276,6 @@ $(function() {
                     <h2>#한식</h2>
                     <button class="btn rounded-pill moreBtn" style="background-color: #FF7A00; color: white;">자세히 보기 ></button>
                 </div>
-                <!-- 한식 리스트 시작 -->
-                <!-- 1행 시작 -->
-               	<div style="display: flex; overflow-x: auto;">
-               		<c:set value="1" var="cnt"></c:set>
-			    	<c:choose>
-				        <c:when test="${empty restaurantList}">
-				            <div align="center">등록된 게시물이 없습니다.</div>
-				        </c:when> 
-			        <c:otherwise>
-		            <c:forEach items="${restaurantList}" var="entry" varStatus="loop">
-		                <c:if test="${entry.category eq '한식'}">
-		                	<c:if test="${cnt eq 6 }" var="result">
-                            	<c:set value="0" var="cnt"></c:set>
-                            </c:if>
-                            <c:if test="${not result }">
-                            	<c:set value="${cnt + 1}" var="cnt"></c:set>
-                            </c:if>
-		                    <div class="card custom-col">
-		                        <div>
-		                            <div class="card_product_img">
-		                                <button style="border: none;"  class="viewBtn"  type="submit" action="../restaurant/restaurantView.do">
-		                                    <img class="shop_product_img card-img-top" src="../images/Korea${randomNumbers[cnt]}.jpeg" alt="Card image">
-		                                </button>
-		                                
-		                                <div class="cart_icon_box">
-		                                    <img class="p-1" src="../images/favor_icon.png" alt="">
-		                                </div>
-		                            </div>
-		                            <div class="card-body text-center">
-		                                <h5 class="card-title"><a class="mill_title" href="">${entry.name}</a></h5>
-		                                <p><span style="color: #f19d07;">★4.8점</span>${cnt}번째사진</p>
-		                                 <p><span style="color: #f19d07;">index</span>${entry.restaurant_idx}</p>
-		                            </div>
-		                        </div>
-		                    </div>
-		                </c:if>
-		            </c:forEach>
-			        </c:otherwise>
-			    </c:choose>
-				</div>
-                <!-- 1행 끝 -->
-                <!-- 한식 리스트 끝 -->
-                <!-- 일식 -->
-                <div class="d-flex justify-content-between">
-                    <h2>#일식</h2>
-                    <button class="btn rounded-pill moreBtn" style="background-color: #FF7A00; color: white;">자세히 보기 ></button>
-                </div>
-                <!-- 일식 리스트 시작 -->
-                <!-- 2행 시작 -->
-               	<div style="display: flex; overflow-x: auto;">
-               		<c:set value="1" var="cnt"></c:set>
-			    	<c:choose>
-				        <c:when test="${empty restaurantList}">
-				            <div align="center">등록된 게시물이 없습니다.</div>
-				        </c:when> 
-			        <c:otherwise>
-		            <c:forEach items="${restaurantList}" var="entry" varStatus="loop">
-		                <c:if test="${entry.category eq '일식'}">
-		                	<c:if test="${cnt eq 6 }" var="result">
-                            	<c:set value="0" var="cnt"></c:set>
-                            </c:if>
-                            <c:if test="${not result }">
-                            	<c:set value="${cnt + 1}" var="cnt"></c:set>
-                            </c:if>
-		                    <div class="card custom-col">
-		                        <div>
-		                            <div class="card_product_img">
-		                                <button style="border: none;"  class="viewBtn"  type="submit" action="../restaurant/restaurantView.do">
-		                                    <img class="shop_product_img card-img-top" src="../images/Japan${randomNumbers[cnt]}.jpeg" alt="Card image">
-		                                </button>
-		                                
-		                                <div class="cart_icon_box">
-		                                    <img class="p-1" src="../images/favor_icon.png" alt="">
-		                                </div>
-		                            </div>
-		                            <div class="card-body text-center">
-		                                <h5 class="card-title"><a class="mill_title" href="">${entry.name}</a></h5>
-		                                <p><span style="color: #f19d07;">★4.8점</span>${cnt}번째사진</p>
-		                                 <p><span style="color: #f19d07;">index</span>${entry.restaurant_idx}</p>
-		                            </div>
-		                        </div>
-		                    </div>
-		                </c:if>
-		            </c:forEach>
-			        </c:otherwise>
-			    </c:choose>
-				</div>
-                <!-- 2행 끝 -->
-                <!-- 일식 리스트 끝 -->
-                <!-- 중식 -->
-                <div class="d-flex justify-content-between">
-                    <h2>#중식</h2>
-                    <button class="btn rounded-pill moreBtn" style="background-color: #FF7A00; color: white;">자세히 보기 ></button>
-                </div>
-                <!-- 중식 리스트 시작 -->
-                <!-- 3행 시작 -->
-                <div style="display: flex; overflow-x: auto;">
-			    	<c:choose>
-				        <c:when test="${empty restaurantList}">
-				            <div align="center">등록된 게시물이 없습니다.</div>
-				        </c:when> 
-			        <c:otherwise>
-		            <c:forEach items="${restaurantList}" var="entry">
-		                <c:if test="${entry.category eq '중국식'}">
-		                	 <c:if test="${cnt eq 6 }" var="result">
-                            	<c:set value="0" var="cnt"></c:set>
-                            </c:if>
-                            <c:if test="${not result }">
-                            	<c:set value="${cnt + 1}" var="cnt"></c:set>
-                            </c:if>
-		                    <div class="card custom-col">
-		                        <div>
-		                            <div class="card_product_img">
-		                                <button style="border: none;" data-bs-toggle="modal" class="viewBtn" data-bs-target="#restaurant_view">
-		                                    <img class="shop_product_img card-img-top" src="../images/China${randomNumbers[cnt]}.jpeg" alt="Card image">
-		                                </button>
-		                                <div class="cart_icon_box">
-		                                    <img class="p-1" src="../images/favor_icon.png" alt="">
-		                                </div>
-		                            </div>
-		                            <div class="card-body text-center">
-		                                <h5 class="card-title"><a class="mill_title" href="">${entry.name}</a></h5>
-		                                <p><span style="color: #f19d07;">★</span>4.8</p>
-		                            </div>
-		                        </div>
-		                    </div>
-		                </c:if>
-		            </c:forEach>
-			        </c:otherwise>
-			    </c:choose>
-				</div>
-                <!-- 3행 끝 -->
-                <!-- 중식 리스트 끝 -->
 
             </div>
 

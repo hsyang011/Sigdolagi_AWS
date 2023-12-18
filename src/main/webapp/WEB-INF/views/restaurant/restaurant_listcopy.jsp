@@ -281,35 +281,27 @@ $(function() {
                 <!-- 한식 리스트 시작 -->
                 <!-- 1행 시작 -->
                	<div style="display: flex; overflow-x: auto;">
-               		<c:set value="1" var="cnt"></c:set>
 			    	<c:choose>
 				        <c:when test="${empty restaurantList}">
 				            <div align="center">등록된 게시물이 없습니다.</div>
 				        </c:when> 
 			        <c:otherwise>
-		            <c:forEach items="${restaurantList}" var="entry" varStatus="loop">
+		            <c:forEach items="${restaurantList}" var="entry">
 		                <c:if test="${entry.category eq '한식'}">
-		                	<c:if test="${cnt eq 6 }" var="result">
-                            	<c:set value="0" var="cnt"></c:set>
-                            </c:if>
-                            <c:if test="${not result }">
-                            	<c:set value="${cnt + 1}" var="cnt"></c:set>
-                            </c:if>
 		                    <div class="card custom-col">
 		                        <div>
 		                            <div class="card_product_img">
-		                                <button style="border: none;"  class="viewBtn"  type="submit" action="../restaurant/restaurantView.do">
-		                                    <img class="shop_product_img card-img-top" src="../images/Korea${randomNumbers[cnt]}.jpeg" alt="Card image">
+		                                <button style="border: none;" data-bs-toggle="modal" class="viewBtn" data-bs-target="#restaurant_view">
+		                                    <img class="shop_product_img card-img-top" src="../images/Korea${randomNum}.jpeg" alt="Card image">
 		                                </button>
-		                                
 		                                <div class="cart_icon_box">
 		                                    <img class="p-1" src="../images/favor_icon.png" alt="">
 		                                </div>
 		                            </div>
 		                            <div class="card-body text-center">
 		                                <h5 class="card-title"><a class="mill_title" href="">${entry.name}</a></h5>
-		                                <p><span style="color: #f19d07;">★4.8점</span>${cnt}번째사진</p>
-		                                 <p><span style="color: #f19d07;">index</span>${entry.restaurant_idx}</p>
+		                                <p><span style="color: #f19d07;">★</span>4.8</p>
+		                                 <p><span style="color: #f19d07;">★</span>${entry.restaurant_idx}</p>
 		                            </div>
 		                        </div>
 		                    </div>
@@ -327,36 +319,27 @@ $(function() {
                 </div>
                 <!-- 일식 리스트 시작 -->
                 <!-- 2행 시작 -->
-               	<div style="display: flex; overflow-x: auto;">
-               		<c:set value="1" var="cnt"></c:set>
+                <div style="display: flex; overflow-x: auto;">
 			    	<c:choose>
 				        <c:when test="${empty restaurantList}">
 				            <div align="center">등록된 게시물이 없습니다.</div>
 				        </c:when> 
 			        <c:otherwise>
-		            <c:forEach items="${restaurantList}" var="entry" varStatus="loop">
-		                <c:if test="${entry.category eq '일식'}">
-		                	<c:if test="${cnt eq 6 }" var="result">
-                            	<c:set value="0" var="cnt"></c:set>
-                            </c:if>
-                            <c:if test="${not result }">
-                            	<c:set value="${cnt + 1}" var="cnt"></c:set>
-                            </c:if>
+		            <c:forEach items="${restaurantList}" var="entry">
+		                <c:if test="${entry.category eq  '일식'}">
 		                    <div class="card custom-col">
 		                        <div>
 		                            <div class="card_product_img">
-		                                <button style="border: none;"  class="viewBtn"  type="submit" action="../restaurant/restaurantView.do">
-		                                    <img class="shop_product_img card-img-top" src="../images/Japan${randomNumbers[cnt]}.jpeg" alt="Card image">
+		                                <button style="border: none;" data-bs-toggle="modal" class="viewBtn" data-bs-target="#restaurant_view">
+		                                    <img class="shop_product_img card-img-top" src="../images/750_750_20210307074729929_photo_2c2906c7be9f.jpg" alt="Card image">
 		                                </button>
-		                                
 		                                <div class="cart_icon_box">
 		                                    <img class="p-1" src="../images/favor_icon.png" alt="">
 		                                </div>
 		                            </div>
 		                            <div class="card-body text-center">
 		                                <h5 class="card-title"><a class="mill_title" href="">${entry.name}</a></h5>
-		                                <p><span style="color: #f19d07;">★4.8점</span>${cnt}번째사진</p>
-		                                 <p><span style="color: #f19d07;">index</span>${entry.restaurant_idx}</p>
+		                                <p><span style="color: #f19d07;">★</span>4.8</p>
 		                            </div>
 		                        </div>
 		                    </div>
@@ -382,17 +365,11 @@ $(function() {
 			        <c:otherwise>
 		            <c:forEach items="${restaurantList}" var="entry">
 		                <c:if test="${entry.category eq '중국식'}">
-		                	 <c:if test="${cnt eq 6 }" var="result">
-                            	<c:set value="0" var="cnt"></c:set>
-                            </c:if>
-                            <c:if test="${not result }">
-                            	<c:set value="${cnt + 1}" var="cnt"></c:set>
-                            </c:if>
 		                    <div class="card custom-col">
 		                        <div>
 		                            <div class="card_product_img">
 		                                <button style="border: none;" data-bs-toggle="modal" class="viewBtn" data-bs-target="#restaurant_view">
-		                                    <img class="shop_product_img card-img-top" src="../images/China${randomNumbers[cnt]}.jpeg" alt="Card image">
+		                                    <img class="shop_product_img card-img-top" src="../images/750_750_20210307074729929_photo_2c2906c7be9f.jpg" alt="Card image">
 		                                </button>
 		                                <div class="cart_icon_box">
 		                                    <img class="p-1" src="../images/favor_icon.png" alt="">

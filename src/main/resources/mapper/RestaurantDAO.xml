@@ -21,6 +21,15 @@
 		SELECT * FROM restaurant WHERE restaurant_idx<![CDATA[<=]]>10
 	</select>
 	
+		<insert id="writeConmments">
+	   INSERT INTO  COMMENTS (comments_idx, nickname, content ,postdate, idx , email, tname, starRating)
+	   VALUES (seq_comments_idx.nextval,  #{nickname}, #{content} , sysdate , #{idx}, #{email}, 'restaurant', #{starRating} )
+	</insert>
+	<!-- 평균 리뷰값 구하기 avgStar  -->
+	<!-- 관리자 사진게시판 목록 -->
+	<select id="avgStar" resultType="double">
+    SELECT NVL(AVG(starRating), 0) FROM comments
+	</select>
 	
 	
 </mapper>
