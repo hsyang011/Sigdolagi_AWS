@@ -425,6 +425,21 @@ public class AdminController {
 		if(result==1)System.out.println("취소처리되었습니다.");
 		return "redirect:admin_order_list.do";
 	}
+	
+	//관리자 주문 배송중처리
+	@PostMapping("/administrator/admin_order_preUpdate.do")
+	public String adminOrderPreUpdate(HttpServletRequest req,OrderDTO orderDTO) {
+		int result = orderDAO.adminOrderPreUpdate(req.getParameter("idx"));
+		if(result==1)System.out.println("배송중으로 변경되었습니다.");
+		return "redirect:admin_order_list.do";
+	}
+	//관리자 주문 배송완료처리
+	@PostMapping("/administrator/admin_order_deliUpdate.do")
+	public String adminOrderDeliUpdate(HttpServletRequest req,OrderDTO orderDTO) {
+		int result = orderDAO.adminOrderDeliUpdate(req.getParameter("idx"));
+		if(result==1)System.out.println("배송완료로 변경되었습니다.");
+		return "redirect:admin_order_list.do";
+	}
 	 
 	
 }

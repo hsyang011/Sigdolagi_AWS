@@ -67,6 +67,10 @@ dependencies {
     /* 이 프로젝트의 libs폴더에 있는 모든 jar 파일을 라이브러리로
     사용하겠다는 선언 문장 추가 */
     implementation fileTree(dir: 'libs', include: ['*.jar']) 
+    
+    //파이어베이스 어드민
+	//implementation 'com.google.firebase:firebase-admin:9.1.1'
+    
 
 }
 
