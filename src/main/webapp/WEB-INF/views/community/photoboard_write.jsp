@@ -256,8 +256,8 @@
                                         <td>제목</td>
                                         <td>
                                             <input type="text" name="title" id="title" />
-                                            <input type="h-idden" name= "email" id="email" value="${email}">
-                                            <input type="h-idden" name="nickname" id="nickname"  value="${nickname}" />
+                                            <input type="hidden" name= "email" id="email" value="${email}">
+                                            <input type="hidden" name="nickname" id="nickname"  value="${nickname}" />
                                         </td>
                                     </tr>
                                     

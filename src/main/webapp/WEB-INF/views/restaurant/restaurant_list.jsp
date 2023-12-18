@@ -159,7 +159,7 @@ function SaveReview(){
                     </ul>
                 </div>
                 <!-- 네비로케이션 끝 -->
-                <ul class="nav my-3 category mt-4">
+                <!-- <ul class="nav my-3 category mt-4">
                     <li class="nav-item me-3"><button type="button" class="mealk_cate btn rounded-pill on">#전체</button></li>
                     <li class="nav-item me-3"><button type="button" class="mealk_cate btn rounded-pill">#한식</button></li>
                     <li class="nav-item me-3"><button type="button" class="mealk_cate btn rounded-pill">#일식</button></li>
@@ -168,7 +168,7 @@ function SaveReview(){
                     <li class="nav-item me-3"><button type="button" class="mealk_cate btn rounded-pill">#고깃집</button></li>
                     <li class="nav-item me-3"><button type="button" class="mealk_cate btn rounded-pill">#호프</button></li>
                     <li class="nav-item me-3"><button type="button" class="mealk_cate btn rounded-pill">#기타</button></li>
-                </ul>
+                </ul> -->
             </div>
             <!-- 컨텐츠 헤더 끝 -->
             <div class="shop_board container  mt-5">
