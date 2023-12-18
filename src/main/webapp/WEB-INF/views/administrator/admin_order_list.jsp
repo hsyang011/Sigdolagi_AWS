@@ -184,7 +184,7 @@ function orderDeliUpdate(idx){
                                             	<c:choose>
 	                                            	<c:when test="${row.state eq ('prepare') }">
 		                                            	<a href="javascript:orderPreUpdate('${row.order_idx }')" 
-		                                                	class="btn btn-danger btn-icon-split">
+		                                                	class="btn btn-primary btn-icon-split">
 		                                                    <span class="text">상품준비중</span>
 		                                                </a>
 	                                            	</c:when>
