@@ -29,6 +29,10 @@ public interface IOrderService {
 	public List<OrderDTO> orderViewList(String idx);
 	//주문내역 취소처리
 	public int adminOrderDelete(String idx);
+	//주문내역 배송중처리
+	public int adminOrderPreUpdate(String idx);
+	//주문내역 배송완료처리
+	public int adminOrderDeliUpdate(String idx);
 	
 	
 }

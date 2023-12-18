@@ -65,5 +65,15 @@
 		parameterType="com.edu.springboot.market.OrderDTO">
 		update marketorder set state='주문취소' where order_idx=#{idx}
 	</update>
+	<!-- 관리자 배송중처리변경 -->
+	<update id="adminOrderPreUpdate"
+		parameterType="com.edu.springboot.market.OrderDTO">
+		update marketorder set state='delivery' where order_idx=#{idx}
+	</update>
+	<!-- 관리자 배송완료처리변경 -->
+	<update id="adminOrderDeliUpdate"
+		parameterType="com.edu.springboot.market.OrderDTO">
+		update marketorder set state='success' where order_idx=#{idx}
+	</update>
 	
 </mapper>

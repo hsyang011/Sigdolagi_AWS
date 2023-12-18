@@ -3,6 +3,60 @@
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html>
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<meta name="description" content="" />
+	<meta name="author" content="" />
+	<title>관리자 주문현황목록</title>
+	
+	<!-- jQuery -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <!-- Custom fonts for this template -->
+    <link href="../bootstrap/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet" />
+
+    <!-- Custom styles for this template -->
+    <link href="../bootstrap/css/sb-admin-2.min.css" rel="stylesheet" />
+
+    <!-- Custom styles for this page -->
+    <link href="../bootstrap/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" />
+</head>
+<script>
+function listDelete(idx){
+	let frm = document.frm;
+	if(confirm("취소하시겠습니까?")){
+		frm.idx.value = idx;
+		frm.action = "/administrator/admin_order_list.do";
+		frm.method = "post";
+		frm.submit();
+	}
+}
+
+function orderPreUpdate(idx){
+	let frm = document.frm;
+	if(confirm("배송중으로 변경 하시겠습니까?")){
+		frm.idx.value = idx;
+		frm.action = "/administrator/admin_order_preUpdate.do";
+		frm.method = "post";
+		frm.submit();
+	}
+}
+function orderDeliUpdate(idx){
+	let frm = document.frm;
+	if(confirm("배송완료로 변경 하시겠습니까?")){
+		frm.idx.value = idx;
+		frm.action = "/administrator/admin_order_deliUpdate.do";
+		frm.method = "post";
+		frm.submit();
+	}
+}
+
+</script>
 <script type="text/javascript">
 
 /* $(function(){
@@ -53,40 +107,6 @@
     function errCallBack(errData){
     	console.log(errData.status+":"+errData.statusText);
     }
-</script>
-<head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-	<meta name="description" content="" />
-	<meta name="author" content="" />
-	<title>관리자 주문현황목록</title>
-	
-	<!-- jQuery -->
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
-    <!-- Custom fonts for this template -->
-    <link href="../bootstrap/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css" />
-    <link
-        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-        rel="stylesheet" />
-
-    <!-- Custom styles for this template -->
-    <link href="../bootstrap/css/sb-admin-2.min.css" rel="stylesheet" />
-
-    <!-- Custom styles for this page -->
-    <link href="../bootstrap/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet" />
-</head>
-<script>
-function listDelete(idx){
-	let frm = document.frm;
-	if(confirm("취소하시겠습니까?")){
-		frm.idx.value = idx;
-		frm.action = "/administrator/admin_order_list.do";
-		frm.method = "post";
-		frm.submit();
-	}
-}
-
 </script>
 <body id="page-top">
 
@@ -160,7 +180,34 @@ function listDelete(idx){
                                             <td>${row.name }(${row.email })</td>
                                             <td>${row.payment_date }</td>
                                             <td><span>${row.payment }</span> 원</td>
-                                            <td>${row.state }</td>
+                                            <td><input type="hidden" value="${row.state }"/> 
+                                            	<c:choose>
+	                                            	<c:when test="${row.state eq ('prepare') }">
+		                                            	<a href="javascript:orderPreUpdate('${row.order_idx }')" 
+		                                                	class="btn btn-danger btn-icon-split">
+		                                                    <span class="text">상품준비중</span>
+		                                                </a>
+	                                            	</c:when>
+	                                            	<c:when test="${row.state eq ('delivery') }">
+		                                            	<a href="javascript:orderDeliUpdate('${row.order_idx }')" 
+		                                                	class="btn btn-warning btn-icon-split">
+		                                                    <span class="text">배송중</span>
+		                                                </a>
+	                                            	</c:when>
+	                                            	<c:when test="${row.state eq ('success') }">
+		                                            	<a href="javascript:void(0)" 
+		                                                	class="btn btn-success btn-icon-split">
+		                                                    <span class="text">배송완료</span>
+		                                                </a>
+	                                            	</c:when>
+	                                            	<c:otherwise>
+		                                            	<a href="javascript:void(0)" 
+		                                                	class="btn disabled btn-secondary btn-icon-split">
+		                                                    <span class="text">주문취소</span>
+		                                                </a>
+	                                            	</c:otherwise>
+	                                            </c:choose>
+                                            </td>
                                             <td>
                                                 <a href="javascript:listDelete('${row.order_idx }')" class="btn btn-danger btn-icon-split">
                                                     <span class="text">취소</span>
