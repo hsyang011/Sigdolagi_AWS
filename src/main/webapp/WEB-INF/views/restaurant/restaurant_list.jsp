@@ -243,7 +243,7 @@ function SaveReview(){
                     </ul>
                 </div>
                 <!-- 네비로케이션 끝 -->
-                <!-- <ul class="nav my-3 category mt-4">
+                 <ul class="nav my-3 category mt-4">
                     <li class="nav-item me-3"><button type="button" class="mealk_cate btn rounded-pill on">#전체</button></li>
                     <li class="nav-item me-3"><button type="button" class="mealk_cate btn rounded-pill">#한식</button></li>
                     <li class="nav-item me-3"><button type="button" class="mealk_cate btn rounded-pill">#일식</button></li>
@@ -252,7 +252,7 @@ function SaveReview(){
                     <li class="nav-item me-3"><button type="button" class="mealk_cate btn rounded-pill">#고깃집</button></li>
                     <li class="nav-item me-3"><button type="button" class="mealk_cate btn rounded-pill">#호프</button></li>
                     <li class="nav-item me-3"><button type="button" class="mealk_cate btn rounded-pill">#기타</button></li>
-                </ul> -->
+                </ul> 
             </div>
             <!-- 컨텐츠 헤더 끝 -->
             <div class="shop_board container  mt-5">
@@ -313,7 +313,7 @@ function SaveReview(){
 		                        <div>
 		                            <div class="card_product_img">
 		                                <button style="border: none;" data-bs-toggle="modal" class="viewBtn" data-bs-target="#restaurant_view">
-		                                   	<img class="shop_product_img card-img-top" src="../images/Korea${randomNumbers[cnt]}.jpeg" alt="Card image">
+		                                   	<img class="shop_product_img card-img-top" src="../images/korea${randomNumbers[cnt]}.jpg" alt="Card image" style="min-height: 290px; max-height: 290px;" >
 		                                </button>
 		                                
 		                                <div class="cart_icon_box">
@@ -362,7 +362,7 @@ function SaveReview(){
 		                        <div>
 		                            <div class="card_product_img">
 		                                <button style="border: none;"  class="viewBtn"  type="submit" action="../restaurant/restaurantView.do">
-		                                    <img class="shop_product_img card-img-top" src="../images/Japan${randomNumbers[cnt]}.jpeg" alt="Card image">
+		                                    <img class="shop_product_img card-img-top" src="../images/japan${randomNumbers[cnt]}.jpg" alt="Card image" style="min-height: 290px; max-height: 290px;">
 		                                </button>
 		                                
 		                                <div class="cart_icon_box">
@@ -370,7 +370,7 @@ function SaveReview(){
 		                                </div>
 		                            </div>
 		                            <div class="card-body text-center">
-		                                <h5 class="card-title"><a class="mill_title" href="">${entry.name}</a></h5>
+		                                <h5 class="card-title"><a class="mill_title"  href="./restaurant_view.do?restaurant_idx=${ entry.restaurant_idx }">${entry.name}</a></h5>
 		                                <p><span style="color: #f19d07;">★4.8점</span></p>
 		                          <!--        <p><span style="color: #f19d07;">index</span></p> -->
 		                            </div>
@@ -408,14 +408,14 @@ function SaveReview(){
 		                        <div>
 		                            <div class="card_product_img"> 
 		                                <button style="border: none;" data-bs-toggle="modal" class="viewBtn" data-bs-target="#restaurant_view">
-		                                    <img class="shop_product_img card-img-top" src="../images/China${randomNumbers[cnt]}.jpeg" alt="Card image">
+		                                    <img class="shop_product_img card-img-top" src="../images/china${randomNumbers[cnt]}.jpg" alt="Card image" style="min-height: 290px; max-height: 290px;">
 		                                </button>
 		                                <div class="cart_icon_box">
 		                                    <img class="p-1" src="../images/favor_icon.png" alt="">
 		                                </div>
 		                            </div>
 		                            <div class="card-body text-center">
-		                                <h5 class="card-title"><a class="mill_title" href="">${entry.name}</a></h5>
+		                                <h5 class="card-title"><a class="mill_title"  href="./restaurant_view.do?restaurant_idx=${ entry.restaurant_idx }">${entry.name}</a></h5>
 		                                <p><span style="color: #f19d07;">★</span>4.8</p>
 		                            </div>
 		                        </div>
