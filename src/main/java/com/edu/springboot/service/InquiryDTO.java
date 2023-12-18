@@ -11,6 +11,7 @@ public class InquiryDTO {
 	private String title;
 	private String content;
 	private String regidate;
+	private String postdate;
 	private String nickname;
 	
 	
