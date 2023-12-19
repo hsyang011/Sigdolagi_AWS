@@ -196,7 +196,6 @@
 
 
 <script>
-
 function deletePost(photoboard_idx){
     var confirmed = confirm("정말로 삭제하겠습니까?"); 
     if (confirmed) {
@@ -206,9 +205,6 @@ function deletePost(photoboard_idx){
         form.submit();  
     }
 }
-
-
-
 
 function commentDelete(comments_idx){
     var confirmed = confirm("정말로 삭제하겠습니까?"); 

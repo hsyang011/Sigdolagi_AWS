@@ -3,8 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.7.5/proj4.js"></script>
 
 
 <!-- head 추가 -->
@@ -96,33 +95,98 @@ $(function() {
     });
 });
 
+
+//SaveReview
 function SaveReview(){
 	let frm = document.reviewFrm;
 	console.log(frm.content.value);
-    let data = {
-    		
-   		idx : frm.idx.value,
+    /* let data = {
+    	idx : frm.idx.value,
     	nickname : frm.nickname.value,
     	content : frm.content.value,
-    	email : frm.email.value
-    };
+    	email : frm.email.value,
+    	starRating : frm.starRating.value,
+    	ofile : frm.ofile.files[0]
+    };  */
+    let formData = new FormData();
+    formData.append('idx', frm.idx.value);
+    formData.append('nickname', frm.nickname.value);
+    formData.append('content', frm.content.value);
+    formData.append('email', frm.email.value);
+    formData.append('starRating', frm.starRating.value);
+    formData.append('ofile', frm.ofile.files[0]);
     //alert("댓글작성 "); // 여기에 alert 추가
-    console.log(data);
-    
+    //console.log(data);
     
     $.ajax({
         type: "post",
-        url: "./restaurant/restaurant_review.do",
-        data: data,
+        url: "./restaurant_comment.do",
+        //data: data,
+        data: formData,
+        cache: false,
+        contentType: false,
+        processData: false,
+          
         success: function(res) {
             console.log("댓글작성 "+res.email);
+            console.log("댓글 작성 후 서버 응답 데이터:");
+            console.log(res);
+            // 댓글 작성 성공 후 페이지 새로고침
+            location.reload();
             displayComment(res);
+           	
         },
         error: function() {
             console.log("요청실패");
         }
     }); 
 }
+
+///
+</script>
+
+<script>
+    // 현재 날짜와 시간을 얻기 위한 함수
+    function getCurrentDateTime() {
+        var now = new Date();
+		
+        
+        // 날짜 및 시간을 원하는 형식으로 포맷팅
+        var formattedDateTime = now.getFullYear() + '-' +
+            padNumber(now.getMonth() + 1) + '-' +
+            padNumber(now.getDate()) + ' ' +
+            padNumber(now.getHours()) + ':' +
+            padNumber(now.getMinutes()) + ':' +
+            padNumber(now.getSeconds());
+
+        return formattedDateTime;
+    }
+
+    // 숫자를 두 자리로 패딩하는 함수
+    function padNumber(number) {
+        return (number < 10 ? '0' : '') + number;
+    }
+
+    // 댓글을 화면에 추가하는 함수
+    function displayComment(res) {
+        // 받은 댓글 데이터를 이용하여 화면에 추가하는 로직을 작성
+        console.log(res.email);
+        console.log(res.idx);
+        console.log(res.content);
+        var commentHTML =
+            "<tr align=\"center\">" +
+            "<td>" + res.nickname + "</td>" +
+            "<td>" + res.idx + "</td>" +
+            "<td name=\"comments_idx\">" + res.comments_idx + "</td>" +
+            "<td>" + res.content + "</td>" +
+            "<td>" + getCurrentDateTime() + "</td>" +
+            "<td>" + res.comments_idx + "</td>" +
+            "<td>" + res.starRating + "</td>" +
+            "<td><button onclick='deleteComment(" + res.comments_idx + ")'>삭제</button></td>" +
+            "</tr>";
+        // 화면에 댓글 추가
+        $("#commentsTableBody").append(commentHTML);
+    }
 </script>
 </head>
 <body>
@@ -163,7 +227,7 @@ function SaveReview(){
                     </ul>
                 </div>
                 <!-- 네비로케이션 끝 -->
-               	<!--  <ul class="nav my-3 category mt-4">
+                  <!--  <ul class="nav my-3 category mt-4">
                     <li class="nav-item me-3"><button type="button" class="mealk_cate btn rounded-pill on">#전체</button></li>
                     <li class="nav-item me-3"><button type="button" class="mealk_cate btn rounded-pill">#한식</button></li>
                     <li class="nav-item me-3"><button type="button" class="mealk_cate btn rounded-pill">#일식</button></li>
@@ -178,93 +242,84 @@ function SaveReview(){
             <div class="shop_board container  mt-5">
     <!-- 컨테이너 안쪽 컨텐츠 -->
         </div>
-		<div class="container">
-		    <div id="restaurant_view">
-		        <div class="modal-dialog modal-lg">
-		            <div class="modal-content">
-		                <!-- Modal Header -->
-		                <div class="content-header">
-		                    <div id="map" style="width:100%;height:350px;"></div>
-		                </div>
-		                <!-- Modal body -->
-		                <div class="content-body">
-		                <input type="hidden" name="idx" value="${RestaurantDTO.restaurant_idx }">	
-		               	<input type="hidden" name="lot_address" value="${RestaurantDTO.road_address }">	
-		                    <h3 style="font-weight: bold;">${ restaurantDTO.name }</h3>
-		                    <div class="d-flex align-items-center justify-content-between">
-		                        <div>
-		                            <div class="my-3">
-		                                <span style="color: #f19d07;" class="me-1">★</span>
-		                                <span class="me-1">4.9</span>
-		                                <a href="#review">리뷰 175개 ></a>
-		                            </div>
-		                            <div>${restaurantDTO.lot_address }</div>
-		                        </div>
-		                        <button class="btn rounded-pill" style="background-color: #FF7A00; color: white;">플래너에 추가 +</button>
-		                    </div>
-		                </div>
-		                <!-- Modal footer -->
-		                <div class="content-footer">
-		                    <div id="review" class="my-5"  style="width: 100%;">
-		                        <p>리뷰 <span style="color: #FF7A00;">3건</span></p>
-		                        <div class="d-flex justify-content-between">
-		                        	<div class="cm_input" style="width:100%">
-		                        	  <form name="reviewFrm" method="post" onsubmit="return validateForm(this);" action="/restaurant/restaurant_review.do" class="reviewFrm">
-			                            <input type="hidden" name="idx" value="${RestaurantDTO.restaurant_idx }">
-			                            <%-- <input type="hidden" name="nickname" value="${boardDTO.nickname}"> --%>
-			                            <input type="hidden" name="email" value="${email}">
-			                           	<p ><textarea id="content" name="content" onkeyup="" rows="4" placeholder="리뷰를 입력해주세요."  style="width: 100%;"></textarea>
-			                       	    <button type="button" class="btn btn-outline-dark px-5 rounded-pill" onclick="SaveReview();">매장 리뷰쓰기</button></p>
+      <div class="container">
+          <div id="restaurant_view">
+              <div class="modal-dialog modal-lg">
+                  <div class="modal-content">
+                      <!-- Modal Header -->
+                      <div class="content-header">
+                          <div id="map" style="width:100%;height:350px;"></div>
+                      </div>
+                      <!-- Modal body -->
+                      <div class="content-body">
+                      <input type="hidden" name="idx" value="${RestaurantDTO.restaurant_idx }">   
+                        <input type="hidden" name="lot_address" value="${RestaurantDTO.road_address }">   
+                          <h3 style="font-weight: bold;">${ restaurantDTO.name }</h3>
+                          <div class="d-flex align-items-center justify-content-between">
+                              <div>
+                                  <div class="my-3">
+                                      <span style="color: #f19d07;" class="me-1">★</span>
+                                      <span class="me-1">4.9</span>
+                                      <a href="#review">리뷰 175개 ></a>
+                                  </div>
+                                  <div>${restaurantDTO.lot_address }</div>
+                              </div>
+                              <button class="btn rounded-pill" style="background-color: #FF7A00; color: white;">플래너에 추가 +</button>
+                          </div>
+                      </div>
+                      <!-- Modal footer -->
+                      <div class="content-footer">
+                          <div id="review" class="my-5"  style="width: 100%;">
+                              <p>리뷰 <span style="color: #FF7A00;">3건</span></p>
+                              <div class="d-flex justify-content-between">
+                                 <div class="cm_input" style="width:100%">
+		                        	  	<form name="reviewFrm" method="post" enctype="multipart/form-data"  onsubmit="return validateForm(this);"
+			                        	     action="/restaurant/restaurant_review.do" class="reviewFrm" >
+				                            <input type="hid-den" name="idx" value="${restaurantDTO.restaurant_idx }">
+				                            <%-- <input type="hidden" name="nickname" value="${boardDTO.nickname}"> --%>
+				                           	<p ><textarea id="content" name="content" onkeyup="" rows="4" placeholder="리뷰를 입력해주세요."  style="width: 100%;"></textarea>
+	                                      	<!-- 파일첨부
+	                                            <input type="file" id="ofile" name="ofile" onchange="readURL(this)">
+	                                         -->
+				                           	<input type="hid-den" name="nickname" value="${nickname}">
+	                                        <input type="hid-den" name="email" value="${email}">
+	                                        ★별점 <input style="width: 30px;" id="starRating" name="starRating" value="5">
+	                                        
+	                                        <input type="file" id="ofile" name="ofile">
+				                       	    <button type="button" class="btn btn-outline-dark px-5 rounded-pill" onclick="SaveReview();">매장 리뷰쓰기</button></p>
+		                     			</form>
 		                     		</div>
-		                           
-		
-		                        </div>
-		                        <!-- 테이블 -->
+      
+                              </div>
+                              <!-- 테이블 -->
+                              <!-- 테이블 -->
+		                        <c:forEach items="${CommentsLists}" var="row" varStatus="loop">
+		                        <div id="commentsTableBody">
 		                        <table class="table table-border">
 		                            <tr>
 		                                <td style="width: 85%;">
 		                                    <div>
-		                                        <p style="color: #FF7A00;">★★★★☆</p>
-		                                        <p>작성자 | 2023.12.04</p>
-		                                        <p>바삭바삭 식감으로 맛있게 먹었습니다.</p>
+		                                        <p style="color: #FF7A00;">★${row.starRating}</p>
+		                                        <p>${row.nickname} | ${row.postdate}</p>
+		                                        <p>바삭바삭 ${row.content}</p>
 		                                    </div>
 		                                </td>
 		                                <td id="table_title" style="width: 15%; text-align: right;">
-		                                    <img src="../images/01100110101010102_2186962.png" width="120" alt="">
-		                                </td>
-		                            </tr>
-		                            <tr>
-		                                <td style="width: 85%;">
-		                                    <div>
-		                                        <p style="color: #FF7A00;">★★★★☆</p>
-		                                        <p>작성자 | 2023.12.04</p>
-		                                        <p>바삭바삭 식감으로 맛있게 먹었습니다.</p>
-		                                    </div>
-		                                </td>
-		                                <td id="table_title" style="width: 15%; text-align: right;">
-		                                    <img src="../images/01100110101010102_2186962.png" width="120" alt="">
-		                                </td>
-		                            </tr>
-		                            <tr>
-		                                <td style="width: 85%;">
-		                                    <div>
-		                                        <p style="color: #FF7A00;">★★★★☆</p>
-		                                        <p>작성자 | 2023.12.04</p>
-		                                        <p>바삭바삭 식감으로 맛있게 먹었습니다.</p>
-		                                    </div>
-		                                </td>
-		                                <td id="table_title" style="width: 15%; text-align: right;">
-		                                    <img src="../images/01100110101010102_2186962.png" width="120" alt="">
+		                                    <img src="../uploads/${row.sfile}" width="120" alt="">
 		                                </td>
 		                            </tr>
 		                        </table>
-		                    </div>
-		                    <button type="button" class="btn rounded-pill" style="background-color: #FF7A00; color: white;" data-bs-dismiss="modal">돌아가기</button>
-		                </div>
-		            </div>
-		        </div>
-		    </div>
-		    </div>
+		                        </div>
+		                        </c:forEach>
+                              <table class="table table-border">
+                              </table>
+                          </div>
+                          <button type="button" class="btn rounded-pill" style="background-color: #FF7A00; color: white;" data-bs-dismiss="modal">돌아가기</button>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          </div>
 
   
 

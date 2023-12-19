@@ -13,6 +13,9 @@ public class CommentsDTO {
 	private String email;
 	private String tname; 
 	private String starRating;
+	
+	private Object ofile;
+	private String sfile;
 
 
 	

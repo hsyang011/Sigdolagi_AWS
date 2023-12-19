@@ -83,130 +83,7 @@ strike {font-size: 18px;}
     	.shop_product_img { min-height: 160px; max-height: 160px; }
 }
 </style>
-<script>
-function CommentSend(){
-   let frm = document.commentwriteFrm;
-   console.log(frm.content.value);
-    let data = {
-          
-       idx : frm.idx.value,
-       nickname : frm.nickname.value,
-       content : frm.content.value,
-       email : frm.email.value,
-       starRating : frm.starRating.value
-       
-    };
-    //alert("댓글작성 "); // 여기에 alert 추가
-    console.log(data);
-    
-   // /restaurant/restaurant_comment.do
-    $.ajax({
-        type: "post",
-        url: "./restaurant_comment.do",
-        data: data,
-        success: function(res) {
-            console.log("댓글작성 "+res.email);
-            console.log("댓글 작성 후 서버 응답 데이터:");
-            console.log(res);
-            // 댓글 작성 성공 후 페이지 새로고침
-            //location.reload();
-            displayComment(res);
-              
-        },
-        error: function() {
-            console.log("요청실패");
-        }
-    }); 
-}
-</script>
 
-<script>
-    // 현재 날짜와 시간을 얻기 위한 함수
-    function getCurrentDateTime() {
-        var now = new Date();
-
-        // 날짜 및 시간을 원하는 형식으로 포맷팅
-        var formattedDateTime = now.getFullYear() + '-' +
-            padNumber(now.getMonth() + 1) + '-' +
-            padNumber(now.getDate()) + ' ' +
-            padNumber(now.getHours()) + ':' +
-            padNumber(now.getMinutes()) + ':' +
-            padNumber(now.getSeconds());
-
-        return formattedDateTime;
-    }
-
-    // 숫자를 두 자리로 패딩하는 함수
-    function padNumber(number) {
-        return (number < 10 ? '0' : '') + number;
-    }
-
-    // 댓글을 화면에 추가하는 함수
-    function displayComment(res) {
-        // 받은 댓글 데이터를 이용하여 화면에 추가하는 로직을 작성
-        console.log(res.email);
-        console.log(res.idx);
-        console.log(res.content);
-        var commentHTML =
-            "<tr align=\"center\">" +
-            "<td>" + res.nickname + "</td>" +
-            "<td>" + res.idx + "</td>" +
-            "<td name=\"comments_idx\">" + res.comments_idx + "</td>" +
-            "<td>" + res.content + "</td>" +
-            "<td>" + getCurrentDateTime() + "</td>" +
-            "<td>" + res.comments_idx + "</td>" +
-            "<td>" + res.starRating + "</td>" +
-            "<td><button onclick='deleteComment(" + res.comments_idx + ")'>삭제</button></td>" +
-            "</tr>";
-        // 화면에 댓글 추가
-        $("#commentsTableBody").append(commentHTML);
-    }
-</script>
-
-
-
-
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script>
-$(function() {
-    $("#setAddr").click((e) => { 
-        new daum.Postcode({
-            oncomplete: function(data) {
-                $("#addr").text(data.address);
-                $(e.target).text("재설정");
-            }
-        }).open();
-    });
-});
-
-function SaveReview(){
-   let frm = document.reviewFrm;
-   console.log(frm.content.value);
-    let data = {
-          
-         idx : frm.idx.value,
-       nickname : frm.nickname.value,
-       content : frm.content.value,
-       email : frm.email.value
-    };
-    //alert("댓글작성 "); // 여기에 alert 추가
-    console.log(data);
-    
-    
-    $.ajax({
-        type: "post",
-        url: "./restaurant/restaurant_review.do",
-        data: data,
-        success: function(res) {
-            console.log("댓글작성 "+res.email);
-            displayComment(res);
-        },
-        error: function() {
-            console.log("요청실패");
-        }
-    }); 
-}
-</script>
 </head>
 <body>
 <!-- wrapper 시작 -->
@@ -427,11 +304,6 @@ function SaveReview(){
     
     <!-- footer 추가 -->
     <%@ include file="../include/footer.jsp" %>
-
-</div>
-<!-- wrapper 끝 -->
-</body>
-</html>%>
 
 </div>
 <!-- wrapper 끝 -->
