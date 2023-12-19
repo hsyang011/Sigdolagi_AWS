@@ -375,16 +375,15 @@ function deleteImageFile() {
                                         <td>제목</td>
                                         <td>
                                             <input type="text" name="title" id="title" value="${photoBoardDTO.title}" />
-                                            <input type="text" name="nickname" id="nicnkname"   value="${nickname}"    />
-                                            <input type="text" name="email" id="email"   value="${email}"    />
+                                            <input type="hidden" name="nickname" id="nicnkname"   value="${nickname}"    />
+                                            <input type="hidden" name="email" id="email"   value="${email}"    />
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>내용</td>
                                         <td>
-                                             <textarea id="content" name="content">${photoBoardDTO.content}
-                                           
-                                             </textarea>
+                                             <textarea id="content" name="content">${photoBoardDTO.content}</textarea>
+                                             
                                         </td>
                                     </tr>
                                     <tr>
