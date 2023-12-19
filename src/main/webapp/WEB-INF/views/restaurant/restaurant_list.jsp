@@ -261,13 +261,13 @@ function SaveReview(){
                 <!-- 검색창 끝 -->
 
                 <!-- 전체 게시물 갯수 셀렉트 끝 -->
-                <div class="select_box d-flex justify-content-between">
+                <!-- <div class="select_box d-flex justify-content-between">
                     <div>
                         <span id="addr">내 근처 맛집을 추천받고 싶다면 주소를 설정해주세요.</span>
                         <button class="btn rounded-pill" id="setAddr" style="background-color: #FF7A00; color: white; font-size: 0.75em;">주소설정</button>
                     </div>
-                    <!-- ################################################################################ -->
-                </div>
+                    ################################################################################
+                </div> -->
                 <hr style="border: 1px solid #000; margin-bottom: 30px;">
                 <!-- 전체 게시물 갯수 셀렉트 끝 -->
 
@@ -301,10 +301,10 @@ function SaveReview(){
 		                                <button style="border: none;" data-bs-toggle="modal" class="viewBtn" data-bs-target="#restaurant_view">
 		                                   		<img class="shop_product_img card-img-top" onclick="location.href='../restaurant/restaurant_view.do?restaurant_idx=${ entry.restaurant_idx }';" src="../images/korea${randomNumbers[cnt]}.jpg" alt="Card image" >
 		                                </button>
-		                                
+<!-- 		                                
 		                                <div class="cart_icon_box">
 		                                    <img class="p-1" src="../images/favor_icon.png" alt="">
-		                                </div>
+		                                </div> -->
 		                            </div>
 		                            <div class="card-body text-center">
 		                                <h5 class="card-title"><a class="mill_title" href="./restaurant_view.do?restaurant_idx=${ entry.restaurant_idx }">${entry.name}</a></h5>
@@ -351,9 +351,9 @@ function SaveReview(){
 		                                 	<img class="shop_product_img card-img-top" onclick="location.href='../restaurant/restaurant_view.do?restaurant_idx=${ entry.restaurant_idx }';" src="../images/korea${randomNumbers[cnt]}.jpg" alt="Card image" >
 		                                </button>
 		                                
-		                                <div class="cart_icon_box">
+		                                <!-- <div class="cart_icon_box">
 		                                    <img class="p-1" src="../images/favor_icon.png" alt="">
-		                                </div>
+		                                </div> -->
 		                            </div>
 		                            <div class="card-body text-center">
 		                                <h5 class="card-title"><a class="mill_title"  href="./restaurant_view.do?restaurant_idx=${ entry.restaurant_idx }">${entry.name}</a></h5>
@@ -396,9 +396,9 @@ function SaveReview(){
 		                                <button style="border: none;" data-bs-toggle="modal" class="viewBtn" data-bs-target="#restaurant_view">
 		                                   	<img class="shop_product_img card-img-top" onclick="location.href='../restaurant/restaurant_view.do?restaurant_idx=${ entry.restaurant_idx }';" src="../images/korea${randomNumbers[cnt]}.jpg" alt="Card image" >
 		                                </button>
-		                                <div class="cart_icon_box">
+		                                <!-- <div class="cart_icon_box">
 		                                    <img class="p-1" src="../images/favor_icon.png" alt="">
-		                                </div>
+		                                </div> -->
 		                            </div>
 		                            <div class="card-body text-center">
 		                                <h5 class="card-title"><a class="mill_title"  href="./restaurant_view.do?restaurant_idx=${ entry.restaurant_idx }">${entry.name}</a></h5>
