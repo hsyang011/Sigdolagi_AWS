@@ -62,6 +62,7 @@ strike {font-size: 18px;}
 /* 12/01 수정사항 - 한서 */
 @media screen and (min-width: 1201px) {
     .custom-col { flex: 0 0 25%; }
+   .shop_product_img { min-height: 290px; max-height: 290px; }
 }
 /* 모바일 환경에서 카테고리를 횡스크롤로 구현 */
 @media screen and (max-width: 1200px) {
@@ -70,6 +71,7 @@ strike {font-size: 18px;}
     .custom-col { flex: 0 0 25%; }
     .meal_seach_bar { width: 100%; } /* 모바일에선 검색창의 길이를 100%로 처리 */
     .card * { font-size: 0.98em; }
+   .shop_product_img { min-height: 220px; max-height: 220px; }
 }
 @media screen and (max-width: 768px) {
     .custom-col { flex: 0 0 50%; }
@@ -78,26 +80,10 @@ strike {font-size: 18px;}
     .card * { font-size: 0.95em; }
     .thumbnail {margin: 0 0;}
     .moreBtn { font-size: 0.75em; }
+   .shop_product_img { min-height: 160px; max-height: 160px; }
 }
-
-
-/* 25% */
-
-
-.card.custom-col {
-    flex: 0 0 25%;
-    margin-right: 10px;
-}
-
-
-
-
 </style>
-
-
 <script>
-
-
 function CommentSend(){
    let frm = document.commentwriteFrm;
    console.log(frm.content.value);
@@ -260,7 +246,7 @@ function SaveReview(){
                     </ul>
                 </div>
                 <!-- 네비로케이션 끝 -->
-                <!-- <ul class="nav my-3 category mt-4">
+                 <ul class="nav my-3 category mt-4">
                     <li class="nav-item me-3"><button type="button" class="mealk_cate btn rounded-pill on">#전체</button></li>
                     <li class="nav-item me-3"><button type="button" class="mealk_cate btn rounded-pill">#한식</button></li>
                     <li class="nav-item me-3"><button type="button" class="mealk_cate btn rounded-pill">#일식</button></li>
@@ -269,7 +255,7 @@ function SaveReview(){
                     <li class="nav-item me-3"><button type="button" class="mealk_cate btn rounded-pill">#고깃집</button></li>
                     <li class="nav-item me-3"><button type="button" class="mealk_cate btn rounded-pill">#호프</button></li>
                     <li class="nav-item me-3"><button type="button" class="mealk_cate btn rounded-pill">#기타</button></li>
-                </ul> -->
+                </ul> 
             </div>
             <!-- 컨텐츠 헤더 끝 -->
             <div class="shop_board container  mt-5">
@@ -330,7 +316,7 @@ function SaveReview(){
                               <div>
                                   <div class="card_product_img">
                                       <button style="border: none;" data-bs-toggle="modal" class="viewBtn" data-bs-target="#restaurant_view">
-                                            <img class="shop_product_img card-img-top" src="../images/Korea${randomNumbers[cnt]}.jpeg" alt="Card image">
+                                            <img class="shop_product_img card-img-top" src="../images/korea${randomNumbers[cnt]}.jpg" alt="Card image" >
                                       </button>
                                       
                                       <div class="cart_icon_box">
@@ -379,7 +365,7 @@ function SaveReview(){
                               <div>
                                   <div class="card_product_img">
                                       <button style="border: none;"  class="viewBtn"  type="submit" action="../restaurant/restaurantView.do">
-                                          <img class="shop_product_img card-img-top" src="../images/Japan${randomNumbers[cnt]}.jpeg" alt="Card image">
+                                          <img class="shop_product_img card-img-top" src="../images/japan${randomNumbers[cnt]}.jpg" alt="Card image" >
                                       </button>
                                       
                                       <div class="cart_icon_box">
@@ -387,7 +373,7 @@ function SaveReview(){
                                       </div>
                                   </div>
                                   <div class="card-body text-center">
-                                      <h5 class="card-title"><a class="mill_title" href="">${entry.name}</a></h5>
+                                      <h5 class="card-title"><a class="mill_title"  href="./restaurant_view.do?restaurant_idx=${ entry.restaurant_idx }">${entry.name}</a></h5>
                                       <p><span style="color: #f19d07;">★4.8점</span></p>
                                 <!--        <p><span style="color: #f19d07;">index</span></p> -->
                                   </div>
@@ -425,14 +411,14 @@ function SaveReview(){
                               <div>
                                   <div class="card_product_img"> 
                                       <button style="border: none;" data-bs-toggle="modal" class="viewBtn" data-bs-target="#restaurant_view">
-                                          <img class="shop_product_img card-img-top" src="../images/China${randomNumbers[cnt]}.jpeg" alt="Card image">
+                                          <img class="shop_product_img card-img-top" src="../images/china${randomNumbers[cnt]}.jpg" alt="Card image" >
                                       </button>
                                       <div class="cart_icon_box">
                                           <img class="p-1" src="../images/favor_icon.png" alt="">
                                       </div>
                                   </div>
                                   <div class="card-body text-center">
-                                      <h5 class="card-title"><a class="mill_title" href="">${entry.name}</a></h5>
+                                      <h5 class="card-title"><a class="mill_title"  href="./restaurant_view.do?restaurant_idx=${ entry.restaurant_idx }">${entry.name}</a></h5>
                                       <p><span style="color: #f19d07;">★</span>4.8</p>
                                   </div>
                               </div>

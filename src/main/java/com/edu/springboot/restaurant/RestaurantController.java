@@ -239,7 +239,7 @@ public class RestaurantController {
         
         model.addAttribute("CommentsLists", commentsLists);
         model.addAttribute("photoBoardDTO",photoBoardDTO);
-        
+         
         return commentsDTO;
      }
 

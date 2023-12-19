@@ -17,6 +17,7 @@
 <!-- 아이콘 -->
 <script src="https://kit.fontawesome.com/98401b861d.js" crossorigin="anonymous"></script>
 <!-- 전역 설정 css 링크  -->
+<%@ include file="../include/global_head.jsp" %>
 <link rel="stylesheet" href="../css/common_board.css">
 
 <style>

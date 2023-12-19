@@ -46,9 +46,9 @@
 	   INSERT INTO  COMMENTS (comments_idx, nickname, content ,postdate, idx , email, tname, starRating)
 	   VALUES (seq_comments_idx.nextval,  #{nickname}, #{content} , sysdate , #{idx}, #{email}, 'restaurant', #{starRating} )
 	</insert>   -->
-	<insert id="writeConmments"  parameterType="com.edu.springboot.community.CommentsDTO">
-	   INSERT INTO  COMMENTS (comments_idx, nickname, content ,postdate, idx , email, tname, starRating, sfile, ofile)
-	   VALUES (seq_comments_idx.nextval,  #{nickname}, #{content} , sysdate , #{idx}, #{email}, 'restaurant', #{starRating}, #{sfile}, #{ofile} )
+	<insert id="writeConmments" parameterType="com.edu.springboot.community.CommentsDTO">
+    INSERT INTO COMMENTS (comments_idx, nickname, content, postdate, idx, email, tname, starRating, sfile, ofile)
+    VALUES (seq_comments_idx.nextval, #{nickname}, #{content}, sysdate, #{idx}, #{email}, 'restaurant', #{starRating}, #{sfile}, #{ofile})
 	</insert>  
 	<!-- 평균 리뷰값 구하기 avgStar 
 	관리자 사진게시판 목록 

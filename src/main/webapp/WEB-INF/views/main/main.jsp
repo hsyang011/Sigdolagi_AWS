@@ -9,8 +9,17 @@
 <%@ include file="../include/global_head.jsp" %>
 <link rel="stylesheet" href="../css/main.css" />
 <style>
+.custom-col { flex: 0 0 100%; }
+.carousel-item { max-height: 600px;min-height:150px; overflow: hidden; object-fit: cover; vertical-align: middle;text-align: center;  width: 100% }
+@media screen and (min-width: 1201px) {
+	.shop_product_img { min-height: 290px; max-height: 290px; }
+}
+@media screen and (max-width: 1200px) {
+	.shop_product_img { min-height: 220px; max-height: 220px; }
+}
 @media screen and (max-width: 768px) {
 	.card-body * { font-size: 0.9em; }
+	.shop_product_img { min-height: 160px; max-height: 160px; }
 }
 </style>
 <!-- 로그인에 성공했을 경우 alert창 -->
