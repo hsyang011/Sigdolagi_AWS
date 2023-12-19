@@ -245,17 +245,6 @@ function SaveReview(){
                         </li>
                     </ul>
                 </div>
-                <!-- 네비로케이션 끝 -->
-                 <ul class="nav my-3 category mt-4">
-                    <li class="nav-item me-3"><button type="button" class="mealk_cate btn rounded-pill on">#전체</button></li>
-                    <li class="nav-item me-3"><button type="button" class="mealk_cate btn rounded-pill">#한식</button></li>
-                    <li class="nav-item me-3"><button type="button" class="mealk_cate btn rounded-pill">#일식</button></li>
-                    <li class="nav-item me-3"><button type="button" class="mealk_cate btn rounded-pill">#중식</button></li>
-                    <li class="nav-item me-3"><button type="button" class="mealk_cate btn rounded-pill">#양식</button></li>
-                    <li class="nav-item me-3"><button type="button" class="mealk_cate btn rounded-pill">#고깃집</button></li>
-                    <li class="nav-item me-3"><button type="button" class="mealk_cate btn rounded-pill">#호프</button></li>
-                    <li class="nav-item me-3"><button type="button" class="mealk_cate btn rounded-pill">#기타</button></li>
-                </ul> 
             </div>
             <!-- 컨텐츠 헤더 끝 -->
             <div class="shop_board container  mt-5">
@@ -278,11 +267,6 @@ function SaveReview(){
                         <button class="btn rounded-pill" id="setAddr" style="background-color: #FF7A00; color: white; font-size: 0.75em;">주소설정</button>
                     </div>
                     <!-- ################################################################################ -->
-                    <!-- 모바일에서 정렬이 안맞아서 input의 길이를 줄였고, rounded-pill속성을 부여하여 둥글게 처리 -->
-                    <select name="" id="" class="rounded-pill" style="width: 120px; height: 30px;">
-                        <option value="" selected style="text-align: center;">인기순</option>
-                        <option value="" style="text-align: center;">가까운순</option>
-                    </select>
                 </div>
                 <hr style="border: 1px solid #000; margin-bottom: 30px;">
                 <!-- 전체 게시물 갯수 셀렉트 끝 -->
@@ -290,9 +274,8 @@ function SaveReview(){
                 <!-- #################################################################################### -->
                 <!-- .card 하위에 div태그를 각각 추가한 부분이 있으니 유의 바랍니다. -->
                 <!-- 한식 -->
-                <div class="d-flex justify-content-between">
+                <div class="d-flex justify-content-between mt-2">
                     <h2>#한식</h2>
-                    <button class="btn rounded-pill moreBtn" style="background-color: #FF7A00; color: white;">자세히 보기 ></button>
                 </div>
                 <!-- 한식 리스트 시작 -->
                 <!-- 1행 시작 -->
@@ -340,9 +323,8 @@ function SaveReview(){
                 <!-- 1행 끝 -->
                 <!-- 한식 리스트 끝 -->
                 <!-- 일식 -->
-                <div class="d-flex justify-content-between">
+                <div class="d-flex justify-content-between mt-2">
                     <h2>#일식</h2>
-                    <button class="btn rounded-pill moreBtn" style="background-color: #FF7A00; color: white;">자세히 보기 ></button>
                 </div>
                 <!-- 일식 리스트 시작 -->
                 <!-- 2행 시작 -->
@@ -387,9 +369,8 @@ function SaveReview(){
                 <!-- 2행 끝 -->
                 <!-- 일식 리스트 끝 -->
                 <!-- 중식 -->
-                <div class="d-flex justify-content-between">
+                <div class="d-flex justify-content-between mt-2">
                     <h2>#중식</h2>
-                    <button class="btn rounded-pill moreBtn" style="background-color: #FF7A00; color: white;">자세히 보기 ></button>
                 </div>
                 <!-- 중식 리스트 시작 -->
                 <!-- 3행 시작 -->
