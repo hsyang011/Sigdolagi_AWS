@@ -62,7 +62,7 @@ strike {font-size: 18px;}
 /* 12/01 수정사항 - 한서 */
 @media screen and (min-width: 1201px) {
     .custom-col { flex: 0 0 25%; }
-      .shop_product_img { min-height: 290px; max-height: 290px; }
+   	.shop_product_img { min-height: 290px; max-height: 290px; }
 }
 /* 모바일 환경에서 카테고리를 횡스크롤로 구현 */
 @media screen and (max-width: 1200px) {
@@ -80,133 +80,10 @@ strike {font-size: 18px;}
     .card * { font-size: 0.95em; }
     .thumbnail {margin: 0 0;}
     .moreBtn { font-size: 0.75em; }
-       .shop_product_img { min-height: 160px; max-height: 160px; }
+    	.shop_product_img { min-height: 160px; max-height: 160px; }
 }
 </style>
-<script>
-function CommentSend(){
-   let frm = document.commentwriteFrm;
-   console.log(frm.content.value);
-    let data = {
-          
-       idx : frm.idx.value,
-       nickname : frm.nickname.value,
-       content : frm.content.value,
-       email : frm.email.value,
-       starRating : frm.starRating.value
-       
-    };
-    //alert("댓글작성 "); // 여기에 alert 추가
-    console.log(data);
-    
-   // /restaurant/restaurant_comment.do
-    $.ajax({
-        type: "post",
-        url: "./restaurant_comment.do",
-        data: data,
-        success: function(res) {
-            console.log("댓글작성 "+res.email);
-            console.log("댓글 작성 후 서버 응답 데이터:");
-            console.log(res);
-            // 댓글 작성 성공 후 페이지 새로고침
-            //location.reload();
-            displayComment(res);
-              
-        },
-        error: function() {
-            console.log("요청실패");
-        }
-    }); 
-}
-</script>
 
-<script>
-    // 현재 날짜와 시간을 얻기 위한 함수
-    function getCurrentDateTime() {
-        var now = new Date();
-
-        // 날짜 및 시간을 원하는 형식으로 포맷팅
-        var formattedDateTime = now.getFullYear() + '-' +
-            padNumber(now.getMonth() + 1) + '-' +
-            padNumber(now.getDate()) + ' ' +
-            padNumber(now.getHours()) + ':' +
-            padNumber(now.getMinutes()) + ':' +
-            padNumber(now.getSeconds());
-
-        return formattedDateTime;
-    }
-
-    // 숫자를 두 자리로 패딩하는 함수
-    function padNumber(number) {
-        return (number < 10 ? '0' : '') + number;
-    }
-
-    // 댓글을 화면에 추가하는 함수
-    function displayComment(res) {
-        // 받은 댓글 데이터를 이용하여 화면에 추가하는 로직을 작성
-        console.log(res.email);
-        console.log(res.idx);
-        console.log(res.content);
-        var commentHTML =
-            "<tr align=\"center\">" +
-            "<td>" + res.nickname + "</td>" +
-            "<td>" + res.idx + "</td>" +
-            "<td name=\"comments_idx\">" + res.comments_idx + "</td>" +
-            "<td>" + res.content + "</td>" +
-            "<td>" + getCurrentDateTime() + "</td>" +
-            "<td>" + res.comments_idx + "</td>" +
-            "<td>" + res.starRating + "</td>" +
-            "<td><button onclick='deleteComment(" + res.comments_idx + ")'>삭제</button></td>" +
-            "</tr>";
-        // 화면에 댓글 추가
-        $("#commentsTableBody").append(commentHTML);
-    }
-</script>
-
-
-
-
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script>
-$(function() {
-    $("#setAddr").click((e) => { 
-        new daum.Postcode({
-            oncomplete: function(data) {
-                $("#addr").text(data.address);
-                $(e.target).text("재설정");
-            }
-        }).open();
-    });
-});
-
-function SaveReview(){
-   let frm = document.reviewFrm;
-   console.log(frm.content.value);
-    let data = {
-          
-         idx : frm.idx.value,
-       nickname : frm.nickname.value,
-       content : frm.content.value,
-       email : frm.email.value
-    };
-    //alert("댓글작성 "); // 여기에 alert 추가
-    console.log(data);
-    
-    
-    $.ajax({
-        type: "post",
-        url: "./restaurant/restaurant_review.do",
-        data: data,
-        success: function(res) {
-            console.log("댓글작성 "+res.email);
-            displayComment(res);
-        },
-        error: function() {
-            console.log("요청실패");
-        }
-    }); 
-}
-</script>
 </head>
 <body>
 <!-- wrapper 시작 -->
@@ -295,31 +172,31 @@ function SaveReview(){
                             <c:if test="${not result }">
                                <c:set value="${cnt + 1}" var="cnt"></c:set>
                             </c:if>
-                          <div class="card custom-col">
-                              <div>
-                                  <div class="card_product_img">
-                                      <button style="border: none;" data-bs-toggle="modal" class="viewBtn" data-bs-target="#restaurant_view">
-                                               <img class="shop_product_img card-img-top" onclick="location.href='../restaurant/restaurant_view.do?restaurant_idx=${ entry.restaurant_idx }';" src="../images/korea${randomNumbers[cnt]}.jpg" alt="Card image" >
-                                      </button>
-<!--                                       
-                                      <div class="cart_icon_box">
-                                          <img class="p-1" src="../images/favor_icon.png" alt="">
-                                      </div> -->
-                                  </div>
-                                  <div class="card-body text-center">
-                                      <h5 class="card-title"><a class="mill_title" href="./restaurant_view.do?restaurant_idx=${ entry.restaurant_idx }">${entry.name}</a></h5>
-                                      <p><span style="color: #f19d07;">★</span>4.8</p>
-                                     <%--  <h5 class="card-title"><a class="mill_title" href="">${entry.name}</a></h5>
-                                      <p><span style="color: #f19d07;">★4.8점</span>${cnt}번째사진</p> 
-                                       <p><span style="color: #f19d07;">index</span>${entry.restaurant_idx}</p>--%>
-                                  </div>
-                              </div>
-                          </div>
-                      </c:if>
-                  </c:forEach>
-                 </c:otherwise>
-             </c:choose>
-            </div>
+		                    <div class="card custom-col">
+		                        <div>
+		                            <div class="card_product_img">
+		                                <button style="border: none;" data-bs-toggle="modal" class="viewBtn" data-bs-target="#restaurant_view">
+		                                   		<img class="shop_product_img card-img-top" onclick="location.href='../restaurant/restaurant_view.do?restaurant_idx=${ entry.restaurant_idx }';" src="../images/korea${randomNumbers[cnt]}.jpg" alt="Card image" >
+		                                </button>
+<!-- 		                                
+		                                <div class="cart_icon_box">
+		                                    <img class="p-1" src="../images/favor_icon.png" alt="">
+		                                </div> -->
+		                            </div>
+		                            <div class="card-body text-center">
+		                                <h5 class="card-title"><a class="mill_title" href="./restaurant_view.do?restaurant_idx=${ entry.restaurant_idx }">${entry.name}</a></h5>
+		                                <p><span style="color: #f19d07;">★</span>4.8</p>
+		                               <%--  <h5 class="card-title"><a class="mill_title" href="">${entry.name}</a></h5>
+		                                <p><span style="color: #f19d07;">★4.8점</span>${cnt}번째사진</p> 
+		                                 <p><span style="color: #f19d07;">index</span>${entry.restaurant_idx}</p>--%>
+		                            </div>
+		                        </div>
+		                    </div>
+		                </c:if>
+		            </c:forEach>
+			        </c:otherwise>
+			    </c:choose>
+				</div>
 
                 <!-- 1행 끝 -->
                 <!-- 한식 리스트 끝 -->
@@ -344,29 +221,29 @@ function SaveReview(){
                             <c:if test="${not result }">
                                <c:set value="${cnt + 1}" var="cnt"></c:set>
                             </c:if>
-                          <div class="card custom-col">
-                              <div>
-                                  <div class="card_product_img">
-                                      <button style="border: none;"  class="viewBtn"  type="submit" action="../restaurant/restaurantView.do">
-                                          <img class="shop_product_img card-img-top" onclick="location.href='../restaurant/restaurant_view.do?restaurant_idx=${ entry.restaurant_idx }';" src="../images/korea${randomNumbers[cnt]}.jpg" alt="Card image" >
-                                      </button>
-                                      
-                                      <!-- <div class="cart_icon_box">
-                                          <img class="p-1" src="../images/favor_icon.png" alt="">
-                                      </div> -->
-                                  </div>
-                                  <div class="card-body text-center">
-                                      <h5 class="card-title"><a class="mill_title"  href="./restaurant_view.do?restaurant_idx=${ entry.restaurant_idx }">${entry.name}</a></h5>
-                                      <p><span style="color: #f19d07;">★4.8점</span></p>
-                                <!--        <p><span style="color: #f19d07;">index</span></p> -->
-                                  </div>
-                              </div>
-                          </div>
-                      </c:if>
-                  </c:forEach>
-                 </c:otherwise>
-             </c:choose>
-            </div>
+		                    <div class="card custom-col">
+		                        <div>
+		                            <div class="card_product_img">
+		                                <button style="border: none;"  class="viewBtn"  type="submit" action="../restaurant/restaurantView.do">
+		                                 	<img class="shop_product_img card-img-top" onclick="location.href='../restaurant/restaurant_view.do?restaurant_idx=${ entry.restaurant_idx }';" src="../images/japan${randomNumbers[cnt]}.jpg" alt="Card image" >
+		                                </button>
+		                                
+		                                <!-- <div class="cart_icon_box">
+		                                    <img class="p-1" src="../images/favor_icon.png" alt="">
+		                                </div> -->
+		                            </div>
+		                            <div class="card-body text-center">
+		                                <h5 class="card-title"><a class="mill_title"  href="./restaurant_view.do?restaurant_idx=${ entry.restaurant_idx }">${entry.name}</a></h5>
+		                                <p><span style="color: #f19d07;">★4.8점</span></p>
+		                          <!--        <p><span style="color: #f19d07;">index</span></p> -->
+		                            </div>
+		                        </div>
+		                    </div>
+		                </c:if>
+		            </c:forEach>
+			        </c:otherwise>
+			    </c:choose>
+				</div>
 
                 <!-- 2행 끝 -->
                 <!-- 일식 리스트 끝 -->
@@ -390,27 +267,27 @@ function SaveReview(){
                             <c:if test="${not result }">
                                <c:set value="${cnt + 1}" var="cnt"></c:set>
                             </c:if>
-                          <div class="card custom-col">
-                              <div>
-                                  <div class="card_product_img"> 
-                                      <button style="border: none;" data-bs-toggle="modal" class="viewBtn" data-bs-target="#restaurant_view">
-                                            <img class="shop_product_img card-img-top" onclick="location.href='../restaurant/restaurant_view.do?restaurant_idx=${ entry.restaurant_idx }';" src="../images/korea${randomNumbers[cnt]}.jpg" alt="Card image" >
-                                      </button>
-                                      <!-- <div class="cart_icon_box">
-                                          <img class="p-1" src="../images/favor_icon.png" alt="">
-                                      </div> -->
-                                  </div>
-                                  <div class="card-body text-center">
-                                      <h5 class="card-title"><a class="mill_title"  href="./restaurant_view.do?restaurant_idx=${ entry.restaurant_idx }">${entry.name}</a></h5>
-                                      <p><span style="color: #f19d07;">★</span>4.8</p>
-                                  </div>
-                              </div>
-                          </div>
-                      </c:if>
-                  </c:forEach>
-                 </c:otherwise>
-             </c:choose>
-            </div>
+		                    <div class="card custom-col">
+		                        <div>
+		                            <div class="card_product_img"> 
+		                                <button style="border: none;" data-bs-toggle="modal" class="viewBtn" data-bs-target="#restaurant_view">
+		                                   	<img class="shop_product_img card-img-top" onclick="location.href='../restaurant/restaurant_view.do?restaurant_idx=${ entry.restaurant_idx }';" src="../images/china${randomNumbers[cnt]}.jpg" alt="Card image" >
+		                                </button>
+		                                <!-- <div class="cart_icon_box">
+		                                    <img class="p-1" src="../images/favor_icon.png" alt="">
+		                                </div> -->
+		                            </div>
+		                            <div class="card-body text-center">
+		                                <h5 class="card-title"><a class="mill_title"  href="./restaurant_view.do?restaurant_idx=${ entry.restaurant_idx }">${entry.name}</a></h5>
+		                                <p><span style="color: #f19d07;">★</span>4.8</p>
+		                            </div>
+		                        </div>
+		                    </div>
+		                </c:if>
+		            </c:forEach>
+			        </c:otherwise>
+			    </c:choose>
+				</div>
 
                 <!-- 3행 끝 -->
                 <!-- 중식 리스트 끝 -->
@@ -427,11 +304,6 @@ function SaveReview(){
     
     <!-- footer 추가 -->
     <%@ include file="../include/footer.jsp" %>
-
-</div>
-<!-- wrapper 끝 -->
-</body>
-</html>%>
 
 </div>
 <!-- wrapper 끝 -->
