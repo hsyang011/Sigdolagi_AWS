@@ -62,6 +62,7 @@ strike {font-size: 18px;}
 /* 12/01 수정사항 - 한서 */
 @media screen and (min-width: 1201px) {
     .custom-col { flex: 0 0 25%; }
+	.shop_product_img { min-height: 290px; max-height: 290px; }
 }
 /* 모바일 환경에서 카테고리를 횡스크롤로 구현 */
 @media screen and (max-width: 1200px) {
@@ -70,6 +71,7 @@ strike {font-size: 18px;}
     .custom-col { flex: 0 0 25%; }
     .meal_seach_bar { width: 100%; } /* 모바일에선 검색창의 길이를 100%로 처리 */
     .card * { font-size: 0.98em; }
+	.shop_product_img { min-height: 220px; max-height: 220px; }
 }
 @media screen and (max-width: 768px) {
     .custom-col { flex: 0 0 50%; }
@@ -78,6 +80,7 @@ strike {font-size: 18px;}
     .card * { font-size: 0.95em; }
     .thumbnail {margin: 0 0;}
     .moreBtn { font-size: 0.75em; }
+	.shop_product_img { min-height: 160px; max-height: 160px; }
 }
 </style>
 <script>
@@ -313,7 +316,7 @@ function SaveReview(){
 		                        <div>
 		                            <div class="card_product_img">
 		                                <button style="border: none;" data-bs-toggle="modal" class="viewBtn" data-bs-target="#restaurant_view">
-		                                   	<img class="shop_product_img card-img-top" src="../images/korea${randomNumbers[cnt]}.jpg" alt="Card image" style="min-height: 290px; max-height: 290px;" >
+		                                   	<img class="shop_product_img card-img-top" src="../images/korea${randomNumbers[cnt]}.jpg" alt="Card image" >
 		                                </button>
 		                                
 		                                <div class="cart_icon_box">
@@ -362,7 +365,7 @@ function SaveReview(){
 		                        <div>
 		                            <div class="card_product_img">
 		                                <button style="border: none;"  class="viewBtn"  type="submit" action="../restaurant/restaurantView.do">
-		                                    <img class="shop_product_img card-img-top" src="../images/japan${randomNumbers[cnt]}.jpg" alt="Card image" style="min-height: 290px; max-height: 290px;">
+		                                    <img class="shop_product_img card-img-top" src="../images/japan${randomNumbers[cnt]}.jpg" alt="Card image" >
 		                                </button>
 		                                
 		                                <div class="cart_icon_box">
@@ -408,7 +411,7 @@ function SaveReview(){
 		                        <div>
 		                            <div class="card_product_img"> 
 		                                <button style="border: none;" data-bs-toggle="modal" class="viewBtn" data-bs-target="#restaurant_view">
-		                                    <img class="shop_product_img card-img-top" src="../images/china${randomNumbers[cnt]}.jpg" alt="Card image" style="min-height: 290px; max-height: 290px;">
+		                                    <img class="shop_product_img card-img-top" src="../images/china${randomNumbers[cnt]}.jpg" alt="Card image" >
 		                                </button>
 		                                <div class="cart_icon_box">
 		                                    <img class="p-1" src="../images/favor_icon.png" alt="">
