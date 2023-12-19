@@ -9,6 +9,45 @@
 <%@ include file="../include/global_head.jsp" %>
 <link rel="stylesheet" href="../css/main.css" />
 <style>
+.banner_title1{ position: absolute;
+   top: 300px;
+   left: 650px;
+   color: #fff;
+   padding-left: 10px;
+   padding-right: 10px;
+   padding-top: 16px;
+   padding-left: 20px;
+   line-height: 100%;
+   font-size: 68px;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.banner_title2{ position: absolute;
+   top: 300px;
+   color:  rgb(21, 17, 17);
+   padding-left: 10px;
+   padding-right: 10px;
+   padding-top: 16px;
+   padding-left: 20px;
+   line-height: 100%;
+   font-size: 68px;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+.banner_title3{ position: absolute;
+   top: 10px;
+   left:260px;
+   color: #fff;
+   padding-left: 10px;
+   padding-right: 10px;
+   padding-top: 16px;
+   padding-left: 20px;
+   line-height: 100%;
+   font-size: 68px;
+	font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.p_1{font-family:sans-serif;}
+
+<style>
 .custom-col { flex: 0 0 100%; }
 .carousel-item { max-height: 600px;min-height:150px; overflow: hidden; object-fit: cover; vertical-align: middle;text-align: center;  width: 100% }
 @media screen and (min-width: 1201px) {
@@ -18,8 +57,13 @@
 	.shop_product_img { min-height: 220px; max-height: 220px; }
 }
 @media screen and (max-width: 768px) {
+.banner_title3 {display:none;}
+.banner_title2 {display:none;}
 	.card-body * { font-size: 0.9em; }
 	.shop_product_img { min-height: 160px; max-height: 160px; }
+}
+@media screen and (max-width:480px) {
+.banner_title3 {display:none;}
 }
 </style>
 <!-- 로그인에 성공했을 경우 alert창 -->
@@ -62,25 +106,32 @@
 	                <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
                 </div>
                 
-                <!-- The slideshow/carousel -->
+   				<!-- The slideshow/carousel -->
                 <div class="carousel-inner">
 	                <div class="carousel-item active" >
-	                	<div class="banner_title">
-	                		<b>품속의 3천원을 꺼내야 할 타이밍! </b><br>서울 길거리 음식 플래너 
+	                	<div class="banner_title1">
+	                		<b>떡볶이러버들을 위한 </b>
+	                		<span style="display: block; margin-bottom: 25px;"></span>
+	                		<b>떡볶이 맛집 리스트  </b>
 	                	</div>
-	                    <img src="../images/Main_1.png" class="main1_1" style="width:100%; ">
+	                    <img src="../images/main_003.png" class="main1_1" style="width:100%; ">
 	                </div>
+                		<div class="carousel-item">
+	                		<div class="banner_title2">
+	                		<b>종로구 토박이가 추천하는 </b>
+                			<span style="display: block; margin-bottom: 25px;"></span>
+	                		<b>종로구 맛집 플래너</b>  
+	                		</div>
+	                    <img src="../images/main_001.png" style="width:100%;">
+                		</div>
+	          
 	                <div class="carousel-item">
-	                	<div class="banner_title">
-	                		<b>종로구 토박이가 추천하는 </b><br>종로구 맛집 플래너  
+	                	<div class="banner_title3">
+	                		<b class=b3_1>품속의 3천원을 꺼내야 할 타이밍! </b>
+ 		                	<span style="display: block; margin-bottom: 25px;"></span>
+   		                	<b class=b3_2>서울 길거리 음식 플래너</b>   
 	                	</div>
-	                    <img src="../images/korea9.jpg" style="width:100%;">
-	                </div>
-	                <div class="carousel-item">
-	                	<div class="banner_title">
-	                		<b>떡볶이러버들을 위한 </b><br>떡볶이 맛집 리스트   
-	                	</div>
-	                    <img src="../images/tteokbokki.jpg" style="width:100%;">
+	                    <img src="../images/main_002.png" style="width:100%;">
 	                </div>
                 </div>
                 
@@ -92,6 +143,7 @@
                 	<span class="carousel-control-next-icon"></span>
                 </button>
             </div>
+
         </div>
     </div>
     <!-- top slide end -->

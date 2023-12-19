@@ -77,6 +77,8 @@ input:focus { outline: none; }
     height: 100%;
     object-fit: cover;
   }
+ /*메인 슬라이드 캐러셀 */
+	
 
 .main_plan_title { margin-top: 7%; }
 .main_plan_title h2, .main_sic_title h2, .main_food_title h2, .main_market_title h2 { font-family: NPSfontBold; font-size: 1.5em; padding-left: 20px; }
@@ -224,6 +226,8 @@ footer { border-top:3px solid #FF7A00; background-color: white;padding-top: 0; }
     .mid_ad h2 { font-size: 1em; font-family: NPSfontRegular; }
     .mid_ad h2 span { font-size: 1.2em; font-family: NPSfontExtraBold; color: #834700; }
     .mid_ad a svg { width: 120px; height: 40px; }
+
+
 
     .bottom_ad { height: 100px; margin-top: 5%; display: flex; justify-content: space-between; background-color: #FFE7CD; padding-left: 10px; padding-right: 10px; align-items: center; }
     .bottom_ad h2 { font-size: 1em; font-family: NPSfontRegular; }
