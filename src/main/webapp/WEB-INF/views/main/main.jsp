@@ -187,11 +187,18 @@
                 <div class="main_sic_list">
                     <div class="swiper mySwiper">
                         <div class="swiper-wrapper">
-                        <c:forEach items="${restaurantList}" var="entry">
+                     	<c:set value="0" var="cnt" />
+                        <c:forEach items="${restaurantList}" var="entry" varStatus="loop">
                            	<div class="swiper-slide">
 			                    <div class="card custom-col">
 			                    	<div>
-	                                    <img class="card-img-top" src="../images/750_750_20210307074729929_photo_2c2906c7be9f.jpg" style="height: 250px;">
+				                    	<c:if test="${cnt eq 6 }" var="result">
+			                            	<c:set value="0" var="cnt" />
+			                            </c:if>
+			                            <c:if test="${not result }">
+			                            	<c:set value="${cnt + 1}" var="cnt" />
+			                            </c:if>
+	                                    <img class="card-img-top" src="../images/korea${randomNumbers[cnt]}.jpg" style="height: 250px;">
 			                            <div class="card-body text-center">
 			                                <h5 class="card-title"><a class="mill_title" href="">${entry.name}</a></h5>
 			                                <p><span style="color: #f19d07;">★</span>4.8</p>

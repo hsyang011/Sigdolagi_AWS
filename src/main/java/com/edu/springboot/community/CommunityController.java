@@ -436,6 +436,10 @@ public class CommunityController {
              System.out.println("평균값 ");
              System.out.println(RateAve);
              model.addAttribute("RateAve",RateAve);
+             
+             
+             
+             
       		
          
          

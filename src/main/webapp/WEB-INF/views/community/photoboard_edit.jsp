@@ -16,6 +16,7 @@
 <!-- 아이콘 -->
 <script src="https://kit.fontawesome.com/98401b861d.js" crossorigin="anonymous"></script>
 <!-- 전역 설정 css 링크  -->
+<%@include file = "../include/global_head.jsp" %>
 <link rel="stylesheet" href="../css/common_board.css">
 
 
@@ -374,16 +375,15 @@ function deleteImageFile() {
                                         <td>제목</td>
                                         <td>
                                             <input type="text" name="title" id="title" value="${photoBoardDTO.title}" />
-                                            <input type="text" name="nickname" id="nicnkname"   value="${nickname}"    />
-                                            <input type="text" name="email" id="email"   value="${email}"    />
+                                            <input type="hidden" name="nickname" id="nicnkname"   value="${nickname}"    />
+                                            <input type="hidden" name="email" id="email"   value="${email}"    />
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>내용</td>
                                         <td>
-                                             <textarea id="content" name="content">${photoBoardDTO.content}
-                                           
-                                             </textarea>
+                                             <textarea id="content" name="content">${photoBoardDTO.content}</textarea>
+                                             
                                         </td>
                                     </tr>
                                     <tr>

@@ -8,10 +8,17 @@
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=58c1517c26a147b5119aacb8ce4f7d5c"></script>
 
 
+
+
+
 <script>
 //변환하려는 좌표 체계의 정의를 입력합니다.
 var projBessel = '+proj=tmerc +lat_0=38 +lon_0=127.5 +k=0.9996 +x_0=200000 +y_0=500000 +ellps=bessel +units=m +no_defs';
 var projWGS84 = '+proj=longlat +datum=WGS84 +no_defs';
+
+
+
+
 
 // restaurantDTO에서 x_point와 y_point 값을 가져옵니다.
 var x = ${restaurantDTO.x_point};

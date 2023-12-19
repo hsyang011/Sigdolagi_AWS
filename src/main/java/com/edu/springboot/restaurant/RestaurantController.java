@@ -78,7 +78,7 @@ public class RestaurantController {
     
       //맛집 view ../restaurant/restaurantView.do
       @RequestMapping("/restaurant/restaurant_view.do")
-      public String restaurantView(Model model,HttpServletRequest req,Principal principal, RestaurantDTO restaurantDTO, CommentsDTO commentsDTO) {
+      public String restaurantView(Model model,HttpServletRequest req,Principal principal, RestaurantDTO restaurantDTO, CommentsDTO commentsDTO, PhotoBoardDTO photoBoardDTO) {
     	  System.out.println("View 컨트롤러 들어오나? ");
     	  System.out.println(restaurantDTO);
     	  String idx = restaurantDTO.getRestaurant_idx(); 
@@ -119,9 +119,19 @@ public class RestaurantController {
                 model.addAttribute("nickname",nickname); 
            }
            
+           //별점 구하기 
+           System.out.println("평균 구하기 시도");
+           System.out.println(restaurantDTO);
            
-
-
+           double RateAve = restaurantdao.avgStar(commentsDTO);
+           
+           System.out.println("평균값 ");
+           System.out.println(RateAve);
+           double RateAveRound = Math.round(RateAve * 10.0) / 10.0;
+           System.out.println("반올림");
+           System.out.println(RateAveRound);
+           model.addAttribute("RateAve",RateAve);
+           model.addAttribute("RateAveRound",RateAveRound);
 
            
            
@@ -233,18 +243,21 @@ public class RestaurantController {
         //빈에 저장
         
         
+        
         System.out.println("댓글 디비에 있는거 가저오는거 성공?");
         System.out.println(commentsLists);
+        
         
         
         model.addAttribute("CommentsLists", commentsLists);
         model.addAttribute("photoBoardDTO",photoBoardDTO);
          
+        
         return commentsDTO;
      }
 
     
-       //리뷰 
+     	//리뷰 
         @RequestMapping("/restaurant/restaurant_review.do")
         @ResponseBody
         public CommentsDTO ReviewPost(Model model, HttpServletRequest req, CommentsDTO commentsDTO, Principal principal) {
@@ -260,6 +273,7 @@ public class RestaurantController {
      
              int result = restaurantdao.writeReview(idx, content, nickname, email);
      
+             
              System.out.println("성공?");
              System.out.println(commentsDTO);
              System.out.println("글쓰기결과:" + result);
@@ -270,6 +284,7 @@ public class RestaurantController {
            
            System.out.println("댓글 디비에 있는거 가저오는거 성공?");
            System.out.println(commentsLists);
+           
            
            
            model.addAttribute("CommentsLists", commentsLists);

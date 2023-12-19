@@ -259,8 +259,8 @@ function SaveReview(){
                               <div>
                                   <div class="my-3">
                                       <span style="color: #f19d07;" class="me-1">★</span>
-                                      <span class="me-1">4.9</span>
-                                      <a href="#review">리뷰 175개 ></a>
+                                      <span class="me-1">평균별점 ${RateAveRound}  </span>
+                                      <a href="#review">${CommentsLists.size()}개의 리뷰 &gt;</a>
                                   </div>
                                   <div>${restaurantDTO.lot_address }</div>
                               </div>
@@ -270,21 +270,27 @@ function SaveReview(){
                       <!-- Modal footer -->
                       <div class="content-footer">
                           <div id="review" class="my-5"  style="width: 100%;">
-                              <p>리뷰 <span style="color: #FF7A00;">3건</span></p>
+                              <p>리뷰 <span style="color: #FF7A00;">${CommentsLists.size()}건</span></p>
                               <div class="d-flex justify-content-between">
                                  <div class="cm_input" style="width:100%">
 		                        	  	<form name="reviewFrm" method="post" enctype="multipart/form-data"  onsubmit="return validateForm(this);"
 			                        	     action="/restaurant/restaurant_review.do" class="reviewFrm" >
-				                            <input type="hid-den" name="idx" value="${restaurantDTO.restaurant_idx }">
+				                            <input type="hidden" name="idx" value="${restaurantDTO.restaurant_idx }">
 				                            <%-- <input type="hidden" name="nickname" value="${boardDTO.nickname}"> --%>
 				                           	<p ><textarea id="content" name="content" onkeyup="" rows="4" placeholder="리뷰를 입력해주세요."  style="width: 100%;"></textarea>
 	                                      	<!-- 파일첨부
 	                                            <input type="file" id="ofile" name="ofile" onchange="readURL(this)">
 	                                         -->
-				                           	<input type="hid-den" name="nickname" value="${nickname}">
-	                                        <input type="hid-den" name="email" value="${email}">
-	                                        ★별점 <input style="width: 30px;" id="starRating" name="starRating" value="5">
-	                                        
+				                           	<input type="hidden" name="nickname" value="${nickname}">
+	                                        <input type="hidden" name="email" value="${email}">
+	                                       <!--  ★별점 <input style="width: 30px;" id="starRating" name="starRating" value="5"> -->
+	                                        ★별점 <select id="starRating" name="starRating">
+											    <option value="1">1</option>
+											    <option value="2">2</option>
+											    <option value="3">3</option>
+											    <option value="4">4</option>
+											    <option value="5">5</option>
+											</select>
 	                                        <input type="file" id="ofile" name="ofile">
 				                       	    <button type="button" class="btn btn-outline-dark px-5 rounded-pill" onclick="SaveReview();">매장 리뷰쓰기</button></p>
 		                     			</form>

@@ -41,7 +41,7 @@ public interface IRestaurantService  {
 	public int writeConmments(CommentsDTO commentsDTO);
 	//public int writeConmments(CommentsDTO commentsDTO);
 	//평균 구하기 
-	public double avgStar(PhotoBoardDTO photoBoardDTO);
+	public double avgStar(CommentsDTO commentsDTO);
 	
 	//닉네임 가져오기 
 	public String getnickname(String email);
