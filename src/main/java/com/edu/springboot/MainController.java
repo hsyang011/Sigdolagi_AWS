@@ -1,6 +1,9 @@
 package com.edu.springboot;
 
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -56,6 +59,12 @@ public class MainController {
 		List<PlannerDTO> plannerList = plannerDAO.getPlannerByRecent();
 		// 맛집탐방을 모두 셀렉트 합니다.
 		List<RestaurantDTO> restaurantList = restaurantDAO.getRestaurant();
+		// 난수를 만듭니다. 스트림을 사용합니다.
+		List<Integer> randomNumbers = IntStream.rangeClosed(1, 7)
+                .boxed()
+                .collect(Collectors.toList());
+		Collections.shuffle(randomNumbers);
+        model.addAttribute("randomNumbers", randomNumbers);
 		// 마켓 상품을 모두 셀렉트 합니다.
 		List<ProductDTO> productList = productDAO.getAllProducts();
 		
