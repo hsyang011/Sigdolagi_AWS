@@ -8,8 +8,11 @@ import java.util.stream.IntStream;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.edu.springboot.firebase.FCMSender;
+import com.edu.springboot.firebase.MessageDTO;
 import com.edu.springboot.market.IProductService;
 import com.edu.springboot.market.ProductDTO;
 import com.edu.springboot.planner.IPlannerService;
@@ -18,6 +21,7 @@ import com.edu.springboot.restaurant.IRestaurantService;
 import com.edu.springboot.restaurant.RestaurantDTO;
 
 import jakarta.servlet.http.HttpServletRequest;
+import lombok.RequiredArgsConstructor;
 
 
 
@@ -75,4 +79,8 @@ public class MainController {
 		
 		return "main/main";
 	}
+	
+	
+	
+	
 }
