@@ -19,6 +19,47 @@
     <link rel="stylesheet" href="../css/common_board.css">
 
     <style>
+
+		
+		/* 화면크기 최소 481px 부터 최대 660px까지 */
+		@media screen and (min-width: 481px) and (max-width: 662px) {
+		    .foot_logo{ display: none; }
+		    #footer-nav li { margin: 0 10px; }
+		    .container-fluid { line-height: 1.3; }
+		    #row_footer{ text-align: center;}
+		    #img_footer_icon{  display: none;}
+		    .table { font-size: 12px;}
+		    .table thead th,.table tbody td { white-space: nowrap;}
+		    #table_wrap table {width: auto;}
+		     #content {width: 100%;}
+		     .cm_input textarea {width: 90%;}
+		    .cm_input .btns {width: 100%; height: 50px; margin-bottom: 2px; background-color:  #FF7A00; border:none;}
+		}
+		
+		@media screen and (min-width:300px) and (max-width:480px) {
+		    .foot_logo{ display: none; }
+		    #mobile_navbar { font-size: 0.60em; }
+		    /* #footer-nav li a { font-size: 0.5em; } */
+		    #footer-nav li { margin: 0; }
+		    .container-fluid { line-height: 1.3; }
+		    #row_footer{ text-align: center;}
+		    #img_footer_icon{  display: none;}
+		    .catemenu li {font-size: 18px;}
+		 
+		    #write_frm_table tr:first-child {width: 100%;}
+		    .table { font-size: 12px; /* 테이블 내 글자 크기를 줄임 */}
+		    .table thead th,.table tbody td { white-space: nowrap; /* 테이블 셀 내의 글자가 줄지 않고 잘리지 않도록 함 */ }
+		    #table_wrap table tbody tr td { padding-left: 0;padding-right: 0;}
+		    #content {width: 100%;}
+		    .cm_input textarea {width: 90%;}
+		    .cm_input .btns {width: 100%; height: 50px; margin-bottom: 2px; background-color:  #FF7A00; border:none;}
+		    .searchWord_list{height: 40px; border: 1px solid #FF7A00; font-family: 'NPSfontRegular'; }
+		    .searchField_list{ height: 40px;  border: 1px solid #FF7A00;font-family: 'NPSfontRegular';}
+		    #free_write_frm_table tr td{padding-left: 0; padding-right: 0; }
+		    #free_write_frm_table tr td:first-child {font-size: 15px; padding: 5px 10px;}
+		    .faq_searchWord_list{  height: 50px; width: 60%;  border: 1px solid #FF7A00;font-family: 'NPSfontRegular';}
+		    .btn_td button{margin: 0 5px 5px 0; border-radius: 20px;  padding: 0px 10px 0 10px; height: 30px; font-size: 15px;}
+		}
         /*main nav_location 설정*/
         .nav_locat {font-family: 'NPSfontRegular'; margin-left: -10px;}
         .nav_locat li a{color: #FF7A00;}

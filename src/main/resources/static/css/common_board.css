@@ -74,7 +74,7 @@ main > * { margin: 50px 0; font-family: "NPSfontRegular"; }
 #free_write_frm_table tr td:last-child {background-color: #ffffff; }
 
 /*자유게시판 댓글 */
-.cm_input textarea {width: 90%;}
+.cm_input textarea {width: 97%;}
 .cm_input .btns {float:right; height: 82px;background-color: #ffebd3; border: none;}
 .dele {background-color: #ffc187; color: white; font-family: "NPSfontRegular";border: none; font-size: 15px;}
 
@@ -175,6 +175,7 @@ main > * { margin: 50px 0; font-family: "NPSfontRegular"; }
     .table thead th,.table tbody td { white-space: nowrap;}
     #table_wrap table {width: auto;}
      #content {width: 100%;}
+     .cm_input textarea {width: 90%;}
     .cm_input .btns {width: 100%; height: 50px; margin-bottom: 2px; background-color:  #FF7A00; border:none;}
 }
 
@@ -193,6 +194,7 @@ main > * { margin: 50px 0; font-family: "NPSfontRegular"; }
     .table thead th,.table tbody td { white-space: nowrap; /* 테이블 셀 내의 글자가 줄지 않고 잘리지 않도록 함 */ }
     #table_wrap table tbody tr td { padding-left: 0;padding-right: 0;}
     #content {width: 100%;}
+    .cm_input textarea {width: 90%;}
     .cm_input .btns {width: 100%; height: 50px; margin-bottom: 2px; background-color:  #FF7A00; border:none;}
     .searchWord_list{height: 40px; border: 1px solid #FF7A00; font-family: 'NPSfontRegular'; }
     .searchField_list{ height: 40px;  border: 1px solid #FF7A00;font-family: 'NPSfontRegular';}

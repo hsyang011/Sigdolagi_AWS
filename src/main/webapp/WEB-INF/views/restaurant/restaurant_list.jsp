@@ -62,7 +62,7 @@ strike {font-size: 18px;}
 /* 12/01 수정사항 - 한서 */
 @media screen and (min-width: 1201px) {
     .custom-col { flex: 0 0 25%; }
-   .shop_product_img { min-height: 290px; max-height: 290px; }
+      .shop_product_img { min-height: 290px; max-height: 290px; }
 }
 /* 모바일 환경에서 카테고리를 횡스크롤로 구현 */
 @media screen and (max-width: 1200px) {
@@ -71,7 +71,7 @@ strike {font-size: 18px;}
     .custom-col { flex: 0 0 25%; }
     .meal_seach_bar { width: 100%; } /* 모바일에선 검색창의 길이를 100%로 처리 */
     .card * { font-size: 0.98em; }
-   .shop_product_img { min-height: 220px; max-height: 220px; }
+    .shop_product_img { min-height: 220px; max-height: 220px; }
 }
 @media screen and (max-width: 768px) {
     .custom-col { flex: 0 0 50%; }
@@ -80,7 +80,7 @@ strike {font-size: 18px;}
     .card * { font-size: 0.95em; }
     .thumbnail {margin: 0 0;}
     .moreBtn { font-size: 0.75em; }
-   .shop_product_img { min-height: 160px; max-height: 160px; }
+       .shop_product_img { min-height: 160px; max-height: 160px; }
 }
 </style>
 <script>
@@ -245,17 +245,6 @@ function SaveReview(){
                         </li>
                     </ul>
                 </div>
-                <!-- 네비로케이션 끝 -->
-                 <ul class="nav my-3 category mt-4">
-                    <li class="nav-item me-3"><button type="button" class="mealk_cate btn rounded-pill on">#전체</button></li>
-                    <li class="nav-item me-3"><button type="button" class="mealk_cate btn rounded-pill">#한식</button></li>
-                    <li class="nav-item me-3"><button type="button" class="mealk_cate btn rounded-pill">#일식</button></li>
-                    <li class="nav-item me-3"><button type="button" class="mealk_cate btn rounded-pill">#중식</button></li>
-                    <li class="nav-item me-3"><button type="button" class="mealk_cate btn rounded-pill">#양식</button></li>
-                    <li class="nav-item me-3"><button type="button" class="mealk_cate btn rounded-pill">#고깃집</button></li>
-                    <li class="nav-item me-3"><button type="button" class="mealk_cate btn rounded-pill">#호프</button></li>
-                    <li class="nav-item me-3"><button type="button" class="mealk_cate btn rounded-pill">#기타</button></li>
-                </ul> 
             </div>
             <!-- 컨텐츠 헤더 끝 -->
             <div class="shop_board container  mt-5">
@@ -272,27 +261,21 @@ function SaveReview(){
                 <!-- 검색창 끝 -->
 
                 <!-- 전체 게시물 갯수 셀렉트 끝 -->
-                <div class="select_box d-flex justify-content-between">
+                <!-- <div class="select_box d-flex justify-content-between">
                     <div>
                         <span id="addr">내 근처 맛집을 추천받고 싶다면 주소를 설정해주세요.</span>
                         <button class="btn rounded-pill" id="setAddr" style="background-color: #FF7A00; color: white; font-size: 0.75em;">주소설정</button>
                     </div>
-                    <!-- ################################################################################ -->
-                    <!-- 모바일에서 정렬이 안맞아서 input의 길이를 줄였고, rounded-pill속성을 부여하여 둥글게 처리 -->
-                    <select name="" id="" class="rounded-pill" style="width: 120px; height: 30px;">
-                        <option value="" selected style="text-align: center;">인기순</option>
-                        <option value="" style="text-align: center;">가까운순</option>
-                    </select>
-                </div>
+                    ################################################################################
+                </div> -->
                 <hr style="border: 1px solid #000; margin-bottom: 30px;">
                 <!-- 전체 게시물 갯수 셀렉트 끝 -->
 
                 <!-- #################################################################################### -->
                 <!-- .card 하위에 div태그를 각각 추가한 부분이 있으니 유의 바랍니다. -->
                 <!-- 한식 -->
-                <div class="d-flex justify-content-between">
+                <div class="d-flex justify-content-between mt-2">
                     <h2>#한식</h2>
-                    <button class="btn rounded-pill moreBtn" style="background-color: #FF7A00; color: white;">자세히 보기 ></button>
                 </div>
                 <!-- 한식 리스트 시작 -->
                 <!-- 1행 시작 -->
@@ -316,12 +299,12 @@ function SaveReview(){
                               <div>
                                   <div class="card_product_img">
                                       <button style="border: none;" data-bs-toggle="modal" class="viewBtn" data-bs-target="#restaurant_view">
-                                            <img class="shop_product_img card-img-top" src="../images/korea${randomNumbers[cnt]}.jpg" alt="Card image" >
+                                               <img class="shop_product_img card-img-top" onclick="location.href='../restaurant/restaurant_view.do?restaurant_idx=${ entry.restaurant_idx }';" src="../images/korea${randomNumbers[cnt]}.jpg" alt="Card image" >
                                       </button>
-                                      
+<!--                                       
                                       <div class="cart_icon_box">
                                           <img class="p-1" src="../images/favor_icon.png" alt="">
-                                      </div>
+                                      </div> -->
                                   </div>
                                   <div class="card-body text-center">
                                       <h5 class="card-title"><a class="mill_title" href="./restaurant_view.do?restaurant_idx=${ entry.restaurant_idx }">${entry.name}</a></h5>
@@ -337,12 +320,12 @@ function SaveReview(){
                  </c:otherwise>
              </c:choose>
             </div>
+
                 <!-- 1행 끝 -->
                 <!-- 한식 리스트 끝 -->
                 <!-- 일식 -->
-                <div class="d-flex justify-content-between">
+                <div class="d-flex justify-content-between mt-2">
                     <h2>#일식</h2>
-                    <button class="btn rounded-pill moreBtn" style="background-color: #FF7A00; color: white;">자세히 보기 ></button>
                 </div>
                 <!-- 일식 리스트 시작 -->
                 <!-- 2행 시작 -->
@@ -365,12 +348,12 @@ function SaveReview(){
                               <div>
                                   <div class="card_product_img">
                                       <button style="border: none;"  class="viewBtn"  type="submit" action="../restaurant/restaurantView.do">
-                                          <img class="shop_product_img card-img-top" src="../images/japan${randomNumbers[cnt]}.jpg" alt="Card image" >
+                                          <img class="shop_product_img card-img-top" onclick="location.href='../restaurant/restaurant_view.do?restaurant_idx=${ entry.restaurant_idx }';" src="../images/korea${randomNumbers[cnt]}.jpg" alt="Card image" >
                                       </button>
                                       
-                                      <div class="cart_icon_box">
+                                      <!-- <div class="cart_icon_box">
                                           <img class="p-1" src="../images/favor_icon.png" alt="">
-                                      </div>
+                                      </div> -->
                                   </div>
                                   <div class="card-body text-center">
                                       <h5 class="card-title"><a class="mill_title"  href="./restaurant_view.do?restaurant_idx=${ entry.restaurant_idx }">${entry.name}</a></h5>
@@ -384,12 +367,12 @@ function SaveReview(){
                  </c:otherwise>
              </c:choose>
             </div>
+
                 <!-- 2행 끝 -->
                 <!-- 일식 리스트 끝 -->
                 <!-- 중식 -->
-                <div class="d-flex justify-content-between">
+                <div class="d-flex justify-content-between mt-2">
                     <h2>#중식</h2>
-                    <button class="btn rounded-pill moreBtn" style="background-color: #FF7A00; color: white;">자세히 보기 ></button>
                 </div>
                 <!-- 중식 리스트 시작 -->
                 <!-- 3행 시작 -->
@@ -411,11 +394,11 @@ function SaveReview(){
                               <div>
                                   <div class="card_product_img"> 
                                       <button style="border: none;" data-bs-toggle="modal" class="viewBtn" data-bs-target="#restaurant_view">
-                                          <img class="shop_product_img card-img-top" src="../images/china${randomNumbers[cnt]}.jpg" alt="Card image" >
+                                            <img class="shop_product_img card-img-top" onclick="location.href='../restaurant/restaurant_view.do?restaurant_idx=${ entry.restaurant_idx }';" src="../images/korea${randomNumbers[cnt]}.jpg" alt="Card image" >
                                       </button>
-                                      <div class="cart_icon_box">
+                                      <!-- <div class="cart_icon_box">
                                           <img class="p-1" src="../images/favor_icon.png" alt="">
-                                      </div>
+                                      </div> -->
                                   </div>
                                   <div class="card-body text-center">
                                       <h5 class="card-title"><a class="mill_title"  href="./restaurant_view.do?restaurant_idx=${ entry.restaurant_idx }">${entry.name}</a></h5>
@@ -428,6 +411,7 @@ function SaveReview(){
                  </c:otherwise>
              </c:choose>
             </div>
+
                 <!-- 3행 끝 -->
                 <!-- 중식 리스트 끝 -->
 
@@ -443,6 +427,11 @@ function SaveReview(){
     
     <!-- footer 추가 -->
     <%@ include file="../include/footer.jsp" %>
+
+</div>
+<!-- wrapper 끝 -->
+</body>
+</html>%>
 
 </div>
 <!-- wrapper 끝 -->

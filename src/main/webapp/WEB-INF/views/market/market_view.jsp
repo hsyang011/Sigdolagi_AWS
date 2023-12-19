@@ -18,6 +18,7 @@
 #product_thumbnail, #product_images img { border-radius: 15px; }
 #delivery_more_btn:focus { border: none; }
 #delivery_more { display: none; }
+#product_images {  }
 @media screen and (min-width: 1201px) {
     .custom-col { flex: 0 0 25%; }
     #product_nav { position: sticky; position: -webkit-sticky; top: 115px; background-color: white; }
@@ -51,6 +52,9 @@
     #product_images { margin-top: 4px; }
     #product_images div { padding: 0 2px; }
     #detail * { font-size: 0.95em; }
+}
+#col5 .prod_img {
+    width: 20%; /* 5개의 이미지 중 1개의 크기를 20%로 지정 */
 }
 </style>
 <script>
@@ -130,19 +134,19 @@ function addToCart(idx, flag, name) {
                 <div id="col5">
                     <img src="../images/products/${productDTO.img1}" width="100%" id="product_thumbnail" alt="">
                     <div class="d-flex justify-content-between" id="product_images">
-                        <div style="padding-left: 0;">
+                        <div class="prod_img" style="padding-left: 0;">
                             <img src="../images/products/${productDTO.img1}" width="100%" alt="">
                         </div>
-                        <div>
+                        <div class="prod_img">
                             <img src="../images/products/${productDTO.img2}" width="100%" alt="">
                         </div>
-                        <div>
+                        <div class="prod_img">
                             <img src="../images/products/${productDTO.img3}" width="100%" alt="">
                         </div>
-                        <div>
+                        <div class="prod_img">
                             <img src="../images/products/${productDTO.img4}" width="100%" alt="">
                         </div>
-                        <div style="padding-right: 0;">
+                        <div class="prod_img" style="padding-right: 0;">
                             <img src="../images/products/${productDTO.img5}" width="100%" alt="">
                         </div>
                     </div>
