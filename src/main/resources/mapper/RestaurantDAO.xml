@@ -52,7 +52,13 @@
 	</insert>  
 	<!-- 평균 리뷰값 구하기 avgStar 
 	관리자 사진게시판 목록 
-	 -->
+	restaurant_idx -->
+	<!-- 관리자 사진게시판 목록 -->
+	<select id="avgStar" resultType="double">
+    SELECT NVL(AVG(starRating), 0) FROM comments WHERE idx = #{idx}
+	</select>
+	 
+	
 	
 	
 	

@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.edu.springboot.member.MemberDTO;
+import com.edu.springboot.restaurant.RestaurantDTO;
 
 @Mapper
 public interface IPhotoboardService {
