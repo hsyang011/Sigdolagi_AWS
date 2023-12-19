@@ -62,7 +62,7 @@ strike {font-size: 18px;}
 /* 12/01 수정사항 - 한서 */
 @media screen and (min-width: 1201px) {
     .custom-col { flex: 0 0 25%; }
-	.shop_product_img { min-height: 290px; max-height: 290px; }
+   	.shop_product_img { min-height: 290px; max-height: 290px; }
 }
 /* 모바일 환경에서 카테고리를 횡스크롤로 구현 */
 @media screen and (max-width: 1200px) {
@@ -71,7 +71,7 @@ strike {font-size: 18px;}
     .custom-col { flex: 0 0 25%; }
     .meal_seach_bar { width: 100%; } /* 모바일에선 검색창의 길이를 100%로 처리 */
     .card * { font-size: 0.98em; }
-	.shop_product_img { min-height: 220px; max-height: 220px; }
+    .shop_product_img { min-height: 220px; max-height: 220px; }
 }
 @media screen and (max-width: 768px) {
     .custom-col { flex: 0 0 50%; }
@@ -80,21 +80,21 @@ strike {font-size: 18px;}
     .card * { font-size: 0.95em; }
     .thumbnail {margin: 0 0;}
     .moreBtn { font-size: 0.75em; }
-	.shop_product_img { min-height: 160px; max-height: 160px; }
+    	.shop_product_img { min-height: 160px; max-height: 160px; }
 }
 </style>
 <script>
 function CommentSend(){
-	let frm = document.commentwriteFrm;
-	console.log(frm.content.value);
+   let frm = document.commentwriteFrm;
+   console.log(frm.content.value);
     let data = {
-    		
-    	idx : frm.idx.value,
-    	nickname : frm.nickname.value,
-    	content : frm.content.value,
-    	email : frm.email.value,
-    	starRating : frm.starRating.value
-    	
+          
+       idx : frm.idx.value,
+       nickname : frm.nickname.value,
+       content : frm.content.value,
+       email : frm.email.value,
+       starRating : frm.starRating.value
+       
     };
     //alert("댓글작성 "); // 여기에 alert 추가
     console.log(data);
@@ -111,7 +111,7 @@ function CommentSend(){
             // 댓글 작성 성공 후 페이지 새로고침
             //location.reload();
             displayComment(res);
-           	
+              
         },
         error: function() {
             console.log("요청실패");
@@ -180,14 +180,14 @@ $(function() {
 });
 
 function SaveReview(){
-	let frm = document.reviewFrm;
-	console.log(frm.content.value);
+   let frm = document.reviewFrm;
+   console.log(frm.content.value);
     let data = {
-    		
-   		idx : frm.idx.value,
-    	nickname : frm.nickname.value,
-    	content : frm.content.value,
-    	email : frm.email.value
+          
+         idx : frm.idx.value,
+       nickname : frm.nickname.value,
+       content : frm.content.value,
+       email : frm.email.value
     };
     //alert("댓글작성 "); // 여기에 alert 추가
     console.log(data);
@@ -296,27 +296,27 @@ function SaveReview(){
                 </div>
                 <!-- 한식 리스트 시작 -->
                 <!-- 1행 시작 -->
-               	<div style="display: flex; overflow-x: auto;">
-               		<c:set value="1" var="cnt"></c:set>
-			    	<c:choose>
-				        <c:when test="${empty restaurantList}">
-				            <div align="center">등록된 게시물이 없습니다.</div>
-				        </c:when> 
-			        <c:otherwise>
-		            <c:forEach items="${restaurantList}" var="entry" varStatus="loop">
-		                <c:if test="${entry.category eq '한식'}">
-		                
-		                	<c:if test="${cnt eq 6 }" var="result">
-                            	<c:set value="0" var="cnt"></c:set>
+                  <div style="display: flex; overflow-x: auto;">
+                     <c:set value="1" var="cnt"></c:set>
+                <c:choose>
+                    <c:when test="${empty restaurantList}">
+                        <div align="center">등록된 게시물이 없습니다.</div>
+                    </c:when> 
+                 <c:otherwise>
+                  <c:forEach items="${restaurantList}" var="entry" varStatus="loop">
+                      <c:if test="${entry.category eq '한식'}">
+                      
+                         <c:if test="${cnt eq 6 }" var="result">
+                               <c:set value="0" var="cnt"></c:set>
                             </c:if>
                             <c:if test="${not result }">
-                            	<c:set value="${cnt + 1}" var="cnt"></c:set>
+                               <c:set value="${cnt + 1}" var="cnt"></c:set>
                             </c:if>
 		                    <div class="card custom-col">
 		                        <div>
 		                            <div class="card_product_img">
 		                                <button style="border: none;" data-bs-toggle="modal" class="viewBtn" data-bs-target="#restaurant_view">
-		                                   	<img class="shop_product_img card-img-top" src="../images/korea${randomNumbers[cnt]}.jpg" alt="Card image" >
+		                                   	<img class="shop_product_img card-img-top" src="../images/korea${randomNumbers[cnt]}.jpg" alt="Card image">
 		                                </button>
 		                                
 		                                <div class="cart_icon_box">
@@ -337,6 +337,7 @@ function SaveReview(){
 			        </c:otherwise>
 			    </c:choose>
 				</div>
+
                 <!-- 1행 끝 -->
                 <!-- 한식 리스트 끝 -->
                 <!-- 일식 -->
@@ -346,26 +347,26 @@ function SaveReview(){
                 </div>
                 <!-- 일식 리스트 시작 -->
                 <!-- 2행 시작 -->
-               	<div style="display: flex; overflow-x: auto;">
-               		<c:set value="1" var="cnt"></c:set>
-			    	<c:choose>
-				        <c:when test="${empty restaurantList}">
-				            <div align="center">등록된 게시물이 없습니다.</div>
-				        </c:when> 
-			        <c:otherwise>
-		            <c:forEach items="${restaurantList}" var="entry" varStatus="loop">
-		                <c:if test="${entry.category eq '일식'}">
-		                	<c:if test="${cnt eq 6 }" var="result">
-                            	<c:set value="0" var="cnt"></c:set>
+                  <div style="display: flex; overflow-x: auto;">
+                     <c:set value="1" var="cnt"></c:set>
+                <c:choose>
+                    <c:when test="${empty restaurantList}">
+                        <div align="center">등록된 게시물이 없습니다.</div>
+                    </c:when> 
+                 <c:otherwise>
+                  <c:forEach items="${restaurantList}" var="entry" varStatus="loop">
+                      <c:if test="${entry.category eq '일식'}">
+                         <c:if test="${cnt eq 6 }" var="result">
+                               <c:set value="0" var="cnt"></c:set>
                             </c:if>
                             <c:if test="${not result }">
-                            	<c:set value="${cnt + 1}" var="cnt"></c:set>
+                               <c:set value="${cnt + 1}" var="cnt"></c:set>
                             </c:if>
 		                    <div class="card custom-col">
 		                        <div>
 		                            <div class="card_product_img">
 		                                <button style="border: none;"  class="viewBtn"  type="submit" action="../restaurant/restaurantView.do">
-		                                    <img class="shop_product_img card-img-top" src="../images/japan${randomNumbers[cnt]}.jpg" alt="Card image" >
+		                                    <img class="shop_product_img card-img-top" src="../images/japan${randomNumbers[cnt]}.jpg" alt="Card image">
 		                                </button>
 		                                
 		                                <div class="cart_icon_box">
@@ -384,6 +385,7 @@ function SaveReview(){
 			        </c:otherwise>
 			    </c:choose>
 				</div>
+
                 <!-- 2행 끝 -->
                 <!-- 일식 리스트 끝 -->
                 <!-- 중식 -->
@@ -394,18 +396,18 @@ function SaveReview(){
                 <!-- 중식 리스트 시작 -->
                 <!-- 3행 시작 -->
                 <div style="display: flex; overflow-x: auto;">
-			    	<c:choose>
-				        <c:when test="${empty restaurantList}">
-				            <div align="center">등록된 게시물이 없습니다.</div>
-				        </c:when> 
-			        <c:otherwise>
-		            <c:forEach items="${restaurantList}" var="entry">
-		                <c:if test="${entry.category eq '중국식'}">
-		                	 <c:if test="${cnt eq 6 }" var="result">
-                            	<c:set value="0" var="cnt"></c:set>
+                <c:choose>
+                    <c:when test="${empty restaurantList}">
+                        <div align="center">등록된 게시물이 없습니다.</div>
+                    </c:when> 
+                 <c:otherwise>
+                  <c:forEach items="${restaurantList}" var="entry">
+                      <c:if test="${entry.category eq '중국식'}">
+                          <c:if test="${cnt eq 6 }" var="result">
+                               <c:set value="0" var="cnt"></c:set>
                             </c:if>
                             <c:if test="${not result }">
-                            	<c:set value="${cnt + 1}" var="cnt"></c:set>
+                               <c:set value="${cnt + 1}" var="cnt"></c:set>
                             </c:if>
 		                    <div class="card custom-col">
 		                        <div>
@@ -428,6 +430,7 @@ function SaveReview(){
 			        </c:otherwise>
 			    </c:choose>
 				</div>
+
                 <!-- 3행 끝 -->
                 <!-- 중식 리스트 끝 -->
 
@@ -443,6 +446,11 @@ function SaveReview(){
     
     <!-- footer 추가 -->
     <%@ include file="../include/footer.jsp" %>
+
+</div>
+<!-- wrapper 끝 -->
+</body>
+</html>%>
 
 </div>
 <!-- wrapper 끝 -->
