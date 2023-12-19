@@ -1,65 +1,41 @@
-/* font 설정 */
-@font-face {
-    font-family: 'NPSfontBold';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/NPSfontBold.woff2') format('woff2');
-    font-weight: 700;
-    font-style: normal;
+
+
+/*main nav_location 설정*/
+.nav_locat {font-family: 'NPSfontRegular'; margin-left: -10px;}
+.nav_locat li a{color: #FF7A00;}
+.nav_locat li a:hover{color: #484848;}
+.nav_locat li:first-child::before {            /* 첫번째 list에 적용 */
+    content: " ";
 }
-@font-face {
-    font-family: 'NPSfontExtraBold';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/NPSfontExtraBold.woff2') format('woff2');
-    font-weight: 800;
-    font-style: normal;
-}
-@font-face {
-    font-family: 'NPSfontRegular';
-    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2310@1.0/NPSfontRegular.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
+.nav_locat li::before {   /* 두번째 list 앞에 적용 */
+  content: ">";
+  float: left;
+  color: #ccc;
+  margin-top: 9px;
+  margin-left: -3px;
 }
 
-/* global 설정 */
-* { margin: 0; padding: 0; }
-li{ list-style: none; }
-a{ text-decoration: none; color: gray; }
-a:hover { color: #FF7A00; }
-.container-fluid{ padding-left: 0; padding-right: 0; padding: 0;line-height:20px; }
 
-/* header 설정 */
-.navbar{ margin: 0; }
-.topmenu{ margin-top: 10px; padding: 0; float: right; }
-.topmenu li{ display: inline-block; text-align: center; font-size: 14px; padding: 0 5px; }
-.topmenu a:hover{ color: #000; font-weight: bold; }
-#myinfo { max-width: 60%; }
-#m_link li { margin: 20px 0; }
-#btn_more { position: absolute; top: 10px; right: 10px; transform: scale(0.7) }
-#header_box { height: 30px; }
+/* 쇼핑몰 카테고리 */
+.catemenu {font-size: 1.6em; padding: 0; margin: 20px 0;}
+.catemenu li{border-bottom: 3px solid #999999;  padding:10px; margin-right: 10px;}
+/* .catemenu li:first-child{margin-right: 10px;} */
+.catemenu a{color:gray;  padding-bottom: 5px;}
+.catemenu .on {border-bottom: 3px solid #FF7A00;}
 
-/* nav 설정 */
-#logo { width: 20%; text-align: center; line-height: 100px; } 
-.main_nav{ border-bottom: 3px solid #FF7A00; background-color: white; z-index: 1000; }
-.head_nav a{ font-size: 1.2em; color: #000; font-family: 'NPSfontBold';}
-.head_nav a:hover{ color: #FF7A00; font-weight: bold;}
-.top_logo { width: 100%; line-height: 100px; min-width: 100px; max-width: 220px;}
-/* mobile_navbar 설정 */
-#mobile_navbar { position: -webkit-sticky; position: sticky; top: 0; padding: 5px 10px; background-color: white; z-index: 1000; }
+.mealk_cate {background-color: #dadada; color: white;}
+.category .on {background-color: #FF7A00; color: white;}
 
-/* search form 설정 */
-.seach_bar{ border: 3px solid #FF7A00; border-radius: 30px; background-color: white; padding: 5px; margin: 0px 20px; width: 33%;}
-.form-control:focus { border-color: initial; box-shadow: none; }
-#btn_more:hover { border: 3px solid #FF7A00; box-shadow: none; }
-.seach_bar input::placeholder{ font-family: 'NPSfontRegular'; text-align: center;}
-.seach_bar input{ border: 0px solid white; width: 100%; height: 25px; }
-.seach_bar button{ border: 0px solid white; background-color: white; border-radius: 50px;}
-.seach_bar i { color: #FF7A00; margin-right: 5px;}
+ /* main seach바 */
+.meal_seach_bar { border: 3px solid #FF7A00; border-radius: 30px; background-color: white; padding: 5px; margin: 50px auto; width: 40%;}
+.meal_seach_bar input{ border: 0px solid white; width: 100%; height: 40px; }
+.meal_seach_bar input::placeholder{ font-family: 'NPSfontRegular'; text-align: center; margin-left: -75px; } /* 검색하기 텍스트 중앙 정렬 맞추기 위해 margin-left로 맞춤 */
+.meal_seach_bar button{ border: 0px solid white; background-color: white; border-radius: 50px;}
+.meal_seach_bar i { color: #FF7A00; margin-right: 5px; width: 60px;}
 
-/* banner 설정 */
-#banner { height: 240px; background-color: #FFA24D }
-#banner * { font-family: "NPSfontRegular";  color: white; }
-#banner h4 { font-size: 1.5em; }
-#banner h2 { font-family: "NPSfontExtraBold"; font-size: 3em; }
-#banner_contents { padding: 30px 130px; }
-#banner #page_icon { float: right; height: 200px; }
+/* main 설정 */
+main > * { margin: 50px 0; }
+
 
 /* main 설정 */
 main > * { margin: 50px 0; font-family: "NPSfontRegular"; }
@@ -98,7 +74,7 @@ main > * { margin: 50px 0; font-family: "NPSfontRegular"; }
 #free_write_frm_table tr td:last-child {background-color: #ffffff; }
 
 /*자유게시판 댓글 */
-.cm_input textarea {width: 97%;}
+.cm_input textarea {width: 90%;}
 .cm_input .btns {float:right; height: 82px;background-color: #ffebd3; border: none;}
 .dele {background-color: #ffc187; color: white; font-family: "NPSfontRegular";border: none; font-size: 15px;}
 
@@ -110,22 +86,23 @@ main > * { margin: 50px 0; font-family: "NPSfontRegular"; }
 .search_table{margin-top: 3%; width: auto;}
 .table thead tr th {background-color: rgba(233, 232, 232, 0.87);}
 
-/* footer 설정 */
-footer { border-top:3px solid #FF7A00; background-color: white;padding-top: 0; }
-#footer-nav li { margin: 0 45px; }
-#footer-nav li a { font-size: 0.75em; }
-#footer-nav ul { padding-left: 0; }
-.foot_nav { font-size: 0.75em; text-align: center; }
-.foot_nav li { padding: 0 30px; }
-.foot_logo { max-width: 320px;text-align: center; }
-.foot_logo img{ width: 60%; }
-.foot_info_box { background-color: white;}
-.foot_info p { font-size: 0.75em; width: 100% }
-.foot_icon { padding: 0; }
-.foot_icon img { width: 30px; }
-.foot_icon li {  margin-right: 10px; }
-.foot_icon_text { text-align: right; font-family: 'NPSfontExtraBold'; }
-.foot_icon_text span{ color: #FF7A00; }
+/* ######################################################### */
+/* 12/01 수정사항 - 한서 */
+@media screen and (min-width: 1201px) {
+    .custom-col { flex: 0 0 25%; }
+}
+/* 모바일 환경에서 카테고리를 횡스크롤로 구현 */
+@media screen and (max-width: 1200px) {
+    .category { overflow: auto; white-space: nowrap; flex-wrap: nowrap; } /* 횡스크롤 구현 */
+    .category::-webkit-scrollbar { display: none; } /* 크롬, 사파리, 오페라, 엣지에서 스크롤바 안보이게 처리 */
+    .custom-col { flex: 0 0 25%; }
+    .meal_seach_bar { width: 100%; } /* 모바일에선 검색창의 길이를 100%로 처리 */
+    
+}
+@media screen and (max-width: 768px) {
+    .custom-col { flex: 0 0 50%; }
+    .mealk_cate {font-size: 0.8em;}/* 밀키트 카테고리 사이즈 */
+}
 
 /* pc environment */
 @media screen and (min-width:1201px) {
