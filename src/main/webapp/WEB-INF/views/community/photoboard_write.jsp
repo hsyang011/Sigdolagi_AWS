@@ -93,11 +93,6 @@
             
             
             
-            
-            
-            
-            
-            
             $("#deleteFileBtn").click(function () {
                 // 파일 삭제를 서버에 요청
                 $.ajax({
@@ -117,37 +112,6 @@
                 });
             });
             
-            /* 
-            $("#saveBtn").click(function () {
-                // 폼 데이터를 서버로 전송
-                var formData = new FormData($("#writeFrm")[0]);
-
-                $.ajax({
-                    url: "/community/photoboard_writeprocess.do",
-                    type: "POST",
-                    data: formData,
-                    processData: false,
-                    contentType: false,
-                    success: function (data) {
-                        // 서버에서의 응답 처리
-                        console.log("전송 성공:", data);
-                        
-                        // 전송 성공 시 리스트 페이지로 이동
-                        window.location.href = "/community/photoboard_list.do";
-                    },
-                    error: function (e) {
-                        console.log("전송 실패: " + e.responseText);
-                    }
-                });
-            });
-        */
-     
-            
-          
-            
-            
-            
-
             
         });
 

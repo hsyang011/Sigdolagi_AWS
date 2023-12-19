@@ -31,13 +31,15 @@ public interface IRestaurantService  {
 	public RestaurantDTO rest_view(RestaurantDTO restaurantDTO);
 
 	// 댓글 작성 
-	public int writeConmments(
-			@Param("idx") int idx,
-			@Param("content") String content,
-			@Param("nickname") String nickname,
-			@Param("email") String email,
-			@Param("starRating") String starRating
-			);
+//	public int writeConmments(
+//			@Param("idx") int idx,
+//			@Param("content") String content,
+//			@Param("nickname") String nickname,
+//			@Param("email") String email,
+//			@Param("starRating") String starRating
+//			);
+	public int writeConmments(CommentsDTO commentsDTO);
+	//public int writeConmments(CommentsDTO commentsDTO);
 	//평균 구하기 
 	public double avgStar(PhotoBoardDTO photoBoardDTO);
 	
@@ -51,7 +53,6 @@ public interface IRestaurantService  {
 		@Param("nickname") String nickname,
 		@Param("email") String email
 	);
-	   
 	
 	//커멘트테이블 받아오기
 	public ArrayList<CommentsDTO> CommentsPage(CommentsDTO commentsDTO);
