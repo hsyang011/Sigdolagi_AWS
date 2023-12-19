@@ -105,13 +105,13 @@
     </li>
 
     <!-- Divider -->
-    <hr class="sidebar-divider">
+    <!-- <hr class="sidebar-divider">
     
     <li class="nav-item">
         <a class="nav-link" href="../administrator/FCMSender.do">
             <i class="fas fa-fw fa-house-user"></i>
             <span>푸쉬보내기</span></a>
-    </li>
+    </li> -->
     
     <!-- Divider -->
     <hr class="sidebar-divider">
