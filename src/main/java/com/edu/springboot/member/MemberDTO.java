@@ -19,6 +19,7 @@ public class MemberDTO {
 	private String password;
 	private java.sql.Date regidate;
 	private String enabled;
+	private String token;
 	
 	
 	

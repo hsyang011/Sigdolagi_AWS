@@ -40,20 +40,55 @@ function listDelete(idx){
 function orderPreUpdate(idx){
 	let frm = document.frm;
 	if(confirm("배송중으로 변경 하시겠습니까?")){
-		frm.idx.value = idx;
-		frm.action = "/administrator/admin_order_preUpdate.do";
-		frm.method = "post";
-		frm.submit();
+		$.ajax({
+			type : 'post', //전송방식 (form태그의 method)
+			url : '../administrator/FCMSender.do', //요청Url
+			data : { 
+				token : 'dKpwlAqJTO2r_Fl3KGnUuv:APA91bH_zvv0LN7ezABIGL9Hl2austfH896hlKQ57XXGLcWQeEHFAOiQgkCx1FNjllp4KqtdSRi7nCUMnvd7oIGFYXYqC0UwLuuFwkoauMn9IRUaNUJkOgJpi8mIZ2weqhSlIYpynv6b' ,
+				title : '배송시작메세지',
+				body : '배송이 시작 되었습니다 조금만기다려주세요'
+			}, //파라미터 (객체형태로 넘기는)
+			success : function(res){
+				console.log("성공"+res);
+				alert("배송시작 알림을 전송했습니다.");
+				frm.idx.value = idx;
+				frm.action = "/administrator/admin_order_preUpdate.do";
+				frm.method = "post";
+				frm.submit();
+			}, //성공시 호출할 콜백함수
+			error : errCallBack //실패시 호출할 콜백함수
+		});
+		function errCallBack(errData){
+	    	console.log(errData.status+":"+errData.statusText);
+	    }
 	}
 }
 function orderDeliUpdate(idx){
 	let frm = document.frm;
 	if(confirm("배송완료로 변경 하시겠습니까?")){
-		frm.idx.value = idx;
-		frm.action = "/administrator/admin_order_deliUpdate.do";
-		frm.method = "post";
-		frm.submit();
+		$.ajax({
+			type : 'post', //전송방식 (form태그의 method)
+			url : '../administrator/FCMSender.do', //요청Url
+			data : { 
+				token : 'dKpwlAqJTO2r_Fl3KGnUuv:APA91bH_zvv0LN7ezABIGL9Hl2austfH896hlKQ57XXGLcWQeEHFAOiQgkCx1FNjllp4KqtdSRi7nCUMnvd7oIGFYXYqC0UwLuuFwkoauMn9IRUaNUJkOgJpi8mIZ2weqhSlIYpynv6b' ,
+				title : '배송완료메세지',
+				body : '배송이 완료 되었습니다 확인부탁드려요'
+			}, //파라미터 (객체형태로 넘기는)
+			success : function(res){
+				console.log("성공"+res);
+				alert("배송시작 알림을 전송했습니다.");
+				frm.idx.value = idx;
+				frm.action = "/administrator/admin_order_deliUpdate.do";
+				frm.method = "post";
+				frm.submit();
+			}, //성공시 호출할 콜백함수
+			error : errCallBack //실패시 호출할 콜백함수
+		});
+		function errCallBack(errData){
+	    	console.log(errData.status+":"+errData.statusText);
+	    }
 	}
+	
 }
 
 </script>

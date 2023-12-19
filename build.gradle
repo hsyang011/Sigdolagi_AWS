@@ -69,7 +69,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar']) 
     
     //파이어베이스 어드민
-	//implementation 'com.google.firebase:firebase-admin:9.1.1'
+	implementation 'com.google.firebase:firebase-admin:9.1.1'
     
 
 }

@@ -20,6 +20,8 @@ import com.edu.springboot.community.BoardDTO;
 import com.edu.springboot.community.IBoardService;
 import com.edu.springboot.community.IPhotoboardService;
 import com.edu.springboot.community.PhotoBoardDTO;
+import com.edu.springboot.firebase.FCMSender;
+import com.edu.springboot.firebase.MessageDTO;
 import com.edu.springboot.market.IOrderService;
 import com.edu.springboot.market.IProductService;
 import com.edu.springboot.market.OrderDTO;
@@ -37,8 +39,10 @@ import com.edu.springboot.service.NotiDTO;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import jakarta.servlet.http.Part;
+import lombok.RequiredArgsConstructor;
 import utils.MyFunctions;
 
+@RequiredArgsConstructor
 @Controller
 public class AdminController {
 	
@@ -439,6 +443,23 @@ public class AdminController {
 		int result = orderDAO.adminOrderDeliUpdate(req.getParameter("idx"));
 		if(result==1)System.out.println("배송완료로 변경되었습니다.");
 		return "redirect:admin_order_list.do";
+	}
+	
+	//푸쉬 알림 보내기 
+	private final FCMSender sender;
+	
+	@RequestMapping("/administrator/FCMSender.do")
+	public String fcmMain() {
+		
+		return "administrator/admin_fcm_write";
+	}
+	
+	@PostMapping("/administrator/FCMSender.do")
+	public String fcmSender(Model model, MessageDTO messageDTO) {
+		System.out.println("DTO.TOKEN="+messageDTO.getToken());
+		String result = sender.sendNotification(messageDTO);
+		model.addAttribute("result", result);
+		return "administrator/admin_fcm_write";
 	}
 	 
 	

@@ -108,6 +108,15 @@
     <hr class="sidebar-divider">
     
     <li class="nav-item">
+        <a class="nav-link" href="../administrator/FCMSender.do">
+            <i class="fas fa-fw fa-house-user"></i>
+            <span>푸쉬보내기</span></a>
+    </li>
+    
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+    
+    <li class="nav-item">
         <a class="nav-link" href="../main/main.do">
             <i class="fas fa-fw fa-house-user"></i>
             <span>메인으로</span></a>
