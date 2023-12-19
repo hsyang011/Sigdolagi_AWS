@@ -259,8 +259,8 @@ function SaveReview(){
                               <div>
                                   <div class="my-3">
                                       <span style="color: #f19d07;" class="me-1">★</span>
-                                      <span class="me-1">4.9</span>
-                                      <a href="#review">리뷰 175개 ></a>
+                                      <span class="me-1">평균별점 ${RateAveRound}  </span>
+                                      <a href="#review">${CommentsLists.size()}개의 리뷰 &gt;</a>
                                   </div>
                                   <div>${restaurantDTO.lot_address }</div>
                               </div>
@@ -270,7 +270,7 @@ function SaveReview(){
                       <!-- Modal footer -->
                       <div class="content-footer">
                           <div id="review" class="my-5"  style="width: 100%;">
-                              <p>리뷰 <span style="color: #FF7A00;">3건</span></p>
+                              <p>리뷰 <span style="color: #FF7A00;">${CommentsLists.size()}건</span></p>
                               <div class="d-flex justify-content-between">
                                  <div class="cm_input" style="width:100%">
 		                        	  	<form name="reviewFrm" method="post" enctype="multipart/form-data"  onsubmit="return validateForm(this);"
