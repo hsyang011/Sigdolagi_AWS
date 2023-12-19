@@ -9,6 +9,7 @@
 <%@ include file="../include/global_head.jsp" %>
 <link rel="stylesheet" href="../css/main.css" />
 <style>
+.custom-col { flex: 0 0 100%; }
 .carousel-item { max-height: 600px;min-height:150px; overflow: hidden; object-fit: cover; vertical-align: middle;text-align: center;  width: 100% }
 @media screen and (min-width: 1201px) {
 	.shop_product_img { min-height: 290px; max-height: 290px; }
