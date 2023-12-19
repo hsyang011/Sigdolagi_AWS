@@ -299,7 +299,7 @@ function SaveReview(){
 		                        <div>
 		                            <div class="card_product_img">
 		                                <button style="border: none;" data-bs-toggle="modal" class="viewBtn" data-bs-target="#restaurant_view">
-		                                   	<img class="shop_product_img card-img-top" src="../images/korea${randomNumbers[cnt]}.jpg" alt="Card image">
+		                                   		<img class="shop_product_img card-img-top" onclick="location.href='../restaurant/restaurant_view.do?restaurant_idx=${ entry.restaurant_idx }';" src="../images/korea${randomNumbers[cnt]}.jpg" alt="Card image" >
 		                                </button>
 		                                
 		                                <div class="cart_icon_box">
@@ -348,7 +348,7 @@ function SaveReview(){
 		                        <div>
 		                            <div class="card_product_img">
 		                                <button style="border: none;"  class="viewBtn"  type="submit" action="../restaurant/restaurantView.do">
-		                                    <img class="shop_product_img card-img-top" src="../images/japan${randomNumbers[cnt]}.jpg" alt="Card image">
+		                                 	<img class="shop_product_img card-img-top" onclick="location.href='../restaurant/restaurant_view.do?restaurant_idx=${ entry.restaurant_idx }';" src="../images/korea${randomNumbers[cnt]}.jpg" alt="Card image" >
 		                                </button>
 		                                
 		                                <div class="cart_icon_box">
@@ -394,7 +394,7 @@ function SaveReview(){
 		                        <div>
 		                            <div class="card_product_img"> 
 		                                <button style="border: none;" data-bs-toggle="modal" class="viewBtn" data-bs-target="#restaurant_view">
-		                                    <img class="shop_product_img card-img-top" src="../images/china${randomNumbers[cnt]}.jpg" alt="Card image" >
+		                                   	<img class="shop_product_img card-img-top" onclick="location.href='../restaurant/restaurant_view.do?restaurant_idx=${ entry.restaurant_idx }';" src="../images/korea${randomNumbers[cnt]}.jpg" alt="Card image" >
 		                                </button>
 		                                <div class="cart_icon_box">
 		                                    <img class="p-1" src="../images/favor_icon.png" alt="">
