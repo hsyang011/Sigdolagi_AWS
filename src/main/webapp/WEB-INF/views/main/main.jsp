@@ -64,11 +64,23 @@
                 
                 <!-- The slideshow/carousel -->
                 <div class="carousel-inner">
-	                <div class="carousel-item active">
-	                    <img src="../images/2f69e05d4d598d3959fb6d8a1801ef5a.jpg" style="width:100%;">
+	                <div class="carousel-item active" >
+	                	<div class="banner_title">
+	                		<b>품속의 3천원을 꺼내야 할 타이밍! </b><br>서울 길거리 음식 플래너 
+	                	</div>
+	                    <img src="../images/Main_1.png" class="main1_1" style="width:100%; ">
 	                </div>
 	                <div class="carousel-item">
-	                    <img src="../images/chicago.jpg" style="width:100%;">
+	                	<div class="banner_title">
+	                		<b>종로구 토박이가 추천하는 </b><br>종로구 맛집 플래너  
+	                	</div>
+	                    <img src="../images/korea9.jpg" style="width:100%;">
+	                </div>
+	                <div class="carousel-item">
+	                	<div class="banner_title">
+	                		<b>떡볶이러버들을 위한 </b><br>떡볶이 맛집 리스트   
+	                	</div>
+	                    <img src="../images/tteokbokki.jpg" style="width:100%;">
 	                </div>
                 </div>
                 
