@@ -61,7 +61,7 @@
 
     /* pc environment */
 @media screen and (min-width:1201px) {
-    
+    .bottom_price_box { display: flex; justify-content: space-between; }
 }
 
 /* mobile environment */
@@ -79,6 +79,7 @@
     .bottom_box_right {font-size: 0.8em;}
     .product_price {font-size: 1.1em;}
     .All_price {font-size: 1.1em;}
+    #won { display: none; }
 }
 
 /* 화면크기 최소641px 부터 1120px까지 */
@@ -277,7 +278,7 @@ function updateCartInfo() {
 		                                            <p class="product_price_area text-end">
 		                                            	<span class="product_price">
 	                                            			<fmt:formatNumber value="${price}" pattern="#,###" />
-		                                            	</span>원
+		                                            	</span><span id="won">원</span>
 	                                            	</p>
 		                                        </td>
 		                                        <td>
@@ -291,7 +292,7 @@ function updateCartInfo() {
                             </table>
                         </div>
                         <!-- 전체금액, 배송비안내박스 -->
-                        <div class="bottom_price_box d-flex justify-content-between">
+                        <div class="bottom_price_box">
                             <!-- 왼쪽 -->
                             <div class="bottom_box_left">
                                 <p>배송비 <strong>3,000</strong>원</p>

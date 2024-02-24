@@ -64,6 +64,7 @@ strike {font-size: 18px;}
 /* 12/01 수정사항 - 한서 */
 @media screen and (min-width: 1201px) {
     .custom-col { flex: 0 0 25%; }
+    .mobile_ver { display: none; }
 }
 /* 모바일 환경에서 카테고리를 횡스크롤로 구현 */
 @media screen and (max-width: 1200px) {
@@ -72,6 +73,7 @@ strike {font-size: 18px;}
     .custom-col { flex: 0 0 25%; }
     .meal_seach_bar { width: 100%; } /* 모바일에선 검색창의 길이를 100%로 처리 */
     .card * { font-size: 0.98em; }
+    .pc_ver { display: none; }
 }
 @media screen and (max-width: 768px) {
     .custom-col { flex: 0 0 50%; }
@@ -80,6 +82,7 @@ strike {font-size: 18px;}
     .card * { font-size: 0.95em; }
     .thumbnail {margin: 0 0;}
     .moreBtn { font-size: 0.75em; }
+    .pc_ver { display: none; }
 }
 </style>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -248,7 +251,8 @@ function SaveReview(){
                   <div class="modal-content">
                       <!-- Modal Header -->
                       <div class="content-header">
-                          <div id="map" style="width:100%;height:350px;"></div>
+                          <div id="map" class="pc_ver" style="width:100%;height:350px;"></div>
+                          <img src="../images/${param.cnt}.jpg" class="mobile_ver mb-2" style="width:100%;" />
                       </div>
                       <!-- Modal body -->
                       <div class="content-body">
@@ -307,7 +311,7 @@ function SaveReview(){
 		                                    <div>
 		                                        <p style="color: #FF7A00;">★${row.starRating}</p>
 		                                        <p>${row.nickname} | ${row.postdate}</p>
-		                                        <p>바삭바삭 ${row.content}</p>
+		                                        <p>${row.content}</p>
 		                                    </div>
 		                                </td>
 		                                <td id="table_title" style="width: 15%; text-align: right;">
@@ -320,7 +324,7 @@ function SaveReview(){
                               <table class="table table-border">
                               </table>
                           </div>
-                          <button type="button" class="btn rounded-pill" style="background-color: #FF7A00; color: white;" data-bs-dismiss="modal">돌아가기</button>
+                          <button type="button" class="btn rounded-pill" style="background-color: #FF7A00; color: white;" onclick="location.href='./restaurant_list.do';" data-bs-dismiss="modal">돌아가기</button>
                       </div>
                   </div>
               </div>

@@ -44,7 +44,7 @@ function orderPreUpdate(idx){
 			type : 'post', //전송방식 (form태그의 method)
 			url : '../administrator/FCMSender.do', //요청Url
 			data : { 
-				token : 'dKpwlAqJTO2r_Fl3KGnUuv:APA91bH_zvv0LN7ezABIGL9Hl2austfH896hlKQ57XXGLcWQeEHFAOiQgkCx1FNjllp4KqtdSRi7nCUMnvd7oIGFYXYqC0UwLuuFwkoauMn9IRUaNUJkOgJpi8mIZ2weqhSlIYpynv6b' ,
+				token : 'dmcLQMmcSAi6xOfCk0Lwko:APA91bGpTaYT_jfzE163Cv96SHc6zTUVIXIrEmvLgk2oJ2XjXzKlDMujRB-gq1gKqwhteclB9hOagb-101uUPPncqhdA5_cTAP4ct_fJVkssh37bWiOyW9Ae7T9UUg-gQFB8OqlpBVtD' ,
 				title : '배송시작메세지',
 				body : '배송이 시작 되었습니다 조금만기다려주세요'
 			}, //파라미터 (객체형태로 넘기는)
@@ -70,7 +70,7 @@ function orderDeliUpdate(idx){
 			type : 'post', //전송방식 (form태그의 method)
 			url : '../administrator/FCMSender.do', //요청Url
 			data : { 
-				token : 'dKpwlAqJTO2r_Fl3KGnUuv:APA91bH_zvv0LN7ezABIGL9Hl2austfH896hlKQ57XXGLcWQeEHFAOiQgkCx1FNjllp4KqtdSRi7nCUMnvd7oIGFYXYqC0UwLuuFwkoauMn9IRUaNUJkOgJpi8mIZ2weqhSlIYpynv6b' ,
+				token : 'dmcLQMmcSAi6xOfCk0Lwko:APA91bGpTaYT_jfzE163Cv96SHc6zTUVIXIrEmvLgk2oJ2XjXzKlDMujRB-gq1gKqwhteclB9hOagb-101uUPPncqhdA5_cTAP4ct_fJVkssh37bWiOyW9Ae7T9UUg-gQFB8OqlpBVtD' ,
 				title : '배송완료메세지',
 				body : '배송이 완료 되었습니다 확인부탁드려요'
 			}, //파라미터 (객체형태로 넘기는)

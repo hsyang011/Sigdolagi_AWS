@@ -33,6 +33,7 @@
      #content {width: 100%;}
      .cm_input textarea {width: 90%;}
     .cm_input .btns {width: 100%; height: 50px; margin-bottom: 2px; background-color:  #FF7A00; border:none;}
+    .btn2 { display: none; }
 }
 
 @media screen and (min-width:300px) and (max-width:480px) {
@@ -58,6 +59,7 @@
     #free_write_frm_table tr td:first-child {font-size: 15px; padding: 5px 10px;}
     .faq_searchWord_list{  height: 50px; width: 60%;  border: 1px solid #FF7A00;font-family: 'NPSfontRegular';}
     .btn_td button{margin: 0 5px 5px 0; border-radius: 20px;  padding: 0px 10px 0 10px; height: 30px; font-size: 15px;}
+    .btn2 { display: none; }
 }
 
 </style>

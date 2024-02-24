@@ -176,7 +176,7 @@ strike {font-size: 18px;}
 		                        <div>
 		                            <div class="card_product_img">
 		                                <button style="border: none;" data-bs-toggle="modal" class="viewBtn" data-bs-target="#restaurant_view">
-		                                   		<img class="shop_product_img card-img-top" onclick="location.href='../restaurant/restaurant_view.do?restaurant_idx=${ entry.restaurant_idx }';" src="../images/korea${randomNumbers[cnt]}.jpg" alt="Card image" >
+		                                   		<img class="shop_product_img card-img-top" onclick="location.href='../restaurant/restaurant_view.do?restaurant_idx=${ entry.restaurant_idx }&cnt=korea${randomNumbers[cnt]}';" src="../images/korea${randomNumbers[cnt]}.jpg" alt="Card image" >
 		                                </button>
 <!-- 		                                
 		                                <div class="cart_icon_box">
@@ -184,7 +184,7 @@ strike {font-size: 18px;}
 		                                </div> -->
 		                            </div>
 		                            <div class="card-body text-center">
-		                                <h5 class="card-title"><a class="mill_title" href="./restaurant_view.do?restaurant_idx=${ entry.restaurant_idx }">${entry.name}</a></h5>
+		                                <h5 class="card-title"><a class="mill_title" href="./restaurant_view.do?restaurant_idx=${ entry.restaurant_idx }&cnt=korea${randomNumbers[cnt]}">${entry.name}</a></h5>
 		                                <p><span style="color: #f19d07;">★</span>4.8</p>
 		                               <%--  <h5 class="card-title"><a class="mill_title" href="">${entry.name}</a></h5>
 		                                <p><span style="color: #f19d07;">★4.8점</span>${cnt}번째사진</p> 
@@ -225,7 +225,7 @@ strike {font-size: 18px;}
 		                        <div>
 		                            <div class="card_product_img">
 		                                <button style="border: none;"  class="viewBtn"  type="submit" action="../restaurant/restaurantView.do">
-		                                 	<img class="shop_product_img card-img-top" onclick="location.href='../restaurant/restaurant_view.do?restaurant_idx=${ entry.restaurant_idx }';" src="../images/japan${randomNumbers[cnt]}.jpg" alt="Card image" >
+		                                 	<img class="shop_product_img card-img-top" onclick="location.href='../restaurant/restaurant_view.do?restaurant_idx=${ entry.restaurant_idx }&cnt=japan${randomNumbers[cnt]}';" src="../images/japan${randomNumbers[cnt]}.jpg" alt="Card image" >
 		                                </button>
 		                                
 		                                <!-- <div class="cart_icon_box">
@@ -233,7 +233,7 @@ strike {font-size: 18px;}
 		                                </div> -->
 		                            </div>
 		                            <div class="card-body text-center">
-		                                <h5 class="card-title"><a class="mill_title"  href="./restaurant_view.do?restaurant_idx=${ entry.restaurant_idx }">${entry.name}</a></h5>
+		                                <h5 class="card-title"><a class="mill_title"  href="./restaurant_view.do?restaurant_idx=${ entry.restaurant_idx }&cnt=japan${randomNumbers[cnt]}">${entry.name}</a></h5>
 		                                <p><span style="color: #f19d07;">★4.8점</span></p>
 		                          <!--        <p><span style="color: #f19d07;">index</span></p> -->
 		                            </div>
@@ -271,14 +271,14 @@ strike {font-size: 18px;}
 		                        <div>
 		                            <div class="card_product_img"> 
 		                                <button style="border: none;" data-bs-toggle="modal" class="viewBtn" data-bs-target="#restaurant_view">
-		                                   	<img class="shop_product_img card-img-top" onclick="location.href='../restaurant/restaurant_view.do?restaurant_idx=${ entry.restaurant_idx }';" src="../images/china${randomNumbers[cnt]}.jpg" alt="Card image" >
+		                                   	<img class="shop_product_img card-img-top" onclick="location.href='../restaurant/restaurant_view.do?restaurant_idx=${ entry.restaurant_idx }&cnt=china${randomNumbers[cnt]}';" src="../images/china${randomNumbers[cnt]}.jpg" alt="Card image" >
 		                                </button>
 		                                <!-- <div class="cart_icon_box">
 		                                    <img class="p-1" src="../images/favor_icon.png" alt="">
 		                                </div> -->
 		                            </div>
 		                            <div class="card-body text-center">
-		                                <h5 class="card-title"><a class="mill_title"  href="./restaurant_view.do?restaurant_idx=${ entry.restaurant_idx }">${entry.name}</a></h5>
+		                                <h5 class="card-title"><a class="mill_title"  href="./restaurant_view.do?restaurant_idx=${ entry.restaurant_idx }&cnt=china${randomNumbers[cnt]}">${entry.name}</a></h5>
 		                                <p><span style="color: #f19d07;">★</span>4.8</p>
 		                            </div>
 		                        </div>

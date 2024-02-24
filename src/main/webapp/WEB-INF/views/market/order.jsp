@@ -156,7 +156,7 @@ $(function() {
 		        pay_method: 'card', // 결제 수단 (card, vbank, phone 등)
 		        merchant_uid: 'merchant_' + new Date().getTime(), // 상점에서 관리하는 고유 주문 번호
 		        amount: frm.payment.value, // 결제 금액
-		        name: frm.name.value, // 주문명
+		        name: '만두전골 외', // 주문명
 		        buyer_name: frm.name.value, // 구매자 이름
 		        buyer_tel: frm.phone.value, // 구매자 전화번호
 		        buyer_email: frm.email.value, // 구매자 이메일

@@ -7,6 +7,9 @@
 <!-- 전역 설정 css 링크  -->
 <link rel="stylesheet" href="../css/mypage_.css">
 <style>
+@media screen and (max-width: 768px) {
+	table * { font-size: 0.98em; }
+}
 </style>
 <script>
     $(document).ready(function() {
@@ -388,11 +391,11 @@ function deletePlanner(idx, e) {
 				                <thead>
 				                <tr style="text-align: center;" >
 				
-				                    <th scope="col">번호</th>
-				                    <th scope="col" style="width: 60%;">제목</th>
-				                    <th scope="col">작성자</th>
-				                    <th scope="col">작성일</th>
-				                    <th scope="col">조회</th>
+				                    <th scope="col" style="width: 13%">번호</th>
+				                    <th scope="col" style="width: 40%;">제목</th>
+				                    <th scope="col" style="width: 17%;">작성자</th>
+				                    <th scope="col" style="width: 17%;">작성일</th>
+				                    <th scope="col" style="width: 13%;">조회</th>
 				                </tr>
 				                </thead>
 				                <tbody>
@@ -492,11 +495,11 @@ function deletePlanner(idx, e) {
 					                <tr style="text-align: center;" >
 					
 					
-					                    <th scope="col">번호</th>
-					                    <th scope="col" style="width: 20%;">제목</th>
-					                    <th scope="col">분류</th>
-					                    <th scope="col">작성자</th>
-					                    <th scope="col">작성일</th>
+					                    <th scope="col" style="width: 14%">번호</th>
+					                    <th scope="col" style="width: 36%;">제목</th>
+					                    <th scope="col" style="width: 14%">분류</th>
+					                    <th scope="col" style="width: 18%">작성자</th>
+					                    <th scope="col" style="width: 18%">작성일</th>
 					                </tr>
 					                </thead>
 					                <tbody>

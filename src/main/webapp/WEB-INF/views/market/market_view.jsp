@@ -52,6 +52,8 @@
     #product_images { margin-top: 4px; }
     #product_images div { padding: 0 2px; }
     #detail * { font-size: 0.95em; }
+    #deliInfo th { font-size: 0.75em; }
+    #deliInfo td { font-size: 0.85em; }
 }
 #col5 .prod_img {
     width: 20%; /* 5개의 이미지 중 1개의 크기를 20%로 지정 */
@@ -190,7 +192,7 @@ function addToCart(idx, flag, name) {
                     </div>
                     <div>
                         <div class="d-flex justify-content-between">
-                            <table class="table">
+                            <table class="table " id="deliInfo">
                                 <tr>
                                     <th>배송비 3,000원</th>
                                     <td class="text-secondary">40,000원 이상 구매 시 무료 배송</td>
@@ -215,7 +217,7 @@ function addToCart(idx, flag, name) {
                             <h4>${productDTO.prod_name}</h4>
                             <input type="number" id="count" value="1" class="form-control rounded-pill text-center" style="width: 50%;">
                         </div>
-                        <h4 style="font-weight: bold;" id="product_price"><fmt:formatNumber value="${productDTO.prod_price-productDTO.prod_sale}" pattern="#,###" />원</h4>
+                        <h4 style="font-weight: bold; width: 40%;" id="product_price"><fmt:formatNumber value="${productDTO.prod_price-productDTO.prod_sale}" pattern="#,###" />원</h4>
                     </div>
                     <div>
                         <div class="d-flex justify-content-between">

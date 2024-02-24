@@ -8,6 +8,11 @@
 <%@include file = "../include/global_head.jsp" %>
 <!-- 전역 설정 css 링크  -->
 <link rel="stylesheet" href="../css/myorder.css">
+<style>
+@media screen and (max-width: 768px) {
+	#table_wrap * { font-size: 0.98em; }
+}
+</style>
 <script>
 $(function() {
 	$(".detail_head").hide();

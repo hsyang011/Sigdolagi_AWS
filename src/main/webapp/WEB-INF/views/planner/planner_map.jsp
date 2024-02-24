@@ -255,6 +255,7 @@ function drawRoutes(start, end) {
         success: function(res) {
             console.log("요청성공");
             const linePath = [];
+            // 최단 경로의 루트에 속하는 모든 좌표를 반환받음.
             res.routes[0].sections[0].roads.forEach(router => {
                 router.vertexes.forEach((vertex, index) => {
 	                // x,y좌표가 우르르 들어온다. 그러니 인덱스가 8의 배수일때만 linePath에 넣는다.
@@ -263,6 +264,7 @@ function drawRoutes(start, end) {
 	                }
                 });
             });
+            // 좌표 간 직선으로 그려주는 폴리라인 객체
             var polyline = new kakao.maps.Polyline({
                 path: linePath, // 선을 구성하는 좌표배열 입니다
                 strokeWeight: 5, // 선의 두께 입니다
@@ -360,12 +362,10 @@ let placeArr = [];
 // 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
 function placesSearchCB(data, status, pagination) {
     if (status === kakao.maps.services.Status.OK) {
-
         $("#searchText").html('<span style="color: #FF7A00;">' + $("#keyword").val() + '</span> 검색결과'); // 검색결과 텍스트 반영
 
         // 정상적으로 검색이 완료됐으면
         // 검색 목록과 마커를 표출합니다
-        console.log(data[0]);
         placeArr = data;
         displayPlaces(data);
 
@@ -373,15 +373,11 @@ function placesSearchCB(data, status, pagination) {
         displayPagination(pagination);
 
     } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
-
         alert('검색 결과가 존재하지 않습니다.');
         return;
-
     } else if (status === kakao.maps.services.Status.ERROR) {
-
         alert('검색 결과 중 오류가 발생했습니다.');
         return;
-
     }
 }
 
@@ -460,7 +456,7 @@ function getListItem(index, places) {
                  
       itemStr += '  <span class="tel">' + places.phone  + '</span>' +
                 '</div>';
-    itemStr += '<button style="float: right; background-color: #FF7A00; color: white;" onclick="addList('+index+');" class="btn rounded-4 px-3 py-2 me-1">추가하기</button></div>'; 
+    itemStr += '<button style="float: right; background-color: #FF7A00; color: white;" onclick="addList('+index+');" class="btn rounded-4 px-3 py-2 me-1">추가</button></div>'; 
 
     el.innerHTML = itemStr;
     el.className = 'item';

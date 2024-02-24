@@ -73,6 +73,9 @@ $(function() {
         $("#makeplannerBtn").text("만들기");
     }
     
+   	$("#myplannerBtn").click(() => {
+   		location.href = "../member/mypage.do";
+   	});
     $("#makeplannerBtn").click(() => {
     	location.href = "./planner_map.do";
     });
