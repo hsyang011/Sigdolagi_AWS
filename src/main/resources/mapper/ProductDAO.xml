@@ -13,22 +13,22 @@
 			WHERE ${searchField} LIKE '%'||#{searchKeyword}||'%'
 		</if>
 	</select>
-	
+
 	<!-- 상품 리스트 -->
-	<select id="list" parameterType="com.edu.springboot.market.ParameterDTO" 
-		resultType="com.edu.springboot.market.ProductDTO">
-		SELECT * FROM (
-			SELECT Tb.*, ROWNUM rNum FROM (
-				SELECT * FROM product WHERE category=#{category}
-				<!-- 검색어가 null, 빈값이 아닐때만 where절을 동적으로 추가한다. -->
-				<if test="searchKeyword!=null and !searchKeyword.equals('')">
-					AND ${searchField} LIKE '%'||#{searchKeyword}||'%'
-				</if>
-				ORDER BY prod_idx DESC
-			) Tb
-		) WHERE rNum<![CDATA[>=]]>#{start} AND rNum<![CDATA[<=]]>#{end}
+	<select id="list" parameterType="com.edu.springboot.market.ParameterDTO"
+			resultType="com.edu.springboot.market.ProductDTO">
+		SELECT *
+		FROM product
+		WHERE category = #{category}
+		<!-- 검색어가 null, 빈값이 아닐 때만 where절을 동적으로 추가한다. -->
+		<if test="searchKeyword != null and !searchKeyword.equals('')">
+			AND ${searchField} LIKE CONCAT('%', #{searchKeyword}, '%')
+		</if>
+		ORDER BY prod_idx DESC
+		LIMIT #{start}, #{end} <!-- MySQL에서 LIMIT 사용 -->
 	</select>
-	
+
+
 	<!-- 상품을 셀렉트 하기 -->
 	<select id="getAllProducts" resultType="com.edu.springboot.market.ProductDTO">
 		SELECT * FROM product ORDER BY prod_idx DESC
@@ -68,8 +68,8 @@
 		<if test="img4_o != null">img4_o,</if>
 		<if test="img4 != null">img4,</if>
 		<if test="img5_o != null">img5_o,</if>
-		<if test="img5 != null">img5,</if>
-		 prod_idx ) VALUES
+		<if test="img5 != null">img5</if>
+		) VALUES
 		( #{category}, #{sub_cate}, #{seller}, #{prod_name}, ${prod_price}, ${prod_sale}, ${inventory},
 			#{prod_detail_o},#{prod_detail},
 			<if test="img1_o != null">#{img1_o},</if>
@@ -81,8 +81,8 @@
 			<if test="img4_o != null">#{img4_o},</if>
 			<if test="img4 != null">#{img4},</if>
 			<if test="img5_o != null">#{img5_o},</if>
-			<if test="img5 != null">#{img5},</if>
-			 seq_product_idx.nextval )
+			<if test="img5 != null">#{img5}</if>
+			)
 	</insert>
 	
 	<!-- 관리자 마켓상품삭제 -->

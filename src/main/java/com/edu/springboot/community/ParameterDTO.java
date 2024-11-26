@@ -11,6 +11,7 @@ public class ParameterDTO {
 	private int start;
 	private int end;
 	private String email;
+	private int pageSize;
 	
 	
 }

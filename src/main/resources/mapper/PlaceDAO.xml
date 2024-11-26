@@ -31,9 +31,8 @@
             y_point,
         </if>
         <if test="place_url != null">
-            place_url,
+            place_url
         </if>
-			place_idx
 		)
 			VALUES (
 	        ${planner_idx},
@@ -59,9 +58,8 @@
 	            #{y_point},
 	        </if>
 	        <if test="place_url != null">
-	            #{place_url},
+	            #{place_url}
 	        </if>
-	        seq_place_idx.NEXTVAL
 	    )
 	</insert>
 	

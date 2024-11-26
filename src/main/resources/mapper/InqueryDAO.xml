@@ -10,8 +10,8 @@
 	 
 	<!-- write  -->
 	<insert id="write">
-		INSERT INTO inquiryboard (inquiryboard_idx, email, category, title, content, nickname)
-		 VALUES (seq_inquiryboard_idx.nextval, #{email},#{category}, #{title}, #{content}, #{nickname} )
+		INSERT INTO inquiryboard (email, category, title, content, nickname)
+		 VALUES (#{email},#{category}, #{title}, #{content}, #{nickname} )
 	</insert>
 	
 	
@@ -24,21 +24,22 @@
 	</select>
 	
 	<!-- 마이페이지   -->
-	<select id= "MyInquiryListPage"
-		resultType="com.edu.springboot.service.InquiryDTO"
-		parameterType="com.edu.springboot.community.ParameterDTO">
-		SELECT * FROM (
-			SELECT Tb.*, rownum rNum FROM(
-				SELECT * FROM inquiryboard
-				<if test="searchKeyword!=null and !searchKeyword.equals('')">
-				WHERE ${searchField} LIKE '%'||#{searchKeyword} ||'%'
-				</if>
-				ORDER BY inquiryboard_idx DESC
-			) Tb
-		)
-	 	WHERE rNum<![CDATA[>=]]>#{start} AND rNum<![CDATA[<=]]>#{end} AND email=#{email}
+	<select id="MyInquiryListPage"
+			resultType="com.edu.springboot.service.InquiryDTO"
+			parameterType="com.edu.springboot.community.ParameterDTO">
+		SELECT *
+		FROM inquiryboard
+		<if test="searchKeyword != null and !searchKeyword.equals('')">
+			WHERE ${searchField} LIKE CONCAT('%', #{searchKeyword}, '%')
+		</if>
+		<if test="email != null">
+			AND email = #{email}
+		</if>
+		ORDER BY inquiryboard_idx DESC
+		LIMIT #{start}, #{pageSize}
 	</select>
-	
+
+
 	<!-- 관리자 1:1문의 목록 -->
 	<select id="adminInquirySelect"
 		resultType="com.edu.springboot.service.InquiryDTO">

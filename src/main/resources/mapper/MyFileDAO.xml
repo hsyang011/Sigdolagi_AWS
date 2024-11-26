@@ -8,8 +8,8 @@
 
 
 	<insert id="insertMultiFile" parameterType="com.edu.springboot.community.PhotoBoardDTO">
-    INSERT INTO photoboard (idx, nickname, email,  title, content, ofile, sfile)
-    VALUES (SEQ_PHOTOBOARD_IDX.nextval, #{nickname}, #{email}, #{title}, 
+    INSERT INTO photoboard (nickname, email,  title, content, ofile, sfile)
+    VALUES (#{nickname}, #{email}, #{title},
             #{content}, #{ofile}, #{sfile})
 	</insert>
 	

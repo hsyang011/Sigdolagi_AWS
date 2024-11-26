@@ -35,7 +35,7 @@ public class DBConnPool {
 			Context ctx = (Context)initctx.lookup("java:comp/env");
 			/* 3. server.xml에 등록한 네이밍을 lookup하여 DataSource를 얻어온다.
 			즉 DB연결을 위한 정보를 가지고 있다. */
-			DataSource source = (DataSource)ctx.lookup("dbcp_myoracle");
+			DataSource source = (DataSource)ctx.lookup("dbcp_mysql");
 			// 4. 커넥션풀에 생성해 놓은 객체를 가져다가 사용한다.
 			con = source.getConnection();
 			System.out.println("DB커넥션풀 연결성공");

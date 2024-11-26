@@ -8,21 +8,21 @@
 	
 	<!-- 결제 테이블에 결제 정보 추가 -->
 	<insert id="orderProcess" parameterType="com.edu.springboot.market.OrderDTO">
-		INSERT INTO marketorder (order_idx, email, name, phone, addr1, addr2, message, payment_method, payment, point, zipcode)
-			VALUES (seq_marketorder_idx.NEXTVAL, #{email}, #{name}, #{phone}, #{addr1}, #{addr2}, #{message},
+		INSERT INTO marketorder (email, name, phone, addr1, addr2, message, payment_method, payment, point, zipcode)
+			VALUES (#{email}, #{name}, #{phone}, #{addr1}, #{addr2}, #{message},
 				#{payment_method}, ${payment}, ${point}, #{zipcode})
 	</insert>
 	
 	<!-- orderDTO로 order_idx를 가져옵니다. -->
 	<select id="getOrderIdx" parameterType="com.edu.springboot.market.OrderDTO" resultType="string">
-		SELECT order_idx 
-			FROM (
-			  SELECT order_idx FROM marketorder WHERE email=#{email}
-			  ORDER BY order_idx DESC
-			)
-			WHERE ROWNUM=1
+		SELECT order_idx
+		FROM marketorder
+		WHERE email = #{email}
+		ORDER BY order_idx DESC
+			LIMIT 1
 	</select>
-	
+
+
 	<!-- 결제 후, 장바구니에 담긴 모든 품목 제거 -->
 	<delete id="updateAll" parameterType="com.edu.springboot.market.OrderDTO">
 		UPDATE cart SET payed='true', order_idx=#{order_idx} WHERE email=#{email} AND payed='false'
@@ -51,15 +51,16 @@
 	</select>
 	<!-- 관리자 주문내역 상품 불러오기 -->
 	<select id="orderViewList"
-		resultType="com.edu.springboot.market.OrderDTO"
-		parameterType="string"> 
-		SELECT  mo.order_idx, mo.email, mo.name, mo.phone, addr1, addr2, message, payment_method, payment, point
-	    , payment_date, zipcode, cart_idx, pr.prod_idx, cr.prod_count, prod_totprice, pr.prod_name
-	    FROM marketorder mo 
-	        INNER JOIN cart cr on mo.order_idx=cr.order_idx
-	        INNER JOIN product pr on cr.prod_idx=pr.prod_idx
-	    WHERE mo.order_idx=${order_idx}
+			resultType="com.edu.springboot.market.OrderDTO"
+			parameterType="string">
+		SELECT mo.order_idx, mo.email, mo.name, mo.phone, addr1, addr2, message, payment_method, payment, point,
+			   payment_date, zipcode, cart_idx, pr.prod_idx, cr.prod_count, prod_totprice, pr.prod_name
+		FROM marketorder mo
+				 INNER JOIN cart cr ON mo.order_idx = cr.order_idx
+				 INNER JOIN product pr ON cr.prod_idx = pr.prod_idx
+		WHERE mo.order_idx = #{order_idx}
 	</select>
+
 	<!-- 관리자 주문취소처리변경 -->
 	<update id="adminOrderDelete"
 		parameterType="com.edu.springboot.market.OrderDTO">

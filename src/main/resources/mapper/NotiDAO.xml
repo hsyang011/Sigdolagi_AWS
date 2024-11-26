@@ -12,23 +12,21 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE ${searchField} LIKE '%'||#{searchKeyword}||'%'
 		</if>
 	</select>
-	
-	
+
+
 	<select id="listPage"
-		resultType="com.edu.springboot.service.NotiDTO"
-		parameterType="com.edu.springboot.community.ParameterDTO">
-		SELECT * FROM (
-			SELECT Tb.*, rownum rNum FROM(
-				SELECT * FROM noticeboard
-				<if test="searchKeyword!=null and !searchKeyword.equals('')">
-				WHERE ${searchField} LIKE '%'||#{searchKeyword} ||'%'
-				</if>
-				ORDER BY noticeboard_idx DESC
-			) Tb
-		)
-	 	WHERE rNum<![CDATA[>=]]>#{start} AND rNum<![CDATA[<=]]>#{end}
+			resultType="com.edu.springboot.service.NotiDTO"
+			parameterType="com.edu.springboot.community.ParameterDTO">
+		SELECT *
+		FROM noticeboard
+		<if test="searchKeyword != null and !searchKeyword.equals('')">
+			WHERE ${searchField} LIKE CONCAT('%', #{searchKeyword}, '%')
+		</if>
+		ORDER BY noticeboard_idx DESC
+		LIMIT #{start}, #{pageSize}
 	</select>
-	
+
+
 	<!-- 관리자 공지사항 작성  -->
 	<!-- <insert id="write">
 		INSERT INTO noticeboard (noticeboard_idx, email, nickname, title, content) VALUES (seq_noticeboard_idx.nextval,#{email}, #{nickname}, #{_title}, #{_content} )
@@ -56,7 +54,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 관리자 공지사항 작성  -->
 	<insert id="adminNoticeWrite"
 		 parameterType="com.edu.springboot.service.NotiDTO">
-		INSERT INTO noticeboard (noticeboard_idx, email, nickname, title, content) VALUES (seq_noticeboard_idx.nextval,#{email}, #{nickname}, #{title}, #{content} )
+		INSERT INTO noticeboard (email, nickname, title, content) VALUES (#{email}, #{nickname}, #{title}, #{content} )
 	</insert>
 	
 	

@@ -21,11 +21,11 @@ public class JDBConnect {
     public JDBConnect() {
         try {
         	// 오라클 드라이버 로드
-            Class.forName("oracle.jdbc.OracleDriver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             // 커넥션URL, 계정아이디와 패스워드
-            String url = "jdbc:oracle:thin:@localhost:1521:xe";  
-            String id = "sigdolagi";
-            String pwd = "1234";
+            String url = "jdbc:mysql://localhost:3306/sigdolagi";
+            String id = "root";
+            String pwd = "hs1234";
             // 오라클DB 연결
             con = DriverManager.getConnection(url, id, pwd); 
             // 연결성공시 콘솔에서 로그 확인
